@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@responsive {
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+  }
+
+  .text-shadow-none {
+    text-shadow: none;
+  }
+}
+
+.divider {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: auto;
+}
