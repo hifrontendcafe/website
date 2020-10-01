@@ -16,7 +16,6 @@
     "react": "16.13.1",
     "react-add-to-calendar": "^0.1.5",
     "react-dom": "16.13.1",
-    "react-loading-skeleton": "^2.1.1",
     "react-twitter-embed": "^3.0.3"
   },
   "devDependencies": {
