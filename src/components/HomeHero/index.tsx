@@ -14,12 +14,17 @@ const HomeHero: React.FC = () => {
               />
               <div className="lg:pl-12 text-md text-center lg:text-left">
                 <p className="text-xl text-green-500 font-medium pb-2">
-                  Todos podemos aprender, y todos podemos enseñar.
+                  Podés aprender y podés enseñar ~
                 </p>
                 <p className="text-gray-400 leading-relaxed text-lg">
-                  Entrar al mundo de la tecnología puede ser difícil, entonces
-                  creamos un espacio para aprender en compañía de otres que a
-                  veces saben más, y a veces saben menos.
+                  Somos una comunidad de personas interesadas en tecnología y
+                  ciencias informáticas en donde charlamos sobre lenguajes de
+                  programación, diseño web, infraestructura, compartimos dudas,
+                  preguntamos y respondemos.
+                </p>
+                <p className="text-gray-700 text-sm italic mt-2">
+                  No nos olvidamos de divertirnos así que jugamos
+                  <span className="text-pink-400"> Tetris </span>en los recreos.
                 </p>
                 <a
                   target="_blank"
