@@ -2,6 +2,7 @@ export interface Event {
   title: string;
   slug: string;
   category: {
+    name: string;
   };
   cover: {
     src: string;
@@ -18,7 +19,7 @@ export interface Tweet {
 }
 
 export interface Mentor {
-  nombre: string;
+  name: string;
   photo: {
     src: string;
     alt?: string;

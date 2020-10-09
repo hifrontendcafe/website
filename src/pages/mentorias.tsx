@@ -8,7 +8,7 @@ interface MentorContainerProps {
   mentors: Mentor[];
 }
 
-const MentorshipsPage: React.FC<MentorContainerProps> = ({ mentors, title }) => {
+const MentorshipsPage: React.FC<MentorContainerProps> = ({ mentors }) => {
   return (
     <Layout>
       <section id="events" className="text-gray-700 body-font relative pb-64">
