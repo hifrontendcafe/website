@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { useRef } from 'react';
 
 interface HeaderProps {
@@ -8,7 +9,6 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   const menuBtn = useRef(null);
   const menu = useRef(null);
 
-  console.log(menuBtn.current);
   function menuHandler() {
     menuBtn.current.classList.toggle('open');
     menu.current.classList.toggle('flex');
@@ -25,17 +25,19 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
         className="flex flex-col sm:flex-row w-full justify-between items-center px-4 sm:px-6 py-1 bg-white shadow sm:shadow-none"
       >
         <div className="w-full sm:w-auto self-start sm:self-center flex flex-row sm:flex-none flex-no-wrap justify-between items-center">
-          <a href="/" className="flex title-font items-center text-gray-900">
-            <img
-              src="/logo.svg"
-              className="w-12 h-12 text-white p-2 rounded-full"
-              alt="FRONTENDCAFE"
-            />
-            <span className="ml-1 text-xl text-gray-600 font-semibold">
-              FRONTEND
-            </span>
-            <span className="text-xl text-gray-600 font-normal">CAFE</span>
-          </a>
+          <Link href="/">
+            <a className="flex title-font items-center text-gray-900">
+              <img
+                src="/logo.svg"
+                className="w-12 h-12 text-white p-2 rounded-full"
+                alt="FRONTENDCAFE"
+              />
+              <span className="ml-1 text-xl text-gray-600 font-semibold">
+                FRONTEND
+              </span>
+              <span className="text-xl text-gray-600 font-normal">CAFE</span>
+            </a>
+          </Link>
           <button
             ref={menuBtn}
             className="hamburger block sm:hidden focus:outline-none"
@@ -50,19 +52,23 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
           ref={menu}
           className="w-full sm:w-auto self-end sm:self-center sm:flex flex-col sm:flex-row items-center h-full py-1 pb-4 sm:py-0 sm:pb-0 hidden"
         >
-          <a
-            href="#events"
-            className="w-full md:w-auto text-center px-4 py-2 text-gray-600 hover:text-gray-800"
-          >
-            Eventos
-          </a>
-          <a
-            href="#comunidad"
-            className="w-full md:w-auto text-center px-4 py-2 text-gray-600 hover:text-gray-800"
-          >
+          <Link href="/#events">
+            <a className="w-full md:w-auto text-center px-4 py-2 text-gray-600 hover:text-gray-800">
+              Eventos
+            </a>
+          </Link>
+          <Link href="/mentorias">
+            <a
+              className="w-full md:w-auto text-center px-4 py-2 text-gray-600 hover:text-gray-800"
+            >
+              Mentorias
+            </a>
+          </Link>
+          <Link href="/#comunidad">
+          <a className="w-full md:w-auto text-center px-4 py-2 text-gray-600 hover:text-gray-800">
             Comunidad FEC
           </a>
-
+          </Link>
           <span className="border-l pl-2 border-gray-400 hidden md:inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start items-center">
             <a
               target="_blank"
