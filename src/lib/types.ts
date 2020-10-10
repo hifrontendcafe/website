@@ -24,6 +24,7 @@ export interface Mentor {
     src: string;
     alt?: string;
   };
+  web: string;
   calendly: string;
   linkedin: string;
   github: string;

@@ -8,7 +8,7 @@ interface MentorListProps {
 const MentorList: React.FC<MentorListProps> = ({ mentors }) => {
   return (
     <li className="flex align-center flex-col">
-      <div className="flex flex-wrap px-5 py-3">
+      <div className="flex flex-wrap">
       {mentors.map((mentor) => (
         <MentorCard mentor={mentor}/>
       ))}

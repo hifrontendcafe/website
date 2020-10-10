@@ -22,6 +22,7 @@ const mentorsFields = `
     'alt': photo.alt,
     'src': photo.asset->url
   },
+  'web': web,
   'calendly': calendly,
   'github': github,
   'linkedin': linkedin,
