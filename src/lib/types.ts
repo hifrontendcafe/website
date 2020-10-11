@@ -32,3 +32,8 @@ export interface Mentor {
     title: string,
   ]
 }
+
+export interface Topic {
+  title: string;
+  description: string;
+}

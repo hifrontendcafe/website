@@ -9,10 +9,9 @@ interface MentorCardProps {
 }
 
 const MentorCard: React.FC<MentorCardProps> = ({mentor}) => {
-  console.log(mentor)
   return (
-    <div className=" lg:w-1/2 w-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105 ">
-      <div className="col-span-1 bg-white rounded-lg shadow md:mx-3 my-2">
+    <div className="w-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+      <div className="col-span-1 bg-white rounded-lg shadow my-2 border border-teal-400">
         <div className="w-full flex items-center p-4">
           <div className="">
           <img
