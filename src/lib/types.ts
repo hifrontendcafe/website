@@ -17,3 +17,23 @@ export interface Tweet {
   id: string;
   text: string;
 }
+
+export interface Mentor {
+  name: string;
+  photo: {
+    src: string;
+    alt?: string;
+  };
+  web: string;
+  calendly: string;
+  linkedin: string;
+  github: string;
+  topic: [
+    title: string,
+  ]
+}
+
+export interface Topic {
+  title: string;
+  description: string;
+}

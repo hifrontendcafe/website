@@ -34,7 +34,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   };
 
   return (
-    <div className="py-8 px-4 md:w-1/2 lg:w-1/3">
+    <div className={`py-8 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}>
       <div className="h-full flex items-start rounded overflow-hidden shadow-lg flex-col">
         <img
           className="w-full"
@@ -61,7 +61,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           <div className={`mb-5 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
-          <div className="mt-auto mb-2 pt-4">
+          <div className="mt-auto mb-2">
             {past ? (
               event.recording && (
                 <a

@@ -1,5 +1,5 @@
 export async function getRecentTweets(keyword) {
-  const params = `query=from:${keyword}&max_results=11`;
+  const params = `query=from:${keyword}&max_results=12`;
   const res = await fetch(
     `https://api.twitter.com/2/tweets/search/recent?${params}`,
     {

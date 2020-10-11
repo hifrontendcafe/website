@@ -29,7 +29,7 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
         </h1>
         <div className="flex flex-wrap -mx-4 -my-8">
           {pastEvents(events).map((event) => (
-            <EventPreview key={event.slug} event={event} past={true} />
+            event.recording && <EventPreview key={event.slug} event={event} past={true} />
           ))}
         </div>
       </div>

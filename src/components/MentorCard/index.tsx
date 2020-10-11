@@ -1,42 +1,62 @@
-const MentorCard: React.FC = () => {
+import { Mentor } from "../../lib/types";
+import {faGithub, faGithubAlt, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Link from "next/link";
+import { faGlobe } from "@fortawesome/free-solid-svg-icons";
+
+interface MentorCardProps {
+  mentor: Mentor;
+}
+
+const MentorCard: React.FC<MentorCardProps> = ({mentor}) => {
   return (
-    <div className="md:p-2 lg:w-1/3 md:w-1/2 w-full">
-      <div className="col-span-1 bg-white rounded-lg shadow hover:opacity-75 hover:shadow hover:-mb-3 md:mx-5 my-3">
-        <div className="w-full flex items-center justify-between p-6">
-          <div className="flex-1">
-            <div className="flex items-center space-x-3 flex-grow">
-              <h3 className="text-gray-900 text-sm leading-5 font-medium">
-                Jane Cooper
-              </h3>
-            </div>
-            <p className="mt-1 text-gray-500 text-sm leading-5">
-              Regional Paradigm Technician
-            </p>
-          </div>
+    <div className="w-full transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-105">
+      <div className="col-span-1 bg-white rounded-lg shadow my-2 border border-teal-400">
+        <div className="w-full flex items-center p-4">
+          <div className="">
           <img
-            className="mx-3 w-10 h-10 bg-gray-300 rounded-full flex-shrink-0"
-            src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=4&amp;w=256&amp;h=256&amp;q=60"
-            alt=""
-          />
-        </div>
-        <div className="border-t border-gray-200">
-          <div className="-mt-px flex">
-            <div className="w-0 flex-1 flex border-r border-gray-200">
-              <a
-                href="#"
-                className="relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm leading-5 text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 focus:z-10 transition ease-in-out duration-150"
-              >
-                {/* Heroicon name: mail */}
-                <svg
-                  className="w-5 h-5 text-gray-400"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                  <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                </svg>
-                <span className="ml-3">Email</span>
-              </a>
+              className="mx-6 w-24 h-24 bg-gray-300 rounded-full"
+              src={mentor.photo.src}
+              alt=""
+            />
+          </div>
+          <div className="flex-1">
+            <div className="flex flex-col items  flex-grow">
+              <h2 className="text-xl text-green-900 font-medium title-font mb-4">{mentor.name}</h2>
+              <span className="leading-relaxed text-sm">Recomendaciones de carrera, revisión de CV y linkedin, como entrar a la industria y conseguir primer trabajo en IT.</span>
+              <div className="flex my-3">
+              <span className="mr-1 p-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-indigo-100 text-indigo-800">
+                Frontend
+              </span>
+              <span className="mr-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-green-100 text-green-800">
+                Inglés
+              </span>
+              <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-pink-100 text-pink-800">
+                Orientación / CV
+              </span>
+              </div>
+              <span className="inline-flex rounded mt-4 text-white text-sm space-x-1">
+              { mentor.web && <Link href={mentor.web}>
+                <a target="_blank" className="bg-pink-800 hover:bg-pink-700 py-1 px-3 rounded">
+                  <FontAwesomeIcon icon={faGlobe} />
+                </a>
+              </Link>}
+              { mentor.linkedin && <Link href={mentor.linkedin}>
+                <a target="_blank" className="bg-blue-600 hover:bg-blue-700 py-1 px-3 rounded">
+                  <FontAwesomeIcon icon={faLinkedinIn} />
+                </a>
+              </Link>}
+              { mentor.github && <Link href={mentor.github}>
+                <a target="_blank" className="bg-gray-800 hover:bg-gray-700 py-1 px-3 rounded">
+                  <FontAwesomeIcon icon={faGithubAlt} />
+                </a>
+              </Link>}
+              { mentor.calendly && <Link href={mentor.calendly}>
+                <a target="_blank" className="bg-teal-500 hover:bg-teal-400 font-bold py-1 px-3 rounded">
+                  <span>Programar reunion</span>
+                </a>
+              </Link>}
+              </span>
             </div>
           </div>
         </div>

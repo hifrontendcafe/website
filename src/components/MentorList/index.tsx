@@ -1,21 +1,23 @@
+import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 
 interface MentorListProps {
-  title: string;
+  mentors: Mentor[];
+  topics: Topic[];
 }
 
-const MentorList: React.FC<MentorListProps> = ({ title }) => {
+const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
+
+  const titleFromId = id => {
+    topics.filter(element => id === element._id)
+  }
+
   return (
     <li className="flex align-center flex-col">
-      <h4 className="px-5 py-3 bg-green-500 text-white inline-block rounded-t-lg">
-        {title ? title : 'Otra cosa'}
-      </h4>
-
-      <div className="flex flex-wrap px-5 py-3">
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
-        <MentorCard />
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+      {mentors.map((mentor, index) => (
+        <MentorCard key={index} mentor={mentor}/>
+      ))}
       </div>
     </li>
   );
