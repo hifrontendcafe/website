@@ -7,7 +7,7 @@ interface MentorListProps {
 }
 
 const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
-  
+
   return (
     <li className="flex align-center flex-col">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
