@@ -11,6 +11,11 @@ module.exports = {
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
     },
+    minHeight: {
+      '64': '64px',
+      'full': '100%',
+      'screen': '100vh',
+    },
     backgroundColor: (theme) => ({
       ...theme('colors'),
       primary: '#00C39D',

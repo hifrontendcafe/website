@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
-import TopicBadge from '../TopicBadge';
+
 
 interface MentorListProps {
   mentors: Mentor[];
@@ -49,13 +49,13 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
           </svg>
         </div>
       </div>
-      <li className="flex align-center flex-col min-h-screen ">
+      <div className="flex align-center flex-col min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 auto-rows-min">
           {(filteredTopics && filter ? filteredTopics : mentors).map((mentor, index) => (
             <MentorCard key={index} mentor={mentor} topics={topics} />
-          ))}
+            ))}
         </div>
-      </li>
+      </div>
     </>
   );
 };

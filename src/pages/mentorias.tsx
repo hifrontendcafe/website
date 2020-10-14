@@ -13,7 +13,7 @@ const MentorshipsPage: React.FC<MentorContainerProps> = ({ topics, mentors }) =>
   return (
     <Layout>
       <section id="events" className="text-gray-700 body-font relative">
-        <div className="container px-5 py-16 mx-auto">
+        <div className="container px-5 py-16 mx-auto min">
           <h1 className="text-3xl pb-6 text-green-500">Mentores</h1>
           <MentorList topics={topics} mentors={mentors} />
         </div>
