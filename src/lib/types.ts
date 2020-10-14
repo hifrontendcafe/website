@@ -20,6 +20,7 @@ export interface Tweet {
 
 export interface Mentor {
   name: string;
+  description: string;
   photo: {
     src: string;
     alt?: string;
@@ -28,12 +29,16 @@ export interface Mentor {
   calendly: string;
   linkedin: string;
   github: string;
-  topic: [
-    title: string,
+  topics: [
+    {
+      _key: string;
+      _ref: string;
+    }
   ]
 }
 
 export interface Topic {
+  _id: string;
   title: string;
   description: string;
 }

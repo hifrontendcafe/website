@@ -18,6 +18,7 @@ const eventFields = `
 
 const mentorsFields = `
   name,
+  description,
   'photo': {
     'alt': photo.alt,
     'src': photo.asset->url
