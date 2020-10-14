@@ -23,13 +23,13 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
 
   return (
     <div className="w-full">
-      <div className="col-span-1 bg-white rounded-lg shadow my-2 border border-teal-400">
+      <div className="col-span-1 bg-white rounded-lg shadow my-2 border border-teal-200">
         <div className="w-full flex items-center flex-col md:flex-row px-6 py-4 text-center md:text-left">
           <div className="flex flex-col items-center md:mr-6 text-white">
             <img
               className="w-24 h-24 bg-gray-300 rounded-full"
               src={mentor.photo.src}
-              alt=""
+              alt={`${mentor.name} Avatar`}
             />
             <div className="flex mt-2 space-x-1">
               {mentor.web && (
@@ -76,15 +76,14 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
                       target="_blank"
                       className="text-white bg-teal-500 hover:bg-teal-400 font-base text-sm py-1 px-3 rounded"
                     >
-                      <span>Programar reunion</span>
+                      <span>CONTACTAME</span>
                     </a>
                   </Link>
                 )}
               </div>
 
               <span className="leading-relaxed text-xs">
-                Recomendaciones de carrera, revisión de CV y linkedin, como
-                entrar a la industria y conseguir primer trabajo en IT.
+                {(mentor.description) ? mentor.description : '---'}
               </span>
               <div className="flex flex-wrap my-3 justify-center md:justify-start">
                 {mentor.topics && mentor.topics.map(topic => <TopicBadge key={topic._key} topic={findTopicsName(topic._ref)} />)}

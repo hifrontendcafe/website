@@ -20,6 +20,7 @@ export interface Tweet {
 
 export interface Mentor {
   name: string;
+  description: string;
   photo: {
     src: string;
     alt?: string;
@@ -32,7 +33,6 @@ export interface Mentor {
     {
       _key: string;
       _ref: string;
-      _id: string;
     }
   ]
 }
