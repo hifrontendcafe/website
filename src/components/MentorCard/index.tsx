@@ -1,4 +1,4 @@
-import { Mentor } from '../../lib/types';
+import { Mentor, Topic } from '../../lib/types';
 import {
   faGithub,
   faGithubAlt,
@@ -7,17 +7,25 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import TopicBadge from '../TopicBadge';
 
 interface MentorCardProps {
   mentor: Mentor;
+  topics: Topic[];
 }
 
-const MentorCard: React.FC<MentorCardProps> = ({ mentor }) => {
+const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
+
+  const findTopicsName = (id: string) => {
+    const topic = topics.find(e => e._id == id)
+    return topic.title;
+  }
+
   return (
     <div className="w-full">
       <div className="col-span-1 bg-white rounded-lg shadow my-2 border border-teal-400">
         <div className="w-full flex items-center flex-col md:flex-row px-6 py-4 text-center md:text-left">
-          <div className="flex flex-col items-center mr-6 text-white">
+          <div className="flex flex-col items-center md:mr-6 text-white">
             <img
               className="w-24 h-24 bg-gray-300 rounded-full"
               src={mentor.photo.src}
@@ -56,9 +64,9 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor }) => {
               )}
             </div>
           </div>
-          <div className="flex-1 border-l pl-6">
+          <div className="flex-1 md:border-l md:pl-6">
             <div className="flex flex-col items  flex-grow">
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex flex-col md:flex-row justify-between items-center mb-4">
                 <h2 className="text-2xl text-green-900 font-medium title-font">
                   {mentor.name}
                 </h2>
@@ -78,16 +86,8 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor }) => {
                 Recomendaciones de carrera, revisión de CV y linkedin, como
                 entrar a la industria y conseguir primer trabajo en IT.
               </span>
-              <div className="flex my-3 justify-center md:justify-start">
-                <span className="mr-1 p-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-indigo-100 text-indigo-800">
-                  Frontend
-                </span>
-                <span className="mr-1 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-green-100 text-green-800">
-                  Inglés
-                </span>
-                <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium leading-4 bg-pink-100 text-pink-800">
-                  Orientación / CV
-                </span>
+              <div className="flex flex-wrap my-3 justify-center md:justify-start">
+                {mentor.topics && mentor.topics.map(topic => <TopicBadge key={topic._key} topic={findTopicsName(topic._ref)} />)}
               </div>
             </div>
           </div>

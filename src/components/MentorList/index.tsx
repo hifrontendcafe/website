@@ -12,7 +12,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     <li className="flex align-center flex-col">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
       {mentors.map((mentor, index) => (
-        <MentorCard key={index} mentor={mentor}/>
+        <MentorCard key={index} mentor={mentor} topics={topics}/>
       ))}
       </div>
     </li>

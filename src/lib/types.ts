@@ -28,12 +28,17 @@ export interface Mentor {
   calendly: string;
   linkedin: string;
   github: string;
-  topic: [
-    title: string,
+  topics: [
+    {
+      _key: string;
+      _ref: string;
+      _id: string;
+    }
   ]
 }
 
 export interface Topic {
+  _id: string;
   title: string;
   description: string;
 }
