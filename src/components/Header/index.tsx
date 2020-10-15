@@ -16,13 +16,13 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   }
   return (
     <header
-      className={`container mx-auto w-full flex flex-col fixed sm:relative bg-white z-50 ${
+      className={`shadow-md w-full flex flex-col fixed sm:relative bg-white z-50 ${
         preview ? 'pt-10' : ''
       }`}
     >
       <nav
         id="site-menu"
-        className="flex flex-col sm:flex-row w-full justify-between items-center px-4 sm:px-6 py-1 bg-white shadow sm:shadow-none"
+        className="container mx-auto flex flex-col sm:flex-row w-full justify-between items-center px-4 sm:px-6 py-1 bg-white shadow sm:shadow-none"
       >
         <div className="w-full sm:w-auto self-start sm:self-center flex flex-row sm:flex-none flex-no-wrap justify-between items-center">
           <Link href="/">

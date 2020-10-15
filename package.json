@@ -16,6 +16,7 @@
     "@sanity/client": "^1.150.7",
     "@sanity/image-url": "^0.140.19",
     "date-fns": "^2.16.1",
+    "framer-motion": "^2.9.1",
     "next": "^9.5.4-canary.23",
     "react": "16.13.1",
     "react-add-to-calendar": "^0.1.5",

@@ -1,6 +1,5 @@
 import { Mentor, Topic } from '../../lib/types';
 import {
-  faGithub,
   faGithubAlt,
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
@@ -8,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import TopicBadge from '../TopicBadge';
+import { motion } from 'framer-motion';
 
 interface MentorCardProps {
   mentor: Mentor;
@@ -15,15 +15,18 @@ interface MentorCardProps {
 }
 
 const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
-
   const findTopicsName = (id: string) => {
-    const topic = topics.find(e => e._id == id)
+    const topic = topics.find((e) => e._id == id);
     return topic.title;
-  }
+  };
 
   return (
-    <div className="w-full">
-      <div className="col-span-1 bg-white rounded-lg shadow my-2 border border-teal-200">
+    <motion.div
+    initial={{ y: 100, opacity: 0 }}
+    animate={{ y: 0, opacity: 1 }}
+    exit={{ y: -100, opacity: 0 }}
+      className="w-full col-span-1 bg-white rounded-lg shadow my-2 border border-teal-100"
+    >
         <div className="w-full flex items-center flex-col md:flex-row px-6 py-4 text-center md:text-left">
           <div className="flex flex-col items-center md:mr-6 text-white">
             <img
@@ -82,17 +85,22 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
                 )}
               </div>
 
-              <span className="leading-relaxed text-xs">
-                {(mentor.description) ? mentor.description : '---'}
+              <span className="leading-relaxed text-xs md:min-h-64">
+                {mentor.description ? mentor.description : '---'}
               </span>
               <div className="flex flex-wrap my-3 justify-center md:justify-start">
-                {mentor.topics && mentor.topics.map(topic => <TopicBadge key={topic._key} topic={findTopicsName(topic._ref)} />)}
+                {mentor.topics &&
+                  mentor.topics.map((topic) => (
+                    <TopicBadge
+                      key={topic._key}
+                      topic={findTopicsName(topic._ref)}
+                    />
+                  ))}
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+    </motion.div>
   );
 };
 
