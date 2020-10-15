@@ -1,6 +1,5 @@
 import { Mentor, Topic } from '../../lib/types';
 import {
-  faGithub,
   faGithubAlt,
   faLinkedinIn,
 } from '@fortawesome/free-brands-svg-icons';
