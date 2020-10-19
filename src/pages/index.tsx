@@ -1,15 +1,20 @@
-import React from 'react';
-import LandingLayout from '../components/LandingLayout';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCommentDots,
+  faGraduationCap,
+  faPeopleCarry,
+} from '@fortawesome/free-solid-svg-icons';
+import Layout from '../components/Layout';
 
 const IndexPage = () => (
-  <LandingLayout title="Home | Next.js + TypeScript Example">
+  <Layout title="Home | Next.js + TypeScript Example">
     <Hero />
     <Services />
     <Featured />
     <Team />
     <Finisher />
     <Contact />
-  </LandingLayout>
+  </Layout>
 );
 
 export default IndexPage;
@@ -25,25 +30,42 @@ const Hero = () => (
     <div
       className="absolute top-2 w-full h-full bg-center bg-cover"
       style={{
-        backgroundImage:
-          "url('https://github.com/agusmar/landingfec/blob/master/Landing%20Page/next-landing-page/assets/img/fake.jpg?raw=true')",
+        backgroundImage: "url('/bg.svg')",
       }}
     >
-      <span
-        id="blackOverlay"
-        className="w-full h-full absolute opacity-75 bg-black"
-      ></span>
+      <span className="w-full h-full absolute opacity-50 bg-black"></span>
     </div>
     <div className="container relative mx-auto">
-      <div className="items-center flex flex-wrap">
-        <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-          <div className="pr-12">
-            <h1 className="text-white font-semibold text-5xl">FrontEndCafé</h1>
-            <p className="mt-4 text-lg text-gray-300">
-              Aprendé y charla sobre código, diseño y tecnología
+      <div className="flex bg-cover py-12 items-center justify-between flex-wrap container mx-auto px-5 lg:px-0">
+        <div className="max-w-xl lg:min-w-0 sm:min-w-full md:py-16 py-10 text-shadow">
+          <img
+            src="/fec-new.svg"
+            className="pb-2 w-2/3 lg:w-10/12 mx-auto lg:mx-0"
+            alt="FRONTENDCAFE"
+          />
+          <div className="lg:pl-12 text-md text-center lg:text-left">
+            <p className="text-xl text-green-500 font-medium pb-2">
+              Podés aprender y podés enseñar ~
             </p>
+            <p className="text-gray-400 leading-relaxed text-lg">
+              Somos una comunidad de personas interesadas en tecnología y
+              ciencias informáticas en donde charlamos sobre lenguajes de
+              programación, diseño web, infraestructura, compartimos dudas,
+              preguntamos y respondemos.
+            </p>
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://discord.gg/3GC6TJd"
+            ></a>
           </div>
         </div>
+        <iframe
+          className="w-full md:max-w-sm lg:min-w-0 sm:min-w-full"
+          src="https://discordapp.com/widget?id=594363964499165194&theme=dark"
+          height="450"
+          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+        ></iframe>
       </div>
     </div>
     <div
@@ -75,12 +97,12 @@ const Services = () => (
         <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
             <div className="px-4 py-5 flex-auto">
-              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
-                <i className="fas fa-award"></i>
+              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-thirdiary">
+                <FontAwesomeIcon icon={faPeopleCarry} />
               </div>
               <h6 className="text-xl font-semibold">Comunidad</h6>
               <p className="mt-2 mb-4 text-gray-600">
-                Coworking, after office, charlas, preguntas, respuestas...
+                Coworking, after office, charlas, preguntas, r espuestas...
               </p>
             </div>
           </div>
@@ -89,8 +111,8 @@ const Services = () => (
         <div className="w-full md:w-4/12 px-4 text-center">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
             <div className="px-4 py-5 flex-auto">
-              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
-                <i className="fas fa-retweet"></i>
+              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-secondary">
+                <FontAwesomeIcon icon={faGraduationCap} />
               </div>
               <h6 className="text-xl font-semibold">Mentorías</h6>
               <p className="mt-2 mb-4 text-gray-600">
@@ -103,8 +125,8 @@ const Services = () => (
         <div className="pt-6 w-full md:w-4/12 px-4 text-center">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
             <div className="px-4 py-5 flex-auto">
-              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
-                <i className="fas fa-fingerprint"></i>
+              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-primary">
+                <FontAwesomeIcon icon={faCommentDots} />
               </div>
               <h6 className="text-xl font-semibold">Prácticas de inglés</h6>
               <p className="mt-2 mb-4 text-gray-600">bla bla ++</p>
@@ -115,9 +137,6 @@ const Services = () => (
 
       <div className="flex flex-wrap items-center mt-32">
         <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-          <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
-            <i className="fas fa-user-friends text-xl"></i>
-          </div>
           <h3 className="text-3xl mb-2 font-semibold leading-normal">
             ¡Qué es FrontEndCafé?
           </h3>
@@ -207,9 +226,6 @@ const Featured = () => (
         </div>
         <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
           <div className="md:pr-12">
-            <div className="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
-              <i className="fas fa-rocket text-xl"></i>
-            </div>
             <h3 className="text-3xl font-semibold">A growing company</h3>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">
               The extension comes with three pre-built pages to help you get

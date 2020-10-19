@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 interface LandingNavbarProps {
   transparent?: boolean;
 }
 
 const LandingNavbar: React.FC<LandingNavbarProps> = ({ transparent }) => {
-  const [navbarOpen, setNavbarOpen] = useState(false);
+  const [navbarOpen, setNavbarOpen] = useState(true);
   return (
     <nav
       className={

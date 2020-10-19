@@ -2,41 +2,50 @@ import { useEffect, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 
-
 interface MentorListProps {
   mentors: Mentor[];
   topics: Topic[];
 }
 
 const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
-  const [filter, setFilter] = useState<string>()
-  const [filteredTopics, setfilteredTopics] = useState <Mentor[] | undefined>(undefined);
-
+  const [filter, setFilter] = useState<string>();
+  const [filteredTopics, setfilteredTopics] = useState<Mentor[] | undefined>(
+    undefined,
+  );
 
   useEffect(() => {
-    filterTopics()
+    filterTopics();
     return () => filterTopics();
-  }, [filter])
+  }, [filter]);
 
   const filterTopics = () => {
     const filtered = [];
 
     mentors.forEach((mentor) => {
-      const find = mentor.topics.filter(topic => topic._ref == filter);
+      const find = mentor.topics.filter((topic) => topic._ref == filter);
       if (find.length > 0) filtered.push(mentor);
-    })
+    });
 
     setfilteredTopics(filtered);
-  }
+  };
 
   return (
-    <>
-      <label className="block uppercase text-gray-700 text-xs font-bold mb-2 ml-2"> Especialidades </label>
+    <div className="container px-5 py-24 mx-auto min">
+      <h1 className="text-3xl p6 text-primary">Mentores</h1>
+      <label className="block uppercase text-gray-700 text-xs font-bold mb-2 ml-2">
+        {' '}
+        Especialidades{' '}
+      </label>
       <div className="inline-block relative w-full md:w-1/2 lg:w-1/3 mb-6">
-        <select onChange={() => setFilter((event.target as HTMLInputElement).value)} className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline">
+        <select
+          onChange={() => setFilter((event.target as HTMLInputElement).value)}
+          className="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline"
+        >
           <option value="">--</option>
           {topics.map((topic, index) => (
-            <option value={topic._id} key={index}>{topic.title}</option>
+            <option value={topic._id} key={index}>
+              {topic.title}
+            </option>
           ))}
         </select>
         <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -51,12 +60,14 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
       </div>
       <div className="flex align-center flex-col min-h-screen">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 auto-rows-min">
-          {(filteredTopics && filter ? filteredTopics : mentors).map((mentor, index) => (
-            <MentorCard key={index} mentor={mentor} topics={topics} />
-            ))}
+          {(filteredTopics && filter ? filteredTopics : mentors).map(
+            (mentor, index) => (
+              <MentorCard key={index} mentor={mentor} topics={topics} />
+            ),
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
