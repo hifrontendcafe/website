@@ -13,11 +13,6 @@ export interface Event {
   recording?: string;
 }
 
-export interface Tweet {
-  id: string;
-  text: string;
-}
-
 export interface Mentor {
   name: string;
   description: string;
@@ -33,8 +28,8 @@ export interface Mentor {
     {
       _key: string;
       _ref: string;
-    }
-  ]
+    },
+  ];
 }
 
 export interface Topic {

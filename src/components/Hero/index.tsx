@@ -5,7 +5,7 @@ interface HeroProps {
   title?: string;
 }
 
-const Hero: React.FC<HeroProps> = ({ title = 'Somos' }) => (
+const Hero: React.FC<HeroProps> = ({ title = 'Welcome to' }) => (
   <div
     className="relative flex content-center items-center justify-center"
     style={{
@@ -27,11 +27,11 @@ const Hero: React.FC<HeroProps> = ({ title = 'Somos' }) => (
         transition={{ duration: 1 }}
         exit={{ opacity: 0 }}
       >
-        <h1 className="text-6xl md:text-highlighted font-extrabold text-white leading-7">
+        <h1 className="text-5xl md:text-6xl md:text-highlighted font-semibold text-white leading-7">
           {title}
         </h1>
         <h1
-          className={`text-6xl md:text-highlighted font-extrabold text-white ${styles.highlighted}`}
+          className={`text-5xl md:text-6xl md:text-highlighted font-extrabold text-white ${styles.highlighted}`}
         >
           FrontEndCafé
         </h1>

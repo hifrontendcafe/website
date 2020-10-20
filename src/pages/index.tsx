@@ -1,4 +1,3 @@
-import { GetStaticProps } from 'next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCommentDots,
@@ -9,16 +8,9 @@ import {
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
 import TwitterFeed from '../components/TwitterFeed';
-import { getRecentTweets } from '../lib/twitter';
-import { Tweet } from '../lib/types';
 import Link from 'next/link';
 
-export interface CalendarPageProps {
-  tweets: Tweet[];
-  preview: boolean;
-}
-
-const Index = ({ preview, tweets }) => (
+const Index = () => (
   <Layout title="Inicio">
     <Hero />
     <div
@@ -42,14 +34,14 @@ const Index = ({ preview, tweets }) => (
     </div>
     <Services />
     <Featured />
-    <TwitterFeed tweets={tweets} />
+    <TwitterFeed />
   </Layout>
 );
 
 // Page Sections
 
 const Services = () => (
-  <section className="pb-20 bg-indigo-100 -mt-24">
+  <section className="py-20 bg-indigo-100 -mt-24">
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap">
         <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
@@ -58,10 +50,10 @@ const Services = () => (
               <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-thirdiary">
                 <FontAwesomeIcon icon={faPeopleCarry} />
               </div>
-              <h6 className="text-xl font-semibold">Comunidad</h6>
-              <p className="mt-2 mb-4 text-gray-600">
+              <h6 className="text-2xl font-semibold">Comunidad</h6>
+              {/*               <p className="mt-2 mb-4 text-gray-600">
                 Coworking, after office, charlas, preguntas, respuestas...
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -72,10 +64,10 @@ const Services = () => (
               <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-secondary">
                 <FontAwesomeIcon icon={faGraduationCap} />
               </div>
-              <h6 className="text-xl font-semibold">Mentorías</h6>
-              <p className="mt-2 mb-4 text-gray-600">
+              <h6 className="text-2xl font-semibold">Mentorías</h6>
+              {/*               <p className="mt-2 mb-4 text-gray-600">
                 Mentorías individuales gratuitas
-              </p>
+              </p> */}
             </div>
           </div>
         </div>
@@ -86,8 +78,8 @@ const Services = () => (
               <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-primary">
                 <FontAwesomeIcon icon={faCommentDots} />
               </div>
-              <h6 className="text-xl font-semibold">Prácticas de inglés</h6>
-              <p className="mt-2 mb-4 text-gray-600"></p>
+              <h6 className="text-2xl font-semibold">Prácticas de inglés</h6>
+              {/*               <p className="mt-2 mb-4 text-gray-600"></p> */}
             </div>
           </div>
         </div>
@@ -95,7 +87,7 @@ const Services = () => (
 
       <div className="flex flex-wrap items-center mt-24 mb-12">
         <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-6">
-          <h3 className="text-3xl mb-2 font-semibold leading-normal text-gray-800">
+          <h3 className="text-3xl mb-2 font-semibold leading-normal text-secondary">
             ¡Qué es FrontEndCafé?
           </h3>
           <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
@@ -131,7 +123,7 @@ const Services = () => (
 );
 
 const Featured = () => (
-  <section className="relative py-20">
+  <section className="relative py-48">
     <div
       className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
       style={{ height: '80px', transform: 'translateZ(0)' }}
@@ -154,16 +146,18 @@ const Featured = () => (
 
     <div className="container mx-auto px-4">
       <div className="items-center flex flex-wrap">
-        <div className="w-full md:w-4/12 ml-auto mr-auto px-4">
+        <div className="w-full md:w-6/12 ml-auto mr-auto px-4">
           <img
             alt="..."
-            className="max-w-full rounded-lg shadow-lg"
-            src="https://images.unsplash.com/photo-1555212697-194d092e3b8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80"
+            className="max-w-full rounded-lg"
+            src="/img/english.svg"
           />
         </div>
         <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
           <div className="md:pr-12">
-            <h3 className="text-3xl font-semibold">Prácticas de inglés</h3>
+            <h3 className="text-4xl font-extrabold text-thirdiary">
+              Prácticas de inglés
+            </h3>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">
               Nos reunimos a charlar con el objetivo de perder el miedo a hablar
               en inglés en público, mejorar la comunicación en inglés partiendo
@@ -363,13 +357,5 @@ const Featured = () => (
     </div>
   </section>
 ); */
-
-export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const tweets = await getRecentTweets('frontendcafe');
-  return {
-    props: { preview, tweets },
-    revalidate: 1,
-  };
-};
 
 export default Index;

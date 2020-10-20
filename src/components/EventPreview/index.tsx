@@ -34,7 +34,9 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   };
 
   return (
-    <div className={`py-8 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}>
+    <div
+      className={`py-8 pb-24 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}
+    >
       <div className="h-full flex items-start rounded overflow-hidden shadow-lg flex-col">
         <img
           className="w-full"
@@ -43,7 +45,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           style={{ filter: past ? 'grayscale(66%)' : 'none' }}
         />
         <div
-          className={`flex-grow p-4 flex flex-col ${
+          className={`flex-grow p-4 flex flex-col bg-white ${
             past && !event.recording ? styles['past-event-text'] : ''
           }`}
         >
