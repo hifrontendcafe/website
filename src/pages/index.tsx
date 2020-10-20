@@ -11,6 +11,7 @@ import Hero from '../components/Hero';
 import TwitterFeed from '../components/TwitterFeed';
 import { getRecentTweets } from '../lib/twitter';
 import { Tweet } from '../lib/types';
+import Link from 'next/link';
 
 export interface CalendarPageProps {
   tweets: Tweet[];
@@ -106,12 +107,14 @@ const Services = () => (
           <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
             Todo pasa adentro de un canal de Discord...
           </p>
-          <a
-            href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
-            className="btn btn-secondary"
-          >
-            Manual de uso de Discord
-          </a>
+          <Link href="#">
+            <a
+              className={'btn btn-secondary'}
+              style={{ transition: 'all .15s ease' }}
+            >
+              Manual de uso de Discord
+            </a>
+          </Link>
         </div>
 
         <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">

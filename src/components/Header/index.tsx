@@ -61,14 +61,15 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
               </a>
             </Link>
           ))}
-
-          <button
-            className={'btn btn-secondary ml-3'}
-            type="button"
-            style={{ transition: 'all .15s ease' }}
-          >
-            Sumate a Discord
-          </button>
+          <Link href="https://discord.com/invite/3GC6TJd">
+            <a
+              target="_blank"
+              className={'btn btn-secondary ml-3'}
+              style={{ transition: 'all .15s ease' }}
+            >
+              Sumate a Discord
+            </a>
+          </Link>
         </div>
       </nav>
     </header>
