@@ -4,14 +4,19 @@ import Footer from '../Footer';
 import PreviewBanner from '../PreviewBanner';
 
 interface LayoutProps {
+  title?: string;
   preview?: boolean;
 }
 
-const Layout: React.FC<LayoutProps> = ({ preview = false, children }) => {
+const Layout: React.FC<LayoutProps> = ({
+  preview = false,
+  children,
+  title = 'FrontendCafé',
+}) => {
   return (
     <>
       <Head>
-        <title>FRONTENDCAFE</title>
+        <title>{title} - FrontendCafé</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <div className="antialiased">

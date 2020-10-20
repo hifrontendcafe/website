@@ -1,51 +1,26 @@
-import React from 'react';
-import LandingLayout from '../components/LandingLayout';
+import { GetStaticProps } from 'next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faCommentDots,
+  faGraduationCap,
+  faPeopleCarry,
+} from '@fortawesome/free-solid-svg-icons';
 
-const IndexPage = () => (
-  <LandingLayout title="Home | Next.js + TypeScript Example">
+import Layout from '../components/Layout';
+import Hero from '../components/Hero';
+import TwitterFeed from '../components/TwitterFeed';
+import { getRecentTweets } from '../lib/twitter';
+import { Tweet } from '../lib/types';
+import Link from 'next/link';
+
+export interface CalendarPageProps {
+  tweets: Tweet[];
+  preview: boolean;
+}
+
+const Index = ({ preview, tweets }) => (
+  <Layout title="Inicio">
     <Hero />
-    <Services />
-    <Featured />
-    <Team />
-    <Finisher />
-    <Contact />
-  </LandingLayout>
-);
-
-export default IndexPage;
-
-/// Page Sections
-const Hero = () => (
-  <div
-    className="relative pt-16 pb-32 flex content-center items-center justify-center"
-    style={{
-      minHeight: '75vh',
-    }}
-  >
-    <div
-      className="absolute top-2 w-full h-full bg-center bg-cover"
-      style={{
-        backgroundImage:
-          "url('https://github.com/agusmar/landingfec/blob/master/Landing%20Page/next-landing-page/assets/img/fake.jpg?raw=true')",
-      }}
-    >
-      <span
-        id="blackOverlay"
-        className="w-full h-full absolute opacity-75 bg-black"
-      ></span>
-    </div>
-    <div className="container relative mx-auto">
-      <div className="items-center flex flex-wrap">
-        <div className="w-full lg:w-6/12 px-4 ml-auto mr-auto text-center">
-          <div className="pr-12">
-            <h1 className="text-white font-semibold text-5xl">FrontEndCafé</h1>
-            <p className="mt-4 text-lg text-gray-300">
-              Aprendé y charla sobre código, diseño y tecnología
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
     <div
       className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
       style={{ height: '70px', transform: 'translateZ(0)' }}
@@ -60,23 +35,28 @@ const Hero = () => (
         y="0"
       >
         <polygon
-          className="text-gray-300 fill-current"
+          className="text-indigo-100 fill-current"
           points="2560 0 2560 100 0 100"
         ></polygon>
       </svg>
     </div>
-  </div>
+    <Services />
+    <Featured />
+    <TwitterFeed tweets={tweets} />
+  </Layout>
 );
 
+// Page Sections
+
 const Services = () => (
-  <section className="pb-20 bg-gray-300 -mt-24">
+  <section className="pb-20 bg-indigo-100 -mt-24">
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap">
         <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
             <div className="px-4 py-5 flex-auto">
-              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-red-400">
-                <i className="fas fa-award"></i>
+              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-thirdiary">
+                <FontAwesomeIcon icon={faPeopleCarry} />
               </div>
               <h6 className="text-xl font-semibold">Comunidad</h6>
               <p className="mt-2 mb-4 text-gray-600">
@@ -89,8 +69,8 @@ const Services = () => (
         <div className="w-full md:w-4/12 px-4 text-center">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
             <div className="px-4 py-5 flex-auto">
-              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-blue-400">
-                <i className="fas fa-retweet"></i>
+              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-secondary">
+                <FontAwesomeIcon icon={faGraduationCap} />
               </div>
               <h6 className="text-xl font-semibold">Mentorías</h6>
               <p className="mt-2 mb-4 text-gray-600">
@@ -103,22 +83,19 @@ const Services = () => (
         <div className="pt-6 w-full md:w-4/12 px-4 text-center">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
             <div className="px-4 py-5 flex-auto">
-              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-green-400">
-                <i className="fas fa-fingerprint"></i>
+              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-primary">
+                <FontAwesomeIcon icon={faCommentDots} />
               </div>
               <h6 className="text-xl font-semibold">Prácticas de inglés</h6>
-              <p className="mt-2 mb-4 text-gray-600">bla bla ++</p>
+              <p className="mt-2 mb-4 text-gray-600"></p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center mt-32">
-        <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-          <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-gray-100">
-            <i className="fas fa-user-friends text-xl"></i>
-          </div>
-          <h3 className="text-3xl mb-2 font-semibold leading-normal">
+      <div className="flex flex-wrap items-center mt-24 mb-12">
+        <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-6">
+          <h3 className="text-3xl mb-2 font-semibold leading-normal text-gray-800">
             ¡Qué es FrontEndCafé?
           </h3>
           <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
@@ -130,44 +107,23 @@ const Services = () => (
           <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
             Todo pasa adentro de un canal de Discord...
           </p>
-          <a
-            href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
-            className="font-bold text-gray-800 mt-8"
-          >
-            Chequeate el manual de uso de Discord de FrontEndCafé
-          </a>
+          <Link href="#">
+            <a
+              className={'btn btn-secondary'}
+              style={{ transition: 'all .15s ease' }}
+            >
+              Manual de uso de Discord
+            </a>
+          </Link>
         </div>
 
         <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
-          <div className="relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-pink-600">
-            <img
-              alt="..."
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80"
-              className="w-full align-middle rounded-t-lg"
-            />
-            <blockquote className="relative p-8 mb-4">
-              <svg
-                preserveAspectRatio="none"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 583 95"
-                className="absolute left-0 w-full block"
-                style={{
-                  height: '95px',
-                  top: '-94px',
-                }}
-              >
-                <polygon
-                  points="-30,95 583,95 583,65"
-                  className="text-pink-600 fill-current"
-                ></polygon>
-              </svg>
-              <h4 className="text-xl font-bold text-white">Online Coworking</h4>
-              <p className="text-md font-light mt-2 text-white">
-                Nos juntamos a trabajar y escuchar musica, los viernes bailamos
-                cumbia (?
-              </p>
-            </blockquote>
-          </div>
+          <iframe
+            className="w-full md:max-w-sm lg:min-w-0 sm:min-w-full"
+            src="https://discordapp.com/widget?id=594363964499165194&theme=dark"
+            height="450"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -207,14 +163,12 @@ const Featured = () => (
         </div>
         <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
           <div className="md:pr-12">
-            <div className="text-pink-600 p-3 text-center inline-flex items-center justify-center w-16 h-16 mb-6 shadow-lg rounded-full bg-pink-300">
-              <i className="fas fa-rocket text-xl"></i>
-            </div>
-            <h3 className="text-3xl font-semibold">A growing company</h3>
+            <h3 className="text-3xl font-semibold">Prácticas de inglés</h3>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">
-              The extension comes with three pre-built pages to help you get
-              started faster. You can change the text and images and you're good
-              to go.
+              Nos reunimos a charlar con el objetivo de perder el miedo a hablar
+              en inglés en público, mejorar la comunicación en inglés partiendo
+              desde el propio nivel, divertirnos, y conectarnos. Podes mirar
+              cuando serán los próximos eventos en nuestra agenda
             </p>
             <ul className="list-none mt-6">
               <li className="py-2">
@@ -226,7 +180,7 @@ const Featured = () => (
                   </div>
                   <div>
                     <h4 className="text-gray-600">
-                      Carefully crafted components
+                      Son encuentros online gratis
                     </h4>
                   </div>
                 </div>
@@ -239,7 +193,7 @@ const Featured = () => (
                     </span>
                   </div>
                   <div>
-                    <h4 className="text-gray-600">Amazing page examples</h4>
+                    <h4 className="text-gray-600">No necesitas inscribirte</h4>
                   </div>
                 </div>
               </li>
@@ -251,7 +205,9 @@ const Featured = () => (
                     </span>
                   </div>
                   <div>
-                    <h4 className="text-gray-600">Dynamic components</h4>
+                    <h4 className="text-gray-600">
+                      Sucede dentro nuestro canal de Discord
+                    </h4>
                   </div>
                 </div>
               </li>
@@ -263,170 +219,7 @@ const Featured = () => (
   </section>
 );
 
-const Team = () => (
-  <section className="pt-20 pb-48">
-    <div className="container mx-auto px-4">
-      <div className="flex flex-wrap justify-center text-center mb-24">
-        <div className="w-full lg:w-6/12 px-4">
-          <h2 className="text-4xl font-semibold">Here are our heroes</h2>
-          <p className="text-lg leading-relaxed m-4 text-gray-600">
-            According to the National Oceanic and Atmospheric Administration,
-            Ted, Scambos, NSIDClead scentist, puts the potentially record
-            maximum.
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-wrap">
-        <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-          <div className="px-6">
-            <img
-              alt="..."
-              src="/img/team-1-800x800.jpg"
-              className="shadow-lg rounded-full max-w-full mx-auto"
-              style={{ maxWidth: '120px' }}
-            />
-            <div className="pt-6 text-center">
-              <h5 className="text-xl font-bold">Ryan Tompson</h5>
-              <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                Web Developer
-              </p>
-              <div className="mt-6">
-                <button
-                  className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-facebook-f"></i>
-                </button>
-                <button
-                  className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-dribbble"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-          <div className="px-6">
-            <img
-              alt="..."
-              src="/img/team-2-800x800.jpg"
-              className="shadow-lg rounded-full max-w-full mx-auto"
-              style={{ maxWidth: '120px' }}
-            />
-            <div className="pt-6 text-center">
-              <h5 className="text-xl font-bold">Romina Hadid</h5>
-              <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                Marketing Specialist
-              </p>
-              <div className="mt-6">
-                <button
-                  className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-google"></i>
-                </button>
-                <button
-                  className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-facebook-f"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-          <div className="px-6">
-            <img
-              alt="..."
-              src="/img/team-3-800x800.jpg"
-              className="shadow-lg rounded-full max-w-full mx-auto"
-              style={{ maxWidth: '120px' }}
-            />
-            <div className="pt-6 text-center">
-              <h5 className="text-xl font-bold">Alexa Smith</h5>
-              <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                UI/UX Designer
-              </p>
-              <div className="mt-6">
-                <button
-                  className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-google"></i>
-                </button>
-                <button
-                  className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-instagram"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-          <div className="px-6">
-            <img
-              alt="..."
-              src="/img/team-4-470x470.png"
-              className="shadow-lg rounded-full max-w-full mx-auto"
-              style={{ maxWidth: '120px' }}
-            />
-            <div className="pt-6 text-center">
-              <h5 className="text-xl font-bold">Jenna Kardi</h5>
-              <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                Founder and CEO
-              </p>
-              <div className="mt-6">
-                <button
-                  className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-dribbble"></i>
-                </button>
-                <button
-                  className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-google"></i>
-                </button>
-                <button
-                  className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-instagram"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const Finisher = () => (
+/* const Finisher = () => (
   <section className="pb-20 relative block bg-gray-900">
     <div
       className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
@@ -497,9 +290,9 @@ const Finisher = () => (
       </div>
     </div>
   </section>
-);
+); */
 
-const Contact = () => (
+/* const Contact = () => (
   <section className="relative block py-24 lg:pt-0 bg-gray-900">
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
@@ -569,4 +362,14 @@ const Contact = () => (
       </div>
     </div>
   </section>
-);
+); */
+
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const tweets = await getRecentTweets('frontendcafe');
+  return {
+    props: { preview, tweets },
+    revalidate: 1,
+  };
+};
+
+export default Index;

@@ -18,3 +18,33 @@
   width: 100%;
   height: auto;
 }
+
+@layer components {
+  .btn {
+    @apply text-xs font-bold uppercase px-4 py-2 rounded;
+  }
+
+  .btn-primary {
+    @apply bg-primary text-white;
+  }
+
+  .btn-primary:hover {
+    @apply bg-primarydark shadow;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white;
+  }
+
+  .btn-secondary:hover {
+    @apply bg-secondarydark shadow;
+  }
+
+  .btn-thirdiary {
+    @apply bg-thirdiary text-white;
+  }
+
+  .btn-thirdiary:hover {
+    @apply bg-thirdiarydark shadow;
+  }
+}

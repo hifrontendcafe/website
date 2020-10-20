@@ -1,0 +1,29 @@
+import Layout from '../components/Layout';
+import { GetStaticProps } from 'next';
+import { Event } from '../lib/types';
+import { getAllEvents, getAllMentors, getMentoringTopics } from '../lib/api';
+import Hero from '../components/Hero';
+import EventList from '../components/EventList';
+
+interface EventsPageProps {
+  events: Event[];
+}
+
+const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
+  return (
+    <Layout title="Eventos">
+      <Hero title="Eventos" />
+      <EventList events={events} />
+    </Layout>
+  );
+};
+
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const events = await getAllEvents(preview);
+  return {
+    props: { events },
+    revalidate: 1,
+  };
+};
+
+export default EventsPage;
