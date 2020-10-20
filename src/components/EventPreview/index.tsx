@@ -66,7 +66,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               event.recording && (
                 <a
                   href={event.recording}
-                  className="bg-red-500 text-white text-sm py-2 px-5 rounded"
+                  className="bg-thirdiary text-white text-sm py-2 px-5 rounded"
                   target="_blank"
                   rel="noreferrer"
                 >

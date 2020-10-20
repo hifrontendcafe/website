@@ -1,29 +1,54 @@
+import { GetStaticProps } from 'next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCommentDots,
   faGraduationCap,
   faPeopleCarry,
 } from '@fortawesome/free-solid-svg-icons';
+
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
+import TwitterFeed from '../components/TwitterFeed';
+import { getRecentTweets } from '../lib/twitter';
+import { Tweet } from '../lib/types';
 
-const IndexPage = () => (
-  <Layout title="Home | Next.js + TypeScript Example">
+export interface CalendarPageProps {
+  tweets: Tweet[];
+  preview: boolean;
+}
+
+const Index = ({ preview, tweets }) => (
+  <Layout title="Inicio">
     <Hero />
+    <div
+      className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+      style={{ height: '70px', transform: 'translateZ(0)' }}
+    >
+      <svg
+        className="absolute bottom-0 overflow-hidden"
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+        version="1.1"
+        viewBox="0 0 2560 100"
+        x="0"
+        y="0"
+      >
+        <polygon
+          className="text-indigo-100 fill-current"
+          points="2560 0 2560 100 0 100"
+        ></polygon>
+      </svg>
+    </div>
     <Services />
     <Featured />
-    <Team />
-    <Finisher />
-    <Contact />
+    <TwitterFeed tweets={tweets} />
   </Layout>
 );
-
-export default IndexPage;
 
 // Page Sections
 
 const Services = () => (
-  <section className="pb-20 bg-gray-300 -mt-24">
+  <section className="pb-20 bg-indigo-100 -mt-24">
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap">
         <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
@@ -34,7 +59,7 @@ const Services = () => (
               </div>
               <h6 className="text-xl font-semibold">Comunidad</h6>
               <p className="mt-2 mb-4 text-gray-600">
-                Coworking, after office, charlas, preguntas, r espuestas...
+                Coworking, after office, charlas, preguntas, respuestas...
               </p>
             </div>
           </div>
@@ -61,15 +86,15 @@ const Services = () => (
                 <FontAwesomeIcon icon={faCommentDots} />
               </div>
               <h6 className="text-xl font-semibold">Prácticas de inglés</h6>
-              <p className="mt-2 mb-4 text-gray-600">bla bla ++</p>
+              <p className="mt-2 mb-4 text-gray-600"></p>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-wrap items-center mt-32">
-        <div className="w-full md:w-5/12 px-4 mr-auto ml-auto">
-          <h3 className="text-3xl mb-2 font-semibold leading-normal">
+      <div className="flex flex-wrap items-center mt-24 mb-12">
+        <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-6">
+          <h3 className="text-3xl mb-2 font-semibold leading-normal text-gray-800">
             ¡Qué es FrontEndCafé?
           </h3>
           <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
@@ -83,9 +108,9 @@ const Services = () => (
           </p>
           <a
             href="https://www.creative-tim.com/learning-lab/tailwind-starter-kit#/presentation"
-            className="font-bold text-gray-800 mt-8"
+            className="btn btn-secondary"
           >
-            Chequeate el manual de uso de Discord de FrontEndCafé
+            Manual de uso de Discord
           </a>
         </div>
 
@@ -135,11 +160,12 @@ const Featured = () => (
         </div>
         <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
           <div className="md:pr-12">
-            <h3 className="text-3xl font-semibold">A growing company</h3>
+            <h3 className="text-3xl font-semibold">Prácticas de inglés</h3>
             <p className="mt-4 text-lg leading-relaxed text-gray-600">
-              The extension comes with three pre-built pages to help you get
-              started faster. You can change the text and images and you're good
-              to go.
+              Nos reunimos a charlar con el objetivo de perder el miedo a hablar
+              en inglés en público, mejorar la comunicación en inglés partiendo
+              desde el propio nivel, divertirnos, y conectarnos. Podes mirar
+              cuando serán los próximos eventos en nuestra agenda
             </p>
             <ul className="list-none mt-6">
               <li className="py-2">
@@ -151,7 +177,7 @@ const Featured = () => (
                   </div>
                   <div>
                     <h4 className="text-gray-600">
-                      Carefully crafted components
+                      Son encuentros online gratis
                     </h4>
                   </div>
                 </div>
@@ -164,7 +190,7 @@ const Featured = () => (
                     </span>
                   </div>
                   <div>
-                    <h4 className="text-gray-600">Amazing page examples</h4>
+                    <h4 className="text-gray-600">No necesitas inscribirte</h4>
                   </div>
                 </div>
               </li>
@@ -176,7 +202,9 @@ const Featured = () => (
                     </span>
                   </div>
                   <div>
-                    <h4 className="text-gray-600">Dynamic components</h4>
+                    <h4 className="text-gray-600">
+                      Sucede dentro nuestro canal de Discord
+                    </h4>
                   </div>
                 </div>
               </li>
@@ -188,170 +216,7 @@ const Featured = () => (
   </section>
 );
 
-const Team = () => (
-  <section className="pt-20 pb-48">
-    <div className="container mx-auto px-4">
-      <div className="flex flex-wrap justify-center text-center mb-24">
-        <div className="w-full lg:w-6/12 px-4">
-          <h2 className="text-4xl font-semibold">Here are our heroes</h2>
-          <p className="text-lg leading-relaxed m-4 text-gray-600">
-            According to the National Oceanic and Atmospheric Administration,
-            Ted, Scambos, NSIDClead scentist, puts the potentially record
-            maximum.
-          </p>
-        </div>
-      </div>
-      <div className="flex flex-wrap">
-        <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-          <div className="px-6">
-            <img
-              alt="..."
-              src="/img/team-1-800x800.jpg"
-              className="shadow-lg rounded-full max-w-full mx-auto"
-              style={{ maxWidth: '120px' }}
-            />
-            <div className="pt-6 text-center">
-              <h5 className="text-xl font-bold">Ryan Tompson</h5>
-              <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                Web Developer
-              </p>
-              <div className="mt-6">
-                <button
-                  className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-facebook-f"></i>
-                </button>
-                <button
-                  className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-dribbble"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-          <div className="px-6">
-            <img
-              alt="..."
-              src="/img/team-2-800x800.jpg"
-              className="shadow-lg rounded-full max-w-full mx-auto"
-              style={{ maxWidth: '120px' }}
-            />
-            <div className="pt-6 text-center">
-              <h5 className="text-xl font-bold">Romina Hadid</h5>
-              <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                Marketing Specialist
-              </p>
-              <div className="mt-6">
-                <button
-                  className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-google"></i>
-                </button>
-                <button
-                  className="bg-blue-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-facebook-f"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-          <div className="px-6">
-            <img
-              alt="..."
-              src="/img/team-3-800x800.jpg"
-              className="shadow-lg rounded-full max-w-full mx-auto"
-              style={{ maxWidth: '120px' }}
-            />
-            <div className="pt-6 text-center">
-              <h5 className="text-xl font-bold">Alexa Smith</h5>
-              <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                UI/UX Designer
-              </p>
-              <div className="mt-6">
-                <button
-                  className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-google"></i>
-                </button>
-                <button
-                  className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-instagram"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="w-full md:w-6/12 lg:w-3/12 lg:mb-0 mb-12 px-4">
-          <div className="px-6">
-            <img
-              alt="..."
-              src="/img/team-4-470x470.png"
-              className="shadow-lg rounded-full max-w-full mx-auto"
-              style={{ maxWidth: '120px' }}
-            />
-            <div className="pt-6 text-center">
-              <h5 className="text-xl font-bold">Jenna Kardi</h5>
-              <p className="mt-1 text-sm text-gray-500 uppercase font-semibold">
-                Founder and CEO
-              </p>
-              <div className="mt-6">
-                <button
-                  className="bg-pink-500 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-dribbble"></i>
-                </button>
-                <button
-                  className="bg-red-600 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-google"></i>
-                </button>
-                <button
-                  className="bg-blue-400 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-twitter"></i>
-                </button>
-                <button
-                  className="bg-gray-800 text-white w-8 h-8 rounded-full outline-none focus:outline-none mr-1 mb-1"
-                  type="button"
-                >
-                  <i className="fab fa-instagram"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-);
-
-const Finisher = () => (
+/* const Finisher = () => (
   <section className="pb-20 relative block bg-gray-900">
     <div
       className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
@@ -422,9 +287,9 @@ const Finisher = () => (
       </div>
     </div>
   </section>
-);
+); */
 
-const Contact = () => (
+/* const Contact = () => (
   <section className="relative block py-24 lg:pt-0 bg-gray-900">
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap justify-center lg:-mt-64 -mt-48">
@@ -494,4 +359,14 @@ const Contact = () => (
       </div>
     </div>
   </section>
-);
+); */
+
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const tweets = await getRecentTweets('frontendcafe');
+  return {
+    props: { preview, tweets },
+    revalidate: 1,
+  };
+};
+
+export default Index;

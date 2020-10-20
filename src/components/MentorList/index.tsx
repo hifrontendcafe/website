@@ -33,8 +33,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     <div className="container px-5 py-24 mx-auto min">
       <h1 className="text-3xl p6 text-primary">Mentores</h1>
       <label className="block uppercase text-gray-700 text-xs font-bold mb-2 ml-2">
-        {' '}
-        Especialidades{' '}
+        Especialidades
       </label>
       <div className="inline-block relative w-full md:w-1/2 lg:w-1/3 mb-6">
         <select

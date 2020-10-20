@@ -16,8 +16,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   }
 
   const navItems = [
-    { title: 'Comunidad', link: '/#comunidad' },
-    { title: 'Eventos', link: '/#events' },
+    { title: 'Eventos', link: '/eventos' },
     { title: 'Mentorias', link: '/mentorias' },
   ];
 
@@ -64,9 +63,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
           ))}
 
           <button
-            className={
-              'bg-indigo-500 text-white active:bg-pink-600 text-xs font-bold uppercase px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none lg:mr-1 lg:mb-0 ml-3 mb-3'
-            }
+            className={'btn btn-secondary ml-3'}
             type="button"
             style={{ transition: 'all .15s ease' }}
           >

@@ -3,6 +3,7 @@ import { GetStaticProps } from 'next';
 import { Mentor, Topic } from '../lib/types';
 import { getAllMentors, getMentoringTopics } from '../lib/api';
 import MentorList from '../components/MentorList';
+import Hero from '../components/Hero';
 
 interface MentorContainerProps {
   mentors: Mentor[];
@@ -14,7 +15,8 @@ const MentorshipsPage: React.FC<MentorContainerProps> = ({
   mentors,
 }) => {
   return (
-    <Layout>
+    <Layout title="Mentorías">
+      <Hero title="Mentorías" />
       <MentorshipsHero />
       <MentorshipsSteps />
       <MentorList topics={topics} mentors={mentors} />
@@ -24,7 +26,7 @@ const MentorshipsPage: React.FC<MentorContainerProps> = ({
 
 const MentorshipsHero: React.FC = () => {
   return (
-    <section className="text-gray-700 body-font">
+    <section className="relative text-gray-700 body-font bg-indigo-100">
       <div
         className="container mx-auto flex px-5 py-24 md:flex-row flex-col
         items-center"
@@ -75,6 +77,25 @@ const MentorshipsHero: React.FC = () => {
             </button>
           </div>
         </div>
+      </div>
+      <div
+        className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+        style={{ height: '70px', transform: 'translateZ(0)' }}
+      >
+        <svg
+          className="absolute bottom-0 overflow-hidden"
+          xmlns="http://www.w3.org/2000/svg"
+          preserveAspectRatio="none"
+          version="1.1"
+          viewBox="0 0 2560 100"
+          x="0"
+          y="0"
+        >
+          <polygon
+            className="text-white fill-current"
+            points="2560 0 2560 100 0 100"
+          ></polygon>
+        </svg>
       </div>
     </section>
   );
