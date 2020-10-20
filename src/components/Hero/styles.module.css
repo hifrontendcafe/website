@@ -1,0 +1,5 @@
+.highlighted {
+  background: -webkit-linear-gradient(145deg, #00e2b5 30%, #00ffcd 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

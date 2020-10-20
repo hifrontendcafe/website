@@ -5,6 +5,7 @@ import {
   faPeopleCarry,
 } from '@fortawesome/free-solid-svg-icons';
 import Layout from '../components/Layout';
+import Hero from '../components/Hero';
 
 const IndexPage = () => (
   <Layout title="Home | Next.js + TypeScript Example">
@@ -19,76 +20,7 @@ const IndexPage = () => (
 
 export default IndexPage;
 
-/// Page Sections
-const Hero = () => (
-  <div
-    className="relative pt-16 pb-32 flex content-center items-center justify-center"
-    style={{
-      minHeight: '75vh',
-    }}
-  >
-    <div
-      className="absolute top-2 w-full h-full bg-center bg-cover"
-      style={{
-        backgroundImage: "url('/bg.svg')",
-      }}
-    >
-      <span className="w-full h-full absolute opacity-50 bg-black"></span>
-    </div>
-    <div className="container relative mx-auto">
-      <div className="flex bg-cover py-12 items-center justify-between flex-wrap container mx-auto px-5 lg:px-0">
-        <div className="max-w-xl lg:min-w-0 sm:min-w-full md:py-16 py-10 text-shadow">
-          <img
-            src="/fec-new.svg"
-            className="pb-2 w-2/3 lg:w-10/12 mx-auto lg:mx-0"
-            alt="FRONTENDCAFE"
-          />
-          <div className="lg:pl-12 text-md text-center lg:text-left">
-            <p className="text-xl text-green-500 font-medium pb-2">
-              Podés aprender y podés enseñar ~
-            </p>
-            <p className="text-gray-400 leading-relaxed text-lg">
-              Somos una comunidad de personas interesadas en tecnología y
-              ciencias informáticas en donde charlamos sobre lenguajes de
-              programación, diseño web, infraestructura, compartimos dudas,
-              preguntamos y respondemos.
-            </p>
-            <a
-              target="_blank"
-              rel="noreferrer"
-              href="https://discord.gg/3GC6TJd"
-            ></a>
-          </div>
-        </div>
-        <iframe
-          className="w-full md:max-w-sm lg:min-w-0 sm:min-w-full"
-          src="https://discordapp.com/widget?id=594363964499165194&theme=dark"
-          height="450"
-          sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-        ></iframe>
-      </div>
-    </div>
-    <div
-      className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-      style={{ height: '70px', transform: 'translateZ(0)' }}
-    >
-      <svg
-        className="absolute bottom-0 overflow-hidden"
-        xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-        version="1.1"
-        viewBox="0 0 2560 100"
-        x="0"
-        y="0"
-      >
-        <polygon
-          className="text-gray-300 fill-current"
-          points="2560 0 2560 100 0 100"
-        ></polygon>
-      </svg>
-    </div>
-  </div>
-);
+// Page Sections
 
 const Services = () => (
   <section className="pb-20 bg-gray-300 -mt-24">
@@ -158,35 +90,12 @@ const Services = () => (
         </div>
 
         <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
-          <div className="relative flex flex-col min-w-0 break-words  w-full mb-6 shadow-lg rounded-lg bg-pink-600">
-            <img
-              alt="..."
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1051&q=80"
-              className="w-full align-middle rounded-t-lg"
-            />
-            <blockquote className="relative p-8 mb-4">
-              <svg
-                preserveAspectRatio="none"
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 583 95"
-                className="absolute left-0 w-full block"
-                style={{
-                  height: '95px',
-                  top: '-94px',
-                }}
-              >
-                <polygon
-                  points="-30,95 583,95 583,65"
-                  className="text-pink-600 fill-current"
-                ></polygon>
-              </svg>
-              <h4 className="text-xl font-bold text-white">Online Coworking</h4>
-              <p className="text-md font-light mt-2 text-white">
-                Nos juntamos a trabajar y escuchar musica, los viernes bailamos
-                cumbia (?
-              </p>
-            </blockquote>
-          </div>
+          <iframe
+            className="w-full md:max-w-sm lg:min-w-0 sm:min-w-full"
+            src="https://discordapp.com/widget?id=594363964499165194&theme=dark"
+            height="450"
+            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
+          ></iframe>
         </div>
       </div>
     </div>
