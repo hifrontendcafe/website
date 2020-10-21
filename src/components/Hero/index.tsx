@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import styles from './styles.module.css';
-import Typist from 'react-typist';
 
 interface HeroProps {
   title?: string;
