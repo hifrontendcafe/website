@@ -36,12 +36,12 @@ const Footer: React.FC = () => {
         </svg>
       </div>
       <div className="container mx-auto px-4">
-        <div className="flex lg:flex-wrap">
-          <div className="w-full lg:w-6/12 px-4">
+        <div className="flex flex-wrap">
+          <div className="w-full lg:w-6/12 px-4 text-center md:text-left">
             <h4 className="text-2xl font-semibold text-white">
               Buscanos en nuestras redes
             </h4>
-            <div className="flex space-x-1 mt-6">
+            <div className="flex space-x-1 mt-6 justify-center md:justify-start">
               <Link href="https://twitter.com/FrontEndCafe">
                 <a
                   target="_blank"
@@ -88,18 +88,10 @@ const Footer: React.FC = () => {
               </Link>
             </div>
           </div>
-          <div className="w-full lg:w-6/12 px-4">
+          {/*           <div className="w-full lg:w-6/12 px-4 py-5 md:py-0">
             <div className="flex flex-wrap items-top mb-6">
               <div className="w-full lg:w-4/12 px-4 ml-auto">
                 <ul className="list-unstyled">
-                  <li>
-                    <a
-                      className="text-gray-200 hover:text-gray-400 font-semibold block pb-2 text-sm"
-                      href="#"
-                    >
-                      Nosotros
-                    </a>
-                  </li>
                   <li>
                     <a
                       className="text-gray-200 hover:text-gray-400 font-semibold block pb-2 text-sm"
@@ -111,7 +103,7 @@ const Footer: React.FC = () => {
                 </ul>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </footer>

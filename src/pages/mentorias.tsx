@@ -4,6 +4,7 @@ import { Mentor, Topic } from '../lib/types';
 import { getAllMentors, getMentoringTopics } from '../lib/api';
 import MentorList from '../components/MentorList';
 import Hero from '../components/Hero';
+import Link from 'next/link';
 
 interface MentorContainerProps {
   mentors: Mentor[];
@@ -64,18 +65,24 @@ const MentorshipsHero: React.FC = () => {
             tecnologías de la información.
           </p>
           <div className="flex justify-center">
-            <button
-              className="inline-flex text-white bg-primary border-0 py-2 px-6
+            <Link href="/files/Guidelines-Mentorías-FEC.pdf">
+              <a
+                target="_blank"
+                className="inline-flex text-white bg-primary border-0 py-2 px-6
               focus:outline-none hover:bg-primarydark rounded text-lg"
-            >
-              Reglas
-            </button>
-            <button
-              className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0
+              >
+                Reglas
+              </a>
+            </Link>
+            <Link href="/files/Codigo-de-conducta.pdf">
+              <a
+                target="_blank"
+                className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0
               py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg"
-            >
-              FAQs
-            </button>
+              >
+                Código de conducta
+              </a>
+            </Link>
           </div>
         </div>
       </div>

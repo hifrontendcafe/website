@@ -12,6 +12,10 @@
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .divider {
   position: absolute;
   bottom: 0;

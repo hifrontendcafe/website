@@ -33,7 +33,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="text-6xl font-semibold text-white leading-5"
+            className="text-5xl lg:text-6xl font-semibold text-white leading-5"
           >
             {title}
           </motion.h1>

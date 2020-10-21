@@ -15,10 +15,10 @@ const Index = () => {
     'Aprendemos en',
     'Compartimos en',
     'Ayudamos en',
-    'Nos reimos en',
+    'Nos reímos en',
     'We learn English in',
     'Hacemos amigos en',
-    'Incluimos en',
+    'Incluímos en',
   ];
 
   if (counter >= greets.length) {
@@ -68,39 +68,43 @@ const Services = () => (
   <section className="pb-20 bg-indigo-100 -mt-24">
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap">
-        <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-            <div className="flex items-center flex-col px-4 py-5 flex-auto">
-              <img className="w-48 mb-4" src="/img/community.svg" />
-              <h6 className="text-2xl font-semibold">Comunidad</h6>
-              {/*               <p className="mt-2 mb-4 text-gray-600">
+        <Link href="#comunidad">
+          <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+              <div className="flex items-center flex-col px-4 py-5 flex-auto">
+                <img className="w-48 mb-4" src="/img/community.svg" />
+                <h6 className="text-2xl font-semibold">Comunidad</h6>
+                {/*               <p className="mt-2 mb-4 text-gray-600">
                 Coworking, after office, charlas, preguntas, respuestas...
               </p> */}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="w-full md:w-4/12 px-4 text-center">
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-            <div className="flex items-center flex-col px-4 py-5 flex-auto">
-              <img className="w-48 mb-4" src="/img/mentorships.svg" />
-              <h6 className="text-2xl font-semibold">Mentorías</h6>
-              {/*               <p className="mt-2 mb-4 text-gray-600">
+        </Link>
+        <Link href="/mentorias">
+          <div className="w-full md:w-4/12 px-4 text-center">
+            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+              <div className="flex items-center flex-col px-4 py-5 flex-auto">
+                <img className="w-48 mb-4" src="/img/mentorships.svg" />
+                <h6 className="text-2xl font-semibold">Mentorías</h6>
+                {/*               <p className="mt-2 mb-4 text-gray-600">
                 Mentorías individuales gratuitas
               </p> */}
+              </div>
             </div>
           </div>
-        </div>
-
-        <div className="pt-6 w-full md:w-4/12 px-4 text-center">
-          <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-            <div className="flex items-center flex-col px-4 py-5 flex-auto">
-              <img className="w-48 mb-4" src="/img/english-practices.svg" />
-              <h6 className="text-2xl font-semibold">Prácticas de inglés</h6>
-              {/*               <p className="mt-2 mb-4 text-gray-600"></p> */}
+        </Link>
+        <Link href="#ingles">
+          <div className="pt-6 w-full md:w-4/12 px-4 text-center">
+            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
+              <div className="flex items-center flex-col px-4 py-5 flex-auto">
+                <img className="w-48 mb-4" src="/img/english-practices.svg" />
+                <h6 className="text-2xl font-semibold">Prácticas de inglés</h6>
+                {/*               <p className="mt-2 mb-4 text-gray-600"></p> */}
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
 
       <div className="flex flex-wrap items-center mt-24 mb-12">
@@ -114,15 +118,16 @@ const Services = () => (
             diseño web, infraestructura, compartimos dudas, preguntamos y
             respondemos.
           </p>
-          <p className="text-lg font-light leading-relaxed mt-0 mb-4 text-gray-700">
+          <p className="text-lg font-light leading-relaxed mt-0 mb-12  text-gray-700">
             Todo pasa adentro de un canal de Discord...
           </p>
-          <Link href="#">
+          <Link href="/files/FEC-Manual-de-uso.pdf">
             <a
-              className={'btn btn-secondary'}
+              target="_blank"
+              className="btn btn-secondary"
               style={{ transition: 'all .15s ease' }}
             >
-              Manual de uso de Discord
+              Manual de uso de FEC
             </a>
           </Link>
         </div>
@@ -142,7 +147,7 @@ const Services = () => (
 
 const Featured = () => {
   return (
-    <section className="relative py-48 bg-purple-900">
+    <section id="ingles" className="relative py-48 bg-purple-900">
       <div
         className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
         style={{ height: '80px', transform: 'translateZ(0)' }}
