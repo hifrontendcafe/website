@@ -71,15 +71,13 @@ const Index = () => {
 // Page Sections
 
 const Services = () => (
-  <section className="py-20 bg-indigo-100 -mt-24">
+  <section className="pb-20 bg-indigo-100 -mt-24">
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap">
         <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-            <div className="px-4 py-5 flex-auto">
-              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-thirdiary">
-                <FontAwesomeIcon icon={faPeopleCarry} />
-              </div>
+            <div className="flex items-center flex-col px-4 py-5 flex-auto">
+              <img className="w-48 mb-4" src="/img/community.svg" />
               <h6 className="text-2xl font-semibold">Comunidad</h6>
               {/*               <p className="mt-2 mb-4 text-gray-600">
                 Coworking, after office, charlas, preguntas, respuestas...
@@ -90,10 +88,8 @@ const Services = () => (
 
         <div className="w-full md:w-4/12 px-4 text-center">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-            <div className="px-4 py-5 flex-auto">
-              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-secondary">
-                <FontAwesomeIcon icon={faGraduationCap} />
-              </div>
+            <div className="flex items-center flex-col px-4 py-5 flex-auto">
+              <img className="w-48 mb-4" src="/img/mentorships.svg" />
               <h6 className="text-2xl font-semibold">Mentorías</h6>
               {/*               <p className="mt-2 mb-4 text-gray-600">
                 Mentorías individuales gratuitas
@@ -104,10 +100,8 @@ const Services = () => (
 
         <div className="pt-6 w-full md:w-4/12 px-4 text-center">
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-            <div className="px-4 py-5 flex-auto">
-              <div className="text-white p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-primary">
-                <FontAwesomeIcon icon={faCommentDots} />
-              </div>
+            <div className="flex items-center flex-col px-4 py-5 flex-auto">
+              <img className="w-48 mb-4" src="/img/english-practices.svg" />
               <h6 className="text-2xl font-semibold">Prácticas de inglés</h6>
               {/*               <p className="mt-2 mb-4 text-gray-600"></p> */}
             </div>
@@ -116,9 +110,9 @@ const Services = () => (
       </div>
 
       <div className="flex flex-wrap items-center mt-24 mb-12">
-        <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-6">
-          <h3 className="text-3xl mb-2 font-semibold leading-normal text-secondary">
-            ¡Qué es FrontEndCafé?
+        <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-16">
+          <h3 className="text-3xl mb-2 font-semibold leading-normal text-gray-800">
+            ¿Qué es FrontEndCafé?
           </h3>
           <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
             Somos una comunidad de personas interesadas en tecnología y ciencias
@@ -154,7 +148,7 @@ const Services = () => (
 
 const Featured = () => {
   return (
-    <section className="relative py-48 bg-primary">
+    <section className="relative py-48 bg-purple-900">
       <div
         className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
         style={{ height: '80px', transform: 'translateZ(0)' }}
@@ -169,7 +163,7 @@ const Featured = () => {
           y="0"
         >
           <polygon
-            className="text-primary fill-current"
+            className="text-purple-900 fill-current"
             points="2560 0 2560 100 0 100"
           ></polygon>
         </svg>
@@ -180,8 +174,8 @@ const Featured = () => {
           <div className="w-full md:w-6/12 ml-auto mr-auto px-4">
             <img
               alt="..."
-              className="max-w-full rounded-lg"
-              src="/img/english.svg"
+              className="max-w-full rounded-lg shadow-md mb-10"
+              src="/img/english.png"
             />
           </div>
           <div className="w-full md:w-5/12 ml-auto mr-auto px-4">

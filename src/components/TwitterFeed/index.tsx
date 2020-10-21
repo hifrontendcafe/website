@@ -26,7 +26,7 @@ const TwitterFeed: React.FC = () => {
         </svg>
       </div>
       <div className="container px-5 py-16 mx-auto">
-        <h1 className="text-4xl pb-12 font-extrabold text-thirdiary">
+        <h1 className="text-4xl pb-12 font-extrabold text-primary">
           Comunidad FEC
         </h1>
         <TwitterTimelineEmbed
@@ -36,7 +36,7 @@ const TwitterFeed: React.FC = () => {
           placeholder={<SkeletonTwitterCard />}
           noHeader
           transparent
-          borderColor="#D53F8C"
+          borderColor="#00c39d"
           noScrollbar
         />
       </div>
