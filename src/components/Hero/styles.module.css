@@ -3,3 +3,22 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+.blink span {
+  height: 1rem;
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

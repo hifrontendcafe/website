@@ -16,7 +16,10 @@ const MentorshipsPage: React.FC<MentorContainerProps> = ({
 }) => {
   return (
     <Layout title="Mentorías">
-      <Hero title="Mentorías" />
+      <Hero
+        title="Mentorías"
+        subtitle="Buscamos servirte de guía en este camino ~"
+      />
       <MentorshipsHero />
       <MentorshipsSteps />
       <MentorList topics={topics} mentors={mentors} />
@@ -26,16 +29,16 @@ const MentorshipsPage: React.FC<MentorContainerProps> = ({
 
 const MentorshipsHero: React.FC = () => {
   return (
-    <section className="relative text-gray-700 body-font bg-indigo-100">
+    <section className="relative text-gray-700 body-font bg-white">
       <div
-        className="container mx-auto flex px-5 py-24 md:flex-row flex-col
+        className="container mx-auto flex px-5 py-32 md:flex-row flex-col
         items-center"
       >
         <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
           <img
-            className="object-cover object-center rounded"
+            className="object-cover object-center rounded shadow-sm"
             alt="hero"
-            src="/img/pair-programming.svg"
+            src="/img/mentorship.jpg"
           />
         </div>
         <div
@@ -46,9 +49,7 @@ const MentorshipsHero: React.FC = () => {
             className="title-font sm:text-4xl text-3xl mb-4 font-medium
             text-gray-900"
           >
-            Programa de mentorías
-            <br className="hidden lg:inline-block lg:text-4xl" />
-            de FrontEndCafé
+            Programa de mentorías de FrontEndCafé
           </h1>
           <p className="mb-4 leading-relaxed">
             Iniciarnos en el mundo de la tecnología puede resultar abrumador o
@@ -103,8 +104,8 @@ const MentorshipsHero: React.FC = () => {
 
 const MentorshipsSteps: React.FC = () => {
   return (
-    <section className=" bg-ind text-gray-700 body-font">
-      <div className="container px-5 py-16 mx-auto">
+    <section className=" bg-indigo-100 text-gray-700 body-font">
+      <div className="container px-5 py-32 mx-auto">
         <div className="text-center mb-20">
           <h1
             className="sm:text-3xl text-2xl font-medium title-font text-gray-900
@@ -119,7 +120,7 @@ const MentorshipsSteps: React.FC = () => {
             <strong>prepararte</strong> para la mentoría.
           </p>
           <div className="flex mt-6 justify-center">
-            <div className="w-16 h-1 rounded-full bg-teal-500 inline-flex"></div>
+            <div className="w-16 h-1 rounded-full bg-secondary inline-flex"></div>
           </div>
         </div>
         <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
@@ -175,7 +176,7 @@ const MentorshipsSteps: React.FC = () => {
                 concertar el encuentro, podés enviar un adelanto de las dudas
                 que buscás resolver.
               </p>
-              <a className="mt-3 text-teal-500 inline-flex items-center">
+              <a className="mt-3  text-secondary inline-flex items-center">
                 Mirá como se hace
                 <svg
                   fill="none"
@@ -213,8 +214,8 @@ const MentorshipsSteps: React.FC = () => {
               <p>¡Recordá ser puntual! ⌚</p>
 
               <a
-                href="http://netflix.com"
-                className="mt-3 text-teal-500 inline-flex
+                href="#"
+                className="mt-3 text-secondary inline-flex
                 items-center"
               >
                 Recomendaciones para prepararnos
