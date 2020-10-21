@@ -1,15 +1,9 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCommentDots,
-  faGraduationCap,
-  faPeopleCarry,
-} from '@fortawesome/free-solid-svg-icons';
 
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
-import TwitterFeed from '../components/TwitterFeed';
+import MediaFeed from '../components/MediaFeed';
 
 const Index = () => {
   const [counter, setCounter] = useState(0);
@@ -63,7 +57,7 @@ const Index = () => {
       </div>
       <Services />
       <Featured />
-      <TwitterFeed />
+      <MediaFeed />
     </Layout>
   );
 };

@@ -141,20 +141,6 @@ const MentorshipsSteps: React.FC = () => {
                 El primer paso es encontrar un mentor cuyo perfil se ajuste a
                 tus intereses y sientas que pueda ayudarte en lo que necesites.
               </p>
-              <a className="mt-3 text-teal-500 inline-flex items-center">
-                Encontrá tu mentor
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </a>
             </div>
           </div>
           <div
@@ -176,20 +162,6 @@ const MentorshipsSteps: React.FC = () => {
                 concertar el encuentro, podés enviar un adelanto de las dudas
                 que buscás resolver.
               </p>
-              <a className="mt-3  text-secondary inline-flex items-center">
-                Mirá como se hace
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </a>
             </div>
           </div>
           <div
@@ -212,25 +184,6 @@ const MentorshipsSteps: React.FC = () => {
                 aprovechar el tiempo al máximo.
               </p>
               <p>¡Recordá ser puntual! ⌚</p>
-
-              <a
-                href="#"
-                className="mt-3 text-secondary inline-flex
-                items-center"
-              >
-                Recomendaciones para prepararnos
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  className="w-4 h-4 ml-2"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7"></path>
-                </svg>
-              </a>
             </div>
           </div>
         </div>

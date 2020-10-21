@@ -1,6 +1,6 @@
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
-const TwitterFeed: React.FC = () => {
+const MediaFeed: React.FC = () => {
   return (
     <section
       id="comunidad"
@@ -29,16 +29,28 @@ const TwitterFeed: React.FC = () => {
         <h1 className="text-4xl pb-12 font-extrabold text-primary">
           Comunidad FEC
         </h1>
-        <TwitterTimelineEmbed
-          sourceType="url"
-          url="https://twitter.com/frontendcafe"
-          options={{ height: 1000, tweetLimit: 3 }}
-          placeholder={<SkeletonTwitterCard />}
-          noHeader
-          transparent
-          borderColor="#00c39d"
-          noScrollbar
-        />
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <TwitterTimelineEmbed
+            sourceType="url"
+            url="https://twitter.com/frontendcafe"
+            options={{ height: 1000, tweetLimit: 3 }}
+            placeholder={<SkeletonTwitterCard />}
+            noHeader
+            transparent
+            borderColor="#00c39d"
+            noScrollbar
+          />
+          <TwitterTimelineEmbed
+            sourceType="url"
+            url="https://twitter.com/frontendcafe/likes"
+            options={{ height: 1000, tweetLimit: 4 }}
+            placeholder={<SkeletonTwitterCard />}
+            noHeader
+            transparent
+            borderColor="#00c39d"
+            noScrollbar
+          />
+        </div>
       </div>
     </section>
   );
@@ -76,4 +88,4 @@ const SkeletonTwitterCard: React.FC = () => {
   );
 };
 
-export default TwitterFeed;
+export default MediaFeed;
