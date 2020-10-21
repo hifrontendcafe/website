@@ -16,7 +16,10 @@ const MentorshipsPage: React.FC<MentorContainerProps> = ({
 }) => {
   return (
     <Layout title="Mentorías">
-      <Hero title="Mentorías" />
+      <Hero
+        title="Mentorías"
+        subtitle="Buscamos servirte de guía en este camino ~"
+      />
       <MentorshipsHero />
       <MentorshipsSteps />
       <MentorList topics={topics} mentors={mentors} />

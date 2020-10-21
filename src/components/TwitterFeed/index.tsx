@@ -20,19 +20,24 @@ const TwitterFeed: React.FC = () => {
           y="0"
         >
           <polygon
-            className="text-teal-100 fill-current"
+            className="text-white fill-current"
             points="2560 0 2560 100 0 100"
           ></polygon>
         </svg>
       </div>
       <div className="container px-5 py-16 mx-auto">
-        <h1 className="text-4xl pb-12 font-extrabold text-">Comunidad FEC</h1>
+        <h1 className="text-4xl pb-12 font-extrabold text-thirdiary">
+          Comunidad FEC
+        </h1>
         <TwitterTimelineEmbed
           sourceType="url"
           url="https://twitter.com/frontendcafe"
-          options={{ height: 1000 }}
+          options={{ height: 1000, tweetLimit: 3 }}
           placeholder={<SkeletonTwitterCard />}
           noHeader
+          transparent
+          borderColor="#D53F8C"
+          noScrollbar
         />
       </div>
     </section>

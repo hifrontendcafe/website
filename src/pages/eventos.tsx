@@ -1,7 +1,7 @@
 import Layout from '../components/Layout';
 import { GetStaticProps } from 'next';
 import { Event } from '../lib/types';
-import { getAllEvents, getAllMentors, getMentoringTopics } from '../lib/api';
+import { getAllEvents } from '../lib/api';
 import Hero from '../components/Hero';
 import EventList from '../components/EventList';
 
@@ -12,7 +12,10 @@ interface EventsPageProps {
 const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
   return (
     <Layout title="Eventos">
-      <Hero title="Eventos" />
+      <Hero
+        title="Eventos"
+        subtitle="Charlas, workshops, afters, entrevistas ~"
+      />
       <EventList events={events} />
     </Layout>
   );
