@@ -69,7 +69,7 @@ const Services = () => (
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap">
         <Link href="#comunidad">
-          <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+          <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/community.svg" />
@@ -82,7 +82,7 @@ const Services = () => (
           </div>
         </Link>
         <Link href="/mentorias">
-          <div className="w-full md:w-4/12 px-4 text-center">
+          <div className="w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/mentorships.svg" />
@@ -95,7 +95,7 @@ const Services = () => (
           </div>
         </Link>
         <Link href="#ingles">
-          <div className="pt-6 w-full md:w-4/12 px-4 text-center">
+          <div className="pt-6 w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/english-practices.svg" />
@@ -109,7 +109,7 @@ const Services = () => (
 
       <div className="flex flex-wrap items-center mt-24 mb-12">
         <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-16">
-          <h3 className="text-3xl mb-2 font-semibold leading-normal text-gray-800">
+          <h3 className="text-2xl md:text-3xl mb-2 font-semibold leading-normal text-gray-800">
             ¿Qué es FrontEndCafé?
           </h3>
           <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
@@ -179,7 +179,7 @@ const Featured = () => {
           </div>
           <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
             <div className="md:pr-12">
-              <h3 className="text-4xl font-extrabold text-white">
+              <h3 className="text-3xl md:text-4xl font-extrabold text-white">
                 Prácticas de inglés
               </h3>
               <p className="mt-4 text-lg leading-relaxed text-gray-200">

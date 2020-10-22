@@ -33,7 +33,7 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
             </div>
           </>
         )}
-        <h1 className="text-4xl font-extrabold pb-12 text-primary mt-12">
+        <h1 className="text-3xl md:text-4xl font-extrabold pb-12 text-primary mt-12">
           Eventos Anteriores
         </h1>
         <div className="flex flex-wrap -mx-4 -my-8">

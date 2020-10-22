@@ -133,10 +133,10 @@ const MentorshipsSteps: React.FC = () => {
         <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
           <div
             className="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col text-center
-            items-center"
+            items-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer"
           >
             <img
-              className="w-64 object-cover object-center rounded"
+              className="w-64 object-cover object-center rounded "
               alt="schedule"
               src="img/engines-bro.svg"
             />
@@ -152,7 +152,7 @@ const MentorshipsSteps: React.FC = () => {
           </div>
           <div
             className="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col text-center
-            items-center"
+            items-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer"
           >
             <img
               className="w-64 object-cover object-center rounded"
@@ -173,7 +173,7 @@ const MentorshipsSteps: React.FC = () => {
           </div>
           <div
             className="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col text-center
-            items-center"
+            items-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer"
           >
             <img
               className="w-64 object-cover object-center rounded"

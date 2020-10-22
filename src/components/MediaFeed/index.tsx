@@ -26,7 +26,7 @@ const MediaFeed: React.FC = () => {
         </svg>
       </div>
       <div className="container px-5 py-16 mx-auto">
-        <h1 className="text-4xl pb-12 font-extrabold text-primary">
+        <h1 className="text-3xl md:text-4xl pb-12 font-extrabold text-primary">
           Comunidad FEC
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
