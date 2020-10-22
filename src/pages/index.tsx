@@ -109,7 +109,7 @@ const Services = () => (
 
       <div className="flex flex-wrap items-center mt-24 mb-12">
         <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-16">
-          <h3 className="text-3xl mb-2 font-semibold leading-normal text-gray-800">
+          <h3 className="text-2xl md:text-3xl mb-2 font-semibold leading-normal text-gray-800">
             ¿Qué es FrontEndCafé?
           </h3>
           <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
@@ -179,7 +179,7 @@ const Featured = () => {
           </div>
           <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
             <div className="md:pr-12">
-              <h3 className="text-4xl font-extrabold text-white">
+              <h3 className="text-3xl md:text-4xl font-extrabold text-white">
                 Prácticas de inglés
               </h3>
               <p className="mt-4 text-lg leading-relaxed text-gray-200">

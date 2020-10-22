@@ -22,7 +22,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle }) => {
       >
         <span className="w-full h-full absolute opacity-50 bg-black"></span>
       </div>
-      <div className="container relative mx-auto grid place-items-center">
+      <div className="container relative mx-auto grid place-items-center px-10 ">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,16 +33,16 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="text-5xl lg:text-6xl font-semibold text-white leading-5"
+            className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-5"
           >
             {title}
           </motion.h1>
           <h1
-            className={`text-5xl md:text-6xl md:text-highlighted font-extrabold text-white ${styles.highlighted}`}
+            className={`text-4xl md:text-5xl lg:text-6xl font-extrabold text-white ${styles.highlighted}`}
           >
             FrontEndCafé
           </h1>
-          <p className="leading-3 text-gray-200 font-thin text-2xl">
+          <p className="leading-6 text-gray-200 font-thin text-xl md:text-2xl">
             {subtitle}
           </p>
         </motion.div>
