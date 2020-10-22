@@ -69,7 +69,7 @@ const Services = () => (
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap">
         <Link href="#comunidad">
-          <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center">
+          <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/community.svg" />
@@ -82,7 +82,7 @@ const Services = () => (
           </div>
         </Link>
         <Link href="/mentorias">
-          <div className="w-full md:w-4/12 px-4 text-center">
+          <div className="w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/mentorships.svg" />
@@ -95,7 +95,7 @@ const Services = () => (
           </div>
         </Link>
         <Link href="#ingles">
-          <div className="pt-6 w-full md:w-4/12 px-4 text-center">
+          <div className="pt-6 w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/english-practices.svg" />
