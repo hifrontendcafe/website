@@ -11,7 +11,10 @@ interface EventsPageProps {
 
 const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
   return (
-    <Layout title="Eventos">
+    <Layout
+      title="Eventos"
+      description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
+    >
       <Hero
         title="Eventos"
         subtitle="Charlas, workshops, afters, entrevistas ~"

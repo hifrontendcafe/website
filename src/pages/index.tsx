@@ -34,7 +34,12 @@ const Index = () => {
   }, []);
 
   return (
-    <Layout title="Inicio">
+    <Layout
+      description="Somos una comunidad de personas interesadas en tecnología y ciencias
+    informáticas en donde charlamos sobre lenguajes de programación,
+    diseño web, infraestructura, compartimos dudas, preguntamos y
+    respondemos."
+    >
       <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
       <div
         className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"

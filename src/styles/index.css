@@ -51,4 +51,8 @@ html {
   .btn-thirdiary:hover {
     @apply bg-thirdiarydark shadow;
   }
+
+  .social-circle {
+    @apply grid place-items-center h-8 w-8 rounded-full;
+  }
 }

@@ -36,7 +36,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
               <Link href={mentor.web}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-8 w-8 rounded-full  bg-pink-800 hover:bg-pink-700"
+                  className="social-circle  bg-pink-800 hover:bg-pink-700"
                 >
                   <FontAwesomeIcon icon={faGlobe} />
                 </a>
@@ -46,7 +46,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
               <Link href={mentor.linkedin}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-8 w-8 rounded-full bg-blue-600 hover:bg-blue-700"
+                  className="social-circle bg-blue-600 hover:bg-blue-700"
                 >
                   <FontAwesomeIcon icon={faLinkedinIn} />
                 </a>
@@ -56,7 +56,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
               <Link href={mentor.github}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-8 w-8 rounded-full bg-gray-800 hover:bg-gray-700"
+                  className="social-circle bg-gray-800 hover:bg-gray-700"
                 >
                   <FontAwesomeIcon icon={faGithubAlt} />
                 </a>

@@ -16,7 +16,10 @@ const MentorshipsPage: React.FC<MentorContainerProps> = ({
   mentors,
 }) => {
   return (
-    <Layout title="Mentorías">
+    <Layout
+      title="Mentorías"
+      description="El programa de mentorías de FrontEndCafé busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
+    >
       <Hero
         title="Mentorías"
         subtitle="Buscamos servirte de guía en este camino ~"
