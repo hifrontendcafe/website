@@ -5,19 +5,42 @@ import PreviewBanner from '../PreviewBanner';
 
 interface LayoutProps {
   title?: string;
+  description: string;
   preview?: boolean;
 }
 
 const Layout: React.FC<LayoutProps> = ({
   preview = false,
   children,
-  title = 'FrontEndCafé',
+  title,
+  description,
 }) => {
+  const customTitle = `${title} - FrontEndCafé`;
   return (
     <>
       <Head>
-        <title>{title} - FrontendCafé</title>
+        <title>{title ? customTitle : 'FrontEndCafé'}</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content={description} />
+        {/* Twitter */}
+        <meta name="twitter:title" content={customTitle} />
+        <meta name="twitter:description" content={description} />
+        <meta
+          name="twitter:image"
+          content="https://frontend.cafe/logo-square.png"
+        />
+        {/* Open Graph */}
+        <meta property="og:title" content={customTitle} />
+        <meta property="og:description" content={description} />
+        <meta
+          property="og:image"
+          content="https://frontend.cafe/logo-square.png"
+        />
+        {/* Imports */}
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700"
+        />
       </Head>
       <div className="antialiased">
         {preview && <PreviewBanner />}
