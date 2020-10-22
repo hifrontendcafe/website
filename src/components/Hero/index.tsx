@@ -33,12 +33,12 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle }) => {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-semibold text-white leading-5"
+            className="text-3xl md:text-5xl lg:text-6xl font-semibold text-white leading-5"
           >
             {title}
           </motion.h1>
           <h1
-            className={`text-4xl md:text-5xl lg:text-6xl font-extrabold text-white ${styles.highlighted}`}
+            className={`text-4xl md:text-6xl lg:text-7xl font-extrabold text-white ${styles.highlighted}`}
           >
             FrontEndCafé
           </h1>
