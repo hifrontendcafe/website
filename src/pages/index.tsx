@@ -35,6 +35,7 @@ const Index = () => {
 
   return (
     <Layout
+      title="Home"
       description="Somos una comunidad de personas interesadas en tecnología y ciencias
     informáticas en donde charlamos sobre lenguajes de programación,
     diseño web, infraestructura, compartimos dudas, preguntamos y

@@ -4,7 +4,7 @@ import Footer from '../Footer';
 import PreviewBanner from '../PreviewBanner';
 
 interface LayoutProps {
-  title?: string;
+  title: string;
   description: string;
   preview?: boolean;
 }
@@ -12,25 +12,24 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({
   preview = false,
   children,
-  title,
+  title = 'FrontEndCafé',
   description,
 }) => {
-  const customTitle = `${title} - FrontEndCafé`;
   return (
     <>
       <Head>
-        <title>{title ? customTitle : 'FrontEndCafé'}</title>
+        <title>{title} - FrontEndCafé</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={description} />
         {/* Twitter */}
-        <meta name="twitter:title" content={customTitle} />
+        <meta name="twitter:title" content={`${title} - FrontEndCafé`} />
         <meta name="twitter:description" content={description} />
         <meta
           name="twitter:image"
           content="https://frontend.cafe/logo-square.png"
         />
         {/* Open Graph */}
-        <meta property="og:title" content={customTitle} />
+        <meta property="og:title" content={`${title} - FrontEndCafé`} />
         <meta property="og:description" content={description} />
         <meta
           property="og:image"
