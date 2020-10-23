@@ -1,11 +1,15 @@
 // index.js
 import { GetStaticProps, NextPage } from 'next';
-import Link from 'next/link';
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 import { getAllDocs } from '../../lib/api';
+import { Post } from '../../lib/types';
 
-const Index: NextPage = ({ docs }) => {
+interface DocsPageProps {
+  docs: Post[];
+}
+
+const Index: NextPage<DocsPageProps> = ({ docs }) => {
   return (
     <Layout
       title="Docs"
@@ -27,7 +31,7 @@ const Index: NextPage = ({ docs }) => {
           <div className="px-12 py-5 text-gray-700">
             <ul className="list-disc text-lg">
               {docs.map(({ _id, title, slug }) => (
-                <li className="hover:text-teal-400" key={_id}>
+                <li className="hover:text-teal-400" gkey={_id}>
                   <a href={`/docs/${slug.current}`}>{title}</a>
                 </li>
               ))}

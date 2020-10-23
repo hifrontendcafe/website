@@ -37,3 +37,10 @@ export interface Topic {
   title: string;
   description: string;
 }
+
+export interface Post {
+  _id: string;
+  title: string;
+  slug: string;
+  body: string;
+}
