@@ -41,6 +41,8 @@ export interface Topic {
 export interface Post {
   _id: string;
   title: string;
-  slug: string;
+  slug: {
+    current: string;
+  };
   body: string;
 }

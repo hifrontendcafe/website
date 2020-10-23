@@ -10,6 +10,7 @@ interface DocsPageProps {
 }
 
 const Index: NextPage<DocsPageProps> = ({ docs }) => {
+  console.log(docs);
   return (
     <Layout
       title="Docs"
@@ -31,7 +32,7 @@ const Index: NextPage<DocsPageProps> = ({ docs }) => {
           <div className="px-12 py-5 text-gray-700">
             <ul className="list-disc text-lg">
               {docs.map(({ _id, title, slug }) => (
-                <li className="hover:text-teal-400" gkey={_id}>
+                <li className="hover:text-teal-400" key={_id}>
                   <a href={`/docs/${slug.current}`}>{title}</a>
                 </li>
               ))}
