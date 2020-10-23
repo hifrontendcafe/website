@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import BlockContent from '@sanity/block-content-to-react';
 
 import Hero from '../../components/Hero';
@@ -13,10 +13,7 @@ interface PostProps {
   body: string;
 }
 
-const DocPage: React.FC<PostProps> = ({
-  title = 'Missing title',
-  body = 'Missing body',
-}) => {
+const DocPage: React.FC<PostProps> = ({ title, body }) => {
   return (
     <Layout title="Docs">
       <Hero small title="Docs" />
@@ -41,14 +38,14 @@ const DocPage: React.FC<PostProps> = ({
   );
 };
 
-export async function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = async () => {
   const posts = await getAllDocs();
 
   const paths = posts.map((post: Post) => ({
     params: { slug: post.slug.current },
   }));
   return { paths, fallback: true };
-}
+};
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const doc = await getDocBySlug(params.slug);
