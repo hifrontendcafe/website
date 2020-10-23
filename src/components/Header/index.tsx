@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
     >
       <nav
         id="site-menu"
-        className="container mx-auto flex flex-col md:flex-row w-full justify-between items-center px-4 md:px-6 py-1 bg-white shadow md:shadow-none"
+        className="container mx-auto flex flex-col md:flex-row w-full justify-between items-center px-4 md:px-6 bg-white shadow md:shadow-none"
       >
         <div className="w-full md:w-auto self-start md:self-center flex flex-row md:flex-none flex-no-wrap justify-between items-center">
           <Link href="/">

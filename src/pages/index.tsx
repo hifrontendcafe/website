@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import Layout from '../components/Layout';
@@ -16,8 +17,8 @@ const Index = () => {
     'Compartimos en',
     'Ayudamos en',
     'Nos reímos en',
-    'We learn English in',
-    'Hacemos amigos en',
+    'Learn English in',
+    'Nuevos amigos en',
     'Incluímos en',
   ];
 
@@ -127,15 +128,13 @@ const Services = () => (
           <p className="text-lg font-light leading-relaxed mt-0 mb-12  text-gray-700">
             Todo pasa adentro de un canal de Discord...
           </p>
-          <Link href="/files/FEC-Manual-de-uso.pdf">
-            <a
-              target="_blank"
-              className="btn btn-secondary"
-              style={{ transition: 'all .15s ease' }}
-            >
-              Manual de uso de FEC
-            </a>
-          </Link>
+          <a
+            href="/docs/manual-de-uso-de-fec"
+            className="btn btn-secondary"
+            style={{ transition: 'all .15s ease' }}
+          >
+            Manual de uso de FEC
+          </a>
         </div>
 
         <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
@@ -177,10 +176,12 @@ const Featured = () => {
       <div className="container mx-auto px-4">
         <div className="items-center flex flex-wrap">
           <div className="w-full md:w-6/12 ml-auto mr-auto px-4">
-            <img
+            <Image
               alt="..."
               className="max-w-full rounded-lg shadow-md mb-10"
               src="/img/english.png"
+              lazy={true}
+              unsized
             />
           </div>
           <div className="w-full md:w-5/12 ml-auto mr-auto px-4">

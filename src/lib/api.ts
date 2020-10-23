@@ -30,6 +30,12 @@ const mentorsFields = `
   topics
 `;
 
+const docFields = `
+  title,
+  slug,
+  body
+`;
+
 const mentoringTopics = `
   topics,
   _id,
@@ -53,6 +59,16 @@ export async function getAllMentors(preview) {
     `*[_type == "mentor"] | order(date desc) {
       ${mentorsFields}
     }`,
+  );
+  return data;
+}
+
+export async function getDocBySlug(slug) {
+  const data = await client.fetch(
+    `*[_type == "docs" && slug.current == "${slug}"][0]{
+      ${docFields}
+    }`,
+    { slug },
   );
   return data;
 }

@@ -16,6 +16,7 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
     >
       <Hero
+        small
         title="Eventos"
         subtitle="Charlas, workshops, afters, entrevistas ~"
       />

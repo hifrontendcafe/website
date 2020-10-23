@@ -25,7 +25,7 @@ const MediaFeed: React.FC = () => {
           ></polygon>
         </svg>
       </div>
-      <div className="container px-5 py-16 mx-auto">
+      <div className="container px-5 py-12 mx-auto">
         <h1 className="text-3xl md:text-4xl pb-12 font-extrabold text-primary">
           Comunidad FEC
         </h1>
