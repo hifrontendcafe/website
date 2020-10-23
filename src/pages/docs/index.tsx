@@ -1,22 +1,11 @@
-import { NextPage, NextPageContext } from 'next';
-
-import BlockContent from '@sanity/block-content-to-react';
-
+// index.js
+import { GetStaticProps, NextPage } from 'next';
+import Link from 'next/link';
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
+import { getAllDocs } from '../../lib/api';
 
-import { getDocBySlug } from '../../lib/api';
-import styles from './styles.module.css';
-
-interface PostProps {
-  title: string;
-  body: string;
-}
-
-const Post: NextPage<PostProps> = ({
-  title = 'Missing title',
-  body = 'Missing body',
-}) => {
+const Index: NextPage = ({ docs }) => {
   return (
     <Layout
       title="Docs"
@@ -30,13 +19,19 @@ const Post: NextPage<PostProps> = ({
             <div className="mt-2 md:flex md:items-center md:justify-between">
               <div className="flex-1 min-w-0">
                 <h2 className="text-xl font-bold leading-7 text-primary sm:text-2xl sm:leading-9 sm:tr uncate">
-                  {title}
+                  Documentos Útiles
                 </h2>
               </div>
             </div>
           </div>
-          <div className={`px-12 py-5 text-gray-700 ${styles.body}`}>
-            <BlockContent blocks={body} />
+          <div className="px-12 py-5 text-gray-700">
+            <ul className="list-disc text-lg">
+              {docs.map(({ _id, title, slug }) => (
+                <li className="hover:text-teal-400" key={_id}>
+                  <a href={`/docs/${slug.current}`}>{title}</a>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
@@ -44,10 +39,12 @@ const Post: NextPage<PostProps> = ({
   );
 };
 
-Post.getInitialProps = async function (ctx: NextPageContext) {
-  const { slug = '' } = ctx.query;
-  const doc = await getDocBySlug(slug);
-  return doc;
+export const getStaticProps: GetStaticProps = async () => {
+  const docs = await getAllDocs();
+  return {
+    props: { docs },
+    revalidate: 1,
+  };
 };
 
-export default Post;
+export default Index;

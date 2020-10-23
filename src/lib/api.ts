@@ -63,6 +63,15 @@ export async function getAllMentors(preview) {
   return data;
 }
 
+export async function getAllDocs() {
+  const data = await client.fetch(
+    `*[_type == "docs" ] | order(date desc) {
+      ${docFields}
+    }`,
+  );
+  return data;
+}
+
 export async function getDocBySlug(slug) {
   const data = await client.fetch(
     `*[_type == "docs" && slug.current == "${slug}"][0]{

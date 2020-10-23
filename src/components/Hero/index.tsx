@@ -20,7 +20,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, small = false }) => {
       </div>
       <div
         className="container relative mx-auto grid place-items-center px-10"
-        style={small ? { minHeight: '25vh' } : { minHeight: '60vh' }}
+        style={small ? { minHeight: '35vh' } : { minHeight: '60vh' }}
       >
         <motion.div
           initial={{ opacity: 0, y: 50 }}

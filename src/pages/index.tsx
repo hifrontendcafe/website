@@ -43,25 +43,6 @@ const Index = () => {
     respondemos."
     >
       <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
-      <div
-        className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-        style={{ height: '70px', transform: 'translateZ(0)' }}
-      >
-        <svg
-          className="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
-        >
-          <polygon
-            className="text-indigo-100 fill-current"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
-      </div>
       <Services />
       <Featured />
       <MediaFeed />
@@ -81,9 +62,6 @@ const Services = () => (
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/community.svg" />
                 <h6 className="text-2xl font-semibold">Comunidad</h6>
-                {/*               <p className="mt-2 mb-4 text-gray-600">
-                Coworking, after office, charlas, preguntas, respuestas...
-              </p> */}
               </div>
             </div>
           </div>
@@ -94,9 +72,6 @@ const Services = () => (
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/mentorships.svg" />
                 <h6 className="text-2xl font-semibold">Mentorías</h6>
-                {/*               <p className="mt-2 mb-4 text-gray-600">
-                Mentorías individuales gratuitas
-              </p> */}
               </div>
             </div>
           </div>
@@ -107,7 +82,6 @@ const Services = () => (
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/english-practices.svg" />
                 <h6 className="text-2xl font-semibold">Prácticas de inglés</h6>
-                {/*               <p className="mt-2 mb-4 text-gray-600"></p> */}
               </div>
             </div>
           </div>
@@ -141,7 +115,7 @@ const Services = () => (
           <iframe
             className="w-full md:max-w-sm lg:min-w-0 sm:min-w-full"
             src="https://discordapp.com/widget?id=594363964499165194&theme=dark"
-            height="450"
+            height="400"
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
           ></iframe>
         </div>
