@@ -1,19 +1,19 @@
-import { NextPage, NextPageContext } from 'next';
-
+import { GetStaticProps } from 'next';
 import BlockContent from '@sanity/block-content-to-react';
 
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 
-import { getDocBySlug } from '../../lib/api';
+import { getAllDocs, getDocBySlug } from '../../lib/api';
 import styles from './styles.module.css';
+import { Post } from '../../lib/types';
 
 interface PostProps {
   title: string;
   body: string;
 }
 
-const Post: NextPage<PostProps> = ({
+const DocPage: React.FC<PostProps> = ({
   title = 'Missing title',
   body = 'Missing body',
 }) => {
@@ -41,10 +41,21 @@ const Post: NextPage<PostProps> = ({
   );
 };
 
-Post.getInitialProps = async function (ctx: NextPageContext) {
-  const { slug = '' } = ctx.query;
-  const doc = await getDocBySlug(slug);
-  return doc;
+export async function getStaticPaths() {
+  const posts = await getAllDocs();
+
+  const paths = posts.map((post: Post) => ({
+    params: { slug: post.slug.current },
+  }));
+  return { paths, fallback: false };
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const doc = await getDocBySlug(params.slug);
+  return {
+    props: { ...doc },
+    revalidate: 1,
+  };
 };
 
-export default Post;
+export default DocPage;

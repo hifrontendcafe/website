@@ -68,20 +68,22 @@ const MentorshipsHero: React.FC = () => {
             tecnologías de la información.
           </p>
           <div className="flex justify-center">
-            <a
-              href="/docs/guia-para-realizar-mentorias"
-              className="inline-flex text-white bg-primary border-0 py-2 px-6
+            <Link href="/docs/guia-para-realizar-mentorias">
+              <a
+                className="inline-flex text-white bg-primary border-0 py-2 px-6
               focus:outline-none hover:bg-primarydark rounded text-lg"
-            >
-              Reglas
-            </a>
-            <a
-              href="/docs/codigo-de-conducta"
-              className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0
+              >
+                Reglas
+              </a>
+            </Link>
+            <Link href="/docs/codigo-de-conducta">
+              <a
+                className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0
               py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg"
-            >
-              Código de conducta
-            </a>
+              >
+                Código de conducta
+              </a>
+            </Link>
           </div>
         </div>
       </div>
