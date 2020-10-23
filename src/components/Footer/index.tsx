@@ -8,10 +8,11 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative bg-gray-800 p-8 pb-6">
+    <footer className="relative bg-gray-800">
       <img
         className={`absolute w-20 ${styles.impostor}`}
         src="/img/impostor.png"
@@ -35,7 +36,7 @@ const Footer: React.FC = () => {
           ></polygon>
         </svg>
       </div>
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 p-8 pb-6">
         <div className="flex flex-wrap">
           <div className="w-full lg:w-6/12 px-4 text-center md:text-left">
             <h4 className="text-2xl font-semibold text-white">
@@ -104,6 +105,40 @@ const Footer: React.FC = () => {
               </div>
             </div>
           </div> */}
+        </div>
+      </div>
+      <div className="grid place-items-center bg-gray-900 w-full h-10">
+        <div className="text-sm text-gray-500 text-center">
+          Made with{' '}
+          <FontAwesomeIcon
+            className="text-red-700 animate-pulse"
+            icon={faHeart}
+            size="lg"
+          />{' '}
+          by{' '}
+          <a
+            target="_blank"
+            className="transition duration-500 ease-in-out text-primary hover:text-tertiary font-extrabold"
+            href="https://www.linkedin.com/in/agustinamar/"
+          >
+            AM
+          </a>
+          ,{' '}
+          <a
+            target="_blank"
+            className="transition duration-500 ease-in-out text-primary hover:text-tertiary font-extrabold"
+            href="https://www.linkedin.com/in/hercase/"
+          >
+            HC
+          </a>{' '}
+          &{' '}
+          <a
+            target="_blank"
+            className="w-2 transition duration-500 ease-in-out text-primary hover:text-tertiary font-extrabold"
+            href="https://www.linkedin.com/in/mbavio/"
+          >
+            MB
+          </a>
         </div>
       </div>
     </footer>

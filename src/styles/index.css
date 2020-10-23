@@ -44,12 +44,12 @@ html {
     @apply bg-secondarydark shadow;
   }
 
-  .btn-thirdiary {
-    @apply bg-thirdiary text-white;
+  .btn-tertiary {
+    @apply bg-tertiary text-white;
   }
 
-  .btn-thirdiary:hover {
-    @apply bg-thirdiarydark shadow;
+  .btn-tertiary:hover {
+    @apply bg-tertiarydark shadow;
   }
 
   .social-circle {
