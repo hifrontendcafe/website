@@ -20,10 +20,10 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
       id="events"
       className="text-gray-700 body-font relative bg-indigo-100"
     >
-      <div className="container px-5 py-16 mx-auto">
+      <div className="container px-5 py-12 mx-auto">
         {futureEvents(events).length > 0 && (
           <>
-            <h1 className="text-4xl font-extrabold pb-12 text-primary">
+            <h1 className="text-2xl md:text-3xl font-extrabold pb-12 text-primary">
               Próximos Eventos
             </h1>
             <div className="flex flex-wrap -mx-4 -my-8">
@@ -33,7 +33,7 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
             </div>
           </>
         )}
-        <h1 className="text-3xl md:text-4xl font-extrabold pb-12 text-primary mt-12">
+        <h1 className="text-2xl md:text-3xl font-extrabold pb-12 text-primary">
           Eventos Anteriores
         </h1>
         <div className="flex flex-wrap -mx-4 -my-8">

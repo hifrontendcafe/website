@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import Layout from '../components/Layout';
@@ -16,8 +17,8 @@ const Index = () => {
     'Compartimos en',
     'Ayudamos en',
     'Nos reímos en',
-    'We learn English in',
-    'Hacemos amigos en',
+    'Learn English in',
+    'Nuevos amigos en',
     'Incluímos en',
   ];
 
@@ -42,25 +43,6 @@ const Index = () => {
     respondemos."
     >
       <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
-      <div
-        className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
-        style={{ height: '70px', transform: 'translateZ(0)' }}
-      >
-        <svg
-          className="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
-        >
-          <polygon
-            className="text-indigo-100 fill-current"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
-      </div>
       <Services />
       <Featured />
       <MediaFeed />
@@ -80,9 +62,6 @@ const Services = () => (
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/community.svg" />
                 <h6 className="text-2xl font-semibold">Comunidad</h6>
-                {/*               <p className="mt-2 mb-4 text-gray-600">
-                Coworking, after office, charlas, preguntas, respuestas...
-              </p> */}
               </div>
             </div>
           </div>
@@ -93,9 +72,6 @@ const Services = () => (
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/mentorships.svg" />
                 <h6 className="text-2xl font-semibold">Mentorías</h6>
-                {/*               <p className="mt-2 mb-4 text-gray-600">
-                Mentorías individuales gratuitas
-              </p> */}
               </div>
             </div>
           </div>
@@ -106,7 +82,6 @@ const Services = () => (
               <div className="flex items-center flex-col px-4 py-5 flex-auto">
                 <img className="w-48 mb-4" src="/img/english-practices.svg" />
                 <h6 className="text-2xl font-semibold">Prácticas de inglés</h6>
-                {/*               <p className="mt-2 mb-4 text-gray-600"></p> */}
               </div>
             </div>
           </div>
@@ -127,22 +102,20 @@ const Services = () => (
           <p className="text-lg font-light leading-relaxed mt-0 mb-12  text-gray-700">
             Todo pasa adentro de un canal de Discord...
           </p>
-          <Link href="/files/FEC-Manual-de-uso.pdf">
-            <a
-              target="_blank"
-              className="btn btn-secondary"
-              style={{ transition: 'all .15s ease' }}
-            >
-              Manual de uso de FEC
-            </a>
-          </Link>
+          <a
+            href="/docs/manual-de-uso-de-fec"
+            className="btn btn-secondary"
+            style={{ transition: 'all .15s ease' }}
+          >
+            Manual de uso de FEC
+          </a>
         </div>
 
         <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
           <iframe
             className="w-full md:max-w-sm lg:min-w-0 sm:min-w-full"
             src="https://discordapp.com/widget?id=594363964499165194&theme=dark"
-            height="450"
+            height="400"
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
           ></iframe>
         </div>
@@ -177,10 +150,12 @@ const Featured = () => {
       <div className="container mx-auto px-4">
         <div className="items-center flex flex-wrap">
           <div className="w-full md:w-6/12 ml-auto mr-auto px-4">
-            <img
+            <Image
               alt="..."
               className="max-w-full rounded-lg shadow-md mb-10"
               src="/img/english.png"
+              lazy={true}
+              unsized
             />
           </div>
           <div className="w-full md:w-5/12 ml-auto mr-auto px-4">

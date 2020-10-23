@@ -21,6 +21,7 @@ const MentorshipsPage: React.FC<MentorContainerProps> = ({
       description="El programa de mentorías de FrontEndCafé busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
     >
       <Hero
+        small
         title="Mentorías"
         subtitle="Buscamos servirte de guía en este camino ~"
       />
@@ -53,13 +54,12 @@ const MentorshipsHero: React.FC = () => {
             className="title-font sm:text-4xl text-3xl mb-4 font-medium
             text-gray-900"
           >
-            Programa de mentorías de FrontEndCafé
+            Programa de mentorías
           </h1>
           <p className="mb-4 leading-relaxed">
             Iniciarnos en el mundo de la tecnología puede resultar abrumador o
             verse como un desafío. Eso nos puede llevar a preguntarnos por dónde
-            comenzar y qué elegir entre todo lo que existente que abarca el
-            rubro de IT.
+            comenzar y qué elegir de todo lo que abarca el rubro de IT.
           </p>
           <p className="mb-8 leading-relaxed">
             El programa de mentorías de FrontEndCafé busca servirte de guía en
@@ -68,24 +68,20 @@ const MentorshipsHero: React.FC = () => {
             tecnologías de la información.
           </p>
           <div className="flex justify-center">
-            <Link href="/files/Guidelines-Mentorías-FEC.pdf">
-              <a
-                target="_blank"
-                className="inline-flex text-white bg-primary border-0 py-2 px-6
+            <a
+              href="/docs/guia-para-realizar-mentorias"
+              className="inline-flex text-white bg-primary border-0 py-2 px-6
               focus:outline-none hover:bg-primarydark rounded text-lg"
-              >
-                Reglas
-              </a>
-            </Link>
-            <Link href="/files/Codigo-de-conducta.pdf">
-              <a
-                target="_blank"
-                className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0
+            >
+              Reglas
+            </a>
+            <a
+              href="/docs/codigo-de-conducta"
+              className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0
               py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg"
-              >
-                Código de conducta
-              </a>
-            </Link>
+            >
+              Código de conducta
+            </a>
           </div>
         </div>
       </div>
