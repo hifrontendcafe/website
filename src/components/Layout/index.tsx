@@ -5,7 +5,7 @@ import PreviewBanner from '../PreviewBanner';
 
 interface LayoutProps {
   title: string;
-  description: string;
+  description?: string;
   preview?: boolean;
 }
 
@@ -13,7 +13,7 @@ const Layout: React.FC<LayoutProps> = ({
   preview = false,
   children,
   title = 'FrontEndCafé',
-  description,
+  description = 'Somos una comunidad de personas interesadas en tecnología y ciencias informáticas en donde charlamos sobre lenguajes de programación, diseño web, infraestructura, compartimos dudas, preguntamos y respondemos.',
 }) => {
   return (
     <>

@@ -18,10 +18,7 @@ const Post: NextPage<PostProps> = ({
   body = 'Missing body',
 }) => {
   return (
-    <Layout
-      title="Docs"
-      description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
-    >
+    <Layout title="Docs">
       <Hero small title="Docs" />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">

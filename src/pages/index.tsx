@@ -102,13 +102,14 @@ const Services = () => (
           <p className="text-lg font-light leading-relaxed mt-0 mb-12  text-gray-700">
             Todo pasa adentro de un canal de Discord...
           </p>
-          <a
-            href="/docs/manual-de-uso-de-fec"
-            className="btn btn-secondary"
-            style={{ transition: 'all .15s ease' }}
-          >
-            Manual de uso de FEC
-          </a>
+          <Link href="/docs/manual-de-uso-de-fec">
+            <a
+              className="btn btn-secondary"
+              style={{ transition: 'all .15s ease' }}
+            >
+              Manual de uso de FEC
+            </a>
+          </Link>
         </div>
 
         <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
