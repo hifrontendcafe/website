@@ -22,8 +22,10 @@ const Layout: React.FC<LayoutProps> = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
         <meta name="description" content={description} />
         {/* Twitter */}
+        <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${title} - FrontEndCafé`} />
         <meta name="twitter:description" content={description} />
+        <meta name="twitter:site" content="@frontendcafe" />
         <meta
           name="twitter:image"
           content="https://frontend.cafe/logo-square.png"
