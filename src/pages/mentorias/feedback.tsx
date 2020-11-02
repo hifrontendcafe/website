@@ -1,10 +1,7 @@
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 
-const MentorshipsFeedback: React.FC<MentorContainerProps> = ({
-  topics,
-  mentors,
-}) => {
+const MentorshipsFeedback: React.FC = () => {
   return (
     <Layout
       title="Mentorías"
