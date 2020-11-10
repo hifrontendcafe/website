@@ -48,7 +48,7 @@ const Hero: React.FC<HeroProps> = ({ title, subtitle, small = false }) => {
                 : 'text-4xl md:text-6xl lg:text-7xl'
             }`}
           >
-            FrontEndCafé
+            FrontendCafé
           </h1>
           {subtitle && (
             <p
