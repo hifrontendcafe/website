@@ -11,7 +11,6 @@ const eventFields = `
     'src': cover.asset->url
   },
   date,
-  description,
   tags,
   recording
 `;
@@ -59,11 +58,23 @@ export async function getAllEvents(preview) {
   const data = await getClient(preview).fetch(
     `*[_type == "event"] | order(date desc) {
       ${eventFields}
+      description
     }`,
   );
 
   return data;
 }
+
+export async function getAllAPIEvents(preview) {
+  const data = await getClient(preview).fetch(
+    `*[_type == "event"] | order(date desc) {
+      ${eventFields}
+    }`,
+  );
+
+  return data;
+}
+
 
 export async function getAllMentors(preview) {
   const data = await getClient(preview).fetch(
@@ -97,6 +108,15 @@ export async function getMentoringTopics(preview) {
   const data = await getClient(preview).fetch(
     `*[_type == "topic"] | order(date desc) {
       ${mentoringTopics}
+    }`,
+  );
+  return data;
+}
+
+export async function getAllPosts() {
+  const data = await client.fetch(
+    `*[_type == "post" ] | order(date desc) {
+      ${postFields}
     }`,
   );
   return data;
