@@ -38,11 +38,17 @@ export interface Topic {
   description: string;
 }
 
+export interface Author {
+  name: string;
+  picture: string;
+}
+
 export interface Post {
-  _id: string;
   title: string;
-  slug: {
-    current: string;
-  };
-  body: string;
+  author: Author;
+  slug: string;
+  coverImage: string;
+  date: string;
+  excerpt: string;
+  content: any;
 }

@@ -42,6 +42,17 @@ const mentoringTopics = `
   title
 `;
 
+const postFields = `
+  name,
+  title,
+  date,
+  excerpt,
+  'slug': slug.current,
+  'coverImage': coverImage.asset->url,
+  'author': author->{name, 'picture': picture.asset->url},
+  content
+`;
+
 const getClient = (preview) => (preview ? previewClient : client);
 
 export async function getAllEvents(preview) {
@@ -88,5 +99,21 @@ export async function getMentoringTopics(preview) {
       ${mentoringTopics}
     }`,
   );
+  return data;
+}
+
+export async function getPost(slug, preview) {
+  const data = await getClient(preview).fetch(
+    `*[_type == "post" && slug.current == $slug] | order(_updatedAt desc) {
+    ${postFields}
+  }`,
+    { slug },
+  );
+
+  return { post: data?.[0], preview };
+}
+
+export async function getAllPostsWithSlugOnly() {
+  const data = await client.fetch(`*[_type == "post"]{ 'slug': slug.current }`);
   return data;
 }
