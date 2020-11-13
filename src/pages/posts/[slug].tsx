@@ -56,7 +56,7 @@ const PostPage: React.FC<PostPageProps> = ({ post, preview }) => {
           </div>
 
           <div className="px-6 text-center">
-            <Link href="/posts"> Volver</Link>
+            <Link href="/posts">Volver</Link>
           </div>
         </div>
       </div>

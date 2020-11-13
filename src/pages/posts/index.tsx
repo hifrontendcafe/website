@@ -33,7 +33,7 @@ const Index: React.FC<PostsPageProps> = ({ posts }) => {
             <ul className="text-lg">
               {posts.map(({ title, slug, excerpt }) => (
                 <li className="hover:text-teal-400 list-none" key={title}>
-                  <Link href="/posts/[slug]" as={`/posts/${slug}`}>
+                  <Link href={`/posts/${slug.current}`}>
                     <a>{title}: {excerpt}</a>
                   </Link>
                 </li>
