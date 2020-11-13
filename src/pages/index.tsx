@@ -155,7 +155,7 @@ const Featured = () => {
               alt="..."
               className="max-w-full rounded-lg shadow-md mb-10"
               src="/img/english.png"
-              lazy={true}
+              loading="lazy"
               unsized
             />
           </div>

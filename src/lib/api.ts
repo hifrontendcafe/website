@@ -46,7 +46,7 @@ const postFields = `
   title,
   date,
   excerpt,
-  'slug': slug.current,
+  slug,
   'coverImage': coverImage.asset->url,
   'author': author->{name, 'picture': picture.asset->url},
   content
@@ -57,7 +57,7 @@ const getClient = (preview) => (preview ? previewClient : client);
 export async function getAllEvents(preview) {
   const data = await getClient(preview).fetch(
     `*[_type == "event"] | order(date desc) {
-      ${eventFields}
+      ${eventFields},
       description
     }`,
   );
@@ -124,16 +124,20 @@ export async function getAllPosts() {
 
 export async function getPost(slug, preview) {
   const data = await getClient(preview).fetch(
-    `*[_type == "post" && slug.current == $slug] | order(_updatedAt desc) {
-    ${postFields}
-  }`,
+    `*[_type == "post" && slug.current == "${slug}"][0]{
+      ${postFields}
+    }`,
     { slug },
   );
 
-  return { post: data?.[0], preview };
+  return data;
 }
 
 export async function getAllPostsWithSlugOnly() {
-  const data = await client.fetch(`*[_type == "post"]{ 'slug': slug.current }`);
+  const data = await client.fetch(
+    `*[_type == "post" ] | order(date desc) {
+      slug
+    }`,
+  );
   return data;
 }
