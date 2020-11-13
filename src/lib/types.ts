@@ -44,9 +44,12 @@ export interface Author {
 }
 
 export interface Post {
+  _id: string;
   title: string;
   author: Author;
-  slug: string;
+  slug: {
+    current: string;
+  };
   coverImage: string;
   date: string;
   excerpt: string;
