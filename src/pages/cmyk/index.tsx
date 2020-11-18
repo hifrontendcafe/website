@@ -81,7 +81,7 @@ const Proyect: React.FC = () => {
               <li className="flex-1">
                 <a
                   target="_blank"
-                  href="https://github.com/JaviCeRodriguez/BurgerQuiz"
+                  href="https://github.com/panchocorderos/criptocalculator"
                   className="block text-center uppercase p-4 text-sm tracking-wide hover:bg-black hover:bg-opacity-100 hover:text-white"
                 >
                   Repo
@@ -90,7 +90,7 @@ const Proyect: React.FC = () => {
               <li className="flex-1">
                 <a
                   target="_blank"
-                  href="https://burger-quiz.vercel.app/"
+                  href="http://criptocalculator-seven.vercel.app/"
                   className="block text-center uppercase p-4 text-sm tracking-wide hover:bg-black hover:bg-opacity-100 hover:text-white"
                 >
                   Proyecto
@@ -113,7 +113,7 @@ const Proyect: React.FC = () => {
               <li className="flex-1">
                 <a
                   target="_blank"
-                  href="https://github.com/panchocorderos/criptocalculator"
+                  href="https://github.com/narvmtz/PokedexFEC"
                   className="block text-center uppercase p-4 text-sm tracking-wide hover:bg-black hover:bg-opacity-100 hover:text-white"
                 >
                   Repo
@@ -122,7 +122,7 @@ const Proyect: React.FC = () => {
               <li className="flex-1">
                 <a
                   target="_blank"
-                  href="https://criptocalculator-seven.vercel.app/"
+                  href="https://key.vercel.app/"
                   className="block text-center uppercase p-4 text-sm tracking-wide hover:bg-black hover:bg-opacity-100 hover:text-white"
                 >
                   Proyecto
