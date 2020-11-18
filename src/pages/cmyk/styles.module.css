@@ -13,16 +13,23 @@
   );
 }
 
+.background:before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.33);
+}
+
 @media (min-width: 768px) {
   .background:before {
-    content: '';
-    display: block;
-    position: absolute;
     top: 1rem;
     left: 1rem;
     right: 1rem;
     bottom: 1rem;
-    background: rgba(0, 0, 0, 0.33);
   }
 }
 
