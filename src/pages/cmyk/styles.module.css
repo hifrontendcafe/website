@@ -26,12 +26,22 @@
   }
 }
 
-.logo {
-  width: 20rem;
+.header {
   position: absolute;
-  top: 6rem;
+  top: 4rem;
   left: 50%;
   transform: translateX(-50%);
+  text-align: center;
+}
+
+.logo {
+  width: 20rem;
+  display: block;
+}
+
+.logo img {
+  display: block;
+  width: 100%;
 }
 
 .video-wrapper {
