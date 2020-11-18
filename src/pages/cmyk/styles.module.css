@@ -12,3 +12,39 @@
     rgba(0, 0, 0, 1) 100%
   );
 }
+
+@media (min-width: 768px) {
+  .background:before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    right: 1rem;
+    bottom: 1rem;
+    background: rgba(0, 0, 0, 0.33);
+  }
+}
+
+.logo {
+  width: 20rem;
+  position: absolute;
+  top: 6rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.video-wrapper {
+  width: 100%;
+  height: 0;
+  position: relative;
+  padding-bottom: 60.9%; /* 1.64 */
+}
+
+.video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
