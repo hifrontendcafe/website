@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
 import MediaFeed from '../components/MediaFeed';
+import CMYKBanner from '../components/CMYKBanner';
 
 const Index = () => {
   const [counter, setCounter] = useState(0);
@@ -42,6 +43,7 @@ const Index = () => {
     diseño web, infraestructura, compartimos dudas, preguntamos y
     respondemos."
     >
+      <CMYKBanner>Es hoy!</CMYKBanner>
       <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
       <Services />
       <Featured />

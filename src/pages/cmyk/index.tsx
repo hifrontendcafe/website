@@ -1,25 +1,39 @@
-import Hero from '../../components/Hero';
+import Link from 'next/link';
 import Layout from '../../components/Layout';
-import style from './styles.module.css';
+import styles from './styles.module.css';
 
 const Proyect: React.FC = () => {
   return (
     <Layout
+      mode="simple"
       title="Proyectos CMYK"
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
     >
-      <Hero small title="Proyectos CMYK" />
-      <div className={`${style.background} min-h-screen`}>
-        <div className="container mx-auto pt-24">
-          <iframe
-            className="shadow-lg rounded-lg"
-            src="https://player.twitch.tv/?channel=frontendcafe&parent=frontend.cafe"
-            frameBorder="0"
-            allowFullScreen={true}
-            scrolling="no"
-            height="720"
-            width="100%"
-          ></iframe>
+      <div
+        className={`${styles.background} h-screen flex items-center justify-center`}
+      >
+        <Link href="/">
+          <a>
+            <img
+              src="/logo-light-full.svg"
+              className={styles.logo}
+              alt="FrontendCafé"
+            />
+          </a>
+        </Link>
+        <div className="container mx-5 md:mx-0">
+          <div className={styles['video-wrapper']}>
+            <iframe
+              // me="shadow-lg rounded-lg"
+              src="https://player.twitch.tv/?channel=frontendcafe&parent=frontend.cafe"
+              frameBorder="0"
+              allowFullScreen={true}
+              scrolling="no"
+              width="1080"
+              height="658"
+              className={styles.video}
+            ></iframe>
+          </div>
         </div>
       </div>
     </Layout>
