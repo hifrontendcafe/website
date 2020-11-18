@@ -46,8 +46,8 @@ const Layout: React.FC<LayoutProps> = ({
       <FecHead title={title} description={description} />
       {
         {
-          main: <MainLayout preview={preview}>{children}</MainLayout>,
-          simple: <SimpleLayout preview={preview}>{children}</SimpleLayout>,
+          main: <MainLayout>{children}</MainLayout>,
+          simple: <SimpleLayout>{children}</SimpleLayout>,
         }[mode]
       }
     </>
