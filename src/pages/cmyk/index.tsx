@@ -1,29 +1,8 @@
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { formatDistance } from 'date-fns';
-import { es } from 'date-fns/locale';
 import Layout from '../../components/Layout';
 import styles from './styles.module.css';
 
-const eventDate = new Date(2020, 10, 18, 18);
-
-const formatCountdown = () =>
-  formatDistance(eventDate, new Date(), {
-    addSuffix: true,
-    includeSeconds: true,
-    locale: es,
-  });
-
 const Proyect: React.FC = () => {
-  const [countdown, setCountdown] = useState(formatCountdown());
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCountdown(formatCountdown());
-    }, 1000);
-    return () => clearInterval(interval);
-  });
-
   return (
     <Layout
       mode="simple"
@@ -39,7 +18,9 @@ const Proyect: React.FC = () => {
               <img src="/logo-light-full.svg" alt="FrontendCafé" />
             </a>
           </Link>
-          <div className="text-white text-lg mt-8">Empieza {countdown}...</div>
+          <div className="inline-block text-white text-sm mt-5 bg-red-700 py-2 px-4 uppercase rounded">
+            En vivo
+          </div>
         </div>
         <div className="container mx-5 md:mx-0">
           <div className={styles['video-wrapper']}>
