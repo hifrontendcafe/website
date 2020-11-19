@@ -43,7 +43,7 @@ const Index = () => {
     diseño web, infraestructura, compartimos dudas, preguntamos y
     respondemos."
     >
-      <CMYKBanner>Es hoy!</CMYKBanner>
+      {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
       <Services />
       <Featured />
