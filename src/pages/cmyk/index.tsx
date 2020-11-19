@@ -8,7 +8,7 @@ const Proyect: React.FC = () => {
       title="Proyectos CMYK"
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
     >
-      <ul className="min-h-screen flex items-stretch text-white">
+      <ul className="min-h-screen flex flex-wrap md:flex-row flex-col items-stretch text-white">
         <li className="flex-1" style={{ background: 'rgb(0, 255, 255)' }}>
           <div className="mx-8 my-16">
             <div className="bg-black text-xl bg-opacity-25 font-bold p-4">
