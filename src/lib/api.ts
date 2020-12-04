@@ -22,6 +22,7 @@ const mentorsFields = `
     'alt': photo.alt,
     'src': photo.asset->url
   },
+  isActive,
   web,
   calendly,
   github,
@@ -74,7 +75,6 @@ export async function getAllAPIEvents(preview) {
 
   return data;
 }
-
 
 export async function getAllMentors(preview) {
   const data = await getClient(preview).fetch(
