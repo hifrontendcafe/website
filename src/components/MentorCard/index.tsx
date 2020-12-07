@@ -70,7 +70,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
               <h2 className="text-2xl text-green-900 font-medium title-font">
                 {mentor.name}
               </h2>
-              {mentor.calendly && (
+              {mentor.calendly && mentor.isActive ? (
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
@@ -79,6 +79,10 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
                     <span>CONTACTAME</span>
                   </a>
                 </Link>
+              ) : (
+                <span className="text-white cursor-not-allowed bg-gray-500 font-base text-sm py-1 px-3 rounded">
+                  NO DISPONIBLE
+                </span>
               )}
             </div>
 

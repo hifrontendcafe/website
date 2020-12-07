@@ -20,6 +20,7 @@ export interface Mentor {
     src: string;
     alt?: string;
   };
+  isActive: boolean;
   web: string;
   calendly: string;
   linkedin: string;
