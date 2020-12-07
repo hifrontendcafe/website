@@ -54,8 +54,8 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
           ref={menu}
           className="w-full md:w-auto self-end md:self-center md:flex flex-col md:flex-row items-center h-full py-1 pb-4 md:py-0 md:pb-0 hidden"
         >
-          {navItems.map((item, i) => (
-            <Link href={item.link} key={i}>
+          {navItems.map((item) => (
+            <Link href={item.link} key={item.link}>
               <a className="w-full md:w-auto text-center px-4 py-2 text-gray-600 hover:text-gray-800">
                 {item.title}
               </a>

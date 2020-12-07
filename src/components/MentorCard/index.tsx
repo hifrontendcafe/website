@@ -20,7 +20,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
   return (
     <motion.div
       initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
       className="w-full col-span-1 bg-white rounded-lg shadow my-2 border border-teal-100"
     >
@@ -70,18 +70,18 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
               <h2 className="text-2xl text-green-900 font-medium title-font">
                 {mentor.name}
               </h2>
-              {mentor.calendly && mentor.isActive ? (
+              {mentor.isActive && mentor.calendly ? (
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
-                    className="text-white bg-teal-500 hover:bg-teal-400 font-base text-sm py-1 px-3 rounded"
+                    className="text-white bg-teal-500 hover:bg-teal-400 font-base text-sm py-1 px-3 rounded uppercase"
                   >
-                    <span>CONTACTAME</span>
+                    <span>Contactame</span>
                   </a>
                 </Link>
               ) : (
-                <span className="text-white cursor-not-allowed bg-gray-500 font-base text-sm py-1 px-3 rounded">
-                  NO DISPONIBLE
+                <span className="text-white cursor-not-allowed bg-gray-500 font-base text-sm py-1 px-3 rounded uppercase">
+                  No Disponible
                 </span>
               )}
             </div>
