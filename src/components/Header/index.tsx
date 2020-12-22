@@ -37,7 +37,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
               <img
                 src="/logo.svg"
                 className="w-16 h-16 text-white p-2 rounded-full"
-                alt="FRONTENDCAFE"
+                alt="Logo FrontendCafe"
               />
             </a>
           </Link>
