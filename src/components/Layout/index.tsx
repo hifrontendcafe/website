@@ -5,7 +5,7 @@ import FecHead from '../FecHead';
 import { ReactElement } from 'react';
 
 interface LayoutProps {
-  mode?: string;
+  mode?: 'main' | 'simple';
   title?: string;
   description?: string;
   preview?: boolean;

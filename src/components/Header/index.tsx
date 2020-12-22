@@ -18,6 +18,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   const navItems = [
     { title: 'Eventos', link: '/eventos' },
     { title: 'Mentorías', link: '/mentorias' },
+    { title: 'Proyectos', link: '/cmyk' },
   ];
 
   return (

@@ -1,4 +1,5 @@
 import client, { previewClient } from './sanity';
+import { CMYK } from './types';
 
 const eventFields = `
   title,
@@ -140,4 +141,20 @@ export async function getAllPostsWithSlugOnly() {
     }`,
   );
   return data;
+}
+
+export async function getAllCMYKProjects(): Promise<CMYK[]> {
+  return await client.fetch(`
+    *[_type == "cmyk"] {
+      _id,
+      name,
+      description,
+      'color': color.hex,
+      'image': {
+        'src': image.asset->url
+      },
+      github,
+      demo
+    }
+  `);
 }

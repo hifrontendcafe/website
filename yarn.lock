@@ -5890,6 +5890,11 @@ react-is@16.13.1, react-is@^16.13.1, react-is@^16.8.1, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+react-multi-carousel@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/react-multi-carousel/-/react-multi-carousel-2.6.1.tgz#43871c8c50aab96f64769d59e2e3b88a77e0ea8b"
+  integrity sha512-N0YfKqEYc9ElyGMrvukyVDMkYae76GDY4+1pXXPLvRj9uLFuaa4rCj31RWbNP8VEE2A2Sp3TSLV2yXVoLUUD8w==
+
 react-proptype-conditional-require@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/react-proptype-conditional-require/-/react-proptype-conditional-require-1.0.4.tgz#69c2d5741e6df5e08f230f36bbc2944ee1222555"
