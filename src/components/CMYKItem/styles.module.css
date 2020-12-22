@@ -1,0 +1,9 @@
+.containerColor {
+  @apply absolute opacity-25 w-full h-full top-0 left-0 bg-black;
+  z-index: -1;
+}
+
+.container {
+  @apply p-4 w-full h-full bg-cover relative text-white flex justify-center items-end;
+  z-index: -2;
+}

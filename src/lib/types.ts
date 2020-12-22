@@ -33,6 +33,18 @@ export interface Mentor {
   ];
 }
 
+export interface CMYK {
+  _id: string;
+  name: string;
+  description: string;
+  color: string;
+  image: {
+    src: string;
+  };
+  github: string;
+  demo: string;
+}
+
 export interface Topic {
   _id: string;
   title: string;
