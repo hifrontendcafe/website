@@ -1,5 +1,15 @@
 import client, { previewClient } from './sanity';
-import { CMYK } from './types';
+import { CMYK, Post, Doc, Event, Mentor, Topic } from './types';
+import {
+  postQuery,
+  cmykQuery,
+  postsQuery,
+  mentorsQuery,
+  mentorsTopicsQuery,
+  docsQuery,
+  docQuery,
+  eventsQuery,
+} from './querys';
 
 const eventFields = `
   title,
@@ -16,145 +26,67 @@ const eventFields = `
   recording
 `;
 
-const mentorsFields = `
-  name,
-  description,
-  'photo': {
-    'alt': photo.alt,
-    'src': photo.asset->url
-  },
-  isActive,
-  web,
-  calendly,
-  github,
-  linkedin,
-  topics
-`;
+const getClient = (preview: boolean = false) =>
+  preview ? previewClient : client;
 
-const docFields = `
-  title,
-  slug,
-  body
-`;
-
-const mentoringTopics = `
-  topics,
-  _id,
-  title
-`;
-
-const postFields = `
-  name,
-  title,
-  date,
-  excerpt,
-  slug,
-  'coverImage': coverImage.asset->url,
-  'author': author->{name, 'picture': picture.asset->url},
-  content
-`;
-
-const getClient = (preview) => (preview ? previewClient : client);
-
-export async function getAllEvents(preview) {
-  const data = await getClient(preview).fetch(
-    `*[_type == "event"] | order(date desc) {
-      ${eventFields},
-      description
-    }`,
-  );
-
-  return data;
+export async function getAllEvents(preview: boolean = false): Promise<Event[]> {
+  return await getClient(preview).fetch(eventsQuery);
 }
 
-export async function getAllAPIEvents(preview) {
-  const data = await getClient(preview).fetch(
+export async function getAllAPIEvents(
+  preview: boolean = false,
+): Promise<Omit<Event, 'description'>> {
+  return await getClient(preview).fetch(
     `*[_type == "event"] | order(date desc) {
       ${eventFields}
     }`,
   );
-
-  return data;
 }
 
-export async function getAllMentors(preview) {
-  const data = await getClient(preview).fetch(
-    `*[_type == "mentor"] | order(date desc) {
-      ${mentorsFields}
-    }`,
+export async function getAllMentors(
+  preview: boolean = false,
+): Promise<Mentor[]> {
+  return await getClient(preview).fetch(mentorsQuery);
+}
+
+export async function getAllDocs(preview: boolean = false): Promise<Doc[]> {
+  return await getClient(preview).fetch(docsQuery);
+}
+
+export async function getDocBySlug(
+  slug: string,
+  preview: boolean = false,
+): Promise<Doc> {
+  return await getClient(preview).fetch(docQuery, { slug });
+}
+
+export async function getMentoringTopics(
+  preview: boolean = false,
+): Promise<Topic[]> {
+  return await getClient(preview).fetch(mentorsTopicsQuery);
+}
+
+export async function getAllPosts(preview: boolean = false): Promise<Post[]> {
+  return await getClient(preview).fetch(postsQuery);
+}
+
+export async function getPost(
+  slug: string,
+  preview: boolean = false,
+): Promise<Post> {
+  return await getClient(preview).fetch(postQuery, { slug });
+}
+
+export async function getAllPostsSlugs(
+  preview: boolean = false,
+): Promise<string[]> {
+  return await getClient(preview).fetch(
+    `*[_type == "post" && defined(slug.current)][].slug.current `,
   );
-  return data;
 }
 
-export async function getAllDocs() {
-  const data = await client.fetch(
-    `*[_type == "docs" ] | order(date desc) {
-      ${docFields}
-    }`,
-  );
-  return data;
-}
-
-export async function getDocBySlug(slug) {
-  const data = await client.fetch(
-    `*[_type == "docs" && slug.current == "${slug}"][0]{
-      ${docFields}
-    }`,
-    { slug },
-  );
-  return data;
-}
-
-export async function getMentoringTopics(preview) {
-  const data = await getClient(preview).fetch(
-    `*[_type == "topic"] | order(date desc) {
-      ${mentoringTopics}
-    }`,
-  );
-  return data;
-}
-
-export async function getAllPosts() {
-  const data = await client.fetch(
-    `*[_type == "post" ] | order(date desc) {
-      ${postFields}
-    }`,
-  );
-  return data;
-}
-
-export async function getPost(slug, preview) {
-  const data = await getClient(preview).fetch(
-    `*[_type == "post" && slug.current == "${slug}"][0]{
-      ${postFields}
-    }`,
-    { slug },
-  );
-
-  return data;
-}
-
-export async function getAllPostsWithSlugOnly() {
-  const data = await client.fetch(
-    `*[_type == "post" ] | order(date desc) {
-      slug
-    }`,
-  );
-  return data;
-}
-
-export async function getAllCMYKProjects(): Promise<CMYK[]> {
-  return await client.fetch(`
-    *[_type == "cmyk"] {
-      _id,
-      name,
-      description,
-      'color': color.hex,
-      'image': {
-        'src': image.asset->url
-      },
-      github,
-      demo
-    }
-  `);
+export async function getAllCMYKProjects(
+  preview: boolean = false,
+): Promise<CMYK[]> {
+  return await getClient(preview).fetch(cmykQuery);
 }

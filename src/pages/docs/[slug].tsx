@@ -5,17 +5,26 @@ import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 
 import { getAllDocs, getDocBySlug } from '../../lib/api';
+import { Doc } from '../../lib/types';
+import { usePreviewSubscription } from '../../lib/sanity';
+import { docQuery } from '../../lib/querys';
+
 import styles from './styles.module.css';
-import { Post } from '../../lib/types';
 
-interface PostProps {
-  title: string;
-  body: string;
-}
+type DocProps = {
+  data: Doc;
+  preview?: boolean;
+};
 
-const DocPage: React.FC<PostProps> = ({ title, body }) => {
+const DocPage: React.FC<DocProps> = ({ data, preview }) => {
+  const { data: doc } = usePreviewSubscription(docQuery, {
+    params: { slug: data.slug },
+    initialData: data,
+    enabled: preview,
+  });
+
   return (
-    <Layout title={title}>
+    <Layout title={doc.title} preview={preview}>
       <Hero small title="Docs" />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
@@ -23,13 +32,13 @@ const DocPage: React.FC<PostProps> = ({ title, body }) => {
             <div className="mt-2 md:flex md:items-center md:justify-between">
               <div className="flex-1 min-w-0">
                 <h2 className="text-xl font-bold leading-7 text-primary sm:text-2xl sm:leading-9 sm:tr uncate">
-                  {title}
+                  {doc.title}
                 </h2>
               </div>
             </div>
           </div>
           <div className={`px-12 py-5 text-gray-700 ${styles.body}`}>
-            <BlockContent blocks={body} />
+            <BlockContent blocks={doc.body} />
           </div>
         </div>
       </div>
@@ -38,18 +47,21 @@ const DocPage: React.FC<PostProps> = ({ title, body }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getAllDocs();
+  const docs = await getAllDocs();
 
-  const paths = posts.map((post: Post) => ({
-    params: { slug: post.slug.current },
+  const paths = docs.map((doc) => ({
+    params: { slug: doc.slug },
   }));
   return { paths, fallback: true };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const doc = await getDocBySlug(params.slug);
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+}) => {
+  const data = await getDocBySlug(params.slug as string, preview);
   return {
-    props: { ...doc },
+    props: { data, preview },
     revalidate: 1,
   };
 };

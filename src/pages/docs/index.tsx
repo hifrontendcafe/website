@@ -1,20 +1,30 @@
-// index.js
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
+
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
+
 import { getAllDocs } from '../../lib/api';
-import { Post } from '../../lib/types';
+import { Doc } from '../../lib/types';
+import { usePreviewSubscription } from '../../lib/sanity';
+import { docsQuery } from '../../lib/querys';
 
-interface DocsPageProps {
-  docs: Post[];
-}
+type DocsPageProps = {
+  data: Doc[];
+  preview?: boolean;
+};
 
-const Index: React.FC<DocsPageProps> = ({ docs }) => {
+const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
+  const { data: docs } = usePreviewSubscription(docsQuery, {
+    initialData: data,
+    enabled: preview,
+  });
+
   return (
     <Layout
       title="Docs"
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
+      preview={preview}
     >
       <Hero small title="Docs" />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
@@ -31,9 +41,9 @@ const Index: React.FC<DocsPageProps> = ({ docs }) => {
           </div>
           <div className="px-12 py-5 text-gray-700">
             <ul className="text-lg">
-              {docs.map(({ _id, title, slug }) => (
-                <li className="hover:text-teal-400" key={_id}>
-                  <Link href="/docs/[slug]" as={`/docs/${slug.current}`}>
+              {docs.map(({ title, slug }) => (
+                <li className="hover:text-teal-400" key={slug}>
+                  <Link href="/docs/[slug]" as={`/docs/${slug}`}>
                     <a>{title}</a>
                   </Link>
                 </li>
@@ -46,12 +56,12 @@ const Index: React.FC<DocsPageProps> = ({ docs }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const docs = await getAllDocs();
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const data = await getAllDocs(preview);
   return {
-    props: { docs },
+    props: { data, preview },
     revalidate: 1,
   };
 };
 
-export default Index;
+export default DocsPage;

@@ -2,22 +2,19 @@ import Header from '../Header';
 import Footer from '../Footer';
 import PreviewBanner from '../PreviewBanner';
 import FecHead from '../FecHead';
-import { ReactElement } from 'react';
 
-interface LayoutProps {
+type LayoutProps = {
   mode?: 'main' | 'simple';
   title?: string;
   description?: string;
   preview?: boolean;
-}
+};
 
-const MainLayout: React.FC = ({
-  preview,
-  children,
-}: {
-  preview: boolean;
-  children: ReactElement;
-}) => (
+type LayoutPreviewProps = {
+  preview?: boolean;
+};
+
+const MainLayout: React.FC<LayoutPreviewProps> = ({ preview, children }) => (
   <div className="antialiased">
     {preview && <PreviewBanner />}
     <Header preview={preview} />
@@ -26,13 +23,12 @@ const MainLayout: React.FC = ({
   </div>
 );
 
-const SimpleLayout: React.FC = ({
-  preview,
-  children,
-}: {
-  preview: boolean;
-  children: ReactElement;
-}) => <div className="antialiased">{children}</div>;
+const SimpleLayout: React.FC<LayoutPreviewProps> = ({ preview, children }) => (
+  <div className="antialiased">
+    {preview && <PreviewBanner />}
+    {children}
+  </div>
+);
 
 const Layout: React.FC<LayoutProps> = ({
   mode = 'main',
@@ -46,8 +42,8 @@ const Layout: React.FC<LayoutProps> = ({
       <FecHead title={title} description={description} />
       {
         {
-          main: <MainLayout>{children}</MainLayout>,
-          simple: <SimpleLayout>{children}</SimpleLayout>,
+          main: <MainLayout preview={preview}>{children}</MainLayout>,
+          simple: <SimpleLayout preview={preview}>{children}</SimpleLayout>,
         }[mode]
       }
     </>

@@ -68,3 +68,9 @@ export interface Post {
   excerpt: string;
   content: any;
 }
+
+export interface Doc {
+  title: string;
+  slug: string;
+  body: string;
+}

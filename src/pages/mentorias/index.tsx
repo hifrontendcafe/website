@@ -1,24 +1,41 @@
-import Layout from '../../components/Layout';
 import { GetStaticProps } from 'next';
-import { Mentor, Topic } from '../../lib/types';
-import { getAllMentors, getMentoringTopics } from '../../lib/api';
+
 import MentorList from '../../components/MentorList';
 import Hero from '../../components/Hero';
 import MentorshipsHero from '../../components/MentorshipsHero';
+import Layout from '../../components/Layout';
 
-interface MentorContainerProps {
+import { Mentor, Topic } from '../../lib/types';
+import { getAllMentors, getMentoringTopics } from '../../lib/api';
+import { mentorsQuery, mentorsTopicsQuery } from '../../lib/querys';
+import { usePreviewSubscription } from '../../lib/sanity';
+
+type MentorshipsPageProps = {
   mentors: Mentor[];
   topics: Topic[];
-}
+  preview?: boolean;
+};
 
-const MentorshipsPage: React.FC<MentorContainerProps> = ({
-  topics,
-  mentors,
+const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
+  topics: topicsData,
+  mentors: mentorsData,
+  preview,
 }) => {
+  const { data: mentors } = usePreviewSubscription(mentorsQuery, {
+    initialData: mentorsData,
+    enabled: preview,
+  });
+
+  const { data: topics } = usePreviewSubscription(mentorsTopicsQuery, {
+    initialData: topicsData,
+    enabled: preview,
+  });
+
   return (
     <Layout
       title="Mentorías"
       description="El programa de mentorías de FrontEndCafé busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
+      preview={preview}
     >
       <Hero
         small
@@ -126,7 +143,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const mentors = await getAllMentors(preview);
   const topics = await getMentoringTopics(preview);
   return {
-    props: { mentors, topics },
+    props: { mentors, topics, preview },
     revalidate: 1,
   };
 };
