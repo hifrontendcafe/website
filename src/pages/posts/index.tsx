@@ -14,7 +14,7 @@ type PostsPageProps = {
   preview?: boolean;
 };
 
-const Index: React.FC<PostsPageProps> = ({ data, preview }) => {
+const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
   const { data: posts } = usePreviewSubscription(postsQuery, {
     initialData: data,
     enabled: preview,
@@ -62,4 +62,4 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   };
 };
 
-export default Index;
+export default PostsPage;
