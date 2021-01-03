@@ -1,19 +1,30 @@
-import Layout from '../components/Layout';
 import { GetStaticProps } from 'next';
-import { Event } from '../lib/types';
-import { getAllEvents } from '../lib/api';
+
+import Layout from '../components/Layout';
 import Hero from '../components/Hero';
 import EventList from '../components/EventList';
 
-interface EventsPageProps {
-  events: Event[];
-}
+import { Event } from '../lib/types';
+import { getAllEvents } from '../lib/api';
+import { usePreviewSubscription } from '../lib/sanity';
+import { eventsQuery } from '../lib/querys';
 
-const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
+type EventsPageProps = {
+  data: Event[];
+  preview?: boolean;
+};
+
+const EventsPage: React.FC<EventsPageProps> = ({ data, preview }) => {
+  const { data: events } = usePreviewSubscription(eventsQuery, {
+    initialData: data,
+    enabled: preview,
+  });
+
   return (
     <Layout
       title="Eventos"
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
+      preview={preview}
     >
       <Hero
         small
@@ -26,9 +37,9 @@ const EventsPage: React.FC<EventsPageProps> = ({ events }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const events = await getAllEvents(preview);
+  const data = await getAllEvents(preview);
   return {
-    props: { events },
+    props: { data, preview },
     revalidate: 1,
   };
 };

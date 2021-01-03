@@ -1,13 +1,14 @@
+import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Layout from '../components/Layout';
 import Hero from '../components/Hero';
 import MediaFeed from '../components/MediaFeed';
 import CMYKBanner from '../components/CMYKBanner';
 
-const Index = () => {
+const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
   const [counter, setCounter] = useState(0);
 
   const greets = [
@@ -42,6 +43,7 @@ const Index = () => {
     informáticas en donde charlamos sobre lenguajes de programación,
     diseño web, infraestructura, compartimos dudas, preguntamos y
     respondemos."
+      preview={preview}
     >
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
@@ -329,5 +331,9 @@ const Featured = () => {
     </div>
   </section>
 ); */
+
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => ({
+  props: { preview },
+});
 
 export default Index;

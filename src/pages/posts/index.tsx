@@ -1,21 +1,27 @@
-// index.js
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
+
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
+
 import { getAllPosts } from '../../lib/api';
 import { Post } from '../../lib/types';
+import { usePreviewSubscription } from '../../lib/sanity';
+import { postsQuery } from '../../lib/querys';
 
-interface PostsPageProps {
-  posts: Post[];
-}
+type PostsPageProps = {
+  data: Post[];
+  preview?: boolean;
+};
 
-const Index: React.FC<PostsPageProps> = ({ posts }) => {
+const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
+  const { data: posts } = usePreviewSubscription(postsQuery, {
+    initialData: data,
+    enabled: preview,
+  });
+
   return (
-    <Layout
-      title="Entradas"
-      description="Blog"
-    >
+    <Layout title="Entradas" description="Blog" preview={preview}>
       <Hero small title="Entradas" />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
@@ -34,7 +40,9 @@ const Index: React.FC<PostsPageProps> = ({ posts }) => {
               {posts.map(({ title, slug, excerpt }) => (
                 <li className="hover:text-teal-400 list-none" key={title}>
                   <Link href={`/posts/${slug.current}`}>
-                    <a>{title}: {excerpt}</a>
+                    <a>
+                      {title}: {excerpt}
+                    </a>
                   </Link>
                 </li>
               ))}
@@ -46,12 +54,12 @@ const Index: React.FC<PostsPageProps> = ({ posts }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getAllPosts();
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const data = await getAllPosts(preview);
   return {
-    props: { posts },
+    props: { data, preview },
     revalidate: 1,
   };
 };
 
-export default Index;
+export default PostsPage;

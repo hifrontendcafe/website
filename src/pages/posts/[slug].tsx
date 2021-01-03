@@ -1,29 +1,39 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import Link from 'next/link';
 import BlockContent from '@sanity/block-content-to-react';
+
 import Layout from '../../components/Layout';
 import Hero from '../../components/Hero';
-import { Post } from '../../lib/types';
-import { getPost, getAllPostsWithSlugOnly } from '../../lib/api';
 import styles from '../docs/styles.module.css';
-import Link from 'next/link';
 
-interface PostPageProps {
-  post: Post;
-  preview: boolean;
-}
+import { getPost, getAllPostsSlugs } from '../../lib/api';
+import { usePreviewSubscription } from '../../lib/sanity';
+import { Post } from '../../lib/types';
+import { postQuery } from '../../lib/querys';
 
-const PostPage: React.FC<PostPageProps> = ({ post, preview }) => {
-  const router = useRouter()
-  if (!router.isFallback && !post?.slug) {
-    return <ErrorPage statusCode={404} />
+type PostPageProps = {
+  data: Post;
+  preview?: boolean;
+};
+
+const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
+  const router = useRouter();
+  if (!router.isFallback && !data?.slug) {
+    return <ErrorPage statusCode={404} />;
   }
 
-  if (router.isFallback) return <div>Cargando...</div>;
+  const { data: post, loading } = usePreviewSubscription(postQuery, {
+    params: { slug: data.slug.current },
+    initialData: data,
+    enabled: preview,
+  });
+
+  if (router.isFallback || loading) return <div>Cargando...</div>;
 
   return (
-    <Layout title={post.title}>
+    <Layout title={post.title} preview={preview}>
       <Hero small title="Posts" />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
@@ -43,15 +53,18 @@ const PostPage: React.FC<PostPageProps> = ({ post, preview }) => {
           <div className={`px-8 py-2 text-gray-700 ${styles.body}`}>
             <BlockContent blocks={post.content} />
           </div>
-          { post.coverImage ?
+          {post.coverImage && (
             <div>
               <img src={post.coverImage} alt={post.title} />
             </div>
-            : ""
-          }
-
+          )}
           <div className="py-12 px-8 flex items-center">
-            <img className="w-20 h-20 bg-gray-300 rounded-full" src={post.author.picture} title={post.author.name} alt={post.author.name} />
+            <img
+              className="w-20 h-20 bg-gray-300 rounded-full"
+              src={post.author.picture}
+              title={post.author.name}
+              alt={post.author.name}
+            />
             <span className="px-4 text-lg">{post.author.name}</span>
           </div>
 
@@ -65,23 +78,25 @@ const PostPage: React.FC<PostPageProps> = ({ post, preview }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allPosts = await getAllPostsWithSlugOnly();
+  const slugs = await getAllPostsSlugs();
 
-  const paths = allPosts.map((post: Post) => ({
-    params: { slug: post.slug.current },
+  const paths = slugs.map((slug) => ({
+    params: { slug },
   }));
-  
+
   return { paths, fallback: true };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params, preview }) => {
-  const post = await getPost(params.slug, preview);
-  
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+}) => {
+  const data = await getPost(params.slug as string, preview);
+
   return {
-    props: { post },
+    props: { data, preview },
     revalidate: 1,
   };
 };
-
 
 export default PostPage;
