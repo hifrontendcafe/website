@@ -1,5 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import BlockContent from '@sanity/block-content-to-react';
+import { useRouter } from 'next/router';
+import Error from 'next/error';
 
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
@@ -17,11 +19,17 @@ type DocProps = {
 };
 
 const DocPage: React.FC<DocProps> = ({ data, preview }) => {
+  const router = useRouter();
+
+  if (!router.isFallback || !data?.slug) return <Error statusCode={404} />;
+
   const { data: doc } = usePreviewSubscription(docQuery, {
-    params: { slug: data.slug },
+    params: { slug: data?.slug },
     initialData: data,
     enabled: preview,
   });
+
+  if (router.isFallback) return <div>Cargando...</div>;
 
   return (
     <Layout title={doc.title} preview={preview}>

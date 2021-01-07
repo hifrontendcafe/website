@@ -25,7 +25,7 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
   }
 
   const { data: post, loading } = usePreviewSubscription(postQuery, {
-    params: { slug: data.slug.current },
+    params: { slug: data?.slug.current },
     initialData: data,
     enabled: preview,
   });
