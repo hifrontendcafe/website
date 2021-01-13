@@ -37,7 +37,7 @@ type CMYKCarouselProps = {
 
 const CMYKCarousel: React.FC<CMYKCarouselProps> = ({ projects }) => (
   <>
-    <h1 className="absolute ml-12 font-bold mt-10 z-20 text-white text-3xl">
+    <h1 className="absolute invisible md:visible ml-12 font-bold mt-10 z-20 text-white text-3xl">
       CMYK
     </h1>
 
@@ -64,7 +64,7 @@ const CMYKCarousel: React.FC<CMYKCarouselProps> = ({ projects }) => (
 
 const FecLogo: React.FC = () => (
   <Link href="/">
-    <a className="absolute right-0 mt-6 mr-16 z-20">
+    <a className="absolute invisible md:visible right-0 mt-6 mr-16 z-20">
       <img
         src="/logo.svg"
         className="w-16 h-16 p-2 rounded-full"
