@@ -21,7 +21,7 @@ type DocProps = {
 const DocPage: React.FC<DocProps> = ({ data, preview }) => {
   const router = useRouter();
 
-  if (!router.isFallback || !data?.slug) return <Error statusCode={404} />;
+  if (!router.isFallback && !data?.slug) return <Error statusCode={404} />;
 
   const { data: doc } = usePreviewSubscription(docQuery, {
     params: { slug: data?.slug },
