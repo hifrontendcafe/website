@@ -92,5 +92,6 @@ export async function getAllCMYKProjects(
 }
 
 export async function postInitiative(data: Initiative): Promise<any> {
+  data._type = 'reactGroup';
   return await postClient.create(data);
 }

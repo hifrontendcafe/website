@@ -1,20 +1,12 @@
-import { useEffect } from 'react';
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 import { postInitiative } from '../../lib/api';
+import { useForm } from 'react-hook-form';
+import { Initiative } from '../../lib/types';
 
 const InitiativesPage: React.FC = ({}) => {
-  const testData = {
-    _type: 'reactGroup',
-    name: 'Nombre',
-    topic: 'Tema',
-    studyMaterial: 'Material',
-    teamLeader: 'Team Leader',
-    teamMembers: 'Her Test',
-    meetingType: 'Her Test',
-    plan: 'Her Test',
-    date: 'Her Test',
-  };
+  const { register, handleSubmit } = useForm();
+  const onSubmit = (data: Initiative) => postInitiative(data);
 
   return (
     <Layout title="Iniciativas">
@@ -32,8 +24,8 @@ const InitiativesPage: React.FC = ({}) => {
           </div>
 
           <form
-            id="form"
-            className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full grid grid-cols-2 gap-5"
+            onSubmit={handleSubmit(onSubmit)}
+            className="bg-white rounded px-8 pt-6 pb-8 mb-4 w-full grid grid-cols-2 gap-5"
           >
             <div className="mb-4">
               <label className="block text-sm font-bold mb-2">
@@ -42,21 +34,21 @@ const InitiativesPage: React.FC = ({}) => {
               <input
                 className="appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 name="name"
-                id="name"
                 type="text"
                 placeholder="Nombre del grupo"
                 required
+                ref={register({ required: true })}
               />
             </div>
             <div className="mb-4">
               <label className="block text-sm font-bold mb-2">Tema</label>
               <input
                 className="appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                name="tel"
-                id="tel"
-                type="tel"
+                name="topic"
+                type="text"
                 placeholder="Ingresa el tema"
                 required
+                ref={register({ required: true })}
               />
             </div>
             <div className="mb-4">
@@ -65,11 +57,11 @@ const InitiativesPage: React.FC = ({}) => {
               </label>
               <input
                 className="appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                name="email"
-                id="email"
-                type="email"
+                name="study-material"
+                type="text"
                 placeholder="Ingresa el material de estudio"
                 required
+                ref={register({ required: true })}
               />
             </div>
             <div className="mb-4">
@@ -78,11 +70,11 @@ const InitiativesPage: React.FC = ({}) => {
               </label>
               <input
                 className="appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                name="email"
-                id="email"
-                type="email"
+                name="team-leader"
+                type="text"
                 placeholder="Ingresa tu user de discord"
                 required
+                ref={register({ required: true })}
               />
             </div>
             <div className="mb-4">
@@ -92,9 +84,9 @@ const InitiativesPage: React.FC = ({}) => {
               <input
                 className="appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 name="date"
-                id="date"
                 type="date"
                 required
+                ref={register({ required: true })}
               />
             </div>
             <div className="mb-4">
@@ -104,9 +96,10 @@ const InitiativesPage: React.FC = ({}) => {
               <textarea
                 rows={5}
                 className="appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                name="message1"
+                name="meeting-type"
                 placeholder="Ingresa la dinamica que se va a utilizar en su grupo de estudio"
                 required
+                ref={register({ required: true })}
               ></textarea>
             </div>
             <div className="mb-4">
@@ -116,10 +109,10 @@ const InitiativesPage: React.FC = ({}) => {
               <textarea
                 rows={5}
                 className="appearance-none border rounded w-full py-2 px-3 text-sm text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                name="message2"
-                id="message2"
+                name="plan"
                 placeholder="Ingresa como va a ser el plan de estudio"
                 required
+                ref={register({ required: true })}
               ></textarea>
             </div>
 

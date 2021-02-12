@@ -22,6 +22,7 @@
     "react": "16.13.1",
     "react-add-to-calendar": "^0.1.5",
     "react-dom": "16.13.1",
+    "react-hook-form": "^6.15.1",
     "react-multi-carousel": "^2.6.1",
     "react-twitter-embed": "^3.0.3"
   },
