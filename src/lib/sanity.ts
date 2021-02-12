@@ -14,7 +14,10 @@ const config: ClientConfig = {
 
 const client = createClient(config);
 
-export const postClient = SanityClient(config);
+export const postClient = SanityClient({
+  ...config,
+  token: process.env.SANITY_API_TOKEN,
+});
 
 export const imageBuilder = sanityImage(client);
 
