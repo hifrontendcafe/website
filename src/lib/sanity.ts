@@ -1,3 +1,4 @@
+import SanityClient from '@sanity/client';
 import sanityImage from '@sanity/image-url';
 import {
   createClient,
@@ -12,6 +13,8 @@ const config: ClientConfig = {
 };
 
 const client = createClient(config);
+
+export const postClient = SanityClient(config);
 
 export const imageBuilder = sanityImage(client);
 
