@@ -1,5 +1,5 @@
-import client, { previewClient } from './sanity';
-import { CMYK, Post, Doc, Event, Mentor, Topic } from './types';
+import client, { postClient, previewClient } from './sanity';
+import { CMYK, Post, Doc, Event, Mentor, Topic, Initiative } from './types';
 import {
   postQuery,
   cmykQuery,
@@ -89,4 +89,8 @@ export async function getAllCMYKProjects(
   preview: boolean = false,
 ): Promise<CMYK[]> {
   return await getClient(preview).fetch(cmykQuery);
+}
+
+export async function postInitiative(data: Initiative): Promise<any> {
+  return await postClient.create(data);
 }

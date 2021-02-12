@@ -74,3 +74,15 @@ export interface Doc {
   slug: string;
   body: string;
 }
+
+export interface Initiative {
+  _type: string;
+  name: string;
+  topic: string;
+  studyMaterial: string;
+  teamLeader: string;
+  teamMembers: string;
+  meetingType: string;
+  plan: string;
+  date: string;
+}
