@@ -19,7 +19,6 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
     { title: 'Eventos', link: '/eventos' },
     { title: 'Mentorías', link: '/mentorias' },
     { title: 'Proyectos', link: '/cmyk' },
-    { title: 'Reactivistas', link: '/reactivistas' },
   ];
 
   return (
