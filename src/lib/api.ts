@@ -93,5 +93,6 @@ export async function getAllCMYKProjects(
 
 export async function createReactGroup(data: ReactGroup): Promise<any> {
   data._type = 'reactGroup';
+  console.log('ReactGroup data', data);
   return await postClient.create(data);
 }

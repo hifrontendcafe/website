@@ -78,6 +78,7 @@ export interface Doc {
 export interface ReactGroup {
   _type: string;
   name: string;
+  slug: string;
   topic: string;
   studyMaterial: string;
   teamLeader: string;
