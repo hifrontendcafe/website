@@ -1,11 +1,11 @@
 import Layout from '../../components/Layout';
-import { postInitiative } from '../../lib/api';
+import { createReactGroup } from '../../lib/api';
 import { useForm } from 'react-hook-form';
-import { Initiative } from '../../lib/types';
+import { ReactGroup } from '../../lib/types';
 
-const InitiativesPage: React.FC = ({}) => {
+const ReactGroupPage: React.FC = () => {
   const { register, handleSubmit } = useForm();
-  const onSubmit = (data: Initiative) => postInitiative(data);
+  const onSubmit = (data: ReactGroup) => createReactGroup(data);
 
   return (
     <Layout title="Iniciativas">
@@ -14,12 +14,12 @@ const InitiativesPage: React.FC = ({}) => {
           <div className="px-6 pt-20 border-b border-gray-200 md:py-5 md:px-8">
             <div className="mt-2 md:flex md:items-center md:justify-between">
               <div className="flex-1 min-w-0">
-                <h2 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
+                <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
                     Reactivistas
-                  </h2>
-                  <h2 className="font-medium leading-7 text-md text-primary sm:leading-9 sm:truncate">
-                    Propuesta de nuevo grupo de estudio
-                  </h2>
+                </h1>
+                <h2 className="font-medium leading-7 text-md text-primary sm:leading-9 sm:truncate">
+                  Propuesta de nuevo grupo de estudio
+                </h2>
               </div>
             </div>
           </div>
@@ -132,4 +132,4 @@ const InitiativesPage: React.FC = ({}) => {
   );
 };
 
-export default InitiativesPage;
+export default ReactGroupPage;

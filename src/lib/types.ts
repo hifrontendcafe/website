@@ -75,7 +75,7 @@ export interface Doc {
   body: string;
 }
 
-export interface Initiative {
+export interface ReactGroup {
   _type: string;
   name: string;
   topic: string;

@@ -1,5 +1,5 @@
 import client, { postClient, previewClient } from './sanity';
-import { CMYK, Post, Doc, Event, Mentor, Topic, Initiative } from './types';
+import { CMYK, Post, Doc, Event, Mentor, Topic, ReactGroup } from './types';
 import {
   postQuery,
   cmykQuery,
@@ -91,7 +91,7 @@ export async function getAllCMYKProjects(
   return await getClient(preview).fetch(cmykQuery);
 }
 
-export async function postInitiative(data: Initiative): Promise<any> {
+export async function createReactGroup(data: ReactGroup): Promise<any> {
   data._type = 'reactGroup';
   return await postClient.create(data);
 }
