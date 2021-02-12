@@ -98,3 +98,12 @@ export const cmykQuery = groq`
     demo
   }
 `;
+
+export const personQuery = groq`
+  *[_type == "person" && username.current == $id][0]{
+    _id,
+    'username': username.current,
+    firstName,
+    lastName,
+  }
+`;

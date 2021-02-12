@@ -1,5 +1,15 @@
 import client, { postClient, previewClient } from './sanity';
-import { CMYK, Post, Doc, Event, Mentor, Topic, ReactGroup } from './types';
+import {
+  CMYK,
+  Post,
+  Doc,
+  Event,
+  Mentor,
+  Topic,
+  ReactGroup,
+  Person,
+} from './types';
+import { createSlug } from './helpers';
 import {
   postQuery,
   cmykQuery,
@@ -9,6 +19,7 @@ import {
   docsQuery,
   docQuery,
   eventsQuery,
+  personQuery,
 } from './querys';
 
 const eventFields = `
@@ -93,6 +104,15 @@ export async function getAllCMYKProjects(
 
 export async function createReactGroup(data: ReactGroup): Promise<any> {
   data._type = 'reactGroup';
+  data.slug = { current: `react-group-${createSlug(data.name)}` };
+
   console.log('ReactGroup data', data);
   return await postClient.create(data);
+}
+
+export async function getPersonByDiscordId(
+  id: string,
+  preview: boolean = false,
+): Promise<Person> {
+  return await getClient(preview).fetch(personQuery, { id });
 }
