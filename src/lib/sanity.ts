@@ -1,4 +1,4 @@
-import SanityClient from '@sanity/client';
+import sanityClient from '@sanity/client';
 import sanityImage from '@sanity/image-url';
 import {
   createClient,
@@ -14,9 +14,9 @@ const config: ClientConfig = {
 
 const client = createClient(config);
 
-export const postClient = SanityClient({
+export const postClient = sanityClient({
   ...config,
-  token: process.env.SANITY_API_TOKEN,
+  token: process.env.SANITY_TOKEN,
 });
 
 export const imageBuilder = sanityImage(client);
@@ -24,7 +24,7 @@ export const imageBuilder = sanityImage(client);
 export const previewClient = createClient({
   ...config,
   useCdn: false,
-  token: process.env.SANITY_API_TOKEN,
+  token: process.env.NEXT_PUBLIC_SANITY_TOKEN,
 });
 
 export const usePreviewSubscription = createPreviewSubscriptionHook(config);
