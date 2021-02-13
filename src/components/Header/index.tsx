@@ -21,6 +21,10 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
     { title: 'Proyectos', link: '/cmyk' },
   ];
 
+  if (process.env.NEXT_PUBLIC_REACTIVISTAS) {
+    navItems.push({ title: 'Reactivistas', link: '/reactivistas' });
+  }
+
   return (
     <header
       className={`shadow-md w-full flex flex-col fixed md:relative bg-white z-50 ${
