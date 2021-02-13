@@ -29,7 +29,7 @@ export interface Mentor {
     {
       _key: string;
       _ref: string;
-    };
+    },
   ];
 }
 
@@ -86,20 +86,21 @@ export interface ReactGroup {
   teamCaptain: {
     id: string;
     _ref: string;
-  }
-  participants: string;
+  };
+  participants?: string;
   meetings: string;
   plan: string;
   startDate: string;
+  status: string;
 }
 
 export interface Person {
   _id: string;
   username: {
-    current:  string;
-  }
-  firstName: string;
-  lastName: string;
-  linkedin: string;
-  portfolio: string;
+    current: string;
+  };
+  firstName?: string;
+  lastName?: string;
+  linkedin?: string;
+  portfolio?: string;
 }

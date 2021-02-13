@@ -100,7 +100,7 @@ export const cmykQuery = groq`
 `;
 
 export const personQuery = groq`
-  *[_type == "person" && username.current == $id][0]{
+  *[_type == "person" && username.current == $id]{
     _id,
     'username': username.current,
     firstName,

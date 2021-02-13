@@ -102,17 +102,25 @@ export async function getAllCMYKProjects(
   return await getClient(preview).fetch(cmykQuery);
 }
 
-export async function createReactGroup(data: ReactGroup): Promise<any> {
-  data._type = 'reactGroup';
-  data.slug = { current: `react-group-${createSlug(data.name)}` };
+export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
+  return await postClient.create({
+    ...data,
+    _type: 'reactGroup',
+    slug: { current: `${createSlug(data.name)}` },
+  });
+}
 
-  console.log('ReactGroup data', data);
-  return await postClient.create(data);
+export async function createPerson(data: any): Promise<Person> {
+  return await postClient.create({
+    ...data,
+    _type: 'person',
+  });
 }
 
 export async function getPersonByDiscordId(
   id: string,
   preview: boolean = false,
 ): Promise<Person> {
-  return await getClient(preview).fetch(personQuery, { id });
+  const result = await getClient(preview).fetch(personQuery, { id });
+  return result.length > 0 && result[0];
 }
