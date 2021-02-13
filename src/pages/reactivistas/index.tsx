@@ -76,25 +76,23 @@ const ReactGroupForm = () => {
         />
       </div>
       <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">User de Discord*</label>
+        <input
+          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+          name="teamCaptain.id"
+          type="text"
+          placeholder="Ingresa tu usuario de Discord"
+          required
+          ref={register({ required: true })}
+        />
+      </div>
+      <div className="mb-4">
         <label className="block mb-2 text-sm font-bold">Tema*</label>
         <input
           className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
           name="topic"
           type="text"
           placeholder="Ingresa el tema"
-          required
-          ref={register({ required: true })}
-        />
-      </div>
-      <div className="mb-4">
-        <label className="block mb-2 text-sm font-bold">
-          Usuario representante del grupo*
-        </label>
-        <input
-          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="teamCaptain.id"
-          type="text"
-          placeholder="Ingresa tu usuario de Discord"
           required
           ref={register({ required: true })}
         />
