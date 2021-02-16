@@ -6,7 +6,7 @@ import { useState } from 'react';
 import Modal from '../../components/Modal';
 
 const ReactGroupPage: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <Layout title="Iniciativas">
@@ -23,7 +23,7 @@ const ReactGroupPage: React.FC = () => {
                   <span className="text-black mx-2">-</span>
                   <span
                     className="cursor-pointer text-blue-400"
-                    onClick={() => setIsOpen(true)}
+                    onClick={() => setIsModalOpen(true)}
                   >
                     Ver Requisitos
                   </span>
@@ -36,11 +36,12 @@ const ReactGroupPage: React.FC = () => {
       </div>
       <button></button>
 
-      <Modal isOpen={isOpen} close={() => setIsOpen(false)} title="Leer">
-        <div className="text-sm overflow-auto mt-5 px-2">
-          <h2 className="text-base mb-2 font-semibold">
-            Requisitos para iniciar un nuevo grupo
-          </h2>
+      <Modal
+        isOpen={isModalOpen}
+        close={() => setIsModalOpen(false)}
+        title="Requisitos para iniciar un nuevo grupo"
+      >
+        <div className="text-sm overflow-auto px-2">
           <li>Un nombre (puede ser cualquier nombre)</li>
           <li>
             Un tema y su correspondiente material de estudio (curso,
