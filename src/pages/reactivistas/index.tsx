@@ -3,8 +3,11 @@ import { createReactGroup, getPersonByDiscordId } from '../../lib/api';
 import { useForm } from 'react-hook-form';
 import { ReactGroup } from '../../lib/types';
 import { useState } from 'react';
+import Modal from '../../components/Modal';
 
 const ReactGroupPage: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <Layout title="Iniciativas">
       <div className="pb-24 bg-indigo-100 sm:pt-10">
@@ -17,6 +20,13 @@ const ReactGroupPage: React.FC = () => {
                 </h1>
                 <h2 className="font-medium leading-7 text-md text-primary sm:leading-9 sm:truncate">
                   Propuesta de nuevo grupo de estudio
+                  <span className="text-black mx-2">-</span>
+                  <span
+                    className="cursor-pointer text-blue-400"
+                    onClick={() => setIsModalOpen(true)}
+                  >
+                    Ver Requisitos
+                  </span>
                 </h2>
               </div>
             </div>
@@ -24,6 +34,36 @@ const ReactGroupPage: React.FC = () => {
           <ReactGroupForm />
         </div>
       </div>
+      <button></button>
+
+      <Modal
+        isOpen={isModalOpen}
+        close={() => setIsModalOpen(false)}
+        title="Requisitos para iniciar un nuevo grupo"
+      >
+        <div className="text-sm overflow-auto px-2">
+          <li>Un nombre (puede ser cualquier nombre)</li>
+          <li>
+            Un tema y su correspondiente material de estudio (curso,
+            libro,documentación, etc)
+          </li>
+          <li>Un representante de grupo</li>
+          <li>
+            Una definición en cuanto a la dinámica de encuentro de los
+            participantes ( periodicidad, día, hora)
+          </li>
+          <li>Un plan, con su respectivo bosquejo, de entre 4 y 16 semanas</li>
+          <h2 className="text-base my-2 font-semibold">Observaciones</h2>
+          <li>
+            El grupo podrá iniciar sus actividades una vez que cuente con el
+            mínimo de participantes, que es 4. El máximo será de 10.
+          </li>
+          <li>
+            La organización de Reactivistas revisará las solicitudes y aprobará
+            toda aquella que cuente con los requisitos solicitados.
+          </li>
+        </div>
+      </Modal>
     </Layout>
   );
 };
