@@ -107,3 +107,19 @@ export const personQuery = groq`
     lastName,
   }
 `;
+
+export const reactGroupQuery = groq`
+*[_type == 'reactGroup']{
+    _id,
+    name,
+    teamCaptain,
+    participants,
+    topic,
+    studyMaterial,
+    meetings,
+    plan,
+    startDate,
+    status,
+    slug
+  }
+`;

@@ -20,6 +20,7 @@ import {
   docQuery,
   eventsQuery,
   personQuery,
+  reactGroupQuery,
 } from './querys';
 
 const eventFields = `
@@ -108,6 +109,12 @@ export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
     _type: 'reactGroup',
     slug: { current: `${createSlug(data.name)}` },
   });
+}
+
+export async function getAllReactGroups(
+  preview: boolean = false,
+): Promise<ReactGroup[]> {
+  return await getClient(preview).fetch(reactGroupQuery);
 }
 
 export async function createPerson(data: any): Promise<Person> {
