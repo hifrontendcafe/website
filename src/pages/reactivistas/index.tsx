@@ -19,8 +19,6 @@ const ReactGroupPage: React.FC<
     enabled: preview,
   });
 
-  console.log('GROUPS', groups)
-
   const onAddParticipantSubmit = async (
     event: FormEvent<HTMLFormElement>,
     discordUser: string,
