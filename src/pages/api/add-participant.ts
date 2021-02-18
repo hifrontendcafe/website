@@ -1,6 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getPersonByDiscordId, createPerson } from '../../lib/api';
-import { postClient } from '../../lib/sanity';
+import { getPersonByDiscordId, createPerson, addParticipantToReactGroup } from '../../lib/api';
 
 export default async function post(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
@@ -14,17 +13,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    postClient
-      .patch(body.id)
-      .setIfMissing({ participants: [] })
-      .insert('after', 'participants[-1]', [
-        {
-          _key: user._id,
-          _ref: user._id,
-          _type: 'reference',
-        },
-      ])
-      .commit();
+    addParticipantToReactGroup(body.id, user._id)
   } catch (e) {
     console.error(e);
   }

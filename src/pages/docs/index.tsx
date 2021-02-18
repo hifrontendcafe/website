@@ -7,7 +7,7 @@ import Layout from '../../components/Layout';
 import { getAllDocs } from '../../lib/api';
 import { Doc } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { docsQuery } from '../../lib/querys';
+import { docsQuery } from '../../lib/queries';
 
 type DocsPageProps = {
   data: Doc[];

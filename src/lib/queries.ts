@@ -109,7 +109,7 @@ export const personQuery = groq`
 `;
 
 export const reactGroupQuery = groq`
-*[_type == 'reactGroup']{
+*[_type == 'reactGroup' && status == 'approved']{
     _id,
     name,
     teamCaptain,
@@ -119,7 +119,6 @@ export const reactGroupQuery = groq`
     meetings,
     plan,
     startDate,
-    status,
     slug
   }
 `;

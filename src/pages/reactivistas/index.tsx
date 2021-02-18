@@ -1,12 +1,12 @@
 import Layout from '../../components/Layout';
-import { getAllReactGroups } from '../../lib/api';
+import { getApprovedReactGroups } from '../../lib/api';
 import { useForm } from 'react-hook-form';
 import { ReactGroup } from '../../lib/types';
-import { useState, Fragment, FormEvent } from 'react';
+import { useState, FormEvent } from 'react';
 import Modal from '../../components/Modal';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { reactGroupQuery } from '../../lib/querys';
+import { reactGroupQuery } from '../../lib/queries';
 import Hero from '../../components/Hero';
 
 const ReactGroupPage: React.FC<
@@ -18,6 +18,8 @@ const ReactGroupPage: React.FC<
     initialData: data,
     enabled: preview,
   });
+
+  console.log('GROUPS', groups)
 
   const onAddParticipantSubmit = async (
     event: FormEvent<HTMLFormElement>,
@@ -57,58 +59,52 @@ const ReactGroupPage: React.FC<
               const [discordUser, setDiscordUser] = useState('');
 
               return (
-                <Fragment key={group.name}>
-                  {group.status === 'approved' ? (
-                    <div className="flex flex-col flex-auto shadow-md m-5 p-10">
-                      <h3 className="font-medium leading-7 text-lg text-primary mb-5 sm:leading-9 sm:truncate">
-                        ⚛ {group.name}
-                      </h3>
-                      <ul className="mb-6">
-                        <li key={group.topic} className="mb-2 font-medium">
-                          Tema: <b>{group.topic}</b>
-                        </li>
-                        <li className="mb-2 font-medium text-primary">
-                          <a href={group.studyMaterial}>
-                            📚 Material de Estudio
-                          </a>
-                        </li>
-                        <li className="font-medium">
-                          Fecha de inicio: {group.startDate}
-                        </li>
-                      </ul>
-                      {group.participants && group.participants.length >= 10 ? (
-                        <div className="font-md text-md text-red-500">
-                          Grupo lleno
-                        </div>
-                      ) : (
-                        <form
-                          onSubmit={(e) =>
-                            onAddParticipantSubmit(e, discordUser, group._id)
-                          }
-                          id={group.name}
-                          className="flex"
+                  <div key={group.name} className="flex flex-col flex-auto shadow-md m-5 p-10">
+                    <h3 className="font-medium leading-7 text-lg text-primary mb-5 sm:leading-9 sm:truncate">
+                      ⚛ {group.name}
+                    </h3>
+                    <ul className="mb-6">
+                      <li key={group.topic} className="mb-2 font-medium">
+                        Tema: <b>{group.topic}</b>
+                      </li>
+                      <li className="mb-2 font-medium text-primary">
+                        <a href={group.studyMaterial}>📚 Material de Estudio</a>
+                      </li>
+                      <li className="font-medium">
+                        Fecha de inicio: {group.startDate}
+                      </li>
+                    </ul>
+                    {group.participants && group.participants.length >= 10 ? (
+                      <div className="font-md text-md text-red-500">
+                        Grupo lleno
+                      </div>
+                    ) : (
+                      <form
+                        onSubmit={(e) =>
+                          onAddParticipantSubmit(e, discordUser, group._id)
+                        }
+                        id={group.name}
+                        className="flex"
+                      >
+                        <input
+                          className="px-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+                          name="discordUser"
+                          type="text"
+                          value={discordUser}
+                          placeholder="Usuario de Discord"
+                          required
+                          onChange={(e) => setDiscordUser(e.target.value)}
+                        />
+                        <button
+                          type="submit"
+                          form={group.name}
+                          className="justify-items-end px-3 py-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                          <input
-                            className="px-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-                            name="discordUser"
-                            type="text"
-                            value={discordUser}
-                            placeholder="Usuario de Discord"
-                            required
-                            onChange={(e) => setDiscordUser(e.target.value)}
-                          />
-                          <button
-                            type="submit"
-                            form={group.name}
-                            className="justify-items-end px-3 py-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                          >
-                            Unite a este grupo
-                          </button>
-                        </form>
-                      )}
-                    </div>
-                  ) : null}
-                </Fragment>
+                          Unite a este grupo
+                        </button>
+                      </form>
+                    )}
+                  </div>
               );
             })}
           </div>
@@ -319,7 +315,7 @@ const ReactGroupForm = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const data = await getAllReactGroups(preview);
+  const data = await getApprovedReactGroups(preview);
 
   return {
     props: {

@@ -7,7 +7,7 @@ import EventList from '../components/EventList';
 import { Event } from '../lib/types';
 import { getAllEvents } from '../lib/api';
 import { usePreviewSubscription } from '../lib/sanity';
-import { eventsQuery } from '../lib/querys';
+import { eventsQuery } from '../lib/queries';
 
 type EventsPageProps = {
   data: Event[];

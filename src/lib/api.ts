@@ -21,7 +21,7 @@ import {
   eventsQuery,
   personQuery,
   reactGroupQuery,
-} from './querys';
+} from './queries';
 
 const eventFields = `
   title,
@@ -111,7 +111,19 @@ export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
   });
 }
 
-export async function getAllReactGroups(
+export async function addParticipantToReactGroup(reactGroupId: string, userId: string): Promise<Person> {
+  return await postClient.patch(reactGroupId)
+  .setIfMissing({ participants: [] })
+  .insert('after', 'participants[-1]', [
+    {
+      _key: userId,
+      _ref: userId,
+    },
+  ])
+  .commit();
+}
+
+export async function getApprovedReactGroups(
   preview: boolean = false,
 ): Promise<ReactGroup[]> {
   return await getClient(preview).fetch(reactGroupQuery);

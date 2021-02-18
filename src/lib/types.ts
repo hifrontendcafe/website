@@ -76,6 +76,7 @@ export interface Doc {
 }
 
 export interface ReactGroup {
+  _id: string
   _type: string;
   name: string;
   slug: {

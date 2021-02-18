@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import CMYKCarousel from '../../components/CMYKCarousel';
 
 import { getAllCMYKProjects } from '../../lib/api';
-import { cmykQuery } from '../../lib/querys';
+import { cmykQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 
 const CMYK: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
