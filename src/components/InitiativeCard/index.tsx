@@ -9,7 +9,7 @@ type InitiativesItemProps = {
 const InitiativeCard: React.FC<InitiativesItemProps> = ({ initiative }) => {
   return (
     <div
-      className={`${styles.card}  shadow-2xl m-10 px-5 py-10 flex justify-between`}
+      className={`${styles.card} shadow-2xl m-10 px-5 py-10 flex justify-between`}
     >
       <div className="relative">
         <div

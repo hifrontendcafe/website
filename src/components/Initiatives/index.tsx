@@ -1,9 +1,35 @@
-import InitiativeCard from '../InitiativeCard';
 import InitiativesCarousel from '../InitiativesCarousel';
+
+const InitiativesArray = [
+  {
+    emoji: '📘',
+    color: 'secondary',
+    title: 'Mentorías',
+    content:
+      'Conectate con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de la tecnología de la información, para guiarte en este desafiante camino, no tiene costo alguno, solo ganas de aprender y muy buena onda.',
+    btnText: 'Quiero Participar',
+  },
+  {
+    emoji: '🎖',
+    color: 'primary',
+    title: 'Proyectos CMYK ',
+    content:
+      'Proyectos colaborativos realizados por miembros de FrontendCafé con el objetivo de ganar experiencia en un entorno profesional.',
+    btnText: 'Conocelos aquí',
+  },
+  {
+    emoji: '🌏',
+    color: 'tertiary',
+    title: 'Prácticas de Inglés',
+    content:
+      'Nos divertimos charlando con el objetivo de perder el miedo a hablar en inglés en Público. Mejorando la comunicación y la confianza. Encuentros online gratuitos. Sin necesidad de Inscripción Sucede desde nuestro canal de Discord.',
+    btnText: 'Próximos eventos',
+  },
+];
 
 const Initiatives: React.FC = () => {
   return (
-    <div className=" overflow-hidden w-auto  flex flex-col ">
+    <div className="flex flex-col ">
       <div className="flex flex-col justify-center m-auto mt-20 items-center  text-center w-2/3">
         <h1 className="text-5xl font-extrabold mb-5">
           ¡Descubre lo que tenemos para ti!
@@ -14,37 +40,7 @@ const Initiatives: React.FC = () => {
           profesionales como comunidad.
         </p>
       </div>
-      <div className="flex">
-        {<InitiativesCarousel initiatives={Initiatives} />}
-        {/*  <InitiativeCard
-          emoji="📘"
-          color="secondary"
-          title="Mentorías"
-          content="Conectate con profesionales y referentes capacitados en los
-            múltiples y diversos temas que engloba el universo de la tecnología
-            de la información, para guiarte en este desafiante camino, no tiene
-            costo alguno, solo ganas de aprender y muy buena onda."
-          btnText="Quiero Participar"
-        />
-        <InitiativeCard
-          emoji="🎖"
-          color="primary"
-          title="Proyectos CMYK "
-          content="Proyectos colaborativos realizados por 
-        miembros de FrontendCafé con el objetivo de ganar experiencia en un entorno profesional."
-          btnText="Conocelos aquí"
-        />
-        <InitiativeCard
-          emoji="🌏"
-          color="tertiary"
-          title="Prácticas de Inglés"
-          content="Nos divertimos charlando con el objetivo de perder el miedo a hablar en inglés en Público. Mejorando la comunicación y la confianza.
-        Encuentros online gratuitos.
-        Sin necesidad de Inscripción
-        Sucede desde nuestro canal de Discord."
-          btnText="Próximos eventos"
-        /> */}
-      </div>
+      {<InitiativesCarousel initiatives={InitiativesArray} />}
     </div>
   );
 };
