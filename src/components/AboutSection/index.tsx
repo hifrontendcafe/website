@@ -3,7 +3,7 @@ import React from 'react';
 const AboutSection: React.FC = () => (
   <section
     id="about"
-    className="flex relative flex-wrap pb-5 w-full mx-0 px-0 items-center mt-24 mb-12"
+    className="flex relative pt-10 flex-wrap pb-5 w-full px-5 items-center mt-24 mb-12"
     style={{ backgroundColor: '#F5F9FF' }}
   >
     <div
