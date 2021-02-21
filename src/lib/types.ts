@@ -74,3 +74,11 @@ export interface Doc {
   slug: string;
   body: string;
 }
+
+export interface Initiatives {
+  emoji: string;
+  title: string;
+  content: string;
+  color: string;
+  btnText: string;
+}
