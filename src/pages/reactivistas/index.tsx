@@ -8,6 +8,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { reactGroupQuery } from '../../lib/queries';
 import Hero from '../../components/Hero';
+import Link from 'next/link';
 
 const ReactGroupPage: React.FC<
   InferGetStaticPropsType<typeof getStaticProps>
@@ -48,6 +49,14 @@ const ReactGroupPage: React.FC<
     <Layout title="Iniciativas">
       <Hero small title="Reactivistas" />
       <div className="pb-24 bg-indigo-100 sm:pt-10">
+        <Link href="/docs/guia-reactivistas">
+          <a
+            className="flex justify-center mx-10 text-white bg-primary border-0 py-2 px-6
+            focus:outline-none hover:bg-primarydark rounded text-lg font-bold"
+          >
+            ¿De qué se trata Reactivistas?
+          </a>
+        </Link>
         <div className="container mx-auto m-10 p-10 bg-white shadow">
           <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
             Sumate a los grupos que están comenzando
@@ -57,52 +66,56 @@ const ReactGroupPage: React.FC<
               const [discordUser, setDiscordUser] = useState('');
 
               return (
-                  <div key={group.name} className="flex flex-col flex-auto shadow-md m-5 p-10">
-                    <h3 className="font-medium leading-7 text-lg text-primary mb-5 sm:leading-9 sm:truncate">
-                      ⚛ {group.name}
-                    </h3>
-                    <ul className="mb-6">
-                      <li key={group.topic} className="mb-2 font-medium">
-                        Tema: <b>{group.topic}</b>
-                      </li>
-                      <li className="mb-2 font-medium text-primary">
-                        <a href={group.studyMaterial}>📚 Material de Estudio</a>
-                      </li>
-                      <li className="font-medium">
-                        Fecha de inicio: {group.startDate}
-                      </li>
-                    </ul>
-                    {group.participants && group.participants.length >= 10 ? (
-                      <div className="font-md text-md text-red-500">
-                        Grupo lleno
-                      </div>
-                    ) : (
-                      <form
-                        onSubmit={(e) =>
-                          onAddParticipantSubmit(e, discordUser, group._id)
-                        }
-                        id={group.name}
-                        className="flex"
+                <div
+                  key={group.name}
+                  className="flex flex-col flex-auto shadow-md m-5 p-10"
+                >
+                  <h3 className="font-medium leading-7 text-lg text-primary mb-5 sm:leading-9 sm:truncate">
+                    ⚛ {group.name}
+                  </h3>
+                  <ul className="mb-6">
+                    <li key={group.topic} className="mb-2 font-medium">
+                      Tema: <b>{group.topic}</b>
+                    </li>
+                    <li className="mb-2 font-medium text-primary">
+                      <a href={group.studyMaterial}>📚 Material de Estudio</a>
+                    </li>
+                    <li className="font-medium">
+                      Fecha de inicio: {group.startDate}
+                    </li>
+                  </ul>
+                  {group.participants && group.participants.length >= 10 ? (
+                    <div className="font-md text-md text-red-500">
+                      Grupo lleno
+                    </div>
+                  ) : (
+                    <form
+                      onSubmit={(e) => {
+                        onAddParticipantSubmit(e, discordUser, group._id);
+                        setDiscordUser('');
+                      }}
+                      id={group.name}
+                      className="flex"
+                    >
+                      <input
+                        className="px-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+                        name="discordUser"
+                        type="text"
+                        value={discordUser}
+                        placeholder="Usuario de Discord"
+                        required
+                        onChange={(e) => setDiscordUser(e.target.value)}
+                      />
+                      <button
+                        type="submit"
+                        form={group.name}
+                        className="justify-items-end px-3 py-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                       >
-                        <input
-                          className="px-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-                          name="discordUser"
-                          type="text"
-                          value={discordUser}
-                          placeholder="Usuario de Discord"
-                          required
-                          onChange={(e) => setDiscordUser(e.target.value)}
-                        />
-                        <button
-                          type="submit"
-                          form={group.name}
-                          className="justify-items-end px-3 py-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                        >
-                          Unite a este grupo
-                        </button>
-                      </form>
-                    )}
-                  </div>
+                        Unite a este grupo
+                      </button>
+                    </form>
+                  )}
+                </div>
               );
             })}
           </div>
