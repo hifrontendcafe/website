@@ -9,7 +9,7 @@ import Layout from '../../components/Layout';
 import { getAllDocs, getDocBySlug } from '../../lib/api';
 import { Doc } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { docQuery } from '../../lib/querys';
+import { docQuery } from '../../lib/queries';
 
 import styles from './styles.module.css';
 

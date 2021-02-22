@@ -11,7 +11,7 @@ import styles from '../docs/styles.module.css';
 import { getPost, getAllPostsSlugs } from '../../lib/api';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { Post } from '../../lib/types';
-import { postQuery } from '../../lib/querys';
+import { postQuery } from '../../lib/queries';
 
 type PostPageProps = {
   data: Post;
