@@ -98,3 +98,27 @@ export const cmykQuery = groq`
     demo
   }
 `;
+
+export const personQuery = groq`
+  *[_type == "person" && username.current == $id]{
+    _id,
+    'username': username.current,
+    firstName,
+    lastName,
+  }
+`;
+
+export const reactGroupQuery = groq`
+*[_type == 'reactGroup' && status == 'approved']{
+    _id,
+    name,
+    teamCaptain,
+    participants,
+    topic,
+    studyMaterial,
+    meetings,
+    plan,
+    startDate,
+    slug
+  }
+`;

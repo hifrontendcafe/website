@@ -82,3 +82,33 @@ export interface Initiatives {
   color: string;
   btnText: string;
 }
+export interface ReactGroup {
+  _id: string;
+  _type: string;
+  name: string;
+  slug: {
+    current: string;
+  };
+  topic: string;
+  studyMaterial: string;
+  teamCaptain: {
+    id: string;
+    _ref: string;
+  };
+  participants?: string;
+  meetings: string;
+  plan: string;
+  startDate: string;
+  status: string;
+}
+
+export interface Person {
+  _id: string;
+  username: {
+    current: string;
+  };
+  firstName?: string;
+  lastName?: string;
+  linkedin?: string;
+  portfolio?: string;
+}

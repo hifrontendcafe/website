@@ -1,5 +1,15 @@
-import client, { previewClient } from './sanity';
-import { CMYK, Post, Doc, Event, Mentor, Topic } from './types';
+import client, { postClient, previewClient } from './sanity';
+import {
+  CMYK,
+  Post,
+  Doc,
+  Event,
+  Mentor,
+  Topic,
+  ReactGroup,
+  Person,
+} from './types';
+import { createSlug } from './helpers';
 import {
   postQuery,
   cmykQuery,
@@ -9,7 +19,9 @@ import {
   docsQuery,
   docQuery,
   eventsQuery,
-} from './querys';
+  personQuery,
+  reactGroupQuery,
+} from './queries';
 
 const eventFields = `
   title,
@@ -89,4 +101,45 @@ export async function getAllCMYKProjects(
   preview: boolean = false,
 ): Promise<CMYK[]> {
   return await getClient(preview).fetch(cmykQuery);
+}
+
+export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
+  return await postClient.create({
+    ...data,
+    _type: 'reactGroup',
+    slug: { current: `${createSlug(data.name)}` },
+  });
+}
+
+export async function addParticipantToReactGroup(reactGroupId: string, userId: string): Promise<Person> {
+  return await postClient.patch(reactGroupId)
+  .setIfMissing({ participants: [] })
+  .insert('after', 'participants[-1]', [
+    {
+      _key: userId,
+      _ref: userId,
+    },
+  ])
+  .commit();
+}
+
+export async function getApprovedReactGroups(
+  preview: boolean = false,
+): Promise<ReactGroup[]> {
+  return await getClient(preview).fetch(reactGroupQuery);
+}
+
+export async function createPerson(data: any): Promise<Person> {
+  return await postClient.create({
+    ...data,
+    _type: 'person',
+  });
+}
+
+export async function getPersonByDiscordId(
+  id: string,
+  preview: boolean = false,
+): Promise<Person> {
+  const result = await getClient(preview).fetch(personQuery, { id });
+  return result.length > 0 && result[0];
 }

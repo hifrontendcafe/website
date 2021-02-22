@@ -7,7 +7,7 @@ import Layout from '../../components/Layout';
 import { getAllPosts } from '../../lib/api';
 import { Post } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { postsQuery } from '../../lib/querys';
+import { postsQuery } from '../../lib/queries';
 
 type PostsPageProps = {
   data: Post[];
