@@ -25,7 +25,7 @@ html {
 
 @layer components {
   .btn {
-    @apply text-xs px-6 font-medium py-2 rounded;
+    @apply text-sm px-6 font-medium py-2 rounded;
   }
 
   .btn-primary {
