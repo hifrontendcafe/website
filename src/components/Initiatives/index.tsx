@@ -1,7 +1,8 @@
 import InitiativesCarousel from '../InitiativesCarousel';
 
-const InitiativesArray = [
+const InitiativesData = [
   {
+    link: '/mentorias',
     emoji: '📘',
     color: 'secondary',
     title: 'Mentorías',
@@ -10,6 +11,7 @@ const InitiativesArray = [
     btnText: 'Quiero Participar',
   },
   {
+    link: '/cmyk',
     emoji: '🎖',
     color: 'primary',
     title: 'Proyectos CMYK ',
@@ -18,6 +20,7 @@ const InitiativesArray = [
     btnText: 'Conocelos aquí',
   },
   {
+    link: '/ingles', //falta seccion de ingles
     emoji: '🌏',
     color: 'tertiary',
     title: 'Prácticas de Inglés',
@@ -40,7 +43,7 @@ const Initiatives: React.FC = () => {
           profesionales como comunidad.
         </p>
       </div>
-      {<InitiativesCarousel initiatives={InitiativesArray} />}
+      {<InitiativesCarousel initiatives={InitiativesData} />}
     </div>
   );
 };

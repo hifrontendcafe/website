@@ -1,6 +1,7 @@
 import styles from './styles.module.css';
 
 import { Initiatives } from '../../lib/types';
+import Link from 'next/link';
 
 type InitiativesItemProps = {
   initiative: Initiatives;
@@ -25,11 +26,13 @@ const InitiativeCard: React.FC<InitiativesItemProps> = ({ initiative }) => {
           </div>
           <p className="pt-5 pb-8 text-lg">{initiative.content}</p>
           <button className="w-60 h-14">
-            <a
-              className={`btn-${initiative.color} btn normal-case text-xl font-normal`}
-            >
-              {initiative.btnText}
-            </a>
+            <Link href={initiative.link}>
+              <a
+                className={`btn-${initiative.color} btn normal-case text-xl font-normal`}
+              >
+                {initiative.btnText}
+              </a>
+            </Link>
           </button>
         </div>
       </div>

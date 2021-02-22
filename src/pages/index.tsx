@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import Hero from '../components/Hero';
 import MediaFeed from '../components/MediaFeed';
 import CMYKBanner from '../components/CMYKBanner';
+import Initiatives from '../components/Initiatives';
 
 const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
   const [counter, setCounter] = useState(0);
@@ -46,10 +47,12 @@ const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
       preview={preview}
     >
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
-      <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
-      <Services />
-      <Featured />
-      <MediaFeed />
+      {/*  <Hero title={greets[counter]} subtitle="Community. Learning. Together." /> */}
+
+      {/*  <Services /> */}
+      {/*  <Featured /> */}
+      {/*   <MediaFeed /> */}
+      <Initiatives />
     </Layout>
   );
 };
