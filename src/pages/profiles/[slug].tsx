@@ -62,7 +62,6 @@ const Post = ({ profile, preview }: Props) => {
             </a>
           </div>
         )}
-
         <ProfileSocialMedia socialMedia={profile.socialMedia} />
         <ProfileBody content={profile.content} />
       </main>
