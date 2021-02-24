@@ -3,33 +3,33 @@ import { ReactGroup } from '../../../lib/types';
 
 const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
   const [discordUser, setDiscordUser] = useState('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
-  const onAddParticipantSubmit = async (
-    event: FormEvent<HTMLFormElement>,
-    discordUser: string,
-    id: string,
-  ) => {
-    event.preventDefault();
-
-    const data = {
-      discordUser: discordUser,
-      id: id,
-    };
+  const onAddParticipantSubmit = async (discordUser: string, id: string) => {
+    setIsLoading(true);
 
     try {
-      setIsSuccess(true);
       const res = await fetch('/api/add-participant', {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          discordUser: discordUser,
+          id: id,
+        }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
+
+      const response = await res.json();
+      setIsLoading(false);
+      setIsSuccess(true);
+      setDiscordUser('');
     } catch (e) {
       console.error(e);
       setIsError(true);
+      setIsLoading(false);
       setTimeout(() => setIsError(false), 5000);
     }
   };
@@ -37,39 +37,36 @@ const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
   return (
     <form
       onSubmit={(e) => {
-        onAddParticipantSubmit(e, discordUser, group._id);
-        setDiscordUser('');
+        e.preventDefault();
+        onAddParticipantSubmit(discordUser, group._id);
       }}
       id={group.name}
-      className="flex"
     >
-      <input
-        className="px-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-        name="discordUser"
-        type="text"
-        value={discordUser}
-        placeholder="Usuario de Discord"
-        required
-        disabled={isSuccess}
-        onChange={(e) => setDiscordUser(e.target.value)}
-      />
-      {isSuccess === false && (
+      <div className="flex">
+        <input
+          className="flex-1 max-w-md px-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+          name="discordUser"
+          type="text"
+          value={discordUser}
+          placeholder="Usuario de Discord"
+          required
+          onChange={(e) => setDiscordUser(e.target.value)}
+        />
         <button
           type="submit"
           form={group.name}
-          className="justify-items-end px-3 py-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          disabled={isLoading || isSuccess}
+          className="justify-items-end px-3 py-2 ml-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Unite a este grupo
+          {isLoading ? 'Enviando...' : 'Unite a este grupo'}
         </button>
+      </div>
+      {isError && (
+        <div className="mt-4 text-sm text-red-500">Ha ocurrido un error.</div>
       )}
       {isSuccess && (
-        <div className="justify-items-end px-3 py-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary">
+        <div className="mt-4 text-sm text-green-500 font-bold">
           ¡Te has unido correctamente al grupo!
-        </div>
-      )}
-      {isError && (
-        <div className="justify-items-end px-3 py-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-red-500">
-          Ha ocurrido un error
         </div>
       )}
     </form>

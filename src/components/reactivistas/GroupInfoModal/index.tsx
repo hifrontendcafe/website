@@ -9,7 +9,6 @@ type GroupInfoModalProps = {
 
 const GroupInfoModal = (props: GroupInfoModalProps) => {
   const { open, onClose, group } = props;
-  console.log(group);
   return (
     <Modal isOpen={open} close={onClose} title={group.name}>
       <div className="text-sm overflow-auto px-2">

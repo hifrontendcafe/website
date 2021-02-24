@@ -53,17 +53,25 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
                       <h3 className="font-medium leading-7 text-lg text-primary mb-5 mr-5 sm:leading-9 sm:truncate">
                         ⚛ {group.name}
                       </h3>
-                      <button onClick={() => setInfoModalOpen(true)}>❔</button>
+                      <button
+                        onClick={() => setInfoModalOpen(true)}
+                        className="text-xs uppercase font-bold text-blue-600 focus:outline-none"
+                      >
+                        + Info
+                      </button>
                     </div>
                     <ul className="mb-6">
-                      <li key={group.topic} className="mb-2 font-medium">
-                        Tema: <b>{group.topic}</b>
+                      <li key={group.topic} className="mb-1 font-medium">
+                        <span className="font-bold">Tema:</span> {group.topic}
                       </li>
-                      <li className="mb-2 font-medium text-primary">
-                        <a href={group.studyMaterial}>📚 Material de Estudio</a>
+                      <li className="font-medium mb-4">
+                        <span className="font-bold">Fecha de inicio:</span>{' '}
+                        {group.startDate}
                       </li>
-                      <li className="font-medium">
-                        Fecha de inicio: {group.startDate}
+                      <li className="font-medium text-primary">
+                        <a href={group.studyMaterial} className="text-gray-600">
+                          📚 Material de Estudio
+                        </a>
                       </li>
                     </ul>
                     {group.participants && group.participants.length >= 10 ? (
