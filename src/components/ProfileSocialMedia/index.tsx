@@ -12,7 +12,7 @@ const ProfileSocialMedia = ({ socialMedia }: Props) => {
       {Object.keys(socialMedia).map((value) => (
         <a
           key={value}
-          className="hover:underline bg-green-600 text-white rounded-lg px-2 py-2"
+          className="hover:opacity-75 bg-green-600 text-white rounded-full px-3 py-2"
           href={socialMedia[value]}
         >
           {value}

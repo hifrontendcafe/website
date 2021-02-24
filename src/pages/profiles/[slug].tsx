@@ -34,7 +34,7 @@ const Post = ({ profile, preview }: Props) => {
   }
   return (
     <Layout preview={preview}>
-      <div className="container relative mx-auto">
+      <div className="container relative mx-auto px-4 md:px-6">
         <main className="mb-32">
           <Head>
             <title>{profile.name} | FrontendCafé</title>
