@@ -7,7 +7,6 @@ import ProfileSocialMedia from '../../components/ProfileSocialMedia';
 import { getProfileBySlug, getAllProfiles } from '../../lib/api';
 import Head from 'next/head';
 import markdownToHtml from '../../lib/markdowToHtml';
-import { faDove } from '@fortawesome/free-solid-svg-icons';
 
 type ProfileType = {
   slug: string;
@@ -30,7 +29,7 @@ type Props = {
   preview?: boolean;
 };
 
-const Post = ({ profile, preview }: Props) => {
+const Profile = ({ profile, preview }: Props) => {
   const router = useRouter();
   if (!router.isFallback && !profile?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -69,7 +68,7 @@ const Post = ({ profile, preview }: Props) => {
   );
 };
 
-export default Post;
+export default Profile;
 
 type Params = {
   params: {
@@ -102,13 +101,13 @@ export async function getStaticProps({ params }: Params) {
 }
 
 export async function getStaticPaths() {
-  const posts = getAllProfiles(['slug']);
+  const profiles = getAllProfiles(['slug']);
 
   return {
-    paths: posts.map((posts) => {
+    paths: profiles.map((profile) => {
       return {
         params: {
-          slug: posts.slug,
+          slug: profile.slug,
         },
       };
     }),
