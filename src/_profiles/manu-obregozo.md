@@ -1,6 +1,8 @@
 ---
 name: 'Manuel Obregozo'
 discord: 'Manu O.#1258'
+openToWork: true
+email: 'test@email.com'
 socialMedia:
   linkedin: 'https://www.linkedin.com/in/manuelobregozo/'
   twitter: 'https://twitter.com/ManuelObre'

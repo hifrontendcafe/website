@@ -7,12 +7,15 @@ import ProfileSocialMedia from '../../components/ProfileSocialMedia';
 import { getProfileBySlug, getAllProfiles } from '../../lib/api';
 import Head from 'next/head';
 import markdownToHtml from '../../lib/markdowToHtml';
+import { faDove } from '@fortawesome/free-solid-svg-icons';
 
 type ProfileType = {
   slug: string;
   name: string;
   coverImage: string;
   role: string;
+  email: string;
+  openToWork: true;
   socialMedia: {
     [name: string]: string;
   };
@@ -34,22 +37,35 @@ const Post = ({ profile, preview }: Props) => {
   }
   return (
     <Layout preview={preview}>
-      <div className="container relative mx-auto px-4 md:px-6">
-        <main className="mb-32">
-          <Head>
-            <title>{profile.name} | FrontendCafé</title>
-            <meta property="og:image" content={profile.ogImage.url} />
-          </Head>
-          <ProfileHeader
-            name={profile.name}
-            coverImage={profile.coverImage}
-            role={profile.role}
-          />
-          {/* Social Media */}
-          <ProfileSocialMedia socialMedia={profile.socialMedia} />
-          <ProfileBody content={profile.content} />
-        </main>
-      </div>
+      <Head>
+        <title>{profile.name} | FrontendCafé</title>
+        <meta property="og:image" content={profile.ogImage.url} />
+      </Head>
+      <main className="pt-20 md:pt-0 mb-32 container mx-auto px-4 md:px-6">
+        <ProfileHeader
+          name={profile.name}
+          coverImage={profile.coverImage}
+          role={profile.role}
+        />
+        {profile.openToWork && (
+          <div className="text-primary my-4 text-xl font-semibold">
+            Estoy en búsqueda laboral!
+          </div>
+        )}
+        {profile.email && (
+          <div className="my-4">
+            <a
+              href={`mailto:${profile.email}`}
+              className="bg-primary px-4 py-2 text-white text-2xl rounded-lg"
+            >
+              Contactame
+            </a>
+          </div>
+        )}
+
+        <ProfileSocialMedia socialMedia={profile.socialMedia} />
+        <ProfileBody content={profile.content} />
+      </main>
     </Layout>
   );
 };
@@ -71,6 +87,8 @@ export async function getStaticProps({ params }: Params) {
     'content',
     'ogImage',
     'coverImage',
+    'email',
+    'openToWork',
   ]);
   const content = await markdownToHtml(profile.content || '');
 
