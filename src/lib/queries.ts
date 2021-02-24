@@ -112,7 +112,7 @@ export const reactGroupQuery = groq`
 *[_type == 'reactGroup' && status == 'approved']{
     _id,
     name,
-    teamCaptain,
+    'teamCaptain': teamCaptain->username,
     participants,
     topic,
     studyMaterial,

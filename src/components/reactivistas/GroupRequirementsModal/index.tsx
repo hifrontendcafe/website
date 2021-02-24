@@ -1,11 +1,11 @@
-import Modal from '../../components/Modal';
+import Modal from '../../Modal';
 
 type ModalProps = {
   open: boolean;
   onClose: () => void;
 };
 
-export const GroupRequirementsModal = (props: ModalProps) => {
+const GroupRequirementsModal = (props: ModalProps) => {
   const { open, onClose } = props;
 
   return (
@@ -39,3 +39,5 @@ export const GroupRequirementsModal = (props: ModalProps) => {
     </Modal>
   );
 };
+
+export default GroupRequirementsModal;

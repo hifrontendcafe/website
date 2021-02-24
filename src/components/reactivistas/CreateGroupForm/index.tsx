@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ReactGroup } from '../../lib/types';
+import { ReactGroup } from '../../../lib/types';
 
-export const CreateGroupForm = () => {
+const CreateGroupForm = () => {
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -150,3 +150,5 @@ export const CreateGroupForm = () => {
     </form>
   );
 };
+
+export default CreateGroupForm;

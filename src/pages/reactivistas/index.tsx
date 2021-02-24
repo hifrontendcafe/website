@@ -1,20 +1,21 @@
-import Layout from '../../components/Layout';
-import { getApprovedReactGroups } from '../../lib/api';
-import { ReactGroup } from '../../lib/types';
 import { useState } from 'react';
-import { AddParticipantForm } from './AddParticipantForm';
-import { GroupInfoModal } from './GroupInfoModal';
-import { CreateGroupForm } from './CreateGroupForm';
-import { GroupRequirementsModal } from './GroupRequirementsModal';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import { usePreviewSubscription } from '../../lib/sanity';
-import { reactGroupQuery } from '../../lib/queries';
-import Hero from '../../components/Hero';
 import Link from 'next/link';
 
-const ReactGroupPage: React.FC<
-  InferGetStaticPropsType<typeof getStaticProps>
-> = ({ data, preview }) => {
+import { getApprovedReactGroups } from '../../lib/api';
+import { ReactGroup } from '../../lib/types';
+import { usePreviewSubscription } from '../../lib/sanity';
+import { reactGroupQuery } from '../../lib/queries';
+import Layout from '../../components/Layout';
+import Hero from '../../components/Hero';
+import AddParticipantForm from '../../components/reactivistas/AddParticipantForm';
+import GroupInfoModal from '../../components/reactivistas/GroupInfoModal';
+import CreateGroupForm from '../../components/reactivistas/CreateGroupForm';
+import GroupRequirementsModal from '../../components/reactivistas/GroupRequirementsModal';
+
+const ReactGroupPage: React.FC<InferGetStaticPropsType<
+  typeof getStaticProps
+>> = ({ data, preview }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: groups } = usePreviewSubscription(reactGroupQuery, {

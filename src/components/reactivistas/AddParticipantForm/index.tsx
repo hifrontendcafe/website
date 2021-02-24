@@ -1,7 +1,7 @@
 import { useState, FormEvent } from 'react';
-import { ReactGroup } from '../../lib/types';
+import { ReactGroup } from '../../../lib/types';
 
-export const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
+const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
   const [discordUser, setDiscordUser] = useState('');
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
@@ -75,3 +75,5 @@ export const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
     </form>
   );
 };
+
+export default AddParticipantForm;
