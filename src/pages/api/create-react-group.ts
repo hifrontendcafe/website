@@ -12,7 +12,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
 
   if (!user) {
     user = await createPerson({
-      username: { current: body.teamCaptain.id },
+      username: body.teamCaptain.id,
     });
   }
 

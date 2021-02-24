@@ -100,9 +100,9 @@ export const cmykQuery = groq`
 `;
 
 export const personQuery = groq`
-  *[_type == "person" && username.current == $id]{
+  *[_type == "person" && username == $id]{
     _id,
-    'username': username.current,
+    username,
     firstName,
     lastName,
   }
@@ -112,7 +112,7 @@ export const reactGroupQuery = groq`
 *[_type == 'reactGroup' && status == 'approved']{
     _id,
     name,
-    teamCaptain,
+    'teamCaptain': teamCaptain->username,
     participants,
     topic,
     studyMaterial,
