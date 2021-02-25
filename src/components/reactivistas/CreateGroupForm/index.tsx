@@ -59,7 +59,7 @@ const CreateGroupForm = () => {
             type="text"
             placeholder="Ingresa tu usuario de Discord"
             required
-            pattern="/(.*)#(\d{4})/g"
+            pattern="(.*)#(\d{4})"
             ref={register({ required: true })}
           />
           <DiscordUserTooltip />
