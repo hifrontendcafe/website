@@ -52,7 +52,7 @@ const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
             value={discordUser}
             placeholder="Usuario de Discord"
             required
-            pattern="/(.*)#(\d{4})/g"
+            pattern="(.*)#(\d{4})"
             onChange={(e) => setDiscordUser(e.target.value)}
           />
           <DiscordUserTooltip />
