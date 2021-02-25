@@ -95,8 +95,8 @@ const CreateGroupForm = () => {
             />
             <div className="w-64 leading-none p-1">
               <p className="text-xs">
-                Para encontrar tu Discord ID solo debes hacer click en tu nombre
-                en la aplicacion. El formato estandar es del tipo
+                Para encontrar tu User de Discord solo debes hacer click en tu
+                nombre en la aplicacion. El formato estandar es del tipo
                 frontendcafe#5239
               </p>
               <img
