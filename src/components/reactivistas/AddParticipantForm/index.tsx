@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { ReactGroup } from '../../../lib/types';
+import { DiscordUserTooltip } from '../FormHelpers';
 
 const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
   const [discordUser, setDiscordUser] = useState('');
@@ -43,15 +44,19 @@ const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
       id={group.name}
     >
       <div className="flex">
-        <input
-          className="flex-1 max-w-md px-3 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="discordUser"
-          type="text"
-          value={discordUser}
-          placeholder="Usuario de Discord"
-          required
-          onChange={(e) => setDiscordUser(e.target.value)}
-        />
+        <div className="relative flex-1 w-full">
+          <input
+            className="w-full h-full px-3 py-2 flex-1 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+            name="discordUser"
+            type="text"
+            value={discordUser}
+            placeholder="Usuario de Discord"
+            required
+            pattern="/(.*)#(\d{4})/g"
+            onChange={(e) => setDiscordUser(e.target.value)}
+          />
+          <DiscordUserTooltip />
+        </div>
         <button
           type="submit"
           form={group.name}

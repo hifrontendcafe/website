@@ -13,9 +13,9 @@ import GroupInfoModal from '../../components/reactivistas/GroupInfoModal';
 import CreateGroupForm from '../../components/reactivistas/CreateGroupForm';
 import GroupRequirementsModal from '../../components/reactivistas/GroupRequirementsModal';
 
-const ReactGroupPage: React.FC<InferGetStaticPropsType<
-  typeof getStaticProps
->> = ({ data, preview }) => {
+const ReactGroupPage: React.FC<
+  InferGetStaticPropsType<typeof getStaticProps>
+> = ({ data, preview }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: groups } = usePreviewSubscription(reactGroupQuery, {
@@ -29,7 +29,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
       <div className="pb-24 bg-indigo-100 sm:pt-10 lg:mt-0 mt-24">
         <Link href="/docs/guia-reactivistas">
           <a
-            className="flex justify-center mx-10 text-white text-center bg-primary border-0 py-2  px-6
+            className="container mx-auto flex justify-center mx-10 text-white text-center bg-primary border-0 py-2  px-6
             focus:outline-none hover:bg-primarydark rounded text-lg font-bold"
           >
             ¿De qué se trata Reactivistas?
