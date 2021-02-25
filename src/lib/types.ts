@@ -81,6 +81,7 @@ export interface Initiatives {
   content: string;
   color: string;
   btnText: string;
+  link: string;
 }
 export interface ReactGroup {
   _id: string;
