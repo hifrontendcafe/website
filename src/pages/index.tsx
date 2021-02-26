@@ -7,6 +7,7 @@ import Layout from '../components/Layout';
 import Hero from '../components/Hero';
 import MediaFeed from '../components/MediaFeed';
 import CMYKBanner from '../components/CMYKBanner';
+import JoinSection from '../components/JoinSection';
 
 const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
   const [counter, setCounter] = useState(0);
@@ -50,6 +51,7 @@ const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
       <Services />
       <Featured />
       <MediaFeed />
+      <JoinSection />
     </Layout>
   );
 };
