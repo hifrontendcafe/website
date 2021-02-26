@@ -1,9 +1,9 @@
 ---
-name: 'Manuel Obregozo'
+name: 'John Doe'
 discord: 'Manu O.#1258'
 openToWork: true
-stack: ['HTML','CSS','Javscript']
 email: 'test@email.com'
+stack: ['Node','TailwindCSS','React']
 socialMedia:
   linkedin: 'https://www.linkedin.com/in/manuelobregozo/'
   twitter: 'https://twitter.com/ManuelObre'
