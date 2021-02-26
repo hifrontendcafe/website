@@ -170,6 +170,9 @@ export function getProfileBySlug(slug: string, fields: string[] = []) {
     if (field === 'slug') {
       items[field] = realSlug;
     }
+    if (field === 'role') {
+      items[field] = realSlug;
+    }
     if (field === 'content') {
       items[field] = content;
     }

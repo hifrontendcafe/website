@@ -8,34 +8,20 @@ import { getProfileBySlug, getAllProfiles } from '../../lib/api';
 import Head from 'next/head';
 import markdownToHtml from '../../lib/markdowToHtml';
 
-type ProfileType = {
-  slug: string;
-  name: string;
-  coverImage: string;
-  role: string;
-  email: string;
-  openToWork: true;
-  socialMedia: {
-    [name: string]: string;
-  };
-  ogImage: {
-    url: string;
-  };
-  content: string;
-};
+import { Profile } from '../../lib/types';
 
 type Props = {
-  profile: ProfileType;
+  profile: Profile;
   preview?: boolean;
 };
 
-const Profile = ({ profile, preview }: Props) => {
+const ProfilePage = ({ profile, preview }: Props) => {
   const router = useRouter();
   if (!router.isFallback && !profile?.slug) {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <Layout preview={preview}>
+    <Layout title={`Perfiles en FrontendCafé | profile.name`} preview={preview}>
       <Head>
         <title>{profile.name} | FrontendCafé</title>
         <meta property="og:image" content={profile.ogImage.url} />
@@ -68,7 +54,7 @@ const Profile = ({ profile, preview }: Props) => {
   );
 };
 
-export default Profile;
+export default ProfilePage;
 
 type Params = {
   params: {
