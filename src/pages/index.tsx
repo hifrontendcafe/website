@@ -12,16 +12,12 @@ const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
   const [counter, setCounter] = useState(0);
 
   const greets = [
-    'Welcome to',
-    'Somos',
-    'Creamos en',
-    'Aprendemos en',
-    'Compartimos en',
-    'Ayudamos en',
-    'Nos reímos en',
-    'Learn English in',
-    'Nuevos amigos en',
-    'Incluímos en',
+    'Creamos',
+    'Aprendemos',
+    'Compartimos',
+    'Ayudamos',
+    'Nos reímos',
+    'Incluímos',
   ];
 
   if (counter >= greets.length) {
@@ -47,6 +43,7 @@ const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
     >
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
+
       <Services />
       <Featured />
       <MediaFeed />
@@ -57,41 +54,8 @@ const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
 // Page Sections
 
 const Services = () => (
-  <section className="pb-20 bg-indigo-100 -mt-24">
+  <section className="pb-20 pt-12 bg-indigo-100">
     <div className="container mx-auto px-4">
-      <div className="flex flex-wrap">
-        <Link href="#comunidad">
-          <div className="lg:pt-12 pt-6 w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-              <div className="flex items-center flex-col px-4 py-5 flex-auto">
-                <img className="w-48 mb-4" src="/img/community.svg" />
-                <h6 className="text-2xl font-semibold">Comunidad</h6>
-              </div>
-            </div>
-          </div>
-        </Link>
-        <Link href="/mentorias">
-          <div className="w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-              <div className="flex items-center flex-col px-4 py-5 flex-auto">
-                <img className="w-48 mb-4" src="/img/mentorships.svg" />
-                <h6 className="text-2xl font-semibold">Mentorías</h6>
-              </div>
-            </div>
-          </div>
-        </Link>
-        <Link href="#ingles">
-          <div className="pt-6 w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
-            <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
-              <div className="flex items-center flex-col px-4 py-5 flex-auto">
-                <img className="w-48 mb-4" src="/img/english-practices.svg" />
-                <h6 className="text-2xl font-semibold">Prácticas de inglés</h6>
-              </div>
-            </div>
-          </div>
-        </Link>
-      </div>
-
       <div className="flex flex-wrap items-center mt-24 mb-12">
         <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-16">
           <h3 className="text-2xl md:text-3xl mb-2 font-semibold leading-normal text-gray-800">
