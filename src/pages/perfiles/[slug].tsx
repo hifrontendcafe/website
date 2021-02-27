@@ -3,10 +3,10 @@ import ErrorPage from 'next/error';
 import Layout from '../../components/Layout';
 import ProfileBody from '../../components/ProfileBody';
 import ProfileHeader from '../../components/ProfileHeader';
-import ProfileSocialMedia from '../../components/ProfileSocialMedia';
 import { getProfileBySlug, getAllProfiles } from '../../lib/api';
 import Head from 'next/head';
 import markdownToHtml from '../../lib/markdowToHtml';
+import Link from 'next/link';
 
 import { Profile } from '../../lib/types';
 
@@ -27,27 +27,54 @@ const ProfilePage = ({ profile, preview }: Props) => {
         <meta property="og:image" content={profile.ogImage.url} />
       </Head>
       <main className="pt-20 md:pt-0 mb-32 container mx-auto px-4 md:px-6">
-        <ProfileHeader
-          name={profile.name}
-          coverImage={profile.coverImage}
-          role={profile.role}
-        />
-        {profile.openToWork && (
-          <div className="text-primary my-4 text-xl font-semibold">
-            Estoy en búsqueda laboral!
-          </div>
-        )}
-        {profile.email && (
-          <div className="my-4">
-            <a
-              href={`mailto:${profile.email}`}
-              className="bg-primary px-4 py-2 text-white text-2xl rounded-lg"
-            >
-              Contactame
+        <div className="hidden md:flex md:justify-end text-secondarydark">
+          <Link href="/perfiles">
+            <a className="text-xl py-4 hover:underline tracking-tight font-semibold">
+              VOLVER A LA LISTA
             </a>
+          </Link>
+        </div>
+        <div className="border-b border-gray-300 pb-8">
+          <ProfileHeader
+            name={profile.name}
+            coverImage={profile.coverImage}
+            role={profile.role}
+            socialMedia={profile.socialMedia}
+          />
+          {profile.openToWork && (
+            <div>
+              <div className="text-primary my-4 text-lg font-semibold">
+                Estoy en búsqueda activa!
+              </div>
+              {profile.email && (
+                <div className="my-2">
+                  <a
+                    href={`mailto:${profile.email}`}
+                    className="px-4 py-2 bg-primary text-sm font-semibold text-white rounded-lg hover:opacity-75"
+                  >
+                    CONTACTAME
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+        <h2 className="text-indigo-600 text-4xl font-semibold mt-4">Skills</h2>
+        {profile.stack && profile.stack.length > 0 && (
+          <div className="flex items-center flex-wrap">
+            {profile.stack.map((tech) => (
+              <div
+                key={tech}
+                className="px-4 py-1 mt-2 mr-2 text-sm rounded-md bg-indigo-400 text-white break-all uppercase"
+              >
+                {tech}
+              </div>
+            ))}
           </div>
         )}
-        <ProfileSocialMedia socialMedia={profile.socialMedia} />
+        <h2 className="text-indigo-600 text-4xl font-semibold mt-8">
+          Sobre mi
+        </h2>
         <ProfileBody content={profile.content} />
       </main>
     </Layout>
@@ -73,6 +100,7 @@ export async function getStaticProps({ params }: Params) {
     'coverImage',
     'email',
     'openToWork',
+    'stack',
   ]);
   const content = await markdownToHtml(profile.content || '');
 

@@ -9,7 +9,7 @@ const ProfileCard = ({ profile }: Props) => {
   return (
     <Link href={`/perfiles/${profile.slug}`}>
       <a>
-        <div className="p-2 py-4 shadow-md rounded-lg text-center border-b-4 hover:shadow">
+        <div className="p-2 py-4 shadow-md rounded-lg text-center border-b-4 transform hover:scale-105 transition-transform duration-200">
           <img
             src={profile.coverImage}
             className="mx-auto h-24 w-24 object-cover object-top rounded-full border"
@@ -28,7 +28,7 @@ const ProfileCard = ({ profile }: Props) => {
           </h2>
           {profile.stack && profile.stack.length > 0 && (
             <div className="flex items-center flex-wrap justify-center">
-              {profile.stack.map((tech) => (
+              {profile.stack.slice(0, 3).map((tech) => (
                 <div key={tech} className="px-4 py-1 mt-2 ml-2 text-sm rounded-md bg-indigo-400 text-white break-all">
                   {tech}
                 </div>

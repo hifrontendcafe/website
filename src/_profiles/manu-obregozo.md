@@ -2,11 +2,13 @@
 name: 'Manuel Obregozo'
 discord: 'Manu O.#1258'
 openToWork: true
-stack: ['HTML','CSS','Javscript']
+stack: ['HTML','CSS','Javscript','React','Java']
 email: 'test@email.com'
 socialMedia:
   linkedin: 'https://www.linkedin.com/in/manuelobregozo/'
   twitter: 'https://twitter.com/ManuelObre'
+  github: 'https://github.com/mobregozo'
+  fake: 'https://twitter.com/ManuelObre'
 role: 'Frontend developer'
 coverImage: 'https://www.manuelobregozo.com/profile.jpg'
 ogImage:
