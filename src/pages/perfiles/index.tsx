@@ -1,6 +1,4 @@
 import Link from 'next/link';
-
-import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 import ProfileCard from '../../components/ProfileCard';
 

@@ -187,9 +187,8 @@ export function getProfileBySlug(slug: string, fields: string[] = []) {
 
 export function getAllProfiles(fields: string[] = []) {
   const slugs = getProfileSlugs();
-  const profiles = slugs
+  return slugs
     .map((slug) => getProfileBySlug(slug, fields))
     // sort profiles by name
     .sort((profile1, profile2) => (profile1.name > profile2.name ? -1 : 1));
-  return profiles;
 }
