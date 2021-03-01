@@ -22,6 +22,9 @@ import {
   personQuery,
   reactGroupQuery,
 } from './queries';
+import fs from 'fs';
+import { join } from 'path';
+import matter from 'gray-matter';
 
 const eventFields = `
   title,
@@ -142,4 +145,50 @@ export async function getPersonByDiscordId(
 ): Promise<Person> {
   const result = await getClient(preview).fetch(personQuery, { id });
   return result.length > 0 && result[0];
+}
+
+const profilesDirectory = join(process.cwd(), 'src/_profiles');
+
+export function getProfileSlugs() {
+  return fs.readdirSync(profilesDirectory);
+}
+
+export function getProfileBySlug(slug: string, fields: string[] = []) {
+  const realSlug = slug.replace(/\.md$/, '');
+  const fullPath = join(profilesDirectory, `${realSlug}.md`);
+  const fileContents = fs.readFileSync(fullPath, 'utf8');
+  const { data, content } = matter(fileContents);
+
+  type Items = {
+    [key: string]: string;
+  };
+
+  const items: Items = {};
+
+  // Ensure only the minimal needed data is exposed
+  fields.forEach((field) => {
+    if (field === 'slug') {
+      items[field] = realSlug;
+    }
+    if (field === 'role') {
+      items[field] = realSlug;
+    }
+    if (field === 'content') {
+      items[field] = content;
+    }
+
+    if (data[field]) {
+      items[field] = data[field];
+    }
+  });
+
+  return items;
+}
+
+export function getAllProfiles(fields: string[] = []) {
+  const slugs = getProfileSlugs();
+  return slugs
+    .map((slug) => getProfileBySlug(slug, fields))
+    // sort profiles by name
+    .sort((profile1, profile2) => (profile1.name > profile2.name ? -1 : 1));
 }
