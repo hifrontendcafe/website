@@ -26,7 +26,7 @@ const ProfileCard = ({ profile }: Props) => {
           <h2 className="font-bold text-gray-500 tracking-wide">
             {profile.role}
           </h2>
-          {profile.stack && profile.stack.length > 0 && (
+          {profile.stack?.length > 0 && (
             <div className="flex items-center flex-wrap justify-center">
               {profile.stack.slice(0, 3).map((tech) => (
                 <div key={tech} className="px-4 py-1 mt-2 ml-2 text-sm rounded-md bg-indigo-400 text-white break-all">
