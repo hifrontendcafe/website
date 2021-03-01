@@ -1,7 +1,7 @@
 ---
 name: 'John Doe'
 discord: 'Manu O.#1258'
-openToWork: true
+availableForWork: true
 email: 'test@email.com'
 stack: ['Node','TailwindCSS','React']
 socialMedia:

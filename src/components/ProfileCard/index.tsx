@@ -15,7 +15,7 @@ const ProfileCard = ({ profile }: Props) => {
             className="mx-auto h-24 w-24 object-cover object-top rounded-full border"
             alt={profile.name}
           />
-          {profile.openToWork && (
+          {profile.availableForWork && (
             <div className="p-2 font-semibold text-primary text-center ">
               En búsqueda activa
             </div>

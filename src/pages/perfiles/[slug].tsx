@@ -41,7 +41,7 @@ const ProfilePage = ({ profile, preview }: Props) => {
             role={profile.role}
             socialMedia={profile.socialMedia}
           />
-          {profile.openToWork && (
+          {profile.availableForWork && (
             <div>
               <div className="text-primary my-4 text-lg font-semibold">
                 Estoy en búsqueda activa!
@@ -99,7 +99,7 @@ export async function getStaticProps({ params }: Params) {
     'ogImage',
     'coverImage',
     'email',
-    'openToWork',
+    'availableForWork',
     'stack',
   ]);
   const content = await markdownToHtml(profile.content || '');

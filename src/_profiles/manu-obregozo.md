@@ -1,7 +1,7 @@
 ---
 name: 'Manuel Obregozo'
 discord: 'Manu O.#1258'
-openToWork: true
+availableForWork: true
 stack: ['HTML','CSS','Javscript','React','Java']
 email: 'test@email.com'
 socialMedia:

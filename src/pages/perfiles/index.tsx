@@ -45,7 +45,7 @@ export async function getStaticProps() {
     'ogImage',
     'coverImage',
     'email',
-    'openToWork',
+    'availableForWork',
     'stack',
   ]);
   return {

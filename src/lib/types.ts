@@ -112,7 +112,7 @@ export type Profile = {
   coverImage: string;
   role: string;
   email: string;
-  openToWork: true;
+  availableForWork: boolean;
   socialMedia: {
     [name: string]: string;
   };
