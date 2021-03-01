@@ -1,4 +1,4 @@
-import markdownStyles from './styles.module.css';
+import styles from './styles.module.css';
 
 type Props = {
   content: string
@@ -8,7 +8,7 @@ const ProfileBody = ({ content }: Props) => {
   return (
     <div className="mx-auto">
       <div
-        className={markdownStyles['markdown']}
+        className={styles['profile-content']}
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </div>
