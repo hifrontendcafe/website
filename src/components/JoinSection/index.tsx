@@ -1,6 +1,6 @@
-import { FC } from 'react';
+import React from 'react';
 
-const JoinSection: FC = () => (
+const JoinSection: React.FC = () => (
   <section className="text-center mb-24">
     <p className="font-semibold mb-2">
       <span className="relative text-lg">
