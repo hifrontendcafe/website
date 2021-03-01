@@ -61,16 +61,16 @@ const ProfilePage = ({ profile, preview }: Props) => {
         </div>
         <h2 className="text-indigo-600 text-4xl font-semibold mt-4">Skills</h2>
         {profile.stack && profile.stack.length > 0 && (
-          <div className="flex items-center flex-wrap">
+          <ul className="flex items-center flex-wrap">
             {profile.stack.map((tech) => (
-              <div
+              <li
                 key={tech}
                 className="px-4 py-1 mt-2 mr-2 text-sm rounded-md bg-indigo-400 text-white break-all uppercase"
               >
                 {tech}
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         )}
         <h2 className="text-indigo-600 text-4xl font-semibold mt-8">
           Sobre mi
