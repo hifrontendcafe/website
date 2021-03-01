@@ -16,7 +16,7 @@ const ProfileCard = ({ profile }: Props) => {
             alt={profile.name}
           />
           {profile.availableForWork && (
-            <div className="p-2 font-semibold text-primary text-center ">
+            <div className="p-2 font-semibold text-primary text-center">
               En búsqueda activa
             </div>
           )}
