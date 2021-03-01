@@ -1,18 +1,16 @@
-import styles from './styles.module.css';
-
 type Props = {
-  content: string
-}
+  content: string;
+};
 
 const ProfileBody = ({ content }: Props) => {
   return (
     <div className="mx-auto">
-      <div
-        className={styles['profile-content']}
+      <article
+        className="prose prose-xl"
         dangerouslySetInnerHTML={{ __html: content }}
       />
     </div>
-  )
-}
+  );
+};
 
-export default ProfileBody
+export default ProfileBody;

@@ -72,7 +72,7 @@ const ProfilePage = ({ profile, preview }: Props) => {
             ))}
           </ul>
         )}
-        <h2 className="text-indigo-600 text-4xl font-semibold mt-8">
+        <h2 className="text-indigo-600 text-4xl font-semibold mt-8 mb-4">
           Sobre mi
         </h2>
         <ProfileBody content={profile.content} />
