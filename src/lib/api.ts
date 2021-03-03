@@ -8,6 +8,7 @@ import {
   Topic,
   ReactGroup,
   Person,
+  Initiatives,
 } from './types';
 import { createSlug } from './helpers';
 import {
@@ -21,6 +22,7 @@ import {
   eventsQuery,
   personQuery,
   reactGroupQuery,
+  initiativeQuery,
 } from './queries';
 
 const eventFields = `
@@ -111,16 +113,20 @@ export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
   });
 }
 
-export async function addParticipantToReactGroup(reactGroupId: string, userId: string): Promise<Person> {
-  return await postClient.patch(reactGroupId)
-  .setIfMissing({ participants: [] })
-  .insert('after', 'participants[-1]', [
-    {
-      _key: userId,
-      _ref: userId,
-    },
-  ])
-  .commit();
+export async function addParticipantToReactGroup(
+  reactGroupId: string,
+  userId: string,
+): Promise<Person> {
+  return await postClient
+    .patch(reactGroupId)
+    .setIfMissing({ participants: [] })
+    .insert('after', 'participants[-1]', [
+      {
+        _key: userId,
+        _ref: userId,
+      },
+    ])
+    .commit();
 }
 
 export async function getApprovedReactGroups(
@@ -142,4 +148,10 @@ export async function getPersonByDiscordId(
 ): Promise<Person> {
   const result = await getClient(preview).fetch(personQuery, { id });
   return result.length > 0 && result[0];
+}
+
+export async function getAllInitiatives(
+  preview: boolean = false,
+): Promise<Initiatives[]> {
+  return await getClient(preview).fetch(initiativeQuery);
 }

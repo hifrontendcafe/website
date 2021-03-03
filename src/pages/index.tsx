@@ -7,7 +7,45 @@ import Layout from '../components/Layout';
 import Hero from '../components/Hero';
 import MediaFeed from '../components/MediaFeed';
 import CMYKBanner from '../components/CMYKBanner';
-import Initiatives from '../components/Initiatives';
+import InitiativesCarousel from '../components/InitiativesCarousel';
+import InitiativeCard from '../components/InitiativeCard';
+
+//import data from Sanity
+import { initiativeQuery } from '../lib/queries';
+import { InferGetStaticPropsType } from 'next';
+import { getAllInitiatives } from '../lib/api';
+import { usePreviewSubscription } from '../lib/sanity';
+
+// mocked data
+const InitiativesData = [
+  {
+    link: '/mentorias',
+    emoji: '📘',
+    color: '#667eea',
+    title: 'Mentorías',
+    content:
+      'Conectate con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de la tecnología de la información, para guiarte en este desafiante camino, no tiene costo alguno, solo ganas de aprender y muy buena onda.',
+    btnText: 'Quiero Participar',
+  },
+  {
+    link: '/cmyk',
+    emoji: '🎖',
+    color: '#00c39d',
+    title: 'Proyectos CMYK ',
+    content:
+      'Proyectos colaborativos realizados por miembros de FrontendCafé con el objetivo de ganar experiencia en un entorno profesional.',
+    btnText: 'Conocelos aquí',
+  },
+  {
+    link: '/ingles', //falta seccion de ingles
+    emoji: '🌏',
+    color: '#d53f8c',
+    title: 'Prácticas de Inglés',
+    content:
+      'Nos divertimos charlando con el objetivo de perder el miedo a hablar en inglés en Público. Mejorando la comunicación y la confianza. Encuentros online gratuitos. Sin necesidad de Inscripción Sucede desde nuestro canal de Discord.',
+    btnText: 'Próximos eventos',
+  },
+];
 
 const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
   const [counter, setCounter] = useState(0);
@@ -47,12 +85,13 @@ const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
       preview={preview}
     >
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
-      {/*  <Hero title={greets[counter]} subtitle="Community. Learning. Together." /> */}
 
-      {/*  <Services /> */}
-      {/*  <Featured /> */}
-      {/*   <MediaFeed /> */}
+      <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
+
+      <Services />
       <Initiatives />
+      {/*  <Featured /> */}
+      <MediaFeed />
     </Layout>
   );
 };
@@ -187,6 +226,36 @@ const Featured = () => {
         </div>
       </div>
     </section>
+  );
+};
+
+const Initiatives: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+  data,
+  preview,
+}) => {
+  const { data: initiatives } = usePreviewSubscription(initiativeQuery, {
+    initialData: data,
+    enabled: preview,
+  });
+  return (
+    <div className="flex flex-col mb-24">
+      <div className="flex flex-col justify-center m-auto mt-20 items-center  text-center lg:w-2/3">
+        <h1 className="lg:text-5xl md:text-4xl text-xl font-extrabold mb-5">
+          ¡Descubre lo que tenemos para ti!
+        </h1>
+        <p className="lg:text-lg text-md w-5/6">
+          En Frontendcafé con la participación de la comunidad creamos
+          diferentes actividades para mejorar nuestras habilidades tanto
+          profesionales como comunidad.
+        </p>
+      </div>
+      <div className="flex flex-col  items-center">
+        {InitiativesData.map((initiative) => (
+          <InitiativeCard key={initiative.title} initiative={initiative} />
+        ))}
+        {/* <InitiativesCarousel initiatives={InitiativesData} /> */}
+      </div>
+    </div>
   );
 };
 

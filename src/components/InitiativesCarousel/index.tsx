@@ -49,7 +49,8 @@ const InitiativesCarousel: React.FC<InitiativesCarouselProps> = ({
     keyBoardControl={true}
     customTransition="all .3"
     transitionDuration={500}
-    itemClass="mr-24"
+    containerClass="mt-5 pb-10 carousel-container"
+    itemClass="lg:mr-24 mr-5"
     centerMode={false}
   >
     {initiatives.map((initiative) => (

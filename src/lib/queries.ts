@@ -122,3 +122,15 @@ export const reactGroupQuery = groq`
     slug
   }
 `;
+
+export const initiativeQuery = groq`
+  *[_type == 'initiative'] {
+    _id,
+    emoji,
+    title,
+    description,
+    'color': color.hex,
+    link,
+    btnText
+  }
+  `;
