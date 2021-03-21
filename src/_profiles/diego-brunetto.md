@@ -4,14 +4,14 @@ discord: '_diegoBrunetto🌴#0813'
 availableForWork: true
 stack:
   [
+    'React',
+    'NextJs',
+    'TailwindCSS',
     'HTML',
     'CSS',
     'Javscript',
-    'React',
     'Redux',
-    'NextJs',
     'Sass',
-    'TailwindCSS',
   ]
 email: 'diego.brunetto2@gmail.com'
 socialMedia:
@@ -24,72 +24,34 @@ ogImage:
   url: 'https://www.notion.so/diegobrunetto/Diego-Brunetto-Resume-900764c5624348f6b5dad582d84b5b46'
 ---
 
-> I'm a frontend developer based in Mar del Plata 🌊
+Frontend developer viviendo en Mar del Plata 🌊
 
-## **👩🏻‍💻** Projects
+### **👩🏻‍💻** Proyectos
 
-### E Commerce
+#### E Commerce
 
 _React JS - Redux - Stripe - Firebase - Styled Components_
 
 [Github](https://github.com/diegobrunetto/E-commerce) - [Demo](https://db-ecommerce-app.herokuapp.com/)
 
-### Portfolio + Blog
+#### Portfolio + Blog
 
 _Next Js - Tailwind CSS - MDX_
 
-[Github](https://github.com/diegobrunetto/flordipardo-next)
+[Github](https://github.com/diegobrunetto/flordipardo-next) - [Ver](https://flordipardo.com/)
 
-### Gif App
+#### Gif App
 
 _React JS - Nes.css - Jest - Enzime_
 
 [Github](https://github.com/diegobrunetto/react-giftexpertapp) - [Demo](https://diegobrunetto.github.io/react-giftexpertapp/)
 
----
+### 🗣 Idiomas
 
-## 🛠 Skills
+#### Español 🇦🇷
 
-### 💻 Technology
+Nativo
 
-### Javascript ⭐️
+#### Ingles 🇬🇧
 
-My "native" programming language, I've worked with it for over a year. I've used it in the front-end with React and Redux, and for testing using Jest.
-
-### React Js ⚛️
-
-My go-to library for frontend applications. I focus on learning the whole ecosistem.
-
-### Redux ☢️
-
-I learned how to manage state using tools like sagas, reselect, and redux toolkit.
-
-### Next Js 🔼
-
-Probably the most exciting thing I have learned in the last months. I'm currently doing a personal blog.
-
-### SASS 🎨
-
-I think this is the most effective way to code my css, with scalability in mind.
-
-### CSS 💅
-
-I love it. Currently doing some projects with the css-in-js approach, using tools like styles components and tailwind css.
-
-### Jest 🃏 💨
-
-You have to test, right?
-
----
-
-### 🗣 Languages
-
-### Spanish 🇦🇷
-
-Native speaker
-
-### English 🇬🇧
-
-Intermediate level.
-
-I can read and write, but I have to practice some speaking.
+Intermedio - Debería ir a practicar a FEC
