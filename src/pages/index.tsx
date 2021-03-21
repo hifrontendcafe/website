@@ -1,53 +1,19 @@
-import { GetStaticProps } from 'next';
-import Link from 'next/link';
-import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
 
-import Layout from '../components/Layout';
+import Link from 'next/link';
+import { GetStaticProps } from 'next';
+
+import { getAllFeaturedCards } from '../lib/api';
+
 import Hero from '../components/Hero';
+import Layout from '../components/Layout';
 import MediaFeed from '../components/MediaFeed';
-import CMYKBanner from '../components/CMYKBanner';
-import InitiativesCarousel from '../components/InitiativesCarousel';
-import InitiativeCard from '../components/InitiativeCard';
+import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 
-//import data from Sanity
-import { initiativeQuery } from '../lib/queries';
-import { InferGetStaticPropsType } from 'next';
-import { getAllInitiatives } from '../lib/api';
-import { usePreviewSubscription } from '../lib/sanity';
-
-// mocked data
-const InitiativesData = [
-  {
-    link: '/mentorias',
-    emoji: '📘',
-    color: '#667eea',
-    title: 'Mentorías',
-    content:
-      'Conectate con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de la tecnología de la información, para guiarte en este desafiante camino, no tiene costo alguno, solo ganas de aprender y muy buena onda.',
-    btnText: 'Quiero Participar',
-  },
-  {
-    link: '/cmyk',
-    emoji: '🎖',
-    color: '#00c39d',
-    title: 'Proyectos CMYK ',
-    content:
-      'Proyectos colaborativos realizados por miembros de FrontendCafé con el objetivo de ganar experiencia en un entorno profesional.',
-    btnText: 'Conocelos aquí',
-  },
-  {
-    link: '/ingles', //falta seccion de ingles
-    emoji: '🌏',
-    color: '#d53f8c',
-    title: 'Prácticas de Inglés',
-    content:
-      'Nos divertimos charlando con el objetivo de perder el miedo a hablar en inglés en Público. Mejorando la comunicación y la confianza. Encuentros online gratuitos. Sin necesidad de Inscripción Sucede desde nuestro canal de Discord.',
-    btnText: 'Próximos eventos',
-  },
-];
-
-const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
+const Index: React.FC<{ cards: object; preview?: boolean }> = ({
+  cards,
+  preview = false,
+}) => {
   const [counter, setCounter] = useState(0);
 
   const greets = [
@@ -79,25 +45,20 @@ const Index: React.FC<{ preview?: boolean }> = ({ preview = false }) => {
     <Layout
       title="Home"
       description="Somos una comunidad de personas interesadas en tecnología y ciencias
-    informáticas en donde charlamos sobre lenguajes de programación,
-    diseño web, infraestructura, compartimos dudas, preguntamos y
-    respondemos."
+      informáticas en donde charlamos sobre lenguajes de programación,
+      diseño web, infraestructura, compartimos dudas, preguntamos y
+      respondemos."
       preview={preview}
     >
-      {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
-
       <Hero title={greets[counter]} subtitle="Community. Learning. Together." />
-
       <Services />
-      <Initiatives />
-      {/*  <Featured /> */}
+      <Featured cards={cards} />
       <MediaFeed />
     </Layout>
   );
 };
 
 // Page Sections
-
 const Services = () => (
   <section className="pb-20 bg-indigo-100 -mt-24">
     <div className="container mx-auto px-4">
@@ -171,93 +132,21 @@ const Services = () => (
   </section>
 );
 
-const Featured = () => {
-  return (
-    <section id="ingles" className="relative py-48 bg-purple-900">
-      <div
-        className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-        style={{ height: '80px', transform: 'translateZ(0)' }}
-      >
-        <svg
-          className="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
-        >
-          <polygon
-            className="text-purple-900 fill-current"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
-      </div>
-
-      <div className="container mx-auto px-4">
-        <div className="items-center flex flex-wrap">
-          <div className="w-full md:w-6/12 ml-auto mr-auto px-4">
-            <Image
-              alt="..."
-              className="max-w-full rounded-lg shadow-md mb-10"
-              src="/img/english.png"
-              loading="lazy"
-              unsized
-            />
-          </div>
-          <div className="w-full md:w-5/12 ml-auto mr-auto px-4">
-            <div className="md:pr-12">
-              <h3 className="text-3xl md:text-4xl font-extrabold text-white">
-                Prácticas de inglés
-              </h3>
-              <p className="mt-4 text-lg leading-relaxed text-gray-200">
-                Nos reunimos a charlar con el objetivo de perder el miedo a
-                hablar en inglés en público, mejorar la comunicación en inglés
-                partiendo desde el propio nivel, divertirnos, y conectarnos.
-                Podes mirar cuando serán los próximos eventos en nuestra agenda
-              </p>
-              <ul className="mt-6 text-white">
-                <li>• Son encuentros online gratis</li>
-                <li>• No necesitas inscribirte</li>
-                <li>• Sucede dentro nuestro canal de Discord</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-const Initiatives: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  data,
-  preview,
-}) => {
-  const { data: initiatives } = usePreviewSubscription(initiativeQuery, {
-    initialData: data,
-    enabled: preview,
-  });
-  return (
-    <div className="flex flex-col mb-24">
-      <div className="flex flex-col justify-center m-auto mt-20 items-center  text-center lg:w-2/3">
-        <h1 className="lg:text-5xl md:text-4xl text-xl font-extrabold mb-5">
-          ¡Descubre lo que tenemos para ti!
-        </h1>
-        <p className="lg:text-lg text-md w-5/6">
-          En Frontendcafé con la participación de la comunidad creamos
-          diferentes actividades para mejorar nuestras habilidades tanto
-          profesionales como comunidad.
-        </p>
-      </div>
-      <div className="flex flex-col  items-center">
-        {InitiativesData.map((initiative) => (
-          <InitiativeCard key={initiative.title} initiative={initiative} />
-        ))}
-        {/* <InitiativesCarousel initiatives={InitiativesData} /> */}
-      </div>
+const Featured = ({ cards }) => (
+  <div className="flex flex-col mb-24">
+    <div className="flex flex-col justify-center m-auto mt-20 items-center  text-center lg:w-2/3">
+      <h1 className="lg:text-5xl md:text-4xl text-xl font-extrabold mb-5">
+        ¡Descubre lo que tenemos para ti!
+      </h1>
+      <p className="lg:text-lg text-md w-5/6">
+        En Frontendcafé con la participación de la comunidad creamos diferentes
+        actividades para mejorar nuestras habilidades tanto profesionales como
+        comunidad.
+      </p>
     </div>
-  );
-};
+    {<FeaturedCardsCarousel featuredCards={cards} />}
+  </div>
+);
 
 /* const Finisher = () => (
   <section className="pb-20 relative block bg-gray-900">
@@ -404,8 +293,12 @@ const Initiatives: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   </section>
 ); */
 
-export const getStaticProps: GetStaticProps = async ({ preview = false }) => ({
-  props: { preview },
-});
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const cards = await getAllFeaturedCards(preview);
+  return {
+    props: { preview, cards },
+    revalidate: 1,
+  };
+};
 
 export default Index;

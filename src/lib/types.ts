@@ -75,10 +75,10 @@ export interface Doc {
   body: string;
 }
 
-export interface Initiatives {
-  emoji: string;
+export interface FeaturedCards {
+  icon: string;
   title: string;
-  content: string;
+  description: string;
   color: string;
   btnText: string;
   link: string;

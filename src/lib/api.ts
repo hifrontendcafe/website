@@ -8,7 +8,7 @@ import {
   Topic,
   ReactGroup,
   Person,
-  Initiatives,
+  FeaturedCards,
 } from './types';
 import { createSlug } from './helpers';
 import {
@@ -22,7 +22,7 @@ import {
   eventsQuery,
   personQuery,
   reactGroupQuery,
-  initiativeQuery,
+  featuredCardsQuery,
 } from './queries';
 
 const eventFields = `
@@ -150,8 +150,8 @@ export async function getPersonByDiscordId(
   return result.length > 0 && result[0];
 }
 
-export async function getAllInitiatives(
+export async function getAllFeaturedCards(
   preview: boolean = false,
-): Promise<Initiatives[]> {
-  return await getClient(preview).fetch(initiativeQuery);
+): Promise<FeaturedCards[]> {
+  return await getClient(preview).fetch(featuredCardsQuery);
 }

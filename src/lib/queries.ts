@@ -123,10 +123,10 @@ export const reactGroupQuery = groq`
   }
 `;
 
-export const initiativeQuery = groq`
-  *[_type == 'initiative'] {
+export const featuredCardsQuery = groq`
+  *[_type == 'featuredCards'] {
     _id,
-    emoji,
+    icon,
     title,
     description,
     'color': color.hex,

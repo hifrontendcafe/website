@@ -1,6 +1,8 @@
 @media (max-width: 600px) {
   .carousel-container {
     display: flex;
-    flex-direction: column;
+  }
+  .carouselItem{
+
   }
 }

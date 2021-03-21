@@ -2,10 +2,9 @@ import React from 'react';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 
 import 'react-multi-carousel/lib/styles.css';
-import styles from './styles.module.css';
 
-import { Initiatives } from '../../lib/types';
-import InitiativeCard from '../InitiativeCard';
+import { FeaturedCards } from '../../lib/types';
+import FeaturedCard from '../FeaturedCard';
 
 const responsive: ResponsiveType = {
   superLargeDesktop: {
@@ -31,12 +30,12 @@ const responsive: ResponsiveType = {
   },
 };
 
-type InitiativesCarouselProps = {
-  initiatives: Initiatives[];
+type FeaturedCardsCarouselProps = {
+  featuredCards: FeaturedCards[];
 };
 
-const InitiativesCarousel: React.FC<InitiativesCarouselProps> = ({
-  initiatives,
+const FeaturedCardsCarousel: React.FC<FeaturedCardsCarouselProps> = ({
+  featuredCards,
 }) => (
   <Carousel
     swipeable={true}
@@ -53,10 +52,10 @@ const InitiativesCarousel: React.FC<InitiativesCarouselProps> = ({
     itemClass="lg:mr-24 mr-5"
     centerMode={false}
   >
-    {initiatives.map((initiative) => (
-      <InitiativeCard key={initiative.title} initiative={initiative} />
+    {featuredCards.map((card) => (
+      <FeaturedCard key={card.title} card={card} />
     ))}
   </Carousel>
 );
 
-export default InitiativesCarousel;
+export default FeaturedCardsCarousel;
