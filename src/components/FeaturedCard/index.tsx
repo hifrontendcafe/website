@@ -16,7 +16,7 @@ const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
         <div
           className="rounded-sm w-2 h-24 absolute mt-2 mr-4"
           style={{ backgroundColor: card.color }}
-        ></div>
+        />
         <div className="px-5">
           <div className="flex items-center">
             <span
@@ -30,9 +30,7 @@ const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
               {card.title}
             </h1>
           </div>
-          <p className="pt-5 pb-8 lg:text-lg text-base	">
-            {card.description}
-          </p>
+          <p className="pt-5 pb-8 lg:text-lg text-base	">{card.description}</p>
           <button className="w-60 h-14 text-white">
             <Link href={card.link}>
               <a
