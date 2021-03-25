@@ -13,9 +13,9 @@ import GroupInfoModal from '../../components/reactivistas/GroupInfoModal';
 import CreateGroupForm from '../../components/reactivistas/CreateGroupForm';
 import GroupRequirementsModal from '../../components/reactivistas/GroupRequirementsModal';
 
-const ReactGroupPage: React.FC<
-  InferGetStaticPropsType<typeof getStaticProps>
-> = ({ data, preview, settings }) => {
+const ReactGroupPage: React.FC<InferGetStaticPropsType<
+  typeof getStaticProps
+>> = ({ data, preview, settings }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: groups } = usePreviewSubscription(reactGroupQuery, {
@@ -115,7 +115,6 @@ const ReactGroupPage: React.FC<
           <CreateGroupForm />
         </div>
       </div>
-      <button></button>
 
       <GroupRequirementsModal
         open={isModalOpen}
