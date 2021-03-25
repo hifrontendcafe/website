@@ -233,7 +233,6 @@ const CMYKParticipantForm = () => {
           rows={3}
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline placeholder-gray-700"
           name="otherQuestions"
-          required
           ref={register({ required: false })}
         ></textarea>
       </div>
