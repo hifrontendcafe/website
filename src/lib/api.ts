@@ -8,6 +8,7 @@ import {
   Topic,
   ReactGroup,
   Person,
+  CMYKMember,
 } from './types';
 import { createSlug } from './helpers';
 import {
@@ -104,6 +105,13 @@ export async function getAllCMYKProjects(
   preview: boolean = false,
 ): Promise<CMYK[]> {
   return await getClient(preview).fetch(cmykQuery);
+}
+
+export async function createCMYKMember(data: CMYKMember): Promise<CMYKMember> {
+  return await postClient.create({
+    ...data,
+    _type: 'cmykMember',
+  });
 }
 
 export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {

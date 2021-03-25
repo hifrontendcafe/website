@@ -1,5 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getPersonByDiscordId, createPerson, addParticipantToReactGroup } from '../../lib/api';
+import {
+  getPersonByDiscordId,
+  createPerson,
+  addParticipantToReactGroup,
+} from '../../lib/api';
 
 export default async function post(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
@@ -8,12 +12,12 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
 
   if (!user) {
     user = await createPerson({
-      username: { current: body.discordUser },
+      username: body.discordUser,
     });
   }
 
   try {
-    addParticipantToReactGroup(body.id, user._id)
+    addParticipantToReactGroup(body.id, user._id);
   } catch (e) {
     console.error(e);
   }

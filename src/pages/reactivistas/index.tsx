@@ -10,9 +10,9 @@ import { reactGroupQuery } from '../../lib/queries';
 import Hero from '../../components/Hero';
 import Link from 'next/link';
 
-const ReactGroupPage: React.FC<
-  InferGetStaticPropsType<typeof getStaticProps>
-> = ({ data, preview }) => {
+const ReactGroupPage: React.FC<InferGetStaticPropsType<
+  typeof getStaticProps
+>> = ({ data, preview }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: groups } = usePreviewSubscription(reactGroupQuery, {
@@ -142,7 +142,6 @@ const ReactGroupPage: React.FC<
           <ReactGroupForm />
         </div>
       </div>
-      <button></button>
 
       <Modal
         isOpen={isModalOpen}

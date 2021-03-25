@@ -9,10 +9,9 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
 
   let user = await getPersonByDiscordId(body.teamCaptain.id);
-
   if (!user) {
     user = await createPerson({
-      username: { current: body.teamCaptain.id },
+      username: body.teamCaptain.id,
     });
   }
 
@@ -20,6 +19,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
     const reactGroup = await createReactGroup({
       ...body,
       teamCaptain: {
+        _type: 'reference',
         _ref: user._id,
       },
       status: 'draft',

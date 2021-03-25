@@ -45,6 +45,20 @@ export interface CMYK {
   demo: string;
 }
 
+export interface CMYKMember {
+  discordUser: {
+    _type: string;
+    _ref: string;
+  };
+  participationLevel: string;
+  aboutMember: string;
+  previousKnowledge: string;
+  experience: string;
+  timeAvailability: string;
+  otherQuestions: string;
+  status: string;
+}
+
 export interface Topic {
   _id: string;
   title: string;
@@ -76,7 +90,7 @@ export interface Doc {
 }
 
 export interface ReactGroup {
-  _id: string
+  _id: string;
   _type: string;
   name: string;
   slug: {
@@ -85,7 +99,7 @@ export interface ReactGroup {
   topic: string;
   studyMaterial: string;
   teamCaptain: {
-    id: string;
+    _type: string;
     _ref: string;
   };
   participants?: string;
@@ -94,7 +108,6 @@ export interface ReactGroup {
   startDate: string;
   status: string;
 }
-
 export interface Person {
   _id: string;
   username: {
@@ -102,8 +115,10 @@ export interface Person {
   };
   firstName?: string;
   lastName?: string;
+  emai?: string;
   linkedin?: string;
   portfolio?: string;
+  github?: string;
 }
 
 export type Profile = {
