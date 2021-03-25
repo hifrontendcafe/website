@@ -2,7 +2,7 @@ import { NextApiRequest, NextApiResponse } from 'next';
 import {
   getPersonByDiscordId,
   createPerson,
-  createCMYKMember,
+  createCMYKParticipant,
 } from '../../lib/api';
 
 export default async function post(req: NextApiRequest, res: NextApiResponse) {
@@ -16,6 +16,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
         firstName: body.firstName,
         lastName: body.lastName,
         github: body.github,
+        twitter: body.twitter,
         linkedin: body.linkedIn,
       });
     } catch (error) {
@@ -24,13 +25,13 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    const cmykMember = await createCMYKMember({
+    const cmykParticipant = await createCMYKParticipant({
       discordUser: {
         _type: 'reference',
         _ref: user._id,
       },
       participationLevel: body.participationLevel,
-      aboutMember: body.aboutMember,
+      aboutParticipant: body.aboutParticipant,
       experience: body.experience,
       otherQuestions: body.otherQuestions,
       previousKnowledge: body.previousKnowledge,
@@ -38,7 +39,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
       status: 'revision',
     });
 
-    res.status(200).json(cmykMember);
+    res.status(200).json(cmykParticipant);
   } catch (e) {
     res.status(500);
   }

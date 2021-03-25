@@ -8,7 +8,7 @@ import {
   Topic,
   ReactGroup,
   Person,
-  CMYKMember,
+  CMYKParticipant,
 } from './types';
 import { createSlug } from './helpers';
 import {
@@ -107,10 +107,12 @@ export async function getAllCMYKProjects(
   return await getClient(preview).fetch(cmykQuery);
 }
 
-export async function createCMYKMember(data: CMYKMember): Promise<CMYKMember> {
+export async function createCMYKParticipant(
+  data: CMYKParticipant,
+): Promise<CMYKParticipant> {
   return await postClient.create({
     ...data,
-    _type: 'cmykMember',
+    _type: 'cmykParticipant',
   });
 }
 
@@ -122,16 +124,20 @@ export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
   });
 }
 
-export async function addParticipantToReactGroup(reactGroupId: string, userId: string): Promise<Person> {
-  return await postClient.patch(reactGroupId)
-  .setIfMissing({ participants: [] })
-  .insert('after', 'participants[-1]', [
-    {
-      _key: userId,
-      _ref: userId,
-    },
-  ])
-  .commit();
+export async function addParticipantToReactGroup(
+  reactGroupId: string,
+  userId: string,
+): Promise<Person> {
+  return await postClient
+    .patch(reactGroupId)
+    .setIfMissing({ participants: [] })
+    .insert('after', 'participants[-1]', [
+      {
+        _key: userId,
+        _ref: userId,
+      },
+    ])
+    .commit();
 }
 
 export async function getApprovedReactGroups(
@@ -195,8 +201,10 @@ export function getProfileBySlug(slug: string, fields: string[] = []) {
 
 export function getAllProfiles(fields: string[] = []) {
   const slugs = getProfileSlugs();
-  return slugs
-    .map((slug) => getProfileBySlug(slug, fields))
-    // sort profiles by name
-    .sort((profile1, profile2) => (profile1.name > profile2.name ? -1 : 1));
+  return (
+    slugs
+      .map((slug) => getProfileBySlug(slug, fields))
+      // sort profiles by name
+      .sort((profile1, profile2) => (profile1.name > profile2.name ? -1 : 1))
+  );
 }

@@ -45,13 +45,13 @@ export interface CMYK {
   demo: string;
 }
 
-export interface CMYKMember {
+export interface CMYKParticipant {
   discordUser: {
     _type: string;
     _ref: string;
   };
   participationLevel: string;
-  aboutMember: string;
+  aboutParticipant: string;
   previousKnowledge: string;
   experience: string;
   timeAvailability: string;
