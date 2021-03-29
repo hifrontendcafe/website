@@ -17,8 +17,11 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
   }
 
   try {
-    addParticipantToReactGroup(body.id, user._id);
+    await addParticipantToReactGroup(body.id, user._id);
+
+    res.status(200).json({});
   } catch (e) {
     console.error(e);
+    res.status(500);
   }
 }
