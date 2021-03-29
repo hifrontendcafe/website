@@ -122,3 +122,15 @@ export const reactGroupQuery = groq`
     slug
   }
 `;
+
+export const featuredCardsQuery = groq`
+  *[_type == 'featuredCards'] {
+    _id,
+    icon,
+    title,
+    description,
+    'color': color.hex,
+    link,
+    btnText
+  }
+  `;

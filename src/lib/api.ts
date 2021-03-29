@@ -9,6 +9,7 @@ import {
   ReactGroup,
   Person,
   CMYKParticipant,
+  FeaturedCards,
 } from './types';
 import { createSlug } from './helpers';
 import {
@@ -22,6 +23,7 @@ import {
   eventsQuery,
   personQuery,
   reactGroupQuery,
+  featuredCardsQuery,
 } from './queries';
 import fs from 'fs';
 import { join } from 'path';
@@ -159,6 +161,12 @@ export async function getPersonByDiscordId(
 ): Promise<Person> {
   const result = await getClient(preview).fetch(personQuery, { id });
   return result.length > 0 && result[0];
+}
+
+export async function getAllFeaturedCards(
+  preview: boolean = false,
+): Promise<FeaturedCards[]> {
+  return await getClient(preview).fetch(featuredCardsQuery);
 }
 
 const profilesDirectory = join(process.cwd(), 'src/_profiles');
