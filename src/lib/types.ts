@@ -113,3 +113,20 @@ export interface Person {
   linkedin?: string;
   portfolio?: string;
 }
+
+export type Profile = {
+  slug: string;
+  name: string;
+  coverImage: string;
+  role: string;
+  email: string;
+  availableForWork: boolean;
+  socialMedia: {
+    [name: string]: string;
+  };
+  ogImage: {
+    url: string;
+  };
+  content: string;
+  stack: string[];
+};
