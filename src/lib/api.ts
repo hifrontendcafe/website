@@ -8,6 +8,7 @@ import {
   Topic,
   ReactGroup,
   Person,
+  FeaturedCards,
 } from './types';
 import { createSlug } from './helpers';
 import {
@@ -21,6 +22,7 @@ import {
   eventsQuery,
   personQuery,
   reactGroupQuery,
+  featuredCardsQuery,
 } from './queries';
 import fs from 'fs';
 import { join } from 'path';
@@ -114,16 +116,20 @@ export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
   });
 }
 
-export async function addParticipantToReactGroup(reactGroupId: string, userId: string): Promise<Person> {
-  return await postClient.patch(reactGroupId)
-  .setIfMissing({ participants: [] })
-  .insert('after', 'participants[-1]', [
-    {
-      _key: userId,
-      _ref: userId,
-    },
-  ])
-  .commit();
+export async function addParticipantToReactGroup(
+  reactGroupId: string,
+  userId: string,
+): Promise<Person> {
+  return await postClient
+    .patch(reactGroupId)
+    .setIfMissing({ participants: [] })
+    .insert('after', 'participants[-1]', [
+      {
+        _key: userId,
+        _ref: userId,
+      },
+    ])
+    .commit();
 }
 
 export async function getApprovedReactGroups(
@@ -145,6 +151,12 @@ export async function getPersonByDiscordId(
 ): Promise<Person> {
   const result = await getClient(preview).fetch(personQuery, { id });
   return result.length > 0 && result[0];
+}
+
+export async function getAllFeaturedCards(
+  preview: boolean = false,
+): Promise<FeaturedCards[]> {
+  return await getClient(preview).fetch(featuredCardsQuery);
 }
 
 const profilesDirectory = join(process.cwd(), 'src/_profiles');
@@ -187,8 +199,10 @@ export function getProfileBySlug(slug: string, fields: string[] = []) {
 
 export function getAllProfiles(fields: string[] = []) {
   const slugs = getProfileSlugs();
-  return slugs
-    .map((slug) => getProfileBySlug(slug, fields))
-    // sort profiles by name
-    .sort((profile1, profile2) => (profile1.name > profile2.name ? -1 : 1));
+  return (
+    slugs
+      .map((slug) => getProfileBySlug(slug, fields))
+      // sort profiles by name
+      .sort((profile1, profile2) => (profile1.name > profile2.name ? -1 : 1))
+  );
 }

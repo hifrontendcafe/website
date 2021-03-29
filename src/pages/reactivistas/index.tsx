@@ -10,9 +10,9 @@ import { reactGroupQuery } from '../../lib/queries';
 import Hero from '../../components/Hero';
 import Link from 'next/link';
 
-const ReactGroupPage: React.FC<
-  InferGetStaticPropsType<typeof getStaticProps>
-> = ({ data, preview }) => {
+const ReactGroupPage: React.FC<InferGetStaticPropsType<
+  typeof getStaticProps
+>> = ({ data, preview }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: groups } = usePreviewSubscription(reactGroupQuery, {
@@ -48,10 +48,10 @@ const ReactGroupPage: React.FC<
   return (
     <Layout title="Iniciativas">
       <Hero small title="Reactivistas" />
-      <div className="pb-24 bg-indigo-100 sm:pt-10">
+      <div className="pb-24 bg-indigo-100 sm:pt-10 lg:mt-0 mt-24">
         <Link href="/docs/guia-reactivistas">
           <a
-            className="flex justify-center mx-10 text-white bg-primary border-0 py-2 px-6
+            className="flex justify-center mx-10 text-white text-center bg-primary border-0 py-2  px-6
             focus:outline-none hover:bg-primarydark rounded text-lg font-bold"
           >
             ¿De qué se trata Reactivistas?
@@ -61,14 +61,14 @@ const ReactGroupPage: React.FC<
           <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
             Sumate a los grupos que están comenzando
           </h1>
-          <div className="flex flex-wrap m-10">
+          <div className="flex flex-wrap md:m-10 m-2">
             {groups.map((group: ReactGroup) => {
               const [discordUser, setDiscordUser] = useState('');
 
               return (
                 <div
                   key={group.name}
-                  className="flex flex-col flex-auto shadow-md m-5 p-10"
+                  className="flex flex-col flex-auto shadow-md md:mx-5 mx-1 my-5 md:p-10 p-5"
                 >
                   <h3 className="font-medium leading-7 text-lg text-primary mb-5 sm:leading-9 sm:truncate">
                     ⚛ {group.name}

@@ -75,8 +75,16 @@ export interface Doc {
   body: string;
 }
 
+export interface FeaturedCards {
+  icon: string;
+  title: string;
+  description: string;
+  color: string;
+  btnText: string;
+  link: string;
+}
 export interface ReactGroup {
-  _id: string
+  _id: string;
   _type: string;
   name: string;
   slug: {
