@@ -1,5 +1,17 @@
 import { groq } from 'next-sanity';
 
+export const settingsQuery = groq`
+  *[_type == "settings"][0]{
+    title,
+    description,
+    menu,
+    logo,
+    heroBackground,
+    heroWords,
+    socialnetworks
+  }
+`;
+
 export const eventsQuery = groq`
   *[_type == "event"] | order(date desc) {
     title,

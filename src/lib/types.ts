@@ -1,3 +1,29 @@
+export interface Settings {
+  description: string;
+  heroBackground: HeroBackground;
+  heroWords: string[];
+  logo: HeroBackground;
+  menu: string[];
+  socialnetworks: {
+    github: string;
+    linkedin: string;
+    twitch: string;
+    twitter: string;
+    youtube: string;
+  };
+  title: string;
+}
+
+export interface HeroBackground {
+  _type: string;
+  asset: Asset;
+}
+
+export interface Asset {
+  _ref: string;
+  _type: string;
+}
+
 export interface Event {
   title: string;
   slug: string;
@@ -76,7 +102,7 @@ export interface Doc {
 }
 
 export interface ReactGroup {
-  _id: string
+  _id: string;
   _type: string;
   name: string;
   slug: {

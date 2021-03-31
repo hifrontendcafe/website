@@ -21,6 +21,7 @@ import {
   eventsQuery,
   personQuery,
   reactGroupQuery,
+  settingsQuery,
 } from './queries';
 
 const eventFields = `
@@ -43,6 +44,10 @@ const getClient = (preview: boolean = false) =>
 
 export async function getAllEvents(preview: boolean = false): Promise<Event[]> {
   return await getClient(preview).fetch(eventsQuery);
+}
+
+export async function getSettings(preview: boolean = false): Promise<Post> {
+  return await getClient(preview).fetch(settingsQuery);
 }
 
 export async function getAllAPIEvents(
