@@ -15,10 +15,10 @@ const CMYKItem: React.FC<CMYKItemProps> = ({ project }) => {
         backgroundImage: `url(${project.image.src})`,
       }}
     >
-      <div
+      {/* <div
         className="absolute opacity-25 w-full h-full top-0 left-0 bg-black z-0"
         style={{ backgroundColor: project.color }}
-      ></div>
+      ></div> */}
       <div className="mb-24 w-full z-20">
         <h2 className="text-3xl md:text-4xl font-bold my-2">{project.name}</h2>
         <p className="my-2 text-lg">{project.description}</p>
