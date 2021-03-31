@@ -1,29 +1,29 @@
 import Link from 'next/link';
 import { useRef } from 'react';
+import { imageBuilder } from '../../lib/sanity';
+import { Image } from '../../lib/types';
 
 interface HeaderProps {
   preview: boolean;
+  menu: Array<string>;
+  logo: Image;
 }
 
-const Header: React.FC<HeaderProps> = ({ preview }) => {
+const Header: React.FC<HeaderProps> = ({ preview, menu, logo }) => {
   const menuBtn = useRef(null);
-  const menu = useRef(null);
+  const menuDOM = useRef(null);
+  const logoIMG = imageBuilder.image(logo).url();
 
   function menuHandler() {
     menuBtn.current.classList.toggle('open');
-    menu.current.classList.toggle('flex');
-    menu.current.classList.toggle('hidden');
+    menuDOM.current.classList.toggle('flex');
+    menuDOM.current.classList.toggle('hidden');
   }
 
-  const navItems = [
-    { title: 'Eventos', link: '/eventos' },
-    { title: 'Mentorías', link: '/mentorias' },
-    { title: 'Proyectos', link: '/cmyk' },
-  ];
-
-  if (process.env.NEXT_PUBLIC_REACTIVISTAS) {
-    navItems.push({ title: 'Reactivistas', link: '/reactivistas' });
-  }
+  const navItems = menu.map((item) => {
+    const [title, link] = item.split('/');
+    return { title, link };
+  });
 
   return (
     <header
@@ -39,8 +39,8 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
           <Link href="/">
             <a className="flex items-center text-gray-900 title-font">
               <img
-                src="/logo.svg"
-                className="w-16 h-16 p-2 text-white rounded-full"
+                src={logoIMG}
+                className="h-16 p-2 text-white rounded-full"
                 alt="Logo FrontendCafe"
               />
             </a>

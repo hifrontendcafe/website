@@ -1,20 +1,24 @@
-import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
+import { imageBuilder } from '../../lib/sanity';
+import { HeroBackground } from '../../lib/types';
 
 interface HeroProps {
   title?: string;
+  background?: HeroBackground;
 }
 
-const Hero: React.FC<HeroProps> = ({ title }) => {
+const Hero: React.FC<HeroProps> = ({ title, background }) => {
+  const bg = imageBuilder.image(background).width(1280).url();
   return (
-    <div className="bg-white">
+    <div style={{}} className="bg-white">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         exit={{ opacity: 0, y: -50 }}
-        style={{ height: '500px' }}
-        className="container mx-auto flex justify-around items-center"
+        style={{ height: '500px', backgroundImage: `url('${bg}')` }}
+        className="container mx-auto flex justify-around items-center bg-cover bg-center"
       >
         <div>
           <div className="relative text-4xl font-bold ">

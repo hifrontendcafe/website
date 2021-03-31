@@ -1,8 +1,8 @@
 export interface Settings {
   description: string;
-  heroBackground: HeroBackground;
+  heroBackground: Image;
   heroWords: string[];
-  logo: HeroBackground;
+  logo: Image;
   menu: string[];
   socialnetworks: {
     github: string;
@@ -14,7 +14,7 @@ export interface Settings {
   title: string;
 }
 
-export interface HeroBackground {
+export interface Image {
   _type: string;
   asset: Asset;
 }
