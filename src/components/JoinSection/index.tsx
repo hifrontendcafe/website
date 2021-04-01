@@ -1,17 +1,11 @@
 import React from 'react';
 
 const JoinSection: React.FC = () => (
-  <section className="flex flex-col items-center justify-center gap-5 text-center my-32">
-    <p className="font-semibold">
-      <span className="relative text-3xl">
-        ¿Estás listo para unirte?
-        <img
-          className="inline w-8 h-8 absolute"
-          src="/icons/hearth.svg"
-          style={{ right: -40 }}
-        />
-      </span>
-    </p>
+  <section className="flex flex-col items-center justify-center gap-5 text-center my-24 md:my-32 container mx-auto">
+    <span className="inline-flex gap-2 items-center relative text-2xl md:text-3xl font-semibold">
+      ¿Estás listo para unirte?
+      <img className="w-8 h-8" src="/icons/hearth.svg" />
+    </span>
     <a
       target="_blank"
       href="https://discord.gg/frontendcafe"
