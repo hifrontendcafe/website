@@ -89,7 +89,7 @@ const Services = () => (
             </div>
           </div>
         </Link>
-        <Link href="#ingles">
+        <Link href="/ingles">
           <div className="pt-6 w-full md:w-4/12 px-4 text-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer">
             <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-8 shadow-lg rounded-lg">
               <div className="flex items-center flex-col px-4 py-5 flex-auto">

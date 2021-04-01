@@ -18,6 +18,24 @@ export const eventsQuery = groq`
   }
 `;
 
+export const eventsQueryByType = groq`
+  *[_type == "event" && category->name == $categoryFilter && dateTime(now()) < dateTime(date)] | order(date asc) {
+    title,
+    'slug': slug.current,
+    'category': {
+      'name': category->name,
+    },
+    'cover': {
+      'alt': cover.alt,
+      'src': cover.asset->url
+    },
+    date,
+    tags,
+    recording,
+    description
+  }[0]
+`;
+
 export const postQuery = groq`
   *[_type == "post" && slug.current == $slug][0]{
     name,

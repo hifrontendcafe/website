@@ -20,6 +20,7 @@ import {
   docsQuery,
   docQuery,
   eventsQuery,
+  eventsQueryByType,
   personQuery,
   reactGroupQuery,
   featuredCardsQuery,
@@ -48,6 +49,13 @@ const getClient = (preview: boolean = false) =>
 
 export async function getAllEvents(preview: boolean = false): Promise<Event[]> {
   return await getClient(preview).fetch(eventsQuery);
+}
+
+export async function getLatestEventByCategory(
+  preview: boolean = false,
+  categoryFilter: string,
+): Promise<Event> {
+  return await getClient(preview).fetch(eventsQueryByType, { categoryFilter });
 }
 
 export async function getAllAPIEvents(
