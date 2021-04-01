@@ -28,7 +28,7 @@ const EventsPage: React.FC<EventsPageProps> = ({ data, preview, settings }) => {
       preview={preview}
       settings={settings}
     >
-      <Hero background={settings.heroBackground} title="Eventos" />
+      <Hero background={settings?.heroBackground} title="Eventos" />
       <EventList events={events} />
     </Layout>
   );

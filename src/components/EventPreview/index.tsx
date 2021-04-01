@@ -16,11 +16,11 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
 
   function toPlainText(blocks) {
     return blocks
-      .map((block) => {
+      ?.map((block) => {
         if (block._type !== 'block' || !block.children) {
           return '';
         }
-        return block.children.map((child) => child.text).join('');
+        return block.children?.map((child) => child.text).join('');
       })
       .join('\n\n');
   }

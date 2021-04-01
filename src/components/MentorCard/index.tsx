@@ -91,7 +91,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
             </span>
             <div className="flex flex-wrap my-3 justify-center md:justify-start">
               {mentor.topics &&
-                mentor.topics.map((topic) => (
+                mentor.topics?.map((topic) => (
                   <TopicBadge
                     key={topic._key}
                     topic={findTopicsName(topic._ref)}

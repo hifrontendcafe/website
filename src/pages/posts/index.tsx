@@ -28,7 +28,7 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview, settings }) => {
       preview={preview}
       settings={settings}
     >
-      <Hero title="Entradas" background={settings.heroBackground} />
+      <Hero title="Entradas" background={settings?.heroBackground} />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
           <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
@@ -43,7 +43,7 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview, settings }) => {
           </div>
           <div className="px-6 py-5 text-gray-700">
             <ul className="text-lg">
-              {posts.map(({ title, slug, excerpt }) => (
+              {posts?.map(({ title, slug, excerpt }) => (
                 <li className="hover:text-teal-400 list-none" key={title}>
                   <Link href={`/posts/${slug.current}`}>
                     <a>

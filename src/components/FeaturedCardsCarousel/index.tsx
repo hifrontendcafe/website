@@ -38,7 +38,7 @@ const FeaturedCardsCarousel: React.FC<FeaturedCardsCarouselProps> = ({
     containerClass="carousel-container"
     removeArrowOnDeviceType={['tablet', 'mobile']}
   >
-    {featuredCards.map((card) => (
+    {featuredCards?.map((card) => (
       <FeaturedCard key={card.title} card={card} />
     ))}
   </Carousel>

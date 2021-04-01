@@ -28,7 +28,7 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview, settings }) => {
       preview={preview}
       settings={settings}
     >
-      <Hero title="Docs" background={settings.heroBackground} />
+      <Hero title="Docs" background={settings?.heroBackground} />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
           <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
@@ -43,7 +43,7 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview, settings }) => {
           </div>
           <div className="px-12 py-5 text-gray-700">
             <ul className="text-lg">
-              {docs.map(({ title, slug }) => (
+              {docs?.map(({ title, slug }) => (
                 <li className="hover:text-teal-400" key={slug}>
                   <Link href="/docs/[slug]" as={`/docs/${slug}`}>
                     <a>{title}</a>

@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ preview, menu, logo }) => {
     menuDOM.current.classList.toggle('hidden');
   }
 
-  const navItems = menu.map((item) => {
+  const navItems = menu?.map((item) => {
     const [title, link] = item.split('/');
     return { title, link };
   });
@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ preview, menu, logo }) => {
           ref={menuDOM}
           className="flex-col items-center self-end hidden w-full h-full py-1 pb-4 md:w-auto md:self-center md:flex md:flex-row md:py-0 md:pb-0"
         >
-          {navItems.map((item) => (
+          {navItems?.map((item) => (
             <Link href={item.link} key={item.link}>
               <a className="w-full md:w-auto text-center px-6 py-2 text-gray-600 hover:text-gray-800 font-medium">
                 {item.title}

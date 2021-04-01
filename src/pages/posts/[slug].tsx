@@ -35,7 +35,7 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview, settings }) => {
 
   return (
     <Layout title={post.title} preview={preview} settings={settings}>
-      <Hero title="Posts" background={settings.heroBackground} />
+      <Hero title="Posts" background={settings?.heroBackground} />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
           <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
@@ -81,7 +81,7 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview, settings }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const slugs = await getAllPostsSlugs();
 
-  const paths = slugs.map((slug) => ({
+  const paths = slugs?.map((slug) => ({
     params: { slug },
   }));
 
