@@ -51,55 +51,15 @@ const Index: React.FC<IndexProps> = ({ preview = false, settings, cards }) => {
         title={settings.heroWords[counter]}
       />
 
-      <Services />
+      <div className="bg-indigo-100 p-1">
+        <AboutSection description={settings.description} />
+      </div>
       <Featured cards={cards} />
       <MediaFeed />
       <JoinSection />
     </Layout>
   );
 };
-
-// Page Sections
-const Services = () => (
-  <section className="pb-20 pt-12">
-    <div className="container mx-auto px-4">
-      <div className="flex flex-wrap items-center mt-24 mb-12">
-        <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-16">
-          <h3 className="text-3xl md:text-4xl mb-2 font-bold leading-normal text-primary">
-            ¿Quienes somos?
-          </h3>
-          <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
-            Somos una comunidad de personas interesadas en tecnología y ciencias
-            informáticas en donde charlamos sobre lenguajes de programación,
-            diseño web, infraestructura, compartimos dudas, preguntamos y
-            respondemos.
-          </p>
-          <p className="text-lg font-light leading-relaxed mt-0 mb-12  text-gray-700">
-            Todo pasa adentro de un canal de Discord...
-          </p>
-          <Link href="/docs/manual-de-uso-de-fec">
-            <a
-              className="btn btn-secondary"
-              style={{ transition: 'all .15s ease' }}
-            >
-              Manual de uso de FEC
-            </a>
-          </Link>
-        </div>
-
-        <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
-          <iframe
-            className="w-full md:max-w-sm lg:min-w-0 sm:min-w-full"
-            src="https://discordapp.com/widget?id=594363964499165194&theme=dark"
-            height="400"
-            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"
-          ></iframe>
-        </div>
-      </div>
-    </div>
-    <AboutSection />
-  </section>
-);
 
 const Featured = ({ cards }) => (
   <div className="flex flex-col mb-24">
@@ -113,7 +73,7 @@ const Featured = ({ cards }) => (
         comunidad.
       </p>
     </div>
-    {<FeaturedCardsCarousel featuredCards={cards} />}
+    <FeaturedCardsCarousel featuredCards={cards} />
   </div>
 );
 

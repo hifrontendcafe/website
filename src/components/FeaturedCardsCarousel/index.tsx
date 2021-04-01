@@ -7,13 +7,9 @@ import FeaturedCard from '../FeaturedCard';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 
 const responsive: ResponsiveType = {
-  superLargeDesktop: {
-    breakpoint: { max: 4000, min: 3000 },
-    items: 3,
-  },
   largeDesktop: {
     breakpoint: { max: 3000, min: 1600 },
-    items: 3,
+    items: 2,
   },
   desktop: {
     breakpoint: { max: 1600, min: 1024 },
@@ -44,7 +40,7 @@ const FeaturedCardsCarousel: React.FC<FeaturedCardsCarouselProps> = ({
     arrows={false}
     keyBoardControl
     showDots={false}
-    centerMode={false}
+    centerMode={true}
     responsive={responsive}
     transitionDuration={700}
     containerClass="carousel-container"

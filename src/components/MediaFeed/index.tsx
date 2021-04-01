@@ -2,10 +2,7 @@ import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
 const MediaFeed: React.FC = () => {
   return (
-    <section
-      id="comunidad"
-      className="relative w-full bg-white min-h-screen pb-24"
-    >
+    <section id="comunidad" className="relative w-full bg-white min-h-screen">
       <div
         className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
         style={{ height: '80px', transform: 'translateZ(0)' }}
@@ -33,7 +30,7 @@ const MediaFeed: React.FC = () => {
           <TwitterTimelineEmbed
             sourceType="url"
             url="https://twitter.com/frontendcafe"
-            options={{ height: 1000, tweetLimit: 3 }}
+            options={{ height: 1000, tweetLimit: 2 }}
             placeholder={<SkeletonTwitterCard />}
             noHeader
             transparent
@@ -43,7 +40,7 @@ const MediaFeed: React.FC = () => {
           <TwitterTimelineEmbed
             sourceType="url"
             url="https://twitter.com/frontendcafe/likes"
-            options={{ height: 1000, tweetLimit: 4 }}
+            options={{ height: 1000, tweetLimit: 2 }}
             placeholder={<SkeletonTwitterCard />}
             noHeader
             transparent
