@@ -33,8 +33,7 @@ const Index: React.FC<IndexProps> = ({ preview = false, settings }) => {
     <Layout
       title="Home"
       description={settings.description}
-      menu={settings.menu}
-      logo={settings.logo}
+      settings={settings}
       preview={preview}
     >
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}

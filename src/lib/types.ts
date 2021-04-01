@@ -4,14 +4,16 @@ export interface Settings {
   heroWords: string[];
   logo: Image;
   menu: string[];
-  socialnetworks: {
-    github: string;
-    linkedin: string;
-    twitch: string;
-    twitter: string;
-    youtube: string;
-  };
+  socialnetworks: SocialNetworks;
   title: string;
+}
+
+export interface SocialNetworks {
+  github: string;
+  linkedin: string;
+  twitch: string;
+  twitter: string;
+  youtube: string;
 }
 
 export interface Image {

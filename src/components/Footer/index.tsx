@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styles from './styles.module.css';
 import {
   faGithubAlt,
@@ -7,10 +8,16 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { SocialNetworks } from '../../lib/types';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  socialnetworks: SocialNetworks;
+}
+
+const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
+  const { github, linkedin, twitch, twitter, youtube } = socialnetworks;
+
   return (
     <footer className="relative bg-gray-800">
       <img
@@ -43,50 +50,60 @@ const Footer: React.FC = () => {
               Buscanos en nuestras redes
             </h4>
             <div className="flex space-x-1 mt-6 justify-center md:justify-start">
-              <Link href="https://twitter.com/FrontEndCafe">
-                <a
-                  target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-blue-500 hover:bg-gray-200"
-                >
-                  <FontAwesomeIcon icon={faTwitter} size="lg" />
-                </a>
-              </Link>
+              {twitter && (
+                <Link href={twitter}>
+                  <a
+                    target="_blank"
+                    className="grid place-items-center h-10 w-10 rounded-full bg-white text-blue-500 hover:bg-gray-200"
+                  >
+                    <FontAwesomeIcon icon={faTwitter} size="lg" />
+                  </a>
+                </Link>
+              )}
 
-              <Link href="http://github.com/frontend-cafe">
-                <a
-                  target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-gray-900 hover:bg-gray-200"
-                >
-                  <FontAwesomeIcon icon={faGithubAlt} size="lg" />
-                </a>
-              </Link>
+              {github && (
+                <Link href={github}>
+                  <a
+                    target="_blank"
+                    className="grid place-items-center h-10 w-10 rounded-full bg-white text-gray-900 hover:bg-gray-200"
+                  >
+                    <FontAwesomeIcon icon={faGithubAlt} size="lg" />
+                  </a>
+                </Link>
+              )}
 
-              <Link href="https://www.youtube.com/channel/UCUdXQMrVjrMMWG5NOZFpHqQ">
-                <a
-                  target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-red-700 hover:bg-gray-200"
-                >
-                  <FontAwesomeIcon icon={faYoutube} size="lg" />
-                </a>
-              </Link>
+              {youtube && (
+                <Link href={youtube}>
+                  <a
+                    target="_blank"
+                    className="grid place-items-center h-10 w-10 rounded-full bg-white text-red-700 hover:bg-gray-200"
+                  >
+                    <FontAwesomeIcon icon={faYoutube} size="lg" />
+                  </a>
+                </Link>
+              )}
 
-              <Link href="https://www.linkedin.com/company/frontendcafe/">
-                <a
-                  target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-blue-700 hover:bg-gray-200"
-                >
-                  <FontAwesomeIcon icon={faLinkedin} size="lg" />
-                </a>
-              </Link>
+              {linkedin && (
+                <Link href={linkedin}>
+                  <a
+                    target="_blank"
+                    className="grid place-items-center h-10 w-10 rounded-full bg-white text-blue-700 hover:bg-gray-200"
+                  >
+                    <FontAwesomeIcon icon={faLinkedin} size="lg" />
+                  </a>
+                </Link>
+              )}
 
-              <Link href="https://www.twitch.tv/frontendcafe">
-                <a
-                  target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-purple-700 hover:bg-gray-200"
-                >
-                  <FontAwesomeIcon icon={faTwitch} size="lg" />
-                </a>
-              </Link>
+              {twitch && (
+                <Link href={twitch}>
+                  <a
+                    target="_blank"
+                    className="grid place-items-center h-10 w-10 rounded-full bg-white text-purple-700 hover:bg-gray-200"
+                  >
+                    <FontAwesomeIcon icon={faTwitch} size="lg" />
+                  </a>
+                </Link>
+              )}
             </div>
           </div>
           {/*           <div className="w-full lg:w-6/12 px-4 py-5 md:py-0">
