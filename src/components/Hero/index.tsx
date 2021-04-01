@@ -77,7 +77,7 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
             </a>
           </Link>
         </div>
-        <div className="grid grid-cols-2	grid-rows-3 gap-10">
+        <div className="hidden md:grid md:grid-cols-2 md:grid-rows-3 md:gap-10">
           <div className="row-start-1 col-start-2">
             <CounterSquare big="+10" text="Proyectos" />
           </div>

@@ -7,17 +7,9 @@ import FeaturedCard from '../FeaturedCard';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 
 const responsive: ResponsiveType = {
-  largeDesktop: {
-    breakpoint: { max: 3000, min: 1600 },
-    items: 2,
-  },
   desktop: {
-    breakpoint: { max: 1600, min: 1024 },
+    breakpoint: { max: 3000, min: 1024 },
     items: 2,
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 600 },
-    items: 1,
   },
   mobile: {
     breakpoint: { max: 600, min: 0 },

@@ -73,6 +73,7 @@ const Featured = ({ cards }) => (
         comunidad.
       </p>
     </div>
+    |
     <FeaturedCardsCarousel featuredCards={cards} />
   </div>
 );

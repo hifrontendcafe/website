@@ -29,19 +29,20 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
 
   return (
     <footer className="bg-black">
-      <div className="flex justify-between container mx-auto py-16 text-white">
-        <div className="flex flex-col gap-5">
+      <div className="flex flex-col-reverse gap-12 md:gap-0 md:flex-row justify-center md:justify-between container mx-auto py-16 text-white">
+        <div className="flex flex-col gap-5 text-center">
           <img
             src="/logo-square.png"
-            className="md:h-12 md:w-12 h-10 w-10 rounded-full"
+            className="hidden md:block md:h-12 md:w-12 h-10 w-10 rounded-full"
           />
-          <div className="grid grid-cols-2 gap-y-2 gap-x-5 font-medium w-full md:pb-3 pb-8">
+          <div className="grid justify-center md:grid-cols-2 gap-y-2 gap-x-5 font-medium w-full md:pb-3 pb-8">
             {navItems.map(({ link, title }) => (
               <Link href={link} key={link}>
                 <a>{title}</a>
               </Link>
             ))}
           </div>
+
           <p className="font-light">© FrontendCafé {currentYear}</p>
         </div>
 
