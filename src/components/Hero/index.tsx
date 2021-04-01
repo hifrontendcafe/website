@@ -85,12 +85,12 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
             <CounterSquare
               color="bg-orange-500"
               bgColor="bg-orange-400"
-              big="+7K"
+              big="+8K"
               text="Miembros"
             />
           </div>
           <div className="row-start-3 col-start-2">
-            <CounterSquare big="+15M" text="Mensajes" />
+            <CounterSquare big="+20M" text="Mensajes" />
           </div>
         </div>
       </motion.div>
