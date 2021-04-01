@@ -1,144 +1,111 @@
+import Link from 'next/link';
 import styles from './styles.module.css';
 import {
+  faTwitter,
   faGithubAlt,
   faLinkedin,
   faTwitch,
-  faTwitter,
   faYoutube,
+  faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import { SocialNetworks } from '../../lib/types';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  socialnetworks: SocialNetworks;
+}
+
+const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
+  const { github, linkedin, twitch, twitter, youtube } = socialnetworks;
+
+  const navItems = [
+    { title: 'Unirse a Discord', link: 'https://discord.com/invite/3GC6TJd' },
+    { title: 'Proyectos CMYK', link: '/cmyk' },
+    { title: 'Mentorías', link: '/mentorias' },
+    { title: 'Prácticas de Ingles', link: '/ingles' },
+  ];
+
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative bg-gray-800">
-      <img
-        className={`absolute w-20 ${styles.impostor}`}
-        src="/img/impostor.png"
-      />
-      <div
-        className="bottom-auto top-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden -mt-20"
-        style={{ height: '80px', transform: 'translateZ(0)' }}
-      >
-        <svg
-          className="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
-        >
-          <polygon
-            className="text-gray-800 fill-current"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
-      </div>
-      <div className="container mx-auto px-4 p-8 pb-6">
-        <div className="flex flex-wrap">
-          <div className="w-full lg:w-6/12 px-4 text-center md:text-left">
-            <h4 className="text-2xl font-semibold text-white">
-              Buscanos en nuestras redes
-            </h4>
-            <div className="flex space-x-1 mt-6 justify-center md:justify-start">
-              <Link href="https://twitter.com/FrontEndCafe">
+    <footer className="bg-black">
+      <div className="flex flex-col-reverse gap-12 md:gap-0 md:flex-row justify-center md:justify-between container mx-auto py-16 text-white">
+        <div className="flex flex-col gap-5 text-center">
+          <img
+            src="/logo-square.png"
+            className="hidden md:block md:h-12 md:w-12 h-10 w-10 rounded-full"
+          />
+          <div className="grid justify-center md:grid-cols-2 gap-y-2 gap-x-5 font-medium w-full md:pb-3 pb-8">
+            {navItems.map(({ link, title }) => (
+              <Link href={link} key={link}>
+                <a>{title}</a>
+              </Link>
+            ))}
+          </div>
+
+          <p className="font-light">© FrontendCafé {currentYear}</p>
+        </div>
+
+        <div className="flex flex-col justify-center md:w-1/4">
+          <p className="w-auto md:text-left text-center font-medium">
+            Encuentranos en
+          </p>
+          <div className="flex justify-center md:justify-start">
+            {twitter && (
+              <Link href={twitter}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-blue-500 hover:bg-gray-200"
+                  className="grid place-items-center h-12 w-12 rounded-full"
                 >
                   <FontAwesomeIcon icon={faTwitter} size="lg" />
                 </a>
               </Link>
+            )}
 
-              <Link href="http://github.com/frontend-cafe">
+            {github && (
+              <Link href={github}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-gray-900 hover:bg-gray-200"
+                  className="grid place-items-center h-12 w-12 rounded-full"
                 >
                   <FontAwesomeIcon icon={faGithubAlt} size="lg" />
                 </a>
               </Link>
+            )}
 
-              <Link href="https://www.youtube.com/channel/UCUdXQMrVjrMMWG5NOZFpHqQ">
+            {youtube && (
+              <Link href={youtube}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-red-700 hover:bg-gray-200"
+                  className="grid place-items-center h-12 w-12 rounded-full"
                 >
                   <FontAwesomeIcon icon={faYoutube} size="lg" />
                 </a>
               </Link>
+            )}
 
-              <Link href="https://www.linkedin.com/company/frontendcafe/">
+            {linkedin && (
+              <Link href={linkedin}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-blue-700 hover:bg-gray-200"
+                  className="grid place-items-center h-12 w-12 rounded-full "
                 >
                   <FontAwesomeIcon icon={faLinkedin} size="lg" />
                 </a>
               </Link>
+            )}
 
-              <Link href="https://www.twitch.tv/frontendcafe">
+            {twitch && (
+              <Link href={twitch}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-10 w-10 rounded-full bg-white text-purple-700 hover:bg-gray-200"
+                  className="grid place-items-center h-12 w-12 rounded-full"
                 >
                   <FontAwesomeIcon icon={faTwitch} size="lg" />
                 </a>
               </Link>
-            </div>
+            )}
           </div>
-          {/*           <div className="w-full lg:w-6/12 px-4 py-5 md:py-0">
-            <div className="flex flex-wrap items-top mb-6">
-              <div className="w-full lg:w-4/12 px-4 ml-auto">
-                <ul className="list-unstyled">
-                  <li>
-                    <a
-                      className="text-gray-200 hover:text-gray-400 font-semibold block pb-2 text-sm"
-                      href="#"
-                    >
-                      Código de conducta
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div> */}
-        </div>
-      </div>
-      <div className="grid place-items-center bg-gray-900 w-full h-10">
-        <div className="text-sm text-gray-500 text-center">
-          Made with{' '}
-          <FontAwesomeIcon
-            className="text-red-700 animate-pulse"
-            icon={faHeart}
-            size="lg"
-          />{' '}
-          by{' '}
-          <a
-            target="_blank"
-            className="transition duration-500 ease-in-out text-primary hover:text-tertiary font-extrabold"
-            href="https://www.linkedin.com/in/agustinamar/"
-          >
-            AM
-          </a>
-          ,{' '}
-          <a
-            target="_blank"
-            className="transition duration-500 ease-in-out text-primary hover:text-tertiary font-extrabold"
-            href="https://www.linkedin.com/in/hercase/"
-          >
-            HC
-          </a>{' '}
-          &{' '}
-          <a
-            target="_blank"
-            className="w-2 transition duration-500 ease-in-out text-primary hover:text-tertiary font-extrabold"
-            href="https://www.linkedin.com/in/mbavio/"
-          >
-            MB
-          </a>
         </div>
       </div>
     </footer>

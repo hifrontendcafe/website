@@ -5,8 +5,8 @@ import Hero from '../../components/Hero';
 import MentorshipsHero from '../../components/MentorshipsHero';
 import Layout from '../../components/Layout';
 
-import { Mentor, Topic } from '../../lib/types';
-import { getAllMentors, getMentoringTopics } from '../../lib/api';
+import { Mentor, Settings, Topic } from '../../lib/types';
+import { getAllMentors, getMentoringTopics, getSettings } from '../../lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 
@@ -14,12 +14,14 @@ type MentorshipsPageProps = {
   mentors: Mentor[];
   topics: Topic[];
   preview?: boolean;
+  settings: Settings;
 };
 
 const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
   topics: topicsData,
   mentors: mentorsData,
   preview,
+  settings,
 }) => {
   const { data: mentors } = usePreviewSubscription(mentorsQuery, {
     initialData: mentorsData,
@@ -36,12 +38,8 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
       title="Mentorías"
       description="El programa de mentorías de FrontEndCafé busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
       preview={preview}
+      settings={settings}
     >
-      <Hero
-        small
-        title="Mentorías"
-        subtitle="Buscamos servirte de guía en este camino ~"
-      />
       <MentorshipsHero />
       <MentorshipsSteps />
       <MentorList topics={topics} mentors={mentors} />
@@ -142,8 +140,9 @@ const MentorshipsSteps: React.FC = () => {
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const mentors = await getAllMentors(preview);
   const topics = await getMentoringTopics(preview);
+  const settings = await getSettings();
   return {
-    props: { mentors, topics, preview },
+    props: { mentors, topics, preview, settings },
     revalidate: 1,
   };
 };

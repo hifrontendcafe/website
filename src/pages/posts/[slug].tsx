@@ -8,17 +8,18 @@ import Layout from '../../components/Layout';
 import Hero from '../../components/Hero';
 import styles from '../docs/styles.module.css';
 
-import { getPost, getAllPostsSlugs } from '../../lib/api';
+import { getPost, getAllPostsSlugs, getSettings } from '../../lib/api';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { Post } from '../../lib/types';
+import { Post, Settings } from '../../lib/types';
 import { postQuery } from '../../lib/queries';
 
 type PostPageProps = {
   data: Post;
   preview?: boolean;
+  settings: Settings;
 };
 
-const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
+const PostPage: React.FC<PostPageProps> = ({ data, preview, settings }) => {
   const router = useRouter();
   if (!router.isFallback && !data?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -33,8 +34,8 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
   if (router.isFallback || loading) return <div>Cargando...</div>;
 
   return (
-    <Layout title={post.title} preview={preview}>
-      <Hero small title="Posts" />
+    <Layout title={post.title} preview={preview} settings={settings}>
+      <Hero title="Posts" background={settings.heroBackground} />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
           <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
@@ -92,9 +93,10 @@ export const getStaticProps: GetStaticProps = async ({
   preview = false,
 }) => {
   const data = await getPost(params.slug as string, preview);
+  const settings = await getSettings();
 
   return {
-    props: { data, preview },
+    props: { data, preview, settings },
     revalidate: 1,
   };
 };

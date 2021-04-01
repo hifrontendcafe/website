@@ -1,5 +1,17 @@
 import { groq } from 'next-sanity';
 
+export const settingsQuery = groq`
+  *[_type == "settings"][0]{
+    title,
+    description,
+    menu,
+    logo,
+    heroBackground,
+    heroWords,
+    socialnetworks
+  }
+`;
+
 export const eventsQuery = groq`
   *[_type == "event"] | order(date desc) {
     title,
@@ -122,3 +134,15 @@ export const reactGroupQuery = groq`
     slug
   }
 `;
+
+export const featuredCardsQuery = groq`
+  *[_type == 'featuredCards'] {
+    _id,
+    icon,
+    title,
+    description,
+    'color': color.hex,
+    link,
+    btnText
+  }
+  `;

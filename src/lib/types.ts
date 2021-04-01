@@ -1,3 +1,31 @@
+export interface Settings {
+  description: string;
+  heroBackground: Image;
+  heroWords: string[];
+  logo: Image;
+  menu: string[];
+  socialnetworks: SocialNetworks;
+  title: string;
+}
+
+export interface SocialNetworks {
+  github: string;
+  linkedin: string;
+  twitch: string;
+  twitter: string;
+  youtube: string;
+}
+
+export interface Image {
+  _type: string;
+  asset: Asset;
+}
+
+export interface Asset {
+  _ref: string;
+  _type: string;
+}
+
 export interface Event {
   title: string;
   slug: string;
@@ -75,8 +103,16 @@ export interface Doc {
   body: string;
 }
 
+export interface FeaturedCards {
+  icon: string;
+  title: string;
+  description: string;
+  color: string;
+  btnText: string;
+  link: string;
+}
 export interface ReactGroup {
-  _id: string
+  _id: string;
   _type: string;
   name: string;
   slug: {
@@ -105,3 +141,20 @@ export interface Person {
   linkedin?: string;
   portfolio?: string;
 }
+
+export type Profile = {
+  slug: string;
+  name: string;
+  coverImage: string;
+  role: string;
+  email: string;
+  availableForWork: boolean;
+  socialMedia: {
+    [name: string]: string;
+  };
+  ogImage: {
+    url: string;
+  };
+  content: string;
+  stack: string[];
+};
