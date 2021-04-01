@@ -1,5 +1,4 @@
 import Layout from '../../components/Layout';
-import { getApprovedReactGroups } from '../../lib/api';
 import { useState } from 'react';
 import Modal from '../../components/Modal';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
@@ -7,13 +6,27 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import CMYKParticipantForm from '../../components/CMYKParticipantForm';
 import styles from './styles.module.css';
 
-const CMYKRegisterPage: React.FC<InferGetStaticPropsType<
-  typeof getStaticProps
->> = () => {
+import { getSettings } from '../../lib/api';
+import { Settings } from '../../lib/types';
+
+interface IndexProps {
+  preview?: boolean;
+  settings?: Settings;
+  cards: object;
+}
+const CMYKRegisterPage: React.FC<IndexProps> = ({
+  preview = false,
+  settings,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <Layout title="Iniciativas">
+    <Layout
+      title="CMYK"
+      description={settings?.description}
+      settings={settings}
+      preview={preview}
+    >
       <div
         className="container mx-auto flex px-5 pt-20 md:flex-row flex-col
         items-center"
@@ -124,15 +137,8 @@ const CMYKRegisterPage: React.FC<InferGetStaticPropsType<
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const data = await getApprovedReactGroups(preview);
-
-  return {
-    props: {
-      data,
-      preview,
-    },
-    revalidate: 1,
-  };
+  const settings = await getSettings();
+  return { props: { preview, settings }, revalidate: 1 };
 };
 
 export default CMYKRegisterPage;
