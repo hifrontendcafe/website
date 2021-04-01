@@ -1,16 +1,24 @@
 import { InferGetStaticPropsType } from 'next';
 import CMYKItemCard from '../../components/CMYKItemCard';
-import JoinSection from '../../components/JoinSection';
-
+import { GetStaticProps } from 'next';
+import { getSettings } from '../../lib/api';
+import { CMYK, Settings } from '../../lib/types';
 import Layout from '../../components/Layout';
 
 import { getAllCMYKProjects } from '../../lib/api';
 import { cmykQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 
-const CMYK: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
+interface IndexProps {
+  preview?: boolean;
+  settings?: Settings;
+  data: CMYK[];
+}
+
+const CMYKProjects: React.FC<IndexProps> = ({
+  preview = false,
+  settings,
   data,
-  preview,
 }) => {
   const { data: projects } = usePreviewSubscription(cmykQuery, {
     initialData: data,
@@ -19,8 +27,8 @@ const CMYK: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   return (
     <Layout
       title="Proyectos CMYK"
-      description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
-      mode="main"
+      description={settings?.description}
+      settings={settings}
       preview={preview}
     >
       <div className="pt-20">
@@ -80,16 +88,10 @@ const CMYK: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
   );
 };
 
-export async function getStaticProps({ preview = false }) {
+export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllCMYKProjects(preview);
+  const settings = await getSettings();
+  return { props: { preview, settings, data }, revalidate: 1 };
+};
 
-  return {
-    props: {
-      data,
-      preview,
-    },
-    revalidate: 1,
-  };
-}
-
-export default CMYK;
+export default CMYKProjects;
