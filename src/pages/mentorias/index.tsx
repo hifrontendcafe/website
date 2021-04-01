@@ -40,7 +40,6 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
       preview={preview}
       settings={settings}
     >
-      <Hero title="Mentorías" background={settings.heroBackground} />
       <MentorshipsHero />
       <MentorshipsSteps />
       <MentorList topics={topics} mentors={mentors} />
