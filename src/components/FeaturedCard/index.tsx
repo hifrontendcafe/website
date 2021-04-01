@@ -30,7 +30,7 @@ const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
               {card.title}
             </h1>
           </div>
-          <p className="pt-5 pb-8 lg:text-lg text-base	">{card.description}</p>
+          <p className="pt-5 pb-8 lg:text-lg text-base">{card.description}</p>
           <button className="w-60 h-14 text-white">
             <Link href={card.link}>
               <a
