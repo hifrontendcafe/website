@@ -29,20 +29,22 @@ const EnglishPage: React.FC<EnglishPageProps> = ({
             </h1>
             <p>
               Nos divertimos charlando con el objetivo de perder el miedo a
-              hablar en inglés en público. <br />
-              <br />
-              <strong>¿Cómo? </strong>Mejorando la comunicación y la confianza.
-              <br />
-              <br />
-              Si bien el canal de voz está continuamente abierto y tratamos de
-              impulsar conversaciones de manera más espontánea. Desde nuestro
-              entorno organizamos encuentros online gratuitos todos los martes
-              en Discord. Revisa los próximos eventos para saber la próxima
-              fecha!
-              <br />
-              <br />
+              hablar en inglés en Público. Mejorando la comunicación y la
+              confianza, divertiéndonos y conectandonos.
             </p>
-            <img src="img/english-talk.svg" alt="" />
+            <br />
+            <ul className="list-inside list-disc">
+              <li>Puedes ingresar desde cualquier nivel.</li>
+              <li>Son encuentros online gratis.</li>
+              <li>No necesitas inscribirte.</li>
+              <li>Sucede desde el mismo canal de discord.</li>
+            </ul>
+            <br />
+            <img
+              className="rounded-md overflow-hidden shadow-md"
+              src="img/english-talk.svg"
+              alt=""
+            />
           </div>
 
           {upcomingEvent && <EventPreview event={upcomingEvent} />}
