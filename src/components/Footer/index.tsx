@@ -27,7 +27,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
   return (
     <footer className="bg-black">
       <div className="flex flex-col-reverse gap-12 md:gap-0 md:flex-row justify-center md:justify-between container mx-auto py-16 text-white">
-        <div className="flex flex-col gap-5 text-center">
+        <div className="flex flex-col gap-5 text-center md:text-left">
           <img
             src="/logo-square.png"
             className="hidden md:block md:h-12 md:w-12 h-10 w-10 rounded-full"
