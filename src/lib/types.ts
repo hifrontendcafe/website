@@ -153,6 +153,7 @@ export interface Person {
   lastName?: string;
   emai?: string;
   linkedin?: string;
+  twitter?: string;
   portfolio?: string;
   github?: string;
 }
