@@ -15,6 +15,7 @@ const responsive: ResponsiveType = {
   mobile: {
     breakpoint: { max: 720, min: 0 },
     items: 1,
+    partialVisibilityGutter: 60,
   },
 };
 
@@ -38,10 +39,11 @@ const FeaturedCardsCarousel: React.FC<FeaturedCardsCarouselProps> = ({
         centerMode={false}
         responsive={responsive}
         transitionDuration={700}
-        containerClass="w-11/12 md:container mx-auto py-5"
+        containerClass="container px-3 md:px-0 mx-auto py-5"
         removeArrowOnDeviceType={['tablet', 'mobile']}
         renderButtonGroupOutside={true}
         customButtonGroup={<CustomButtonGroup />}
+        partialVisible
       >
         {featuredCards?.map((card) => (
           <FeaturedCard key={card.title} card={card} />
