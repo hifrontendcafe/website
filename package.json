@@ -28,7 +28,8 @@
     "react-multi-carousel": "^2.6.1",
     "react-twitter-embed": "^3.0.3",
     "remark": "11.0.2",
-    "remark-html": "10.0.0"
+    "remark-html": "10.0.0",
+    "tinycolor2": "^1.4.2"
   },
   "devDependencies": {
     "@types/node": "^14.11.2",

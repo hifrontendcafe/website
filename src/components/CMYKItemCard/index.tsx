@@ -3,52 +3,70 @@ import Link from 'next/link';
 
 import { CMYK } from '../../lib/types';
 
+import tinycolor from 'tinycolor2';
+import { text } from '@fortawesome/fontawesome-svg-core';
+
 type CMYKItemProps = {
   project: CMYK;
   index: number;
 };
 
 const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
-  const btnStyles = {
-    color: project.color,
-  };
+  const textColor = tinycolor(project.color);
+  // const btnStyles = {
+  //   color: textColor.isLight() ? '#2d3748' : project.color,
+  //   backgroundColor: textColor.isLight() ? 'white' : '#2d3748',
+  // };
+
   return (
     <div
       className={`max-w-md rounded overflow-hidden mb-5 flex flex-col ${
-        index % 2 === 0 ? 'md:mb-5' : 'md:mt-5'
+        index % 2 === 0 ? 'md:mb-12 ' : 'md:mt-12'
       }`}
     >
       <img
-        className="h-40 object-cover w-full"
+        className="h-40 object-cover w-full h-40"
         src={project.image.src}
         alt="Project image"
       />
       <div
-        className="flex flex-row text-white"
+        className={`flex flex-col md:flex-row h-40 ${
+          textColor.isLight() ? 'text-gray-800' : 'text-white'
+        }`}
         style={{ backgroundColor: project.color }}
       >
-        <div className="px-6 py-4">
+        <div className="px-6 py-4 overflow-y-auto">
           <div className="font-semibold text-2xl mb-2">{project.name}</div>
           <p className="text-sm">{project.description}</p>
         </div>
-        <div className="px-3 py-4 flex flex-col border-l-2 my-4">
+        <div
+          className={`px-6 md:px-3 md:py-8 flex xs:flex-row md:flex-col md:justify-between ${
+            textColor.isLight() ? 'border-gray-800' : 'border-white'
+          }  md:border-l-2 md:border-t-0 my-4`}
+        >
           <Link href={project.demo}>
-            <a className="font-semibold mr-3" target="_blank">
+            <a
+              className={`font-semibold mr-3 hover:underline border-t-2 md:border-t-0 ${
+                textColor.isLight() ? 'border-gray-800' : 'border-white'
+              }`}
+              target="_blank"
+            >
               DEMO
             </a>
           </Link>
           <Link href={project.github}>
-            <a className="font-semibold mr-3" target="_blank">
+            <a
+              className={`font-semibold mr-3 hover:underline border-t-2 md:border-t-0 ${
+                textColor.isLight() ? 'border-gray-800' : 'border-white'
+              }`}
+              target="_blank"
+            >
               GITHUB
             </a>
           </Link>
-          <a
-            href="#"
-            className="btn bg-white whitespace-no-wrap"
-            style={btnStyles}
-          >
+          {/* <a href="#" className="btn whitespace-no-wrap" style={btnStyles}>
             Ver más
-          </a>
+          </a> */}
         </div>
       </div>
     </div>
