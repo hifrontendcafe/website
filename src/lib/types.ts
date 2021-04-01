@@ -103,6 +103,14 @@ export interface Doc {
   body: string;
 }
 
+export interface FeaturedCards {
+  icon: string;
+  title: string;
+  description: string;
+  color: string;
+  btnText: string;
+  link: string;
+}
 export interface ReactGroup {
   _id: string;
   _type: string;
@@ -133,3 +141,20 @@ export interface Person {
   linkedin?: string;
   portfolio?: string;
 }
+
+export type Profile = {
+  slug: string;
+  name: string;
+  coverImage: string;
+  role: string;
+  email: string;
+  availableForWork: boolean;
+  socialMedia: {
+    [name: string]: string;
+  };
+  ogImage: {
+    url: string;
+  };
+  content: string;
+  stack: string[];
+};

@@ -1,14 +1,14 @@
 import Link from 'next/link';
 import styles from './styles.module.css';
 import {
+  faTwitter,
   faGithubAlt,
   faLinkedin,
   faTwitch,
-  faTwitter,
   faYoutube,
+  faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { SocialNetworks } from '../../lib/types';
 
 interface FooterProps {
@@ -18,8 +18,10 @@ interface FooterProps {
 const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
   const { github, linkedin, twitch, twitter, youtube } = socialnetworks;
 
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="relative bg-gray-800">
+    <footer className="relative md:h-64 h-80 bg-black lg:px-32 md:px-20 md:py-8 py-5 text-white lg:text-xl text-md flex flex-col justify-between items-center md:items-start">
       <img
         className={`absolute w-20 ${styles.impostor}`}
         src="/img/impostor.png"
@@ -123,41 +125,63 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
             </div>
           </div> */}
         </div>
-      </div>
-      <div className="grid place-items-center bg-gray-900 w-full h-10">
-        <div className="text-sm text-gray-500 text-center">
-          Made with{' '}
-          <FontAwesomeIcon
-            className="text-red-700 animate-pulse"
-            icon={faHeart}
-            size="lg"
-          />{' '}
-          by{' '}
-          <a
-            target="_blank"
-            className="transition duration-500 ease-in-out text-primary hover:text-tertiary font-extrabold"
-            href="https://www.linkedin.com/in/agustinamar/"
-          >
-            AM
-          </a>
-          ,{' '}
-          <a
-            target="_blank"
-            className="transition duration-500 ease-in-out text-primary hover:text-tertiary font-extrabold"
-            href="https://www.linkedin.com/in/hercase/"
-          >
-            HC
-          </a>{' '}
-          &{' '}
-          <a
-            target="_blank"
-            className="w-2 transition duration-500 ease-in-out text-primary hover:text-tertiary font-extrabold"
-            href="https://www.linkedin.com/in/mbavio/"
-          >
-            MB
-          </a>
+        <div className="flex flex-col md:justify-end justify-center md:w-1/4">
+          <p className="w-auto md:text-left text-center font-medium">
+            Encuentranos en:
+          </p>
+          <div className="flex md:w-full w-40">
+            <Link href="https://twitter.com/FrontEndCafe">
+              <a
+                target="_blank"
+                className="grid place-items-center h-10 w-10 rounded-full"
+              >
+                <FontAwesomeIcon icon={faTwitter} size="lg" />
+              </a>
+            </Link>
+            <Link href="https://www.youtube.com/channel/UCUdXQMrVjrMMWG5NOZFpHqQ">
+              <a
+                target="_blank"
+                className="grid place-items-center h-10 w-10 rounded-full"
+              >
+                <FontAwesomeIcon icon={faYoutube} size="lg" />
+              </a>
+            </Link>
+            <Link href="https://www.linkedin.com/company/frontendcafe/">
+              <a
+                target="_blank"
+                className="grid place-items-center h-10 w-10 rounded-full"
+              >
+                <FontAwesomeIcon icon={faLinkedin} size="lg" />
+              </a>
+            </Link>
+            <Link href="https://www.twitch.tv/frontendcafe">
+              <a
+                target="_blank"
+                className="grid place-items-center h-10 w-10 rounded-full"
+              >
+                <FontAwesomeIcon icon={faTwitch} size="lg" />
+              </a>
+            </Link>
+            <Link href="https://github.com/hifrontendcafe">
+              <a
+                target="_blank"
+                className="grid place-items-center h-10 w-10 rounded-full"
+              >
+                <FontAwesomeIcon icon={faGithubAlt} size="lg" />
+              </a>
+            </Link>
+            <Link href="https://www.instagram.com/frontendcafe_/">
+              <a
+                target="_blank"
+                className="grid place-items-center h-10 w-10 rounded-full"
+              >
+                <FontAwesomeIcon icon={faInstagram} size="lg" />
+              </a>
+            </Link>
+          </div>
         </div>
       </div>
+      <p className="font-light">© FrontendCafé {currentYear}</p>
     </footer>
   );
 };

@@ -15,7 +15,6 @@ const CMYK: React.FC<InferGetStaticPropsType<typeof getStaticProps>> = ({
     initialData: data,
     enabled: preview,
   });
-
   return (
     <Layout
       title="Proyectos CMYK"
