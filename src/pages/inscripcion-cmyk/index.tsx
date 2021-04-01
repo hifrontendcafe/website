@@ -113,7 +113,7 @@ const CMYKRegisterPage: React.FC<IndexProps> = ({
           </p>
           <p className="my-3">
             <span className="font-semibold">09 / 04 / 21</span>&nbsp;&nbsp;
-            Reunión de información con participantes y workshop gift.
+            Reunión de información con participantes y workshop git.
           </p>
           <p className="my-3">
             <span className="font-semibold">12 / 04 / 21</span>&nbsp;&nbsp;
