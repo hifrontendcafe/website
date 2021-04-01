@@ -128,7 +128,7 @@ export async function getAllCMYKProjects(
 export async function createCMYKParticipant(
   data: CMYKParticipant,
 ): Promise<CMYKParticipant> {
-  return await postClient.create({
+  return postClient.create({
     ...data,
     _type: 'cmykParticipant',
   });

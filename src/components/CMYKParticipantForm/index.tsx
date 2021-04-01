@@ -20,7 +20,7 @@ const CMYKParticipantForm = () => {
         },
       });
 
-      const response = await res.json();
+      await res.json();
       setIsSuccess(true);
       setIsLoading(false);
       reset();

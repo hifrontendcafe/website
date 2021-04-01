@@ -1,7 +1,7 @@
 import Layout from '../../components/Layout';
 import { useState } from 'react';
 import Modal from '../../components/Modal';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetStaticProps } from 'next';
 
 import CMYKParticipantForm from '../../components/CMYKParticipantForm';
 import styles from './styles.module.css';
