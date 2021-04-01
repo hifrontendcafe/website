@@ -52,12 +52,12 @@ const Index: React.FC<IndexProps> = ({ preview = false, settings }) => {
 // Page Sections
 
 const Services = () => (
-  <section className="pb-20 pt-12 bg-indigo-100">
+  <section className="pb-20 pt-12">
     <div className="container mx-auto px-4">
       <div className="flex flex-wrap items-center mt-24 mb-12">
         <div className="w-full md:w-5/12 px-4 mr-auto ml-auto mb-16">
-          <h3 className="text-2xl md:text-3xl mb-2 font-semibold leading-normal text-gray-800">
-            ¿Qué es FrontEndCafé?
+          <h3 className="text-3xl md:text-4xl mb-2 font-bold leading-normal text-primary">
+            ¿Quienes somos?
           </h3>
           <p className="text-lg font-light leading-relaxed mt-4 mb-4 text-gray-700">
             Somos una comunidad de personas interesadas en tecnología y ciencias
