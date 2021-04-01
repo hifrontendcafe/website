@@ -26,7 +26,7 @@ import AboutSection from '../components/AboutSection';
 const Index: React.FC<IndexProps> = ({ preview = false, settings, cards }) => {
   const [counter, setCounter] = useState(0);
 
-  if (counter >= settings.heroWords.length) {
+  if (counter >= settings?.heroWords.length) {
     setCounter(0);
   }
 
@@ -41,18 +41,18 @@ const Index: React.FC<IndexProps> = ({ preview = false, settings, cards }) => {
   return (
     <Layout
       title="Home"
-      description={settings.description}
+      description={settings?.description}
       settings={settings}
       preview={preview}
     >
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero
-        background={settings.heroBackground}
-        title={settings.heroWords[counter]}
+        background={settings?.heroBackground}
+        title={settings?.heroWords[counter]}
       />
 
       <div className="bg-indigo-100 p-1">
-        <AboutSection description={settings.description} />
+        <AboutSection description={settings?.description} />
       </div>
       <Featured cards={cards} />
       <MediaFeed />

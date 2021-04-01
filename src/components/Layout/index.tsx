@@ -24,9 +24,9 @@ const MainLayout: React.FC<LayoutPreviewProps> = ({
 }) => (
   <div className="antialiased">
     {preview && <PreviewBanner />}
-    <Header logo={settings.logo} menu={settings.menu} preview={preview} />
+    <Header logo={settings?.logo} menu={settings?.menu} preview={preview} />
     {children}
-    <Footer socialnetworks={settings.socialnetworks} />
+    <Footer socialnetworks={settings?.socialnetworks} />
   </div>
 );
 

@@ -12,9 +12,10 @@ type PostsPageProps = {
 const ProfilesPage: React.FC<PostsPageProps> = ({ profiles }) => {
   return (
     <Layout title="Perfiles" description="Encontrá los perfiles dentro de FEC">
-
       <div className="container px-4 sm:px-6 mx-auto pt-16 md:pt-0">
-        <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-semibold">Conoce a la comunidad</h1>
+        <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-semibold">
+          Conoce a la comunidad
+        </h1>
       </div>
       <div className=" container mx-auto bg-white">
         <div className="border-b border-gray-200 px-4 py-5 sm:px-6 md:flex md:justify-between">
@@ -26,8 +27,8 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles }) => {
           </Link>
         </div>
         <div className="px-6 py-5 text-gray-700 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {profiles.map((profile) => (
-            <ProfileCard profile={profile} key={profile.slug}/>
+          {profiles?.map((profile) => (
+            <ProfileCard profile={profile} key={profile.slug} />
           ))}
         </div>
       </div>

@@ -6,7 +6,6 @@ import {
   faLinkedin,
   faTwitch,
   faYoutube,
-  faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SocialNetworks } from '../../lib/types';
@@ -16,8 +15,6 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
-  const { github, linkedin, twitch, twitter, youtube } = socialnetworks;
-
   const navItems = [
     { title: 'Unirse a Discord', link: 'https://discord.com/invite/3GC6TJd' },
     { title: 'Proyectos CMYK', link: '/cmyk' },
@@ -36,7 +33,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
             className="hidden md:block md:h-12 md:w-12 h-10 w-10 rounded-full"
           />
           <div className="grid justify-center md:grid-cols-2 gap-y-2 gap-x-5 font-medium w-full md:pb-3 pb-8">
-            {navItems.map(({ link, title }) => (
+            {navItems?.map(({ link, title }) => (
               <Link href={link} key={link}>
                 <a>{title}</a>
               </Link>
@@ -51,8 +48,8 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
             Encuentranos en
           </p>
           <div className="flex justify-center md:justify-start">
-            {twitter && (
-              <Link href={twitter}>
+            {socialnetworks?.twitter && (
+              <Link href={socialnetworks?.twitter}>
                 <a
                   target="_blank"
                   className="grid place-items-center h-12 w-12 rounded-full"
@@ -62,8 +59,8 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
               </Link>
             )}
 
-            {github && (
-              <Link href={github}>
+            {socialnetworks?.github && (
+              <Link href={socialnetworks?.github}>
                 <a
                   target="_blank"
                   className="grid place-items-center h-12 w-12 rounded-full"
@@ -73,8 +70,8 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
               </Link>
             )}
 
-            {youtube && (
-              <Link href={youtube}>
+            {socialnetworks?.youtube && (
+              <Link href={socialnetworks?.youtube}>
                 <a
                   target="_blank"
                   className="grid place-items-center h-12 w-12 rounded-full"
@@ -84,8 +81,8 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
               </Link>
             )}
 
-            {linkedin && (
-              <Link href={linkedin}>
+            {socialnetworks?.linkedin && (
+              <Link href={socialnetworks?.linkedin}>
                 <a
                   target="_blank"
                   className="grid place-items-center h-12 w-12 rounded-full "
@@ -95,8 +92,8 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
               </Link>
             )}
 
-            {twitch && (
-              <Link href={twitch}>
+            {socialnetworks?.twitch && (
+              <Link href={socialnetworks?.twitch}>
                 <a
                   target="_blank"
                   className="grid place-items-center h-12 w-12 rounded-full"

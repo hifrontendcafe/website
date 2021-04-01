@@ -25,7 +25,7 @@ const ReactGroupPage: React.FC<
 
   return (
     <Layout title="Iniciativas" settings={settings}>
-      <Hero title="Reactivistas" background={settings.heroBackground} />
+      <Hero title="Reactivistas" background={settings?.heroBackground} />
       <div className="pb-24 bg-indigo-100 sm:pt-10 lg:mt-0 mt-24">
         <Link href="/docs/guia-reactivistas">
           <a
@@ -40,7 +40,7 @@ const ReactGroupPage: React.FC<
             Sumate a los grupos que están comenzando
           </h1>
           <div className="flex flex-wrap md:m-10 m-2">
-            {groups.map((group: ReactGroup) => {
+            {groups?.map((group: ReactGroup) => {
               const [infoModalOpen, setInfoModalOpen] = useState(false);
 
               return (

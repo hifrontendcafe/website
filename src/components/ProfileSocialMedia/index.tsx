@@ -16,7 +16,7 @@ const ProfileSocialMedia = ({ socialMedia }: Props) => {
   };
   return (
     <div className="mt-2 flex items-center space-x-2">
-      {Object.keys(socialMedia).map(
+      {Object.keys(socialMedia)?.map(
         (value) =>
           !invalidSocialNetworks[value] && (
             <a

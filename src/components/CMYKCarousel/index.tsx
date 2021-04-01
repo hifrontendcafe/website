@@ -55,7 +55,7 @@ const CMYKCarousel: React.FC<CMYKCarouselProps> = ({ projects }) => (
       customDot={<CustomDot />}
       responsive={responsive}
     >
-      {projects.map((project) => (
+      {projects?.map((project) => (
         <CMYKItem key={project._id} project={project} />
       ))}
     </Carousel>

@@ -28,8 +28,11 @@ const ProfileCard = ({ profile }: Props) => {
           </h2>
           {profile.stack?.length > 0 && (
             <ul className="flex items-center flex-wrap justify-center">
-              {profile.stack.slice(0, 3).map((tech) => (
-                <li key={tech} className="px-4 py-1 mt-2 ml-2 text-sm rounded-md bg-indigo-400 text-white break-all">
+              {profile.stack.slice(0, 3)?.map((tech) => (
+                <li
+                  key={tech}
+                  className="px-4 py-1 mt-2 ml-2 text-sm rounded-md bg-indigo-400 text-white break-all"
+                >
                   {tech}
                 </li>
               ))}
