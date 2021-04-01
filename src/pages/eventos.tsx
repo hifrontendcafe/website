@@ -28,11 +28,7 @@ const EventsPage: React.FC<EventsPageProps> = ({ data, preview, settings }) => {
       preview={preview}
       settings={settings}
     >
-      <Hero
-        background={settings.heroBackground}
-        title="Eventos"
-        subtitle="Charlas, workshops, afters, entrevistas ~"
-      />
+      <Hero background={settings.heroBackground} title="Eventos" />
       <EventList events={events} />
     </Layout>
   );

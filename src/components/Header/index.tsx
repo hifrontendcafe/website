@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ preview, menu, logo }) => {
           </button>
         </div>
         <div
-          ref={menu}
+          ref={menuDOM}
           className="flex-col items-center self-end hidden w-full h-full py-1 pb-4 md:w-auto md:self-center md:flex md:flex-row md:py-0 md:pb-0"
         >
           {navItems.map((item) => (

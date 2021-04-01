@@ -1,11 +1,11 @@
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import { imageBuilder } from '../../lib/sanity';
-import { HeroBackground } from '../../lib/types';
+import { Image } from '../../lib/types';
 
 interface HeroProps {
   title?: string;
-  background?: HeroBackground;
+  background?: Image;
 }
 
 const Hero: React.FC<HeroProps> = ({ title, background }) => {
