@@ -1,19 +1,21 @@
 import React from 'react';
-
 import 'react-multi-carousel/lib/styles.css';
-import { FeaturedCards } from '../../lib/types';
 
 import FeaturedCard from '../FeaturedCard';
+import { FeaturedCards } from '../../lib/types';
+import { CustomButtonGroup } from './CustomArrows';
+
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 
 const responsive: ResponsiveType = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
+  large: {
+    breakpoint: { max: 3000, min: 720 },
     items: 2,
   },
   mobile: {
-    breakpoint: { max: 600, min: 0 },
+    breakpoint: { max: 720, min: 0 },
     items: 1,
+    partialVisibilityGutter: 60,
   },
 };
 
@@ -23,25 +25,33 @@ type FeaturedCardsCarouselProps = {
 
 const FeaturedCardsCarousel: React.FC<FeaturedCardsCarouselProps> = ({
   featuredCards,
-}) => (
-  <Carousel
-    ssr
-    infinite
-    swipeable
-    draggable
-    arrows={false}
-    keyBoardControl
-    showDots={false}
-    centerMode={true}
-    responsive={responsive}
-    transitionDuration={700}
-    containerClass="carousel-container"
-    removeArrowOnDeviceType={['tablet', 'mobile']}
-  >
-    {featuredCards?.map((card) => (
-      <FeaturedCard key={card.title} card={card} />
-    ))}
-  </Carousel>
-);
+}) => {
+  return (
+    <>
+      <Carousel
+        ssr
+        infinite
+        swipeable
+        draggable
+        arrows={false}
+        keyBoardControl
+        showDots={false}
+        centerMode={false}
+        responsive={responsive}
+        transitionDuration={700}
+        containerClass="container px-3 md:px-0 mx-auto py-5"
+        removeArrowOnDeviceType={['tablet', 'mobile']}
+        renderButtonGroupOutside={true}
+        customButtonGroup={<CustomButtonGroup />}
+        partialVisible
+      >
+        {featuredCards?.map((card) => (
+          <FeaturedCard key={card.title} card={card} />
+        ))}
+      </Carousel>
+      <div></div>
+    </>
+  );
+};
 
 export default FeaturedCardsCarousel;
