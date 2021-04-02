@@ -1,5 +1,3 @@
-import React from 'react';
-
 const JoinSection: React.FC = () => (
   <section className="flex flex-col items-center justify-center gap-5 text-center my-24 md:my-32 container mx-auto">
     <span className="inline-flex gap-2 items-center relative text-2xl md:text-3xl font-semibold">
