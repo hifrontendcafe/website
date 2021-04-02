@@ -45,7 +45,7 @@ export const eventsQueryByType = groq`
     tags,
     recording,
     description
-  }[0]
+  }
 `;
 
 export const postQuery = groq`

@@ -60,7 +60,7 @@ export async function getSettings(preview: boolean = false): Promise<Post> {
   return await getClient(preview).fetch(settingsQuery);
 }
 
-export async function getLatestEventByCategory(
+export async function getEventsByCategory(
   preview: boolean = false,
   categoryFilter: string,
 ): Promise<Event> {
