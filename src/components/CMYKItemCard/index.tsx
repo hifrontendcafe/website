@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { CMYK } from '../../lib/types';
 
 import tinycolor from 'tinycolor2';
-import { text } from '@fortawesome/fontawesome-svg-core';
 
 type CMYKItemProps = {
   project: CMYK;

@@ -1,11 +1,9 @@
-import { InferGetStaticPropsType } from 'next';
 import CMYKItemCard from '../../components/CMYKItemCard';
 import { GetStaticProps } from 'next';
-import { getSettings } from '../../lib/api';
+import { getSettings, getAllCMYKProjects } from '../../lib/api';
 import { CMYK, Settings } from '../../lib/types';
 import Layout from '../../components/Layout';
 
-import { getAllCMYKProjects } from '../../lib/api';
 import { cmykQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 
