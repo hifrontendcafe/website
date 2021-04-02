@@ -1,18 +1,18 @@
 import { GetStaticProps } from 'next';
-import { getLatestEventByCategory, getSettings } from '../../lib/api';
+import { getEventsByCategory, getSettings } from '../../lib/api';
 import Layout from '../../components/Layout';
 import EventPreview from '../../components/EventPreview';
 import JoinSection from '../../components/JoinSection';
 import { Event, Settings } from '../../lib/types';
 
 type EnglishPageProps = {
-  upcomingEvent: Event;
+  upcomingEvents: Event[];
   settings: Settings;
   preview?: boolean;
 };
 
 const EnglishPage: React.FC<EnglishPageProps> = ({
-  upcomingEvent,
+  upcomingEvents,
   settings,
 }) => {
   return (
@@ -23,9 +23,9 @@ const EnglishPage: React.FC<EnglishPageProps> = ({
     >
       <div className="container px-4 sm:px-6 mx-auto pt-16 md:pt-0">
         <div className="flex justify-between flex-wrap pb-8">
-          <div className="max-w-3xl">
+          <div className="max-w-xl">
             <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-semibold">
-              🌎 Práctica de inglés
+              🌎 Práctica de Inglés
             </h1>
             <p>
               Nos divertimos charlando con el objetivo de perder el miedo a
@@ -40,15 +40,25 @@ const EnglishPage: React.FC<EnglishPageProps> = ({
               <li>Sucede desde el mismo canal de discord.</li>
             </ul>
             <br />
-            <img
-              className="rounded-md overflow-hidden shadow-md"
-              src="img/english-talk.svg"
-              alt=""
-            />
           </div>
-
-          {upcomingEvent && <EventPreview event={upcomingEvent} />}
+          <img
+            className="rounded-md overflow-hidden shadow-md mt-8"
+            src="img/english-talk.svg"
+            alt="english session preview on discord"
+          />
         </div>
+        {upcomingEvents.length > 0 && (
+          <div>
+            <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-semibold">
+              Próximos Eventos
+            </h1>
+            <div className="flex flex-wrap">
+              {upcomingEvents.map((event) => (
+                <EventPreview key={event.slug} event={event} />
+              ))}
+            </div>
+          </div>
+        )}
         <JoinSection />
       </div>
     </Layout>
@@ -57,12 +67,12 @@ const EnglishPage: React.FC<EnglishPageProps> = ({
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const settings = await getSettings();
-  const upcomingEvent = await getLatestEventByCategory(
+  const upcomingEvents = await getEventsByCategory(
     preview,
     'Práctica de inglés',
   );
   return {
-    props: { upcomingEvent, preview, settings },
+    props: { upcomingEvents, preview, settings },
     revalidate: 1,
   };
 };
