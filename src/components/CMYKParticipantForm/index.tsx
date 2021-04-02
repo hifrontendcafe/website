@@ -151,7 +151,7 @@ const CMYKParticipantForm = () => {
           defaultValue={'default'}
         >
           <option value="default" disabled>
-            Por favor elija una opción
+            Por favor elige una opción
           </option>
           <option value="yes">Si</option>
           <option value="no">No</option>
@@ -170,7 +170,7 @@ const CMYKParticipantForm = () => {
           defaultValue={'default'}
         >
           <option value="default" disabled>
-            Por favor elija una opción
+            Por favor elige una opción
           </option>
           <option value="level1">Nivel 1 (HTML - CSS - JavaScript)</option>
           <option value="level2">
@@ -191,7 +191,7 @@ const CMYKParticipantForm = () => {
           defaultValue={'default'}
         >
           <option value="default" disabled>
-            Por favor elija una opción
+            Por favor elige una opción
           </option>
           <option value=">=6hours">6 o más horas semanales</option>
           <option value=">4<6hours">Entre 4 y 6 horas semanales</option>
@@ -220,7 +220,7 @@ const CMYKParticipantForm = () => {
           rows={3}
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline placeholder-gray-700"
           name="previousKnowledge"
-          placeholder="Si tienes conocimientos, cuentanos"
+          placeholder="Si tienes conocimientos, cuéntanos"
           required
           ref={register({ required: true })}
         ></textarea>
