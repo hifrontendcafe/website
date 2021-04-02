@@ -44,7 +44,7 @@ const ProfilePage = ({ profile, preview }: Props) => {
           {profile?.availableForWork && (
             <div>
               <div className="text-primary my-4 text-lg font-semibold">
-                Estoy en búsqueda activa!
+                ¡Estoy en búsqueda activa!
               </div>
               {profile?.email && (
                 <div className="my-2">
@@ -52,7 +52,7 @@ const ProfilePage = ({ profile, preview }: Props) => {
                     href={`mailto:${profile?.email}`}
                     className="px-4 py-2 bg-primary text-sm font-semibold text-white rounded-lg hover:opacity-75"
                   >
-                    CONTACTAME
+                    CONTÁCTAME
                   </a>
                 </div>
               )}
@@ -73,7 +73,7 @@ const ProfilePage = ({ profile, preview }: Props) => {
           </ul>
         )}
         <h2 className="text-indigo-600 text-4xl font-semibold mt-8 mb-4">
-          Sobre mi
+          Sobre mí
         </h2>
         <ProfileBody content={profile?.content} />
       </main>

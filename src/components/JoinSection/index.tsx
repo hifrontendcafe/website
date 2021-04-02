@@ -9,7 +9,7 @@ const JoinSection: React.FC = () => (
       href="https://discord.gg/frontendcafe"
       className="btn mt-1 btn-secondary"
     >
-      Sumate a Discord
+      Súmate a Discord
     </a>
   </section>
 );

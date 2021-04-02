@@ -25,12 +25,12 @@ const EnglishPage: React.FC<EnglishPageProps> = ({
         <div className="flex justify-between flex-wrap pb-8">
           <div className="max-w-xl">
             <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-semibold">
-              🌎 Práctica de Inglés
+              🌎 Práctica de inglés
             </h1>
             <p>
               Nos divertimos charlando con el objetivo de perder el miedo a
-              hablar en inglés en Público. Mejorando la comunicación y la
-              confianza, divertiéndonos y conectandonos.
+              hablar en inglés en público. Mejorando la comunicación y la
+              confianza, divirtiéndonos y conectándonos.
             </p>
             <br />
             <ul className="list-inside list-disc">

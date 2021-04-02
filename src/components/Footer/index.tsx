@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
     { title: 'Unirse a Discord', link: 'https://discord.com/invite/3GC6TJd' },
     { title: 'Proyectos CMYK', link: '/cmyk' },
     { title: 'Mentorías', link: '/mentorias' },
-    { title: 'Prácticas de Ingles', link: '/ingles' },
+    { title: 'Prácticas de inglés', link: '/ingles' },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -45,7 +45,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
 
         <div className="flex flex-col justify-center md:w-1/4 gap-3">
           <p className="w-auto md:text-left text-center font-medium">
-            Encuentranos en
+            Encuéntranos en
           </p>
           <div className="flex justify-center md:justify-start gap-3">
             {socialnetworks?.twitter && (

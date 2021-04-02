@@ -37,7 +37,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
         </Link>
         <div className="container mx-auto m-10 p-10 bg-white shadow">
           <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
-            Sumate a los grupos que están comenzando
+            Súmate a los grupos que están comenzando
           </h1>
           <div className="flex flex-wrap md:m-10 m-2">
             {groups?.map((group: ReactGroup) => {
@@ -70,7 +70,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
                       </li>
                       <li className="font-medium text-primary">
                         <a href={group.studyMaterial} className="text-gray-600">
-                          📚 Material de Estudio
+                          📚 Material de estudio
                         </a>
                       </li>
                     </ul>
@@ -106,7 +106,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
                     className="cursor-pointer text-blue-400"
                     onClick={() => setIsModalOpen(true)}
                   >
-                    Ver Requisitos
+                    Ver requisitos
                   </span>
                 </h2>
               </div>
