@@ -9,6 +9,7 @@ import {
   ReactGroup,
   Person,
   FeaturedCards,
+  CMYKParticipant,
 } from './types';
 
 import { createSlug } from './helpers';
@@ -122,6 +123,15 @@ export async function getAllCMYKProjects(
   preview: boolean = false,
 ): Promise<CMYK[]> {
   return await getClient(preview).fetch(cmykQuery);
+}
+
+export async function createCMYKParticipant(
+  data: CMYKParticipant,
+): Promise<CMYKParticipant> {
+  return postClient.create({
+    ...data,
+    _type: 'cmykParticipant',
+  });
 }
 
 export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {

@@ -5,9 +5,20 @@ type ModalProps = {
   isOpen: boolean;
   title: string;
   close: () => void;
+  titleClasses?: string;
+  buttonLabel?: string;
+  buttonClasses?: string;
 };
 
-const Modal: React.FC<ModalProps> = ({ isOpen, children, title, close }) => {
+const Modal: React.FC<ModalProps> = ({
+  isOpen,
+  children,
+  title,
+  close,
+  titleClasses,
+  buttonLabel,
+  buttonClasses,
+}) => {
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
@@ -33,7 +44,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, children, title, close }) => {
               <div className="border rounded-lg shadow-xl relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
-                  <h3 className="text-3xl font-semibold">{title}</h3>
+                  <h3
+                    className={`text-3xl font-semibold ${
+                      titleClasses ? titleClasses : ''
+                    }`}
+                  >
+                    {title}
+                  </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={close}
@@ -48,12 +65,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, children, title, close }) => {
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                    className={`text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ${
+                      buttonClasses ? buttonClasses : ''
+                    }`}
                     type="button"
                     style={{ transition: 'all .15s ease' }}
                     onClick={close}
                   >
-                    Close
+                    {buttonLabel ? buttonLabel : 'Close'}
                   </button>
                 </div>
               </div>
