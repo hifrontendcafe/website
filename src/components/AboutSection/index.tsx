@@ -18,7 +18,7 @@ const AboutSection: React.FC<AboutProps> = ({ description }) => (
       </p>
     </div>
 
-    <div className="w-4/12 px-4 mr-auto ml-auto">
+    <div className="md:w-4/12 px-4 mx-auto">
       <iframe
         className="w-full shadow-lg md:max-w-sm lg:min-w-0 sm:min-w-full"
         src="https://discordapp.com/widget?id=594363964499165194&theme=dark"
