@@ -43,16 +43,16 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
           <p className="font-light">© FrontendCafé {currentYear}</p>
         </div>
 
-        <div className="flex flex-col justify-center md:w-1/4">
+        <div className="flex flex-col justify-center md:w-1/4 gap-3">
           <p className="w-auto md:text-left text-center font-medium">
             Encuentranos en
           </p>
-          <div className="flex justify-center md:justify-start">
+          <div className="flex justify-center md:justify-start gap-3">
             {socialnetworks?.twitter && (
               <Link href={socialnetworks?.twitter}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-12 w-12 rounded-full"
+                  className="grid place-items-center h-6 w-6 rounded-full"
                 >
                   <FontAwesomeIcon icon={faTwitter} size="lg" />
                 </a>
@@ -63,7 +63,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
               <Link href={socialnetworks?.github}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-12 w-12 rounded-full"
+                  className="grid place-items-center h-6 w-6 rounded-full"
                 >
                   <FontAwesomeIcon icon={faGithubAlt} size="lg" />
                 </a>
@@ -74,7 +74,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
               <Link href={socialnetworks?.youtube}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-12 w-12 rounded-full"
+                  className="grid place-items-center h-6 w-6 rounded-full"
                 >
                   <FontAwesomeIcon icon={faYoutube} size="lg" />
                 </a>
@@ -85,7 +85,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
               <Link href={socialnetworks?.linkedin}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-12 w-12 rounded-full "
+                  className="grid place-items-center h-6 w-6 rounded-full "
                 >
                   <FontAwesomeIcon icon={faLinkedin} size="lg" />
                 </a>
@@ -96,7 +96,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
               <Link href={socialnetworks?.twitch}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-12 w-12 rounded-full"
+                  className="grid place-items-center h-6 w-6 rounded-full"
                 >
                   <FontAwesomeIcon icon={faTwitch} size="lg" />
                 </a>

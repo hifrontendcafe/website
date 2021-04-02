@@ -4,8 +4,7 @@ import React, { FC } from 'react';
 
 const CustomLeftArrow = ({ onClick }) => (
   <FontAwesomeIcon
-    className="cursor-pointer text-primary"
-    size="2x"
+    className="cursor-pointer text-primary w-8 h-8"
     icon={faArrowLeft}
     onClick={() => onClick()}
   />
@@ -13,8 +12,7 @@ const CustomLeftArrow = ({ onClick }) => (
 
 const CustomRightArrow = ({ onClick }) => (
   <FontAwesomeIcon
-    className="cursor-pointer text-primary"
-    size="2x"
+    className="cursor-pointer text-primary w-8 h-8"
     icon={faArrowRight}
     onClick={() => onClick()}
   />

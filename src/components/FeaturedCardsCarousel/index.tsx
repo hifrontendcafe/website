@@ -1,4 +1,3 @@
-import React from 'react';
 import 'react-multi-carousel/lib/styles.css';
 
 import FeaturedCard from '../FeaturedCard';
