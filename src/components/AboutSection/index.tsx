@@ -9,7 +9,7 @@ const AboutSection: React.FC<AboutProps> = ({ description }) => (
   >
     <div className="w-full md:w-6/12 px-4 mr-auto ml-auto mb-16 ">
       <h3 className="text-4xl text-center md:text-left md:text-4xl lg:text-5xl mb-2 leading-normal text-primary font-bold">
-        ¿Quienes somos?
+        ¿Quiénes somos?
       </h3>
       <p className="text-lg text-center md:text-left leading-relaxed mt-4 mb-4 text-gray-700">
         {description}

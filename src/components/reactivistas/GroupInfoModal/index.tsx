@@ -27,19 +27,19 @@ const GroupInfoModal = (props: GroupInfoModalProps) => {
               href={group.studyMaterial}
               target="_blank"
             >
-              Link aqui
+              Link aquí
             </a>
           </li>
           <li className="mb-3">
-            <span className="font-bold">Estilo de Reuniones:</span>{' '}
+            <span className="font-bold">Estilo de reuniones:</span>{' '}
             {group.meetings ? group.meetings : 'A definir'}
           </li>
           <li className="mb-3">
-            <span className="font-bold">Plan de Estudio:</span>{' '}
+            <span className="font-bold">Plan de estudio:</span>{' '}
             {group.plan ? group.plan : 'A definir'}
           </li>
           <li>
-            <span className="font-bold">Fecha de Inicio:</span>{' '}
+            <span className="font-bold">Fecha de inicio:</span>{' '}
             {group.startDate}
           </li>
         </ul>
