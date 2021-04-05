@@ -32,7 +32,7 @@ const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
           </div>
           <p className="pt-5 pb-8 text-sm lg:text-lg">{card.description}</p>
         </div>
-        <button className="w-60 h-14 text-white">
+        <button className="w-60 h-14 text-white text-center md:text-left pl-5">
           <Link href={card.link}>
             <a
               className="btn normal-case text-sm lg:text-lg font-normal"
