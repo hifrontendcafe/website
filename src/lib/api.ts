@@ -171,6 +171,18 @@ export async function createPerson(data: any): Promise<Person> {
   });
 }
 
+export async function updatePerson(
+  personId: string,
+  data: any,
+): Promise<Person> {
+  return await postClient
+    .patch(personId)
+    .set({
+      ...data,
+    })
+    .commit();
+}
+
 export async function getPersonByDiscordId(
   id: string,
   preview: boolean = false,

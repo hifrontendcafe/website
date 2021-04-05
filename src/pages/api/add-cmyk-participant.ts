@@ -3,6 +3,7 @@ import {
   getPersonByDiscordId,
   createPerson,
   createCMYKParticipant,
+  updatePerson,
 } from '../../lib/api';
 
 export default async function post(req: NextApiRequest, res: NextApiResponse) {
@@ -22,6 +23,15 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
     } catch (error) {
       console.log(error);
     }
+  } else {
+    user = await updatePerson(user._id, {
+      email: body.email,
+      firstName: body.firstName,
+      lastName: body.lastName,
+      github: body.github,
+      twitter: body.twitter,
+      linkedin: body.linkedIn,
+    });
   }
 
   try {
