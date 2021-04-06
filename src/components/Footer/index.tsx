@@ -16,7 +16,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
   const navItems = [
-    { title: 'Unirse a Discord', link: 'https://discord.com/invite/3GC6TJd' },
+    { title: 'Unirse a Discord', link: 'https://discord.gg/frontendcafe' },
     { title: 'Proyectos CMYK', link: '/cmyk' },
     { title: 'Mentorías', link: '/mentorias' },
     { title: 'Prácticas de inglés', link: '/ingles' },

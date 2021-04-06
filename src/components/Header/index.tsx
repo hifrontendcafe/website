@@ -66,7 +66,7 @@ const Header: React.FC<HeaderProps> = ({ preview, menu, logo }) => {
               </a>
             </Link>
           ))}
-          <Link href="https://discord.com/invite/3GC6TJd">
+          <Link href="https://discord.gg/frontendcafe">
             <a
               target="_blank"
               className={'btn btn-secondary ml-3'}

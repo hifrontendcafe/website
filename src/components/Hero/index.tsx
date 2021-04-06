@@ -69,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
               </span>
             </div>
           </div>
-          <Link href="https://discord.com/invite/3GC6TJd">
+          <Link href="https://discord.gg/frontendcafe">
             <a
               target="_blank"
               className="bg-secondary hover:bg-secondarydark text-white py-2 px-4 rounded my-3 block"
