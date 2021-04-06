@@ -11,20 +11,20 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ title, background }) => {
   const bg = imageBuilder.image(background).width(1280).url();
   return (
-    <div style={{}} className="bg-white">
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        exit={{ opacity: 0, y: -50 }}
-        style={{ height: '500px', backgroundImage: `url('${bg}')` }}
-        className="container mx-auto flex justify-around items-center bg-cover bg-center"
-      >
-        <div>
-          <div className="relative text-4xl font-bold ">
+    <div
+      style={{ height: '500px', maxWidth: '1280px' }}
+      className="relative md:container mx-auto bg-white bg-opacity-0"
+    >
+      <img
+        className="absolute object-cover h-full w-full opacity-25 md:opacity-100 z-0"
+        src={bg}
+      />
+      <div className="flex items-center bg-cover bg-center justify-center md:justify-around h-full">
+        <div className="w-auto md:w-1/3 z-10">
+          <div className="relative text-4xl font-bold">
             <svg
-              style={{ top: '-40', right: '-10' }}
-              className="absolute"
+              style={{ left: '-4rem' }}
+              className="absolute top-0 hidden sm:block"
               width="48"
               height="50"
               viewBox="0 0 48 50"
@@ -44,28 +44,30 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
                 fill="#5C6BC0"
               />
             </svg>
-            <AnimatePresence>
-              <div>
-                <p>
-                  <motion.span
-                    key={title}
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.5 }}
-                    className="inline-block px-2 py-2 text-indigo-500 bg-indigo-100 border-2 border-dashed border-indigo-500"
-                  >
-                    {title}
-                  </motion.span>
-                  <span> en </span>
-                </p>
-                <span
-                  style={{ width: 'min-content' }}
-                  className="mt-2 inline-block px-2 py-2 bg-orange-200 border-2 border-dashed border-orange-500"
+            <div>
+              <p>
+                <motion.span
+                  key={title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 1,
+                    type: 'spring',
+                    velocity: 2,
+                  }}
+                  className="inline-block px-2 py-2 text-indigo-500 bg-indigo-100 border-2 border-dashed border-indigo-500"
                 >
-                  Frontendcafé
-                </span>
-              </div>
-            </AnimatePresence>
+                  {title}
+                </motion.span>
+                <span className="z-10"> en </span>
+              </p>
+              <span
+                style={{ width: 'min-content' }}
+                className="mt-2 inline-block px-2 py-2 bg-yellow-400  border-2 border-dashed border-yellow-600"
+              >
+                Frontendcafé
+              </span>
+            </div>
           </div>
           <Link href="https://discord.com/invite/3GC6TJd">
             <a
@@ -83,8 +85,8 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
           </div>
           <div className="row-start-2 col-start-1">
             <CounterSquare
-              color="bg-orange-500"
-              bgColor="bg-orange-400"
+              color="bg-yellow-500"
+              bgColor="bg-yellow-400"
               big="+8K"
               text="Miembros"
             />
@@ -93,7 +95,7 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
             <CounterSquare big="+20M" text="Mensajes" />
           </div>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 };
@@ -108,19 +110,19 @@ type CounterSquareProps = {
 const CounterSquare: React.FC<CounterSquareProps> = ({
   big = '10',
   text = 'Default',
-  color = 'bg-teal-500',
-  bgColor = 'bg-teal-600',
+  color = 'bg-green-400',
+  bgColor = 'bg-green-500',
 }) => {
   return (
     <div
-      className={`flex justify-center items-center relative w-32 h-24 rounded-lg ${bgColor}`}
+      className={`flex justify-center items-center relative w-24 lg:w-32 h-20 lg:h-24 rounded-lg ${bgColor}`}
     >
       <div
         style={{ transform: 'rotate(-15deg)' }}
-        className={`z-10 absolute top-0 left-0 w-32 h-24 rounded-lg ${color}`}
+        className={`z-10 absolute top-0 left-0 w-24 lg:w-32 h-20 lg:h-24 rounded-lg ${color}`}
       ></div>
-      <div className="z-20 text-white font-bold">
-        <p className="text-3xl">{big}</p>
+      <div className="z-20 text-white font-bold text-center lg:text-left">
+        <p className="text-2xl lg:text-3xl">{big}</p>
         <p className="text-md">{text}</p>
       </div>
     </div>
