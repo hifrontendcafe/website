@@ -21,10 +21,10 @@ const EnglishPage: React.FC<EnglishPageProps> = ({
       description="Únete a nuestras charlas de inglés en Discord"
       settings={settings}
     >
-      <div className="container px-4 sm:px-6 mx-auto pt-16 md:pt-0">
+      <div className="container px-4 sm:px-6 mx-auto pt-16 md:pt-8">
         <div className="flex justify-between flex-wrap pb-8">
           <div className="max-w-xl">
-            <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-semibold">
+            <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-extrabold">
               🌎 Práctica de inglés
             </h1>
             <p>
@@ -49,7 +49,7 @@ const EnglishPage: React.FC<EnglishPageProps> = ({
         </div>
         {upcomingEvents.length > 0 && (
           <div>
-            <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-semibold">
+            <h1 className="text-2xl md:text-3xl pt-4 mt-0 md:my-4 font-semibold">
               Próximos Eventos
             </h1>
             <div className="flex flex-wrap">

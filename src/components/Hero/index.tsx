@@ -12,14 +12,14 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
   const bg = imageBuilder.image(background).width(1280).url();
   return (
     <div
-      style={{ height: '500px' }}
-      className="relative container mx-auto bg-white bg-opacity-0"
+      style={{ height: '500px', maxWidth: '1280px' }}
+      className="relative md:container mx-auto bg-white bg-opacity-0"
     >
       <img
         className="absolute object-cover h-full w-full opacity-25 md:opacity-100 z-0"
         src={bg}
       />
-      <div className="flex items-center bg-cover bg-center justify-center md:justify-evenly h-full">
+      <div className="flex items-center bg-cover bg-center justify-center md:justify-around h-full">
         <div className="w-auto md:w-1/3 z-10">
           <div className="relative text-4xl font-bold">
             <svg
@@ -63,7 +63,7 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="mt-2 inline-block px-2 py-2 bg-orange-200 border-2 border-dashed border-orange-500"
+                className="mt-2 inline-block px-2 py-2 bg-yellow-400  border-2 border-dashed border-yellow-600"
               >
                 Frontendcafé
               </span>
@@ -85,8 +85,8 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
           </div>
           <div className="row-start-2 col-start-1">
             <CounterSquare
-              color="bg-orange-500"
-              bgColor="bg-orange-400"
+              color="bg-yellow-500"
+              bgColor="bg-yellow-400"
               big="+8K"
               text="Miembros"
             />
@@ -110,19 +110,19 @@ type CounterSquareProps = {
 const CounterSquare: React.FC<CounterSquareProps> = ({
   big = '10',
   text = 'Default',
-  color = 'bg-teal-500',
-  bgColor = 'bg-teal-600',
+  color = 'bg-green-400',
+  bgColor = 'bg-green-500',
 }) => {
   return (
     <div
-      className={`flex justify-center items-center relative w-32 h-24 rounded-lg ${bgColor}`}
+      className={`flex justify-center items-center relative w-24 lg:w-32 h-20 lg:h-24 rounded-lg ${bgColor}`}
     >
       <div
         style={{ transform: 'rotate(-15deg)' }}
-        className={`z-10 absolute top-0 left-0 w-32 h-24 rounded-lg ${color}`}
+        className={`z-10 absolute top-0 left-0 w-24 lg:w-32 h-20 lg:h-24 rounded-lg ${color}`}
       ></div>
-      <div className="z-20 text-white font-bold">
-        <p className="text-3xl">{big}</p>
+      <div className="z-20 text-white font-bold text-center lg:text-left">
+        <p className="text-2xl lg:text-3xl">{big}</p>
         <p className="text-md">{text}</p>
       </div>
     </div>

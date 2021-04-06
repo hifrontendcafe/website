@@ -23,6 +23,13 @@ html {
   height: auto;
 }
 
+@layer utilities {
+  .text-gradient {
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
 @layer components {
   .btn {
     @apply text-sm px-6 font-medium py-2 rounded;
@@ -54,5 +61,9 @@ html {
 
   .social-circle {
     @apply grid place-items-center h-8 w-8 rounded-full;
+  }
+
+  .title-primary {
+    @apply text-gradient bg-gradient-to-r from-green-400 to-blue-500;
   }
 }

@@ -19,7 +19,7 @@ const MentorshipsHero: React.FC = () => {
           md:items-start md:text-left items-center text-center"
         >
           <h1
-            className="title-font sm:text-4xl text-3xl mb-4 font-medium
+            className="title-font sm:text-4xl text-3xl mb-4 font-extrabold
             text-gray-900"
           >
             Programa de mentorías
