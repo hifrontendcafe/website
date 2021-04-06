@@ -21,9 +21,12 @@ const ProfilePage = ({ profile, preview }: Props) => {
     return <ErrorPage statusCode={404} />;
   }
   return (
-    <Layout title={`Perfiles en FrontendCafé | profile.name`} preview={preview}>
+    <Layout
+      title={`Perfiles en FrontendCafé  | profile.name`}
+      preview={preview}
+    >
       <Head>
-        <title>{profile.name} | FrontendCafé</title>
+        <title>{profile.name} | FrontendCafé </title>
         <meta property="og:image" content={profile?.ogImage.url} />
       </Head>
       <main className="pt-20 md:pt-0 mb-32 container mx-auto px-4 md:px-6">

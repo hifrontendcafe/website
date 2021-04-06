@@ -30,7 +30,7 @@ const MentorshipsHero: React.FC = () => {
             comenzar y qué elegir de todo lo que abarca el rubro de IT.
           </p>
           <p className="mb-8 leading-relaxed">
-            El programa de mentorías de FrontEndCafé busca servirte de guía en
+            El programa de mentorías de FrontendCafé busca servirte de guía en
             este camino, conectándote con profesionales y referentes capacitados
             en los múltiples y diversos temas que engloba el universo de las
             tecnologías de la información.

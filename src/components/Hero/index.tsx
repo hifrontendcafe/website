@@ -65,7 +65,7 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
                 style={{ width: 'min-content' }}
                 className="mt-2 inline-block px-2 py-2 bg-yellow-400  border-2 border-dashed border-yellow-600"
               >
-                Frontendcafé
+                FrontendCafé
               </span>
             </div>
           </div>

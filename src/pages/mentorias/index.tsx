@@ -36,7 +36,7 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
   return (
     <Layout
       title="Mentorías"
-      description="El programa de mentorías de FrontEndCafé busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
+      description="El programa de mentorías de FrontendCafé  busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
       preview={preview}
       settings={settings}
     >
@@ -59,7 +59,7 @@ const MentorshipsSteps: React.FC = () => {
             ¿Por dónde empiezo? 🤔
           </h1>
           <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
-            El procedimiento para sumarte a las mentorías de FrontEndCafé consta
+            El procedimiento para sumarte a las mentorías de FrontendCafé consta
             de tres simples pasos, resumidos en <strong>encontrar</strong> tu
             mentor, <strong>coordinar</strong> un encuentro y{' '}
             <strong>prepararte</strong> para la mentoría.

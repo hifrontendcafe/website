@@ -57,7 +57,7 @@ const CMYKRegisterPage: React.FC<IndexProps> = ({
           </div>
           <div className="mt-12">
             <p className="mb-4 leading-relaxed text-lg">
-              Desde <b>FrontendCafé</b> impulsamos el desarrollo de proyectos
+              Desde <b>FrontendCafé </b> impulsamos el desarrollo de proyectos
               colaborativos realizados por miembros de la comunidad con el
               objetivo de ganar experiencia en un entorno profesional.
             </p>

@@ -12,7 +12,7 @@ const MentorshipsFeedback: React.FC<MentorshipsFeedback> = ({ settings }) => {
   return (
     <Layout
       title="Mentorías"
-      description="El programa de mentorías de FrontEndCafé busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
+      description="El programa de mentorías de FrontendCafé  busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
       settings={settings}
     >
       <Hero title="Mentorías" background={settings?.heroBackground} />

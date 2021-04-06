@@ -68,7 +68,7 @@ const Featured = ({ cards }) => (
         ¡Descubre lo que tenemos para ti!
       </h1>
       <p className="lg:text-lg text-md w-5/6">
-        En Frontendcafé con la participación de la comunidad creamos diferentes
+        En FrontendCafé con la participación de la comunidad creamos diferentes
         actividades para mejorar nuestras habilidades tanto profesionales como
         comunidad.
       </p>
