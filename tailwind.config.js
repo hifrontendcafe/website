@@ -1,3 +1,5 @@
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 module.exports = {
   future: {
     removeDeprecatedGapUtilities: true,
@@ -8,6 +10,9 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    screens: Object.fromEntries(
+      Object.entries(defaultTheme.screens).filter(([key]) => key !== '2xl'),
+    ),
     fontFamily: {
       sans: ['Inter', 'sans-serif'],
     },

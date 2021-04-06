@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { imageBuilder } from '../../lib/sanity';
 import { Image } from '../../lib/types';
 
@@ -12,7 +12,7 @@ const Hero: React.FC<HeroProps> = ({ title, background }) => {
   const bg = imageBuilder.image(background).width(1280).url();
   return (
     <div
-      style={{ height: '500px', maxWidth: '1280px' }}
+      style={{ height: '500px' }}
       className="relative md:container mx-auto bg-white bg-opacity-0"
     >
       <img
