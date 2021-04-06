@@ -64,9 +64,7 @@ const Index: React.FC<IndexProps> = ({ preview = false, settings, cards }) => {
 const Featured = ({ cards }) => (
   <div className="flex flex-col mb-12 md:mb-24">
     <div className="flex flex-col justify-center m-auto mt-20 items-center  text-center lg:w-2/3">
-      <h1 className="lg:text-5xl md:text-4xl text-xl font-extrabold mb-5">
-        ¡Descubre lo que tenemos para ti!
-      </h1>
+      <h1 className="title mb-5">¡Descubre lo que tenemos para ti!</h1>
       <p className="lg:text-lg text-md w-5/6">
         En FrontendCafé con la participación de la comunidad creamos diferentes
         actividades para mejorar nuestras habilidades tanto profesionales como
