@@ -74,7 +74,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
-                    className="text-white bg-teal-500 hover:bg-teal-400 font-base text-sm py-1 px-3 rounded uppercase"
+                    className="text-white bg-primary hover:bg-teal-400 font-base text-sm py-1 px-3 rounded uppercase"
                   >
                     <span>Contactame</span>
                   </a>
