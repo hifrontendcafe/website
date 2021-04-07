@@ -58,8 +58,8 @@ const CMYKProjects: React.FC<IndexProps> = ({
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}
           </div>
-          <div className="text-center py-10">
-            <h2 className="mb-8 text-xl font-semibold tracking-tight text-gray-900">
+          <div className="text-center py-20">
+            <h2 className="subtitle mb-8 tracking-tight">
               El siguiente puede ser el tuyo{' '}
               <img
                 src="/icons/hearth.svg"
