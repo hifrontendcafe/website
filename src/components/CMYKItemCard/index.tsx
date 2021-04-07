@@ -15,7 +15,7 @@ const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
   return (
     <div
       className={`max-w-md rounded overflow-hidden flex flex-col ${
-        index % 2 === 0 ? 'md:mb-12 ' : 'md:mt-12'
+        index % 2 === 0 ? 'md:mb-16 ' : 'md:mt-16'
       }`}
     >
       <img
@@ -24,12 +24,12 @@ const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
         alt="Project image"
       />
       <div
-        className={`flex flex-col md:flex-row h-40 ${
+        className={`flex flex-col md:flex-row h-auto ${
           textColor.isLight() ? 'text-gray-900' : 'text-white'
         }`}
         style={{ backgroundColor: project.color }}
       >
-        <div className="px-6 py-4 overflow-y-auto">
+        <div className="px-6 py-4">
           <div className="font-semibold text-2xl mb-2">{project.name}</div>
           <p className="text-sm">{project.description}</p>
         </div>

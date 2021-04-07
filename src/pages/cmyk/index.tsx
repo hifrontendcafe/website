@@ -53,7 +53,7 @@ const CMYKProjects: React.FC<IndexProps> = ({
           className="w-full h-full mt-24"
           style={{ backgroundColor: '#F5F9FF' }}
         >
-          <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-2 relative z-10 mt-20">
+          <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-2 relative z-10 mt-20">
             {projects.map((project, index) => (
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}
