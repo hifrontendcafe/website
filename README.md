@@ -1,4 +1,4 @@
-<h1 align="center">Hi 👋, we're Frontendcafé</h1>
+<h1 align="center">Hi 👋, we're FrontendCafé </h1>
 <h3 align="center">A community of people interested in technology and computing where we talk about programming languages, web design, infrastructure, we share doubts, we ask and we answer.</h3>
 
 <h3 align="left">Languages and Tools:</h3>
@@ -7,6 +7,7 @@
 <h3 align="left">Getting Started</h3>
 
 - Install dependencies:
+
 ```bash
 npm install / yarn install
 ```
@@ -24,7 +25,7 @@ npm run dev / yarn dev
 <h3 align="left">Connect with us:</h3>
 <p align="left">
 <a href="https://twitter.com/frontendcafe" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg" alt="frontendcafe" height="30" width="40" /></a>
-<a href="https://linkedin.com/in/frontendcafé" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="frontendcafé" height="30" width="40" /></a>
+<a href="https://linkedin.com/in/FrontendCafé " target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="FrontendCafé " height="30" width="40" /></a>
 <a href="https://discord.gg/https://discord.gg/frontendcafe" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/discord.svg" alt="https://discord.gg/frontendcafe" height="30" width="40" /></a>
 </p>
 

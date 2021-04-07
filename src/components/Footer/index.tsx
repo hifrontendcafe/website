@@ -16,7 +16,7 @@ interface FooterProps {
 
 const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
   const navItems = [
-    { title: 'Unirse a Discord', link: 'https://discord.com/invite/3GC6TJd' },
+    { title: 'Unirse a Discord', link: 'https://discord.gg/frontendcafe' },
     { title: 'Proyectos CMYK', link: '/cmyk' },
     { title: 'Mentorías', link: '/mentorias' },
     { title: 'Prácticas de inglés', link: '/ingles' },
@@ -26,7 +26,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
 
   return (
     <footer className="bg-black">
-      <div className="flex flex-col-reverse gap-12 md:gap-0 md:flex-row justify-center md:justify-between container mx-auto py-16 text-white">
+      <div className="container mx-auto flex flex-col-reverse gap-12 md:gap-0 md:flex-row justify-center md:justify-between py-16 text-white">
         <div className="flex flex-col gap-5 text-center md:text-left">
           <img
             src="/logo-square.png"
@@ -43,7 +43,7 @@ const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
           <p className="font-light">© FrontendCafé {currentYear}</p>
         </div>
 
-        <div className="flex flex-col justify-center md:w-1/4 gap-3">
+        <div className="flex flex-col justify-center gap-3">
           <p className="w-auto md:text-left text-center font-medium">
             Encuéntranos en
           </p>

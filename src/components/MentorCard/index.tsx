@@ -27,7 +27,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
       <div className="w-full flex items-center flex-col md:flex-row px-6 py-4 text-center md:text-left">
         <div className="flex flex-col items-center md:mr-6 text-white">
           <img
-            className="w-24 h-24 bg-gray-300 rounded-full"
+            className="w-24 h-24 bg-gray-300 rounded-full object-cover"
             src={mentor.photo.src}
             alt={`${mentor.name} Avatar`}
           />
@@ -74,7 +74,7 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
-                    className="text-white bg-teal-500 hover:bg-teal-400 font-base text-sm py-1 px-3 rounded uppercase"
+                    className="text-white bg-primary hover:bg-teal-400 font-base text-sm py-1 px-3 rounded uppercase"
                   >
                     <span>Contactame</span>
                   </a>

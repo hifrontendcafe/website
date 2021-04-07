@@ -18,19 +18,14 @@ const MentorshipsHero: React.FC = () => {
           className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col
           md:items-start md:text-left items-center text-center"
         >
-          <h1
-            className="title-font sm:text-4xl text-3xl mb-4 font-extrabold
-            text-gray-900"
-          >
-            Programa de mentorías
-          </h1>
+          <h1 className="title mb-4">Programa de mentorías</h1>
           <p className="mb-4 leading-relaxed">
             Iniciarnos en el mundo de la tecnología puede resultar abrumador o
             verse como un desafío. Eso nos puede llevar a preguntarnos por dónde
             comenzar y qué elegir de todo lo que abarca el rubro de IT.
           </p>
           <p className="mb-8 leading-relaxed">
-            El programa de mentorías de FrontEndCafé busca servirte de guía en
+            El programa de mentorías de FrontendCafé busca servirte de guía en
             este camino, conectándote con profesionales y referentes capacitados
             en los múltiples y diversos temas que engloba el universo de las
             tecnologías de la información.

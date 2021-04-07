@@ -23,9 +23,7 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
       <div className="container px-5 py-12 mx-auto">
         {futureEvents(events).length > 0 && (
           <>
-            <h1 className="text-2xl md:text-3xl font-extrabold pb-12 title-primary">
-              Próximos eventos
-            </h1>
+            <h1 className="subtitle pb-12">Próximos eventos</h1>
             <div className="flex flex-wrap -mx-4 -my-8">
               {futureEvents(events)?.map((event) => (
                 <EventPreview key={event.slug} event={event} />
@@ -33,9 +31,7 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
             </div>
           </>
         )}
-        <h1 className="text-2xl md:text-3xl font-extrabold pb-12 title-primary">
-          Eventos anteriores
-        </h1>
+        <h1 className="subtitle pb-12">Eventos anteriores</h1>
         <div className="flex flex-wrap -mx-4 -my-8">
           {pastEvents(events)?.map(
             (event) =>

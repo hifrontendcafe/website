@@ -11,25 +11,21 @@ type CMYKItemProps = {
 
 const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
   const textColor = tinycolor(project.color);
-  // const btnStyles = {
-  //   color: textColor.isLight() ? '#2d3748' : project.color,
-  //   backgroundColor: textColor.isLight() ? 'white' : '#2d3748',
-  // };
 
   return (
     <div
-      className={`max-w-md rounded overflow-hidden mb-5 flex flex-col ${
+      className={`max-w-md rounded overflow-hidden flex flex-col ${
         index % 2 === 0 ? 'md:mb-12 ' : 'md:mt-12'
       }`}
     >
       <img
-        className="h-40 object-cover w-full h-40"
+        className="h-40 object-cover w-full"
         src={project.image.src}
         alt="Project image"
       />
       <div
         className={`flex flex-col md:flex-row h-40 ${
-          textColor.isLight() ? 'text-gray-800' : 'text-white'
+          textColor.isLight() ? 'text-gray-900' : 'text-white'
         }`}
         style={{ backgroundColor: project.color }}
       >

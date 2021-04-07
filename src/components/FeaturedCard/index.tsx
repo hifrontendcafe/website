@@ -26,9 +26,7 @@ const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
             >
               {card.icon}
             </span>
-            <h1 className="lg:text-4xl text-xl pl-2 font-extrabold">
-              {card.title}
-            </h1>
+            <h1 className="subtitle pl-2">{card.title}</h1>
           </div>
           <p className="pt-5 pb-8 text-sm lg:text-lg">{card.description}</p>
         </div>

@@ -63,7 +63,15 @@ html {
     @apply grid place-items-center h-8 w-8 rounded-full;
   }
 
-  .title-primary {
+  .title {
+    @apply text-black text-3xl md:text-4xl lg:text-5xl leading-normal font-extrabold;
+  }
+
+  .subtitle {
+    @apply text-black text-2xl md:text-3xl lg:text-4xl leading-normal font-extrabold;
+  }
+
+  .title-colorful {
     @apply text-gradient bg-gradient-to-r from-green-400 to-blue-500;
   }
 }

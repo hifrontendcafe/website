@@ -27,7 +27,7 @@ const CMYKProjects: React.FC<IndexProps> = ({
       <div className="pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="mt-2 text-4xl sm:text-5xl leading-snug font-extrabold tracking-tight text-gray-900">
+            <h2 className="title mt-2 leading-snug tracking-tight">
               Proyectos hechos con{' '}
               <img
                 src="/icons/hearth.svg"
@@ -58,8 +58,8 @@ const CMYKProjects: React.FC<IndexProps> = ({
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}
           </div>
-          <div className="text-center py-10">
-            <h2 className="mb-8 text-xl font-semibold tracking-tight text-gray-900">
+          <div className="text-center py-20">
+            <h2 className="subtitle mb-8 tracking-tight">
               El siguiente puede ser el tuyo{' '}
               <img
                 src="/icons/hearth.svg"

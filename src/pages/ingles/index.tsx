@@ -24,9 +24,7 @@ const EnglishPage: React.FC<EnglishPageProps> = ({
       <div className="container px-4 sm:px-6 mx-auto pt-16 md:pt-8">
         <div className="flex justify-between flex-wrap pb-8">
           <div className="max-w-xl">
-            <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-extrabold">
-              🌎 Práctica de inglés
-            </h1>
+            <h1 className="title pt-4 mt-0 md:my-4">🌎 Práctica de inglés</h1>
             <p>
               Nos divertimos charlando con el objetivo de perder el miedo a
               hablar en inglés en público. Mejorando la comunicación y la
@@ -49,9 +47,7 @@ const EnglishPage: React.FC<EnglishPageProps> = ({
         </div>
         {upcomingEvents.length > 0 && (
           <div>
-            <h1 className="text-2xl md:text-3xl pt-4 mt-0 md:my-4 font-semibold">
-              Próximos Eventos
-            </h1>
+            <h1 className="subtitle pt-4 mt-0 md:my-4">Próximos Eventos</h1>
             <div className="flex flex-wrap">
               {upcomingEvents.map((event) => (
                 <EventPreview key={event.slug} event={event} />
