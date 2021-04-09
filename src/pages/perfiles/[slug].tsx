@@ -26,7 +26,10 @@ const ProfilePage = ({ profile, preview, settings }: Props) => {
   return (
     <Layout
       title={`Perfiles en FrontendCafé  | ${profile?.name}`}
-      preview={preview} settings={settings}
+      settings={settings}
+      description={profile?.role}
+      ogImage={profile?.ogImage.url}
+      preview={preview}
     >
       <Head>
         <title>{profile.name} | FrontendCafé </title>
