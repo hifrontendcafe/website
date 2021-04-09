@@ -8,6 +8,7 @@ type LayoutProps = {
   mode?: 'main' | 'simple';
   title?: string;
   description?: string;
+  ogImage?: string;
   preview?: boolean;
   settings?: Settings;
 };
@@ -41,13 +42,14 @@ const Layout: React.FC<LayoutProps> = ({
   mode = 'main',
   title,
   description,
+  ogImage,
   preview = false,
   children,
   settings,
 }) => {
   return (
     <>
-      <FecHead title={title} description={description} />
+      <FecHead title={title} description={description} ogImage={ogImage} />
       {
         {
           main: (
