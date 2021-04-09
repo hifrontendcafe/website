@@ -16,7 +16,7 @@ stack:
     'GitHub',
     '🧉'
   ]
-email: ''
+email: 'sebacordobaa@gmail.com'
 socialMedia:
   linkedin: 'https://www.linkedin.com/in/sebasec/'
   github: 'https://github.com/sebasec96'
@@ -25,8 +25,6 @@ coverImage: 'https://avatars.githubusercontent.com/u/38192975?s=400&u=64f6ebf9ed
 ogImage:
   url: 'https://avatars.githubusercontent.com/u/38192975?s=400&u=64f6ebf9ede1681e33e8ad98dfda633fae53cf33&v=4'
 ---
-
-### 👋 Sobre Mí
 
 Desarrollador FullStack autodidácta.
 
