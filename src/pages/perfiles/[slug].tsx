@@ -1,21 +1,24 @@
 import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
+import Link from 'next/link';
+import Head from 'next/head';
+import { GetStaticProps } from 'next';
+
 import Layout from '../../components/Layout';
 import ProfileBody from '../../components/ProfileBody';
 import ProfileHeader from '../../components/ProfileHeader';
-import { getProfileBySlug, getAllProfiles } from '../../lib/api';
-import Head from 'next/head';
-import markdownToHtml from '../../lib/markdowToHtml';
-import Link from 'next/link';
 
-import { Profile } from '../../lib/types';
+import markdownToHtml from '../../lib/markdowToHtml';
+import { getProfileBySlug, getAllProfiles, getSettings } from '../../lib/api';
+import { Profile, Settings } from '../../lib/types';
 
 type Props = {
   profile: Profile;
+  settings?: Settings;
   preview?: boolean;
 };
 
-const ProfilePage = ({ profile, preview }: Props) => {
+const ProfilePage = ({ profile, preview, settings }: Props) => {
   const router = useRouter();
   if (!router.isFallback && !profile?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -23,7 +26,7 @@ const ProfilePage = ({ profile, preview }: Props) => {
   return (
     <Layout
       title={`Perfiles en FrontendCafé  | ${profile?.name}`}
-      preview={preview}
+      preview={preview} settings={settings}
     >
       <Head>
         <title>{profile.name} | FrontendCafé </title>
@@ -92,7 +95,8 @@ type Params = {
   };
 };
 
-export async function getStaticProps({ params }: Params) {
+export const getStaticProps: GetStaticProps = async ({params}: Params, preview = false) => {
+  const settings = await getSettings();
   const profile = getProfileBySlug(params.slug, [
     'name',
     'socialMedia',
@@ -109,10 +113,12 @@ export async function getStaticProps({ params }: Params) {
 
   return {
     props: {
+      settings,
+      preview,
       profile: {
         ...profile,
         content,
-      },
+      },revalidate: 1
     },
   };
 }
