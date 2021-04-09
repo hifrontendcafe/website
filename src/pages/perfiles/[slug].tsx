@@ -22,7 +22,7 @@ const ProfilePage = ({ profile, preview }: Props) => {
   }
   return (
     <Layout
-      title={`Perfiles en FrontendCafé  | profile.name`}
+      title={`Perfiles en FrontendCafé  | ${profile?.name}`}
       preview={preview}
     >
       <Head>
