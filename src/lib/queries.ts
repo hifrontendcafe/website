@@ -8,7 +8,8 @@ export const settingsQuery = groq`
     logo,
     heroBackground,
     heroWords,
-    socialnetworks
+    socialnetworks,
+    cmykInscription
   }
 `;
 
