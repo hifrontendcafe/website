@@ -3,7 +3,11 @@ import { CMYKParticipant } from '../../lib/types';
 import { useState } from 'react';
 import { DiscordUserTooltip } from '../reactivistas/FormHelpers';
 
-const CMYKParticipantForm = () => {
+interface IndexProps {
+  cmykInscription: boolean;
+}
+
+const CMYKParticipantForm: React.FC<IndexProps> = ({cmykInscription}) => {
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -11,25 +15,27 @@ const CMYKParticipantForm = () => {
 
   const onSubmit = async (data: CMYKParticipant) => {
     setIsLoading(true);
-    // try {
-    //   const res = await fetch('/api/add-cmyk-participant', {
-    //     method: 'POST',
-    //     body: JSON.stringify(data),
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //   });
+      if(cmykInscription) {
+        try {
+          const res = await fetch('/api/add-cmyk-participant', {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          });
 
-    //   await res.json();
-    //   setIsSuccess(true);
-    //   setIsLoading(false);
-    //   reset();
-    //   setTimeout(() => setIsSuccess(false), 5000);
-    // } catch (e) {
-    setIsError(true);
-    setIsLoading(false);
-    setTimeout(() => setIsError(false), 5000);
-    // }
+          await res.json();
+          setIsSuccess(true);
+          setIsLoading(false);
+          reset();
+          setTimeout(() => setIsSuccess(false), 5000);
+        } catch (e) {
+        setIsError(true);
+        setIsLoading(false);
+        setTimeout(() => setIsError(false), 5000);
+        }
+      }
   };
 
   return (
@@ -241,8 +247,7 @@ const CMYKParticipantForm = () => {
           <button
             type="submit"
             className="inline-flex justify-center px-6 py-3 text-md font-medium text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            // disabled={isLoading}
-            disabled
+            disabled={isLoading}
           >
             {isLoading ? 'Enviando...' : 'Enviar registro'}
           </button>

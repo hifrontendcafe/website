@@ -6,6 +6,7 @@ export interface Settings {
   menu: string[];
   socialnetworks: SocialNetworks;
   title: string;
+  cmykInscription: boolean;
 }
 
 export interface SocialNetworks {

@@ -77,21 +77,29 @@ const CMYKRegisterPage: React.FC<IndexProps> = ({
           />
         </div>
       </div>
-      <div className="container mx-auto overflow-hidden bg-white rounded-lg px-5">
-        <div className="pt-10 md:pt-15 lg:pt-20 md:py-5 lg:px-24 md:px-16">
-          <div className="mt-2 md:flex md:items-center md:justify-between">
-            <div className="flex-1 min-w-0">
-              <h1 className="font-bold leading-7 text-black text-2xl md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
-                ¡Es la hora!
-              </h1>
-              <h1 className="font-bold leading-7 text-black text-2xl md:text-3xl lg:text-4xl  sm:leading-9 sm:truncate py-1">
-                ¡Participa de los proyectos CMYK! &#x1F396;&#xFE0F;
-              </h1>
+      {settings.cmykInscription ?
+        <div className="container mx-auto overflow-hidden bg-white rounded-lg px-5">
+          <div className="pt-10 md:pt-15 lg:pt-20 md:py-5 lg:px-24 md:px-16">
+            <div className="mt-2 md:flex md:items-center md:justify-between">
+              <div className="flex-1 min-w-0">
+                <h1 className="font-bold leading-7 text-black text-2xl md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                  ¡Es la hora!
+                </h1>
+                <h1 className="font-bold leading-7 text-black text-2xl md:text-3xl lg:text-4xl  sm:leading-9 sm:truncate py-1">
+                  ¡Participa de los proyectos CMYK! &#x1F396;&#xFE0F;
+                </h1>
+              </div>
             </div>
           </div>
+          <CMYKParticipantForm cmykInscription={settings.cmykInscription}/>
         </div>
-        <CMYKParticipantForm />
-      </div>
+        :
+        <div className="container mx-auto bg-white px-7">
+          <h1 className="font-bold leading-7 text-black text-2xl md:pl-20 py-10 md:py-20 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate text-center">
+            La inscripción se encuentra cerrada.
+          </h1>
+        </div>
+      }
       <Modal
         isOpen={isModalOpen}
         close={() => setIsModalOpen(false)}
