@@ -5,28 +5,18 @@ import { GetStaticProps } from 'next';
 
 import CMYKParticipantForm from '../../components/CMYKParticipantForm';
 import styles from './styles.module.css';
-
-import { getSettings } from '../../lib/api';
-import { Settings } from '../../lib/types';
+import { useSettings } from '../../lib/settings';
 
 interface IndexProps {
   preview?: boolean;
-  settings?: Settings;
   cards: object;
 }
-const CMYKRegisterPage: React.FC<IndexProps> = ({
-  preview = false,
-  settings,
-}) => {
+const CMYKRegisterPage: React.FC<IndexProps> = ({ preview = false }) => {
+  const { cmykInscription } = useSettings();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <Layout
-      title="CMYK"
-      description={settings?.description}
-      settings={settings}
-      preview={preview}
-    >
+    <Layout title="CMYK" preview={preview}>
       <div
         className="container mx-auto flex px-5 pt-20 md:flex-row flex-col
         items-center"
@@ -77,7 +67,7 @@ const CMYKRegisterPage: React.FC<IndexProps> = ({
           />
         </div>
       </div>
-      {settings.cmykInscription ?
+      {cmykInscription ? (
         <div className="container mx-auto overflow-hidden bg-white rounded-lg px-5">
           <div className="pt-10 md:pt-15 lg:pt-20 md:py-5 lg:px-24 md:px-16">
             <div className="mt-2 md:flex md:items-center md:justify-between">
@@ -91,15 +81,15 @@ const CMYKRegisterPage: React.FC<IndexProps> = ({
               </div>
             </div>
           </div>
-          <CMYKParticipantForm cmykInscription={settings.cmykInscription}/>
+          <CMYKParticipantForm />
         </div>
-        :
+      ) : (
         <div className="container mx-auto bg-white px-7">
           <h1 className="font-bold leading-7 text-black text-2xl md:pl-20 py-10 md:py-20 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate text-center">
             La inscripción se encuentra cerrada.
           </h1>
         </div>
-      }
+      )}
       <Modal
         isOpen={isModalOpen}
         close={() => setIsModalOpen(false)}
@@ -145,8 +135,7 @@ const CMYKRegisterPage: React.FC<IndexProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const settings = await getSettings();
-  return { props: { preview, settings }, revalidate: 1 };
+  return { props: { preview }, revalidate: 1 };
 };
 
 export default CMYKRegisterPage;

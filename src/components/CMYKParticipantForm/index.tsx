@@ -2,12 +2,11 @@ import { useForm } from 'react-hook-form';
 import { CMYKParticipant } from '../../lib/types';
 import { useState } from 'react';
 import { DiscordUserTooltip } from '../reactivistas/FormHelpers';
+import { useSettings } from '../../lib/settings';
 
-interface IndexProps {
-  cmykInscription: boolean;
-}
+const CMYKParticipantForm: React.FC = () => {
+  const { cmykInscription } = useSettings();
 
-const CMYKParticipantForm: React.FC<IndexProps> = ({cmykInscription}) => {
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -15,27 +14,28 @@ const CMYKParticipantForm: React.FC<IndexProps> = ({cmykInscription}) => {
 
   const onSubmit = async (data: CMYKParticipant) => {
     setIsLoading(true);
-      if(cmykInscription) {
-        try {
-          const res = await fetch('/api/add-cmyk-participant', {
-            method: 'POST',
-            body: JSON.stringify(data),
-            headers: {
-              'Content-Type': 'application/json',
-            },
-          });
 
-          await res.json();
-          setIsSuccess(true);
-          setIsLoading(false);
-          reset();
-          setTimeout(() => setIsSuccess(false), 5000);
-        } catch (e) {
+    if (cmykInscription) {
+      try {
+        const res = await fetch('/api/add-cmyk-participant', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        });
+
+        await res.json();
+        setIsSuccess(true);
+        setIsLoading(false);
+        reset();
+        setTimeout(() => setIsSuccess(false), 5000);
+      } catch (e) {
         setIsError(true);
         setIsLoading(false);
         setTimeout(() => setIsError(false), 5000);
-        }
       }
+    }
   };
 
   return (
