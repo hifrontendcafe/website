@@ -1,3 +1,4 @@
+import fs from 'fs';
 import client, { postClient, previewClient } from './sanity';
 import {
   CMYK,
@@ -30,7 +31,6 @@ import {
   featuredCardsQuery,
 } from './queries';
 
-import fs from 'fs';
 import { join } from 'path';
 import matter from 'gray-matter';
 
@@ -49,7 +49,7 @@ const eventFields = `
   recording
 `;
 
-const getClient = (preview: boolean = false) =>
+export const getClient = (preview: boolean = false) =>
   preview ? previewClient : client;
 
 export async function getAllEvents(preview: boolean = false): Promise<Event[]> {
