@@ -18,7 +18,7 @@ stack:
 'Metodologías Ágiles',
 'Scrum',
 'UML',
-'Análisis y Diseño de Software',
+'Análisis y Diseño de Software'
 ]
 email: 'ramiro@olivencia.com.ar'
 socialMedia:
