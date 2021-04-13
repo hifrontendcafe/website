@@ -16,11 +16,11 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
 
   function toPlainText(blocks) {
     return blocks
-      .map((block) => {
+      ?.map((block) => {
         if (block._type !== 'block' || !block.children) {
           return '';
         }
-        return block.children.map((child) => child.text).join('');
+        return block.children?.map((child) => child.text).join('');
       })
       .join('\n\n');
   }
@@ -34,7 +34,9 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   };
 
   return (
-    <div className={`py-8 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}>
+    <div
+      className={`py-8 pb-24 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}
+    >
       <div className="h-full flex items-start rounded overflow-hidden shadow-lg flex-col">
         <img
           className="w-full"
@@ -43,7 +45,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           style={{ filter: past ? 'grayscale(66%)' : 'none' }}
         />
         <div
-          className={`flex-grow p-4 flex flex-col ${
+          className={`flex-grow p-4 flex flex-col bg-white ${
             past && !event.recording ? styles['past-event-text'] : ''
           }`}
         >
@@ -66,7 +68,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               event.recording && (
                 <a
                   href={event.recording}
-                  className="bg-red-500 text-white text-sm py-2 px-5 rounded"
+                  className="bg-tertiary text-white text-sm py-2 px-5 rounded"
                   target="_blank"
                   rel="noreferrer"
                 >

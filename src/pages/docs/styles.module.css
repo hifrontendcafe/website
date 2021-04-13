@@ -1,0 +1,47 @@
+.body h1,
+.body h2,
+.body h3,
+.body h4,
+.body h5,
+.body h6 {
+  color: #00c39d;
+  margin: 0.5rem 0;
+}
+.body h1 {
+  font-size: 3rem;
+}
+.body h2 {
+  font-size: 2.5rem;
+}
+.body h3 {
+  font-size: 2rem;
+}
+.body h4 {
+  font-size: 1.2rem;
+}
+.body h5 {
+  font-size: 1rem;
+}
+.body h6 {
+  font-size: 0.8rem;
+}
+
+.body a {
+  color: #00c39d;
+  text-decoration: underline;
+}
+
+.body p:empty,
+.body p > strong:empty {
+  display: block;
+  height: 1rem;
+}
+
+.body ul {
+  list-style: disc;
+  padding-left: 2rem;
+}
+
+.body li + li {
+  margin-top: 0.2em;
+}

@@ -28,6 +28,7 @@ role: 'R&D  Senior Consultant'
 coverImage: 'https://avatars.githubusercontent.com/u/32349705?v=4s'
 ogImage:
 url: 'https://avatars.githubusercontent.com/u/32349705?v=4s'
+
 ---
 
 ### 👋 Sobre Mí
@@ -81,6 +82,7 @@ Angular, SASS, Bootstrap, Typescript, NodeJS, AirTable |
 </a>
 
 Aplicación móvil híbrida, desarrollada con Ionic, para proveer un programa de fidelización. Desarrollada para el establecimiento Brugge Bar & Biergarten a fines de 2019. Posee un dashboard de configuración mediante el cual se cargan los datos visibles en la aplicación.
+
 
 Ionic, SASS, Typescript, Bootstrap, Angular, HTML |
 <a href="https://github.com/rolivencia/brugge-app" target="_blank">GitHub - Proyecto App</a>

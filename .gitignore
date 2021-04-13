@@ -33,3 +33,9 @@ yarn-error.log*
 # vercel
 .vercel
 .vscode/
+
+# npm
+package-lock.json
+
+# WebStorm
+.idea

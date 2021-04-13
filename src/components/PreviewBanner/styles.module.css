@@ -1,5 +1,6 @@
 .container {
   background: rgba(0, 195, 157, 0.85);
+  z-index: 999;
 }
 
 .exit {

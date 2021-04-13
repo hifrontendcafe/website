@@ -1,73 +1,107 @@
+import Link from 'next/link';
+import styles from './styles.module.css';
+import {
+  faTwitter,
+  faGithubAlt,
+  faLinkedin,
+  faTwitch,
+  faYoutube,
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useSettings } from '../../lib/settings';
+
 const Footer: React.FC = () => {
+  const { socialnetworks } = useSettings();
+
+  const navItems = [
+    { title: 'Unirse a Discord', link: 'https://discord.gg/frontendcafe' },
+    { title: 'Proyectos CMYK', link: '/cmyk' },
+    { title: 'Mentorías', link: '/mentorias' },
+    { title: 'Prácticas de inglés', link: '/ingles' },
+  ];
+
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="text-gray-700 body-font bg-gray-900">
-      <div className="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col items-center">
-        <a className="flex title-font font-medium items-center md:justify-start justify-center text-gray-400">
-          <img className="w-6" alt="hero" src="/logo-white.svg" />
-        </a>
-        <span className="text-sm text-gray-500 sm:ml-4 sm:pl-1 sm:py-2 sm:mt-0 mt-4">
-          © {new Date().getFullYear()} FRONTENDCAFE
-        </span>
-        <span className="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start items-center">
-          <a
-            target="_blank"
-            rel="noreferrer"
-            className="ml-3 text-gray-500"
-            href="https://twitter.com/FrontEndCafe"
-          >
-            <svg
-              fill="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="w-5 h-5"
-              viewBox="0 0 24 24"
-            >
-              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-            </svg>
-          </a>
-          <a
-            target="_blank"
-            rel="noreferrer"
-            className="ml-3 text-gray-500"
-            href="https://www.instagram.com/frontendcafe_"
-          >
-            <svg
-              fill="none"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              className="w-5 h-5"
-              viewBox="0 0 24 24"
-            >
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-            </svg>
-          </a>
-          <a
-            target="_blank"
-            rel="noreferrer"
-            className="ml-3 text-gray-500"
-            href="https://www.linkedin.com/company/frontendcafe"
-          >
-            <svg
-              fill="currentColor"
-              stroke="currentColor"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="0"
-              className="w-5 h-5"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke="none"
-                d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"
-              ></path>
-              <circle cx="4" cy="4" r="2" stroke="none"></circle>
-            </svg>
-          </a>
-        </span>
+    <footer className="bg-black">
+      <div className="container mx-auto flex flex-col-reverse gap-12 md:gap-0 md:flex-row justify-center md:justify-between py-16 text-white">
+        <div className="flex flex-col gap-5 text-center md:text-left">
+          <img
+            src="/logo-square.png"
+            className="hidden md:block md:h-12 md:w-12 h-10 w-10 rounded-full"
+          />
+          <div className="grid justify-center md:grid-cols-2 gap-y-2 gap-x-5 font-medium w-full md:pb-3 pb-8">
+            {navItems?.map(({ link, title }) => (
+              <Link href={link} key={link}>
+                <a>{title}</a>
+              </Link>
+            ))}
+          </div>
+
+          <p className="font-light">© FrontendCafé {currentYear}</p>
+        </div>
+
+        <div className="flex flex-col justify-center gap-3">
+          <p className="w-auto md:text-left text-center font-medium">
+            Encuéntranos en
+          </p>
+          <div className="flex justify-center md:justify-start gap-3">
+            {socialnetworks?.twitter && (
+              <Link href={socialnetworks?.twitter}>
+                <a
+                  target="_blank"
+                  className="grid place-items-center h-6 w-6 rounded-full"
+                >
+                  <FontAwesomeIcon icon={faTwitter} size="lg" />
+                </a>
+              </Link>
+            )}
+
+            {socialnetworks?.github && (
+              <Link href={socialnetworks?.github}>
+                <a
+                  target="_blank"
+                  className="grid place-items-center h-6 w-6 rounded-full"
+                >
+                  <FontAwesomeIcon icon={faGithubAlt} size="lg" />
+                </a>
+              </Link>
+            )}
+
+            {socialnetworks?.youtube && (
+              <Link href={socialnetworks?.youtube}>
+                <a
+                  target="_blank"
+                  className="grid place-items-center h-6 w-6 rounded-full"
+                >
+                  <FontAwesomeIcon icon={faYoutube} size="lg" />
+                </a>
+              </Link>
+            )}
+
+            {socialnetworks?.linkedin && (
+              <Link href={socialnetworks?.linkedin}>
+                <a
+                  target="_blank"
+                  className="grid place-items-center h-6 w-6 rounded-full "
+                >
+                  <FontAwesomeIcon icon={faLinkedin} size="lg" />
+                </a>
+              </Link>
+            )}
+
+            {socialnetworks?.twitch && (
+              <Link href={socialnetworks?.twitch}>
+                <a
+                  target="_blank"
+                  className="grid place-items-center h-6 w-6 rounded-full"
+                >
+                  <FontAwesomeIcon icon={faTwitch} size="lg" />
+                </a>
+              </Link>
+            )}
+          </div>
+        </div>
       </div>
     </footer>
   );
