@@ -3,35 +3,32 @@ name: 'Ramiro Olivencia'
 discord: 'Ramiro Olivencia#5961'
 availableForWork: false
 stack:
-[
-'Angular',
-'Ionic',
-'TypeScript',
-'SASS',
-'JavaScript',
-'HTML',
-'CSS',
-'NodeJS',
-'MySQL',
-'Sanity',
-'GitHub',
-'Metodologías Ágiles',
-'Scrum',
-'UML',
-'Análisis y Diseño de Software'
-]
+  [
+    'Angular',
+    'Ionic',
+    'TypeScript',
+    'SASS',
+    'JavaScript',
+    'HTML',
+    'CSS',
+    'NodeJS',
+    'MySQL',
+    'Sanity',
+    'GitHub',
+    'Metodologías Ágiles',
+    'Scrum',
+    'UML',
+    'Análisis y Diseño de Software'
+  ]
 email: 'ramiro@olivencia.com.ar'
 socialMedia:
-linkedin: 'https://www.linkedin.com/in/rolivencia/'
-github: 'https://github.com/rolivencia'
+  linkedin: 'https://www.linkedin.com/in/rolivencia/'
+  github: 'https://github.com/rolivencia'
 role: 'R&D  Senior Consultant'
-coverImage: 'https://avatars.githubusercontent.com/u/32349705?v=4s'
+coverImage: 'https://avatars.githubusercontent.com/u/32349705'
 ogImage:
-url: 'https://avatars.githubusercontent.com/u/32349705?v=4s'
-
+  url: 'https://avatars.githubusercontent.com/u/32349705'
 ---
-
-### 👋 Sobre Mí
 
 Casi ingeniero en Sistemas de Información. Consultor de I+D en software y certificado como Scrum Master.
 
@@ -39,7 +36,7 @@ Especializado en frontend con Angular, pero con amplia experiencia como fullstac
 
 Trabajo profesionalmente en IT desde 2013. Me he desempeñado en posiciones de front-end, back-end y full-stack a lo largo de mi carrera de desarrollador, contribuyendo en diversos proyectos.
 
-Poseo amplia experiencia trabajando en procesos ágiles de desarrollo y tengo un amplio interés en buscar continuamente mejores formas de trabajar y comunicar dentro del cmapo de la ingeniería de software.
+Poseo amplia experiencia trabajando en procesos ágiles de desarrollo y tengo un amplio interés en buscar continuamente mejores formas de trabajar y comunicar dentro del campo de la ingeniería de software.
 
 Desde 2016, trabajo para KBC Advanced Technologies (A Yokogawa Company). Comencé ocupando un rol de Ingeniero de Software y posteriormente fui promocionado al rol de Consultor de Investigación y Desarrollo, centrándome en el diseño y desarrollo de soluciones de software en frontend.
 
