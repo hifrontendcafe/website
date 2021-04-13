@@ -3,31 +3,31 @@ name: 'Ramiro Olivencia'
 discord: 'Ramiro Olivencia#5961'
 availableForWork: false
 stack:
-[
-'Angular',
-'Ionic'
-'TypeScript',
-'SASS',
-'JavaScript',
-'HTML',
-'CSS',
-'NodeJS',
-'MySQL',
-'Sanity',
-'GitHub',
-'Metodologías Ágiles'
-'Scrum',
-'UML',
-'Análisis y Diseño de Software'
-]
+  [
+    'Angular',
+    'Ionic',
+    'TypeScript',
+    'SASS',
+    'JavaScript',
+    'HTML',
+    'CSS',
+    'NodeJS',
+    'MySQL',
+    'Sanity',
+    'GitHub',
+    'Metodologías Ágiles',
+    'Scrum',
+    'UML',
+    'Análisis y Diseño de Software',
+  ]
 email: 'ramiro@olivencia.com.ar'
 socialMedia:
-linkedin: 'https://www.linkedin.com/in/rolivencia/'
-github: 'https://github.com/rolivencia'
+  linkedin: 'https://www.linkedin.com/in/rolivencia/'
+  github: 'https://github.com/rolivencia'
 role: 'R&D  Senior Consultant'
 coverImage: 'https://avatars.githubusercontent.com/u/38192975?s=400&u=64f6ebf9ede1681e33e8ad98dfda633fae53cf33&v=4'
 ogImage:
-url: 'https://avatars.githubusercontent.com/u/38192975?s=400&u=64f6ebf9ede1681e33e8ad98dfda633fae53cf33&v=4'
+  url: 'https://avatars.githubusercontent.com/u/38192975?s=400&u=64f6ebf9ede1681e33e8ad98dfda633fae53cf33&v=4'
 ---
 
 ### 👋 Sobre Mí
@@ -38,7 +38,7 @@ Especializado en frontend con Angular, pero con amplia experiencia como fullstac
 
 Trabajo profesionalmente en IT desde 2013. He trabajado en posiciones de front-end, back-end y full-stack a lo largo de mi carrera de desarrollador en diversos proyectos.
 
-Poseo amplia experiencia trabajando en  procesos ágiles de desarrollo y tengo un amplio interés en buscar continuamente mejores formas de trabajar y comunicar dentro del cmapo de la ingeniería de software.
+Poseo amplia experiencia trabajando en procesos ágiles de desarrollo y tengo un amplio interés en buscar continuamente mejores formas de trabajar y comunicar dentro del cmapo de la ingeniería de software.
 
 Desde 2016, trabajo como Ingeniero de Software y posteriormente como Consultor de Investigación y Desarrollo para KBC Advanced Technologies, centrándome en el diseño y desarrollo de soluciones de software en frontend.
 
@@ -46,11 +46,11 @@ Ocasionalmente, y a fin de mantener la práctica en aspectos técnicos no aplica
 
 ### 🎓 Estudios y Certificaciones
 
-+ Título de Analista en Sistemas de Información - UTN Facultad Regional Santa Fe
+- Título de Analista en Sistemas de Información - UTN Facultad Regional Santa Fe
 
-+ Finalizando la carrera de Ingeniería en Sistemas de Información - UTN Facultad Regional Santa Fe
+- Finalizando la carrera de Ingeniería en Sistemas de Información - UTN Facultad Regional Santa Fe
 
-+ Certificación de Professional Scrum Master (PSM/Agile Alliance)
+- Certificación de Professional Scrum Master (PSM/Agile Alliance)
 
 ### 🚀 Proyectos
 
