@@ -2,13 +2,8 @@ import { GetStaticProps } from 'next';
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 import {} from '../../lib/api';
-import { Settings } from '../../lib/types';
 
-interface MentorshipsFeedback {
-  settings: Settings;
-}
-
-const MentorshipsFeedback: React.FC<MentorshipsFeedback> = ({ settings }) => {
+const MentorshipsFeedback: React.FC = () => {
   return (
     <Layout
       title="Mentorías"
@@ -33,7 +28,6 @@ const MentorshipsFeedback: React.FC<MentorshipsFeedback> = ({ settings }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const settings = await getSettings();
   return {
     props: { preview },
     revalidate: 1,

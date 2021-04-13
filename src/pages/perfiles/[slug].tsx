@@ -13,7 +13,7 @@ import { getProfileBySlug, getAllProfiles } from '../../lib/api';
 import { Profile } from '../../lib/types';
 
 type Props = {
-  profile: Profile
+  profile: Profile;
   preview?: boolean;
 };
 
@@ -100,7 +100,6 @@ export const getStaticProps: GetStaticProps = async (
   { params }: Params,
   preview = false,
 ) => {
-  const settings = await getSettings();
   const profile = getProfileBySlug(params.slug, [
     'name',
     'socialMedia',
@@ -117,7 +116,6 @@ export const getStaticProps: GetStaticProps = async (
 
   return {
     props: {
-      settings,
       preview,
       profile: {
         ...profile,

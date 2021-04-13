@@ -57,7 +57,6 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const settings = await getSettings();
   const upcomingEvents = await getEventsByCategory(
     preview,
     'Práctica de inglés',

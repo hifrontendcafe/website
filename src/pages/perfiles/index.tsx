@@ -3,18 +3,15 @@ import Layout from '../../components/Layout';
 import ProfileCard from '../../components/ProfileCard';
 import { GetStaticProps } from 'next';
 
-import { getAllProfiles,  } from '../../lib/api';
+import { getAllProfiles } from '../../lib/api';
 import { Profile } from '../../lib/types';
 
 type PostsPageProps = {
-  profiles: Profile[]
+  profiles: Profile[];
   preview?: boolean;
 };
 
-const ProfilesPage: React.FC<PostsPageProps> = ({
-  profiles
-  preview,
-}) => {
+const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
   return (
     <Layout
       title="Perfiles"
@@ -46,7 +43,6 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const settings = await getSettings();
   const profiles = await getAllProfiles([
     'name',
     'socialMedia',

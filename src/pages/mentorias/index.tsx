@@ -1,11 +1,10 @@
 import { GetStaticProps } from 'next';
 
 import MentorList from '../../components/MentorList';
-import Hero from '../../components/Hero';
 import MentorshipsHero from '../../components/MentorshipsHero';
 import Layout from '../../components/Layout';
 
-import { Mentor, Settings, Topic } from '../../lib/types';
+import { Mentor, Topic } from '../../lib/types';
 import { getAllMentors, getMentoringTopics } from '../../lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
