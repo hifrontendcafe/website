@@ -4,18 +4,17 @@ import Link from 'next/link';
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 
-import { getAllDocs, getSettings } from '../../lib/api';
-import { Doc, Settings } from '../../lib/types';
+import { getAllDocs } from '../../lib/api';
+import { Doc } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { docsQuery } from '../../lib/queries';
 
 type DocsPageProps = {
   data: Doc[];
   preview?: boolean;
-  settings: Settings;
 };
 
-const DocsPage: React.FC<DocsPageProps> = ({ data, preview, settings }) => {
+const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
   const { data: docs } = usePreviewSubscription(docsQuery, {
     initialData: data,
     enabled: preview,
@@ -26,9 +25,8 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview, settings }) => {
       title="Docs"
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
       preview={preview}
-      settings={settings}
     >
-      <Hero title="Docs" background={settings?.heroBackground} />
+      <Hero title="Docs" />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
           <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
@@ -60,9 +58,8 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview, settings }) => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllDocs(preview);
-  const settings = await getSettings();
   return {
-    props: { data, preview, settings },
+    props: { data, preview },
     revalidate: 1,
   };
 };

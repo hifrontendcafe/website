@@ -8,13 +8,11 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { SocialNetworks } from '../../lib/types';
+import { useSettings } from '../../lib/settings';
 
-interface FooterProps {
-  socialnetworks: SocialNetworks;
-}
+const Footer: React.FC = () => {
+  const { socialnetworks } = useSettings();
 
-const Footer: React.FC<FooterProps> = ({ socialnetworks }) => {
   const navItems = [
     { title: 'Unirse a Discord', link: 'https://discord.gg/frontendcafe' },
     { title: 'Proyectos CMYK', link: '/cmyk' },

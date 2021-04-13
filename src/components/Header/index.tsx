@@ -5,14 +5,13 @@ import { useSettings } from '../../lib/settings';
 
 interface HeaderProps {
   preview: boolean;
-  menu: Array<string>;
 }
 
-const Header: React.FC<HeaderProps> = ({ preview, menu }) => {
-  const settings = useSettings();
+const Header: React.FC<HeaderProps> = ({ preview }) => {
+  const { logo, menu } = useSettings();
   const menuBtn = useRef(null);
   const menuDOM = useRef(null);
-  const logoIMG = imageBuilder.image(settings.logo).url();
+  const logoIMG = imageBuilder.image(logo).url();
 
   function menuHandler() {
     menuBtn.current.classList.toggle('open');

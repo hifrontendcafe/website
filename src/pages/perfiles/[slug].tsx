@@ -9,16 +9,15 @@ import ProfileBody from '../../components/ProfileBody';
 import ProfileHeader from '../../components/ProfileHeader';
 
 import markdownToHtml from '../../lib/markdowToHtml';
-import { getProfileBySlug, getAllProfiles, getSettings } from '../../lib/api';
-import { Profile, Settings } from '../../lib/types';
+import { getProfileBySlug, getAllProfiles } from '../../lib/api';
+import { Profile } from '../../lib/types';
 
 type Props = {
-  profile: Profile;
-  settings?: Settings;
+  profile: Profile
   preview?: boolean;
 };
 
-const ProfilePage = ({ profile, preview, settings }: Props) => {
+const ProfilePage = ({ profile, preview }: Props) => {
   const router = useRouter();
   if (!router.isFallback && !profile?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -26,7 +25,6 @@ const ProfilePage = ({ profile, preview, settings }: Props) => {
   return (
     <Layout
       title={`Perfiles en FrontendCafé  | ${profile?.name}`}
-      settings={settings}
       description={profile?.role}
       ogImage={profile?.ogImage.url}
       preview={preview}
@@ -98,7 +96,10 @@ type Params = {
   };
 };
 
-export const getStaticProps: GetStaticProps = async ({params}: Params, preview = false) => {
+export const getStaticProps: GetStaticProps = async (
+  { params }: Params,
+  preview = false,
+) => {
   const settings = await getSettings();
   const profile = getProfileBySlug(params.slug, [
     'name',
@@ -121,10 +122,11 @@ export const getStaticProps: GetStaticProps = async ({params}: Params, preview =
       profile: {
         ...profile,
         content,
-      },revalidate: 1
+      },
+      revalidate: 1,
     },
   };
-}
+};
 
 export async function getStaticPaths() {
   const profiles = getAllProfiles(['slug']);

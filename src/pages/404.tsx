@@ -1,5 +1,3 @@
-import { imageBuilder } from '../lib/sanity';
-
 export default function Custom404() {
   return (
     <div className="grid place-items-center w-screen h-screen">

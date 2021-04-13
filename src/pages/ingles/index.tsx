@@ -1,25 +1,20 @@
 import { GetStaticProps } from 'next';
-import { getEventsByCategory, getSettings } from '../../lib/api';
+import { getEventsByCategory } from '../../lib/api';
 import Layout from '../../components/Layout';
 import EventPreview from '../../components/EventPreview';
 import JoinSection from '../../components/JoinSection';
-import { Event, Settings } from '../../lib/types';
+import { Event } from '../../lib/types';
 
 type EnglishPageProps = {
   upcomingEvents: Event[];
-  settings: Settings;
   preview?: boolean;
 };
 
-const EnglishPage: React.FC<EnglishPageProps> = ({
-  upcomingEvents,
-  settings,
-}) => {
+const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
   return (
     <Layout
       title="Inglés"
       description="Únete a nuestras charlas de inglés en Discord"
-      settings={settings}
     >
       <div className="container px-4 sm:px-6 mx-auto pt-16 md:pt-8">
         <div className="flex justify-between flex-wrap pb-8">
@@ -68,7 +63,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
     'Práctica de inglés',
   );
   return {
-    props: { upcomingEvents, preview, settings },
+    props: { upcomingEvents, preview },
     revalidate: 1,
   };
 };

@@ -6,7 +6,7 @@ import { GetStaticProps } from 'next';
 import CMYKParticipantForm from '../../components/CMYKParticipantForm';
 import styles from './styles.module.css';
 
-import { getSettings } from '../../lib/api';
+import {} from '../../lib/api';
 import { Settings } from '../../lib/types';
 
 interface IndexProps {
@@ -14,19 +14,11 @@ interface IndexProps {
   settings?: Settings;
   cards: object;
 }
-const CMYKRegisterPage: React.FC<IndexProps> = ({
-  preview = false,
-  settings,
-}) => {
+const CMYKRegisterPage: React.FC<IndexProps> = ({ preview = false }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <Layout
-      title="CMYK"
-      description={settings?.description}
-      settings={settings}
-      preview={preview}
-    >
+    <Layout title="CMYK" description={settings?.description} preview={preview}>
       <div
         className="container mx-auto flex px-5 pt-20 md:flex-row flex-col
         items-center"
@@ -138,7 +130,7 @@ const CMYKRegisterPage: React.FC<IndexProps> = ({
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const settings = await getSettings();
-  return { props: { preview, settings }, revalidate: 1 };
+  return { props: { preview }, revalidate: 1 };
 };
 
 export default CMYKRegisterPage;

@@ -1,7 +1,7 @@
 import CMYKItemCard from '../../components/CMYKItemCard';
 import { GetStaticProps } from 'next';
-import { getSettings, getAllCMYKProjects } from '../../lib/api';
-import { CMYK, Settings } from '../../lib/types';
+import { getAllCMYKProjects } from '../../lib/api';
+import { CMYK } from '../../lib/types';
 import Layout from '../../components/Layout';
 
 import { cmykQuery } from '../../lib/queries';
@@ -9,21 +9,16 @@ import { usePreviewSubscription } from '../../lib/sanity';
 
 interface IndexProps {
   preview?: boolean;
-  settings?: Settings;
   data: CMYK[];
 }
 
-const CMYKProjects: React.FC<IndexProps> = ({
-  preview = false,
-  settings,
-  data,
-}) => {
+const CMYKProjects: React.FC<IndexProps> = ({ preview = false, data }) => {
   const { data: projects } = usePreviewSubscription(cmykQuery, {
     initialData: data,
     enabled: preview,
   });
   return (
-    <Layout title="Proyectos CMYK" settings={settings} preview={preview}>
+    <Layout title="Proyectos CMYK" preview={preview}>
       <div className="pt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -83,8 +78,7 @@ const CMYKProjects: React.FC<IndexProps> = ({
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllCMYKProjects(preview);
-  const settings = await getSettings();
-  return { props: { preview, settings, data }, revalidate: 1 };
+  return { props: { preview, data }, revalidate: 1 };
 };
 
 export default CMYKProjects;
