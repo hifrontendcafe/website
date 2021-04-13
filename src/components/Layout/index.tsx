@@ -2,7 +2,6 @@ import Header from '../Header';
 import Footer from '../Footer';
 import PreviewBanner from '../PreviewBanner';
 import FecHead from '../FecHead';
-import { Settings } from '../../lib/types';
 
 type LayoutProps = {
   mode?: 'main' | 'simple';
@@ -10,24 +9,18 @@ type LayoutProps = {
   description?: string;
   ogImage?: string;
   preview?: boolean;
-  settings?: Settings;
 };
 
 type LayoutPreviewProps = {
   preview?: boolean;
-  settings?: Settings;
 };
 
-const MainLayout: React.FC<LayoutPreviewProps> = ({
-  preview,
-  children,
-  settings,
-}) => (
+const MainLayout: React.FC<LayoutPreviewProps> = ({ preview, children }) => (
   <div className="antialiased">
     {preview && <PreviewBanner />}
-    <Header logo={settings?.logo} menu={settings?.menu} preview={preview} />
+    <Header preview={preview} />
     {children}
-    <Footer socialnetworks={settings?.socialnetworks} />
+    <Footer />
   </div>
 );
 
@@ -45,18 +38,13 @@ const Layout: React.FC<LayoutProps> = ({
   ogImage,
   preview = false,
   children,
-  settings,
 }) => {
   return (
     <>
       <FecHead title={title} description={description} ogImage={ogImage} />
       {
         {
-          main: (
-            <MainLayout settings={settings} preview={preview}>
-              {children}
-            </MainLayout>
-          ),
+          main: <MainLayout preview={preview}>{children}</MainLayout>,
           simple: <SimpleLayout preview={preview}>{children}</SimpleLayout>,
         }[mode]
       }

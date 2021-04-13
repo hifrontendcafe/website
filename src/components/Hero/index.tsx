@@ -1,15 +1,15 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { imageBuilder } from '../../lib/sanity';
-import { Image } from '../../lib/types';
+import { useSettings } from '../../lib/settings';
 
 interface HeroProps {
   title?: string;
-  background?: Image;
 }
 
-const Hero: React.FC<HeroProps> = ({ title, background }) => {
-  const bg = imageBuilder.image(background).width(1280).url();
+const Hero: React.FC<HeroProps> = ({ title }) => {
+  const { heroBackground } = useSettings();
+  const bg = imageBuilder.image(heroBackground).width(1280).url();
   return (
     <div
       style={{ height: '500px' }}

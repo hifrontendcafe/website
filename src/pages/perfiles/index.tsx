@@ -3,18 +3,21 @@ import Layout from '../../components/Layout';
 import ProfileCard from '../../components/ProfileCard';
 import { GetStaticProps } from 'next';
 
-import { getAllProfiles, getSettings } from '../../lib/api';
-import { Profile, Settings } from '../../lib/types';
+import { getAllProfiles } from '../../lib/api';
+import { Profile } from '../../lib/types';
 
 type PostsPageProps = {
   profiles: Profile[];
-  settings?: Settings;
   preview?: boolean;
 };
 
-const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, settings, preview }) => {
+const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
   return (
-    <Layout title="Perfiles" description="Encontrá los perfiles dentro de FEC" settings={settings} preview={preview}>
+    <Layout
+      title="Perfiles"
+      description="Encontrá los perfiles dentro de FEC"
+      preview={preview}
+    >
       <div className="container px-4 sm:px-6 mx-auto pt-16 md:pt-0">
         <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-semibold">
           Conoce a la comunidad
@@ -40,7 +43,6 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, settings, preview })
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const settings = await getSettings();
   const profiles = await getAllProfiles([
     'name',
     'socialMedia',
@@ -54,8 +56,9 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
     'stack',
   ]);
   return {
-    props: {  preview, profiles, settings }, revalidate: 1
+    props: { preview, profiles },
+    revalidate: 1,
   };
-}
+};
 
 export default ProfilesPage;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 
-import Link from 'next/link';
 import { GetStaticProps } from 'next';
 
 import { getAllFeaturedCards } from '../lib/api';
@@ -8,12 +7,9 @@ import { getAllFeaturedCards } from '../lib/api';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import MediaFeed from '../components/MediaFeed';
-import { getSettings } from '../lib/api';
-import { Settings } from '../lib/types';
 
 interface IndexProps {
   preview?: boolean;
-  settings?: Settings;
   cards: object;
 }
 
@@ -22,11 +18,13 @@ import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 //import CMYKBanner from '../components/CMYKBanner';
 import JoinSection from '../components/JoinSection';
 import AboutSection from '../components/AboutSection';
+import { useSettings } from '../lib/settings';
 
-const Index: React.FC<IndexProps> = ({ preview = false, settings, cards }) => {
+const Index: React.FC<IndexProps> = ({ preview = false, cards }) => {
   const [counter, setCounter] = useState(0);
+  const { heroWords = ['Creamos'], description } = useSettings();
 
-  if (counter >= settings?.heroWords.length) {
+  if (counter >= heroWords?.length) {
     setCounter(0);
   }
 
@@ -39,20 +37,11 @@ const Index: React.FC<IndexProps> = ({ preview = false, settings, cards }) => {
   }, []);
 
   return (
-    <Layout
-      title="Home"
-      description={settings?.description}
-      settings={settings}
-      preview={preview}
-    >
+    <Layout title="Home" description={description} preview={preview}>
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
-      <Hero
-        background={settings?.heroBackground}
-        title={settings?.heroWords[counter]}
-      />
-
+      <Hero title={heroWords[counter]} />
       <div className="bg-indigo-100 p-1">
-        <AboutSection description={settings?.description} />
+        <AboutSection description={description} />
       </div>
       <Featured cards={cards} />
       <MediaFeed />
@@ -76,9 +65,8 @@ const Featured = ({ cards }) => (
 );
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const settings = await getSettings();
   const cards = await getAllFeaturedCards(preview);
-  return { props: { preview, settings, cards }, revalidate: 1 };
+  return { props: { preview, cards }, revalidate: 1 };
 };
 
 export default Index;

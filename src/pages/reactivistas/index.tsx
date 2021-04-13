@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 import Link from 'next/link';
 
-import { getApprovedReactGroups, getSettings } from '../../lib/api';
+import { getApprovedReactGroups } from '../../lib/api';
 import { ReactGroup } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { reactGroupQuery } from '../../lib/queries';
@@ -15,7 +15,7 @@ import GroupRequirementsModal from '../../components/reactivistas/GroupRequireme
 
 const ReactGroupPage: React.FC<InferGetStaticPropsType<
   typeof getStaticProps
->> = ({ data, preview, settings }) => {
+>> = ({ data, preview }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const { data: groups } = usePreviewSubscription(reactGroupQuery, {
@@ -24,8 +24,8 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
   });
 
   return (
-    <Layout title="Iniciativas" settings={settings}>
-      <Hero title="Reactivistas" background={settings?.heroBackground} />
+    <Layout title="Iniciativas">
+      <Hero title="Reactivistas" />
       <div className="pb-24 bg-indigo-100 sm:pt-10 lg:mt-0 mt-24">
         <Link href="/docs/guia-reactivistas">
           <a
@@ -126,13 +126,11 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getApprovedReactGroups(preview);
-  const settings = await getSettings();
 
   return {
     props: {
       data,
       preview,
-      settings,
     },
     revalidate: 1,
   };
