@@ -5,7 +5,7 @@ availableForWork: false
 stack:
 [
 'Angular',
-'Ionic'
+'Ionic',
 'TypeScript',
 'SASS',
 'JavaScript',
@@ -15,19 +15,19 @@ stack:
 'MySQL',
 'Sanity',
 'GitHub',
-'Metodologías Ágiles'
+'Metodologías Ágiles',
 'Scrum',
 'UML',
-'Análisis y Diseño de Software'
+'Análisis y Diseño de Software',
 ]
 email: 'ramiro@olivencia.com.ar'
 socialMedia:
 linkedin: 'https://www.linkedin.com/in/rolivencia/'
 github: 'https://github.com/rolivencia'
 role: 'R&D  Senior Consultant'
-coverImage: 'https://avatars.githubusercontent.com/u/38192975?s=400&u=64f6ebf9ede1681e33e8ad98dfda633fae53cf33&v=4'
+coverImage: 'https://avatars.githubusercontent.com/u/32349705?v=4s'
 ogImage:
-url: 'https://avatars.githubusercontent.com/u/38192975?s=400&u=64f6ebf9ede1681e33e8ad98dfda633fae53cf33&v=4'
+url: 'https://avatars.githubusercontent.com/u/32349705?v=4s'
 ---
 
 ### 👋 Sobre Mí
@@ -36,21 +36,21 @@ Casi ingeniero en Sistemas de Información. Consultor de I+D en software y certi
 
 Especializado en frontend con Angular, pero con amplia experiencia como fullstack. Partidario de la agilidad para el desarrollo de software y en constante búsqueda de mejorar procesos, métodos y prácticas en el rubro.
 
-Trabajo profesionalmente en IT desde 2013. He trabajado en posiciones de front-end, back-end y full-stack a lo largo de mi carrera de desarrollador en diversos proyectos.
+Trabajo profesionalmente en IT desde 2013. Me he desempeñado en posiciones de front-end, back-end y full-stack a lo largo de mi carrera de desarrollador, contribuyendo en diversos proyectos.
 
-Poseo amplia experiencia trabajando en  procesos ágiles de desarrollo y tengo un amplio interés en buscar continuamente mejores formas de trabajar y comunicar dentro del cmapo de la ingeniería de software.
+Poseo amplia experiencia trabajando en procesos ágiles de desarrollo y tengo un amplio interés en buscar continuamente mejores formas de trabajar y comunicar dentro del cmapo de la ingeniería de software.
 
-Desde 2016, trabajo como Ingeniero de Software y posteriormente como Consultor de Investigación y Desarrollo para KBC Advanced Technologies, centrándome en el diseño y desarrollo de soluciones de software en frontend.
+Desde 2016, trabajo para KBC Advanced Technologies (A Yokogawa Company). Comencé ocupando un rol de Ingeniero de Software y posteriormente fui promocionado al rol de Consultor de Investigación y Desarrollo, centrándome en el diseño y desarrollo de soluciones de software en frontend.
 
-Ocasionalmente, y a fin de mantener la práctica en aspectos técnicos no aplicables en mi actividad principal, desarrollo soluciones de software en variedad de dominios como consultor profesional independiente.
+A fin de mantener la práctica en aspectos técnicos no aplicables en mi actividad principal, desarrollo soluciones de software en variedad de dominios como consultor profesional independiente.
 
 ### 🎓 Estudios y Certificaciones
 
-+ Título de Analista en Sistemas de Información - UTN Facultad Regional Santa Fe
+- Título de Analista en Sistemas de Información - UTN Facultad Regional Santa Fe
 
-+ Finalizando la carrera de Ingeniería en Sistemas de Información - UTN Facultad Regional Santa Fe
+- Finalizando la carrera de Ingeniería en Sistemas de Información - UTN Facultad Regional Santa Fe
 
-+ Certificación de Professional Scrum Master (PSM/Agile Alliance)
+- Certificación de Professional Scrum Master (PSM/Agile Alliance)
 
 ### 🚀 Proyectos
 
@@ -82,8 +82,11 @@ Angular, SASS, Bootstrap, Typescript, NodeJS, AirTable |
 
 Aplicación móvil híbrida, desarrollada con Ionic, para proveer un programa de fidelización. Desarrollada para el establecimiento Brugge Bar & Biergarten a fines de 2019. Posee un dashboard de configuración mediante el cual se cargan los datos visibles en la aplicación.
 
-Ionic, SASS, Typescript, Bootstrap, Angular, HTML, NodeJS, MySQL |
-<a href="https://github.com/rolivencia/brugge-app" target="_blank">GitHub</a>
+Ionic, SASS, Typescript, Bootstrap, Angular, HTML |
+<a href="https://github.com/rolivencia/brugge-app" target="_blank">GitHub - Proyecto App</a>
+
+NodeJS, Javascript, Express, MySQL |
+<a href="https://github.com/rolivencia/brugge-manager" target="_blank">GitHub - Proyecto Dashboard</a>
 
 #### 🍔 AArEII - Mobile app
 
