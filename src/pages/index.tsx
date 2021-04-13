@@ -8,6 +8,7 @@ import { getAllFeaturedCards } from '../lib/api';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import MediaFeed from '../components/MediaFeed';
+import TestComponent from '../components/TestComponent';
 import { getSettings } from '../lib/api';
 import { Settings } from '../lib/types';
 
@@ -50,7 +51,6 @@ const Index: React.FC<IndexProps> = ({ preview = false, settings, cards }) => {
         background={settings?.heroBackground}
         title={settings?.heroWords[counter]}
       />
-
       <div className="bg-indigo-100 p-1">
         <AboutSection description={settings?.description} />
       </div>
