@@ -19,7 +19,6 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
     <section
       id="events"
       className="relative body-font bg-indigo-50"
-    >
       <div className="container px-5 py-12 mx-auto">
         {futureEvents(events).length > 0 && (
           <>
