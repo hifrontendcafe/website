@@ -24,13 +24,13 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-black">
-      <div className="container mx-auto flex flex-col-reverse gap-12 md:gap-0 md:flex-row justify-center md:justify-between py-16 text-white">
+      <div className="container flex flex-col-reverse justify-center gap-12 p-16 mx-auto text-white md:gap-0 md:flex-row md:justify-between">
         <div className="flex flex-col gap-5 text-center md:text-left">
           <img
             src="/logo-square.png"
-            className="hidden md:block md:h-12 md:w-12 h-10 w-10 rounded-full"
+            className="hidden w-10 h-10 rounded-full md:block md:h-12 md:w-12"
           />
-          <div className="grid justify-center md:grid-cols-2 gap-y-2 gap-x-5 font-medium w-full md:pb-3 pb-8">
+          <div className="grid justify-center w-full pb-8 font-medium md:grid-cols-2 gap-y-2 gap-x-5 md:pb-3">
             {navItems?.map(({ link, title }) => (
               <Link href={link} key={link}>
                 <a>{title}</a>
@@ -42,15 +42,15 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="flex flex-col justify-center gap-3">
-          <p className="w-auto md:text-left text-center font-medium">
+          <p className="w-auto font-medium text-center md:text-left">
             Encuéntranos en
           </p>
-          <div className="flex justify-center md:justify-start gap-3">
+          <div className="flex justify-center gap-3 md:justify-start">
             {socialnetworks?.twitter && (
               <Link href={socialnetworks?.twitter}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-6 w-6 rounded-full"
+                  className="grid w-6 h-6 rounded-full place-items-center"
                 >
                   <FontAwesomeIcon icon={faTwitter} size="lg" />
                 </a>
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
               <Link href={socialnetworks?.github}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-6 w-6 rounded-full"
+                  className="grid w-6 h-6 rounded-full place-items-center"
                 >
                   <FontAwesomeIcon icon={faGithubAlt} size="lg" />
                 </a>
@@ -72,7 +72,7 @@ const Footer: React.FC = () => {
               <Link href={socialnetworks?.youtube}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-6 w-6 rounded-full"
+                  className="grid w-6 h-6 rounded-full place-items-center"
                 >
                   <FontAwesomeIcon icon={faYoutube} size="lg" />
                 </a>
@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
               <Link href={socialnetworks?.linkedin}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-6 w-6 rounded-full "
+                  className="grid w-6 h-6 rounded-full place-items-center "
                 >
                   <FontAwesomeIcon icon={faLinkedin} size="lg" />
                 </a>
@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
               <Link href={socialnetworks?.twitch}>
                 <a
                   target="_blank"
-                  className="grid place-items-center h-6 w-6 rounded-full"
+                  className="grid w-6 h-6 rounded-full place-items-center"
                 >
                   <FontAwesomeIcon icon={faTwitch} size="lg" />
                 </a>
