@@ -35,9 +35,9 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
 
   return (
     <div
-      className={`py-8 pb-24 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}
+      className={`py-8 md:pb-24 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}
     >
-      <div className="h-full flex items-start rounded overflow-hidden shadow-lg flex-col">
+      <div className="flex flex-col items-start h-full overflow-hidden rounded shadow-lg">
         <img
           className="w-full"
           src={imageBuilder.image(event.cover.src).width(450).url()}
@@ -49,15 +49,15 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
             past && !event.recording ? styles['past-event-text'] : ''
           }`}
         >
-          <div className="w-full flex justify-between">
-            <h2 className="tracking-widest text-xs title-font font-medium text-green-500 mb-1 py-2">
+          <div className="flex justify-between w-full">
+            <h2 className="py-2 mb-1 text-xs font-medium tracking-widest text-green-500 title-font">
               {event.category.name}
             </h2>
           </div>
-          <h1 className="title-font text-xl font-medium text-gray-900 mb-3 leading-tight">
+          <h1 className="mb-3 text-xl font-medium leading-tight text-gray-900 title-font">
             {event.title}
           </h1>
-          <p className="title-font font-light text-gray-700 mb-6">
+          <p className="mb-6 font-light text-gray-700 title-font">
             {format(new Date(event.date), 'MMM d - HH:mm')} ART (GMT-3)
           </p>
           <div className={`mb-5 ${styles.description}`}>
@@ -68,7 +68,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               event.recording && (
                 <a
                   href={event.recording}
-                  className="bg-tertiary text-white text-sm py-2 px-5 rounded"
+                  className="px-5 py-2 text-sm text-white rounded bg-tertiary"
                   target="_blank"
                   rel="noreferrer"
                 >
