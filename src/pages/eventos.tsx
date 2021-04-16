@@ -26,7 +26,6 @@ const EventsPage: React.FC<EventsPageProps> = ({ data, preview }) => {
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
       preview={preview}
     >
-      <Hero title="Eventos" />
       <EventList events={events} />
     </Layout>
   );
