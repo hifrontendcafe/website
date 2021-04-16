@@ -18,12 +18,12 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
   return (
     <section
       id="events"
-      className="relative text-gray-700 body-font bg-indigo-50"
+      className="relative body-font bg-indigo-50"
     >
       <div className="container px-5 py-12 mx-auto">
         {futureEvents(events).length > 0 && (
           <>
-            <h1 className="pb-12 subtitle">Próximos eventos 📅</h1>
+            <h1 className="py-10 md:pt-0 subtitle">Próximos eventos 📅</h1>
             <div className="flex flex-wrap px-4 -mx-4 -my-8">
               {futureEvents(events)?.map((event) => (
                 <EventPreview key={event.slug} event={event} />

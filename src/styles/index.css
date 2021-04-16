@@ -32,43 +32,43 @@ html {
 
 @layer components {
   .btn {
-    @apply text-sm px-6 font-medium py-2 rounded;
+    @apply px-6 py-2 text-sm font-medium rounded;
   }
 
   .btn-primary {
-    @apply bg-primary text-white;
+    @apply text-white bg-primary;
   }
 
   .btn-primary:hover {
-    @apply bg-primarydark shadow;
+    @apply shadow bg-primarydark;
   }
 
   .btn-secondary {
-    @apply bg-secondary text-white;
+    @apply text-white bg-secondary;
   }
 
   .btn-secondary:hover {
-    @apply bg-secondarydark shadow;
+    @apply shadow bg-secondarydark;
   }
 
   .btn-tertiary {
-    @apply bg-tertiary text-white;
+    @apply text-white bg-tertiary;
   }
 
   .btn-tertiary:hover {
-    @apply bg-tertiarydark shadow;
+    @apply shadow bg-tertiarydark;
   }
 
   .social-circle {
-    @apply grid place-items-center h-8 w-8 rounded-full;
+    @apply grid w-8 h-8 rounded-full place-items-center;
   }
 
   .title {
-    @apply text-black text-3xl md:text-4xl lg:text-5xl leading-normal font-extrabold;
+    @apply text-3xl font-extrabold leading-normal text-gray-800 md:text-4xl lg:text-5xl;
   }
 
   .subtitle {
-    @apply text-black text-2xl md:text-3xl lg:text-4xl leading-normal font-extrabold;
+    @apply text-2xl font-extrabold leading-normal text-gray-800 md:text-3xl lg:text-4xl;
   }
 
   .title-colorful {
