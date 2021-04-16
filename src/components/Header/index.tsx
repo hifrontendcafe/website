@@ -32,21 +32,21 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
     >
       <nav
         id="site-menu"
-        className="md:container mx-auto flex flex-col md:flex-row w-full justify-between items-center px-4 md:px-16 bg-white shadow md:shadow-none"
+        className="flex flex-col items-center justify-between w-full px-4 mx-auto bg-white shadow lg:container lg:flex-row lg:shadow-none"
       >
-        <div className="w-full md:w-auto self-start md:self-center flex flex-row md:flex-none flex-no-wrap justify-between items-center">
+        <div className="flex flex-row flex-no-wrap items-center self-start justify-between w-full lg:w-auto lg:self-center lg:flex-none">
           <Link href="/">
-            <a className="flex title-font items-center text-gray-900">
+            <a className="flex items-center h-16 text-gray-900 title-font">
               <img
                 src={logoIMG}
-                className="h-16 p-2 text-white rounded-full"
+                className="h-12 p-2 text-white rounded-full"
                 alt="Logo FrontendCafe"
               />
             </a>
           </Link>
           <button
             ref={menuBtn}
-            className="hamburger block md:hidden focus:outline-none"
+            className="block hamburger lg:hidden focus:outline-none"
             type="button"
             onClick={() => menuHandler()}
           >
@@ -56,11 +56,11 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
         </div>
         <div
           ref={menuDOM}
-          className="flex-col items-center self-end hidden w-full h-full py-1 pb-4 md:w-auto md:self-center md:flex md:flex-row md:py-0 md:pb-0"
+          className="flex-col items-center self-end hidden w-full h-full py-1 pb-4 lg:w-auto lg:self-center lg:flex lg:flex-row lg:py-0 lg:pb-0"
         >
           {navItems?.map((item) => (
             <Link href={`/${item.link}`} key={item.link}>
-              <a className="w-full md:w-auto text-center px-6 py-2 text-gray-600 hover:text-gray-800 font-medium">
+              <a className="w-full px-6 py-2 font-medium text-center text-gray-600 md:w-auto hover:text-gray-800">
                 {item.title}
               </a>
             </Link>
