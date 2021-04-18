@@ -18,8 +18,8 @@ import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 //import CMYKBanner from '../components/CMYKBanner';
 import JoinSection from '../components/JoinSection';
 import AboutSection from '../components/AboutSection';
-import { useSettings } from '../hooks/api';
-import { getLayout } from '../utils/get-layout';
+import { useSettings } from '@/hooks/api';
+import { getLayout } from '@/utils/get-layout';
 
 const Index: React.FC<IndexProps> = ({ preview = false, cards }) => {
   const [counter, setCounter] = useState(0);

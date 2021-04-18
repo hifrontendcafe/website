@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useRef } from 'react';
 import { imageBuilder } from '../../lib/sanity';
-import { useSettings } from '../../hooks/api';
+import { useSettings } from '@/hooks/api';
 
 type HeaderProps = {
   preview: boolean;
