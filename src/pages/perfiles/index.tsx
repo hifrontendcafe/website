@@ -33,7 +33,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
             <a className="text-xs btn btn-primary md:text-md">Crea tu perfil</a>
           </Link>
         </div>
-        <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-3 place-content-stretch">
           {profiles?.map((profile) => (
             <ProfileCard profile={profile} key={profile.slug} />
           ))}
