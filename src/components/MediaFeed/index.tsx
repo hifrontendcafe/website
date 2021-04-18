@@ -23,7 +23,7 @@ const MediaFeed: React.FC = () => {
         </svg>
       </div>
       <div className="container px-5 py-12 mx-auto">
-        <div className="flex items-center pb-12 pl-24">
+        <div className="flex items-center pb-12 md:pl-24">
           <img
               className="w-10 h-10"
               src="/icons/twitter.svg"
