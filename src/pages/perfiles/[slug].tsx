@@ -11,6 +11,7 @@ import ProfileHeader from '../../components/ProfileHeader';
 import markdownToHtml from '../../lib/markdowToHtml';
 import { getProfileBySlug, getAllProfiles } from '../../lib/api';
 import { Profile } from '../../lib/types';
+import { getLayout } from '@/utils/get-layout';
 
 type Props = {
   profile: Profile;
@@ -113,6 +114,7 @@ export const getStaticProps: GetStaticProps = async (
     'stack',
   ]);
   const content = await markdownToHtml(profile.content || '');
+  const { dehydratedState } = await getLayout({ preview });
 
   return {
     props: {
@@ -121,8 +123,9 @@ export const getStaticProps: GetStaticProps = async (
         ...profile,
         content,
       },
-      revalidate: 1,
+      dehydratedState,
     },
+    revalidate: 1,
   };
 };
 

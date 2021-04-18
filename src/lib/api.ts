@@ -11,6 +11,7 @@ import {
   Person,
   FeaturedCards,
   CMYKParticipant,
+  Settings,
 } from './types';
 
 import { createSlug } from './helpers';
@@ -56,7 +57,7 @@ export async function getAllEvents(preview: boolean = false): Promise<Event[]> {
   return await getClient(preview).fetch(eventsQuery);
 }
 
-export async function getSettings(preview: boolean = false): Promise<Post> {
+export async function getSettings(preview: boolean = false): Promise<Settings> {
   return await getClient(preview).fetch(settingsQuery);
 }
 

@@ -5,6 +5,7 @@ import { GetStaticProps } from 'next';
 
 import { getAllProfiles } from '../../lib/api';
 import { Profile } from '../../lib/types';
+import { getLayout } from '@/utils/get-layout';
 
 type PostsPageProps = {
   profiles: Profile[];
@@ -55,8 +56,10 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
     'availableForWork',
     'stack',
   ]);
+  const { dehydratedState } = await getLayout({ preview });
+
   return {
-    props: { preview, profiles },
+    props: { preview, profiles, dehydratedState },
     revalidate: 1,
   };
 };

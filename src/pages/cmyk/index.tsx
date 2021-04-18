@@ -6,13 +6,17 @@ import Layout from '../../components/Layout';
 
 import { cmykQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
+import { getLayout } from '@/utils/get-layout';
 
-interface IndexProps {
+type CMYKProjectsProps = {
   preview?: boolean;
   data: CMYK[];
-}
+};
 
-const CMYKProjects: React.FC<IndexProps> = ({ preview = false, data }) => {
+const CMYKProjects: React.FC<CMYKProjectsProps> = ({
+  preview = false,
+  data,
+}) => {
   const { data: projects } = usePreviewSubscription(cmykQuery, {
     initialData: data,
     enabled: preview,
@@ -78,6 +82,8 @@ const CMYKProjects: React.FC<IndexProps> = ({ preview = false, data }) => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllCMYKProjects(preview);
+  const { dehydratedState } = await getLayout({ preview });
+
   return { props: { preview, data }, revalidate: 1 };
 };
 

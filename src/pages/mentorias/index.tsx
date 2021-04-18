@@ -8,6 +8,7 @@ import { Mentor, Topic } from '../../lib/types';
 import { getAllMentors, getMentoringTopics } from '../../lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
+import { getLayout } from '@/utils/get-layout';
 
 type MentorshipsPageProps = {
   mentors: Mentor[];
@@ -136,8 +137,10 @@ const MentorshipsSteps: React.FC = () => {
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const mentors = await getAllMentors(preview);
   const topics = await getMentoringTopics(preview);
+  const { dehydratedState } = await getLayout({ preview });
+
   return {
-    props: { mentors, topics, preview },
+    props: { mentors, topics, preview, dehydratedState },
     revalidate: 1,
   };
 };
