@@ -10,11 +10,11 @@ type FeaturedCardsItemProps = {
 const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
   return (
     <div
-      className={`${styles.card} shadow-lg lg:m-10 md:m-18 sm:m-5 mt-10 px-5 py-10 flex justify-between mr-3`}
+      className={`${styles.card} shadow-lg lg:m-10 md:m-18 sm:m-5 mt-10 px-5 py-6 flex justify-between mr-3`}
     >
-      <div className="flex flex-col justify-center relative">
+      <div className="relative flex flex-col justify-center">
         <div
-          className="rounded-sm w-2 h-24 absolute mt-2 mr-4 top-0"
+          className="absolute top-0 w-2 h-24 mt-2 mr-4 rounded-sm"
           style={{ backgroundColor: card.color }}
         />
         <div className="pl-5">
@@ -22,18 +22,18 @@ const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
             <span
               role="img"
               aria-label="mentorias"
-              className="lg:text-3xl text-xl"
+              className="text-xl lg:text-3xl"
             >
               {card.icon}
             </span>
-            <h1 className="subtitle pl-2">{card.title}</h1>
+            <h1 className="pl-2 subtitle">{card.title}</h1>
           </div>
           <p className="pt-5 pb-8 text-sm lg:text-lg">{card.description}</p>
         </div>
-        <button className="w-60 h-14 text-white text-center md:text-left pl-5">
+        <button className="pl-5 text-left text-white w-60 h-14">
           <Link href={card.link}>
             <a
-              className="btn normal-case text-sm lg:text-lg font-normal"
+              className="text-sm font-normal normal-case btn lg:text-lg"
               style={{ backgroundColor: card.color }}
             >
               {card.btnText}

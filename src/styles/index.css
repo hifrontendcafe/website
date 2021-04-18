@@ -75,3 +75,7 @@ html {
     @apply text-gradient bg-gradient-to-r from-green-400 to-blue-500;
   }
 }
+
+.twitter-blue {
+  color: #55ACEE;
+}

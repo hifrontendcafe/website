@@ -18,21 +18,21 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
-      <div className="container px-4 sm:px-6 mx-auto pt-16 md:pt-0">
-        <h1 className="text-2xl md:text-4xl pt-4 mt-0 md:my-4 font-semibold">
+      <div className="container px-4 pt-16 mx-auto sm:px-6 md:pt-0">
+        <h1 className="pt-4 mt-0 text-2xl font-semibold md:text-4xl md:my-4">
           Conoce a la comunidad
         </h1>
       </div>
-      <div className=" container mx-auto bg-white">
-        <div className="border-b border-gray-200 px-4 py-5 sm:px-6 md:flex md:justify-between">
-          <div className="md:text-xl font-bold leading-7 text-primary mb-2 md:mb-0">
+      <div className="container mx-auto bg-white ">
+        <div className="px-4 py-5 border-b border-gray-200 sm:px-6 md:flex md:justify-between">
+          <div className="mb-2 font-bold leading-7 md:text-xl text-primary md:mb-0">
             Últimos perfiles registrados
           </div>
           <Link href="/docs/crea-tu-perfil">
-            <a className="btn btn-primary text-xs md:text-md">Crea tu perfil</a>
+            <a className="text-xs btn btn-primary md:text-md">Crea tu perfil</a>
           </Link>
         </div>
-        <div className="px-6 py-5 text-gray-700 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-3">
           {profiles?.map((profile) => (
             <ProfileCard profile={profile} key={profile.slug} />
           ))}
