@@ -84,7 +84,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllCMYKProjects(preview);
   const { dehydratedState } = await getLayout({ preview });
 
-  return { props: { preview, data }, revalidate: 1 };
+  return { props: { preview, data, dehydratedState }, revalidate: 1 };
 };
 
 export default CMYKProjects;
