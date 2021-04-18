@@ -13,8 +13,6 @@ ogImage:
   url: 'https://avatars.githubusercontent.com/u/33439343?v=4'
 ---
 
-### 👋 Sobre mi
-
 - 🎨 Ex-diseñador UI/UX.
 - 💻 Desarrollador Frontend.
 - 🤓 Entusiasta de ⚛**ReactJS**.
