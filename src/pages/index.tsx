@@ -40,7 +40,7 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards }) => {
     <Layout title="Home" description={description} preview={preview}>
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero title={heroWords[counter]} />
-      <div className="p-1 bg-indigo-100">
+      <div className="p-1">
         <AboutSection description={description} />
       </div>
       <Featured cards={cards} />
