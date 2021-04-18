@@ -8,10 +8,12 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSettings } from '../../lib/settings';
+import { useSettings } from '@/hooks/api';
 
 const Footer: React.FC = () => {
-  const { socialnetworks } = useSettings();
+  const {
+    data: { socialnetworks },
+  } = useSettings();
 
   const navItems = [
     { title: 'Unirse a Discord', link: 'https://discord.gg/frontendcafe' },

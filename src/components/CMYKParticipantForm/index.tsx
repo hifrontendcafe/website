@@ -2,10 +2,12 @@ import { useForm } from 'react-hook-form';
 import { CMYKParticipant } from '../../lib/types';
 import { useState } from 'react';
 import { DiscordUserTooltip } from '../reactivistas/FormHelpers';
-import { useSettings } from '../../lib/settings';
+import { useSettings } from '@/hooks/api';
 
 const CMYKParticipantForm: React.FC = () => {
-  const { cmykInscription } = useSettings();
+  const {
+    data: { cmykInscription },
+  } = useSettings();
 
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = useState<boolean>(false);

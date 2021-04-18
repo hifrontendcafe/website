@@ -13,6 +13,8 @@ import GroupInfoModal from '../../components/reactivistas/GroupInfoModal';
 import CreateGroupForm from '../../components/reactivistas/CreateGroupForm';
 import GroupRequirementsModal from '../../components/reactivistas/GroupRequirementsModal';
 
+import { getLayout } from '@/utils/get-layout';
+
 const ReactGroupPage: React.FC<InferGetStaticPropsType<
   typeof getStaticProps
 >> = ({ data, preview }) => {
@@ -126,11 +128,13 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getApprovedReactGroups(preview);
+  const { dehydratedState } = await getLayout({ preview });
 
   return {
     props: {
       data,
       preview,
+      dehydratedState,
     },
     revalidate: 1,
   };

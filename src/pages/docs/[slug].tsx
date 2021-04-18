@@ -10,6 +10,7 @@ import { getAllDocs, getDocBySlug } from '../../lib/api';
 import { Doc } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { docQuery } from '../../lib/queries';
+import { getLayout } from '@/utils/get-layout';
 
 import styles from './styles.module.css';
 
@@ -67,9 +68,10 @@ export const getStaticProps: GetStaticProps = async ({
   params,
   preview = false,
 }) => {
+  const { dehydratedState } = await getLayout({ preview });
   const data = await getDocBySlug(params.slug as string, preview);
   return {
-    props: { data, preview },
+    props: { data, preview, dehydratedState },
     revalidate: 1,
   };
 };

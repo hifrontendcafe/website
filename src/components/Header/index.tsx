@@ -1,14 +1,16 @@
 import Link from 'next/link';
 import { useRef } from 'react';
 import { imageBuilder } from '../../lib/sanity';
-import { useSettings } from '../../lib/settings';
+import { useSettings } from '@/hooks/api';
 
-interface HeaderProps {
+type HeaderProps = {
   preview: boolean;
-}
+};
 
 const Header: React.FC<HeaderProps> = ({ preview }) => {
-  const { logo, menu } = useSettings();
+  const {
+    data: { logo, menu },
+  } = useSettings();
   const menuBtn = useRef(null);
   const menuDOM = useRef(null);
   const logoIMG = imageBuilder.image(logo).url();

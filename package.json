@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start"
   },
-    "browser": {
+  "browser": {
     "fs": false
   },
   "dependencies": {
@@ -31,6 +31,7 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^6.15.1",
     "react-multi-carousel": "^2.6.1",
+    "react-query": "^3.13.10",
     "react-scripts": "^4.0.3",
     "react-twitter-embed": "^3.0.3",
     "remark": "11.0.2",

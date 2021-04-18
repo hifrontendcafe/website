@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
-import {} from '../../lib/api';
+import { getLayout } from '@/utils/get-layout';
 
 const MentorshipsFeedback: React.FC = () => {
   return (
@@ -28,8 +28,10 @@ const MentorshipsFeedback: React.FC = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const { dehydratedState } = await getLayout({ preview });
+
   return {
-    props: { preview },
+    props: { preview, dehydratedState },
     revalidate: 1,
   };
 };

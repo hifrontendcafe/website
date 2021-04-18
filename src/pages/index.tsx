@@ -8,21 +8,24 @@ import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import MediaFeed from '../components/MediaFeed';
 
-interface IndexProps {
+type IndexProps = {
   preview?: boolean;
   cards: object;
-}
+};
 
 import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 
 //import CMYKBanner from '../components/CMYKBanner';
 import JoinSection from '../components/JoinSection';
 import AboutSection from '../components/AboutSection';
-import { useSettings } from '../lib/settings';
+import { useSettings } from '@/hooks/api';
+import { getLayout } from '@/utils/get-layout';
 
 const Index: React.FC<IndexProps> = ({ preview = false, cards }) => {
   const [counter, setCounter] = useState(0);
-  const { heroWords = ['Creamos'], description } = useSettings();
+  const {
+    data: { heroWords = ['Creamos'], description },
+  } = useSettings();
 
   if (counter >= heroWords?.length) {
     setCounter(0);
@@ -66,7 +69,13 @@ const Featured = ({ cards }) => (
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const cards = await getAllFeaturedCards(preview);
-  return { props: { preview, cards }, revalidate: 1 };
+
+  const { dehydratedState } = await getLayout({ preview });
+
+  return {
+    props: { preview, cards, dehydratedState },
+    revalidate: 1,
+  };
 };
 
 export default Index;

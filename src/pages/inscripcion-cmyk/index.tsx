@@ -2,17 +2,23 @@ import Layout from '../../components/Layout';
 import { useState } from 'react';
 import Modal from '../../components/Modal';
 import { GetStaticProps } from 'next';
+import { getLayout } from '@/utils/get-layout';
 
 import CMYKParticipantForm from '../../components/CMYKParticipantForm';
 import styles from './styles.module.css';
-import { useSettings } from '../../lib/settings';
+import { useSettings } from '@/hooks/api';
 
-interface IndexProps {
+type CMYKRegisterPageProps = {
   preview?: boolean;
   cards: object;
-}
-const CMYKRegisterPage: React.FC<IndexProps> = ({ preview = false }) => {
-  const { cmykInscription } = useSettings();
+};
+
+const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
+  preview = false,
+}) => {
+  const {
+    data: { cmykInscription },
+  } = useSettings();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -135,7 +141,8 @@ const CMYKRegisterPage: React.FC<IndexProps> = ({ preview = false }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  return { props: { preview }, revalidate: 1 };
+  const { dehydratedState } = await getLayout({ preview });
+  return { props: { preview, dehydratedState }, revalidate: 1 };
 };
 
 export default CMYKRegisterPage;
