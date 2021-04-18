@@ -11,8 +11,7 @@ stack:
     'CSS',
     'STYLED COMPONENTS',
     'Git',
-    'GitHub',
-
+    'GitHub'
   ]
 email: 'jesusignaciolencina@gmail.com'
 socialMedia:
@@ -23,8 +22,6 @@ coverImage: 'https://avatars.githubusercontent.com/u/36510164?v=4'
 ogImage:
   url: 'https://avatars.githubusercontent.com/u/36510164?v=4'
 ---
-
-### 👋 Sobre Mí
 
 Desarrollador Web Frontend con React. Mentor de Inglés en FEC y también usuario regular de Linux. 
 
