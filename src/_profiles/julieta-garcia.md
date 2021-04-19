@@ -5,16 +5,14 @@ availableForWork: true
 stack:  [ 'ReactJS','JavaScript','HTML','CSS','GitHub']
 email: 'julieta.garcia96@gmail.com'
 socialMedia:
-    linkedin: ****'https://www.linkedin.com/in/julieta-garcia96/'
-    github: ' http://github.com/lieta96' 
+    linkedin: 'https://www.linkedin.com/in/julieta-garcia96/'
+    github: 'https://github.com/lieta96' 
 role: 'Desarrolladora Frontend'
 coverImage: 'https://avatars.githubusercontent.com/u/76484027?s=400&u=501f01dbbd4584bdb141b8e07c5f5325a8e17d68&v=4'
-ogImage:
-  url: 'https://avatars.githubusercontent.com/u/76484027?s=400&u=501f01dbbd4584bdb141b8e07c5f5325a8e17d68&v=4'
-  
+ogImage: url: 'https://avatars.githubusercontent.com/u/76484027?s=400&u=501f01dbbd4584bdb141b8e07c5f5325a8e17d68&v=4'
   ---
  
- Desarrollador FullStack autodidácta.
+ Desarrollador Frontend
 ### 🚀 Proyectos
 
 #### ☑️ Todo App
