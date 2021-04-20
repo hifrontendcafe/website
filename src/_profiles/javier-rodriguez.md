@@ -9,7 +9,7 @@ stack:
     'Django',
     'Firebase',
     'FaunaDB',
-    'SQL Server'
+    'SQL Server',
     'Styled Components',
     'TypeScript',
     'SASS',
