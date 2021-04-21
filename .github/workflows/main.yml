@@ -14,18 +14,19 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build:
-    name: Test
+    name: Test build
     runs-on: ubuntu-latest
     strategy:
           matrix:
             node-version: [14.x]
     steps:
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
       - uses: actions/checkout@v2
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: install # will run `yarn install` command
-          node-version: ${{ matrix.node-version }}
       - uses: borales/actions-yarn@v2.0.0
         with:
           cmd: build # will run `yarn build` command
-          node-version: ${{ matrix.node-version }}
