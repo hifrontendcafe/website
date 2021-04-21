@@ -1,8 +1,9 @@
+
 ---
 name: 'Manu Obregozo'
 discord: 'Manu O.#1258'
 availableForWork: true
-stack: ['JavaScript', 'CSS', 'VueJs', 'NuxtJS']
+stack: ['JavaScript', 'CSS', 'VueJs', 'NuxtJS',]
 email: ''
 socialMedia:
   linkedin: 'https://www.linkedin.com/in/manuelobregozo/'
