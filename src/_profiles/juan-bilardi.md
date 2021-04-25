@@ -28,9 +28,6 @@ ogImage:
   url: 'https://avatars.githubusercontent.com/u/23452195?v=4'
 ---
 
-
-
-
 # Juan Bilardi -FullStack Developer
 
 ## 🙋‍♂️Bio
