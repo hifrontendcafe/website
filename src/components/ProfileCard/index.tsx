@@ -9,11 +9,11 @@ const ProfileCard = ({ profile }: Props) => {
   return (
     <Link href={`/perfiles/${profile.slug}`}>
       <a>
-        <div className="p-2 h-full py-4 text-center transition-transform duration-200 transform border-b-4 rounded-lg shadow-md hover:scale-105 flex flex-col justify-between">
+        <div className="p-2 h-full py-4 text-center transition-transform duration-200 transform rounded-lg shadow-lg hover:scale-105 flex flex-col justify-between">
           <div>
             <img
               src={profile.coverImage}
-              className="object-cover object-top w-24 h-24 mx-auto border rounded-full shadow-md"
+              className="object-cover object-top w-24 h-24 mx-auto ring ring-green-500 rounded-full shadow-md"
               alt={profile.name}
             />
             {profile.availableForWork && (
