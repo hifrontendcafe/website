@@ -46,11 +46,11 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
               const [infoModalOpen, setInfoModalOpen] = useState(false);
 
               return (
-                <>
-                  <div
-                    key={group.name}
-                    className="flex flex-col flex-auto rounded-md shadow-lg md:mx-5 mx-1 my-5 md:p-10 p-5"
-                  >
+                <div
+                  key={group.name}
+                  className="flex flex-col flex-auto rounded-md shadow-lg md:mx-5 mx-1 my-5 md:p-10 p-5"
+                >
+                  <div>
                     <div className="flex justify-between items-baseline">
                       <h3 className="font-medium leading-7 text-lg text-primary mb-5 mr-5 sm:leading-9 sm:truncate">
                         ⚛ {group.name}
@@ -90,7 +90,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
                     onClose={() => setInfoModalOpen(false)}
                     group={group}
                   />
-                </>
+                </div>
               );
             })}
           </div>
