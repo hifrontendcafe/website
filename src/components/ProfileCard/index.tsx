@@ -13,7 +13,7 @@ const ProfileCard = ({ profile }: Props) => {
           <div>
             <img
               src={profile.coverImage}
-              className="object-cover object-top w-24 h-24 mx-auto ring ring-green-500 rounded-full shadow-md"
+              className={`object-cover object-top w-24 h-24 mx-auto ${profile.availableForWork ? 'ring ring-green-400' : ''} rounded-full shadow-md`}
               alt={profile.name}
             />
             {profile.availableForWork && (
