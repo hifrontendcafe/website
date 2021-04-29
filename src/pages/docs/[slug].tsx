@@ -34,7 +34,6 @@ const DocPage: React.FC<DocProps> = ({ data, preview }) => {
 
   return (
     <Layout title={doc.title} preview={preview}>
-      <Hero title="Docs" />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
           <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
