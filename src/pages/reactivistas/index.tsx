@@ -44,7 +44,6 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
           <div className="flex flex-wrap md:m-10 m-2">
             {groups?.map((group: ReactGroup) => {
               const [infoModalOpen, setInfoModalOpen] = useState(false);
-
               return (
                 <div
                   key={group.name}
