@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 
-import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 
 import { getAllDocs } from '../../lib/api';

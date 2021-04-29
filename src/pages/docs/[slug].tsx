@@ -3,7 +3,6 @@ import BlockContent from '@sanity/block-content-to-react';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
 
-import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 
 import { getAllDocs, getDocBySlug } from '../../lib/api';
