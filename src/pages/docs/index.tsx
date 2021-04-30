@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 
-import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 
 import { getAllDocs } from '../../lib/api';
@@ -27,7 +26,6 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
       preview={preview}
     >
-      <Hero title="Docs" />
       <div className="bg-indigo-100 sm:pt-10 pb-24">
         <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
           <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
