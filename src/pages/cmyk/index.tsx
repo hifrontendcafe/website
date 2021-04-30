@@ -7,6 +7,10 @@ import Layout from '../../components/Layout';
 import { cmykQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { getLayout } from '@/utils/get-layout';
+import { useState } from 'react';
+import Modal from '@/components/Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 type CMYKProjectsProps = {
   preview?: boolean;
@@ -21,38 +25,41 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     initialData: data,
     enabled: preview,
   });
+  const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Layout title="Proyectos CMYK" preview={preview}>
       <div className="pt-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+        <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
+          <div className="text-left lg:pl-28 md:-ml-4">
             <h2 className="title mt-2 leading-snug tracking-tight">
-              Proyectos hechos con{' '}
+              Proyectos CMYK&nbsp;
               <img
                 src="/icons/hearth.svg"
                 width="50px"
                 className="inline"
                 alt="heart"
               />
-              <br /> por la comunidad
             </h2>
-            <p className="mt-4 max-w-3xl text-lg lg:mx-auto">
-              Aquí conocerás los diferentes proyectos que los equipos, crearon y
-              trabajaron dentro la comunidad. Más que orgullosos por esas largas
-              horas de trabajo.
+            <p className="mt-4 max-w-3xl text-lg">
+              Desde FrontendCafé impulsamos el desarrollo de proyectos
+              colaborativos realizados por miembros de la comunidad con el
+              objetivo de ganar experiencia en un entorno profesional. Aquí
+              conocerás los diferentes proyectos que los equipos CMYK crearon y
+              desarrollaron dentro la comunidad. <br />
             </p>
+            <span
+              className="cursor-pointer text-primary flex mt-5"
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              Conocé más sobre la iniciativa&nbsp;
+              <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
+            </span>
           </div>
         </div>
-        <img
-          src="/img/CMYK-bg.svg"
-          alt="background"
-          className="mt-5 w-full absolute"
-        />
-        <div
-          className="w-full h-full mt-24"
-          style={{ backgroundColor: '#F5F9FF' }}
-        >
-          <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-2 relative z-10 mt-20">
+        <div className="w-full h-full mt-12 md:mt-8">
+          <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-2 relative z-10">
             {projects.map((project, index) => (
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}
@@ -76,6 +83,39 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
           </div>
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        close={() => setIsModalOpen(false)}
+        title="Iniciativa CMYK"
+        titleClasses="text-primary"
+        buttonLabel="Cerrar"
+        buttonClasses="text-primary"
+      >
+        <div className="text-sm overflow-auto px-2 ">
+          <ul className="list-none list-inside">
+            <li className="mb-1">
+              ✔️ La iniciativa CMYK promueve el desarrollo de proyectos
+              colaborativos con el objetivo de ganar experiencia en un entorno
+              profesional.
+            </li>
+            <li className="mb-1">
+              ✔️ Los participantes tienen acceso a un workshop de Github y
+              acompañamiento de nuestro staff quienes estarán disponibles para
+              contestar tus dudas y ayudarte para cumplir los objetivos.
+            </li>
+            <li className="mb-1">
+              ✔️ Los proyectos tienen una duración de tres semanas y la próxima
+              inscripción será a mediados de 2021.
+            </li>
+            <li className="mb-1">
+              ✔️ La inscripciones se realizan dentro de Discord, si quieres
+              participar debes ser miembro de la comunidad y prestar atención a
+              los anuncios.
+            </li>
+            <li>✔️ La actividad es gratuita.</li>
+          </ul>
+        </div>
+      </Modal>
     </Layout>
   );
 };
