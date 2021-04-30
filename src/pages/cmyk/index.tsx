@@ -30,7 +30,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     <Layout title="Proyectos CMYK" preview={preview}>
       <div className="pt-20">
         <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
-          <div className="text-left lg:pl-28 md:-ml-4">
+          <div className="text-left lg:pl-28">
             <h2 className="title mt-2 leading-snug tracking-tight">
               Proyectos CMYK&nbsp;
               <img
