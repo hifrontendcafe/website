@@ -20,7 +20,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
       preview={preview}
     >
       <div className="container px-4 pt-16 mx-auto sm:px-6 md:pt-0">
-        <h1 className="pt-4 mt-0 text-2xl font-semibold md:text-4xl md:my-4">
+        <h1 className="title mt-2 leading-snug tracking-tight py-20 text-center">
           Conoce a la comunidad
         </h1>
       </div>
