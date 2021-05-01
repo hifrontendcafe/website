@@ -46,7 +46,7 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
 
 const MentorshipsSteps: React.FC = () => {
   return (
-    <section className=" bg-indigo-100 text-gray-700 body-font">
+    <section className=" bg-indigo-50 text-gray-700 body-font">
       <div className="container px-5 py-32 mx-auto">
         <div className="text-center mb-20">
           <h1
