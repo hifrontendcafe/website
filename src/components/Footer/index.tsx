@@ -39,8 +39,12 @@ const Footer: React.FC = () => {
               </Link>
             ))}
           </div>
-
-          <p className="font-light">© FrontendCafé {currentYear}</p>
+          <div className="flex items-center">
+            <p className="font-light">© FrontendCafé {currentYear} |</p>
+            <a href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">
+              <img src="/img/powered-by-vercel.svg" alt="Powered by Vercel" />
+            </a>
+          </div>
         </div>
 
         <div className="flex flex-col justify-center gap-3">
