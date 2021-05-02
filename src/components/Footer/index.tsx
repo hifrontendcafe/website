@@ -16,7 +16,7 @@ const Footer: React.FC = () => {
   } = useSettings();
 
   const navItems = [
-    { title: 'Unirse a Discord', link: 'https://discord.gg/frontendcafe' },
+    { title: 'Únete a Discord', link: 'https://discord.gg/frontendcafe' },
     { title: 'Proyectos CMYK', link: '/cmyk' },
     { title: 'Mentorías', link: '/mentorias' },
     { title: 'Prácticas de inglés', link: '/ingles' },
@@ -39,8 +39,16 @@ const Footer: React.FC = () => {
               </Link>
             ))}
           </div>
-
-          <p className="font-light">© FrontendCafé {currentYear}</p>
+          <div className="flex flex-col md:flex-row items-center">
+            <div>
+              <p className="font-light">© FrontendCafé {currentYear}</p>
+            </div>
+            <div className="mt-5 md:mt-0">
+              <a href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">
+                <img src="/img/powered-by-vercel.svg" alt="Powered by Vercel" />
+              </a>
+            </div>
+          </div>
         </div>
 
         <div className="flex flex-col justify-center gap-3">

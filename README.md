@@ -30,3 +30,7 @@ npm run dev / yarn dev
 </p>
 
 <p align="left"> <a href="https://twitter.com/frontendcafe" target="blank"><img src="https://img.shields.io/twitter/follow/frontendcafe?logo=twitter&style=for-the-badge" alt="frontendcafe" /></a> </p>
+
+<a href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">
+  <img src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" alt="Powered by Vercel" />
+</a>
