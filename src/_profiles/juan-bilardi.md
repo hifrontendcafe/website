@@ -21,7 +21,7 @@ email: 'juanbilardi@gmail.com'
 socialMedia:
   linkedin: 'https://www.linkedin.com/in/juanbilardi/'
   github: 'https://github.com/ThreeHDM'
-  twitter: ''https://twitter.com/JBilardi
+  twitter: 'https://twitter.com/JBilardi'
 role: 'Fullstack developer'
 coverImage: 'https://avatars.githubusercontent.com/u/23452195?v=4'
 ogImage:
