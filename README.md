@@ -22,11 +22,12 @@ npm run dev / yarn dev
 
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+
 <h3 align="left">Connect with us:</h3>
 <p align="left">
 <a href="https://twitter.com/frontendcafe" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/twitter.svg" alt="frontendcafe" height="30" width="40" /></a>
-<a href="https://linkedin.com/in/FrontendCafé " target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="FrontendCafé " height="30" width="40" /></a>
-<a href="https://discord.gg/https://discord.gg/frontendcafe" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/discord.svg" alt="https://discord.gg/frontendcafe" height="30" width="40" /></a>
+<a href="https://www.linkedin.com/company/frontendcafe/" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/linkedin.svg" alt="FrontendCafé " height="30" width="40" /></a>
+<a href="https://discord.gg/frontendcafe" target="blank"><img align="center" src="https://cdn.jsdelivr.net/npm/simple-icons@3.0.1/icons/discord.svg" alt="https://discord.gg/frontendcafe" height="30" width="40" /></a>
 </p>
 
 <p align="left"> <a href="https://twitter.com/frontendcafe" target="blank"><img src="https://img.shields.io/twitter/follow/frontendcafe?logo=twitter&style=for-the-badge" alt="frontendcafe" /></a> </p>
