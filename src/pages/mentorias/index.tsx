@@ -55,7 +55,7 @@ const MentorshipsSteps: React.FC = () => {
           >
             ¿Por dónde empiezo? 🤔
           </h1>
-          <p className="text-base leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
+          <p className="text-base text-left leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
             El procedimiento para sumarte a las mentorías de FrontendCafé consta
             de tres simples pasos, resumidos en <strong>encontrar</strong> tu
             mentor, <strong>coordinar</strong> un encuentro y{' '}
@@ -75,11 +75,11 @@ const MentorshipsSteps: React.FC = () => {
               alt="schedule"
               src="img/engines-bro.svg"
             />
-            <div className="flex-grow">
+            <div className="flex-grow text-left">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
                 <strong>Paso 1:</strong> Encontrá tu mentor 🔍👀
               </h2>
-              <p className="leading-relaxed text-base">
+              <p className="leading-relaxed text-base text-left">
                 El primer paso es encontrar un mentor cuyo perfil se ajuste a
                 tus intereses y sientas que pueda ayudarte en lo que necesites.
               </p>
@@ -94,7 +94,7 @@ const MentorshipsSteps: React.FC = () => {
               alt="schedule"
               src="img/schedule-bro.svg"
             />
-            <div className="flex-grow">
+            <div className="flex-grow text-left">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
                 <strong>Paso 2:</strong> Coordiná un encuentro 📅✔️
               </h2>
@@ -116,7 +116,7 @@ const MentorshipsSteps: React.FC = () => {
               src="img/reading-bro.svg"
             />
 
-            <div className="flex-grow">
+            <div className="flex-grow text-left">
               <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
                 <strong>Paso 3:</strong> Preparate para la mentoría 📝⏳
               </h2>
