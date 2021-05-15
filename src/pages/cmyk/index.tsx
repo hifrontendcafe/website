@@ -84,33 +84,17 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
       <Modal
         isOpen={isModalOpen}
         close={() => setIsModalOpen(false)}
-        title="Iniciativa CMYK"
+        title={t('modal.title')}
         titleClasses="text-primary"
-        buttonLabel="Cerrar"
         buttonClasses="text-primary"
       >
         <div className="text-sm overflow-auto px-2 ">
           <ul className="list-none list-inside">
-            <li className="mb-1">
-              ✔️ La iniciativa CMYK promueve el desarrollo de proyectos
-              colaborativos con el objetivo de ganar experiencia en un entorno
-              profesional.
-            </li>
-            <li className="mb-1">
-              ✔️ Los participantes tienen acceso a un workshop de Github y
-              acompañamiento de nuestro staff quienes estarán disponibles para
-              contestar tus dudas y ayudarte para cumplir los objetivos.
-            </li>
-            <li className="mb-1">
-              ✔️ Los proyectos tienen una duración de tres semanas y la próxima
-              inscripción será a mediados de 2021.
-            </li>
-            <li className="mb-1">
-              ✔️ La inscripciones se realizan dentro de Discord, si quieres
-              participar debes ser miembro de la comunidad y prestar atención a
-              los anuncios.
-            </li>
-            <li>✔️ La actividad es gratuita.</li>
+            <li className="mb-1">{t('modal.1')}</li>
+            <li className="mb-1">{t('modal.2')}</li>
+            <li className="mb-1">{t('modal.3')}</li>
+            <li className="mb-1">{t('modal.4')}</li>
+            <li>{t('modal.5')}</li>
           </ul>
         </div>
       </Modal>

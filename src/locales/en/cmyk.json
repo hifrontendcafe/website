@@ -2,5 +2,13 @@
   "title": "CMYK Projects",
   "description": "From FrontendCafé we promote the development of collaborative projects carried out by members of the community with the aim of gaining experience in a professional environment. Here you will learn about the different projects that the CMYK teams created and developed within the community. ",
   "more": "Learn more about the initiative",
-  "next": "The following can be yours"
+  "next": "The following can be yours",
+  "modal": {
+    "title": "CMYK Initiative",
+    "1": "✔️ The CMYK initiative promotes the development of collaborative projects with the aim of gaining experience in a professional environment.",
+    "2": "✔️ Participants have access to a Github workshop and the accompaniment of our staff who will be available to answer your questions and help you to meet the objectives.",
+    "3": "✔️ The projects have a duration of three weeks and the next registration will be in mid-2021.",
+    "4": "✔️ Registration is done within Discord, if you want to participate you must be a member of the community and pay attention to the announcements.",
+    "5": "✔️ The activity is free."
+  }
 }

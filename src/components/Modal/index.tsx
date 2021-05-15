@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import useTranslation from 'next-translate/useTranslation';
 
 type ModalProps = {
   isOpen: boolean;
@@ -18,6 +19,7 @@ const Modal: React.FC<ModalProps> = ({
   buttonLabel,
   buttonClasses,
 }) => {
+  const { t } = useTranslation('common');
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
@@ -71,7 +73,7 @@ const Modal: React.FC<ModalProps> = ({
                     style={{ transition: 'all .15s ease' }}
                     onClick={close}
                   >
-                    {buttonLabel ? buttonLabel : 'Close'}
+                    {buttonLabel ? buttonLabel : t('close')}
                   </button>
                 </div>
               </div>
