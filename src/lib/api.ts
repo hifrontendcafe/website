@@ -50,26 +50,29 @@ const eventFields = `
   recording
 `;
 
-export const getClient = (preview: boolean = false) =>
+export const getClient = (preview = false) =>
   preview ? previewClient : client;
 
-export async function getAllEvents(preview: boolean = false): Promise<Event[]> {
+export async function getAllEvents(preview = false): Promise<Event[]> {
   return await getClient(preview).fetch(eventsQuery);
 }
 
-export async function getSettings(preview: boolean = false): Promise<Settings> {
-  return await getClient(preview).fetch(settingsQuery);
+export async function getSettings(
+  locale: string,
+  preview = false,
+): Promise<Settings> {
+  return await getClient(preview).fetch(settingsQuery, { locale });
 }
 
 export async function getEventsByCategory(
-  preview: boolean = false,
+  preview = false,
   categoryFilter: string,
 ): Promise<Event> {
   return await getClient(preview).fetch(eventsQueryByType, { categoryFilter });
 }
 
 export async function getAllAPIEvents(
-  preview: boolean = false,
+  preview = false,
 ): Promise<Omit<Event, 'description'>> {
   return await getClient(preview).fetch(
     `*[_type == "event"] | order(date desc) {
@@ -78,51 +81,40 @@ export async function getAllAPIEvents(
   );
 }
 
-export async function getAllMentors(
-  preview: boolean = false,
-): Promise<Mentor[]> {
+export async function getAllMentors(preview = false): Promise<Mentor[]> {
   return await getClient(preview).fetch(mentorsQuery);
 }
 
-export async function getAllDocs(preview: boolean = false): Promise<Doc[]> {
+export async function getAllDocs(preview = false): Promise<Doc[]> {
   return await getClient(preview).fetch(docsQuery);
 }
 
 export async function getDocBySlug(
   slug: string,
-  preview: boolean = false,
+  preview = false,
 ): Promise<Doc> {
   return await getClient(preview).fetch(docQuery, { slug });
 }
 
-export async function getMentoringTopics(
-  preview: boolean = false,
-): Promise<Topic[]> {
+export async function getMentoringTopics(preview = false): Promise<Topic[]> {
   return await getClient(preview).fetch(mentorsTopicsQuery);
 }
 
-export async function getAllPosts(preview: boolean = false): Promise<Post[]> {
+export async function getAllPosts(preview = false): Promise<Post[]> {
   return await getClient(preview).fetch(postsQuery);
 }
 
-export async function getPost(
-  slug: string,
-  preview: boolean = false,
-): Promise<Post> {
+export async function getPost(slug: string, preview = false): Promise<Post> {
   return await getClient(preview).fetch(postQuery, { slug });
 }
 
-export async function getAllPostsSlugs(
-  preview: boolean = false,
-): Promise<string[]> {
+export async function getAllPostsSlugs(preview = false): Promise<string[]> {
   return await getClient(preview).fetch(
     `*[_type == "post" && defined(slug.current)][].slug.current `,
   );
 }
 
-export async function getAllCMYKProjects(
-  preview: boolean = false,
-): Promise<CMYK[]> {
+export async function getAllCMYKProjects(preview = false): Promise<CMYK[]> {
   return await getClient(preview).fetch(cmykQuery);
 }
 
@@ -160,7 +152,7 @@ export async function addParticipantToReactGroup(
 }
 
 export async function getApprovedReactGroups(
-  preview: boolean = false,
+  preview = false,
 ): Promise<ReactGroup[]> {
   return await getClient(preview).fetch(reactGroupQuery);
 }
@@ -186,14 +178,14 @@ export async function updatePerson(
 
 export async function getPersonByDiscordId(
   id: string,
-  preview: boolean = false,
+  preview = false,
 ): Promise<Person> {
   const result = await getClient(preview).fetch(personQuery, { id });
   return result.length > 0 && result[0];
 }
 
 export async function getAllFeaturedCards(
-  preview: boolean = false,
+  preview = false,
 ): Promise<FeaturedCards[]> {
   return await getClient(preview).fetch(featuredCardsQuery);
 }

@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import useTranslation from 'next-translate/useTranslation';
 
 interface FecHeadProps {
   title: string;
@@ -7,25 +8,32 @@ interface FecHeadProps {
 }
 
 const FecHead: React.FC<FecHeadProps> = ({
-  title = 'FrontendCafé ',
-  description = 'Somos una comunidad de personas interesadas en tecnología y ciencias informáticas en donde charlamos sobre lenguajes de programación, diseño web, infraestructura, compartimos dudas, preguntamos y respondemos.',
-  children,
+  title = 'FrontendCafé',
+  description = '',
   ogImage = 'https://frontend.cafe/logo-square.png',
 }) => {
+  const { t } = useTranslation('common');
+
   return (
     <Head>
       <title>{title} - FrontendCafé </title>
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <meta name="description" content={description} />
+      <meta name="description" content={description ?? t('meta.description')} />
       {/* Twitter */}
       <meta name="twitter:card" content="summary" />
       <meta name="twitter:title" content={`${title} - FrontendCafé `} />
-      <meta name="twitter:description" content={description} />
+      <meta
+        name="twitter:description"
+        content={description ?? t('meta.description')}
+      />
       <meta name="twitter:site" content="@frontendcafe" />
       <meta name="twitter:image" content={ogImage} />
       {/* Open Graph */}
       <meta property="og:title" content={`${title} - FrontendCafé `} />
-      <meta property="og:description" content={description} />
+      <meta
+        property="og:description"
+        content={description ?? t('meta.description')}
+      />
       <meta property="og:image" content={ogImage} />
       {/* Imports */}
       <link

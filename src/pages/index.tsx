@@ -69,10 +69,13 @@ const Featured = ({ cards }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+export const getStaticProps: GetStaticProps = async ({
+  preview = false,
+  locale,
+}) => {
   const cards = await getAllFeaturedCards(preview);
 
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getLayout({ preview, locale });
 
   return {
     props: { preview, cards, dehydratedState },

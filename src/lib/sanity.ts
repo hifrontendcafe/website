@@ -7,7 +7,7 @@ import {
 } from 'next-sanity';
 
 const config: ClientConfig = {
-  dataset: 'production',
+  dataset: 'playground',
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   useCdn: process.env.NODE_ENV === 'production',
 };

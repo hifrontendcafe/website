@@ -4,7 +4,7 @@ export const settingsQuery = groq`
   *[_type == "settings"][0]{
     title,
     description,
-    menu,
+    "menu": menu[].[$locale],
     logo,
     heroBackground,
     heroWords,

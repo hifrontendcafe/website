@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useRef } from 'react';
-import { imageBuilder } from '../../lib/sanity';
+import { imageBuilder } from '@/lib/sanity';
 import { useSettings } from '@/hooks/api';
 import useTranslation from 'next-translate/useTranslation';
 

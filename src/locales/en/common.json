@@ -1,5 +1,8 @@
 {
   "join": "Join to Discord",
+  "meta": {
+    "description": "We are a community of people interested in technology and computer science where we talk about programming languages, web design, infrastructure, we share doubts, we ask and we respond."
+  },
   "footer": {
     "findUs": "Find us in",
     "links": {
