@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { imageBuilder } from '../../lib/sanity';
 import { useSettings } from '@/hooks/api';
+import useTranslation from 'next-translate/useTranslation';
 
 interface HeroProps {
   title?: string;
@@ -11,6 +12,8 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
   const {
     data: { heroBackground },
   } = useSettings();
+  const { t } = useTranslation('common');
+
   const bg = imageBuilder.image(heroBackground).width(1280).url();
   return (
     <div
@@ -77,7 +80,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               className="bg-secondary hover:bg-secondarydark text-white py-2 px-4 rounded my-3 block"
               style={{ transition: 'all .15s ease', width: 'fit-content' }}
             >
-              Sumate a Discord
+              {t('join')}
             </a>
           </Link>
         </div>

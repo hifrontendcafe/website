@@ -10,7 +10,6 @@ import { useSettings } from '@/hooks/api';
 
 type CMYKRegisterPageProps = {
   preview?: boolean;
-  cards: object;
 };
 
 const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({

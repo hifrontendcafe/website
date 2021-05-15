@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { imageBuilder } from '../../lib/sanity';
 import { useSettings } from '@/hooks/api';
+import useTranslation from 'next-translate/useTranslation';
 
 type HeaderProps = {
   preview: boolean;
@@ -14,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   const menuBtn = useRef(null);
   const menuDOM = useRef(null);
   const logoIMG = imageBuilder.image(logo).url();
+  const { t } = useTranslation('common');
 
   function menuHandler() {
     menuBtn.current.classList.toggle('open');
@@ -73,7 +75,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
               className={'btn btn-secondary ml-3'}
               style={{ transition: 'all .15s ease' }}
             >
-              Sumate a Discord
+              {t('join')}
             </a>
           </Link>
         </div>

@@ -7,25 +7,25 @@ import { getAllFeaturedCards } from '../lib/api';
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import MediaFeed from '../components/MediaFeed';
-
-type IndexProps = {
-  preview?: boolean;
-  cards: object;
-};
-
+import useTranslation from 'next-translate/useTranslation';
 import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
-
 //import CMYKBanner from '../components/CMYKBanner';
 import JoinSection from '../components/JoinSection';
 import AboutSection from '../components/AboutSection';
 import { useSettings } from '@/hooks/api';
 import { getLayout } from '@/utils/get-layout';
 
+type IndexProps = {
+  preview?: boolean;
+  cards: [];
+};
+
 const Index: React.FC<IndexProps> = ({ preview = false, cards }) => {
   const [counter, setCounter] = useState(0);
   const {
     data: { heroWords = ['Creamos'], description },
   } = useSettings();
+  const { t } = useTranslation('home');
 
   if (counter >= heroWords?.length) {
     setCounter(0);
@@ -40,7 +40,7 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards }) => {
   }, []);
 
   return (
-    <Layout title="Home" description={description} preview={preview}>
+    <Layout title={t('title')} description={description} preview={preview}>
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero title={heroWords[counter]} />
       <div className="p-1">
