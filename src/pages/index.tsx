@@ -53,19 +53,21 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards }) => {
   );
 };
 
-const Featured = ({ cards }) => (
-  <div className="flex flex-col mb-12 md:mb-24">
-    <div className="flex flex-col items-center justify-center m-auto mt-20 text-center lg:w-2/3 px-5">
-      <h1 className="mb-5 title">¡Descubre lo que tenemos para ti!</h1>
-      <p className="w-5/6 lg:text-lg text-md text-left">
-        En FrontendCafé con la participación de la comunidad creamos diferentes
-        actividades para mejorar nuestras habilidades tanto profesionales como
-        comunidad.
-      </p>
+const Featured = ({ cards }) => {
+  const { t } = useTranslation('home');
+
+  return (
+    <div className="flex flex-col mb-12 md:mb-24">
+      <div className="flex flex-col items-center justify-center m-auto mt-20 text-center lg:w-2/3 px-5">
+        <h1 className="mb-5 title">{t('featured.title')}</h1>
+        <p className="w-5/6 lg:text-lg text-md text-left">
+          {t('featured.description')}
+        </p>
+      </div>
+      <FeaturedCardsCarousel featuredCards={cards} />
     </div>
-    <FeaturedCardsCarousel featuredCards={cards} />
-  </div>
-);
+  );
+};
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const cards = await getAllFeaturedCards(preview);

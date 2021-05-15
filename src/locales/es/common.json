@@ -1,3 +1,11 @@
 {
-  "join": "Sumate a Discord"
+  "join": "Sumate a Discord",
+  "footer": {
+    "links": {
+      "discord": "Únete a Discord",
+      "mentors": "Mentorías",
+      "cmyk": "Proyectos CMYK",
+      "english": "Prácticas de inglés"
+    }
+  }
 }

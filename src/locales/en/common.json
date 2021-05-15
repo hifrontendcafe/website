@@ -1,3 +1,11 @@
 {
-  "join": "Join to Discord"
+  "join": "Join to Discord",
+  "footer": {
+    "links": {
+      "discord": "Join to Discord",
+      "mentors": "Mentoring",
+      "cmyk": "CMYK Projects",
+      "english": "English practices"
+    }
+  }
 }

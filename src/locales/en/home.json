@@ -1,3 +1,9 @@
 {
-  "title": "Home"
+  "title": "Home",
+  "aboutUs": "About Us?",
+  "ready": "Are you ready to join?",
+  "featured": {
+    "title": "Discover what we have for you!",
+    "description": "At FrontendCafé, with the participation of the community, we create different activities to improve our professional and community skills."
+  }
 }
