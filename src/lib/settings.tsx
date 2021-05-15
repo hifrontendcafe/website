@@ -1,14 +1,9 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { getSettings } from './api';
+import { createContext, useContext, useState } from 'react';
 
 export const AppSettings = createContext(null);
 
 export function AppWrapper({ children }) {
-  const [settings, setSettings] = useState({});
-
-  useEffect(() => {
-    getSettings().then((res) => setSettings(res));
-  }, []);
+  const [settings] = useState({});
 
   return (
     <AppSettings.Provider value={settings}>{children}</AppSettings.Provider>
