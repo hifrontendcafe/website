@@ -3,7 +3,7 @@ import { groq } from 'next-sanity';
 export const settingsQuery = groq`
   *[_type == "settings"][0]{
     title,
-    description,
+    "description": description[$locale],
     "menu": menu[].[$locale],
     logo,
     heroBackground,
