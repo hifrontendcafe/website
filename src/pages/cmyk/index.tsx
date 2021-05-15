@@ -11,6 +11,7 @@ import { useState } from 'react';
 import Modal from '@/components/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import useTranslation from 'next-translate/useTranslation';
 
 type CMYKProjectsProps = {
   preview?: boolean;
@@ -21,18 +22,19 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   preview = false,
   data,
 }) => {
+  const { t } = useTranslation('cmyk');
   const { data: projects } = usePreviewSubscription(cmykQuery, {
     initialData: data,
     enabled: preview,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <Layout title="Proyectos CMYK" preview={preview}>
+    <Layout title={t('title')} preview={preview}>
       <div className="pt-20">
         <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
           <div className="text-left lg:pl-28">
             <h2 className="title mt-2 leading-snug tracking-tight">
-              Proyectos CMYK&nbsp;
+              {t('title')}&nbsp;
               <img
                 src="/icons/hearth.svg"
                 width="50px"
@@ -41,11 +43,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               />
             </h2>
             <p className="mt-4 max-w-3xl text-lg">
-              Desde FrontendCafé impulsamos el desarrollo de proyectos
-              colaborativos realizados por miembros de la comunidad con el
-              objetivo de ganar experiencia en un entorno profesional. Aquí
-              conocerás los diferentes proyectos que los equipos CMYK crearon y
-              desarrollaron dentro la comunidad. <br />
+              {t('description')} <br />
             </p>
             <span
               className="cursor-pointer text-primary flex mt-5"
@@ -53,7 +51,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
                 setIsModalOpen(true);
               }}
             >
-              Conocé más sobre la iniciativa&nbsp;
+              {t('more')}&nbsp;
               <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
             </span>
           </div>
@@ -66,7 +64,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
           </div>
           <div className="text-center py-20">
             <h2 className="subtitle mb-8 tracking-tight">
-              El siguiente puede ser el tuyo{' '}
+              {t('next')}{' '}
               <img
                 src="/icons/hearth.svg"
                 className="inline"
@@ -78,7 +76,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               href="https://discord.gg/frontendcafe"
               className="btn mt-1 btn-secondary py-3 px-6"
             >
-              Súmate a Discord
+              {t('common:join')}
             </a>
           </div>
         </div>

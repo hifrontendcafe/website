@@ -1,6 +1,7 @@
 {
   "join": "Join to Discord",
   "footer": {
+    "findUs": "Find us in",
     "links": {
       "discord": "Join to Discord",
       "mentors": "Mentoring",

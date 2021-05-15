@@ -58,7 +58,7 @@ const Footer: React.FC = () => {
 
         <div className="flex flex-col justify-center gap-3">
           <p className="w-auto font-medium text-center md:text-left">
-            Encuéntranos en
+            {t('footer.findUs')}
           </p>
           <div className="flex justify-center gap-3 md:justify-start">
             {socialnetworks?.twitter && (
