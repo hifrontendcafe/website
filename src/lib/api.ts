@@ -1,4 +1,3 @@
-import fs from 'fs';
 import client, { postClient, previewClient } from './sanity';
 import {
   CMYK,
@@ -31,9 +30,6 @@ import {
   settingsQuery,
   featuredCardsQuery,
 } from './queries';
-
-import { join } from 'path';
-import matter from 'gray-matter';
 
 const eventFields = `
   title,
