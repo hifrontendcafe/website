@@ -21,13 +21,13 @@ export async function getProfiles(): Promise<Profile[]> {
 
     const rows = response.data.values;
     if (rows.length) {
-      const profiles = rows
+      return rows
         .filter((row) => row[13] === 'TRUE')
         .map((row) => ({
           date: row[0],
           email: row[1],
           name: row[2],
-          available: !!(row[3] === 'Si'),
+          available: row[3] !== 'No',
           discord: row[4],
           role: row[5].split(','),
           technologies: row[6].split(','),
@@ -38,8 +38,6 @@ export async function getProfiles(): Promise<Profile[]> {
           description: row[11],
           image: row[12],
         }));
-
-      return profiles;
     }
   } catch (err) {
     console.log(err);
