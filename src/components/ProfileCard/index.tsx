@@ -23,7 +23,7 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
           } rounded-full shadow-md`}
           alt={profile.name}
         />
-        <div className="text-left flex-nowrap w-min">
+        <div className="text-left flex-nowrap w-min flex-grow">
           <h1 className="leading-none text-xl font-bold tracking-tighter">
             {profile.name}
           </h1>
