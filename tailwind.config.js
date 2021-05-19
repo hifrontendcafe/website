@@ -55,6 +55,10 @@ module.exports = {
       tertiarydark: '#9d2e67',
     }),
   },
-  variants: {},
+  variants: {
+    extend: {
+      display: ['hover', 'group-hover'],
+    },
+  },
   plugins: [require('@tailwindcss/typography')],
 };
