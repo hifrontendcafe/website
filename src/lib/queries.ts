@@ -138,7 +138,18 @@ export const personQuery = groq`
     lastName,
   }
 `;
-
+export const staffQuery = groq`
+  *[_type == "person" && fecTeam]{
+    _id,
+    username,
+    firstName,
+    lastName,
+    fecTeam,
+    'photo': {
+      'src': photo.asset->url
+    },
+  }
+`;
 export const reactGroupQuery = groq`
 *[_type == 'reactGroup' && status == 'approved']{
     _id,
