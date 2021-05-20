@@ -7,6 +7,7 @@ type Props = {
 
 const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
   const socialMediaList = {
+    ...(profile.email && { email: 'mailto:' + profile.email }),
     ...(profile.linkedin && { linkedin: profile.linkedin }),
     ...(profile.github && { github: profile.github }),
     ...(profile.twitter && { twitter: profile.twitter }),
@@ -20,25 +21,28 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
           src={profile.image}
           className={`object-cover object-top w-28 h-28 ring ring-white ${
             profile.available ? 'ring-green-400' : ''
-          } rounded-full shadow-md`}
+          } rounded-full shadow-lg`}
           alt={profile.name}
         />
-        <div className="text-left flex-nowrap w-min flex-grow">
-          <h1 className="leading-none text-xl font-bold tracking-tighter">
-            {profile.name}
-          </h1>
-          <h2 className="leading-none tracking-tighter">{profile.role}</h2>
-          {profile.available && (
-            <div className="font-semibold text-primary whitespace-nowrap">
-              En búsqueda activa
-            </div>
-          )}
-          <div className="mt-2">
+        <div className="text-left flex justify-between flex-nowrap w-min flex-grow flex-col">
+          <div className="flex-grow">
+            <h1 className="leading-none text-xl font-bold tracking-tighter">
+              {profile.name}
+            </h1>
+            <h2 className="leading-none tracking-tighter">{profile.role}</h2>
+          </div>
+          <div className="mt-2 flex-end">
             <ProfileSocialMedia socialMedia={socialMediaList} />
           </div>
         </div>
       </div>
+
       <div className="text-left text-sm w-full h-full items-center justify-center my-4 whitespace-pre-line">
+        {profile.available && (
+          <div className="font-semibold text-primary whitespace-nowrap">
+            En búsqueda activa
+          </div>
+        )}
         {profile.description}
       </div>
       <div className="group-hover:hidden">
@@ -47,7 +51,7 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
             {profile.technologies?.map((tech) => (
               <li
                 key={tech}
-                className="px-4 py-1 mr-2 mt-2 text-sm break-all border border-indigo-400 rounded-md"
+                className="px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md"
               >
                 {tech}
               </li>

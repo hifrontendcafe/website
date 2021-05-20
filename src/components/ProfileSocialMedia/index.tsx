@@ -15,13 +15,13 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
     setInvalidSocialNetworks({ ...invalidSocialNetworks, [value]: true });
   };
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center space-x-1">
       {Object.keys(socialMedia)?.map(
         (value) =>
           !invalidSocialNetworks[value] && (
             <a
               key={value}
-              className="hover:opacity-75 bg-gray-600 rounded-full p-1 w-5 h-5 flex items-center"
+              className="hover:opacity-75 bg-gray-600 rounded-full justify-center w-6 h-6 flex items-center"
               href={socialMedia[value]}
             >
               <Image
@@ -29,8 +29,8 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
                 onErrorCapture={() => onImageError(value)}
                 onError={() => onImageError(value)}
                 alt={value}
-                width={12}
-                height={12}
+                width={14}
+                height={14}
               />
             </a>
           ),
