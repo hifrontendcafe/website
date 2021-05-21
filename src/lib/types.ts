@@ -150,7 +150,10 @@ export interface Person {
   username: {
     current: string;
   };
-  photo?: Image;
+  photo: {
+    src: string;
+    alt?: string;
+  };
   firstName?: string;
   lastName?: string;
   emai?: string;

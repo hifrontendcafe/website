@@ -27,7 +27,7 @@ const StaffPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
       <div className="container mx-auto bg-white mb-20">        
         <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-5 place-content-stretch">
         {profiles?.map((profile) => (
-            <StaffCard profile={profile} key={profile.username} />
+            <StaffCard profile={profile} key={profile.username}  />
           ))}            
         
         </div>

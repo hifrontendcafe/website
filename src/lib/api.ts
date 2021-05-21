@@ -193,7 +193,8 @@ export async function getPersonByDiscordId(
   return result.length > 0 && result[0];
 }
 export async function getFecTeam( 
-  preview: boolean = false,
+  fields: string[] = [],
+  preview: boolean = false,  
 ): Promise<Person> {
   const result = await getClient(preview).fetch(staffQuery);
   return result.length > 0 && result;

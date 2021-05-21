@@ -10,6 +10,8 @@ const StaffCard = ({ profile }: Props) => {
       {
         profile.photo.src && <img className='rounded-full' src={profile.photo.src} alt={profile.firstName} />
       }
+
+      
       
       <h1 className="mt-2 font-semibold">{profile.firstName}</h1>
     </div>   
