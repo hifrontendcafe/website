@@ -18,7 +18,7 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
     <div className="p-4 text-center rounded-lg shadow-lg flex flex-col justify-between">
       <div className="flex items-top justify-center space-x-3 text-center">
         <img
-          src={profile.image}
+          src={profile.image || '/img/user.svg'}
           className={`object-cover object-top w-28 h-28 ring ring-white ${
             profile.available ? 'ring-green-400' : ''
           } rounded-full shadow-lg`}
