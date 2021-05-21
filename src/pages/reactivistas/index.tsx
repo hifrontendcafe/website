@@ -30,7 +30,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
   return (
     <Layout title="Iniciativas">
       <div className="pt-20">
-        <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-36">
           <div className="px-10 text-left xl:px-0">
             <h2 className="mt-2 leading-snug tracking-tight title">
               Reactivistas&nbsp;
@@ -53,7 +53,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
         </div>
       </div>
 
-      <div className="container p-10 m-10 mx-auto">
+      <div className="container p-10 m-10 mx-auto lg:px-36">
         <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
           Súmate a los grupos que están comenzando
         </h1>
