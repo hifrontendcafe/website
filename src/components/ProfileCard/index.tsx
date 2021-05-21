@@ -30,19 +30,18 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
               {profile.name}
             </h1>
             <h2 className="leading-none tracking-tighter">{profile.role}</h2>
+            {profile.available && (
+              <div className="font-semibold text-sm text-primary whitespace-nowrap">
+                En búsqueda activa
+              </div>
+            )}
           </div>
           <div className="mt-2 flex-end">
             <ProfileSocialMedia socialMedia={socialMediaList} />
           </div>
         </div>
       </div>
-
       <div className="text-left text-sm w-full h-full items-center justify-center my-4 whitespace-pre-line">
-        {profile.available && (
-          <div className="font-semibold text-primary whitespace-nowrap">
-            En búsqueda activa
-          </div>
-        )}
         {profile.description}
       </div>
       <div className="group-hover:hidden">
