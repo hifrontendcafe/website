@@ -30,20 +30,20 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
   return (
     <Layout title="Iniciativas">
       <div className="pt-20">
-        <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
-          <div className="text-left lg:pl-28">
-            <h2 className="title mt-2 leading-snug tracking-tight">
+        <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="px-10 text-left xl:px-0">
+            <h2 className="mt-2 leading-snug tracking-tight title">
               Reactivistas&nbsp;
             </h2>
-            <p className="mt-4 max-w-3xl text-lg">
+            <p className="max-w-3xl mt-4 text-lg">
               Reactivistas es una iniciativa que promueve el estudio de React en
               grupos auto-organizados por integrantes de la comunidad.
               <br />
-              Si participas podrás intercambiar ideas con miembros de la
-              comunidad, y acceder a las Office Hours, son reuniones con nuestro
-              staff para exponer tus dudas y realizar consultas
+              Si participas podrás intercambiar ideas con tus pares y acceder a
+              las Office Hours, que son reuniones con nuestro staff exponer tus
+              dudas y realizar consultas.
             </p>
-            <span className="cursor-pointer text-primary flex mt-5">
+            <span className="flex mt-5 cursor-pointer text-primary">
               <a href="https://frontend.cafe/docs/guia-reactivistas">
                 Conocé más sobre la iniciativa&nbsp;
               </a>
@@ -53,26 +53,26 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
         </div>
       </div>
 
-      <div className="container mx-auto m-10 p-10 bg-white shadow">
-        <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate text-justify	  ">
+      <div className="container p-10 m-10 mx-auto">
+        <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
           Súmate a los grupos que están comenzando
         </h1>
-        <div className="flex flex-wrap md:m-10 m-2">
+        <div className="flex flex-wrap m-2 md:m-10">
           {groups?.map((group: ReactGroup) => {
             const [infoModalOpen, setInfoModalOpen] = useState(false);
             return (
               <div
                 key={group.name}
-                className="flex flex-col flex-auto rounded-md shadow-lg md:mx-5 mx-1 my-5 md:p-10 p-5"
+                className="flex flex-col flex-auto p-5 mx-1 my-5 rounded-md shadow-lg md:mx-5 md:p-10"
               >
                 <div>
-                  <div className="flex justify-between items-baseline">
-                    <h3 className="font-medium leading-7 text-lg text-primary mb-5 mr-5 sm:leading-9 sm:truncate">
+                  <div className="flex items-baseline justify-between">
+                    <h3 className="mb-5 mr-5 text-lg font-medium leading-7 text-primary sm:leading-9 sm:truncate">
                       ⚛ {group.name}
                     </h3>
                     <button
                       onClick={() => setInfoModalOpen(true)}
-                      className="text-xs uppercase font-bold text-blue-600 focus:outline-none"
+                      className="text-xs font-bold text-blue-600 uppercase focus:outline-none"
                     >
                       + Info
                     </button>
@@ -81,7 +81,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
                     <li key={group.topic} className="mb-1 font-medium">
                       <span className="font-bold">Tema:</span> {group.topic}
                     </li>
-                    <li className="font-medium mb-4">
+                    <li className="mb-4 font-medium">
                       <span className="font-bold">Fecha de inicio:</span>{' '}
                       {group.startDate}
                     </li>
@@ -92,7 +92,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
                     </li>
                   </ul>
                   {group.participants && group.participants.length >= 10 ? (
-                    <div className="font-md text-md text-red-500">
+                    <div className="text-red-500 font-md text-md">
                       Grupo lleno
                     </div>
                   ) : (
@@ -110,25 +110,24 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
           })}
         </div>
 
-        <div className="container mx-auto overflow-hidden bg-white rounded-lg shadow ">
+        <div className="flex-1 min-w-0 mb-8">
+          <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
+            Dale vida a un nuevo grupo
+          </h1>
+          <h2 className="font-medium leading-7 text-md text-primary sm:leading-9 sm:truncate">
+            <span
+              className="text-blue-400 cursor-pointer"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Ver requisitos
+            </span>
+          </h2>
+        </div>
+
+        <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50">
           <div className="px-6 pt-20 border-b border-gray-200 md:py-5 md:px-8">
-            <div className="mt-2 md:flex md:items-center md:justify-between">
-              <div className="flex-1 min-w-0">
-                <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
-                  Proponé un nuevo grupo
-                </h1>
-                <h2 className="font-medium leading-7 text-md text-primary sm:leading-9 sm:truncate">
-                  <span
-                    className="cursor-pointer text-blue-400"
-                    onClick={() => setIsModalOpen(true)}
-                  >
-                    Ver requisitos
-                  </span>
-                </h2>
-              </div>
-            </div>
+            <CreateGroupForm />
           </div>
-          <CreateGroupForm />
         </div>
       </div>
 

@@ -35,7 +35,7 @@ const CreateGroupForm = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col w-full grid-cols-2 gap-5 px-8 pt-6 pb-8 mb-4 bg-white rounded md:grid"
+      className="flex flex-col w-full grid-cols-2 gap-5 px-8 pt-6 pb-8 mb-4 rounded bg-gray-50 md:grid"
     >
       <div className="mb-4">
         <label className="block mb-2 text-sm font-bold">
@@ -126,7 +126,7 @@ const CreateGroupForm = () => {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="inline-flex justify-center px-6 py-3 text-md font-medium text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex justify-center px-6 py-3 font-medium text-white border border-transparent rounded-md shadow-sm text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             disabled={isLoading}
           >
             {isLoading ? 'Enviando...' : 'Enviar propuesta'}
@@ -142,7 +142,7 @@ const CreateGroupForm = () => {
           role="alert"
         >
           <svg
-            className="fill-current w-4 h-4 mr-2"
+            className="w-4 h-4 mr-2 fill-current"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
           >
