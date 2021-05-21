@@ -160,18 +160,17 @@ export interface Person {
 }
 
 export type Profile = {
-  slug: string;
-  name: string;
-  coverImage: string;
-  role: string;
+  date: string;
   email: string;
-  availableForWork: boolean;
-  socialMedia: {
-    [name: string]: string;
-  };
-  ogImage: {
-    url: string;
-  };
-  content: string;
-  stack: string[];
+  name: string;
+  available: boolean;
+  discord: string;
+  role: string;
+  technologies: string[];
+  portfolio: string;
+  linkedin: string;
+  twitter: string;
+  github: string;
+  description: string;
+  image: string;
 };
