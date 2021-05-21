@@ -5,16 +5,20 @@ type Props = {
 };
 
 const StaffCard = ({ profile }: Props) => {
-  return (  
+  return (
     <div className="p-5 text-center">
-      {
-        profile.photo.src && <img className='rounded-full' src={profile.photo.src} alt={profile.firstName} />
-      }
+      {profile.photo.src && (
+        <img
+          height={56}
+          width={56}
+          className="rounded-full mx-auto h-32 w-32 object-cover"
+          src={profile.photo.src}
+          alt={profile.firstName}
+        />
+      )}
 
-      
-      
       <h1 className="mt-2 font-semibold">{profile.firstName}</h1>
-    </div>   
+    </div>
   );
 };
 
