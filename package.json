@@ -25,7 +25,7 @@
     "gray-matter": "4.0.2",
     "next": "^10.2.0",
     "next-sanity": "^0.1.8",
-    "postcss": "^8.2.9",
+    "postcss": "^8.2.10",
     "react": "^17.0.2",
     "react-add-to-calendar": "^0.1.5",
     "react-dom": "^17.0.2",
