@@ -150,6 +150,10 @@ export interface Person {
   username: {
     current: string;
   };
+  photo: {
+    src: string;
+    alt?: string;
+  };
   firstName?: string;
   lastName?: string;
   emai?: string;
@@ -157,6 +161,7 @@ export interface Person {
   twitter?: string;
   portfolio?: string;
   github?: string;
+  fecTeam?: boolean;
 }
 
 export type Profile = {

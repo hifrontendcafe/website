@@ -28,6 +28,7 @@ import {
   personQuery,
   reactGroupQuery,
   settingsQuery,
+  staffQuery,
   featuredCardsQuery,
 } from './queries';
 
@@ -187,7 +188,10 @@ export async function getPersonByDiscordId(
   const result = await getClient(preview).fetch(personQuery, { id });
   return result.length > 0 && result[0];
 }
-
+export async function getFecTeam(preview: boolean = false): Promise<Person> {
+  const result = await getClient(preview).fetch(staffQuery);
+  return result.length > 0 && result;
+}
 export async function getAllFeaturedCards(
   preview: boolean = false,
 ): Promise<FeaturedCards[]> {
