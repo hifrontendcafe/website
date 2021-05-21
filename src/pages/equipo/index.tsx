@@ -12,7 +12,7 @@ type PostsPageProps = {
 };
 
 const StaffPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
-  console.log(profiles);
+  // console.log(profiles);
   return (
     <Layout
       title="Nuestro equipo"
@@ -24,12 +24,11 @@ const StaffPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
           Conoce a nuestro equipo
         </h1>
       </div>
-      <div className="container mx-auto bg-white mb-20">        
+      <div className="container mx-auto bg-white mb-20">
         <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-5 place-content-stretch">
-        {profiles?.map((profile) => (
-            <StaffCard profile={profile} key={profile.username}  />
-          ))}            
-        
+          {profiles?.map((profile) => (
+            <StaffCard profile={profile} key={profile._id} />
+          ))}
         </div>
       </div>
     </Layout>
@@ -37,13 +36,7 @@ const StaffPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const profiles = await getFecTeam([
-    'name',
-    'firstName',
-    'lastName',
-    'username',
-    'photo',
-  ]);
+  const profiles = await getFecTeam(preview);
   const { dehydratedState } = await getLayout({ preview });
 
   return {
