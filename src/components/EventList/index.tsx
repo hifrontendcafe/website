@@ -31,7 +31,7 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
           </>
         )}
         <h1 className="pt-12 pb-4 mx-4 md:pt-0 subtitle">
-          Eventos anteriores ⏯️
+          Revive nuestros eventos ⏯️
         </h1>
         <div className="flex flex-wrap px-4 -mx-4 -my-8">
           {pastEvents(events)?.map(
