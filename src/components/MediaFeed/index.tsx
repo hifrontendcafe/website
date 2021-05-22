@@ -1,8 +1,28 @@
-import { TwitterTimelineEmbed } from 'react-twitter-embed';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
+import { CustomButtonGroup } from '../FeaturedCardsCarousel/CustomArrows';
+import { getRandomInt } from '@/lib/helpers';
+import Carousel, { ResponsiveType } from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+import { Tweet } from 'lib/types';
 
-const MediaFeed: React.FC = () => {
+const MediaFeed: React.FC<{ tweets: Tweet[] }> = ({ tweets }) => {
+  const responsive: ResponsiveType = {
+    large: {
+      breakpoint: { max: 3000, min: 1080 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1080, min: 800 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 800, min: 0 },
+      items: 1,
+    },
+  };
+
   return (
-    <section id="comunidad" className="relative w-full min-h-screen bg-white">
+    <section id="comunidad" className="relative w-full bg-white">
       <div
         className="absolute top-0 left-0 right-0 bottom-auto w-full -mt-20 overflow-hidden pointer-events-none"
         style={{ height: '80px', transform: 'translateZ(0)' }}
@@ -25,34 +45,43 @@ const MediaFeed: React.FC = () => {
       <div className="container px-5 py-12 mx-auto">
         <div className="flex items-center pb-12 md:pl-24">
           <img
-              className="w-10 h-10"
-              src="/icons/twitter.svg"
-              alt="twitter-logo"
-            />
+            className="w-10 h-10"
+            src="/icons/twitter.svg"
+            alt="twitter-logo"
+          />
           <h1 className="pl-2 twitter-blue subtitle">@frontendcafe</h1>
         </div>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-          <TwitterTimelineEmbed
-            sourceType="url"
-            url="https://twitter.com/frontendcafe"
-            options={{ height: 1000, tweetLimit: 2 }}
-            placeholder={<SkeletonTwitterCard />}
-            noHeader
-            transparent
-            borderColor="#00c39d"
-            noScrollbar
-          />
-          <TwitterTimelineEmbed
-            sourceType="url"
-            url="https://twitter.com/frontendcafe/likes"
-            options={{ height: 1000, tweetLimit: 2 }}
-            placeholder={<SkeletonTwitterCard />}
-            noHeader
-            transparent
-            borderColor="#00c39d"
-            noScrollbar
-          />
-        </div>
+
+        <Carousel
+          ssr
+          infinite
+          swipeable
+          draggable
+          arrows={false}
+          keyBoardControl
+          showDots={false}
+          centerMode={false}
+          responsive={responsive}
+          transitionDuration={700}
+          containerClass="container px-3 md:px-0 mx-auto py-5 gap-2"
+          itemClass="px-2"
+          partialVisible={false}
+          autoPlay
+          autoPlaySpeed={5000}
+        >
+          {tweets
+            .filter((x) => !x.in_reply_to_user_id)
+            .map((tweet) => (
+              <TwitterTweetEmbed
+                key={tweet.id}
+                tweetId={tweet.id}
+                options={{
+                  maxHeight: 500,
+                }}
+                placeholder={<SkeletonTwitterCard />}
+              />
+            ))}
+        </Carousel>
       </div>
     </section>
   );
@@ -82,7 +111,10 @@ const SkeletonTwitterCard: React.FC = () => {
             <div className="w-5/6 h-4 bg-gray-400 rounded"></div>
           </div>
           <div className="space-y-2">
-            <div className="h-48 bg-gray-400 rounded"></div>
+            <div
+              style={{ height: getRandomInt(200, 500) }}
+              className="bg-gray-400 rounded"
+            ></div>
           </div>
         </div>
       </div>

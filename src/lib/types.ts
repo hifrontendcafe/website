@@ -179,3 +179,9 @@ export type Profile = {
   description: string;
   image: string;
 };
+
+export type Tweet = {
+  id: string;
+  text: string;
+  in_reply_to_user_id: string;
+};

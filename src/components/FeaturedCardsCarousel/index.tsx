@@ -8,11 +8,15 @@ import Carousel, { ResponsiveType } from 'react-multi-carousel';
 
 const responsive: ResponsiveType = {
   large: {
-    breakpoint: { max: 3000, min: 720 },
+    breakpoint: { max: 3000, min: 1080 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1080, min: 560 },
     items: 2,
   },
   mobile: {
-    breakpoint: { max: 720, min: 0 },
+    breakpoint: { max: 560, min: 0 },
     items: 1,
     partialVisibilityGutter: 60,
   },
@@ -48,7 +52,6 @@ const FeaturedCardsCarousel: React.FC<FeaturedCardsCarouselProps> = ({
           <FeaturedCard key={card.title} card={card} />
         ))}
       </Carousel>
-      <div></div>
     </>
   );
 };

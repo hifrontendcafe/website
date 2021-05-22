@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 
 const CustomLeftArrow = ({ onClick }) => (
   <FontAwesomeIcon
-    className="cursor-pointer text-primary w-8 h-8"
+    className="cursor-pointer w-8 h-8"
     icon={faArrowLeft}
     onClick={() => onClick()}
   />
@@ -12,7 +12,7 @@ const CustomLeftArrow = ({ onClick }) => (
 
 const CustomRightArrow = ({ onClick }) => (
   <FontAwesomeIcon
-    className="cursor-pointer text-primary w-8 h-8"
+    className="cursor-pointer w-8 h-8"
     icon={faArrowRight}
     onClick={() => onClick()}
   />
@@ -25,7 +25,7 @@ interface CustomButtonProps {
 
 const CustomButtonGroup: FC<CustomButtonProps> = ({ next, previous }) => {
   return (
-    <div className="hidden md:flex container mx-auto gap-5 justify-end pr-16">
+    <div className="hidden md:flex container mx-auto gap-5 justify-end pr-16 text-primary">
       <CustomLeftArrow onClick={previous} />
       <CustomRightArrow onClick={next} />
     </div>
