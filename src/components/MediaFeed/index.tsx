@@ -1,32 +1,11 @@
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { CustomButtonGroup } from '../FeaturedCardsCarousel/CustomArrows';
+import { getRandomInt } from '@/lib/helpers';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
-import { useQuery } from 'react-query';
 import 'react-multi-carousel/lib/styles.css';
+import { Tweet } from 'lib/types';
 
-const MediaFeed: React.FC = () => {
-  const requestOptions = {
-    method: 'GET',
-    headers: {
-      cookie:
-        'personalization_id=%22v1_C6%2Ft5si8LCJ3Mh%2B5i99d9g%3D%3D%22; guest_id=v1%253A162171521495786396',
-      Authorization:
-        'Bearer AAAAAAAAAAAAAAAAAAAAACoSIAEAAAAApKQoLnjk5HO4dligCv7j5gP2CRI%3DfwdXLoAWjd42JbuhMEQZE6kVtjh7i2B6NUlu2ftVSmCVmDiSZb',
-    },
-  };
-
-  const { data } = useQuery(
-    'twitterQuery',
-    () =>
-      fetch(
-        'https://api.twitter.com/2/tweets/search/recent?query=from%3AFrontEndCafe',
-        requestOptions,
-      ).then((res) => res.json()),
-    { retry: 0, retryDelay: 5000, refetchOnWindowFocus: false },
-  );
-
-  console.log('🚀 ~ data', data);
-
+const MediaFeed: React.FC<{ tweets: Tweet[] }> = ({ tweets }) => {
   const responsive: ResponsiveType = {
     large: {
       breakpoint: { max: 3000, min: 1080 },
@@ -73,33 +52,36 @@ const MediaFeed: React.FC = () => {
           <h1 className="pl-2 twitter-blue subtitle">@frontendcafe</h1>
         </div>
 
-        {data && (
-          <Carousel
-            ssr
-            infinite
-            swipeable
-            draggable
-            arrows={false}
-            keyBoardControl
-            showDots={false}
-            centerMode={false}
-            responsive={responsive}
-            transitionDuration={700}
-            containerClass="container px-3 md:px-0 mx-auto py-5 gap-2"
-            itemClass="px-2"
-            renderButtonGroupOutside={true}
-            customButtonGroup={<CustomButtonGroup />}
-            partialVisible={false}
-          >
-            {data?.data.map((tweet) => (
+        <Carousel
+          ssr
+          infinite
+          swipeable
+          draggable
+          arrows={false}
+          keyBoardControl
+          showDots={false}
+          centerMode={false}
+          responsive={responsive}
+          transitionDuration={700}
+          containerClass="container px-3 md:px-0 mx-auto py-5 gap-2"
+          itemClass="px-2"
+          partialVisible={false}
+          autoPlay
+          autoPlaySpeed={5000}
+        >
+          {tweets
+            .filter((x) => !x.in_reply_to_user_id)
+            .map((tweet) => (
               <TwitterTweetEmbed
                 key={tweet.id}
                 tweetId={tweet.id}
+                options={{
+                  maxHeight: 500,
+                }}
                 placeholder={<SkeletonTwitterCard />}
               />
             ))}
-          </Carousel>
-        )}
+        </Carousel>
       </div>
     </section>
   );
@@ -129,7 +111,10 @@ const SkeletonTwitterCard: React.FC = () => {
             <div className="w-5/6 h-4 bg-gray-400 rounded"></div>
           </div>
           <div className="space-y-2">
-            <div className="h-48 bg-gray-400 rounded"></div>
+            <div
+              style={{ height: getRandomInt(200, 500) }}
+              className="bg-gray-400 rounded"
+            ></div>
           </div>
         </div>
       </div>
