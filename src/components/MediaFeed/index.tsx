@@ -1,9 +1,32 @@
 import { TwitterTweetEmbed } from 'react-twitter-embed';
 import { CustomButtonGroup } from '../FeaturedCardsCarousel/CustomArrows';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
+import { useQuery } from 'react-query';
 import 'react-multi-carousel/lib/styles.css';
 
 const MediaFeed: React.FC = () => {
+  const requestOptions = {
+    method: 'GET',
+    headers: {
+      cookie:
+        'personalization_id=%22v1_C6%2Ft5si8LCJ3Mh%2B5i99d9g%3D%3D%22; guest_id=v1%253A162171521495786396',
+      Authorization:
+        'Bearer AAAAAAAAAAAAAAAAAAAAACoSIAEAAAAApKQoLnjk5HO4dligCv7j5gP2CRI%3DfwdXLoAWjd42JbuhMEQZE6kVtjh7i2B6NUlu2ftVSmCVmDiSZb',
+    },
+  };
+
+  const { data } = useQuery(
+    'twitterQuery',
+    () =>
+      fetch(
+        'https://api.twitter.com/2/tweets/search/recent?query=from%3AFrontEndCafe',
+        requestOptions,
+      ).then((res) => res.json()),
+    { retry: 0, retryDelay: 5000, refetchOnWindowFocus: false },
+  );
+
+  console.log('🚀 ~ data', data);
+
   const responsive: ResponsiveType = {
     large: {
       breakpoint: { max: 3000, min: 1080 },
@@ -67,18 +90,13 @@ const MediaFeed: React.FC = () => {
           customButtonGroup={<CustomButtonGroup />}
           partialVisible={false}
         >
-          <TwitterTweetEmbed
-            tweetId="1083592734038929408"
-            placeholder={<SkeletonTwitterCard />}
-          />
-          <TwitterTweetEmbed
-            tweetId="1351959222993432578"
-            placeholder={<SkeletonTwitterCard />}
-          />
-          <TwitterTweetEmbed
-            tweetId="1394330621770567693"
-            placeholder={<SkeletonTwitterCard />}
-          />
+          {data?.data.map((tweet) => (
+            <TwitterTweetEmbed
+              key={tweet.id}
+              tweetId={tweet.id}
+              placeholder={<SkeletonTwitterCard />}
+            />
+          ))}
         </Carousel>
       </div>
     </section>
