@@ -73,31 +73,33 @@ const MediaFeed: React.FC = () => {
           <h1 className="pl-2 twitter-blue subtitle">@frontendcafe</h1>
         </div>
 
-        <Carousel
-          ssr
-          infinite
-          swipeable
-          draggable
-          arrows={false}
-          keyBoardControl
-          showDots={false}
-          centerMode={false}
-          responsive={responsive}
-          transitionDuration={700}
-          containerClass="container px-3 md:px-0 mx-auto py-5 gap-2"
-          itemClass="px-2"
-          renderButtonGroupOutside={true}
-          customButtonGroup={<CustomButtonGroup />}
-          partialVisible={false}
-        >
-          {data?.data.map((tweet) => (
-            <TwitterTweetEmbed
-              key={tweet.id}
-              tweetId={tweet.id}
-              placeholder={<SkeletonTwitterCard />}
-            />
-          ))}
-        </Carousel>
+        {data && (
+          <Carousel
+            ssr
+            infinite
+            swipeable
+            draggable
+            arrows={false}
+            keyBoardControl
+            showDots={false}
+            centerMode={false}
+            responsive={responsive}
+            transitionDuration={700}
+            containerClass="container px-3 md:px-0 mx-auto py-5 gap-2"
+            itemClass="px-2"
+            renderButtonGroupOutside={true}
+            customButtonGroup={<CustomButtonGroup />}
+            partialVisible={false}
+          >
+            {data?.data.map((tweet) => (
+              <TwitterTweetEmbed
+                key={tweet.id}
+                tweetId={tweet.id}
+                placeholder={<SkeletonTwitterCard />}
+              />
+            ))}
+          </Carousel>
+        )}
       </div>
     </section>
   );
