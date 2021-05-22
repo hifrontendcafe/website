@@ -1,5 +1,4 @@
 import { format } from 'date-fns';
-import AddToCalendar from 'react-add-to-calendar';
 import BlockContent from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
@@ -33,13 +32,31 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
     endTime: endDate,
   };
 
+  const AddToCalendar = ({ event }) => {
+    return (
+      <div title="Add to Calendar" className="addeventatc button">
+        Añadir a mi calendario
+        <span className="start">
+          {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
+        </span>
+        <span className="end">
+          {format(new Date(event.endTime), 'MM/dd/yyyy HH:mm')}
+        </span>
+        <span className="timezone">America/Argentina/Buenos_Aires</span>
+        <span className="title">{event.title}</span>
+        <span className="description">{event.description}</span>
+        <span className="location">{event.location}</span>
+      </div>
+    );
+  };
+
   return (
     <div
       className={`py-8 md:pb-24 px-4 md:w-1/2 ${
         past ? 'lg:w-1/4' : 'lg:w-1/3'
       }`}
     >
-      <div className="flex flex-col items-start h-full overflow-hidden rounded shadow-lg">
+      <div className="flex flex-col items-start h-full  rounded shadow-lg">
         <img
           className="w-full"
           src={imageBuilder.image(event.cover.src).width(450).url()}
@@ -78,11 +95,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
                 </a>
               )
             ) : (
-              <AddToCalendar
-                event={calendar}
-                buttonLabel="Añadir a mi calendario"
-                displayItemIcons={false}
-              />
+              <AddToCalendar event={calendar} />
             )}
           </div>
         </div>

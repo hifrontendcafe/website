@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { AppProps } from 'next/app';
 import '../styles/index.css';
-import '../styles/calendar.css';
 import '../styles/menu.css';
 import '../styles/scrollbar.css';
 
