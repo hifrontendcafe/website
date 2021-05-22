@@ -15,7 +15,7 @@ type PostsPageProps = {
 const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
   return (
     <Layout
-      title="Perfiles"
+      title="Comunidad"
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
