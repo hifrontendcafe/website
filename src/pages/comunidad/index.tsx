@@ -15,13 +15,13 @@ type PostsPageProps = {
 const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
   return (
     <Layout
-      title="Perfiles"
+      title="Comunidad"
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
       <div className="container px-4 pt-16 mx-auto sm:px-6 md:pt-0">
         <h1 className="title mt-2 leading-snug tracking-tight py-20 text-center">
-          Conoce a la comunidad
+          Conoce nuestra comunidad
         </h1>
       </div>
       <div className="container mx-auto bg-white ">

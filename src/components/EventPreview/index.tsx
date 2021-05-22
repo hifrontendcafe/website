@@ -35,7 +35,9 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
 
   return (
     <div
-      className={`py-8 md:pb-24 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}
+      className={`py-8 md:pb-24 px-4 md:w-1/2 ${
+        past ? 'lg:w-1/4' : 'lg:w-1/3'
+      }`}
     >
       <div className="flex flex-col items-start h-full overflow-hidden rounded shadow-lg">
         <img
@@ -58,7 +60,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
             {event.title}
           </h1>
           <p className="mb-6 font-light text-gray-700 title-font">
-            {format(new Date(event.date), 'MMM d - HH:mm')} ART (GMT-3)
+            {format(new Date(event.date), 'MMM d - HH:mm')} ARG (GMT-3)
           </p>
           <div className={`mb-5 ${styles.description}`}>
             <BlockContent blocks={event.description} />
