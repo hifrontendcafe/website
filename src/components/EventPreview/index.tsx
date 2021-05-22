@@ -1,5 +1,4 @@
 import { format } from 'date-fns';
-import AddToCalendar from 'react-add-to-calendar';
 import BlockContent from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
