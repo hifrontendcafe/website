@@ -1985,13 +1985,6 @@
   resolved "https://registry.npmjs.org/@types/q/-/q-1.5.4.tgz"
   integrity sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug==
 
-"@types/react-add-to-calendar@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.npmjs.org/@types/react-add-to-calendar/-/react-add-to-calendar-0.1.0.tgz"
-  integrity sha512-n6JaeUsEbf0qRKYX5c+GTW98CEE3J26nlZi3sjL3JTKET6p78EIHe54ZEe9QPnZW8c0EE1rSwQlsMnXXiNJ9Qg==
-  dependencies:
-    "@types/react" "*"
-
 "@types/react-dom@^16.9.8":
   version "16.9.8"
   resolved "https://registry.npmjs.org/@types/react-dom/-/react-dom-16.9.8.tgz"
@@ -10473,7 +10466,7 @@ raw-body@2.4.1:
 
 react-add-to-calendar@^0.1.5:
   version "0.1.5"
-  resolved "https://registry.npmjs.org/react-add-to-calendar/-/react-add-to-calendar-0.1.5.tgz"
+  resolved "https://registry.yarnpkg.com/react-add-to-calendar/-/react-add-to-calendar-0.1.5.tgz#ab077fe98ca0f178a5a3b70a3590d4b630c0f275"
   integrity sha512-DI+q3vvHCiYhxgh+83sg9UrPD9sdyBYcuY77UMcfX3y1MUPMW+f/w/6EG0MZg7B07vLQ4R6nxqk6wtMtcXOicA==
   optionalDependencies:
     moment "^2.18.1"
