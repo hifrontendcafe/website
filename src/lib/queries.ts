@@ -139,7 +139,7 @@ export const personQuery = groq`
   }
 `;
 export const staffQuery = groq`
-  *[_type == "person" && fecTeam]{
+  *[_type == "person" && fecTeam] | order(_id desc){
     _id,
     username,
     firstName,
