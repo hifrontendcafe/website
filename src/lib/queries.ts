@@ -14,7 +14,7 @@ export const settingsQuery = groq`
 `;
 
 export const eventsQuery = groq`
-  *[_type == "event"] | order(date desc) {
+  *[_type == "event" && category->name != "Práctica de inglés"] | order(date desc) {
     title,
     'slug': slug.current,
     'category': {

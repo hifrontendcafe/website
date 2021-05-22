@@ -12,6 +12,7 @@ type PostsPageProps = {
 };
 
 const StaffPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
+  console.log(profiles);
   return (
     <Layout
       title="Nuestro equipo"

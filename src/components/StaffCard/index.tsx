@@ -17,7 +17,9 @@ const StaffCard = ({ profile }: Props) => {
         />
       )}
 
-      <h1 className="mt-2 font-semibold">{profile.firstName}</h1>
+      <h2 className="mt-2 font-semibold">
+        {profile.firstName} {profile.lastName}
+      </h2>
     </div>
   );
 };
