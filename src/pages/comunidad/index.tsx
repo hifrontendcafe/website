@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import Link from 'next/link';
 import { flatten, uniq, intersection, isEmpty } from 'lodash';
 
@@ -8,7 +9,8 @@ import { GetStaticProps } from 'next';
 import { Profile } from '../../lib/types';
 import { getLayout } from '@/utils/get-layout';
 import { getProfiles } from '../api/google-sheet';
-import { useState } from 'react';
+
+import Select from 'react-select';
 
 type PostsPageProps = {
   profiles: Profile[];
@@ -24,12 +26,9 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
     ),
   );
 
-  const handleSelection = (tech) => {
-    setSelected((prev) =>
-      selected.includes(tech)
-        ? [...prev.filter((e) => e !== tech)]
-        : [...prev, tech],
-    );
+  const handleChange = (e) => {
+    const selectedTechnologies = e.map((tech) => tech.label);
+    setSelected(selectedTechnologies);
   };
 
   return (
@@ -49,25 +48,29 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
             Últimos perfiles registrados
           </div>
           <Link href="https://forms.gle/3ytHZ4NsYj4iukvW9">
-            <a className="text-xs btn btn-primary md:text-md">Crea tu perfil</a>
+            <a target="_blank" className="text-xs btn btn-primary md:text-md">
+              Crea tu perfil
+            </a>
           </Link>
         </div>
-        <div className="w-full flex flex-wrap mt-5 px-6 gap-2">
-          {technologies.map((tech) => (
-            <button
-              key={tech}
-              type="button"
-              className={`uppercase inline-flex items-center px-3 py-1  border-2 border-green-400 shadow-sm text-xs font-medium rounded  focus:outline-none focus:ring-green-500 ${
-                selected.includes(tech)
-                  ? 'bg-primary text-white'
-                  : 'bg-white text-gray-700'
-              }`}
-              onClick={() => handleSelection(tech)}
-            >
-              {tech}
-            </button>
-          ))}
-        </div>
+        <Select
+          isMulti
+          name="technologies"
+          options={technologies.map((tech) => ({ value: tech, label: tech }))}
+          onChange={handleChange}
+          className="w-full md:w-1/2 px-6 pt-5 focus:outline-none focus:ring-green-500"
+          classNamePrefix="select"
+          placeholder="Filtrar por tecnología ..."
+          theme={(theme) => ({
+            ...theme,
+            colors: {
+              ...theme.colors,
+              primary: '#00c39d',
+              primary25: '#f0fffc',
+              primary50: '#9ff5e4',
+            },
+          })}
+        />
         <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
           {profiles
             ?.filter((x) =>
