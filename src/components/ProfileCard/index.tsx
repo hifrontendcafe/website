@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import { Profile } from '../../lib/types';
 import ProfileSocialMedia from '../ProfileSocialMedia';
 
@@ -15,7 +16,11 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
   };
 
   return (
-    <div className="p-4 text-center rounded-lg shadow-lg flex flex-col justify-between">
+    <motion.div
+      initial={{ y: 100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      className="p-4 text-center rounded-lg shadow-lg flex flex-col justify-between"
+    >
       <div className="flex items-top justify-center space-x-3 text-center">
         <img
           src={profile.image || '/img/user.svg'}
@@ -58,7 +63,7 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
           </ul>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 
