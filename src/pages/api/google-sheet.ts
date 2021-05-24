@@ -22,7 +22,7 @@ export async function getProfiles(): Promise<Profile[]> {
     const rows = response.data.values;
     if (rows.length) {
       return rows
-        .filter((row) => row[13] === 'TRUE')
+        .filter((row) => row[18] === 'TRUE')
         .map((row) => ({
           date: row[0],
           email: row[1],
@@ -37,6 +37,7 @@ export async function getProfiles(): Promise<Profile[]> {
           github: row[10],
           description: row[11],
           image: row[12],
+          nationality: row[14],
         }));
     }
   } catch (err) {
