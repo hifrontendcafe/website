@@ -15,8 +15,7 @@ const StaffCard = ({ profile }: Props) => {
             alt={profile.firstName}
           />
         )}
-
-        <h2 className="mt-2 font-semibold">
+        <h2 className="my-2 text-3xl font-semibold md:text-sm">
           {profile.firstName} {profile.lastName}
         </h2>
       </a>
