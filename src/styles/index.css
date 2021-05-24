@@ -80,6 +80,10 @@ html {
   color: #55acee;
 }
 
+.addeventatc {
+  z-index: 10 !important;
+}
+
 .addeventatc.button {
   background-color: #7289da !important;
   border-radius: 3px !important;
