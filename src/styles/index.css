@@ -77,5 +77,22 @@ html {
 }
 
 .twitter-blue {
-  color: #55ACEE;
+  color: #55acee;
+}
+
+.addeventatc.button {
+  background-color: #7289da !important;
+  border-radius: 3px !important;
+  color: #fff !important;
+  padding: 8px !important;
+}
+
+.addeventatc_dropdown {
+  overflow: hidden;
+}
+.addeventatc_icon {
+  display: none;
+}
+.copyx {
+  display: none !important;
 }
