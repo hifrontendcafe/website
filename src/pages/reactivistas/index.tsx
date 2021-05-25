@@ -1,13 +1,11 @@
 import React, { useState } from 'react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
-import Link from 'next/link';
 
 import { getApprovedReactGroups } from '../../lib/api';
 import { ReactGroup } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { reactGroupQuery } from '../../lib/queries';
 import Layout from '../../components/Layout';
-import Hero from '../../components/Hero';
 import AddParticipantForm from '../../components/reactivistas/AddParticipantForm';
 import GroupInfoModal from '../../components/reactivistas/GroupInfoModal';
 import CreateGroupForm from '../../components/reactivistas/CreateGroupForm';
@@ -31,7 +29,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
     <Layout title="Iniciativas">
       <div className="pt-20">
         <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-36">
-          <div className="px-10 text-left xl:px-0">
+          <div className="sm:px-10 text-left xl:px-0">
             <h2 className="mt-2 leading-snug tracking-tight title">
               Reactivistas&nbsp;
             </h2>
@@ -53,7 +51,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
         </div>
       </div>
 
-      <div className="container p-10 m-10 mx-auto lg:px-36">
+      <div className="container p-6 m-10 mx-auto lg:px-36">
         <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
           Súmate a los grupos que están comenzando
         </h1>
@@ -125,7 +123,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
         </div>
 
         <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50">
-          <div className="px-6 pt-20 border-b border-gray-200 md:py-5 md:px-8">
+          <div className="px-6 border-b border-gray-200 py-5 md:px-8">
             <CreateGroupForm />
           </div>
         </div>
