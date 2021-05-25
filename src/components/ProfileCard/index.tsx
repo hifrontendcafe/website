@@ -30,6 +30,20 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
               {profile.name}
             </h1>
             <h2 className="leading-none tracking-tighter">{profile.role}</h2>
+            {profile.nationality && (
+              <div className="flex items-center">
+                <img
+                  src="img/location.svg"
+                  alt="location"
+                  height={16}
+                  width={16}
+                  className="text-red-500"
+                />
+                <h3 className="text-xs text-gray-500 tracking-witde uppercase font-semibold">
+                  {profile.nationality}
+                </h3>
+              </div>
+            )}
             {profile.available && (
               <div className="font-semibold text-sm text-primary whitespace-nowrap">
                 En búsqueda activa

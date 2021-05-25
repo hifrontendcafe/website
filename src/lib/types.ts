@@ -178,6 +178,7 @@ export type Profile = {
   github: string;
   description: string;
   image: string;
+  nationality: string;
 };
 
 export type Tweet = {
