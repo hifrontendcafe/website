@@ -64,7 +64,7 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
             {profile.technologies?.map((tech) => (
               <li
                 key={tech}
-                className="px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md"
+                className="px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase"
               >
                 {tech}
               </li>
