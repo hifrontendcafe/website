@@ -1,8 +1,10 @@
-import { useState, FormEvent } from 'react';
+import { useState } from 'react';
 import { ReactGroup } from '../../../lib/types';
 import { DiscordUserTooltip } from '../FormHelpers';
 
-const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
+type Props = { group: ReactGroup };
+
+const AddParticipantForm: React.FC<Props> = ({ group }) => {
   const [discordUser, setDiscordUser] = useState('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -43,8 +45,8 @@ const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
       }}
       id={group.name}
     >
-      <div className="flex">
-        <div className="relative flex-1 w-full">
+      <div className="flex flex-wrap sm:flex-row">
+        <div className="relative flex-grow">
           <input
             className="w-full h-full px-3 py-2 flex-1 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
             name="discordUser"
@@ -61,7 +63,7 @@ const AddParticipantForm = ({ group }: { group: ReactGroup }) => {
           type="submit"
           form={group.name}
           disabled={isLoading || isSuccess}
-          className="justify-items-end px-3 py-2 ml-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="justify-items-end w-full sm:w-auto mt-2 sm:mt-0 px-3 py-2 sm:ml-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           {isLoading ? 'Enviando...' : 'Unite a este grupo'}
         </button>
