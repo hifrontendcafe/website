@@ -65,7 +65,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
                 <button
                   type="button"
                   onClick={() => clearFilter()}
-                  className="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center bg-primary text-white hover:bg-primary focus:outline-none focus:bg-green-700 focus:text-white"
+                  className="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center bg-gray-800  text-white hover:bg-gray-600 focus:outline-none"
                 >
                   <svg
                     className="h-2 w-2"
