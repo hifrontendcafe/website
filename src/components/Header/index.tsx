@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { imageBuilder } from '../../lib/sanity';
 import { useSettings } from '@/hooks/api';
+import { useRouter } from 'next/router';
 
 type HeaderProps = {
   preview: boolean;
@@ -14,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   const menuBtn = useRef(null);
   const menuDOM = useRef(null);
   const logoIMG = imageBuilder.image(logo).url();
+  const router = useRouter();
 
   function menuHandler() {
     menuBtn.current.classList.toggle('open');
@@ -62,7 +64,13 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
         >
           {navItems?.map((item) => (
             <Link href={`/${item.link}`} key={item.link}>
-              <a className="w-full px-6 py-2 font-medium text-center text-gray-600 md:w-auto hover:text-gray-800">
+              <a
+                className={`w-full px-6 py-2 font-medium text-center md:w-auto  ${
+                  router.pathname === `/${item.link}`
+                    ? 'btn btn-secondary text-gray-50 '
+                    : 'text-gray-600 hover:text-gray-800'
+                }`}
+              >
                 {item.title}
               </a>
             </Link>
