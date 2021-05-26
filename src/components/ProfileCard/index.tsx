@@ -69,7 +69,7 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
       </div>
       <div className="group-hover:hidden">
         {profile.technologies?.length > 0 && (
-          <ul className="flex flex-wrap items-center justify-start">
+          <div className="flex flex-wrap items-center justify-start">
             {profile.technologies?.map((tech) => (
               <button
                 onClick={() => setTechFilter(tech)}
@@ -79,7 +79,7 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
                 {tech}
               </button>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </div>
