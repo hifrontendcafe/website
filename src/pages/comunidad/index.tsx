@@ -7,7 +7,7 @@ import ProfileCard from '../../components/ProfileCard';
 import { Profile } from '../../lib/types';
 import { getLayout } from '@/utils/get-layout';
 import { getProfiles } from '../api/google-sheet';
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 type PostsPageProps = {
   profiles: Profile[];
@@ -23,6 +23,8 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
     new Set(profiles.map((profile) => profile.technologies).flat()),
   );
 
+  const clearFilter = useCallback(() => router.push('/comunidad'), []);
+
   useEffect(() => {
     if (router.query.tech) {
       const paramExist = technologies.includes(
@@ -32,10 +34,12 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
       if (paramExist) {
         setFilter(router.query.tech);
       } else {
-        router.replace('/comunidad', undefined, { shallow: true });
+        clearFilter();
       }
+    } else {
+      setFilter(null);
     }
-  }, [router, technologies]);
+  }, [clearFilter, router, technologies]);
 
   const filterExist = (profile: Profile) =>
     filter ? profile.technologies.includes(filter.toLowerCase()) : true;
@@ -54,7 +58,32 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
       <div className="container mx-auto bg-white min-h-screen">
         <div className="px-4 py-5 border-b border-gray-200 sm:px-6 md:flex md:justify-between">
           <div className="mb-2 font-bold leading-7 md:text-xl text-primary md:mb-0">
-            {filter ? filter.toUpperCase() : 'Últimos perfiles registrados'}
+            {filter ? (
+              <span className="flex gap-1 items-center">
+                {filter.toUpperCase()}
+                <button
+                  type="button"
+                  onClick={() => clearFilter()}
+                  className="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center bg-primary text-white hover:bg-primary focus:outline-none focus:bg-green-700 focus:text-white"
+                >
+                  <span className="sr-only">Remove large option</span>
+                  <svg
+                    className="h-2 w-2"
+                    stroke="currentColor"
+                    fill="none"
+                    viewBox="0 0 8 8"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeWidth="1.5"
+                      d="M1 1l6 6m0-6L1 7"
+                    />
+                  </svg>
+                </button>
+              </span>
+            ) : (
+              'Últimos perfiles registrados'
+            )}
           </div>
           <Link href="https://forms.gle/3ytHZ4NsYj4iukvW9">
             <a className="text-xs btn btn-primary md:text-md">Crea tu perfil</a>

@@ -74,7 +74,7 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
               <button
                 onClick={() => setTechFilter(tech)}
                 key={tech}
-                className="transition duration-200 ease-in-out px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase hover:bg-indigo-400 hover:text-white"
+                className="transition duration-200 ease-in-out px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase hover:bg-indigo-400 hover:text-white focus:outline-none "
               >
                 {tech}
               </button>
