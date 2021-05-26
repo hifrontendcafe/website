@@ -42,7 +42,7 @@ const CreateGroupForm: React.FC = () => {
           Nombre del grupo*
         </label>
         <input
-          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 placeholder-black border rounded appearance-none focus:outline-none focus:shadow-outline"
           name="name"
           type="text"
           placeholder="Nombre del grupo"
@@ -54,7 +54,7 @@ const CreateGroupForm: React.FC = () => {
         <label className="block mb-2 text-sm font-bold">User de Discord*</label>
         <div className="relative">
           <input
-            className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+            className="w-full px-3 py-2 text-sm leading-tight text-gray-700 placeholder-black border rounded appearance-none focus:outline-none focus:shadow-outline"
             name="teamCaptain.id"
             type="text"
             placeholder="Ingresa tu usuario de Discord"
@@ -68,7 +68,7 @@ const CreateGroupForm: React.FC = () => {
       <div className="mb-4">
         <label className="block mb-2 text-sm font-bold">Tema*</label>
         <input
-          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 placeholder-black border rounded appearance-none focus:outline-none focus:shadow-outline"
           name="topic"
           type="text"
           placeholder="Ingresa el tema"
@@ -81,7 +81,7 @@ const CreateGroupForm: React.FC = () => {
           Material de estudio*
         </label>
         <input
-          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 placeholder-black border rounded appearance-none focus:outline-none focus:shadow-outline"
           name="studyMaterial"
           type="url"
           placeholder="Ingresa un link al material de estudio seleccionado"
@@ -95,7 +95,7 @@ const CreateGroupForm: React.FC = () => {
         </label>
         <textarea
           rows={5}
-          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 placeholder-black border rounded appearance-none focus:outline-none focus:shadow-outline"
           name="meetings"
           placeholder="Ingresa la dinámica que se va a utilizar en su grupo de estudio"
           ref={register}
@@ -105,7 +105,7 @@ const CreateGroupForm: React.FC = () => {
         <label className="block mb-2 text-sm font-bold">Plan de estudio</label>
         <textarea
           rows={5}
-          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 placeholder-black border rounded appearance-none focus:outline-none focus:shadow-outline"
           name="plan"
           placeholder="Ingresa como va a ser el plan de estudio"
           ref={register}
