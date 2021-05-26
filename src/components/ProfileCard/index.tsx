@@ -1,3 +1,6 @@
+import { useCallback } from 'react';
+import { useRouter } from 'next/router';
+
 import { Profile } from '../../lib/types';
 import ProfileSocialMedia from '../ProfileSocialMedia';
 
@@ -6,6 +9,7 @@ type Props = {
 };
 
 const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
+  const router = useRouter();
   const socialMediaList = {
     ...(profile.email && { email: 'mailto:' + profile.email }),
     ...(profile.linkedin && { linkedin: profile.linkedin }),
@@ -13,6 +17,11 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
     ...(profile.twitter && { twitter: profile.twitter }),
     ...(profile.portfolio && { portfolio: profile.portfolio }),
   };
+
+  const setTechFilter = useCallback(
+    (tech) => router.push(`?tech=${tech}`, undefined, { shallow: true }),
+    [router],
+  );
 
   return (
     <div className="p-4 text-center rounded-lg shadow-lg flex flex-col justify-between">
@@ -60,16 +69,17 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
       </div>
       <div className="group-hover:hidden">
         {profile.technologies?.length > 0 && (
-          <ul className="flex flex-wrap items-center justify-start">
+          <div className="flex flex-wrap items-center justify-start">
             {profile.technologies?.map((tech) => (
-              <li
+              <button
+                onClick={() => setTechFilter(tech)}
                 key={tech}
-                className="px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md"
+                className="transition duration-200 ease-in-out px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase hover:bg-indigo-400 hover:text-white focus:outline-none "
               >
                 {tech}
-              </li>
+              </button>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     </div>

@@ -30,7 +30,9 @@ export async function getProfiles(): Promise<Profile[]> {
           available: row[3] !== 'No',
           discord: row[4],
           role: row[5].split(','),
-          technologies: row[6].split(','),
+          technologies: row[6]
+            .split(',')
+            .map((t: string) => t.trim().toLowerCase()),
           portfolio: row[7],
           linkedin: row[8],
           twitter: row[9],
