@@ -8,6 +8,7 @@ import { Profile } from '../../lib/types';
 import { getLayout } from '@/utils/get-layout';
 import { getProfiles } from '../api/google-sheet';
 import { useCallback, useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
 
 type PostsPageProps = {
   profiles: Profile[];
@@ -90,8 +91,16 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch ">
-          {profiles?.filter(filterExist).map((profile) => (
-            <ProfileCard profile={profile} key={profile.name} />
+          {profiles?.filter(filterExist).map((profile, i) => (
+            <motion.div
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: i * 0.05 }}
+              key={profile.name}
+              className="flex"
+            >
+              <ProfileCard profile={profile} />
+            </motion.div>
           ))}
         </div>
       </div>
