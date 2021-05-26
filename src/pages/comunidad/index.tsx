@@ -67,7 +67,6 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
                   onClick={() => clearFilter()}
                   className="flex-shrink-0 ml-0.5 h-4 w-4 rounded-full inline-flex items-center justify-center bg-primary text-white hover:bg-primary focus:outline-none focus:bg-green-700 focus:text-white"
                 >
-                  <span className="sr-only">Remove large option</span>
                   <svg
                     className="h-2 w-2"
                     stroke="currentColor"
