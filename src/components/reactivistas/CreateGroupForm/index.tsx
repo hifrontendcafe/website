@@ -116,7 +116,7 @@ const CreateGroupForm: React.FC = () => {
           Fecha tentativa de inicio
         </label>
         <input
-          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none bg-white focus:outline-none focus:shadow-outline"
           name="startDate"
           type="date"
           ref={register}
