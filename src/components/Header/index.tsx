@@ -64,13 +64,6 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
         >
           {navItems?.map((item) => (
             <Link href={`/${item.link}`} key={item.link}>
-              {/* <a
-                className={`w-full px-6 py-2 font-medium text-center md:w-auto  ${
-                  router.pathname === `/${item.link}`
-                    ? 'btn btn-secondary text-gray-50'
-                    : 'text-gray-600 hover:text-gray-800'
-                }`}
-              > */}
               <a
                 className={
                   router.pathname === `/${item.link}`
