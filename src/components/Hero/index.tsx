@@ -89,7 +89,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
             <CounterSquare
               color="bg-yellow-500"
               bgColor="bg-yellow-400"
-              big="+8K"
+              big="+10K"
               text="Miembros"
             />
           </div>
