@@ -28,13 +28,8 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
   return (
     <Layout title="Iniciativas">
       <div className="pt-20">
-<<<<<<< HEAD
-        <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="px-10 text-left xl:px-0">
-=======
         <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-36">
           <div className="sm:px-10 text-left xl:px-0">
->>>>>>> 9d091391c73e6f914b45384a09ab4ed54dc6e215
             <h2 className="mt-2 leading-snug tracking-tight title">
               Reactivistas&nbsp;
             </h2>
@@ -56,11 +51,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
         </div>
       </div>
 
-<<<<<<< HEAD
-      <div className="container p-10 m-10 mx-auto">
-=======
       <div className="container p-6 m-10 mx-auto lg:px-36">
->>>>>>> 9d091391c73e6f914b45384a09ab4ed54dc6e215
         <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
           Súmate a los grupos que están comenzando
         </h1>
@@ -132,11 +123,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
         </div>
 
         <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50">
-<<<<<<< HEAD
-          <div className="px-6 pt-20 border-b border-gray-200 md:py-5 md:px-8">
-=======
           <div className="px-6 border-b border-gray-200 py-5 md:px-8">
->>>>>>> 9d091391c73e6f914b45384a09ab4ed54dc6e215
             <CreateGroupForm />
           </div>
         </div>
