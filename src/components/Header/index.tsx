@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useRef } from 'react';
 import { imageBuilder } from '../../lib/sanity';
 import { useSettings } from '@/hooks/api';
+import { useRouter } from 'next/router';
 
 type HeaderProps = {
   preview: boolean;
@@ -14,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   const menuBtn = useRef(null);
   const menuDOM = useRef(null);
   const logoIMG = imageBuilder.image(logo).url();
+  const router = useRouter();
 
   function menuHandler() {
     menuBtn.current.classList.toggle('open');
@@ -58,11 +60,18 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
         </div>
         <div
           ref={menuDOM}
-          className="flex-col items-center self-end hidden w-full h-full py-1 pb-4 lg:w-auto lg:self-center lg:flex lg:flex-row lg:py-0 lg:pb-0"
+          className="flex-col items-center self-end hidden w-full h-full py-1 pb-4 lg:w-auto lg:self-center lg:flex lg:flex-row lg:py-0 lg:pb-0 text-sm"
         >
           {navItems?.map((item) => (
             <Link href={`/${item.link}`} key={item.link}>
-              <a className="w-full px-6 py-2 font-medium text-center text-gray-600 md:w-auto hover:text-gray-800">
+              <a
+                className={
+                  (router.pathname === `/${item.link}`
+                    ? 'text-gray-500 font-bold '
+                    : 'text-gray-500 ') +
+                  'w-full px-2 py-1 font-medium  text-center md:w-auto hover:text-gray-800'
+                }
+              >
                 {item.title}
               </a>
             </Link>

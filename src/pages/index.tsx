@@ -8,11 +8,6 @@ import Hero from '../components/Hero';
 import Layout from '../components/Layout';
 import MediaFeed from '../components/MediaFeed';
 
-type IndexProps = {
-  preview?: boolean;
-  cards: object;
-};
-
 import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 
 //import CMYKBanner from '../components/CMYKBanner';
@@ -20,8 +15,16 @@ import JoinSection from '../components/JoinSection';
 import AboutSection from '../components/AboutSection';
 import { useSettings } from '@/hooks/api';
 import { getLayout } from '@/utils/get-layout';
+import { getTweetsByUsername } from '@/lib/twitter';
+import { Tweet, FeaturedCards } from '@/lib/types';
 
-const Index: React.FC<IndexProps> = ({ preview = false, cards }) => {
+type IndexProps = {
+  preview?: boolean;
+  cards: FeaturedCards[];
+  tweets: Tweet[];
+};
+
+const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
   const [counter, setCounter] = useState(0);
   const {
     data: { heroWords = ['Creamos'], description },
@@ -47,7 +50,7 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards }) => {
         <AboutSection description={description} />
       </div>
       <Featured cards={cards} />
-      <MediaFeed />
+      <MediaFeed tweets={tweets} />
       <JoinSection />
     </Layout>
   );
@@ -71,9 +74,10 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const cards = await getAllFeaturedCards(preview);
 
   const { dehydratedState } = await getLayout({ preview });
+  const { data: tweets } = await getTweetsByUsername('FrontEndCafe');
 
   return {
-    props: { preview, cards, dehydratedState },
+    props: { tweets, preview, cards, dehydratedState },
     revalidate: 1,
   };
 };

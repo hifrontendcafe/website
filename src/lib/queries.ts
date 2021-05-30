@@ -14,7 +14,7 @@ export const settingsQuery = groq`
 `;
 
 export const eventsQuery = groq`
-  *[_type == "event"] | order(date desc) {
+  *[_type == "event" && category->name != "Práctica de inglés"] | order(date desc) {
     title,
     'slug': slug.current,
     'category': {
@@ -138,7 +138,18 @@ export const personQuery = groq`
     lastName,
   }
 `;
-
+export const staffQuery = groq`
+  *[_type == "person" && fecTeam] | order(_id desc){
+    _id,
+    username,
+    firstName,
+    lastName,
+    linkedin,
+    'photo': {
+      'src': photo.asset->url
+    },
+  }
+`;
 export const reactGroupQuery = groq`
 *[_type == 'reactGroup' && status == 'approved']{
     _id,
