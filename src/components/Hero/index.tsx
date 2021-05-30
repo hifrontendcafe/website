@@ -83,7 +83,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
         </div>
         <div className="hidden md:grid md:grid-cols-2 md:grid-rows-3 md:gap-10">
           <div className="row-start-1 col-start-2">
-            <CounterSquare big="+10" text="Proyectos" />
+            <CounterSquare big="+18" text="Proyectos" />
           </div>
           <div className="row-start-2 col-start-1">
             <CounterSquare
@@ -94,7 +94,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
             />
           </div>
           <div className="row-start-3 col-start-2">
-            <CounterSquare big="+20M" text="Mensajes" />
+            <CounterSquare big="+26M" text="Mensajes" />
           </div>
         </div>
       </div>
