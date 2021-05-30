@@ -15,14 +15,14 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
   return (
     <div
       style={{ height: '500px' }}
-      className="relative md:container mx-auto bg-white bg-opacity-0"
+      className="relative mx-auto bg-white bg-opacity-0 md:container"
     >
       <img
-        className="absolute object-cover h-full w-full opacity-25 md:opacity-100 z-0"
+        className="absolute z-0 object-cover w-full h-full opacity-25 md:opacity-100"
         src={bg}
       />
-      <div className="flex items-center bg-cover bg-center justify-center md:justify-around h-full">
-        <div className="w-auto md:w-1/3 z-10">
+      <div className="flex items-center justify-center h-full bg-center bg-cover md:justify-around">
+        <div className="z-10 w-auto md:w-1/3">
           <div className="relative text-4xl font-bold">
             <svg
               style={{ left: '-4rem' }}
@@ -57,7 +57,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
                     type: 'spring',
                     velocity: 2,
                   }}
-                  className="inline-block px-2 py-2 text-indigo-500 bg-indigo-100 border-2 border-dashed border-indigo-500"
+                  className="inline-block px-2 py-2 text-indigo-500 bg-indigo-100 border-2 border-indigo-500 border-dashed"
                 >
                   {title}
                 </motion.span>
@@ -65,7 +65,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="mt-2 inline-block px-2 py-2 bg-yellow-400  border-2 border-dashed border-yellow-600"
+                className="inline-block px-2 py-2 mt-2 bg-yellow-400 border-2 border-yellow-600 border-dashed"
               >
                 FrontendCafé
               </span>
@@ -74,7 +74,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
           <Link href="https://discord.gg/frontendcafe">
             <a
               target="_blank"
-              className="bg-secondary hover:bg-secondarydark text-white py-2 px-4 rounded my-3 block"
+              className="block px-4 py-2 my-3 text-white rounded bg-secondary hover:bg-secondarydark"
               style={{ transition: 'all .15s ease', width: 'fit-content' }}
             >
               Sumate a Discord
@@ -82,18 +82,18 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
           </Link>
         </div>
         <div className="hidden md:grid md:grid-cols-2 md:grid-rows-3 md:gap-10">
-          <div className="row-start-1 col-start-2">
-            <CounterSquare big="+10" text="Proyectos" />
+          <div className="col-start-2 row-start-1">
+            <CounterSquare big="+18" text="Proyectos" />
           </div>
-          <div className="row-start-2 col-start-1">
+          <div className="col-start-1 row-start-2">
             <CounterSquare
               color="bg-yellow-500"
               bgColor="bg-yellow-400"
-              big="+8K"
+              big="+10K"
               text="Miembros"
             />
           </div>
-          <div className="row-start-3 col-start-2">
+          <div className="col-start-2 row-start-3">
             <CounterSquare big="+20M" text="Mensajes" />
           </div>
         </div>
@@ -123,7 +123,7 @@ const CounterSquare: React.FC<CounterSquareProps> = ({
         style={{ transform: 'rotate(-15deg)' }}
         className={`z-10 absolute top-0 left-0 w-24 lg:w-32 h-20 lg:h-24 rounded-lg ${color}`}
       ></div>
-      <div className="z-20 text-white font-bold text-center lg:text-left">
+      <div className="z-20 font-bold text-center text-white lg:text-left">
         <p className="text-2xl lg:text-3xl">{big}</p>
         <p className="text-md">{text}</p>
       </div>
