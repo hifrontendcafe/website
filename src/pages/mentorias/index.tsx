@@ -9,6 +9,7 @@ import { getAllMentors, getMentoringTopics } from '../../lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { getLayout } from '@/utils/get-layout';
+import MentorshipStep from '@/components/MentorshipStep';
 
 type MentorshipsPageProps = {
   mentors: Mentor[];
@@ -31,6 +32,21 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
     enabled: preview,
   });
 
+  const infoStep = [
+    {
+        number: 1,
+        textStep: 'Lo primero es encontrar un mentor cuyo perfil se ajuste a tus intereses y con el que sientas que puede ayudarte en lo que necesitas.'
+    },
+    {
+        number: 2,
+        textStep: 'Luego, debes contactar a los mentores y reservar la fecha y el horario, adjuntando un formulario con tus datos personales.'
+    },
+    {
+        number: 3,
+        textStep: 'Por último, agrega las dudas puntuales que buscas resolver para ayudarlos a prepararse mejor y así aprovechar el tiempo al máximo.'
+    }
+  ]
+
   return (
     <Layout
       title="Mentorías"
@@ -38,7 +54,15 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
       preview={preview}
     >
       <MentorshipsHero />
-      <MentorshipsSteps />
+      <div style={{backgroundColor: '#f7f7f7'}}>
+        <div className="container mx-auto flex px-5 py-16 flex-col items-start0">
+          {
+            infoStep.map((s, key) => {
+              return <MentorshipStep number={s.number} textStep={s.textStep} key={key}/>
+            })
+          }
+        </div>
+      </div>
       <MentorList topics={topics} mentors={mentors} />
     </Layout>
   );
