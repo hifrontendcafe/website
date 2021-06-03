@@ -70,8 +70,9 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                   ¿Cuándo son los eventos de inglés?
                 </summary>
                 <p className="p-4">
-                  Los eventos de inglés son los días martes a las 18 hs y jueves
-                  a las 19.30 hs Argentina (GTM-3)
+                  Los eventos de inglés son los días martes a las 17 hs Colombia
+                  y Perú (GMT-5), 18 hs Venezuela (GMT-4) y 19 hs Argentina
+                  (GTM-3)
                 </p>
               </details>
               <details className="mb-4">
@@ -102,7 +103,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                   ¿Cómo me anoto a la mentorías?
                 </summary>
                 <p className="p-4">
-                  Puedes hacerlo directamente en{' '}
+                  Puedes hacerlo directamente en
                   <a href="https://frontend.cafe/mentorias">
                     la página de mentorías
                   </a>
