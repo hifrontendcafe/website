@@ -77,7 +77,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
             {event.title}
           </h1>
           <p className="mb-6 font-light text-gray-700 title-font">
-            {format(new Date(event.date), 'MMM d - HH:mm')} hora local
+            {format(new Date(event.date), 'MMM d - HH:mm')} hrs (horario local)
           </p>
           <div className={`mb-5 ${styles.description}`}>
             <BlockContent blocks={event.description} />
