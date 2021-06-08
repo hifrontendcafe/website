@@ -18,11 +18,11 @@ const Footer: React.FC = () => {
   const navItems = [
     { title: 'Mentorías', link: '/mentorias' },
     { title: 'Prácticas de inglés', link: '/ingles' },
-    { title: 'Proyectos CMYK', link: '/cmyk' },
+    { title: 'Nuestra comunidad', link: '/comunidad' },
     { title: 'Reactivistas', link: '/reactivistas' },
     { title: 'Eventos', link: '/eventos' },
-    { title: 'Nuestra comunidad', link: '/comunidad' },
     { title: 'Conoce a nuestro equipo', link: '/equipo' },
+    { title: 'Proyectos CMYK', link: '/cmyk' },
     { title: 'Preguntas frecuentes', link: '/faqs' },
     { title: 'Únete a Discord', link: 'https://discord.gg/frontendcafe' },
   ];
@@ -37,7 +37,7 @@ const Footer: React.FC = () => {
             src="/logo-square.png"
             className="hidden w-10 h-10 rounded-full md:block md:h-12 md:w-12"
           />
-          <div className="grid justify-center w-full pb-8 font-medium md:grid-cols-2 gap-y-2 gap-x-5 md:pb-3 text-left">
+          <div className="grid justify-center w-full pb-8 font-medium md:grid-cols-3 gap-y-2 gap-x-5 md:pb-3 text-left">
             {navItems?.map(({ link, title }) => (
               <Link href={link} key={link}>
                 <a>{title}</a>
