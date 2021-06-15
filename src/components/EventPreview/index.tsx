@@ -82,9 +82,9 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           <div className={`mb-5 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
-          <div className="mt-auto mb-2">
-            {past
-              ? event.recording && (
+          {past
+            ? event.recording && (
+                <div className="mt-auto mb-2">
                   <a
                     href={event.recording}
                     className="px-5 py-2 text-sm text-white rounded bg-tertiary"
@@ -93,10 +93,10 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
                   >
                     Ver grabación
                   </a>
-                )
-              : // <AddToCalendar event={calendar} />
-                null}
-          </div>
+                </div>
+              )
+            : // <AddToCalendar event={calendar} />
+              null}
         </div>
       </div>
     </div>
