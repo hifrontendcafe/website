@@ -165,20 +165,30 @@ export interface Person {
 }
 
 export type Profile = {
-  date: string;
+  createdAt: string;
   email: string;
   name: string;
   available: boolean;
   discord: string;
-  role: string;
-  technologies: string[];
+  role: Role;
+  technologies: Technology[];
   portfolio: string;
   linkedin: string;
   twitter: string;
   github: string;
   description: string;
-  image: string;
-  nationality: string;
+  photo: string;
+  location: string;
+};
+
+export type Technology = {
+  id: number;
+  name: string;
+};
+
+export type Role = {
+  id: number;
+  name: string;
 };
 
 export type Tweet = {
