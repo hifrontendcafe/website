@@ -38,5 +38,5 @@ model Profile {
   createdAt    DateTime     @default(now()) @map(name: "created_at")
   updatedAt    DateTime     @updatedAt @map(name: "updated_at")
   technologies Technology[]
-  roleId       Int
+  roleId       String
 }
