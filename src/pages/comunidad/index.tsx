@@ -3,9 +3,9 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 import ProfileCard from '../../components/ProfileCard';
 import prisma from '../../lib/prisma';
-import { Profile } from '../../lib/types';
 import { getLayout } from '@/utils/get-layout';
 import { motion } from 'framer-motion';
+import { Profile } from '@prisma/client';
 
 type PostsPageProps = {
   profiles: Profile[];

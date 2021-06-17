@@ -9,19 +9,19 @@ generator client {
 }
 
 model Role {
-  id      Int       @id @default(autoincrement())
+  id      String    @id @default(uuid())
   name    String
   Profile Profile[]
 }
 
 model Technology {
-  id       Int       @id @default(autoincrement())
+  id       String    @id @default(uuid())
   name     String
   profiles Profile[]
 }
 
 model Profile {
-  id           Int          @id @default(autoincrement())
+  id           String       @id @default(uuid())
   name         String?
   email        String?      @unique
   available    Boolean

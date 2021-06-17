@@ -164,33 +164,6 @@ export interface Person {
   fecTeam?: boolean;
 }
 
-export type Profile = {
-  createdAt: string;
-  email: string;
-  name: string;
-  available: boolean;
-  discord: string;
-  role: Role;
-  technologies: Technology[];
-  portfolio: string;
-  linkedin: string;
-  twitter: string;
-  github: string;
-  description: string;
-  photo: string;
-  location: string;
-};
-
-export type Technology = {
-  id: number;
-  name: string;
-};
-
-export type Role = {
-  id: number;
-  name: string;
-};
-
 export type Tweet = {
   id: string;
   text: string;
