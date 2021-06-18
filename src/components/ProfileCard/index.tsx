@@ -32,6 +32,9 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
             <h2 className="leading-none tracking-tighter">
               {profile.role.name}
             </h2>
+            <h3 className="leading-none tracking-tighter uppercase font-semibold text-xs my-1">
+              {profile.seniority.name}
+            </h3>
             {profile.location && (
               <div className="flex items-center">
                 <img

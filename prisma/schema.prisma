@@ -20,6 +20,12 @@ model Technology {
   profiles Profile[]
 }
 
+model Seniority {
+  id      String    @id @default(uuid())
+  name    String
+  Profile Profile[]
+}
+
 model Profile {
   id           String       @id @default(uuid())
   name         String?
@@ -34,9 +40,11 @@ model Profile {
   location     String?
   linkedin     String?
   photo        String?
+  seniority    Seniority    @relation(fields: [seniorityId], references: [id])
   role         Role         @relation(fields: [roleId], references: [id])
   createdAt    DateTime     @default(now()) @map(name: "created_at")
   updatedAt    DateTime     @updatedAt @map(name: "updated_at")
   technologies Technology[]
   roleId       String
+  seniorityId  String
 }

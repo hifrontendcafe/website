@@ -62,6 +62,9 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       technologies: {
         select: { name: true },
       },
+      seniority: {
+        select: { name: true },
+      },
     },
   });
   const profiles = response.map((profile) => ({
