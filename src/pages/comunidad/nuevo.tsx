@@ -18,7 +18,7 @@ type NewProfileProps = {
 };
 
 const resizeFile = (newFile: File) =>
-  new Promise<string>((resolve) => {
+  new Promise((resolve) => {
     Resizer.imageFileResizer(
       newFile,
       150,
@@ -58,7 +58,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     const file = event.target.files[0];
     if (file) {
       const image = await resizeFile(file);
-      setPhoto(image);
+      setPhoto(image as string);
     }
   };
 

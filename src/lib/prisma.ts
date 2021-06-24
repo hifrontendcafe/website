@@ -1,6 +1,12 @@
 // lib/prisma.ts
 import { PrismaClient } from '@prisma/client';
 
+export interface Global {
+  prisma: any;
+}
+
+declare let global: Global;
+
 let prisma: PrismaClient;
 
 if (process.env.NODE_ENV === 'production') {

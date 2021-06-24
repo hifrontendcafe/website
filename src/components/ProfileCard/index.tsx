@@ -1,8 +1,8 @@
-import { Profile } from '../../lib/types';
+
 import ProfileSocialMedia from '../ProfileSocialMedia';
 
 type Props = {
-  profile: Profile;
+  profile: any; //TODO: fix me
 };
 
 const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
