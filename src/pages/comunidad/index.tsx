@@ -29,7 +29,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
           <div className="mb-2 font-bold leading-7 md:text-xl text-primary md:mb-0">
             Últimos perfiles registrados
           </div>
-          <Link href="https://forms.gle/3ytHZ4NsYj4iukvW9">
+          <Link href="/comunidad/nuevo">
             <a className="text-xs btn btn-primary md:text-md">Crea tu perfil</a>
           </Link>
         </div>

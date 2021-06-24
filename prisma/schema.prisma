@@ -17,7 +17,7 @@ model Role {
 model Technology {
   id       String    @id @default(uuid())
   name     String
-  profiles Profile[]
+  profiles Profile[] @relation(references: [id])
 }
 
 model Seniority {
@@ -44,7 +44,7 @@ model Profile {
   role         Role         @relation(fields: [roleId], references: [id])
   createdAt    DateTime     @default(now()) @map(name: "created_at")
   updatedAt    DateTime     @updatedAt @map(name: "updated_at")
-  technologies Technology[]
+  technologies Technology[] @relation(references: [id])
   roleId       String
   seniorityId  String
 }

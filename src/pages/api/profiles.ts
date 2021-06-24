@@ -1,6 +1,7 @@
+import { Technology } from '@prisma/client';
 import prisma from '../../lib/prisma';
 
-export default async function handle(req, res) {
+export default async function handle({ body }, res) {
   const {
     name,
     email,
@@ -15,9 +16,10 @@ export default async function handle(req, res) {
     roleId,
     available,
     technologies,
-  } = req.body;
+    description,
+  } = body;
 
-  const tech = technologies.map((t) => ({
+  const tech: Technology[] = technologies.map((t) => ({
     id: t.id,
   }));
 
@@ -27,15 +29,17 @@ export default async function handle(req, res) {
       email,
       discord,
       github,
-      available,
       linkedin,
+      available,
+      active: true,
       portfolio,
       twitter,
       location,
       photo,
-      seniorityId,
-      technologies: { connect: [tech] },
-      roleId,
+      description,
+      seniority: { connect: { id: seniorityId } },
+      technologies: { connect: tech },
+      role: { connect: { id: roleId } },
     },
   });
   res.json(result);

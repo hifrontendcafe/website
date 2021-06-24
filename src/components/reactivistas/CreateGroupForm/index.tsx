@@ -43,11 +43,10 @@ const CreateGroupForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="name"
           type="text"
           placeholder="Nombre del grupo"
           required
-          ref={register({ required: true })}
+          {...register('name', { required: true })}
         />
       </div>
       <div className="mb-4">
@@ -55,12 +54,11 @@ const CreateGroupForm: React.FC = () => {
         <div className="relative">
           <input
             className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-            name="teamCaptain.id"
             type="text"
             placeholder="Ingresa tu usuario de Discord"
             required
             pattern="(.*)#(\d{4})"
-            ref={register({ required: true })}
+            {...register('teamCaptain.id', { required: true })}
           />
           <DiscordUserTooltip />
         </div>
@@ -69,11 +67,10 @@ const CreateGroupForm: React.FC = () => {
         <label className="block mb-2 text-sm font-bold">Tema*</label>
         <input
           className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="topic"
           type="text"
           placeholder="Ingresa el tema"
           required
-          ref={register({ required: true })}
+          {...register('topic', { required: true })}
         />
       </div>
       <div className="mb-4">
@@ -82,11 +79,10 @@ const CreateGroupForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="studyMaterial"
           type="url"
           placeholder="Ingresa un link al material de estudio seleccionado"
           required
-          ref={register({ required: true })}
+          {...register('studyMaterial', { required: true })}
         />
       </div>
       <div className="mb-4">
@@ -96,9 +92,8 @@ const CreateGroupForm: React.FC = () => {
         <textarea
           rows={5}
           className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="meetings"
           placeholder="Ingresa la dinámica que se va a utilizar en su grupo de estudio"
-          ref={register}
+          {...register('meetings')}
         ></textarea>
       </div>
       <div className="mb-4">
@@ -106,9 +101,8 @@ const CreateGroupForm: React.FC = () => {
         <textarea
           rows={5}
           className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="plan"
           placeholder="Ingresa como va a ser el plan de estudio"
-          ref={register}
+          {...register('plan')}
         ></textarea>
       </div>
       <div className="mb-4">
@@ -117,9 +111,8 @@ const CreateGroupForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none bg-white focus:outline-none focus:shadow-outline"
-          name="startDate"
           type="date"
-          ref={register}
+          {...register('startDate')}
         />
       </div>
       <div className="pt-8">
