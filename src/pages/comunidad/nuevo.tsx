@@ -66,14 +66,14 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     inputValue.length > 0 && selectValue.length < 5;
 
   const onSubmit = async (data: ReactGroup) => {
-    debugger;
     try {
-      const body = { ...data, technologies: selectedTechnologies, photo };
-      await fetch('/api/profiles', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(body),
-      });
+      // const body = { ...data, technologies: selectedTechnologies, photo };
+      // await fetch('/api/profiles', {
+      //   method: 'POST',
+      //   headers: { 'Content-Type': 'application/json' },
+      //   body: JSON.stringify(body),
+      // });
+      alert('Formulario enviado con éxito');
     } catch (error) {
       console.error(error);
     }
