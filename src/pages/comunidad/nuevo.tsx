@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import { useSession } from 'next-auth/client';
 import Layout from '../../components/Layout';
 import { getLayout } from '@/utils/get-layout';
 import { useForm } from 'react-hook-form';
@@ -39,6 +40,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
   roles,
   seniorities,
 }) => {
+  const [session] = useSession();
+
   const {
     register,
     handleSubmit,
@@ -127,9 +130,11 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     type="text"
                     required
                     placeholder="Ingresa tu usuario de Discord"
+                    value={session.user.name}
+                    disabled
                     {...register('discord', { required: true })}
                   />
-                  <DiscordUserTooltip />
+                  {/* <DiscordUserTooltip /> */}
                 </div>
               </div>
               <div className="mb-4">
@@ -142,6 +147,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     type="email"
                     required
                     placeholder="Ingresa tu email"
+                    value={session.user.email}
+                    disabled
                     {...register('email', { required: true })}
                   />
                 </div>
@@ -259,7 +266,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 </div>
               </div>
             </div>
-            <div className="mb-4">
+            {/* <div className="mb-4">
               <label className="block mb-2 text-sm font-bold">
                 Foto de perfil
               </label>
@@ -295,7 +302,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   />
                 </label>
               </div>
-            </div>
+            </div> */}
             <div className="mb-4">
               <label className="block mb-2 text-sm font-bold">
                 Tecnologías

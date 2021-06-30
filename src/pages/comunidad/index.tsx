@@ -1,4 +1,6 @@
 import { GetStaticProps } from 'next';
+import { signIn } from 'next-auth/client';
+
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import ProfileCard from '../../components/ProfileCard';
@@ -30,7 +32,16 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
             Últimos perfiles registrados
           </div>
           <Link href="/comunidad/nuevo">
-            <a className="text-xs btn btn-primary md:text-md">Crea tu perfil</a>
+            <button
+              onClick={() =>
+                signIn('discord', {
+                  callbackUrl: 'http://localhost:3000/comunidad/nuevo',
+                })
+              }
+              className="text-xs btn btn-primary md:text-md"
+            >
+              Crea tu perfil
+            </button>
           </Link>
         </div>
         <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch ">
@@ -53,6 +64,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const { dehydratedState } = await getLayout({ preview });
+
   const response = await prisma.profile.findMany({
     where: { active: true },
     include: {

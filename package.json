@@ -26,6 +26,7 @@
     "framer-motion": "^2.9.1",
     "gray-matter": "4.0.2",
     "next": "^10.2.0",
+    "next-auth": "^3.27.1",
     "next-sanity": "^0.1.8",
     "postcss": "^8.2.10",
     "prisma": "2.25.0",
