@@ -67,12 +67,12 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
         {profile.technologies?.length > 0 && (
           <div className="flex flex-wrap items-center justify-start">
             {profile.technologies?.map((tech) => (
-              <button
+              <span
                 key={tech.name}
-                className="transition duration-200 ease-in-out px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase hover:bg-indigo-400 hover:text-white focus:outline-none "
+                className="px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase"
               >
                 {tech.name}
-              </button>
+              </span>
             ))}
           </div>
         )}

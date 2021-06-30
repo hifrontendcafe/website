@@ -67,13 +67,12 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 
   const onSubmit = async (data: ReactGroup) => {
     try {
-      // const body = { ...data, technologies: selectedTechnologies, photo };
-      // await fetch('/api/profiles', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(body),
-      // });
-      alert('Formulario enviado con éxito');
+      const body = { ...data, technologies: selectedTechnologies, photo };
+      await fetch('/api/profiles', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
     } catch (error) {
       console.error(error);
     }
@@ -384,7 +383,6 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
     value: technology.id,
   }));
   const seniorities = await prisma.seniority.findMany();
-  // console.log({ technologies, roles, seniorities });
   return {
     props: {
       technologies: formattedTechnologies,
