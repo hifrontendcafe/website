@@ -68,7 +68,7 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
         </div>
         <div className="container mx-auto px-10 pt-4 flex flex-col items-center lg:items-end text-center lg:text-right">
           <div className="pb-10 text-gray-800">  
-            <h2 className="hidden lg:inline-block text-3xl lg:text-5xl font-black w-72">¿Por dónde empiezo?</h2>
+            <h2 className="hidden lg:inline-block text-3xl lg:text-5xl font-black pb-10 leading-10">A tener en cuenta</h2>
             <p>
               Las mentorías son exclusivas para miembros de <strong className="font-bold">FRONTEND</strong>
               <strong className="font-semibold">CAFE</strong> ya que suceden en nuestro servidor de Discord.
