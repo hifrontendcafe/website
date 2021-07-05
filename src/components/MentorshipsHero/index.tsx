@@ -7,7 +7,7 @@ const MentorshipsHero: React.FC = () => {
         className="container mx-auto flex px-5 py-32 lg:flex-row flex-col
         items-center"
       >
-        <div className="lg:max-w-lg lg:w-full md:w-2/5 w-5/6 mb-10 md:mb-0 lg:order-last">
+        <div className="lg:max-w-lg lg:w-full md:w-3/5 w-5/6 mb-10 md:mb-10 lg:order-last">
           <img
             className="object-cover object-center rounded shadow-sm"
             alt="hero"
