@@ -31,13 +31,13 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-black">
-      <div className="container flex flex-col-reverse justify-center gap-12 p-16 mx-auto text-white md:gap-0 md:flex-row md:justify-between">
+      <div className="container flex flex-col-reverse justify-center gap-6 p-5 md:p-8 mx-auto text-white md:gap-0 md:flex-row md:justify-between">
         <div className="flex flex-col gap-5 text-center md:text-left">
           <img
             src="/logo-square.png"
             className="hidden w-10 h-10 rounded-full md:block md:h-12 md:w-12"
           />
-          <div className="grid justify-center w-full pb-8 font-medium md:grid-cols-3 gap-y-2 gap-x-5 md:pb-3 text-left">
+          <div className="grid justify-center w-full font-medium md:grid-cols-3 gap-y-1 gap-x-5 md:pb-3 text-left">
             {navItems?.map(({ link, title }) => (
               <Link href={link} key={link}>
                 <a>{title}</a>
@@ -48,7 +48,7 @@ const Footer: React.FC = () => {
             <div>
               <p className="font-light">© FrontendCafé {currentYear}</p>
             </div>
-            <div className="mt-5 md:mt-0">
+            <div className="mt-2 md:mt-0">
               <a href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">
                 <img src="/img/powered-by-vercel.svg" alt="Powered by Vercel" />
               </a>
