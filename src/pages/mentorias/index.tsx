@@ -9,18 +9,25 @@ import { getAllMentors, getMentoringTopics } from '../../lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { getLayout } from '@/utils/get-layout';
+import { getAllMentorSchedules } from '@/lib/calomentorAPI';
 
 type MentorshipsPageProps = {
   mentors: Mentor[];
   topics: Topic[];
   preview?: boolean;
+  mentorsSchedule: unknown;
 };
 
 const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
   topics: topicsData,
   mentors: mentorsData,
   preview,
+  mentorsSchedule,
 }) => {
+  console.log(
+    '🚀 ~ file: index.tsx ~ line 27 ~ mentorsSchedule',
+    mentorsSchedule,
+  );
   const { data: mentors } = usePreviewSubscription(mentorsQuery, {
     initialData: mentorsData,
     enabled: preview,
@@ -125,10 +132,10 @@ const MentorshipsSteps: React.FC = () => {
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const mentors = await getAllMentors(preview);
   const topics = await getMentoringTopics(preview);
+  const mentorsSchedule = await getAllMentorSchedules();
   const { dehydratedState } = await getLayout({ preview });
-
   return {
-    props: { mentors, topics, preview, dehydratedState },
+    props: { mentors, topics, preview, dehydratedState, mentorsSchedule },
     revalidate: 1,
   };
 };
