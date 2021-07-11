@@ -18,7 +18,7 @@ const MentorshipsHero: React.FC = () => {
           className="lg:flex-grow md:w-full lg:pr-40 md:pr-16 flex flex-col
           md:items-start md:text-left items-center"
         >
-          <h1 className="title mb-4">Programa de mentorías</h1>
+          <h1 className="title mb-4 w-full">Programa de mentorías</h1>
           <p className="mb-4 leading-relaxed">
             El programa de mentorías de FrontendCafé busca servirte de guía en tu
             camino IT, conectándote con profesionales y referentes capacitados en
