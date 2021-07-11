@@ -25,11 +25,13 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
     enabled: preview,
   });
 
+  const [infoModalOpen, setInfoModalOpen] = useState(false);
+
   return (
     <Layout title="Iniciativas">
       <div className="pt-20">
         <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-36">
-          <div className="sm:px-10 text-left xl:px-0">
+          <div className="text-left sm:px-10 xl:px-0">
             <h2 className="mt-2 leading-snug tracking-tight title">
               Reactivistas&nbsp;
             </h2>
@@ -42,7 +44,11 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
               dudas y realizar consultas.
             </p>
             <span className="flex mt-5 cursor-pointer text-primary">
-              <a href="https://frontend.cafe/docs/guia-reactivistas">
+              <a
+                target="_blank"
+                href="https://frontend.cafe/docs/guia-reactivistas"
+                rel="noreferrer"
+              >
                 Conocé más sobre la iniciativa&nbsp;
               </a>
               <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
@@ -52,69 +58,75 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
       </div>
 
       <div className="container p-6 m-10 mx-auto lg:px-36">
-        <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
-          Súmate a los grupos que están comenzando
-        </h1>
-        <div className="flex flex-wrap m-2 md:m-10">
-          {groups?.map((group: ReactGroup) => {
-            const [infoModalOpen, setInfoModalOpen] = useState(false);
-            return (
-              <div
-                key={group.name}
-                className="flex flex-col flex-auto p-5 mx-1 my-5 rounded-md shadow-lg md:mx-5 md:p-10"
-              >
-                <div>
-                  <div className="flex items-baseline justify-between">
-                    <h3 className="mb-5 mr-5 text-lg font-medium leading-7 text-primary sm:leading-9 sm:truncate">
-                      ⚛ {group.name}
-                    </h3>
-                    <button
-                      onClick={() => setInfoModalOpen(true)}
-                      className="text-xs font-bold text-blue-600 uppercase focus:outline-none"
-                    >
-                      + Info
-                    </button>
-                  </div>
-                  <ul className="mb-6">
-                    <li key={group.topic} className="mb-1 font-medium">
-                      <span className="font-bold">Tema:</span> {group.topic}
-                    </li>
-                    <li className="mb-4 font-medium">
-                      <span className="font-bold">Fecha de inicio:</span>{' '}
-                      {group.startDate}
-                    </li>
-                    <li className="font-medium text-primary">
-                      <a href={group.studyMaterial} className="text-gray-600">
-                        📚 Material de estudio
-                      </a>
-                    </li>
-                  </ul>
-                  {group.participants && group.participants.length >= 10 ? (
-                    <div className="text-red-500 font-md text-md">
-                      Grupo lleno
+        {groups.length > 0 && (
+          <>
+            <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
+              Súmate a los grupos que están comenzando
+            </h1>
+            <div className="flex flex-wrap m-2 md:m-10">
+              {groups?.map((group: ReactGroup) => {
+                return (
+                  <div
+                    key={group.name}
+                    className="flex flex-col flex-auto p-5 mx-1 my-5 rounded-md shadow-lg md:mx-5 md:p-10"
+                  >
+                    <div>
+                      <div className="flex items-baseline justify-between">
+                        <h3 className="mb-5 mr-5 text-lg font-medium leading-7 text-primary sm:leading-9 sm:truncate">
+                          ⚛ {group.name}
+                        </h3>
+                        <button
+                          onClick={() => setInfoModalOpen(true)}
+                          className="text-xs font-bold text-blue-600 uppercase focus:outline-none"
+                        >
+                          + Info
+                        </button>
+                      </div>
+                      <ul className="mb-6">
+                        <li key={group.topic} className="mb-1 font-medium">
+                          <span className="font-bold">Tema:</span> {group.topic}
+                        </li>
+                        <li className="mb-4 font-medium">
+                          <span className="font-bold">Fecha de inicio:</span>{' '}
+                          {group.startDate}
+                        </li>
+                        <li className="font-medium text-primary">
+                          <a
+                            href={group.studyMaterial}
+                            className="text-gray-600"
+                          >
+                            📚 Material de estudio
+                          </a>
+                        </li>
+                      </ul>
+                      {group.participants && group.participants.length >= 10 ? (
+                        <div className="text-red-500 font-md text-md">
+                          Grupo lleno
+                        </div>
+                      ) : (
+                        <AddParticipantForm group={group} />
+                      )}
                     </div>
-                  ) : (
-                    <AddParticipantForm group={group} />
-                  )}
-                </div>
 
-                <GroupInfoModal
-                  open={infoModalOpen}
-                  onClose={() => setInfoModalOpen(false)}
-                  group={group}
-                />
-              </div>
-            );
-          })}
-        </div>
+                    <GroupInfoModal
+                      open={infoModalOpen}
+                      onClose={() => setInfoModalOpen(false)}
+                      group={group}
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          </>
+        )}
 
         <div className="flex-1 min-w-0 mb-8">
           <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
             Dale vida a un nuevo grupo
           </h1>
-          <h2 className="font-medium leading-7 text-md text-primary sm:leading-9 sm:truncate">
+          <h2 className="leading-7 text-md text-primary sm:leading-9 sm:truncate">
             <span
-              className="text-blue-400 cursor-pointer"
+              className="cursor-pointer"
               onClick={() => setIsModalOpen(true)}
             >
               Ver requisitos
@@ -123,7 +135,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<
         </div>
 
         <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50">
-          <div className="px-6 border-b border-gray-200 py-5 md:px-8">
+          <div className="px-6 py-5 border-b border-gray-200 md:px-8">
             <CreateGroupForm />
           </div>
         </div>

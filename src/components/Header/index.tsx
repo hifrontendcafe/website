@@ -30,13 +30,13 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
 
   return (
     <header
-      className={`shadow-md w-full flex flex-col fixed md:relative bg-white z-50 ${
+      className={`w-full flex flex-col sticky top-0 bg-white z-50 shadow-sm ${
         preview ? 'pt-10' : ''
       }`}
     >
       <nav
         id="site-menu"
-        className="flex flex-col items-center justify-between w-full px-4 mx-auto bg-white shadow lg:container lg:flex-row lg:shadow-none"
+        className="flex flex-col items-center justify-between w-full px-4 mx-auto bg-white lg:container lg:flex-row lg:shadow-none"
       >
         <div className="flex flex-row flex-no-wrap items-center self-start justify-between w-full lg:w-auto lg:self-center lg:flex-none">
           <Link href="/">
@@ -60,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
         </div>
         <div
           ref={menuDOM}
-          className="flex-col items-center self-end hidden w-full h-full py-1 pb-4 lg:w-auto lg:self-center lg:flex lg:flex-row lg:py-0 lg:pb-0 text-sm"
+          className="flex-col items-center hidden w-full h-full py-1 pb-4 text-sm lg:w-auto lg:self-center lg:flex lg:flex-row lg:py-0 lg:pb-0"
         >
           {navItems?.map((item) => (
             <Link href={`/${item.link}`} key={item.link}>
