@@ -56,7 +56,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
         past ? 'lg:w-1/4' : 'lg:w-1/3'
       }`}
     >
-      <div className="flex flex-col items-start h-full  rounded shadow-lg">
+      <div className="flex flex-col items-start h-full rounded shadow-lg">
         <img
           className="w-full"
           src={imageBuilder.image(event.cover.src).width(450).url()}
@@ -77,27 +77,26 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
             {event.title}
           </h1>
           <p className="mb-6 font-light text-gray-700 title-font">
-            {format(new Date(event.date), 'MMM d - HH:mm')} ARG (GMT-3)
+            {format(new Date(event.date), 'MMM d - HH:mm')} hrs (horario local)
           </p>
           <div className={`mb-5 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
-          <div className="mt-auto mb-2">
-            {past ? (
-              event.recording && (
-                <a
-                  href={event.recording}
-                  className="px-5 py-2 text-sm text-white rounded bg-tertiary"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Ver grabación
-                </a>
+          {past
+            ? event.recording && (
+                <div className="mt-auto mb-2">
+                  <a
+                    href={event.recording}
+                    className="px-5 py-2 text-sm text-white rounded bg-tertiary"
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    Ver grabación
+                  </a>
+                </div>
               )
-            ) : (
-              <AddToCalendar event={calendar} />
-            )}
-          </div>
+            : // <AddToCalendar event={calendar} />
+              null}
         </div>
       </div>
     </div>
