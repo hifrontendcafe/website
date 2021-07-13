@@ -90,7 +90,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     >
       <div className="container px-4 pt-16 mx-auto sm:px-6 md:pt-0">
         <h1 className="title mt-2 leading-snug tracking-tight py-20 text-center">
-          Crea tu propio perfil en nuestro portal
+          Crea tu perfil
         </h1>
       </div>
       <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50 mb-8">
