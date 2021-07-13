@@ -6,9 +6,8 @@ export default NextAuth({
     Providers.Discord({
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
-      scope: 'identify email guilds',
-      authorizationUrl:
-        'https://discord.com/api/oauth2/authorize?client_id=859532135367180288&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fcallback%2Fdiscord&response_type=code&scope=identify%20email%20guilds',
+      scope: 'identify email',
+      // authorizationUrl: `https://discord.com/api/oauth2/authorize?client_id=${process.env.DISCORD_CLIENT_ID}&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fapi%2Fauth%2Fcallback%2Fdiscord&response_type=code&scope=identify%20email%20guilds`,
       profile(profile) {
         return {
           id: profile.id,
@@ -20,18 +19,19 @@ export default NextAuth({
   ],
   callbacks: {
     async signIn(_, account) {
-      const data = await fetch('https://discord.com/api/users/@me/guilds', {
-        method: 'GET',
-        headers: {
-          Authorization: `Bearer ${account.accessToken}`,
-        },
-      });
-      const guilds = await data.json();
-      const allGuildNames = guilds.map((guild) => guild.name);
+      // const data = await fetch('https://discord.com/api/users/@me/guilds', {
+      //   method: 'GET',
+      //   headers: {
+      //     Authorization: `Bearer ${account.accessToken}`,
+      //   },
+      // });
+      // const guilds = await data.json();
+      // const allGuildNames = guilds.map((guild) => guild.name);
 
-      const isInFec = allGuildNames.includes('FrontendCafé');
+      // const isInFec = allGuildNames.includes('FrontendCafé');
 
-      return isInFec ? true : '/unauthorized';
+      // return isInFec ? true : '/unauthorized';
+      return true;
     },
   },
 });

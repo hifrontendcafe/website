@@ -1,11 +1,13 @@
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
+import { signIn } from 'next-auth/client';
 import { useSession } from 'next-auth/client';
 import Layout from '../../components/Layout';
 import { getLayout } from '@/utils/get-layout';
 import { useForm } from 'react-hook-form';
 import { ReactGroup } from '@/lib/types';
 import { Technology, Role, Seniority } from '@prisma/client';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import prisma from '../../lib/prisma';
 import Select from 'react-select';
 import Resizer from 'react-image-file-resizer';
@@ -51,7 +53,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     [] as Technology[],
   );
   const [photo, setPhoto] = useState('');
-
+  console.log({ session });
   const handleTechnologies = (techSelected) => {
     setSelectedTechnologies(techSelected);
   };
@@ -84,19 +86,19 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 
   const onError = (errors, e) => console.log(errors, e);
 
-  if (session) {
-    return (
-      <Layout
-        title="Comunidad"
-        description="Encontrá los perfiles dentro de FEC"
-        preview={preview}
-      >
-        <div className="container px-4 pt-16 mx-auto sm:px-6 md:pt-0">
-          <h1 className="title mt-2 leading-snug tracking-tight py-20 text-center">
-            Crea tu propio perfil en nuestro portal
-          </h1>
-        </div>
-        <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50 mb-8">
+  return (
+    <Layout
+      title="Comunidad"
+      description="Encontrá los perfiles dentro de FEC"
+      preview={preview}
+    >
+      <div className="container px-4 pt-16 mx-auto sm:px-6 md:pt-0">
+        <h1 className="title mt-2 leading-snug tracking-tight py-20 text-center">
+          Crea tu propio perfil en nuestro portal
+        </h1>
+      </div>
+      <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50 mb-8">
+        {session ? (
           <div className="px-6 border-b border-gray-200 py-5 md:px-8">
             <form
               onSubmit={handleSubmit(onSubmit, onError)}
@@ -104,6 +106,40 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
               noValidate
             >
               <div className="flex flex-col grid-cols-2 gap-5 md:grid">
+                <div className="mb-4">
+                  <label className="block mb-2 text-sm font-bold">
+                    Usuario de Discord*
+                  </label>
+                  <div className="relative z-10">
+                    <input
+                      className={`w-full bg-gray-200 px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline ${
+                        errors.discord && 'border-red-400'
+                      }`}
+                      type="text"
+                      required
+                      placeholder="Ingresa tu usuario de Discord"
+                      value={session.user.name}
+                      readOnly
+                      {...register('discord', { required: true })}
+                    />
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-2 text-sm font-bold">Email*</label>
+                  <div className="relative">
+                    <input
+                      className={`w-full bg-gray-200 px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline ${
+                        errors.email && 'border-red-400'
+                      }`}
+                      type="email"
+                      required
+                      placeholder="Ingresa tu email"
+                      value={session.user.email}
+                      readOnly
+                      {...register('email', { required: true })}
+                    />
+                  </div>
+                </div>
                 <div className="mb-4">
                   <label className="block mb-2 text-sm font-bold">
                     Nombre y Apellido*
@@ -116,41 +152,6 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     placeholder="Ingresa nombre completo"
                     {...register('name', { required: true })}
                   />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold">
-                    Usuario de Discord*
-                  </label>
-                  <div className="relative z-10">
-                    <input
-                      className={`w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline ${
-                        errors.discord && 'border-red-400'
-                      }`}
-                      type="text"
-                      required
-                      placeholder="Ingresa tu usuario de Discord"
-                      value={session.user.name}
-                      disabled
-                      {...register('discord', { required: true })}
-                    />
-                    {/* <DiscordUserTooltip /> */}
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold">Email*</label>
-                  <div className="relative">
-                    <input
-                      className={`w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline ${
-                        errors.email && 'border-red-400'
-                      }`}
-                      type="email"
-                      required
-                      placeholder="Ingresa tu email"
-                      value={session.user.email}
-                      disabled
-                      {...register('email', { required: true })}
-                    />
-                  </div>
                 </div>
                 <div className="mb-4">
                   <label className="block mb-2 text-sm font-bold">
@@ -379,12 +380,27 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
               </div>
             </form>
           </div>
-        </div>
-      </Layout>
-    );
-  } else {
-    return <div>Necesitas loguearte</div>;
-  }
+        ) : (
+          <div className="p-4">
+            Para poder registrar tu perfil es necesario que inicies sessión con
+            Discord. <br />
+            <Link href="/comunidad/nuevo">
+              <button
+                onClick={() =>
+                  signIn('discord', {
+                    callbackUrl: 'http://localhost:3000/comunidad/nuevo',
+                  })
+                }
+                className="text-xs btn btn-primary md:text-md"
+              >
+                Crea tu perfil
+              </button>
+            </Link>
+          </div>
+        )}
+      </div>
+    </Layout>
+  );
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
