@@ -1,4 +1,6 @@
 import { GetStaticProps } from 'next';
+import { signIn } from 'next-auth/client';
+
 import Link from 'next/link';
 import Layout from '../../components/Layout';
 import ProfileCard from '../../components/ProfileCard';
@@ -73,7 +75,16 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             Perfiles registrados
           </div>
           <Link href="/comunidad/nuevo">
-            <a className="text-xs btn btn-primary md:text-md">Crea tu perfil</a>
+            <button
+              onClick={() =>
+                signIn('discord', {
+                  callbackUrl: 'http://localhost:3000/comunidad/nuevo',
+                })
+              }
+              className="text-xs btn btn-primary md:text-md"
+            >
+              Crea tu perfil
+            </button>
           </Link>
         </div>
         <form
