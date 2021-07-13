@@ -382,18 +382,19 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
           </div>
         ) : (
           <div className="p-4">
-            Para poder registrar tu perfil es necesario que inicies sessión con
+            Para poder registrar tu perfil es necesario que inicies sesión con
             Discord. <br />
+            <br />
             <Link href="/comunidad/nuevo">
               <button
                 onClick={() =>
                   signIn('discord', {
-                    callbackUrl: 'http://localhost:3000/comunidad/nuevo',
+                    callbackUrl: `${window.location.origin}/comunidad/nuevo`,
                   })
                 }
                 className="text-xs btn btn-primary md:text-md"
               >
-                Crea tu perfil
+                Iniciar Sesión
               </button>
             </Link>
           </div>

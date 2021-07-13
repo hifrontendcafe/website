@@ -77,7 +77,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             <button
               onClick={() =>
                 signIn('discord', {
-                  callbackUrl: 'http://localhost:3000/comunidad/nuevo',
+                  callbackUrl: `${window.location.origin}/comunidad/nuevo`,
                 })
               }
               className="text-xs btn btn-primary md:text-md"
