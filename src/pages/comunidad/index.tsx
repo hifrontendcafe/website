@@ -73,18 +73,16 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           <div className="mb-2 font-bold leading-7 md:text-xl text-primary md:mb-0">
             Perfiles registrados
           </div>
-          <Link href="/comunidad/nuevo">
-            <button
-              onClick={() =>
-                signIn('discord', {
-                  callbackUrl: `${window.location.origin}/comunidad/nuevo`,
-                })
-              }
-              className="text-xs btn btn-primary md:text-md"
-            >
-              Crea tu perfil
-            </button>
-          </Link>
+          <button
+            onClick={() =>
+              signIn('discord', {
+                callbackUrl: `${window.location.origin}/comunidad/nuevo`,
+              })
+            }
+            className="text-xs btn btn-primary md:text-md"
+          >
+            Crea tu perfil
+          </button>
         </div>
         <form
           onSubmit={(e) => {
