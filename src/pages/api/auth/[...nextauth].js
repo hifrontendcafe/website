@@ -17,8 +17,9 @@ export default NextAuth({
     }),
   ],
   callbacks: {
-    async signIn(_, account) {
-      return true;
+    session: async (session, user) => {
+      session.user.id = user.sub;
+      return Promise.resolve(session);
     },
   },
 });

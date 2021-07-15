@@ -5,8 +5,10 @@ export default async function handle(req, res) {
   if (req.method === 'POST') {
     const {
       name,
+      id,
       email,
       discord,
+      discordId,
       github,
       linkedin,
       portfolio,
@@ -21,28 +23,55 @@ export default async function handle(req, res) {
     } = req.body;
 
     const tech: Technology[] = technologies.map((t) => ({
-      id: t.id,
+      id: t.value,
     }));
 
-    const result = await prisma.profile.create({
-      data: {
-        name,
-        email,
-        discord,
-        github,
-        linkedin,
-        available,
-        active: true,
-        portfolio,
-        twitter,
-        location,
-        photo,
-        description,
-        seniority: { connect: { id: seniorityId } },
-        technologies: { connect: tech },
-        role: { connect: { id: roleId } },
-      },
-    });
+    let result;
+    console.log({ esteid: id });
+    if (id) {
+      result = await prisma.profile.update({
+        where: {
+          email,
+        },
+        data: {
+          name,
+          discord,
+          github,
+          linkedin,
+          available,
+          active: true,
+          portfolio,
+          twitter,
+          location,
+          photo,
+          description,
+          seniority: { connect: { id: seniorityId } },
+          technologies: { connect: tech },
+          role: { connect: { id: roleId } },
+        },
+      });
+    } else {
+      result = await prisma.profile.create({
+        data: {
+          name,
+          email,
+          discord,
+          github,
+          linkedin,
+          available,
+          active: true,
+          portfolio,
+          twitter,
+          location,
+          photo,
+          discordId,
+          description,
+          seniority: { connect: { id: seniorityId } },
+          technologies: { connect: tech },
+          role: { connect: { id: roleId } },
+        },
+      });
+    }
     res.json(result);
   }
   if (req.method === 'GET') {

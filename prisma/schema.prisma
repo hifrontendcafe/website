@@ -36,6 +36,7 @@ model Profile {
   github       String?
   portfolio    String?
   discord      String?
+  discordId    String?
   description  String?
   location     String?
   linkedin     String?
