@@ -266,6 +266,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       roles,
       seniorities,
     },
+    revalidate: 1,
   };
 };
 
