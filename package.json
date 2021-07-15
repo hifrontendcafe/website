@@ -15,7 +15,7 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@prisma/client": "^2.25.0",
+    "@prisma/client": "^2.27.0",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.150.7",
     "@sanity/image-url": "^0.140.19",
