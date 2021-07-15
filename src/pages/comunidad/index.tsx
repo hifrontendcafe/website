@@ -1,11 +1,9 @@
 import { GetStaticProps } from 'next';
 import { signIn } from 'next-auth/client';
-import Link from 'next/link';
 import Layout from '../../components/Layout';
 import ProfileCard from '../../components/ProfileCard';
 import prisma from '../../lib/prisma';
 import { getLayout } from '@/utils/get-layout';
-import { motion } from 'framer-motion';
 import { Profile } from '@prisma/client';
 import { useState } from 'react';
 import Select from 'react-select';
@@ -209,15 +207,9 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             <div>Cargando...</div>
           ) : (
             filteredProfiles?.map((profile, i) => (
-              <motion.div
-                initial={{ y: 100, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: i * 0.05 }}
-                key={profile.name}
-                className="flex"
-              >
+              <div key={profile.name} className="flex">
                 <ProfileCard profile={profile} />
-              </motion.div>
+              </div>
             ))
           )}
         </div>
