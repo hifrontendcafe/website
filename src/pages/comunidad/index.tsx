@@ -89,8 +89,8 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           }}
           className="mx-4 px-4 py-2 bg-gray-100 rounded shadow"
         >
-          <div className="flex items-center justify-around space-x-4">
-            <div className="w-full">
+          <div className="md:flex md:items-center justify-around md:space-x-4">
+            <div className="mt-3 md:mt-0 w-full">
               <label
                 className="block text-xs font-semibold text-gray-600"
                 htmlFor="seniority"
@@ -114,7 +114,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 </option>
               </select>
             </div>
-            <div className="w-full">
+            <div className="mt-3 md:mt-0 w-full">
               <label
                 className="block text-xs font-semibold text-gray-600"
                 htmlFor="seniority"
@@ -131,7 +131,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 }
               />
             </div>
-            <div className="w-full">
+            <div className="mt-3 md:mt-0 w-full">
               <label
                 className="block text-xs font-semibold text-gray-600"
                 htmlFor="seniority"
@@ -148,7 +148,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 }
               />
             </div>
-            <div className="w-full">
+            <div className="mt-3 md:mt-0 w-full">
               <label
                 className="block text-xs font-semibold text-gray-600"
                 htmlFor="role"
@@ -173,7 +173,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
               </select>
             </div>
           </div>
-          <div className="mt-2">
+          <div className="mt-4">
             <label className="block text-xs font-semibold text-gray-600">
               TECNOLOGÍAS (5 máximo)
             </label>
@@ -219,15 +219,31 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
+  const sortResponse = (array) => {
+    return [
+      ...array.sort((a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      }),
+    ];
+  };
   const { dehydratedState } = await getLayout({ preview });
-  const roles = await prisma.role.findMany();
-  const technologies = await prisma.technology.findMany();
+  const rolesRepose = await prisma.role.findMany();
+  const roles = sortResponse(rolesRepose);
+  const technologiesResponse = await prisma.technology.findMany();
+  const technologies = sortResponse(technologiesResponse);
   const formattedTechnologies = technologies.map((technology) => ({
     ...technology,
     label: technology.name,
     value: technology.id,
   }));
-  const seniorities = await prisma.seniority.findMany();
+  const senioritiesResponse = await prisma.seniority.findMany();
+  const seniorities = sortResponse(senioritiesResponse);
   const response = await prisma.profile.findMany({
     where: { active: true },
     include: {
