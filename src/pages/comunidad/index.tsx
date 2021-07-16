@@ -87,16 +87,32 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             e.preventDefault();
             filterProfiles();
           }}
-          className="mx-4 px-4 py-2 bg-gray-100 rounded shadow"
+          className="mx-4 px-2 py-2"
         >
           <div className="md:flex md:items-center justify-around md:space-x-4">
             <div className="mt-3 md:mt-0 w-full">
-              <label
-                className="block text-xs font-semibold text-gray-600"
-                htmlFor="seniority"
+              <select
+                name="role"
+                placeholder="Rol"
+                className="w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                onChange={(event) =>
+                  setFilters({ ...filters, roleId: event.target.value })
+                }
               >
-                SENIORITY
-              </label>
+                {roles.map((role) => (
+                  <option value={role.id} key={role.id}>
+                    {role.name}
+                  </option>
+                ))}
+                <option value="" key="all">
+                  Todos
+                </option>
+                <option value="" key="all" selected disabled hidden>
+                  Rol
+                </option>
+              </select>
+            </div>
+            <div className="mt-3 md:mt-0 w-full">
               <select
                 name="seniority"
                 className="py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
@@ -109,22 +125,19 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                     {seniority.name}
                   </option>
                 ))}
-                <option value={''} key="all" selected>
+                <option value="" key="all" selected disabled hidden>
+                  Seniority
+                </option>
+                <option value="" key="all">
                   Todas
                 </option>
               </select>
             </div>
             <div className="mt-3 md:mt-0 w-full">
-              <label
-                className="block text-xs font-semibold text-gray-600"
-                htmlFor="seniority"
-              >
-                LOCALIZACIÓN
-              </label>
               <input
-                name="seniority"
+                name="location"
                 type="text"
-                placeholder="Busca por ubicación"
+                placeholder="Ubicación"
                 className="py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
                 onChange={(event) =>
                   setFilters({ ...filters, location: event.target.value })
@@ -132,75 +145,40 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
               />
             </div>
             <div className="mt-3 md:mt-0 w-full">
-              <label
-                className="block text-xs font-semibold text-gray-600"
-                htmlFor="seniority"
-              >
-                BIO
-              </label>
               <input
                 name="seniority"
                 type="text"
-                placeholder="Busca palabras claves"
+                placeholder="Explora las biografías"
                 className="w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
                 onChange={(event) =>
                   setFilters({ ...filters, description: event.target.value })
                 }
               />
             </div>
-            <div className="mt-3 md:mt-0 w-full">
-              <label
-                className="block text-xs font-semibold text-gray-600"
-                htmlFor="role"
-              >
-                ROL
-              </label>
-              <select
-                name="role"
-                className="w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
-                onChange={(event) =>
-                  setFilters({ ...filters, roleId: event.target.value })
-                }
-              >
-                {roles.map((role) => (
-                  <option value={role.id} key={role.id}>
-                    {role.name}
-                  </option>
-                ))}
-                <option value="" key="all" selected>
-                  Todos
-                </option>
-              </select>
-            </div>
           </div>
-          <div className="mt-4">
-            <label className="block text-xs font-semibold text-gray-600">
-              TECNOLOGÍAS (5 máximo)
-            </label>
-            <div>
-              <Select
-                instanceId="technologies-selector"
-                isMulti
-                className="text-gray-700"
-                placeholder="Seleccione tecnologías"
-                onChange={(techs) =>
-                  setFilters({ ...filters, technologies: techs })
-                }
-                isValidNewOption={isValidNewOption}
-                options={filters.technologies?.length === 5 ? [] : technologies}
-                noOptionsMessage={() => {
-                  return filters.technologies.length === 5
-                    ? 'Has alcanzado el máximo de opciones'
-                    : 'No opciones disponibles';
-                }}
-              />
-            </div>
+          <div className="mt-4 md:flex w-full items-center md:space-x-4">
+            <Select
+              instanceId="technologies-selector"
+              isMulti
+              className="text-gray-700 w-full"
+              placeholder="Seleccione tecnologías"
+              onChange={(techs) =>
+                setFilters({ ...filters, technologies: techs })
+              }
+              isValidNewOption={isValidNewOption}
+              options={filters.technologies?.length === 5 ? [] : technologies}
+              noOptionsMessage={() => {
+                return filters.technologies.length === 5
+                  ? 'Has alcanzado el máximo de opciones'
+                  : 'No opciones disponibles';
+              }}
+            />
+            <input
+              className="w-full md:w-auto mt-4 md:mt-0 text-xs btn btn-primary md:text-md"
+              type="submit"
+              value="Buscar"
+            />
           </div>
-          <input
-            className="text-xs btn btn-primary md:text-md mt-2"
-            type="submit"
-            value="Buscar"
-          />
         </form>
         <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch ">
           {loading ? (
