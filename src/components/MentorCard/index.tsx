@@ -9,9 +9,14 @@ import { motion } from 'framer-motion';
 interface MentorCardProps {
   mentor: Mentor;
   topics: Topic[];
+  isLogged: boolean;
 }
 
-const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
+const MentorCard: React.FC<MentorCardProps> = ({
+  mentor,
+  topics,
+  isLogged,
+}) => {
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e._id == id);
     return topic.title;
@@ -22,12 +27,12 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="w-full col-span-1 bg-white rounded-lg shadow my-2 border border-teal-100"
+      className="w-full col-span-1 my-2 bg-white border border-teal-100 rounded-lg shadow"
     >
-      <div className="w-full flex items-center flex-col md:flex-row px-6 py-4 text-center md:text-left">
-        <div className="flex flex-col items-center md:mr-6 text-white">
+      <div className="flex flex-col items-center w-full px-6 py-4 text-center md:flex-row md:text-left">
+        <div className="flex flex-col items-center text-white md:mr-6">
           <img
-            className="w-24 h-24 bg-gray-300 rounded-full object-cover"
+            className="object-cover w-24 h-24 bg-gray-300 rounded-full"
             src={mentor.photo.src}
             alt={`${mentor.name} Avatar`}
           />
@@ -36,9 +41,9 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
               <Link href={mentor.web}>
                 <a
                   target="_blank"
-                  className="social-circle  bg-pink-800 hover:bg-pink-700 h-8 w-8"
+                  className="w-8 h-8 bg-pink-800 social-circle hover:bg-pink-700"
                 >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faGlobe} />
+                  <FontAwesomeIcon className="w-4 h-4" icon={faGlobe} />
                 </a>
               </Link>
             )}
@@ -46,9 +51,9 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
               <Link href={mentor.linkedin}>
                 <a
                   target="_blank"
-                  className="social-circle bg-blue-600 hover:bg-blue-700 h-8 w-8"
+                  className="w-8 h-8 bg-blue-600 social-circle hover:bg-blue-700"
                 >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faLinkedinIn} />
+                  <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
                 </a>
               </Link>
             )}
@@ -56,40 +61,40 @@ const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {
               <Link href={mentor.github}>
                 <a
                   target="_blank"
-                  className="social-circle bg-gray-800 hover:bg-gray-700 h-8 w-8"
+                  className="w-8 h-8 bg-gray-800 social-circle hover:bg-gray-700"
                 >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faGithubAlt} />
+                  <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
                 </a>
               </Link>
             )}
           </div>
         </div>
         <div className="flex-1 md:border-l md:pl-6">
-          <div className="flex flex-col items  flex-grow">
-            <div className="flex flex-col md:flex-row justify-between items-center mb-4">
-              <h2 className="text-2xl text-green-900 font-medium title-font">
+          <div className="flex flex-col flex-grow items">
+            <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
+              <h2 className="text-2xl font-medium text-green-900 title-font">
                 {mentor.name}
               </h2>
-              {mentor.isActive && mentor.calendly ? (
+              {!isLogged ? null : mentor.isActive && mentor.calendly ? (
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
-                    className="text-white bg-primary hover:bg-teal-400 font-base text-sm py-1 px-3 rounded uppercase"
+                    className="px-3 py-1 text-sm text-white uppercase rounded bg-primary hover:bg-teal-400 font-base"
                   >
                     <span>Contactame</span>
                   </a>
                 </Link>
               ) : (
-                <span className="text-white cursor-not-allowed bg-gray-500 font-base text-sm py-1 px-3 rounded uppercase">
+                <span className="px-3 py-1 text-sm text-white uppercase bg-gray-500 rounded cursor-not-allowed font-base">
                   No Disponible
                 </span>
               )}
             </div>
 
-            <span className="leading-relaxed text-xs md:min-h-64">
+            <span className="text-xs leading-relaxed md:min-h-64">
               {mentor.description ? mentor.description : '---'}
             </span>
-            <div className="flex flex-wrap my-3 justify-center md:justify-start">
+            <div className="flex flex-wrap justify-center my-3 md:justify-start">
               {mentor.topics &&
                 mentor.topics?.map((topic) => (
                   <TopicBadge
