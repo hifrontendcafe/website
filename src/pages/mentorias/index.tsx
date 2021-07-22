@@ -46,86 +46,40 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
 
 const MentorshipsSteps: React.FC = () => {
   return (
-    <section className=" bg-indigo-50 text-gray-700 body-font">
+    <section className="text-gray-700 bg-gray-50 body-font">
       <div className="container px-5 py-32 mx-auto">
-        <div className="text-center mb-20">
-          <h1
-            className="sm:text-3xl text-2xl font-medium title-font text-gray-900
-            mb-4"
-          >
-            ¿Por dónde empiezo? 🤔
-          </h1>
-          <p className="text-base text-left leading-relaxed xl:w-2/4 lg:w-3/4 mx-auto">
-            El procedimiento para sumarte a las mentorías de FrontendCafé consta
-            de tres simples pasos, resumidos en <strong>encontrar</strong> tu
-            mentor, <strong>coordinar</strong> un encuentro y{' '}
-            <strong>prepararte</strong> para la mentoría.
-          </p>
-          <div className="flex mt-6 justify-center">
-            <div className="w-16 h-1 rounded-full bg-secondary inline-flex"></div>
-          </div>
-        </div>
-        <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
-          <div
-            className="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col text-center
-            items-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer"
-          >
-            <img
-              className="w-64 object-cover object-center rounded "
-              alt="schedule"
-              src="img/engines-bro.svg"
-            />
+        <div className="flex flex-wrap -mx-4 -mt-4 -mb-10 sm:-m-4">
+          <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-                <strong>Paso 1:</strong> Encontrá tu mentor 🔍👀
+              <h2 className="mb-3 text-2xl font-medium text-gray-900 title-font">
+                <strong>Paso 1:</strong> Inicia sesión &#128273;
               </h2>
-              <p className="leading-relaxed text-base text-left">
-                El primer paso es encontrar un mentor cuyo perfil se ajuste a
-                tus intereses y sientas que pueda ayudarte en lo que necesites.
+              <p className="text-lg leading-relaxed text-left">
+                Recuerda que para solicitar una mentoría debes ser parte del
+                servidor de Discord de FrontendCafé.
               </p>
             </div>
           </div>
-          <div
-            className="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col text-center
-            items-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer"
-          >
-            <img
-              className="w-64 object-cover object-center rounded"
-              alt="schedule"
-              src="img/schedule-bro.svg"
-            />
+          <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-                <strong>Paso 2:</strong> Coordiná un encuentro 📅✔️
+              <h2 className="mb-3 text-2xl font-medium text-gray-900 title-font">
+                <strong>Paso 2:</strong> Encuentra un mentor 🔍
               </h2>
-              <p className="leading-relaxed text-base">
-                Luego, deberás contactar a los mentores a través de sus agendas
-                virtuales y reservar una fecha y hora entre las disponibles. Al
-                concertar el encuentro, podés enviar un adelanto de las dudas
-                que buscás resolver.
+              <p className="text-lg leading-relaxed">
+                Encuentra un mentor cuyo perfil se ajuste a tus intereses y
+                sientas que pueda ayudarte en lo que necesites.
               </p>
             </div>
           </div>
-          <div
-            className="p-4 md:w-1/3 md:mb-0 mb-6 flex flex-col text-center
-            items-center transition duration-500 ease-in-out transform hover:-translate-y-6 hover:scale-105 cursor-pointer"
-          >
-            <img
-              className="w-64 object-cover object-center rounded"
-              alt="schedule"
-              src="img/reading-bro.svg"
-            />
-
+          <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
-              <h2 className="text-gray-900 text-lg title-font font-medium mb-3">
-                <strong>Paso 3:</strong> Preparate para la mentoría 📝⏳
+              <h2 className="mb-3 text-2xl font-medium text-gray-900 title-font">
+                <strong>Paso 3:</strong> Agenda la mentoría 📝
               </h2>
-              <p className="mb-2 leading-relaxed text-base">
-                Mientras esperás que llegue la fecha acordada, podés enviar
-                consultas a tu mentor para ayudar a prepararnos mejor y
-                aprovechar el tiempo al máximo.
+              <p className="mb-2 text-lg leading-relaxed">
+                Contacta al mentor a través de su agenda virtual y reserva una
+                fecha y hora entre las disponibles.
               </p>
-              <p>¡Recordá ser puntual! ⌚</p>
             </div>
           </div>
         </div>
