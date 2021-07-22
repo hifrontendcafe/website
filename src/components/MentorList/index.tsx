@@ -37,7 +37,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
   useEffect(() => {
     const checkLogin = () => {
-      !loading && session && session.user.id
+      !loading && session && session.user.name
         ? setIsLogged(true)
         : setIsLogged(false);
     };
