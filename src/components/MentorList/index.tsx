@@ -58,9 +58,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         {!isLogged && (
           <button
             onClick={() =>
-              signIn('discord', {
-                callbackUrl: `https://frontend.cafe/mentorias`,
-              })
+              signIn('discord')
             }
             className="flex items-center ml-3 btn btn-secondary"
           >
