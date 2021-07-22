@@ -59,7 +59,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
           <button
             onClick={() =>
               signIn('discord', {
-                callbackUrl: `${window.location.origin}/mentorias`,
+                callbackUrl: `https://frontend.cafe/mentorias`,
               })
             }
             className="flex items-center ml-3 btn btn-secondary"
