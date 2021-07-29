@@ -3,12 +3,14 @@ import { GetStaticProps } from 'next';
 import { getAllCMYKProjects } from '../../lib/api';
 import { CMYK } from '../../lib/types';
 import Layout from '../../components/Layout';
+import { Pagination } from '../../components/CMYKPagination';
 
 import { cmykQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { getLayout } from '@/utils/get-layout';
 import { useState } from 'react';
 import Modal from '@/components/Modal';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,6 +28,21 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     enabled: preview,
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const [projectsPerPage, setProjectsPerPage] = useState(3);
+
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = projects.slice(
+    indexOfFirstProject,
+    indexOfLastProject,
+  );
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <Layout title="Proyectos CMYK" preview={preview}>
       <div className="pt-20">
@@ -60,10 +77,15 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
         </div>
         <div className="w-full h-full mt-12 md:mt-8">
           <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-2 relative z-10">
-            {projects.map((project, index) => (
+            {currentProjects.map((project, index) => (
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}
           </div>
+          <Pagination
+            projectsPerPage={projectsPerPage}
+            totalProjects={projects.length}
+            paginate={paginate}
+          />
           <div className="text-center py-20">
             <h2 className="subtitle mb-8 tracking-tight">
               El siguiente puede ser el tuyo{' '}
