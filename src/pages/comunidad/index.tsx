@@ -55,6 +55,12 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
   const isValidNewOption = (inputValue, selectValue) =>
     inputValue.length > 0 && selectValue.length < 5;
 
+  const [openToWork, setOpenToWork] = React.useState(false);
+
+  const viewedProfiles = openToWork
+    ? filteredProfiles.filter((profile) => profile.available)
+    : filteredProfiles;
+
   return (
     <Layout
       title="Comunidad"
@@ -72,16 +78,26 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           <div className="mb-2 font-bold leading-7 md:text-xl text-primary md:mb-0">
             Perfiles registrados
           </div>
-          <button
-            onClick={() =>
-              signIn('discord', {
-                callbackUrl: `${window.location.origin}/comunidad/nuevo`,
-              })
-            }
-            className="text-xs btn btn-primary md:text-md"
-          >
-            Crea tu perfil
-          </button>
+          <div className="checkbox-component">
+            <label>
+              En búsqueda activa:
+              <input
+                type="checkbox"
+                checked={openToWork}
+                onChange={() => setOpenToWork(!openToWork)}
+              />
+            </label>
+            <button
+              onClick={() =>
+                signIn('discord', {
+                  callbackUrl: `${window.location.origin}/comunidad/nuevo`,
+                })
+              }
+              className="text-xs btn btn-primary md:text-md"
+            >
+              Crea tu perfil
+            </button>
+          </div>
         </div>
         <form
           onSubmit={(e) => {
@@ -185,7 +201,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           {loading ? (
             <div>Cargando...</div>
           ) : (
-            filteredProfiles?.map((profile, i) => (
+            viewedProfiles?.map((profile, i) => (
               <div key={profile.name} className="flex">
                 <ProfileCard profile={profile} />
               </div>
