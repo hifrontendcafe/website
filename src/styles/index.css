@@ -68,7 +68,7 @@ html {
   }
 
   .subtitle {
-    @apply text-2xl font-extrabold leading-normal text-gray-800 md:text-3xl lg:text-4xl;
+    @apply text-2xl font-extrabold leading-normal text-gray-800 md:text-3xl;
   }
 
   .title-colorful {

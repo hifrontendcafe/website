@@ -35,7 +35,7 @@ const CreateGroupForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col w-full grid-cols-2 gap-5 sm:px-8 sm:pt-6 sm:pb-8 rounded bg-gray-50 md:grid"
+      className="flex flex-col w-full grid-cols-2 gap-5 rounded sm:px-8 sm:pt-6 sm:pb-8 bg-gray-50 md:grid"
     >
       <div className="mb-4">
         <label className="block mb-2 text-sm font-bold">
@@ -110,7 +110,8 @@ const CreateGroupForm: React.FC = () => {
           Fecha tentativa de inicio
         </label>
         <input
-          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none bg-white focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+          name="startDate"
           type="date"
           {...register('startDate')}
         />
