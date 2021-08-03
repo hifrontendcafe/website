@@ -96,3 +96,24 @@ html {
 .copyx {
   display: none !important;
 }
+
+.checkbox-component {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.checkbox-component > label {
+  color: rgba(107, 114, 128);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+.checkbox-component > label > input {
+  margin-left: 5px;
+  border-radius: 0.25rem;
+}
+.checkbox-component > label > input:hover {
+  color: #00c39d;
+}
+.checkbox-component > label > input:checked {
+  color: #00c39d;
+}

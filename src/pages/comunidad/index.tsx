@@ -1,3 +1,4 @@
+import React from 'react';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import Layout from '../../components/Layout';
@@ -13,6 +14,12 @@ type PostsPageProps = {
 };
 
 const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
+  const [openToWork, setOpenToWork] = React.useState(false);
+
+  const viewedProfiles = openToWork
+    ? profiles.filter((profile) => profile.available)
+    : profiles;
+
   return (
     <Layout
       title="Comunidad"
@@ -29,12 +36,24 @@ const ProfilesPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
           <div className="mb-2 font-bold leading-7 md:text-xl text-primary md:mb-0">
             Últimos perfiles registrados
           </div>
-          <Link href="/comunidad/nuevo">
-            <a className="text-xs btn btn-primary md:text-md">Crea tu perfil</a>
-          </Link>
+          <div className="checkbox-component">
+            <label>
+              En búsqueda activa:
+              <input
+                type="checkbox"
+                checked={openToWork}
+                onChange={() => setOpenToWork(!openToWork)}
+              />
+            </label>
+            <Link href="/comunidad/nuevo">
+              <a className="text-xs btn btn-primary md:text-md">
+                Crea tu perfil
+              </a>
+            </Link>
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch ">
-          {profiles?.map((profile, i) => (
+          {viewedProfiles?.map((profile, i) => (
             <motion.div
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
