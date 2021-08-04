@@ -50,6 +50,7 @@
 }
 
 .paragraph {
+  margin: 50px 0;
   color: rgb(63, 69, 81);
   font-size: 1.2rem;
   font-weight: 500;
