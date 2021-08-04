@@ -1,10 +1,8 @@
-import emailjs, { init } from 'emailjs-com';
+import emailjs from 'emailjs-com';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { DiscordUserTooltip } from '../FormHelpers';
 import { ReactGroup } from '../../../lib/types';
-
-init(process.env.EMAILJS_GIANB_USERID);
 
 const CreateGroupForm: React.FC = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -25,7 +23,12 @@ const CreateGroupForm: React.FC = () => {
 
       const response = await res.json();
       setIsSuccess(true);
-      emailjs.send('my_gmail', 'new_reactivistas');
+      emailjs.send(
+        'my_gmail',
+        'new_reactivistas',
+        {},
+        'user_vZYiwq0jXYNBQFbiNgrQu',
+      );
       setIsLoading(false);
       reset();
       setTimeout(() => setIsSuccess(false), 5000);
