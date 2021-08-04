@@ -46,20 +46,18 @@ const DocPage = ({ mdx, data, preview }) => {
   return (
     <Layout title={doc.title} preview={preview}>
       <div style={{ margin: 'auto', maxWidth: '675px', marginBottom: '100px' }}>
-        <div className={`${styles.body}`}>
-          <MDXRemote
-            {...mdx}
-            components={{
-              h1: Heading,
-              h2: SubHeading,
-              p: Paragraph,
-              strong: Strong,
-              a: Link,
-              ul: List,
-              li: ListItem,
-            }}
-          />
-        </div>
+        <MDXRemote
+          {...mdx}
+          components={{
+            h1: Heading,
+            h2: SubHeading,
+            p: Paragraph,
+            strong: Strong,
+            a: Link,
+            ul: List,
+            li: ListItem,
+          }}
+        />
       </div>
     </Layout>
   );
