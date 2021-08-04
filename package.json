@@ -21,6 +21,7 @@
     "@tailwindcss/typography": "^0.4.0",
     "autoprefixer": "^10.2.5",
     "date-fns": "^2.16.1",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^2.9.1",
     "googleapis": "^73.0.0",
     "gray-matter": "4.0.2",
