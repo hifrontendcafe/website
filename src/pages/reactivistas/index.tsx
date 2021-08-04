@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import emailjs from 'emailjs-com';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
 import { getApprovedReactGroups } from '../../lib/api';
