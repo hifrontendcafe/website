@@ -76,7 +76,7 @@ html {
   }
 }
 
-.react-select__control{
+.filter-selector .react-select__control{
   @apply border-gray-300;
 }
 .react-select__control .react-select__indicator{

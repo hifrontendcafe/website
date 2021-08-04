@@ -161,7 +161,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
               instanceId="technologies-selector"
               isMulti
               classNamePrefix="react-select"
-              className="w-full"
+              className="w-full filter-selector"
               placeholder="Seleccione tecnologías"
               onChange={(techs) =>
                 setFilters({ ...filters, technologies: techs })
