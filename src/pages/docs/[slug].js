@@ -13,12 +13,24 @@ import { getLayout } from '@/utils/get-layout';
 
 import styles from './styles.module.css';
 
-type DocProps = {
-  data: Doc;
-  preview?: boolean;
-};
+import { serialize } from 'next-mdx-remote/serialize';
+import { MDXRemote } from 'next-mdx-remote';
+import {
+  Heading,
+  Link,
+  List,
+  ListItem,
+  Paragraph,
+  Strong,
+  SubHeading,
+} from '../../components/MDX';
 
-const DocPage: React.FC<DocProps> = ({ data, preview }) => {
+// type DocProps = {
+//   data: Doc,
+//   preview?: boolean,
+// };
+
+const DocPage = ({ mdx, data, preview }) => {
   const router = useRouter();
 
   if (!router.isFallback && !data?.slug) return <Error statusCode={404} />;
@@ -33,27 +45,27 @@ const DocPage: React.FC<DocProps> = ({ data, preview }) => {
 
   return (
     <Layout title={doc.title} preview={preview}>
-      <div className="bg-indigo-100 sm:pt-10 pb-24">
-        <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
-          <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
-            <div className="mt-2 md:flex md:items-center md:justify-between">
-              <div className="flex-1 min-w-0">
-                <h2 className="text-xl font-bold leading-7 text-primary sm:text-2xl sm:leading-9 sm:tr uncate">
-                  {doc.title}
-                </h2>
-              </div>
-            </div>
-          </div>
-          <div className={`px-12 py-5 text-gray-700 ${styles.body}`}>
-            <BlockContent blocks={doc.body} />
-          </div>
+      <div style={{ margin: 'auto', maxWidth: '675px', marginBottom: '100px' }}>
+        <div className={`${styles.body}`}>
+          <MDXRemote
+            {...mdx}
+            components={{
+              h1: Heading,
+              h2: SubHeading,
+              p: Paragraph,
+              strong: Strong,
+              a: Link,
+              ul: List,
+              li: ListItem,
+            }}
+          />
         </div>
       </div>
     </Layout>
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = async () => {
   const docs = await getAllDocs();
 
   const paths = docs?.map((doc) => ({
@@ -62,14 +74,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: true };
 };
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-  preview = false,
-}) => {
+export const getStaticProps = async ({ params, preview = false }) => {
   const { dehydratedState } = await getLayout({ preview });
-  const data = await getDocBySlug(params.slug as string, preview);
+  const data = await getDocBySlug(params.slug, preview);
+
+  const source = data.content;
+  const mdxSource = await serialize(source);
+
   return {
-    props: { data, preview, dehydratedState },
+    props: { mdx: mdxSource, data, preview, dehydratedState },
     revalidate: 1,
   };
 };

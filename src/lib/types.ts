@@ -1,3 +1,5 @@
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
 export interface Settings {
   description: string;
   heroBackground: Image;
@@ -116,6 +118,7 @@ export interface Doc {
   title: string;
   slug: string;
   body: string;
+  content?: MDXRemoteSerializeResult;
 }
 
 export interface FeaturedCards {
