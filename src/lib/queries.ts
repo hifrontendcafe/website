@@ -126,7 +126,8 @@ export const cmykQuery = groq`
       'src': image.asset->url
     },
     github,
-    demo
+    demo,
+    cmykVersion
   }
 `;
 

@@ -27,6 +27,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     initialData: data,
     enabled: preview,
   });
+  console.log(projects);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -34,15 +35,18 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
 
   const indexOfLastProject = currentPage * projectsPerPage;
   const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  const currentProjects = projects.slice(
-    indexOfFirstProject,
-    indexOfLastProject,
-  );
+  const [currentCMYK, setCurrentCMYK] = useState('cmyk-1');
+  const currentProjects = projects.filter((project) => {
+    return project.cmykVersion === currentCMYK;
+  });
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
+  // cmykVersion: "cmyk-3"
+
+  const tabStyle = `p-2 mt-4 bg-green-300 border-white cursor-pointer rounded-tl-md rounded-tr-md border-r-2`;
   return (
     <Layout title="Proyectos CMYK" preview={preview}>
       <div className="pt-20">
@@ -73,19 +77,41 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               Conocé más sobre la iniciativa&nbsp;
               <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
             </span>
+            <div>
+              <ul className="flex w-2/5">
+                <li
+                  onClick={() => setCurrentCMYK('cmyk-1')}
+                  className={tabStyle}
+                >
+                  CMYK
+                </li>
+                <li
+                  onClick={() => setCurrentCMYK('cmyk-2')}
+                  className={tabStyle}
+                >
+                  CMYK++
+                </li>
+                <li
+                  onClick={() => setCurrentCMYK('cmyk-3')}
+                  className={tabStyle}
+                >
+                  CMYK v3.0
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div className="w-full h-full mt-12 md:mt-8">
+        <div className="w-full h-full">
           <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-2 relative z-10">
             {currentProjects.map((project, index) => (
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}
           </div>
-          <Pagination
+          {/* <Pagination
             projectsPerPage={projectsPerPage}
             totalProjects={projects.length}
             paginate={paginate}
-          />
+          /> */}
           <div className="text-center py-20">
             <h2 className="subtitle mb-8 tracking-tight">
               El siguiente puede ser el tuyo{' '}
