@@ -3,7 +3,6 @@ import { GetStaticProps } from 'next';
 import { getAllCMYKProjects } from '../../lib/api';
 import { CMYK } from '../../lib/types';
 import Layout from '../../components/Layout';
-import { Pagination } from '../../components/CMYKPagination';
 
 import { cmykQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
@@ -18,7 +17,6 @@ type CMYKProjectsProps = {
   preview?: boolean;
   data: CMYK[];
 };
-
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   preview = false,
   data,
@@ -27,24 +25,11 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     initialData: data,
     enabled: preview,
   });
-  console.log(projects);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [currentPage, setCurrentPage] = useState(1);
-  const [projectsPerPage, setProjectsPerPage] = useState(3);
-
-  const indexOfLastProject = currentPage * projectsPerPage;
-  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
   const [currentCMYK, setCurrentCMYK] = useState('cmyk-1');
   const currentProjects = projects.filter((project) => {
     return project.cmykVersion === currentCMYK;
   });
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  // cmykVersion: "cmyk-3"
 
   const tabStyle = `p-2 mt-4 bg-green-300 border-white cursor-pointer rounded-tl-md rounded-tr-md border-r-2`;
   return (
