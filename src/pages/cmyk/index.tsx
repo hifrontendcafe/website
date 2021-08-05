@@ -92,11 +92,6 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}
           </div>
-          {/* <Pagination
-            projectsPerPage={projectsPerPage}
-            totalProjects={projects.length}
-            paginate={paginate}
-          /> */}
           <div className="text-center py-20">
             <h2 className="subtitle mb-8 tracking-tight">
               El siguiente puede ser el tuyo{' '}
