@@ -14,9 +14,8 @@ const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
 
   return (
     <div
-      className={`max-w-md rounded overflow-hidden flex flex-col ${
-        index % 2 === 0 ? 'md:mb-16' : 'md:mt-16'
-      }`}
+      className="max-w-md rounded overflow-hidden flex flex-col 
+         md:mb-8"
     >
       <img
         className="h-40 object-cover w-full"
