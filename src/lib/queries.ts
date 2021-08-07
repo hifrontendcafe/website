@@ -104,7 +104,8 @@ export const docsQuery = groq`
   *[_type == "docs" ] | order(date desc) {
     title,
     'slug': slug.current,
-    body
+    body,
+    content
   }
 `;
 
@@ -112,7 +113,8 @@ export const docQuery = groq`
   *[_type == "docs" && slug.current == $slug][0]{
     title,
     'slug': slug.current,
-    body
+    body,
+    content
   }
 `;
 
