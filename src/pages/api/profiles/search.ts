@@ -7,6 +7,11 @@ export default async function handle({ body }, res) {
         id: body.filters.roleId,
       },
     }),
+    ...(body.filters.available && {
+      available: {
+        equals: body.filters.available,
+      },
+    }),
     ...(body.filters.location && {
       location: {
         contains: body.filters.location,

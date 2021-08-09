@@ -1,3 +1,4 @@
+import React from 'react';
 import { GetStaticProps } from 'next';
 import { signIn } from 'next-auth/client';
 import Layout from '../../components/Layout';
@@ -22,6 +23,7 @@ type ProfileFilters = {
   seniorityId: string;
   description: string;
   technologies: string[];
+  available: boolean;
 };
 
 const ProfilesPage: React.FC<PostsPageProps> = ({
@@ -37,6 +39,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
     seniorityId: '',
     description: '',
     technologies: [],
+    available: false,
   });
   const [loading, setLoading] = useState(false);
   const [filteredProfiles, setFilteredProfiles] = useState(profiles);
@@ -174,6 +177,35 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   : 'No opciones disponibles';
               }}
             />
+            <div className="flex items-center flex-shrink-0 space-x-2">
+              <label
+                htmlFor="toggle"
+                className="text-gray-500 leading-4 text-sm flex-shrink w-24"
+              >
+                En búsqueda activa
+              </label>
+              <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                <input
+                  checked={filters.available}
+                  name="toggle"
+                  type="checkbox"
+                  onChange={(event) =>
+                    setFilters({ ...filters, available: event.target.checked })
+                  }
+                  className={`absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
+                    filters.available
+                      ? ' translate-x-4 text-green-400'
+                      : 'border-gray-300'
+                  }`}
+                />
+                <label
+                  htmlFor="toggle"
+                  className={`${
+                    filters.available ? 'bg-white-400' : 'bg-gray-300'
+                  } block overflow-hidden border bg-gray-300 border-gray-300 h-6 rounded-full cursor-pointer`}
+                ></label>
+              </div>
+            </div>
             <input
               className="w-full md:w-auto mt-4 md:mt-0 text-xs btn btn-primary md:text-md"
               type="submit"
@@ -185,7 +217,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           {loading ? (
             <div>Cargando...</div>
           ) : (
-            filteredProfiles?.map((profile, i) => (
+            filteredProfiles?.map((profile) => (
               <div key={profile.name} className="flex">
                 <ProfileCard profile={profile} />
               </div>
