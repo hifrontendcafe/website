@@ -68,19 +68,19 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
                   onClick={() => setCurrentCMYK('cmyk-1')}
                   className={tabStyle}
                 >
-                  CMYK
+                  CMYK 1.0
                 </li>
                 <li
                   onClick={() => setCurrentCMYK('cmyk-2')}
                   className={tabStyle}
                 >
-                  CMYK++
+                  CMYK 2.0
                 </li>
                 <li
                   onClick={() => setCurrentCMYK('cmyk-3')}
                   className={tabStyle}
                 >
-                  CMYK v3.0
+                  CMYK 3.0
                 </li>
               </ul>
             </div>
