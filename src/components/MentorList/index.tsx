@@ -1,11 +1,10 @@
-import { signIn, signOut, useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
+import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { signIn, useSession } from 'next-auth/client';
 import { useEffect, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 interface MentorListProps {
   mentors: Mentor[];
   topics: Topic[];
@@ -17,9 +16,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     undefined,
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
   const [session, loading] = useSession();
-  const [isLogged, setIsLogged] = useState(false);
 
   const filterTopics = () => {
     const filtered = [];
@@ -35,50 +32,10 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     return () => filterTopics();
   }, [filter]);
 
-  useEffect(() => {
-    const checkLogin = () => {
-      !loading && session && session.user.name
-        ? setIsLogged(true)
-        : setIsLogged(false);
-    };
-    checkLogin();
-  }, [session, loading]);
-
-  useEffect(() => {
-    if (router.asPath !== '/mentorias') {
-      router.asPath.split('=')[1].toString() === 'denied'
-        ? setIsModalOpen(true)
-        : null;
-    }
-  }, [router.asPath]);
   return (
     <div className="container px-5 py-24 mx-auto min">
       <div className="flex justify-between">
         <h1 className="text-3xl text-primary">Mentores</h1>
-        {!isLogged && (
-          <button
-            onClick={() =>
-              signIn('discord')
-            }
-            className="flex items-center ml-3 btn btn-secondary"
-          >
-            Iniciar Sesión
-            <FontAwesomeIcon icon={faDiscord} width="25px" className="ml-2" />
-          </button>
-        )}
-        {isLogged && (
-          <button
-            onClick={() => signOut()}
-            className="flex items-center ml-3 btn btn-secondary"
-          >
-            Cerrar Sesión
-            <FontAwesomeIcon
-              icon={faDiscord}
-              width="25px"
-              className="p-0 ml-2"
-            />
-          </button>
-        )}
       </div>
 
       <label className="block mb-2 ml-2 text-xs font-bold text-gray-700 uppercase">
@@ -115,7 +72,8 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
                 key={index}
                 mentor={mentor}
                 topics={topics}
-                isLogged={isLogged}
+                isLogged={session && !loading}
+                openModal={() => setIsModalOpen(true)}
               />
             ),
           )}
@@ -128,12 +86,19 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         titleClasses="text-red-500"
         buttonLabel="Entiendo"
         buttonClasses="text-primary"
+        footer={
+          <button
+            className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
+            style={{ transition: 'all .15s ease' }}
+            onClick={() => signIn('discord')}
+          >
+            Iniciar Sesión
+            <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
+          </button>
+        }
       >
         <div className="px-2 overflow-auto text-lg">
-          <p>
-            Para poder participar del programa de mentorías debes ser parte de
-            la comunidad de FrontendCafé.
-          </p>
+          <p>Para poder solicitar una mentoría primero debes iniciar sesión.</p>
         </div>
       </SimpleModal>
     </div>
