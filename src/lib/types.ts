@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 declare module 'next-auth' {
   interface Session {
     user: {
@@ -8,6 +8,7 @@ declare module 'next-auth' {
     };
   }
 }
+
 export interface Settings {
   description: string;
   heroBackground: Image;
@@ -126,6 +127,7 @@ export interface Doc {
   title: string;
   slug: string;
   body: string;
+  content?: MDXRemoteSerializeResult;
 }
 
 export interface FeaturedCards {
