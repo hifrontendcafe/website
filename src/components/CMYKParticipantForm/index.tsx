@@ -1,8 +1,8 @@
 import { useForm } from 'react-hook-form';
-import { CMYKParticipant } from '../../lib/types';
-import { useEffect, useState } from 'react';
+import { CMYKParticipant } from '@/lib/types';
+import { useState } from 'react';
 import { useSettings } from '@/hooks/api';
-import { timezones } from '@/pages/inscripcion-cmyk/timezones';
+import { timezones } from '@/lib/timezones';
 import { useSession } from 'next-auth/client';
 
 const CMYKParticipantForm: React.FC = () => {
@@ -51,7 +51,7 @@ const CMYKParticipantForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col w-full grid-cols-2 gap-5 pt-6 pb-8 mb-4 bg-white rounded md:px-8 lg:px-24 md:px-16 md:grid"
+      className="flex flex-col w-full grid-cols-2 gap-5 pt-6 pb-8 mb-4 bg-white rounded lg:px-24 md:px-16 md:grid"
     >
       <input
         name="discordID"
