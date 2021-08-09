@@ -62,7 +62,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
           <img
             className={`object-cover object-center rounded ${styles.cmyk3heroimage}`}
             alt="hero"
-            src="/img/Chaboncita.svg"
+            src="/img/cmyk-girl.min.svg"
           />
         </div>
       </div>
