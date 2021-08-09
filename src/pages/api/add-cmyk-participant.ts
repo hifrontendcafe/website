@@ -40,11 +40,11 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
       });
     }
     // If user is not registered as cmykParticipant, register it
-    if (!user.cmykParticipant || user.cmykParticipant?.length === 0) {
+    if (!user || !user.cmykParticipant || user.cmykParticipant.length === 0) {
       const newCMYKParticipant = await createCMYKParticipant({
         discordUser: {
           _type: 'reference',
-          _ref: user.cmykParticipant ? user._id : newUser._id,
+          _ref: user.cmykParticipant?.length !== 0 ? user._id : newUser._id,
         },
         participationLevel: body.participationLevel,
         aboutParticipant: body.aboutParticipant,
@@ -54,6 +54,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
         timeAvailability: body.timeAvailability,
         status: 'revision',
       });
+      // If user is already registered
       return res.status(200).json({ status: 'registered', newCMYKParticipant });
     }
     return res.status(200).json({
