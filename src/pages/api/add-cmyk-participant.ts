@@ -13,7 +13,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
     const user = await getPersonByRealDiscordID(body.discordID);
     let newUser;
     // If user does not existe create it
-    if (!user.username) {
+    if (!user) {
       newUser = await createPerson({
         username: body.discordUser,
         discordID: {
@@ -28,7 +28,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
         linkedin: body.linkedIn,
       });
       // if User exists and is not registered as cmykParticipant, update it
-    } else if (user.username && user.cmykParticipant?.length === 0) {
+    } else if (user && user.cmykParticipant.length === 0) {
       newUser = await updatePerson(user._id, {
         username: body.discordUser,
         email: body.email,
@@ -40,11 +40,12 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
       });
     }
     // If user is not registered as cmykParticipant, register it
-    if (!user || !user.cmykParticipant || user.cmykParticipant.length === 0) {
+    if (!user || user.cmykParticipant.length === 0) {
       const newCMYKParticipant = await createCMYKParticipant({
         discordUser: {
           _type: 'reference',
-          _ref: user.cmykParticipant?.length !== 0 ? user._id : newUser._id,
+          _ref:
+            !user || user.cmykParticipant.length === 0 ? newUser._id : user._id,
         },
         participationLevel: body.participationLevel,
         aboutParticipant: body.aboutParticipant,
