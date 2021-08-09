@@ -75,6 +75,7 @@ export interface CMYK {
 }
 
 export interface CMYKParticipant {
+  _id?: string;
   discordUser: {
     _type: string;
     _ref: string;
@@ -150,6 +151,7 @@ export interface Person {
   username: {
     current: string;
   };
+  discordID: string;
   photo: {
     src: string;
     alt?: string;
@@ -162,6 +164,7 @@ export interface Person {
   portfolio?: string;
   github?: string;
   fecTeam?: boolean;
+  cmykParticipant?: CMYKParticipant[];
 }
 
 export type Profile = {
