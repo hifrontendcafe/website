@@ -35,7 +35,10 @@ export default NextAuth({
         },
       );
       const guilds = await guildResp.json();
-      if (guilds.find((guild) => guild.id === '594363964499165194')) {
+      const isFecMember = guilds.find(
+        (guild) => guild.id === '594363964499165194',
+      );
+      if (isFecMember) {
         return true;
       } else {
         return '/unauthorized';

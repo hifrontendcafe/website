@@ -11,10 +11,6 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
   try {
     const user = await getPersonByRealDiscordID(body.discordID);
-    console.log(
-      '🚀 ~ file: add-cmyk-participant.ts ~ line 14 ~ post ~ user',
-      user,
-    );
     let newUser;
     // If user does not existe create it
     if (!user.username) {
