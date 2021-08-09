@@ -107,7 +107,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 <option value="" key="all">
                   Todos
                 </option>
-                <option value="" key="all" selected disabled hidden>
+                <option value="" key="placeholder" selected disabled hidden>
                   Rol
                 </option>
               </select>
@@ -125,7 +125,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                     {seniority.name}
                   </option>
                 ))}
-                <option value="" key="all" selected disabled hidden>
+                <option value="" key="placeholder" selected disabled hidden>
                   Seniority
                 </option>
                 <option value="" key="all">
@@ -138,7 +138,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 name="location"
                 type="text"
                 placeholder="Ubicación"
-                className="py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                className="placeholder-gray-600 py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
                 onChange={(event) =>
                   setFilters({ ...filters, location: event.target.value })
                 }
@@ -149,7 +149,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 name="seniority"
                 type="text"
                 placeholder="Explora las biografías"
-                className="w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                className="placeholder-gray-600  w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
                 onChange={(event) =>
                   setFilters({ ...filters, description: event.target.value })
                 }
@@ -160,8 +160,9 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             <Select
               instanceId="technologies-selector"
               isMulti
-              className="text-gray-700 w-full"
-              placeholder="Seleccione tecnologías"
+              classNamePrefix="react-select"
+              className="w-full filter-selector"
+              placeholder="Selecciona tecnologías"
               onChange={(techs) =>
                 setFilters({ ...filters, technologies: techs })
               }
