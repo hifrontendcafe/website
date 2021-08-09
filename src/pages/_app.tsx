@@ -7,6 +7,7 @@ import '../styles/scrollbar.css';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { Hydrate } from 'react-query/hydration';
 import { AppWrapper } from '../lib/settings';
+import { Provider } from 'next-auth/client';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const queryClientRef = useRef<QueryClient>();
@@ -15,13 +16,15 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   }
 
   return (
-    <QueryClientProvider client={queryClientRef.current}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <AppWrapper>
-          <Component {...pageProps} />
-        </AppWrapper>
-      </Hydrate>
-    </QueryClientProvider>
+    <Provider session={pageProps.session}>
+      <QueryClientProvider client={queryClientRef.current}>
+        <Hydrate state={pageProps.dehydratedState}>
+          <AppWrapper>
+            <Component {...pageProps} />
+          </AppWrapper>
+        </Hydrate>
+      </QueryClientProvider>
+    </Provider>
   );
 };
 
