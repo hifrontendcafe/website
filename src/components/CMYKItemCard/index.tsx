@@ -57,9 +57,6 @@ const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
               GITHUB
             </a>
           </Link>
-          {/* <a href="#" className="btn whitespace-no-wrap" style={btnStyles}>
-            Ver más
-          </a> */}
         </div>
       </div>
     </div>
