@@ -68,7 +68,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           Conoce nuestra comunidad
         </h1>
         <p className="text-center mx-auto text-gray-600">
-          Te invitamos a saber más sobre nuestros perfiles, sus inicitativas e
+          Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
           intereses.
         </p>
       </div>
