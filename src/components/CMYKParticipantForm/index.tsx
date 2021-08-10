@@ -154,7 +154,7 @@ const CMYKParticipantForm: React.FC = () => {
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
           name="github"
           type="url"
-          placeholder="Ingresa tu perfil de Github"
+          placeholder="Ingresa la url de tu perfil de Github"
           autoComplete="off"
           required
           ref={register({ required: true })}
@@ -168,7 +168,7 @@ const CMYKParticipantForm: React.FC = () => {
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
           name="twitter"
           type="url"
-          placeholder="Ingresa tu perfil de Twitter"
+          placeholder="Ingresa la url de tu perfil de Twitter"
           autoComplete="off"
           ref={register({ required: false })}
         />
@@ -181,7 +181,7 @@ const CMYKParticipantForm: React.FC = () => {
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
           name="linkedIn"
           type="url"
-          placeholder="Ingresa tu perfil de LinkedIn"
+          placeholder="Ingresa la url de tu perfil de LinkedIn"
           autoComplete="off"
           ref={register({ required: false })}
         />
