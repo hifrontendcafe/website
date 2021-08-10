@@ -69,7 +69,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
         </h1>
         <p className="text-center mx-auto text-gray-600">
           Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
-          intereses.
+          intereses y poder conectarte a través de sus redes sociales.
         </p>
       </div>
 
