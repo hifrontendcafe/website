@@ -63,13 +63,150 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
-      <div className="container px-4 pt-16 mx-auto sm:px-6 md:pt-0">
-        <h1 className="title mt-2 leading-snug tracking-tight py-20 text-center">
+      <div className="container px-4 pt-16 pb-10 mx-auto sm:px-6 md:pt-0 max-w-3xl">
+        <h1 className="title mt-2 leading-snug tracking-tight pt-20 text-center">
           Conoce nuestra comunidad
         </h1>
+        <p className="text-center mx-auto text-gray-600">
+          Te invitamos a saber más sobre nuestros perfiles, sus inicitativas e
+          intereses.
+        </p>
       </div>
 
       <div className="container mx-auto bg-white min-h-screen">
+        <div className="max-w-5xl mx-auto mb-4">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              filterProfiles();
+            }}
+            className="mx-4 px-2 py-2"
+          >
+            <div className="md:flex md:items-center justify-around md:space-x-4">
+              <div className="mt-3 md:mt-0 w-full">
+                <select
+                  name="role"
+                  placeholder="Rol"
+                  className="w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                  onChange={(event) =>
+                    setFilters({ ...filters, roleId: event.target.value })
+                  }
+                >
+                  {roles.map((role) => (
+                    <option value={role.id} key={role.id}>
+                      {role.name}
+                    </option>
+                  ))}
+                  <option value="" key="all">
+                    Todos
+                  </option>
+                  <option value="" key="placeholder" selected disabled hidden>
+                    Rol
+                  </option>
+                </select>
+              </div>
+              <div className="mt-3 md:mt-0 w-full">
+                <select
+                  name="seniority"
+                  className="py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                  onChange={(event) =>
+                    setFilters({ ...filters, seniorityId: event.target.value })
+                  }
+                >
+                  {seniorities.map((seniority) => (
+                    <option value={seniority.id} key={seniority.id}>
+                      {seniority.name}
+                    </option>
+                  ))}
+                  <option value="" key="placeholder" selected disabled hidden>
+                    Seniority
+                  </option>
+                  <option value="" key="all">
+                    Todas
+                  </option>
+                </select>
+              </div>
+              <div className="mt-3 md:mt-0 w-full">
+                <input
+                  name="location"
+                  type="text"
+                  placeholder="Ubicación"
+                  className="placeholder-gray-600 py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                  onChange={(event) =>
+                    setFilters({ ...filters, location: event.target.value })
+                  }
+                />
+              </div>
+              <div className="mt-3 md:mt-0 w-full">
+                <input
+                  name="seniority"
+                  type="text"
+                  placeholder="Explora las biografías"
+                  className="placeholder-gray-600  w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                  onChange={(event) =>
+                    setFilters({ ...filters, description: event.target.value })
+                  }
+                />
+              </div>
+            </div>
+            <div className="mt-4 md:flex w-full items-center md:space-x-4">
+              <Select
+                instanceId="technologies-selector"
+                isMulti
+                classNamePrefix="react-select"
+                className="w-full filter-selector"
+                placeholder="Selecciona tecnologías"
+                onChange={(techs) =>
+                  setFilters({ ...filters, technologies: techs })
+                }
+                isValidNewOption={isValidNewOption}
+                options={filters.technologies?.length === 5 ? [] : technologies}
+                noOptionsMessage={() => {
+                  return filters.technologies.length === 5
+                    ? 'Has alcanzado el máximo de opciones'
+                    : 'No opciones disponibles';
+                }}
+              />
+              <div className="flex items-center flex-shrink-0 space-x-2 mt-4 md:mt-0">
+                <label
+                  htmlFor="toggle"
+                  className="text-gray-500 leading-4 text-sm flex-shrink w-24"
+                >
+                  En búsqueda activa
+                </label>
+                <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                  <input
+                    checked={filters.available}
+                    name="toggle"
+                    type="checkbox"
+                    onChange={(event) =>
+                      setFilters({
+                        ...filters,
+                        available: event.target.checked,
+                      })
+                    }
+                    className={`absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
+                      filters.available
+                        ? ' translate-x-4 text-green-400'
+                        : 'border-gray-300'
+                    }`}
+                  />
+                  <label
+                    htmlFor="toggle"
+                    className={`${
+                      filters.available ? 'bg-white-400' : 'bg-gray-300'
+                    } block overflow-hidden border bg-gray-300 border-gray-300 h-6 rounded-full cursor-pointer`}
+                  ></label>
+                </div>
+              </div>
+              <input
+                className="w-full md:w-auto mt-4 md:mt-0 text-xs btn btn-primary md:text-md"
+                type="submit"
+                value="Buscar"
+              />
+            </div>
+          </form>
+        </div>
         <div className="px-4 py-5 sm:px-6 md:flex md:justify-between">
           <div className="mb-2 font-bold leading-7 md:text-xl text-primary md:mb-0">
             Perfiles registrados
@@ -85,134 +222,6 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             Crea tu perfil
           </button>
         </div>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            filterProfiles();
-          }}
-          className="mx-4 px-2 py-2"
-        >
-          <div className="md:flex md:items-center justify-around md:space-x-4">
-            <div className="mt-3 md:mt-0 w-full">
-              <select
-                name="role"
-                placeholder="Rol"
-                className="w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
-                onChange={(event) =>
-                  setFilters({ ...filters, roleId: event.target.value })
-                }
-              >
-                {roles.map((role) => (
-                  <option value={role.id} key={role.id}>
-                    {role.name}
-                  </option>
-                ))}
-                <option value="" key="all">
-                  Todos
-                </option>
-                <option value="" key="placeholder" selected disabled hidden>
-                  Rol
-                </option>
-              </select>
-            </div>
-            <div className="mt-3 md:mt-0 w-full">
-              <select
-                name="seniority"
-                className="py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
-                onChange={(event) =>
-                  setFilters({ ...filters, seniorityId: event.target.value })
-                }
-              >
-                {seniorities.map((seniority) => (
-                  <option value={seniority.id} key={seniority.id}>
-                    {seniority.name}
-                  </option>
-                ))}
-                <option value="" key="placeholder" selected disabled hidden>
-                  Seniority
-                </option>
-                <option value="" key="all">
-                  Todas
-                </option>
-              </select>
-            </div>
-            <div className="mt-3 md:mt-0 w-full">
-              <input
-                name="location"
-                type="text"
-                placeholder="Ubicación"
-                className="placeholder-gray-600 py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
-                onChange={(event) =>
-                  setFilters({ ...filters, location: event.target.value })
-                }
-              />
-            </div>
-            <div className="mt-3 md:mt-0 w-full">
-              <input
-                name="seniority"
-                type="text"
-                placeholder="Explora las biografías"
-                className="placeholder-gray-600  w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
-                onChange={(event) =>
-                  setFilters({ ...filters, description: event.target.value })
-                }
-              />
-            </div>
-          </div>
-          <div className="mt-4 md:flex w-full items-center md:space-x-4">
-            <Select
-              instanceId="technologies-selector"
-              isMulti
-              classNamePrefix="react-select"
-              className="w-full filter-selector"
-              placeholder="Selecciona tecnologías"
-              onChange={(techs) =>
-                setFilters({ ...filters, technologies: techs })
-              }
-              isValidNewOption={isValidNewOption}
-              options={filters.technologies?.length === 5 ? [] : technologies}
-              noOptionsMessage={() => {
-                return filters.technologies.length === 5
-                  ? 'Has alcanzado el máximo de opciones'
-                  : 'No opciones disponibles';
-              }}
-            />
-            <div className="flex items-center flex-shrink-0 space-x-2">
-              <label
-                htmlFor="toggle"
-                className="text-gray-500 leading-4 text-sm flex-shrink w-24"
-              >
-                En búsqueda activa
-              </label>
-              <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                <input
-                  checked={filters.available}
-                  name="toggle"
-                  type="checkbox"
-                  onChange={(event) =>
-                    setFilters({ ...filters, available: event.target.checked })
-                  }
-                  className={`absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
-                    filters.available
-                      ? ' translate-x-4 text-green-400'
-                      : 'border-gray-300'
-                  }`}
-                />
-                <label
-                  htmlFor="toggle"
-                  className={`${
-                    filters.available ? 'bg-white-400' : 'bg-gray-300'
-                  } block overflow-hidden border bg-gray-300 border-gray-300 h-6 rounded-full cursor-pointer`}
-                ></label>
-              </div>
-            </div>
-            <input
-              className="w-full md:w-auto mt-4 md:mt-0 text-xs btn btn-primary md:text-md"
-              type="submit"
-              value="Buscar"
-            />
-          </div>
-        </form>
         <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch ">
           {loading ? (
             <div>Cargando...</div>
