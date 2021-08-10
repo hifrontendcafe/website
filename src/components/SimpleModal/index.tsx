@@ -1,9 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import { ReactNode } from 'react';
 
 type ModalProps = {
   isOpen: boolean;
   title: string;
   close: () => void;
+  footer: ReactNode;
   titleClasses?: string;
   buttonLabel?: string;
   buttonClasses?: string;
@@ -15,6 +17,7 @@ const SimpleModal: React.FC<ModalProps> = ({
   title,
   close,
   titleClasses,
+  footer,
 }) => {
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -40,7 +43,7 @@ const SimpleModal: React.FC<ModalProps> = ({
               {/*content*/}
               <div className="relative flex flex-col w-full bg-white border rounded-lg shadow-xl outline-none focus:outline-none">
                 {/*header*/}
-                <div className="flex items-center justify-between px-5 py-2 border-b border-gray-300 border-solid rounded-t">
+                <div className="flex items-center justify-between px-5 py-2 rounded-t">
                   <h3
                     className={`text-2xl md:text-3xl font-semibold ${
                       titleClasses ? titleClasses : ''
@@ -62,16 +65,8 @@ const SimpleModal: React.FC<ModalProps> = ({
                   {children}
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-end p-2 rounded-b">
-                  <a
-                    target="_blank"
-                    className="mx-3 mt-0 mb-3 btn btn-secondary"
-                    style={{ transition: 'all .15s ease' }}
-                    href="https://discord.gg/frontendcafe"
-                    rel="noreferrer"
-                  >
-                    Sumate a Discord
-                  </a>
+                <div className="flex items-center justify-end px-4 pb-4 rounded-b">
+                  {footer}
                 </div>
               </div>
             </motion.div>

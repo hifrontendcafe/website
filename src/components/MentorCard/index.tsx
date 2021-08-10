@@ -10,12 +10,14 @@ interface MentorCardProps {
   mentor: Mentor;
   topics: Topic[];
   isLogged: boolean;
+  openModal: () => void;
 }
 
 const MentorCard: React.FC<MentorCardProps> = ({
   mentor,
   topics,
   isLogged,
+  openModal,
 }) => {
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e._id == id);
@@ -75,7 +77,11 @@ const MentorCard: React.FC<MentorCardProps> = ({
               <h2 className="text-2xl font-medium text-green-900 title-font">
                 {mentor.name}
               </h2>
-              {!isLogged ? null : mentor.isActive && mentor.calendly ? (
+              {!mentor.isActive ? (
+                <button className="px-3 py-1 text-sm text-white uppercase bg-gray-500 rounded cursor-not-allowed font-base">
+                  No Disponible
+                </button>
+              ) : mentor.isActive && mentor.calendly && isLogged ? (
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
@@ -85,9 +91,12 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   </a>
                 </Link>
               ) : (
-                <span className="px-3 py-1 text-sm text-white uppercase bg-gray-500 rounded cursor-not-allowed font-base">
-                  No Disponible
-                </span>
+                <button
+                  onClick={() => openModal()}
+                  className="px-3 py-1 text-sm text-white uppercase bg-gray-500 rounded font-base"
+                >
+                  Contactame
+                </button>
               )}
             </div>
 
