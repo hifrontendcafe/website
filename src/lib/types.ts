@@ -1,13 +1,4 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-declare module 'next-auth' {
-  interface Session {
-    user: {
-      id: string;
-      email: string;
-      name: string;
-    };
-  }
-}
 
 export interface Settings {
   description: string;
