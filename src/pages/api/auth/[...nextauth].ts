@@ -1,4 +1,4 @@
-import NextAuth from 'next-auth';
+import NextAuth, { Profile } from 'next-auth';
 import Providers from 'next-auth/providers';
 
 export default NextAuth({
@@ -7,15 +7,23 @@ export default NextAuth({
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
       scope: 'identify email guilds',
-      profile(profile) {
+      profile: (profile: Profile) => {
         return {
           id: profile.id,
           name: `${profile.username}#${profile.discriminator}`,
           email: profile.email,
+          image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.webp`,
         };
       },
     }),
   ],
+  secret: process.env.SECRET,
+  jwt: {
+    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
+  },
+  session: {
+    jwt: true,
+  },
   callbacks: {
     async signIn(user, account, profile) {
       const guildResp = await fetch(
@@ -27,15 +35,18 @@ export default NextAuth({
         },
       );
       const guilds = await guildResp.json();
-      if (guilds.find((guild) => guild.id === '594363964499165194')) {
+      const isFecMember = guilds.find(
+        (guild) => guild.id === '594363964499165194',
+      );
+      if (isFecMember) {
         return true;
       } else {
-        return '/mentorias?login=denied';
+        return '/unauthorized';
       }
     },
     session: async (session, user) => {
-      session.user.id = user.sub;
-      return Promise.resolve(session);
+      session.user.id = user.sub as number;
+      return session;
     },
   },
 });

@@ -30,6 +30,7 @@ import {
   settingsQuery,
   staffQuery,
   featuredCardsQuery,
+  personQueryByDiscordID,
 } from './queries';
 
 const eventFields = `
@@ -177,10 +178,20 @@ export async function getPersonByDiscordId(
   const result = await getClient(preview).fetch(personQuery, { id });
   return result.length > 0 && result[0];
 }
+
+export async function getPersonByRealDiscordID(
+  id: string,
+  preview = false,
+): Promise<Person> {
+  const result = await getClient(preview).fetch(personQueryByDiscordID, { id });
+  return result.length > 0 && result[0];
+}
+
 export async function getFecTeam(preview = false): Promise<Person> {
   const result = await getClient(preview).fetch(staffQuery);
   return result.length > 0 && result;
 }
+
 export async function getAllFeaturedCards(
   preview = false,
 ): Promise<FeaturedCards[]> {

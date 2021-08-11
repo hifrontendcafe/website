@@ -27,7 +27,6 @@ export default async function handle(req, res) {
     }));
 
     let result;
-    console.log({ esteid: id });
     if (id) {
       result = await prisma.profile.update({
         where: {

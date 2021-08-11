@@ -2,7 +2,6 @@ import emailjs from 'emailjs-com';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { DiscordUserTooltip } from '../FormHelpers';
-import { ReactGroup } from '../../../lib/types';
 
 const CreateGroupForm: React.FC = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -10,18 +9,16 @@ const CreateGroupForm: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
-  const onSubmit = async (data: ReactGroup) => {
+  const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      const res = await fetch('/api/create-react-group', {
+      await fetch('/api/create-react-group', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
-      const response = await res.json();
       setIsSuccess(true);
       emailjs
         .send('my_gmail', 'new_reactivistas', {}, 'user_vZYiwq0jXYNBQFbiNgrQu')
