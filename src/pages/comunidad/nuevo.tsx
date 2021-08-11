@@ -1,17 +1,15 @@
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import { signIn } from 'next-auth/client';
-import { useSession } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/client';
 import Layout from '../../components/Layout';
 import { getLayout } from '@/utils/get-layout';
 import { useForm } from 'react-hook-form';
 import { ReactGroup } from '@/lib/types';
 import { Technology, Role, Seniority } from '@prisma/client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import prisma from '../../lib/prisma';
 import Select from 'react-select';
 import Resizer from 'react-image-file-resizer';
-import { useEffect } from 'react';
 
 type NewProfileProps = {
   preview?: boolean;
@@ -134,9 +132,9 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     setTimeout(() => setMessage({ error: false, text: '' }), 5000);
   };
 
-  const onError = (errors, e) => console.log(errors, e);
+  const onError = (errorsLog, e) => console.log(errorsLog, e);
 
-  if (true) {
+  if (loading && loadingProfile) {
     return (
       <Layout
         title="Comunidad"

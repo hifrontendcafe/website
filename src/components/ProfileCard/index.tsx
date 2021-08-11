@@ -1,11 +1,11 @@
-
+import { ExtendedProfile } from '@/lib/types';
 import ProfileSocialMedia from '../ProfileSocialMedia';
 
 type Props = {
-  profile: any; //TODO: fix me
+  profile: ExtendedProfile;
 };
 
-const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
+const ProfileCard: React.FC<Props> = ({ profile }) => {
   const socialMediaList = {
     ...(profile.email && { email: 'mailto:' + profile.email }),
     ...(profile.linkedin && { linkedin: profile.linkedin }),

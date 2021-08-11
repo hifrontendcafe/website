@@ -1,16 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
 import { signIn } from 'next-auth/client';
 import Layout from '../../components/Layout';
 import ProfileCard from '../../components/ProfileCard';
 import prisma from '../../lib/prisma';
 import { getLayout } from '@/utils/get-layout';
-import { Profile } from '@prisma/client';
-import { useState } from 'react';
 import Select from 'react-select';
+import { ExtendedProfile } from '@/lib/types';
 
 type PostsPageProps = {
-  profiles: Profile[];
+  profiles: ExtendedProfile[];
   preview?: boolean;
   technologies: { name: string; id: string }[];
   roles: { name: string; id: string }[];
@@ -51,8 +50,8 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
       body: JSON.stringify({ filters }),
     });
     setLoading(false);
-    const profiles = await response.json();
-    setFilteredProfiles(profiles);
+    const profilesResponse = await response.json();
+    setFilteredProfiles(profilesResponse);
   };
   const isValidNewOption = (inputValue, selectValue) =>
     inputValue.length > 0 && selectValue.length < 5;
@@ -221,17 +220,21 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             Crea tu perfil
           </button>
         </div>
-        <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch ">
-          {loading ? (
-            <div>Cargando...</div>
-          ) : (
-            filteredProfiles?.map((profile) => (
+        {loading ? (
+          <div className="mt-4 w-full text-center">Cargando...</div>
+        ) : filteredProfiles.length > 0 ? (
+          <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
+            {filteredProfiles.map((profile) => (
               <div key={profile.name} className="flex">
                 <ProfileCard profile={profile} />
               </div>
-            ))
-          )}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-4 w-full text-center">
+            No se han encontrado perfiles con los filtros aplicados.
+          </div>
+        )}
       </div>
     </Layout>
   );
