@@ -1,25 +1,45 @@
 import { useForm } from 'react-hook-form';
-import { CMYKParticipant } from '@/lib/types';
 import { useState } from 'react';
 import { useSettings } from '@/hooks/api';
 import { timezones } from '@/lib/timezones';
 import { useSession } from 'next-auth/client';
 
+type FormInputs = {
+  discordID: string;
+  discordUser: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  timezone: string;
+  github: string;
+  twitter: string;
+  linkedIn: string;
+  experience: string;
+  participationLevel: string;
+  timeAvailability: string;
+  previousKnowledge: string;
+  aboutParticipant: string;
+  otherQuestions: string;
+};
+
 const CMYKParticipantForm: React.FC = () => {
   const {
     data: { cmykInscription },
   } = useSettings();
-
-  const { register, handleSubmit, reset } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    reset,
+  } = useForm<FormInputs>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [isInfo, setIsInfo] = useState<boolean>(false);
   const [session, loading] = useSession();
 
-  const onSubmit = async (data: CMYKParticipant) => {
+  const onSubmit = async (data: FormInputs) => {
     setIsLoading(true);
-
     if (cmykInscription) {
       try {
         const res = await fetch('/api/add-cmyk-participant', {
@@ -54,13 +74,11 @@ const CMYKParticipantForm: React.FC = () => {
       className="flex flex-col w-full grid-cols-2 gap-5 pt-6 pb-8 mb-4 bg-white rounded lg:px-24 md:px-16 md:grid"
     >
       <input
-        name="discordID"
         type="text"
-        required
         defaultValue={(session && session.user.id) || ''}
         readOnly
         hidden
-        ref={register({ required: true })}
+        {...register('discordID', { required: true })}
       />
 
       <div className="px-5 mb-4">
@@ -70,14 +88,14 @@ const CMYKParticipantForm: React.FC = () => {
         <div className="relative">
           <input
             className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-            name="discordUser"
             type="text"
             placeholder="Ingresa tu usuario de Discord"
             autoComplete="off"
-            required
             defaultValue={(session && session.user.name) || ''}
             readOnly
-            ref={register({ required: true })}
+            {...register('discordUser', {
+              required: 'El usuario es requerido',
+            })}
           />
         </div>
       </div>
@@ -87,14 +105,15 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="email"
           type="email"
           placeholder="Ingresa tu email"
           autoComplete="off"
-          required
           defaultValue={(session && session.user.email) || ''}
-          ref={register({ required: true })}
+          {...register('email', { required: true })}
         />
+        {errors.email && (
+          <p className="pl-1 text-sm text-red-600">Email es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
@@ -102,13 +121,14 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="firstName"
           type="text"
           placeholder="Ingresa tu nombre"
           autoComplete="off"
-          required
-          ref={register({ required: true })}
+          {...register('firstName', { required: true })}
         />
+        {errors.firstName && (
+          <p className="pl-1 text-sm text-red-600">Nombre es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
@@ -116,35 +136,34 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="lastName"
           type="text"
           placeholder="Ingresa tu apellido"
           autoComplete="off"
-          required
-          ref={register({ required: true })}
+          {...register('lastName', { required: true })}
         />
+        {errors.lastName && (
+          <p className="pl-1 text-sm text-red-600">Apellido es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
           Zona horaria
         </label>
         <select
-          name="timezone"
           id="timezone"
-          required
-          ref={register({ required: true })}
+          {...register('timezone', { required: true })}
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          defaultValue={'default'}
         >
-          <option value="default" disabled>
-            Por favor elige una opción
-          </option>
+          <option value="">Por favor elige una opción</option>
           {timezones.map((tz) => (
             <option value={tz.text} key={tz.text}>
               {tz.text}
             </option>
           ))}
         </select>
+        {errors.timezone && (
+          <p className="pl-1 text-sm text-red-600">Zona horaria es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
@@ -152,13 +171,14 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="github"
           type="url"
-          placeholder="Ingresa la url de tu perfil de Github"
+          placeholder="https://www.github.com/usuario"
           autoComplete="off"
-          required
-          ref={register({ required: true })}
+          {...register('github', { required: true })}
         />
+        {errors.github && (
+          <p className="pl-1 text-sm text-red-600">GitHub es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
@@ -166,11 +186,10 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="twitter"
           type="url"
-          placeholder="Ingresa la url de tu perfil de Twitter"
+          placeholder="https://www.twitter.com/usuario"
           autoComplete="off"
-          ref={register({ required: false })}
+          {...register('twitter', { required: false })}
         />
       </div>
       <div className="px-5 mb-4">
@@ -179,11 +198,10 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <input
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="linkedIn"
           type="url"
-          placeholder="Ingresa la url de tu perfil de LinkedIn"
+          placeholder="https://www.linkedin.com/in/usuario"
           autoComplete="off"
-          ref={register({ required: false })}
+          {...register('linkedIn', { required: false })}
         />
       </div>
       <div className="px-5 mb-4">
@@ -191,60 +209,54 @@ const CMYKParticipantForm: React.FC = () => {
           ¿Ya tienes experiencia laboral en IT?*
         </label>
         <select
-          name="experience"
           id="experience"
-          required
-          ref={register({ required: true })}
+          {...register('experience', { required: true })}
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          defaultValue={'default'}
         >
-          <option value="default" disabled>
-            Por favor elige una opción
-          </option>
+          <option value="">Por favor elige una opción</option>
           <option value="yes">Sí</option>
           <option value="no">No</option>
         </select>
+        {errors.experience && (
+          <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
           Nivel de participación*
         </label>
         <select
-          name="participationLevel"
           id="participationLevel"
-          required
-          ref={register({ required: true })}
+          {...register('participationLevel', { required: true })}
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          defaultValue={'default'}
         >
-          <option value="default" disabled>
-            Por favor elige una opción
-          </option>
+          <option value="">Por favor elige una opción</option>
           <option value="level1">Nivel 1 (HTML - CSS - JavaScript)</option>
           <option value="level2">
             Nivel 2 (React JS - Librería de CSS a elección)
           </option>
         </select>
+        {errors.participationLevel && (
+          <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
           Disponibilidad horaria*
         </label>
         <select
-          name="timeAvailability"
           id="timeAvailability"
-          required
-          ref={register({ required: true })}
+          {...register('timeAvailability', { required: true })}
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          defaultValue={'default'}
         >
-          <option value="default" disabled>
-            Por favor elige una opción
-          </option>
+          <option value="">Por favor elige una opción</option>
           <option value=">=6hours">6 o más horas semanales</option>
           <option value=">4<6hours">Entre 4 y 6 horas semanales</option>
           <option value=">2<4hours">Entre 2 y 4 horas semanales</option>
         </select>
+        {errors.timeAvailability && (
+          <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
@@ -253,11 +265,12 @@ const CMYKParticipantForm: React.FC = () => {
         <textarea
           rows={1}
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="previousKnowledge"
           placeholder="Si tienes conocimientos, cuéntanos"
-          required
-          ref={register({ required: true })}
+          {...register('previousKnowledge', { required: true })}
         ></textarea>
+        {errors.previousKnowledge && (
+          <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
@@ -267,11 +280,12 @@ const CMYKParticipantForm: React.FC = () => {
         <textarea
           rows={2}
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="aboutParticipant"
           placeholder="Conocerte nos permitirá saber ubicarte en los proyectos"
-          required
-          ref={register({ required: true })}
+          {...register('aboutParticipant', { required: true })}
         ></textarea>
+        {errors.aboutParticipant && (
+          <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
+        )}
       </div>
       <div className="px-5 mb-4">
         <label className="block mb-2 text-lg font-bold md:text-1xl">
@@ -280,8 +294,7 @@ const CMYKParticipantForm: React.FC = () => {
         <textarea
           rows={2}
           className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
-          name="otherQuestions"
-          ref={register({ required: false })}
+          {...register('otherQuestions', { required: false })}
         ></textarea>
       </div>
       <div className="col-span-2 pt-8">
@@ -289,7 +302,6 @@ const CMYKParticipantForm: React.FC = () => {
           <button
             type="submit"
             className="inline-flex justify-center px-6 py-3 mr-6 font-medium text-white border border-transparent rounded-md shadow-sm text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-            disabled={isLoading}
           >
             {isLoading ? 'Enviando...' : 'Enviar'}
           </button>
