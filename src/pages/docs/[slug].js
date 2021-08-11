@@ -32,14 +32,13 @@ import {
 
 const DocPage = ({ mdx, data, preview }) => {
   const router = useRouter();
-
-  if (!router.isFallback && !data?.slug) return <Error statusCode={404} />;
-
   const { data: doc } = usePreviewSubscription(docQuery, {
     params: { slug: data?.slug },
     initialData: data,
     enabled: preview,
   });
+
+  if (!router.isFallback && !data?.slug) return <Error statusCode={404} />;
 
   if (router.isFallback) return <div>Cargando...</div>;
 
