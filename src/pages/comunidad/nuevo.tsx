@@ -136,14 +136,14 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 
   const onError = (errors, e) => console.log(errors, e);
 
-  if (loading && loadingProfile) {
+  if (true) {
     return (
       <Layout
         title="Comunidad"
         description="Encontrá los perfiles dentro de FEC"
         preview={preview}
       >
-        <div className="container max-auto text-center text-2xl rounded-lg shadow bg-gray-50 py-32">
+        <div className="container mx-auto my-20 text-center text-2xl rounded-lg shadow bg-gray-50 py-32">
           Cargando Sesión...
         </div>
       </Layout>
