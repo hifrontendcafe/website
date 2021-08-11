@@ -63,16 +63,15 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
-      <div className="container px-4 pt-16 pb-10 mx-auto sm:px-6 md:pt-0 max-w-3xl">
-        <h1 className="title mt-2 leading-snug tracking-tight pt-20 text-center">
+      <div className="container px-4 pt-10 md:pt-16 pb-10 mx-auto sm:px-6 max-w-3xl">
+        <h1 className="title mt-2 leading-snug tracking-tight text-center">
           Conoce nuestra comunidad
         </h1>
-        <p className="text-center mx-auto text-gray-600">
+        <p className="mt-4 md:mt-0 text-center mx-auto text-gray-600">
           Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
           intereses y poder conectarte a través de sus redes sociales.
         </p>
       </div>
-
       <div className="container mx-auto bg-white min-h-screen">
         <div className="max-w-5xl mx-auto mb-4">
           <form
