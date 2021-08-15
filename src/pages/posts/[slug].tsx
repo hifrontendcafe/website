@@ -21,24 +21,24 @@ type PostPageProps = {
 
 const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
   const router = useRouter();
-  if (!router.isFallback && !data?.slug) {
-    return <ErrorPage statusCode={404} />;
-  }
-
   const { data: post, loading } = usePreviewSubscription(postQuery, {
     params: { slug: data?.slug.current },
     initialData: data,
     enabled: preview,
   });
 
+  if (!router.isFallback && !data?.slug) {
+    return <ErrorPage statusCode={404} />;
+  }
+
   if (router.isFallback || loading) return <div>Cargando...</div>;
 
   return (
     <Layout title={post.title} preview={preview}>
       <Hero title="Posts" />
-      <div className="bg-indigo-100 sm:pt-10 pb-24">
-        <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
-          <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
+      <div className="pb-24 bg-indigo-100 sm:pt-10">
+        <div className="container min-h-screen mx-auto overflow-hidden bg-white rounded-lg shadow ">
+          <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
             <div className="mt-2 md:flex md:items-center md:justify-between">
               <div className="flex-1 min-w-0">
                 <h2 className="text-xl font-bold leading-7 text-primary sm:text-2xl sm:leading-9 sm:tr uncate">
@@ -59,7 +59,7 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
               <img src={post.coverImage} alt={post.title} />
             </div>
           )}
-          <div className="py-12 px-8 flex items-center">
+          <div className="flex items-center px-8 py-12">
             <img
               className="w-20 h-20 bg-gray-300 rounded-full"
               src={post.author.picture}

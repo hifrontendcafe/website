@@ -11,7 +11,7 @@ const GroupInfoModal = (props: GroupInfoModalProps) => {
   const { open, onClose, group } = props;
   return (
     <Modal isOpen={open} close={onClose} title={group.name}>
-      <div className="text-sm overflow-auto px-2">
+      <div className="px-2 overflow-auto text-sm">
         <ul>
           <li className="mb-3">
             <span className="font-bold">Representante del grupo:</span>{' '}
@@ -26,6 +26,7 @@ const GroupInfoModal = (props: GroupInfoModalProps) => {
               className="mb-3 font-medium text-primary"
               href={group.studyMaterial}
               target="_blank"
+              rel="noreferrer"
             >
               Link aquí
             </a>
