@@ -88,6 +88,7 @@ export interface CMYKParticipant {
   experience: string;
   timeAvailability: string;
   otherQuestions: string;
+  cmykVersion: string;
   status: string;
 }
 
