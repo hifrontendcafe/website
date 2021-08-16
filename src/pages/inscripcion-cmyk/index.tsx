@@ -135,7 +135,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
             Inicio oficial de CMYK 4
           </p>
           <p className="my-3">
-            <span className="font-semibold">24 / 08 / 21</span>&nbsp;&nbsp;
+            <span className="font-semibold">24 / 09 / 21</span>&nbsp;&nbsp;
             Presentación de Proyectos.
           </p>
           <h2 className="my-2 text-base font-semibold">Observaciones</h2>
