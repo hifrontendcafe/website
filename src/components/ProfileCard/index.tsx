@@ -1,15 +1,11 @@
-import { useCallback } from 'react';
-import { useRouter } from 'next/router';
-
-import { Profile } from '../../lib/types';
+import { ExtendedProfile } from '@/lib/types';
 import ProfileSocialMedia from '../ProfileSocialMedia';
 
 type Props = {
-  profile: Profile;
+  profile: ExtendedProfile;
 };
 
-const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
-  const router = useRouter();
+const ProfileCard: React.FC<Props> = ({ profile }) => {
   const socialMediaList = {
     ...(profile.email && { email: 'mailto:' + profile.email }),
     ...(profile.linkedin && { linkedin: profile.linkedin }),
@@ -18,16 +14,11 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
     ...(profile.portfolio && { portfolio: profile.portfolio }),
   };
 
-  const setTechFilter = useCallback(
-    (tech) => router.push(`?tech=${tech}`, undefined, { shallow: true }),
-    [router],
-  );
-
   return (
     <div className="p-4 text-center rounded-lg shadow-lg flex flex-col justify-between w-full">
       <div className="flex items-top justify-center space-x-3 text-center">
         <img
-          src={profile.image || '/img/user.svg'}
+          src={profile.photo || '/img/user.svg'}
           className={`object-cover object-top w-28 h-28 ring ring-white ${
             profile.available ? 'ring-green-400' : ''
           } rounded-full shadow-lg`}
@@ -38,8 +29,13 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
             <h1 className="leading-none text-xl font-bold tracking-tighter">
               {profile.name}
             </h1>
-            <h2 className="leading-none tracking-tighter">{profile.role}</h2>
-            {profile.nationality && (
+            <h2 className="leading-none tracking-tighter">
+              {profile.role.name}
+            </h2>
+            <h3 className="leading-none tracking-tighter uppercase font-semibold text-xs my-1">
+              {profile.seniority.name}
+            </h3>
+            {profile.location && (
               <div className="flex items-center">
                 <img
                   src="img/location.svg"
@@ -49,7 +45,7 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
                   className="text-red-500"
                 />
                 <h3 className="text-xs text-gray-500 tracking-witde uppercase font-semibold">
-                  {profile.nationality}
+                  {profile.location}
                 </h3>
               </div>
             )}
@@ -71,13 +67,12 @@ const ProfileCard: React.FC<Props> = ({ profile }: Props) => {
         {profile.technologies?.length > 0 && (
           <div className="flex flex-wrap items-center justify-start">
             {profile.technologies?.map((tech) => (
-              <button
-                onClick={() => setTechFilter(tech)}
-                key={tech}
-                className="transition duration-200 ease-in-out px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase hover:bg-indigo-400 hover:text-white focus:outline-none "
+              <span
+                key={tech.name}
+                className="px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase"
               >
-                {tech}
-              </button>
+                {tech.name}
+              </span>
             ))}
           </div>
         )}

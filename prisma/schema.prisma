@@ -1,0 +1,51 @@
+// schema.prisma
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Role {
+  id      String    @id @default(uuid())
+  name    String
+  Profile Profile[]
+}
+
+model Technology {
+  id       String    @id @default(uuid())
+  name     String
+  profiles Profile[] @relation(references: [id])
+}
+
+model Seniority {
+  id      String    @id @default(uuid())
+  name    String
+  Profile Profile[]
+}
+
+model Profile {
+  id           String       @id @default(uuid())
+  name         String?
+  email        String?      @unique
+  available    Boolean
+  active       Boolean      @default(true)
+  twitter      String?
+  github       String?
+  portfolio    String?
+  discord      String?
+  discordId    String?
+  description  String?
+  location     String?
+  linkedin     String?
+  photo        String?
+  seniority    Seniority    @relation(fields: [seniorityId], references: [id])
+  role         Role         @relation(fields: [roleId], references: [id])
+  createdAt    DateTime     @default(now()) @map(name: "created_at")
+  updatedAt    DateTime     @updatedAt @map(name: "updated_at")
+  technologies Technology[] @relation(references: [id])
+  roleId       String
+  seniorityId  String
+}

@@ -1,3 +1,4 @@
+import { Profile } from '@prisma/client';
 import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 export interface Settings {
@@ -116,6 +117,18 @@ export interface Post {
   content: any;
 }
 
+export type ExtendedProfile = Profile & {
+  seniority: {
+    id: string;
+    name: string;
+  };
+  role: {
+    id: string;
+    name: string;
+  };
+  technologies: { name: string }[];
+};
+
 export interface Doc {
   title: string;
   slug: string;
@@ -170,23 +183,6 @@ export interface Person {
   fecTeam?: boolean;
   cmykParticipant?: CMYKParticipant[];
 }
-
-export type Profile = {
-  date: string;
-  email: string;
-  name: string;
-  available: boolean;
-  discord: string;
-  role: string;
-  technologies: string[];
-  portfolio: string;
-  linkedin: string;
-  twitter: string;
-  github: string;
-  description: string;
-  image: string;
-  nationality: string;
-};
 
 export type Tweet = {
   id: string;
