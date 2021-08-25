@@ -21,7 +21,7 @@ const CreateGroupForm: React.FC = () => {
       });
       setIsSuccess(true);
       emailjs
-        .send('my_gmail', 'new_reactivistas', {}, 'user_vZYiwq0jXYNBQFbiNgrQu')
+        .send('fec_gmail', 'new_reactivistas', {}, process.env.EMAILJS_USER_ID)
         .catch((error) => console.error(error));
       setIsLoading(false);
       reset();
