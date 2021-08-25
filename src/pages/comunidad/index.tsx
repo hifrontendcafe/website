@@ -62,30 +62,30 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
-      <div className="container px-4 pt-10 md:pt-16 pb-10 mx-auto sm:px-6 max-w-3xl">
-        <h1 className="title mt-2 leading-snug tracking-tight text-center">
+      <div className="container max-w-3xl px-4 pt-10 pb-10 mx-auto md:pt-16 sm:px-6">
+        <h1 className="mt-2 leading-snug tracking-tight text-center title">
           Conoce nuestra comunidad
         </h1>
-        <p className="mt-4 md:mt-0 text-center mx-auto text-gray-600">
+        <p className="mx-auto mt-4 text-center text-gray-600 md:mt-0">
           Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
           intereses y poder conectarte a través de sus redes sociales.
         </p>
       </div>
-      <div className="container mx-auto bg-white min-h-screen">
+      <div className="container min-h-screen mx-auto bg-white">
         <div className="max-w-5xl mx-auto mb-4">
           <form
             onSubmit={(e) => {
               e.preventDefault();
               filterProfiles();
             }}
-            className="mx-4 px-2 py-2"
+            className="px-2 py-2 mx-4"
           >
-            <div className="md:flex md:items-center justify-around md:space-x-4">
-              <div className="mt-3 md:mt-0 w-full">
+            <div className="justify-around md:flex md:items-center md:space-x-4">
+              <div className="w-full mt-3 md:mt-0">
                 <select
                   name="role"
                   placeholder="Rol"
-                  className="w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                  className="w-full py-2 text-sm leading-tight text-gray-700 border border-gray-300 rounded"
                   onChange={(event) =>
                     setFilters({ ...filters, roleId: event.target.value })
                   }
@@ -103,10 +103,10 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   </option>
                 </select>
               </div>
-              <div className="mt-3 md:mt-0 w-full">
+              <div className="w-full mt-3 md:mt-0">
                 <select
                   name="seniority"
-                  className="py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                  className="w-full py-2 text-sm leading-tight text-gray-700 border border-gray-300 rounded"
                   onChange={(event) =>
                     setFilters({ ...filters, seniorityId: event.target.value })
                   }
@@ -124,30 +124,30 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   </option>
                 </select>
               </div>
-              <div className="mt-3 md:mt-0 w-full">
+              <div className="w-full mt-3 md:mt-0">
                 <input
                   name="location"
                   type="text"
                   placeholder="Ubicación"
-                  className="placeholder-gray-600 py-2 w-full border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                  className="w-full py-2 text-sm leading-tight text-gray-700 placeholder-gray-600 border border-gray-300 rounded"
                   onChange={(event) =>
                     setFilters({ ...filters, location: event.target.value })
                   }
                 />
               </div>
-              <div className="mt-3 md:mt-0 w-full">
+              <div className="w-full mt-3 md:mt-0">
                 <input
                   name="seniority"
                   type="text"
                   placeholder="Explora las biografías"
-                  className="placeholder-gray-600  w-full py-2 border-gray-300 text-sm leading-tight text-gray-700 border rounded"
+                  className="w-full py-2 text-sm leading-tight text-gray-700 placeholder-gray-600 border border-gray-300 rounded"
                   onChange={(event) =>
                     setFilters({ ...filters, description: event.target.value })
                   }
                 />
               </div>
             </div>
-            <div className="mt-4 md:flex w-full items-center md:space-x-4">
+            <div className="items-center w-full mt-4 md:flex md:space-x-4">
               <Select
                 instanceId="technologies-selector"
                 isMulti
@@ -165,14 +165,14 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                     : 'No opciones disponibles';
                 }}
               />
-              <div className="flex items-center flex-shrink-0 space-x-2 mt-4 md:mt-0">
+              <div className="flex items-center flex-shrink-0 mt-4 space-x-2 md:mt-0">
                 <label
                   htmlFor="toggle"
-                  className="text-gray-500 leading-4 text-sm flex-shrink w-24"
+                  className="flex-shrink w-24 text-sm leading-4 text-gray-500"
                 >
                   En búsqueda activa
                 </label>
-                <div className="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
+                <div className="relative inline-block w-10 mr-2 align-middle transition duration-200 ease-in select-none">
                   <input
                     checked={filters.available}
                     name="toggle"
@@ -198,7 +198,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 </div>
               </div>
               <input
-                className="w-full md:w-auto mt-4 md:mt-0 text-xs btn btn-primary md:text-md"
+                className="w-full mt-4 text-xs md:w-auto md:mt-0 btn btn-primary md:text-md"
                 type="submit"
                 value="Buscar"
               />
@@ -221,7 +221,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           </button>
         </div>
         {loading ? (
-          <div className="mt-4 w-full text-center">Cargando...</div>
+          <div className="w-full mt-4 text-center">Cargando...</div>
         ) : filteredProfiles.length > 0 ? (
           <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
             {filteredProfiles.map((profile) => (
@@ -231,7 +231,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             ))}
           </div>
         ) : (
-          <div className="mt-4 w-full text-center">
+          <div className="w-full mt-4 text-center">
             No se han encontrado perfiles con los filtros aplicados.
           </div>
         )}

@@ -1,6 +1,6 @@
 export default function Custom404() {
   return (
-    <div className="grid place-items-center w-screen h-screen">
+    <div className="grid w-screen h-screen place-items-center">
       <div>
         <img
           src="/logo-square.png"

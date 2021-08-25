@@ -124,7 +124,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     } catch (error) {
       setMessage({
         error: true,
-        text: 'Tu perfil no ha podido ser guardado, por favor vuelva a intentarlo nuevamente',
+        text:
+          'Tu perfil no ha podido ser guardado, por favor vuelva a intentarlo nuevamente',
       });
     }
     setLoadingForm(false);
@@ -141,7 +142,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         description="Encontrá los perfiles dentro de FEC"
         preview={preview}
       >
-        <div className="container mx-auto my-20 text-center text-2xl rounded-lg shadow bg-gray-50 py-32">
+        <div className="container py-32 mx-auto my-20 text-2xl text-center rounded-lg shadow bg-gray-50">
           Cargando Sesión...
         </div>
       </Layout>
@@ -155,11 +156,11 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
       preview={preview}
     >
       <div className="container px-4 pt-16 mx-auto sm:px-6 md:pt-0">
-        <h1 className="title mt-2 leading-snug tracking-tight py-20 text-center">
+        <h1 className="py-20 mt-2 leading-snug tracking-tight text-center title">
           Crea tu propio perfil en nuestro portal
         </h1>
       </div>
-      <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50 mb-8">
+      <div className="container mx-auto mb-8 overflow-hidden rounded-lg shadow bg-gray-50">
         {message.text && (
           <div
             className={`text-center text-white rounded p-4 m-4 ${
@@ -170,13 +171,13 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
           </div>
         )}
         {session ? (
-          <div className="px-6 border-b border-gray-200 py-5 md:px-8">
+          <div className="px-6 py-5 border-b border-gray-200 md:px-8">
             {loadingForm ? (
               <div className="p-4">Enviando Formulario...</div>
             ) : (
               <form
                 onSubmit={handleSubmit(onSubmit, onError)}
-                className="w-full sm:px-8 sm:pt-6 sm:pb-8 rounded bg-gray-50"
+                className="w-full rounded sm:px-8 sm:pt-6 sm:pb-8 bg-gray-50"
                 noValidate
               >
                 <div className="flex flex-col grid-cols-2 gap-5 md:grid">
@@ -352,13 +353,13 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   <label className="block mb-2 text-sm font-bold">
                     Foto de perfil
                   </label>
-                  <div className="flex items-center space-x-4 justify-start w-full">
-                    <label className="flex overflow-hidden items-center justify-center rounded-md border-4 border-dashed hover:bg-gray-100 hover:border-primary group w-32 h-32 hover:opacity-75 cursor-pointer">
+                  <div className="flex items-center justify-start w-full space-x-4">
+                    <label className="flex items-center justify-center w-32 h-32 overflow-hidden border-4 border-dashed rounded-md cursor-pointer hover:bg-gray-100 hover:border-primary group hover:opacity-75">
                       {photo ? (
                         <img
                           src={photo}
                           alt=""
-                          className="object-cover h-full w-full rounded-md"
+                          className="object-cover w-full h-full rounded-md"
                         />
                       ) : (
                         <svg
@@ -388,7 +389,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 <div className="mb-4">
                   <label className="block mb-2 text-sm font-bold">
                     Tecnologías
-                    <p className="text-gray-400 text-sm font-medium">
+                    <p className="text-sm font-medium text-gray-400">
                       Selecciona un máximo de 5 tecnologías.
                     </p>
                   </label>
@@ -423,7 +424,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     placeholder="Cuentanos un poco de tí"
                   ></textarea>
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="flex items-center mb-4">
                   <input
                     className="mr-2 text-sm leading-tight text-gray-700 border rounded focus:outline-none focus:shadow-outline"
                     {...register('available')}
@@ -433,7 +434,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     ¿Te encuentras en búsqueda de trabajo activa?
                   </label>
                 </div>
-                <div className="mb-4 flex items-center">
+                <div className="flex items-center mb-4">
                   <input
                     className={`mr-2 text-sm leading-tight text-gray-700 border rounded focus:outline-none focus:shadow-outline ${
                       errors.consent && 'border-red-400'
