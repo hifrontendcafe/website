@@ -23,6 +23,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
         email: body.email,
         firstName: body.firstName,
         lastName: body.lastName,
+        timezone: body.timezone,
         github: body.github,
         twitter: body.twitter,
         linkedin: body.linkedIn,
@@ -34,6 +35,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
         email: body.email,
         firstName: body.firstName,
         lastName: body.lastName,
+        timezone: body.timezone,
         github: body.github,
         twitter: body.twitter,
         linkedin: body.linkedIn,
@@ -53,6 +55,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
         otherQuestions: body.otherQuestions,
         previousKnowledge: body.previousKnowledge,
         timeAvailability: body.timeAvailability,
+        cmykVersion: '4',
         status: 'revision',
       });
       // If user is already registered
