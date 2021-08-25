@@ -16,12 +16,17 @@ type PostsPageProps = {
   seniorities: { name: string; id: string }[];
 };
 
+type technologies = {
+  id: string;
+  name: string;
+};
+
 type ProfileFilters = {
   roleId: string;
   location: string;
   seniorityId: string;
   description: string;
-  technologies: string[];
+  technologies: technologies[];
   available: boolean;
 };
 
@@ -155,7 +160,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 className="w-full filter-selector"
                 placeholder="Selecciona tecnologías"
                 onChange={(techs) =>
-                  setFilters({ ...filters, technologies: techs })
+                  setFilters({ ...filters, technologies: [...techs] })
                 }
                 isValidNewOption={isValidNewOption}
                 options={filters.technologies?.length === 5 ? [] : technologies}
