@@ -58,7 +58,7 @@ export default async function handle(req, res) {
           github,
           linkedin,
           available,
-          active: true,
+          active: false,
           portfolio,
           twitter,
           location,
