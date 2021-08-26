@@ -1,11 +1,10 @@
-// schema.prisma
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
-}
-
-generator client {
-  provider = "prisma-client-js"
 }
 
 model Role {
@@ -17,7 +16,7 @@ model Role {
 model Technology {
   id       String    @id @default(uuid())
   name     String
-  profiles Profile[] @relation(references: [id])
+  profiles Profile[]
 }
 
 model Seniority {
@@ -31,21 +30,21 @@ model Profile {
   name         String?
   email        String?      @unique
   available    Boolean
-  active       Boolean      @default(true)
+  active       Boolean      @default(false)
   twitter      String?
   github       String?
   portfolio    String?
   discord      String?
-  discordId    String?
   description  String?
   location     String?
   linkedin     String?
   photo        String?
-  seniority    Seniority    @relation(fields: [seniorityId], references: [id])
-  role         Role         @relation(fields: [roleId], references: [id])
-  createdAt    DateTime     @default(now()) @map(name: "created_at")
-  updatedAt    DateTime     @updatedAt @map(name: "updated_at")
-  technologies Technology[] @relation(references: [id])
+  createdAt    DateTime     @default(now()) @map("created_at")
+  updatedAt    DateTime     @updatedAt @map("updated_at")
   roleId       String
   seniorityId  String
+  discordId    String?
+  role         Role         @relation(fields: [roleId], references: [id])
+  seniority    Seniority    @relation(fields: [seniorityId], references: [id])
+  technologies Technology[]
 }

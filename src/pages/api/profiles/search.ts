@@ -24,6 +24,7 @@ export default async function handle({ body }, res) {
     }),
     ...(body.filters.description && {
       description: {
+        mode: 'insensitive',
         contains: body.filters.description,
       },
     }),
@@ -37,6 +38,7 @@ export default async function handle({ body }, res) {
       },
     }),
   };
+
   const response = await prisma.profile.findMany({
     where: filters,
     include: {
@@ -51,6 +53,7 @@ export default async function handle({ body }, res) {
       },
     },
   });
+
   const result = response.map((profile) => ({
     ...profile,
     createdAt: profile.createdAt.toString(),
