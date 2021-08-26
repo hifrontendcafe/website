@@ -45,7 +45,6 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
   const {
     register,
     handleSubmit,
-    reset,
     setValue,
     formState: { errors },
   } = useForm();
