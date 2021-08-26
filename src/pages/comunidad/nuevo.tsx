@@ -45,7 +45,6 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
   const {
     register,
     handleSubmit,
-    reset,
     setValue,
     formState: { errors },
   } = useForm();
@@ -124,7 +123,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     } catch (error) {
       setMessage({
         error: true,
-        text: 'Tu perfil no ha podido ser guardado, por favor vuelva a intentarlo nuevamente',
+        text:
+          'Tu perfil no ha podido ser guardado, por favor vuelva a intentarlo nuevamente',
       });
     }
     setLoadingForm(false);
