@@ -1,5 +1,8 @@
 import prisma from '../../../lib/prisma';
 
+type Insensitive = 'insensitive';
+const mode: Insensitive = 'insensitive';
+
 export default async function handle({ body }, res) {
   const filters = {
     ...(body.filters.roleId && {
@@ -24,7 +27,7 @@ export default async function handle({ body }, res) {
     }),
     ...(body.filters.description && {
       description: {
-        mode: 'insensitive',
+        mode,
         contains: body.filters.description,
       },
     }),
