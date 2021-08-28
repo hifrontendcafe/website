@@ -118,7 +118,11 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 
       setMessage({
         error: false,
-        text: 'Tu perfil ha sido guardado con éxito',
+        text: `${
+          !userId
+            ? 'Tu perfil ha sido creado con éxito. Será publicado en nuestro portal en los próximos días.'
+            : 'Tu perfil ha sido actualizado con éxito.'
+        }`,
       });
     } catch (error) {
       setMessage({
