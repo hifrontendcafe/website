@@ -157,8 +157,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
-      <div className="container px-4 pt-16 mx-auto sm:px-6 md:pt-0">
-        <h1 className="py-20 mt-2 leading-snug tracking-tight text-center title">
+      <div className="container max-w-3xl px-4 pt-10 pb-10 mx-auto md:pt-16 sm:px-6">
+        <h1 className="mt-2 leading-snug tracking-tight text-center title">
           Crea tu propio perfil en nuestro portal
         </h1>
       </div>
@@ -252,13 +252,16 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     <label className="block mb-2 text-sm font-bold">
                       Twitter
                     </label>
+                    <p className="text-gray-600 my-2 text-xs">
+                      Incluye enlace completo de tu perfil.
+                    </p>
                     <div className="relative">
                       <input
                         className={`w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline ${
                           errors.twitter && 'border-red-400'
                         }`}
                         type="url"
-                        placeholder="URL completa de tu perfil"
+                        placeholder="https://twiter.com/usuario"
                         {...register('twitter')}
                       />
                     </div>
@@ -268,13 +271,16 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     <label className="block mb-2 text-sm font-bold">
                       Linkedin
                     </label>
+                    <p className="text-gray-600 my-2 text-xs">
+                      Incluye enlace completo de tu perfil.
+                    </p>
                     <div className="relative">
                       <input
                         className={`w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline ${
                           errors.linkedin && 'border-red-400'
                         }`}
                         type="url"
-                        placeholder="URL completa de tu perfil"
+                        placeholder="https://linkedin.com/in/usuario"
                         {...register('linkedin')}
                       />
                     </div>
@@ -284,13 +290,16 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     <label className="block mb-2 text-sm font-bold">
                       Github
                     </label>
+                    <p className="text-gray-600 my-2 text-xs">
+                      Incluye enlace completo de tu perfil.
+                    </p>
                     <div className="relative">
                       <input
                         className={`w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline ${
                           errors.github && 'border-red-400'
                         }`}
                         type="url"
-                        placeholder="URL completa de tu perfil"
+                        placeholder="https://github.com/usuario"
                         {...register('github')}
                       />
                     </div>
@@ -299,13 +308,16 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     <label className="block mb-2 text-sm font-bold">
                       Portfolio
                     </label>
+                    <p className="text-gray-600 my-2 text-xs">
+                      Incluye enlace completo de tu web personal.
+                    </p>
                     <div className="relative">
                       <input
                         className={`w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline ${
                           errors.portfolio && 'border-red-400'
                         }`}
                         type="url"
-                        placeholder="URL completa de tu web"
+                        placeholder="https://www.portfolio.com"
                         {...register('portfolio')}
                       />
                     </div>
@@ -446,8 +458,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     {...register('consent', { required: true })}
                   />
                   <label className="block text-sm font-bold">
-                    Acepto que mi información sea compartida en la web de
-                    FrontendCafé*
+                    ¿Aceptas que tu información sea compartida en la web de
+                    FrontendCafé?*
                   </label>
                 </div>
                 <div className="pt-8">
