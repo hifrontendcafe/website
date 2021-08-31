@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import emailjs from 'emailjs-com';
+// import emailjs from 'emailjs-com';
 import { signIn, useSession } from 'next-auth/client';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { serialize } from 'next-mdx-remote/serialize';
 import { createDoc } from '../../../lib/api';
 
 const CreateGroupForm: React.FC = () => {
@@ -11,8 +10,8 @@ const CreateGroupForm: React.FC = () => {
 
   const { register, handleSubmit, reset } = useForm();
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
+  // const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  // const [isError, setIsError] = useState<boolean>(false);
 
   const onSubmit = async (data) => {
     createDoc(data);
