@@ -261,7 +261,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                           errors.twitter && 'border-red-400'
                         }`}
                         type="url"
-                        placeholder="https://twiter.com/usuario"
+                        placeholder="https://twitter.com/usuario"
                         {...register('twitter')}
                       />
                     </div>
