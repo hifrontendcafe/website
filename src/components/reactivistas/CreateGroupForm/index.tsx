@@ -7,8 +7,8 @@ import { createDoc } from '../../../lib/api';
 const CreateGroupForm: React.FC = () => {
   const [session] = useSession();
 
-  const { register, handleSubmit, reset } = useForm();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { register, handleSubmit } = useForm();
+  const [isLoading] = useState<boolean>(false);
 
   const onSubmit = async (data) => {
     createDoc(data);
