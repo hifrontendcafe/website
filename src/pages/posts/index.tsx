@@ -24,9 +24,9 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
   return (
     <Layout title="Entradas" description="Blog" preview={preview}>
       <Hero title="Entradas" />
-      <div className="bg-indigo-100 sm:pt-10 pb-24">
-        <div className=" container mx-auto min-h-screen bg-white overflow-hidden shadow rounded-lg">
-          <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
+      <div className="pb-24 bg-indigo-100 sm:pt-10">
+        <div className="container min-h-screen mx-auto overflow-hidden bg-white rounded-lg shadow ">
+          <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
             <div></div>
             <div className="mt-2 md:flex md:items-center md:justify-between">
               <div className="flex-1 min-w-0">
@@ -39,7 +39,7 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
           <div className="px-6 py-5 text-gray-700">
             <ul className="text-lg">
               {posts?.map(({ title, slug, excerpt }) => (
-                <li className="hover:text-teal-400 list-none" key={title}>
+                <li className="list-none hover:text-teal-400" key={title}>
                   <Link href={`/posts/${slug.current}`}>
                     <a>
                       {title}: {excerpt}
