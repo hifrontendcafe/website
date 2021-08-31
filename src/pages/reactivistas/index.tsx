@@ -32,7 +32,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
           <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-36">
             <div className="text-left sm:px-10 xl:px-0">
               <h2 className="mt-2 leading-snug tracking-tight title">
-                Reactivistas&nbsp;
+                ⚛️ Reactivistas
               </h2>
               <p className="max-w-3xl mt-4 text-lg">
                 Reactivistas es una iniciativa que promueve el estudio de React
