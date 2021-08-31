@@ -130,6 +130,13 @@ export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
   });
 }
 
+export async function createDoc(data: any): Promise<any> {
+  return await postClient.create({
+    ...data,
+    _type: 'document',
+  });
+}
+
 export async function addParticipantToReactGroup(
   reactGroupId: string,
   userId: string,
