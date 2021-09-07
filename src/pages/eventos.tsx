@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
 
 import Layout from '../components/Layout';
-import Hero from '../components/Hero';
 import EventList from '../components/EventList';
 
 import { Event } from '../lib/types';

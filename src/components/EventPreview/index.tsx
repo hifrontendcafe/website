@@ -36,17 +36,19 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   const AddToCalendar = ({ event }) => {
     return (
       <div title="Add to Calendar" className="addeventatc button">
-        Añadir a mi calendario
-        <span className="start">
-          {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
-        </span>
-        <span className="end">
-          {format(new Date(event.endTime), 'MM/dd/yyyy HH:mm')}
-        </span>
-        <span className="timezone">America/Argentina/Buenos_Aires</span>
-        <span className="title">{event.title}</span>
-        <span className="description">{event.description}</span>
-        <span className="location">{event.location}</span>
+        <a href="" target="_blank">
+          Añadir a Google Calendar
+          <span className="start">
+            {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
+          </span>
+          <span className="end">
+            {format(new Date(event.endTime), 'MM/dd/yyyy HH:mm')}
+          </span>
+          <span className="timezone">America/Argentina/Buenos_Aires</span>
+          <span className="title">{event.title}</span>
+          <span className="description">{event.description}</span>
+          <span className="location">{event.location}</span>
+        </a>
       </div>
     );
   };
@@ -89,21 +91,22 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           <div className={`mb-5 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
-          {past
-            ? event.recording && (
-                <div className="mt-auto mb-2">
-                  <a
-                    href={event.recording}
-                    className="px-5 py-2 text-sm text-white rounded bg-tertiary"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Ver grabación
-                  </a>
-                </div>
-              )
-            : // <AddToCalendar event={calendar} />
-              null}
+          {!past ? (
+            event.recording && (
+              <div className="mt-auto mb-2">
+                <a
+                  href={event.recording}
+                  className="px-5 py-2 text-sm text-white rounded bg-tertiary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Ver grabación
+                </a>
+              </div>
+            )
+          ) : (
+            <AddToCalendar event={calendar} />
+          )}
         </div>
       </div>
     </div>
