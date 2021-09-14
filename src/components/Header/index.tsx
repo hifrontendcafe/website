@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 
 type HeaderProps = {
   preview: boolean;
@@ -92,10 +93,12 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
           {!loading && session && (
             <div className="flex items-center mt-2 lg:mt-0 lg:ml-10">
               <div>
-                <img
-                  className="inline-block rounded-full h-9 w-9"
+                <Image
+                  className="inline-block rounded-full"
                   src={session.user.image}
                   alt="Profile image"
+                  width="36px"
+                  height="36px"
                 />
               </div>
               <div className="ml-3">

@@ -103,7 +103,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
       ) : (
         <div className="container mx-auto bg-white px-7">
           <h1 className="py-10 mx-auto text-xl font-bold leading-7 text-center text-black md:py-20 md:text-2xl lg:text-3xl sm:leading-9 sm:truncate">
-            La apertura de la inscripción se anunciará en Discord
+            Las inscripciones a CMYK 4.0 se encuentran cerradas (cupo agotado)
           </h1>
         </div>
       )}
@@ -135,7 +135,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
             Inicio oficial de CMYK 4
           </p>
           <p className="my-3">
-            <span className="font-semibold">24 / 08 / 21</span>&nbsp;&nbsp;
+            <span className="font-semibold">24 / 09 / 21</span>&nbsp;&nbsp;
             Presentación de Proyectos.
           </p>
           <h2 className="my-2 text-base font-semibold">Observaciones</h2>
