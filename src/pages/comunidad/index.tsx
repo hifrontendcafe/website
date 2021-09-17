@@ -30,6 +30,19 @@ type ProfileFilters = {
   available: boolean;
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function post(url: string, body: Record<string, any>) {
+  return fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
+
+function searchProfiles(filters: ProfileFilters) {
+  return post('/api/profiles/search', { filters });
+}
+
 const ProfilesPage: React.FC<PostsPageProps> = ({
   profiles,
   preview,
@@ -45,16 +58,16 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
     technologies: [],
     available: false,
   });
-  const [loading, setLoading] = useState(false);
-  const [filteredProfiles, setFilteredProfiles] = useState(profiles);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [filteredProfiles, setFilteredProfiles] =
+    useState<ExtendedProfile[]>(profiles);
+
   const filterProfiles = async () => {
     setLoading(true);
-    const response = await fetch('/api/profiles/search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ filters }),
-    });
+    const response = await searchProfiles(filters);
     setLoading(false);
+
     const profilesResponse = await response.json();
     setFilteredProfiles(profilesResponse);
   };
