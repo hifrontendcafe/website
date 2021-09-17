@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "//": "opens prisma studio",
+    "prisma:studio": "prisma studio",
+    "//": "generate types for prisma models",
+    "prisma:generate": "prisma generate"
   },
   "browser": {
     "fs": false
