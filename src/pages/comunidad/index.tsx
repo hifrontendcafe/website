@@ -6,7 +6,7 @@ import ProfileCard from '../../components/ProfileCard';
 import prisma from '../../lib/prisma';
 import { getLayout } from '@/utils/get-layout';
 import Select from 'react-select';
-import { ExtendedProfile } from '@/lib/types';
+import { ExtendedProfile, ProfileFilters } from '@/lib/types';
 
 type PostsPageProps = {
   profiles: ExtendedProfile[];
@@ -14,20 +14,6 @@ type PostsPageProps = {
   technologies: { name: string; id: string }[];
   roles: { name: string; id: string }[];
   seniorities: { name: string; id: string }[];
-};
-
-type technologies = {
-  id: string;
-  name: string;
-};
-
-type ProfileFilters = {
-  roleId: string;
-  location: string;
-  seniorityId: string;
-  description: string;
-  technologies: technologies[];
-  available: boolean;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
