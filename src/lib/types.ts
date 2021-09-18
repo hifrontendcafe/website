@@ -196,10 +196,11 @@ export interface Technologies {
 }
 
 export interface ProfileFilters {
-  roleId: string;
-  location: string;
-  seniorityId: string;
-  description: string;
-  technologies: Technologies[];
-  available: boolean;
+  roleId?: string;
+  location?: string;
+  seniorityId?: string;
+  description?: string;
+  technologies?: Technologies[];
+  available?: boolean;
+  active?: boolean;
 }
