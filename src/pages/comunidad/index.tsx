@@ -10,6 +10,7 @@ import { ExtendedProfile, ProfileFilters } from '@/lib/types';
 import { findProfiles } from '@/lib/prisma-queries';
 import { useSession } from 'next-auth/client';
 import Spinner from '@/components/Spinner';
+import { shuffle } from '@/lib/shuffle';
 
 type PostsPageProps = {
   profiles: ExtendedProfile[];
@@ -331,6 +332,10 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
     createdAt: profile.createdAt.toString(),
     updatedAt: profile.createdAt.toString(),
   }));
+
+  // randomizes profiles in place
+  shuffle(profiles);
+
   return {
     props: {
       profiles,
