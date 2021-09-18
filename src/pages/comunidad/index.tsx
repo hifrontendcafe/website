@@ -7,6 +7,7 @@ import prisma from '../../lib/prisma';
 import { getLayout } from '@/utils/get-layout';
 import Select from 'react-select';
 import { ExtendedProfile, ProfileFilters } from '@/lib/types';
+import { findProfiles } from '@/lib/prisma-queries';
 
 type PostsPageProps = {
   profiles: ExtendedProfile[];
@@ -57,6 +58,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
     const profilesResponse = await response.json();
     setFilteredProfiles(profilesResponse);
   };
+
   const isValidNewOption = (inputValue, selectValue) =>
     inputValue.length > 0 && selectValue.length < 5;
 
@@ -263,27 +265,18 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const roles = sortResponse(rolesRepose);
   const technologiesResponse = await prisma.technology.findMany();
   const technologies = sortResponse(technologiesResponse);
+
   const formattedTechnologies = technologies.map((technology) => ({
     ...technology,
     label: technology.name,
     value: technology.id,
   }));
+
   const senioritiesResponse = await prisma.seniority.findMany();
   const seniorities = sortResponse(senioritiesResponse);
-  const response = await prisma.profile.findMany({
-    where: { active: true },
-    include: {
-      role: {
-        select: { name: true },
-      },
-      technologies: {
-        select: { name: true },
-      },
-      seniority: {
-        select: { name: true },
-      },
-    },
-  });
+
+  const response = await findProfiles({ active: true });
+
   const profiles = response.map((profile) => ({
     ...profile,
     createdAt: profile.createdAt.toString(),
