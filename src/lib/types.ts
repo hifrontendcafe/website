@@ -189,3 +189,18 @@ export type Tweet = {
   text: string;
   in_reply_to_user_id: string;
 };
+
+export interface Technologies {
+  id: string;
+  name: string;
+}
+
+export interface ProfileFilters {
+  roleId?: string;
+  location?: string;
+  seniorityId?: string;
+  description?: string;
+  technologies?: Technologies[];
+  available?: boolean;
+  active?: boolean;
+}

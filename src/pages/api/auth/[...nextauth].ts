@@ -45,7 +45,7 @@ export default NextAuth({
       }
     },
     session: async (session, user) => {
-      session.user.id = user.sub as number;
+      session.user.id = user.sub as string;
       return session;
     },
   },

@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
 import { signIn } from 'next-auth/client';
-import Layout from '../../components/Layout';
-import ProfileCard from '../../components/ProfileCard';
-import prisma from '../../lib/prisma';
+import Layout from '@/components/Layout';
+import ProfileCard from '@/components/ProfileCard';
+import prisma from '@/lib/prisma';
 import { getLayout } from '@/utils/get-layout';
 import Select from 'react-select';
-import { ExtendedProfile } from '@/lib/types';
+import { ExtendedProfile, ProfileFilters } from '@/lib/types';
+import { findProfiles } from '@/lib/prisma-queries';
+import { useSession } from 'next-auth/client';
+import Spinner from '@/components/Spinner';
 
 type PostsPageProps = {
   profiles: ExtendedProfile[];
@@ -16,18 +19,67 @@ type PostsPageProps = {
   seniorities: { name: string; id: string }[];
 };
 
-type technologies = {
-  id: string;
-  name: string;
-};
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function post(url: string, body: Record<string, any>) {
+  return fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
+}
 
-type ProfileFilters = {
-  roleId: string;
-  location: string;
-  seniorityId: string;
-  description: string;
-  technologies: technologies[];
-  available: boolean;
+function searchProfiles(filters: ProfileFilters) {
+  return post('/api/profiles/search', { filters });
+}
+
+function signInDiscord() {
+  return signIn('discord', {
+    callbackUrl: `${window.location.origin}/comunidad/nuevo`,
+  });
+}
+
+const SignupLoadingButton = () => (
+  <button
+    onClick={signInDiscord}
+    className="text-xs btn btn-primary md:text-md"
+  >
+    <Spinner />
+  </button>
+);
+
+const SignupRegisteredButton = () => (
+  <button
+    onClick={signInDiscord}
+    className="text-xs btn btn-primary md:text-md"
+  >
+    Modifica tu perfil
+  </button>
+);
+
+const SignupUnregisteredButton = () => (
+  <button
+    onClick={signInDiscord}
+    className="text-xs btn btn-primary md:text-md"
+  >
+    Crea tu perfil
+  </button>
+);
+
+interface SignupButtonProps {
+  loading: boolean;
+  hasProfile: boolean;
+}
+
+const SignupButton: React.FC<SignupButtonProps> = ({ loading, hasProfile }) => {
+  if (loading) {
+    return <SignupLoadingButton />;
+  }
+
+  if (hasProfile) {
+    return <SignupRegisteredButton />;
+  }
+
+  return <SignupUnregisteredButton />;
 };
 
 const ProfilesPage: React.FC<PostsPageProps> = ({
@@ -37,6 +89,12 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
   roles,
   technologies,
 }) => {
+  const [session, loadingSession] = useSession();
+
+  const hasProfile = profiles.some(
+    (profile) => profile.discordId === session?.user?.id,
+  );
+
   const [filters, setFilters] = useState<ProfileFilters>({
     roleId: '',
     location: '',
@@ -45,19 +103,20 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
     technologies: [],
     available: false,
   });
-  const [loading, setLoading] = useState(false);
-  const [filteredProfiles, setFilteredProfiles] = useState(profiles);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [filteredProfiles, setFilteredProfiles] =
+    useState<ExtendedProfile[]>(profiles);
+
   const filterProfiles = async () => {
     setLoading(true);
-    const response = await fetch('/api/profiles/search', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ filters }),
-    });
+    const response = await searchProfiles(filters);
     setLoading(false);
-    const profilesResponse = await response.json();
-    setFilteredProfiles(profilesResponse);
+
+    const profiles = await response.json();
+    setFilteredProfiles(profiles);
   };
+
   const isValidNewOption = (inputValue, selectValue) =>
     inputValue.length > 0 && selectValue.length < 5;
 
@@ -214,16 +273,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           <div className="mb-2 font-bold leading-7 md:text-xl text-primary md:mb-0">
             Perfiles registrados
           </div>
-          <button
-            onClick={() =>
-              signIn('discord', {
-                callbackUrl: `${window.location.origin}/comunidad/nuevo`,
-              })
-            }
-            className="text-xs btn btn-primary md:text-md"
-          >
-            Crea tu perfil
-          </button>
+          <SignupButton loading={loadingSession} hasProfile={hasProfile} />
         </div>
         {loading ? (
           <div className="w-full mt-4 text-center">Cargando...</div>
@@ -264,27 +314,18 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const roles = sortResponse(rolesRepose);
   const technologiesResponse = await prisma.technology.findMany();
   const technologies = sortResponse(technologiesResponse);
+
   const formattedTechnologies = technologies.map((technology) => ({
     ...technology,
     label: technology.name,
     value: technology.id,
   }));
+
   const senioritiesResponse = await prisma.seniority.findMany();
   const seniorities = sortResponse(senioritiesResponse);
-  const response = await prisma.profile.findMany({
-    where: { active: true },
-    include: {
-      role: {
-        select: { name: true },
-      },
-      technologies: {
-        select: { name: true },
-      },
-      seniority: {
-        select: { name: true },
-      },
-    },
-  });
+
+  const response = await findProfiles({ active: true });
+
   const profiles = response.map((profile) => ({
     ...profile,
     createdAt: profile.createdAt.toString(),
