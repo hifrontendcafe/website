@@ -1,16 +1,15 @@
-import { useRef } from 'react';
 import { AppProps } from 'next/app';
-import '../styles/index.css';
-import '../styles/menu.css';
-import '../styles/scrollbar.css';
-
-import { QueryClientProvider, QueryClient } from 'react-query';
-import { Hydrate } from 'react-query/hydration';
-import { AppWrapper } from '../lib/settings';
 import { Provider } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+
+import '@/styles/index.css';
+import '@/styles/menu.css';
+import '@/styles/scrollbar.css';
+
+import { SettingsProvider } from '@/lib/settings';
+
 import * as gtag from '@/lib/gtag';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
@@ -28,9 +27,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <Provider session={pageProps.session}>
-      <AppWrapper>
+      <SettingsProvider settings={pageProps.settings}>
         <Component {...pageProps} />
-      </AppWrapper>
+      </SettingsProvider>
     </Provider>
   );
 };

@@ -1,12 +1,11 @@
 import CMYKItemCard from '../../components/CMYKItemCard';
 import { GetStaticProps } from 'next';
-import { getAllCMYKProjects } from '../../lib/api';
+import { getAllCMYKProjects, getSettings } from '../../lib/api';
 import { CMYK } from '../../lib/types';
 import Layout from '../../components/Layout';
 
 import { cmykQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { getSettings } from '@/utils/get-layout';
 import { useState } from 'react';
 import Modal from '@/components/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -122,9 +121,9 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllCMYKProjects(preview);
-  const { dehydratedState } = await getSettings({ preview });
+  const settings = await getSettings(preview);
 
-  return { props: { preview, data, dehydratedState }, revalidate: 1 };
+  return { props: { preview, data, settings }, revalidate: 1 };
 };
 
 export default CMYKProjects;

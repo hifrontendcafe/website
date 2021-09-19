@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GetStaticProps, InferGetStaticPropsType } from 'next';
 
-import { getApprovedReactGroups } from '../../lib/api';
+import { getApprovedReactGroups, getSettings } from '@/lib/api';
 import { ReactGroup } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { reactGroupQuery } from '../../lib/queries';
@@ -11,7 +11,6 @@ import GroupInfoModal from '../../components/reactivistas/GroupInfoModal';
 import CreateGroupForm from '../../components/reactivistas/CreateGroupForm';
 import GroupRequirementsModal from '../../components/reactivistas/GroupRequirementsModal';
 
-import { getSettings } from '@/utils/get-layout';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -152,13 +151,13 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getApprovedReactGroups(preview);
-  const { dehydratedState } = await getSettings({ preview });
+  const settings = await getSettings(preview);
 
   return {
     props: {
       data,
       preview,
-      dehydratedState,
+      settings,
     },
     revalidate: 1,
   };

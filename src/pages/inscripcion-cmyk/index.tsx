@@ -2,11 +2,11 @@ import Layout from '../../components/Layout';
 import { useState } from 'react';
 import Modal from '../../components/Modal';
 import { GetStaticProps } from 'next';
-import { getSettings } from '@/utils/get-layout';
+import { getSettings } from '@/lib/api';
 
 import CMYKParticipantForm from '../../components/CMYKParticipantForm';
 import styles from './styles.module.css';
-import { useSettings } from '@/hooks/api';
+import { useSettings } from '@/lib/settings';
 import { signIn, useSession } from 'next-auth/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
@@ -18,9 +18,7 @@ type CMYKRegisterPageProps = {
 const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
   preview = false,
 }) => {
-  const {
-    data: { cmykInscription },
-  } = useSettings();
+  const { cmykInscription } = useSettings();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [session, loading] = useSession();
 
@@ -152,8 +150,8 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const { dehydratedState } = await getSettings({ preview });
-  return { props: { preview, dehydratedState }, revalidate: 1 };
+  const settings = await getSettings(preview);
+  return { props: { preview, settings }, revalidate: 1 };
 };
 
 export default CMYKRegisterPage;

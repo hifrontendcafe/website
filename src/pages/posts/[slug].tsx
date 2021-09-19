@@ -8,11 +8,10 @@ import Layout from '../../components/Layout';
 import Hero from '../../components/Hero';
 import styles from '../docs/styles.module.css';
 
-import { getPost, getAllPostsSlugs } from '../../lib/api';
+import { getPost, getAllPostsSlugs, getSettings } from '../../lib/api';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { Post } from '../../lib/types';
 import { postQuery } from '../../lib/queries';
-import { getSettings } from '@/utils/get-layout';
 
 type PostPageProps = {
   data: Post;
@@ -93,10 +92,10 @@ export const getStaticProps: GetStaticProps = async ({
   preview = false,
 }) => {
   const data = await getPost(params.slug as string, preview);
-  const { dehydratedState } = await getSettings({ preview });
+  const settings = await getSettings(preview);
 
   return {
-    props: { data, preview, dehydratedState },
+    props: { data, preview, settings },
     revalidate: 1,
   };
 };

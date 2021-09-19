@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
-import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
-import { getSettings } from '@/utils/get-layout';
+import { getSettings } from '@/lib/api';
 
 const MentorshipsFeedback: React.FC = () => {
   return (
@@ -9,7 +8,6 @@ const MentorshipsFeedback: React.FC = () => {
       title="Mentorías"
       description="El programa de mentorías de FrontendCafé  busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
     >
-      <Hero title="Mentorías" />
       <div className="pb-24 mt-16 bg-indigo-100 sm:pt-10 md:mt-2">
         <div className="container min-h-screen mx-auto overflow-hidden bg-white rounded-lg shadow">
           <div className="px-12 py-5 text-gray-700">
@@ -28,10 +26,10 @@ const MentorshipsFeedback: React.FC = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const { dehydratedState } = await getSettings({ preview });
+  const settings = await getSettings(preview);
 
   return {
-    props: { preview, dehydratedState },
+    props: { preview, settings },
     revalidate: 1,
   };
 };
