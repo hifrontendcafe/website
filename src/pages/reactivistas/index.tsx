@@ -11,7 +11,7 @@ import GroupInfoModal from '../../components/reactivistas/GroupInfoModal';
 import CreateGroupForm from '../../components/reactivistas/CreateGroupForm';
 import GroupRequirementsModal from '../../components/reactivistas/GroupRequirementsModal';
 
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/utils/get-layout';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -152,7 +152,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getApprovedReactGroups(preview);
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
 
   return {
     props: {

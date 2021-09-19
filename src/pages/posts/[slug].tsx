@@ -12,7 +12,7 @@ import { getPost, getAllPostsSlugs } from '../../lib/api';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { Post } from '../../lib/types';
 import { postQuery } from '../../lib/queries';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/utils/get-layout';
 
 type PostPageProps = {
   data: Post;
@@ -93,7 +93,7 @@ export const getStaticProps: GetStaticProps = async ({
   preview = false,
 }) => {
   const data = await getPost(params.slug as string, preview);
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
 
   return {
     props: { data, preview, dehydratedState },

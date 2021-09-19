@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import EventPreview from '../../components/EventPreview';
 import JoinSection from '../../components/JoinSection';
 import { Event } from '../../lib/types';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/utils/get-layout';
 
 type EnglishPageProps = {
   upcomingEvents: Event[];
@@ -65,7 +65,7 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
   const upcomingEvents = await getEventsByCategory(
     preview,
     'Práctica de inglés',

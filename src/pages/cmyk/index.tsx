@@ -6,7 +6,7 @@ import Layout from '../../components/Layout';
 
 import { cmykQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/utils/get-layout';
 import { useState } from 'react';
 import Modal from '@/components/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -122,7 +122,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllCMYKProjects(preview);
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
 
   return { props: { preview, data, dehydratedState }, revalidate: 1 };
 };

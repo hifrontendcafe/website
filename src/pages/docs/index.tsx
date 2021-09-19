@@ -7,7 +7,7 @@ import { getAllDocs } from '../../lib/api';
 import { Doc } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { docsQuery } from '../../lib/queries';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/utils/get-layout';
 
 type DocsPageProps = {
   data: Doc[];
@@ -57,7 +57,7 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllDocs(preview);
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
 
   return {
     props: { data, preview, dehydratedState },

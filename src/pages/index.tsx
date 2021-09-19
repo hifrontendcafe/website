@@ -14,7 +14,7 @@ import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 import JoinSection from '../components/JoinSection';
 import AboutSection from '../components/AboutSection';
 import { useSettings } from '@/hooks/api';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/utils/get-layout';
 import { getTweetsByUsername } from '@/lib/twitter';
 import { Tweet, FeaturedCards } from '@/lib/types';
 
@@ -73,7 +73,8 @@ const Featured = ({ cards }) => (
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const cards = await getAllFeaturedCards(preview);
 
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
+
   const { data: tweets } = await getTweetsByUsername('FrontEndCafe');
 
   return {

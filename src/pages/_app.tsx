@@ -15,10 +15,6 @@ import * as gtag from '@/lib/gtag';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
-  const queryClientRef = useRef<QueryClient>();
-  if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient();
-  }
 
   useEffect(() => {
     const handleRouteChange = (url: URL) => {
@@ -32,13 +28,9 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
 
   return (
     <Provider session={pageProps.session}>
-      <QueryClientProvider client={queryClientRef.current}>
-        <Hydrate state={pageProps.dehydratedState}>
-          <AppWrapper>
-            <Component {...pageProps} />
-          </AppWrapper>
-        </Hydrate>
-      </QueryClientProvider>
+      <AppWrapper>
+        <Component {...pageProps} />
+      </AppWrapper>
     </Provider>
   );
 };

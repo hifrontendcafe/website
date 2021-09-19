@@ -8,7 +8,7 @@ import { getAllPosts } from '../../lib/api';
 import { Post } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { postsQuery } from '../../lib/queries';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/utils/get-layout';
 
 type PostsPageProps = {
   data: Post[];
@@ -57,7 +57,7 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllPosts(preview);
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
 
   return {
     props: { data, preview, dehydratedState },

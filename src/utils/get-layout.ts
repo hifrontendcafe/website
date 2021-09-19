@@ -1,12 +1,12 @@
 import { QueryClient } from 'react-query';
-import { dehydrate, DehydratedState } from 'react-query/hydration';
-import { getSettings } from '../lib/api';
+import { dehydrate } from 'react-query/hydration';
+import { getSettings as apiGetSettings } from '../lib/api';
 
-export const getLayout = async ({
+export const getSettings = async ({
   queryClient = new QueryClient(),
   preview = false,
 }) => {
-  await queryClient.prefetchQuery('settings', () => getSettings(preview));
+  await queryClient.prefetchQuery('settings', () => apiGetSettings(preview));
 
   return { queryClient, dehydratedState: dehydrate(queryClient) };
 };

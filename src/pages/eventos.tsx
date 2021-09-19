@@ -8,7 +8,7 @@ import { Event } from '../lib/types';
 import { getAllEvents } from '../lib/api';
 import { usePreviewSubscription } from '../lib/sanity';
 import { eventsQuery } from '../lib/queries';
-import { getLayout } from '../utils/get-layout';
+import { getSettings } from '../utils/get-layout';
 
 type EventsPageProps = {
   data: Event[];
@@ -34,7 +34,7 @@ const EventsPage: React.FC<EventsPageProps> = ({ data, preview }) => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllEvents(preview);
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
   return {
     props: { data, preview, dehydratedState },
     revalidate: 1,

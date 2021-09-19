@@ -4,7 +4,7 @@ import { signIn } from 'next-auth/client';
 import Layout from '@/components/Layout';
 import ProfileCard from '@/components/ProfileCard';
 import prisma from '@/lib/prisma';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/utils/get-layout';
 import Select from 'react-select';
 import { ExtendedProfile, ProfileFilters } from '@/lib/types';
 import { findProfiles } from '@/lib/prisma-queries';
@@ -310,7 +310,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       }),
     ];
   };
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
   const rolesRepose = await prisma.role.findMany();
   const roles = sortResponse(rolesRepose);
   const technologiesResponse = await prisma.technology.findMany();

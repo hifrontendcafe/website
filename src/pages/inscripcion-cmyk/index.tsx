@@ -2,7 +2,7 @@ import Layout from '../../components/Layout';
 import { useState } from 'react';
 import Modal from '../../components/Modal';
 import { GetStaticProps } from 'next';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/utils/get-layout';
 
 import CMYKParticipantForm from '../../components/CMYKParticipantForm';
 import styles from './styles.module.css';
@@ -152,7 +152,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const { dehydratedState } = await getLayout({ preview });
+  const { dehydratedState } = await getSettings({ preview });
   return { props: { preview, dehydratedState }, revalidate: 1 };
 };
 
