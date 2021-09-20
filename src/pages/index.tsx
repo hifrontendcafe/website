@@ -21,7 +21,7 @@ import { useSettings } from '@/lib/settings';
 type IndexProps = {
   preview?: boolean;
   cards: FeaturedCards[];
-  tweets: Tweet[];
+  tweets: string[];
 };
 
 function Featured({ cards }) {

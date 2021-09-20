@@ -20,7 +20,6 @@ export const getTweetsByUsername = async (
 };
 
 const username = 'FrontEndCafe';
-
 export const getTweetsByFrontendCafe = (): Promise<{ data: Tweet[] }> => {
   return getTweetsByUsername(username);
 };
