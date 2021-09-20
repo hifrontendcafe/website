@@ -2,7 +2,7 @@ import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import { signIn, useSession } from 'next-auth/client';
 import Layout from '../../components/Layout';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/lib/api';
 import { useForm } from 'react-hook-form';
 import { ReactGroup } from '@/lib/types';
 import { Technology, Role, Seniority } from '@prisma/client';
@@ -500,7 +500,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const { dehydratedState } = await getLayout({ preview });
+  const settings = await getSettings(preview);
+
   const roles = await prisma.role.findMany();
   const technologies = await prisma.technology.findMany();
   const formattedTechnologies = technologies.map((technology) => ({
@@ -508,12 +509,14 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
     label: technology.name,
     value: technology.id,
   }));
+
   const seniorities = await prisma.seniority.findMany();
+
   return {
     props: {
       technologies: formattedTechnologies,
       preview,
-      dehydratedState,
+      settings,
       roles,
       seniorities,
     },

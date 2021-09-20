@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import styles from './styles.module.css';
 import {
   faTwitter,
   faGithubAlt,
@@ -8,15 +7,13 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSettings } from '@/hooks/api';
+import { useSettings } from '@/lib/settings';
 
 type FooterProps = {
   mainClasses?: string;
 };
 const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
-  const {
-    data: { socialnetworks },
-  } = useSettings();
+  const { socialnetworks } = useSettings();
 
   const navItems = [
     { title: 'Mentorías', link: '/mentorias' },
