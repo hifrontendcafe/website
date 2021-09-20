@@ -42,7 +42,7 @@ type GetEmbeddedTweet = (id: string) => Promise<EmbeddedTweet>;
 
 export const getEmbeddedTweet: GetEmbeddedTweet = async (id) => {
   const response = await get(
-    `https://publish.twitter.com/oembed?url=https://twitter.com/${username}/status/${id}`,
+    `https://publish.twitter.com/oembed?url=https://twitter.com/${username}/status/${id}&omit_script=true`,
   );
 
   return await response.json();
