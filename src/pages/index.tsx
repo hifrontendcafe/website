@@ -13,7 +13,7 @@ import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 //import CMYKBanner from '../components/CMYKBanner';
 import JoinSection from '../components/JoinSection';
 import AboutSection from '../components/AboutSection';
-import { getTweetsByUsername } from '@/lib/twitter';
+import { getEmbeddedTweet, getTweetsByFrontendCafe } from '@/lib/twitter';
 import { Tweet, FeaturedCards } from '@/lib/types';
 
 import { useSettings } from '@/lib/settings';
@@ -23,6 +23,22 @@ type IndexProps = {
   cards: FeaturedCards[];
   tweets: Tweet[];
 };
+
+function Featured({ cards }) {
+  return (
+    <div className="flex flex-col mb-12 md:mb-24">
+      <div className="flex flex-col items-center justify-center px-5 m-auto mt-20 text-center lg:w-2/3">
+        <h1 className="mb-5 title">¡Descubre lo que tenemos para ti!</h1>
+        <p className="w-5/6 text-left lg:text-lg text-md">
+          En FrontendCafé con la participación de la comunidad creamos
+          diferentes actividades para mejorar nuestras habilidades tanto
+          profesionales como comunidad.
+        </p>
+      </div>
+      <FeaturedCardsCarousel featuredCards={cards} />
+    </div>
+  );
+}
 
 const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
   const [counter, setCounter] = useState(0);
@@ -54,28 +70,22 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
   );
 };
 
-const Featured = ({ cards }) => (
-  <div className="flex flex-col mb-12 md:mb-24">
-    <div className="flex flex-col items-center justify-center px-5 m-auto mt-20 text-center lg:w-2/3">
-      <h1 className="mb-5 title">¡Descubre lo que tenemos para ti!</h1>
-      <p className="w-5/6 text-left lg:text-lg text-md">
-        En FrontendCafé con la participación de la comunidad creamos diferentes
-        actividades para mejorar nuestras habilidades tanto profesionales como
-        comunidad.
-      </p>
-    </div>
-    <FeaturedCardsCarousel featuredCards={cards} />
-  </div>
-);
-
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const cards = await getAllFeaturedCards(preview);
   const settings = await getSettings(preview);
 
-  const { data: tweets } = await getTweetsByUsername('FrontEndCafe');
+  const { data: tweets } = await getTweetsByFrontendCafe();
+
+  const filteredTweets = tweets
+    .filter((tweet) => !tweet.in_reply_to_user_id)
+    .map((tweet) => getEmbeddedTweet(tweet.id));
+
+  const embeddedTweets = (await Promise.all(filteredTweets)).map(
+    (tweet) => tweet.html,
+  );
 
   return {
-    props: { tweets, preview, cards, settings },
+    props: { tweets: embeddedTweets, preview, cards, settings },
     revalidate: 1,
   };
 };

@@ -1,11 +1,8 @@
-import { TwitterTweetEmbed } from 'react-twitter-embed';
-import { CustomButtonGroup } from '../FeaturedCardsCarousel/CustomArrows';
 import { getRandomInt } from '@/lib/helpers';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Tweet } from 'lib/types';
 
-const MediaFeed: React.FC<{ tweets: Tweet[] }> = ({ tweets }) => {
+const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
   const responsive: ResponsiveType = {
     large: {
       breakpoint: { max: 3000, min: 1080 },
@@ -69,18 +66,9 @@ const MediaFeed: React.FC<{ tweets: Tweet[] }> = ({ tweets }) => {
           autoPlay
           autoPlaySpeed={5000}
         >
-          {tweets
-            .filter((x) => !x.in_reply_to_user_id)
-            .map((tweet) => (
-              <TwitterTweetEmbed
-                key={tweet.id}
-                tweetId={tweet.id}
-                options={{
-                  maxHeight: 500,
-                }}
-                placeholder={<SkeletonTwitterCard />}
-              />
-            ))}
+          {tweets.map((tweet) => (
+            <div key={tweet} dangerouslySetInnerHTML={{ __html: tweet }}></div>
+          ))}
         </Carousel>
       </div>
     </section>
