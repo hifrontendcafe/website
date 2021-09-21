@@ -13,7 +13,7 @@ import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 //import CMYKBanner from '../components/CMYKBanner';
 import JoinSection from '../components/JoinSection';
 import AboutSection from '../components/AboutSection';
-import { getEmbeddedTweet, getTweetsByFrontendCafe } from '@/lib/twitter';
+import { getEmbeddedTweets } from '@/lib/twitter';
 import { Tweet, FeaturedCards } from '@/lib/types';
 
 import { useSettings } from '@/lib/settings';
@@ -74,18 +74,15 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const cards = await getAllFeaturedCards(preview);
   const settings = await getSettings(preview);
 
-  const { data: tweets } = await getTweetsByFrontendCafe();
-
-  const filteredTweets = tweets
-    .filter((tweet) => !tweet.in_reply_to_user_id)
-    .map((tweet) => getEmbeddedTweet(tweet.id));
-
-  const embeddedTweets = (await Promise.all(filteredTweets)).map(
-    (tweet) => tweet.html,
-  );
+  let tweets = [];
+  try {
+    tweets = await getEmbeddedTweets();
+  } catch {
+    console.info("Couldn't load tweets");
+  }
 
   return {
-    props: { tweets: embeddedTweets, preview, cards, settings },
+    props: { tweets, preview, cards, settings },
     revalidate: 1,
   };
 };
