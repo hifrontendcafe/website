@@ -45,7 +45,7 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
 
 const MentorshipsSteps: React.FC = () => {
   return (
-    <section className="text-gray-400 bg-black body-font">
+    <section className="text-gray-400 body-font">
       <div className="container px-5 py-32 mx-auto">
         <div className="flex flex-wrap -mx-4 -mt-4 -mb-10 sm:-m-4">
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">

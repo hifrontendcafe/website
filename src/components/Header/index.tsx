@@ -34,7 +34,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   return (
     <header
       style={{ backgroundColor: '#0D071A' }}
-      className={`w-full flex flex-col sticky top-0 z-50 shadow-sm ${
+      className={`w-full flex flex-col sticky top-0 z-50 shadow-sm bg-gradient-to-r from-current via-gray-900 to-current ${
         preview ? 'pt-10' : ''
       }`}
     >
@@ -71,9 +71,9 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
               <a
                 className={
                   (router.pathname === `/${item.link}`
-                    ? 'text-gray-400 font-bold '
-                    : 'text-gray-400 ') +
-                  'w-full px-2 py-1 font-medium  text-center md:w-auto hover:text-gray-200'
+                    ? 'text-gray-300 font-bold '
+                    : 'text-gray-300 ') +
+                  'w-full px-2 py-1 font-medium  text-center md:w-auto hover:text-gray-100'
                 }
               >
                 {item.title}

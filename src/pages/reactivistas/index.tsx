@@ -134,8 +134,8 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
             </h2>
           </div>
 
-          <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50">
-            <div className="px-6 py-5 border-b border-gray-200 md:px-8">
+          <div className="container mx-auto overflow-hidden rounded-lg shadow">
+            <div className="px-6 py-5 md:px-8">
               <CreateGroupForm />
             </div>
           </div>

@@ -16,7 +16,10 @@ type LayoutPreviewProps = {
 };
 
 const MainLayout: React.FC<LayoutPreviewProps> = ({ preview, children }) => (
-  <div style={{ backgroundColor: '#0D071A' }} className="antialiased bg-black">
+  <div
+    style={{ backgroundColor: '#0D071A' }}
+    className="antialiased bg-gradient-to-r from-current via-gray-900 to-current"
+  >
     {preview && <PreviewBanner />}
     <Header preview={preview} />
     {children}
