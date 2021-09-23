@@ -48,7 +48,7 @@ const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
           autoPlaySpeed={5000}
         >
           {tweets.map((tweet) => (
-            <SkeletonTwitterCard tweet={tweet} />
+            <SkeletonTwitterCard key={tweet} tweet={tweet} />
           ))}
         </Carousel>
       </div>
@@ -59,8 +59,7 @@ const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
 const SkeletonTwitterCard: React.FC<{ tweet: string }> = ({ tweet }) => {
   return (
     <div
-      className="w-full p-4 mx-auto mb-2 text-gray-400 border border-gray-700 rounded-md shadow"
-      key={tweet}
+      className="w-full p-4 mx-auto mb-2 bg-white border border-gray-300 rounded-md shadow"
       dangerouslySetInnerHTML={{ __html: tweet }}
     ></div>
     // <div className="w-full p-4 mx-auto mb-2 bg-white border border-gray-300 rounded-md shadow">
