@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { useSettings } from '@/hooks/api';
+import { useSettings } from '@/lib/settings';
 import { timezones } from '@/lib/timezones';
 import { useSession } from 'next-auth/client';
 
@@ -23,9 +23,8 @@ type FormInputs = {
 };
 
 const CMYKParticipantForm: React.FC = () => {
-  const {
-    data: { cmykInscription },
-  } = useSettings();
+  const { cmykInscription } = useSettings();
+
   const {
     register,
     formState: { errors },

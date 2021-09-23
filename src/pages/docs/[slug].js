@@ -1,17 +1,11 @@
-import { GetStaticPaths, GetStaticProps } from 'next';
-import BlockContent from '@sanity/block-content-to-react';
 import { useRouter } from 'next/router';
 import Error from 'next/error';
 
 import Layout from '../../components/Layout';
 
-import { getAllDocs, getDocBySlug } from '../../lib/api';
-import { Doc } from '../../lib/types';
+import { getAllDocs, getDocBySlug, getSettings } from '@/lib/api';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { docQuery } from '../../lib/queries';
-import { getLayout } from '@/utils/get-layout';
-
-import styles from './styles.module.css';
 
 import { serialize } from 'next-mdx-remote/serialize';
 import { MDXRemote } from 'next-mdx-remote';
@@ -72,14 +66,14 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async ({ params, preview = false }) => {
-  const { dehydratedState } = await getLayout({ preview });
+  const settings = await getSettings(preview);
   const data = await getDocBySlug(params.slug, preview);
 
   const source = data.content;
   const mdxSource = await serialize(source);
 
   return {
-    props: { mdx: mdxSource, data, preview, dehydratedState },
+    props: { mdx: mdxSource, data, preview, settings },
     revalidate: 1,
   };
 };

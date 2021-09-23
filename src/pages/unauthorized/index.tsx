@@ -1,7 +1,7 @@
 import FecHead from '@/components/FecHead';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/lib/api';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
 import React from 'react';
@@ -51,12 +51,12 @@ const Unauthorized: React.FC<IUnauthorized> = ({ preview }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const { dehydratedState } = await getLayout({ preview });
+  const settings = await getSettings(preview);
 
   return {
     props: {
       preview,
-      dehydratedState,
+      settings,
     },
     revalidate: 1,
   };

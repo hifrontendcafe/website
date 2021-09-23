@@ -1,7 +1,7 @@
 import Link from 'next/link';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { imageBuilder } from '../../lib/sanity';
-import { useSettings } from '@/hooks/api';
+import { useSettings } from '@/lib/settings';
 import { useRouter } from 'next/router';
 import { signIn, signOut, useSession } from 'next-auth/client';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
@@ -13,9 +13,8 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ preview }) => {
-  const {
-    data: { logo, menu },
-  } = useSettings();
+  const { logo, menu } = useSettings();
+
   const menuBtn = useRef(null);
   const menuDOM = useRef(null);
   const logoIMG = imageBuilder.image(logo).url();

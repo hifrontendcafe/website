@@ -1,4 +1,4 @@
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/lib/api';
 import { GetStaticProps } from 'next';
 import Layout from '../components/Layout';
 
@@ -120,9 +120,9 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const { dehydratedState } = await getLayout({ preview });
+  const settings = await getSettings(preview);
 
-  return { props: { preview, dehydratedState }, revalidate: 1 };
+  return { props: { preview, settings }, revalidate: 1 };
 };
 
 export default Faqs;
