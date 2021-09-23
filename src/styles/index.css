@@ -76,15 +76,15 @@ html {
   }
 }
 
-.filter-selector .react-select__control{
+.filter-selector .react-select__control {
   @apply border-gray-300;
 }
-.react-select__control .react-select__indicator{
+.react-select__control .react-select__indicator {
   @apply text-gray-500;
 }
 .react-select__value-container .react-select__placeholder {
   @apply text-sm text-gray-600;
- }
+}
 
 .twitter-blue {
   color: #55acee;

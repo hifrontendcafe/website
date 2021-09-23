@@ -38,7 +38,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="px-2 -my-2 text-white"
+                className="px-2 -mt-2 text-white"
               >
                 En comunidad
               </span>
