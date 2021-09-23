@@ -150,7 +150,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 <select
                   name="role"
                   placeholder="Rol"
-                  className="w-full py-2 text-sm leading-tight text-gray-700 border border-gray-300 rounded"
+                  className="w-full py-2 text-sm leading-tight text-gray-500 bg-transparent border border-gray-500 rounded"
                   onChange={(event) =>
                     setFilters({ ...filters, roleId: event.target.value })
                   }
@@ -171,7 +171,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
               <div className="w-full mt-3 md:mt-0">
                 <select
                   name="seniority"
-                  className="w-full py-2 text-sm leading-tight text-gray-700 border border-gray-300 rounded"
+                  className="w-full py-2 text-sm leading-tight text-gray-500 bg-transparent border border-gray-500 rounded"
                   onChange={(event) =>
                     setFilters({ ...filters, seniorityId: event.target.value })
                   }
@@ -194,7 +194,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   name="location"
                   type="text"
                   placeholder="Ubicación"
-                  className="w-full py-2 text-sm leading-tight text-gray-700 placeholder-gray-600 border border-gray-300 rounded"
+                  className="w-full py-2 text-sm leading-tight text-gray-500 placeholder-gray-600 bg-transparent border border-gray-500 rounded"
                   onChange={(event) =>
                     setFilters({ ...filters, location: event.target.value })
                   }
@@ -205,7 +205,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   name="seniority"
                   type="text"
                   placeholder="Explora las biografías"
-                  className="w-full py-2 text-sm leading-tight text-gray-700 placeholder-gray-600 border border-gray-300 rounded"
+                  className="w-full py-2 text-sm leading-tight text-gray-500 placeholder-gray-600 bg-transparent border border-gray-500 rounded"
                   onChange={(event) =>
                     setFilters({ ...filters, description: event.target.value })
                   }
@@ -217,7 +217,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 instanceId="technologies-selector"
                 isMulti
                 classNamePrefix="react-select"
-                className="w-full filter-selector"
+                className="w-full filter-selector bg"
                 placeholder="Selecciona tecnologías"
                 onChange={(techs) =>
                   setFilters({ ...filters, technologies: [...techs] })
@@ -251,14 +251,14 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                     className={`absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
                       filters.available
                         ? ' translate-x-4 text-green-400'
-                        : 'border-gray-300'
+                        : 'border-gray-500'
                     }`}
                   />
                   <label
                     htmlFor="toggle"
                     className={`${
                       filters.available ? 'bg-white-400' : 'bg-gray-300'
-                    } block overflow-hidden border bg-gray-300 border-gray-300 h-6 rounded-full cursor-pointer`}
+                    } block overflow-hidden border bg-gray-300 border-gray-500 h-6 rounded-full cursor-pointer`}
                   ></label>
                 </div>
               </div>

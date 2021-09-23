@@ -15,7 +15,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full p-4 text-center border border-gray-700 rounded-lg shadow-lg">
+    <div className="flex flex-col justify-between w-full p-6 text-center bg-black rounded-lg shadow-lg">
       <div className="flex justify-center space-x-3 text-center items-top">
         <img
           src={profile.photo || '/img/user.svg'}
