@@ -45,12 +45,12 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
 
 const MentorshipsSteps: React.FC = () => {
   return (
-    <section className="text-gray-700 bg-gray-50 body-font">
+    <section className="text-gray-400 bg-black body-font">
       <div className="container px-5 py-32 mx-auto">
         <div className="flex flex-wrap -mx-4 -mt-4 -mb-10 sm:-m-4">
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
-              <h2 className="mb-3 text-2xl font-medium text-gray-900 title-font">
+              <h2 className="mb-3 text-2xl font-medium title-font">
                 <strong>Paso 1:</strong> Inicia sesión &#128273;
               </h2>
               <p className="text-lg leading-relaxed text-left">
@@ -61,7 +61,7 @@ const MentorshipsSteps: React.FC = () => {
           </div>
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
-              <h2 className="mb-3 text-2xl font-medium text-gray-900 title-font">
+              <h2 className="mb-3 text-2xl font-medium title-font">
                 <strong>Paso 2:</strong> Encuentra un mentor 🔍
               </h2>
               <p className="text-lg leading-relaxed">
@@ -72,7 +72,7 @@ const MentorshipsSteps: React.FC = () => {
           </div>
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
-              <h2 className="mb-3 text-2xl font-medium text-gray-900 title-font">
+              <h2 className="mb-3 text-2xl font-medium title-font">
                 <strong>Paso 3:</strong> Agenda la mentoría 📝
               </h2>
               <p className="mb-2 text-lg leading-relaxed">

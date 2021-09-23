@@ -29,7 +29,7 @@ function Featured({ cards }) {
     <div className="flex flex-col mb-12 md:mb-24">
       <div className="flex flex-col items-center justify-center px-5 m-auto mt-20 text-center lg:w-2/3">
         <h1 className="mb-5 title">¡Descubre lo que tenemos para ti!</h1>
-        <p className="w-5/6 text-left lg:text-lg text-md">
+        <p className="w-5/6 text-left text-gray-300 lg:text-lg text-md">
           En FrontendCafé con la participación de la comunidad creamos
           diferentes actividades para mejorar nuestras habilidades tanto
           profesionales como comunidad.

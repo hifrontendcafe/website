@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 const MentorshipsHero: React.FC = () => {
   return (
-    <section className="relative text-gray-700 bg-white body-font">
+    <section className="relative text-gray-100 body-font">
       <div className="container flex flex-col items-center px-5 py-32 mx-auto md:flex-row">
         <div className="w-5/6 mb-10 lg:max-w-lg lg:w-full md:w-1/2 md:mb-0">
           <img
@@ -43,25 +43,6 @@ const MentorshipsHero: React.FC = () => {
             </Link>
           </div>
         </div>
-      </div>
-      <div
-        className="absolute bottom-0 left-0 right-0 top-auto w-full overflow-hidden pointer-events-none"
-        style={{ height: '70px', transform: 'translateZ(0)' }}
-      >
-        <svg
-          className="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
-        >
-          <polygon
-            className="text-white fill-current"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
       </div>
     </section>
   );

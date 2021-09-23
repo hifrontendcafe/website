@@ -33,13 +33,13 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
 
   return (
     <header
-      className={`w-full flex flex-col sticky top-0 bg-white z-50 shadow-sm ${
+      className={`w-full flex flex-col sticky top-0 z-50 shadow-sm ${
         preview ? 'pt-10' : ''
       }`}
     >
       <nav
         id="site-menu"
-        className="flex flex-col items-center justify-between w-full px-4 mx-auto bg-white lg:px-44 lg:flex-row lg:shadow-none"
+        className="flex flex-col items-center justify-between w-full px-4 mx-auto lg:px-44 lg:flex-row lg:shadow-none"
       >
         <div className="flex flex-row flex-no-wrap items-center self-start justify-between w-full lg:w-auto lg:self-center lg:flex-none">
           <Link href="/">
@@ -70,9 +70,9 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
               <a
                 className={
                   (router.pathname === `/${item.link}`
-                    ? 'text-gray-500 font-bold '
-                    : 'text-gray-500 ') +
-                  'w-full px-2 py-1 font-medium  text-center md:w-auto hover:text-gray-800'
+                    ? 'text-gray-400 font-bold '
+                    : 'text-gray-400 ') +
+                  'w-full px-2 py-1 font-medium  text-center md:w-auto hover:text-gray-200'
                 }
               >
                 {item.title}
