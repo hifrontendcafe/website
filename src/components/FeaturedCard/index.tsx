@@ -9,7 +9,8 @@ type FeaturedCardsItemProps = {
 
 const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
   return (
-    <div style={{backgroundColor:"#19172B"}}
+    <div
+      style={{ backgroundColor: '#19172B' }}
       className={`${styles.card} shadow-lg md:m-18 sm:m-5 mt-10 px-5 py-6 flex justify-between mr-3`}
     >
       <div className="relative flex flex-col justify-center">
@@ -28,7 +29,9 @@ const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
             </span>
             <h1 className="pl-2 subtitle">{card.title}</h1>
           </div>
-          <p className="pt-5 pb-8 text-sm text-gray-200 lg:text-lg">{card.description}</p>
+          <p className="pt-5 pb-8 text-sm text-gray-200 lg:text-lg">
+            {card.description}
+          </p>
         </div>
         <button className="pl-5 text-left text-white w-60 h-14">
           <Link href={card.link}>
