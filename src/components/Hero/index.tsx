@@ -46,6 +46,14 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
                 El lugar de encuentro para potenciar tus ideas y conectar con
                 otras personas.
               </p>
+              <a
+                target="_blank"
+                href="https://discord.gg/frontendcafe"
+                className="mt-1 btn btn-secondary"
+                rel="noreferrer"
+              >
+                Unirme a Discord
+              </a>
             </div>
           </div>
         </div>

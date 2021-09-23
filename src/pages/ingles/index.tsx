@@ -16,7 +16,7 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
       title="Inglés"
       description="Únete a nuestras charlas de inglés en Discord"
     >
-      <div className="container px-8 pt-16 mx-auto sm:px-6 md:pt-8">
+      <div className="container px-8 pt-16 mx-auto text-gray-200 sm:px-6 md:pt-8">
         <div className="flex flex-wrap items-center justify-between py-8">
           <div className="lg:w-1/2 lg:pr-12">
             <h1 className="title lg:text-4xl xl:title">

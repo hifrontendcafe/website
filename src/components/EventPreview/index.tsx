@@ -65,7 +65,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           style={{ filter: past ? 'grayscale(66%)' : 'none' }}
         />
         <div
-          className={`flex-grow p-4 flex flex-col bg-white ${
+          className={`flex-grow p-4 flex flex-col border border-gray-700 ${
             past && !event.recording ? styles['past-event-text'] : ''
           }`}
         >
@@ -74,19 +74,19 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               {event.category.name}
             </h2>
           </div>
-          <h1 className="mb-3 text-xl font-medium leading-tight text-gray-900 title-font">
+          <h1 className="mb-3 text-xl font-medium leading-tight text-gray-200 title-font">
             {event.title}
           </h1>
-          <p className="mb-6 font-medium text-gray-700 title-font break-all	">
+          <p className="mb-6 font-medium text-gray-200 break-all title-font ">
             {format(new Date(event.date), 'd  MMMM - HH:mm ', {
               locale: es,
             })}
             hrs
-            <span className="inline-block font-light text-sm">
+            <span className="inline-block text-sm font-light">
               Horario en tu ubicación actual
             </span>
           </p>
-          <div className={`mb-5 ${styles.description}`}>
+          <div className={`mb-5 text-gray-400 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
           {past

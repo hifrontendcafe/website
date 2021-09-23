@@ -60,9 +60,9 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
     <Layout title="Home" description={description} preview={preview}>
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero title={heroWords[counter]} />
-      <div className="p-1">
+      {/* <div className="p-1">
         <AboutSection description={description} />
-      </div>
+      </div> */}
       <Featured cards={cards} />
       <MediaFeed tweets={tweets} />
       <JoinSection />

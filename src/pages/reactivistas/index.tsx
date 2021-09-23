@@ -33,7 +33,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
               <h2 className="mt-2 leading-snug tracking-tight title">
                 ⚛️ Reactivistas
               </h2>
-              <p className="max-w-3xl mt-4 text-lg">
+              <p className="max-w-3xl mt-4 text-lg text-gray-200">
                 Reactivistas es una iniciativa que promueve el estudio de React
                 en grupos auto-organizados por integrantes de la comunidad.
                 <br />
@@ -121,7 +121,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
           )}
 
           <div className="flex-1 min-w-0 mb-8">
-            <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
+            <h1 className="font-bold leading-7 text-gray-200 titletext-2xl sm:text-2xl sm:leading-9 sm:truncate">
               Dale vida a un nuevo grupo
             </h1>
             <h2 className="leading-7 text-md text-primary sm:leading-9 sm:truncate">

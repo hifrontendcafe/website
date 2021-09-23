@@ -15,8 +15,8 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="p-4 text-center rounded-lg shadow-lg flex flex-col justify-between w-full">
-      <div className="flex items-top justify-center space-x-3 text-center">
+    <div className="flex flex-col justify-between w-full p-4 text-center border border-gray-700 rounded-lg shadow-lg">
+      <div className="flex justify-center space-x-3 text-center items-top">
         <img
           src={profile.photo || '/img/user.svg'}
           className={`object-cover object-top w-28 h-28 ring ring-white ${
@@ -24,15 +24,15 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           } rounded-full shadow-lg`}
           alt={profile.name}
         />
-        <div className="text-left flex justify-between flex-nowrap w-min flex-grow flex-col">
+        <div className="flex flex-col justify-between flex-grow text-left flex-nowrap w-min">
           <div className="flex-grow">
-            <h1 className="leading-none text-xl font-bold tracking-tighter">
+            <h1 className="text-xl font-bold leading-none tracking-tighter">
               {profile.name}
             </h1>
             <h2 className="leading-none tracking-tighter">
               {profile.role.name}
             </h2>
-            <h3 className="leading-none tracking-tighter uppercase font-semibold text-xs my-1">
+            <h3 className="my-1 text-xs font-semibold leading-none tracking-tighter uppercase">
               {profile.seniority.name}
             </h3>
             {profile.location && (
@@ -44,13 +44,13 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
                   width={16}
                   className="text-red-500"
                 />
-                <h3 className="text-xs text-gray-500 tracking-witde uppercase font-semibold">
+                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-witde">
                   {profile.location}
                 </h3>
               </div>
             )}
             {profile.available && (
-              <div className="font-semibold text-sm text-primary whitespace-nowrap">
+              <div className="text-sm font-semibold text-primary whitespace-nowrap">
                 En búsqueda activa
               </div>
             )}
@@ -60,7 +60,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           </div>
         </div>
       </div>
-      <div className="text-left text-sm w-full h-full items-center justify-center my-4 whitespace-pre-line">
+      <div className="items-center justify-center w-full h-full my-4 text-sm text-left whitespace-pre-line">
         {profile.description}
       </div>
       <div className="group-hover:hidden">
@@ -69,7 +69,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
             {profile.technologies?.map((tech) => (
               <span
                 key={tech.name}
-                className="px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase"
+                className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all border border-indigo-400 rounded-md"
               >
                 {tech.name}
               </span>

@@ -131,12 +131,12 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
         <h1 className="mt-2 leading-snug tracking-tight text-center title">
           Conoce nuestra comunidad
         </h1>
-        <p className="mx-auto mt-4 text-center text-gray-600 md:mt-0">
+        <p className="mx-auto mt-4 text-center text-gray-200 md:mt-0">
           Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
           intereses y poder conectarte a través de sus redes sociales.
         </p>
       </div>
-      <div className="container min-h-screen mx-auto bg-white">
+      <div className="container min-h-screen mx-auto">
         <div className="max-w-5xl mx-auto mb-4">
           <form
             onSubmit={(e) => {
@@ -279,7 +279,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
         {loading ? (
           <div className="w-full mt-4 text-center">Cargando...</div>
         ) : filteredProfiles.length > 0 ? (
-          <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
+          <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-300 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
             {filteredProfiles.map((profile) => (
               <div key={profile.name} className="flex">
                 <ProfileCard profile={profile} />

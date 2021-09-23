@@ -33,6 +33,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
 
   return (
     <header
+      style={{ backgroundColor: '#0D071A' }}
       className={`w-full flex flex-col sticky top-0 z-50 shadow-sm ${
         preview ? 'pt-10' : ''
       }`}

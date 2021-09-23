@@ -28,9 +28,9 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   return (
     <Layout title="Proyectos CMYK" preview={preview}>
       <div className="pt-20">
-        <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
+        <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="text-left lg:pl-28">
-            <h2 className="title mt-2 leading-snug tracking-tight">
+            <h2 className="mt-2 leading-snug tracking-tight title">
               Proyectos CMYK&nbsp;
               <img
                 src="/icons/hearth.svg"
@@ -39,7 +39,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
                 alt="heart"
               />
             </h2>
-            <p className="mt-4 max-w-3xl text-lg">
+            <p className="max-w-3xl mt-4 text-lg text-gray-200">
               Desde FrontendCafé impulsamos el desarrollo de proyectos
               colaborativos realizados por miembros de la comunidad con el
               objetivo de ganar experiencia en un entorno profesional. Aquí
@@ -47,7 +47,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               desarrollaron dentro la comunidad. <br />
             </p>
             <span
-              className="cursor-pointer text-primary flex mt-5"
+              className="flex mt-5 cursor-pointer text-primary"
               onClick={() => {
                 setIsModalOpen(true);
               }}
@@ -58,13 +58,13 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
           </div>
         </div>
         <div className="w-full h-full mt-12 md:mt-8">
-          <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-2 relative z-10">
+          <div className="relative z-10 grid max-w-6xl grid-cols-1 gap-6 p-6 mx-auto sm:px-6 lg:px-8 md:grid-cols-2 justify-items-center md:gap-2">
             {projects.map((project, index) => (
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}
           </div>
-          <div className="text-center py-20">
-            <h2 className="subtitle mb-8 tracking-tight">
+          <div className="py-20 text-center">
+            <h2 className="mb-8 tracking-tight subtitle">
               El siguiente puede ser el tuyo{' '}
               <img
                 src="/icons/hearth.svg"
@@ -75,7 +75,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
             </h2>
             <a
               href="https://discord.gg/frontendcafe"
-              className="btn mt-1 btn-secondary py-3 px-6"
+              className="px-6 py-3 mt-1 btn btn-secondary"
             >
               Súmate a Discord
             </a>
@@ -90,7 +90,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
         buttonLabel="Cerrar"
         buttonClasses="text-primary"
       >
-        <div className="text-sm overflow-auto px-2 ">
+        <div className="px-2 overflow-auto text-sm ">
           <ul className="list-none list-inside">
             <li className="mb-1">
               ✔️ La iniciativa CMYK promueve el desarrollo de proyectos
