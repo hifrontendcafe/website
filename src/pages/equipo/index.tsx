@@ -23,8 +23,8 @@ const StaffPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
           Conoce nuestro equipo
         </h1>
       </div>
-      <div className="container mx-auto mb-20 bg-white">
-        <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 place-content-stretch">
+      <div className="container mx-auto mb-20">
+        <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-200 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 place-content-stretch">
           {profiles?.map((profile) => (
             <StaffCard profile={profile} key={profile._id} />
           ))}

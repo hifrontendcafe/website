@@ -64,11 +64,11 @@ html {
   }
 
   .title {
-    @apply text-3xl font-extrabold leading-normal text-gray-800 md:text-4xl lg:text-5xl;
+    @apply text-3xl font-extrabold leading-normal text-white md:text-4xl lg:text-5xl;
   }
 
   .subtitle {
-    @apply text-2xl font-extrabold leading-normal text-gray-800 md:text-3xl;
+    @apply text-2xl font-extrabold leading-normal text-gray-100 md:text-3xl;
   }
 
   .title-colorful {
@@ -83,7 +83,7 @@ html {
   @apply text-gray-500;
 }
 .react-select__value-container .react-select__placeholder {
-  @apply text-gray-600 text-sm;
+  @apply text-sm text-gray-600;
  }
 
 .twitter-blue {
