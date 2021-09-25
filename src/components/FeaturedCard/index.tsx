@@ -10,8 +10,8 @@ type FeaturedCardsItemProps = {
 const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
   return (
     <div
-      style={{ backgroundColor: '#090C14' }}
-      className={`${styles.card} shadow-lg md:m-18 sm:m-5 mt-10 px-5 py-6 flex justify-between mr-3`}
+      // style={{ backgroundColor: '#090C14' }}
+      className={`${styles.card} shadow-lg bg-gray-800 md:m-18 sm:m-5 mt-10 px-5 py-6 flex justify-between mr-3`}
     >
       <div className="relative flex flex-col justify-center">
         <div

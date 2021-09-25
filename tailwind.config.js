@@ -44,6 +44,8 @@ module.exports = {
       secondarydark: '#3b4c99',
       tertiary: '#d53f8c',
       tertiarydark: '#9d2e67',
+      bgDark: '#0C071A',
+      bgLight: '#260F21',
     }),
     textColor: (theme) => ({
       ...theme('colors'),
@@ -54,6 +56,12 @@ module.exports = {
       tertiary: '#d53f8c',
       tertiarydark: '#9d2e67',
     }),
+    extend: {
+      colors: {
+        bgDark: '#0C071A',
+        bgLight: '#260F21',
+      },
+    },
   },
   variants: {},
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],

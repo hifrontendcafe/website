@@ -32,7 +32,7 @@ html {
 
 @layer components {
   .btn {
-    @apply px-6 py-2 text-sm font-medium rounded;
+    @apply px-6 py-2 text-sm font-medium rounded-lg;
   }
 
   .btn-primary {
@@ -57,6 +57,14 @@ html {
 
   .btn-tertiary:hover {
     @apply shadow bg-tertiarydark;
+  }
+
+  .btn-border {
+    @apply text-white border;
+  }
+
+  .btn-border:hover {
+    @apply text-purple-400 border-2 border-purple-400 shadow;
   }
 
   .social-circle {

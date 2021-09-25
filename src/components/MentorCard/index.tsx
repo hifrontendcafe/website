@@ -29,7 +29,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="w-full col-span-1 my-2 bg-black rounded-lg shadow"
+      className="w-full col-span-1 my-2 bg-gray-800 rounded-lg shadow"
     >
       <div className="flex flex-col items-center w-full px-6 py-4 text-center md:flex-row md:text-left">
         <div className="flex flex-col items-center text-white md:mr-6">

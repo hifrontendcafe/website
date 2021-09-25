@@ -46,7 +46,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
           </div>
           <div className="flex flex-col items-center md:flex-row">
             <div>
-              <p className="font-light">© FrontendCafé {currentYear}</p>
+              <p className="mr-4 font-light">© FrontendCafé {currentYear}</p>
             </div>
             <div className="mt-5 md:mt-0">
               <a href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">

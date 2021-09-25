@@ -19,7 +19,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
     >
       <div className="flex items-center justify-center h-full bg-center bg-cover md:justify-around">
         <div className="z-10 w-auto text-center">
-          <div className="font-extrabold text-7xl">
+          <div className="text-5xl font-extrabold md:text-7xl">
             <div>
               <p>
                 <motion.span
@@ -38,18 +38,18 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="px-2 -mt-2 text-white"
+                className="px-2 -mt-2 text-5xl text-white md:text-7xl"
               >
-                En comunidad
+                en comunidad
               </span>
-              <p className="text-xl font-medium text-white">
+              <p className="mt-4 text-xl font-medium text-white">
                 El lugar de encuentro para potenciar tus ideas y conectar con
                 otras personas.
               </p>
               <a
                 target="_blank"
                 href="https://discord.gg/frontendcafe"
-                className="mt-1 btn btn-secondary"
+                className="bg-white btn"
                 rel="noreferrer"
               >
                 Unirme a Discord

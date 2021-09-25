@@ -33,14 +33,13 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
 
   return (
     <header
-      style={{ backgroundColor: '#0D071A' }}
       className={`w-full flex flex-col sticky top-0 z-50 shadow-sm bg-gradient-to-r from-current via-gray-900 to-current ${
         preview ? 'pt-10' : ''
       }`}
     >
       <nav
         id="site-menu"
-        className="flex flex-col items-center justify-between w-full px-4 mx-auto lg:px-44 lg:flex-row lg:shadow-none"
+        className="flex flex-col items-center justify-between w-full px-4 mx-auto xl:px-44 lg:flex-row lg:shadow-none"
       >
         <div className="flex flex-row flex-no-wrap items-center self-start justify-between w-full lg:w-auto lg:self-center lg:flex-none">
           <Link href="/">
@@ -82,12 +81,12 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
           ))}
           {!loading && !session && (
             <button
-              className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
+              className="flex items-center mt-2 btn btn-border lg:mt-0 lg:ml-10 "
               style={{ transition: 'all .15s ease' }}
               onClick={() => signIn('discord')}
             >
+              <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-2" />
               Iniciar Sesión
-              <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
             </button>
           )}
           {!loading && session && (
