@@ -36,7 +36,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   const AddToCalendar = ({ event }) => {
     return (
       <div title="Add to Calendar" className="addeventatc button">
-        Añadir a mi calendario
+        Añadir a tu Calendario
         <span className="start">
           {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
         </span>
@@ -89,21 +89,24 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           <div className={`mb-5 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
-          {past
-            ? event.recording && (
-                <div className="mt-auto mb-2">
-                  <a
-                    href={event.recording}
-                    className="px-5 py-2 text-sm text-white rounded bg-tertiary"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Ver grabación
-                  </a>
-                </div>
-              )
-            : // <AddToCalendar event={calendar} />
-              null}
+          {past ? (
+            event.recording && (
+              <div className="mt-auto mb-2">
+                <a
+                  href={event.recording}
+                  className="px-5 py-2 text-sm text-white rounded bg-tertiary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Ver grabación
+                </a>
+              </div>
+            )
+          ) : (
+            <div className="mt-auto mb-2">
+              <AddToCalendar event={calendar} />
+            </div>
+          )}
         </div>
       </div>
     </div>
