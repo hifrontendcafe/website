@@ -36,19 +36,17 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   const AddToCalendar = ({ event }) => {
     return (
       <div title="Add to Calendar" className="addeventatc button">
-        <a href="" target="_blank">
-          Añadir a Google Calendar
-          <span className="start">
-            {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
-          </span>
-          <span className="end">
-            {format(new Date(event.endTime), 'MM/dd/yyyy HH:mm')}
-          </span>
-          <span className="timezone">America/Argentina/Buenos_Aires</span>
-          <span className="title">{event.title}</span>
-          <span className="description">{event.description}</span>
-          <span className="location">{event.location}</span>
-        </a>
+        Añadir a tu Calendario
+        <span className="start">
+          {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
+        </span>
+        <span className="end">
+          {format(new Date(event.endTime), 'MM/dd/yyyy HH:mm')}
+        </span>
+        <span className="timezone">America/Argentina/Buenos_Aires</span>
+        <span className="title">{event.title}</span>
+        <span className="description">{event.description}</span>
+        <span className="location">{event.location}</span>
       </div>
     );
   };
@@ -91,7 +89,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           <div className={`mb-5 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
-          {!past ? (
+          {past ? (
             event.recording && (
               <div className="mt-auto mb-2">
                 <a
@@ -105,7 +103,9 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               </div>
             )
           ) : (
-            <AddToCalendar event={calendar} />
+            <div className="mt-auto mb-2">
+              <AddToCalendar event={calendar} />
+            </div>
           )}
         </div>
       </div>
