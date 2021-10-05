@@ -87,7 +87,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
                           </li>
                           <li className="mb-4 font-medium">
                             <span className="font-bold">Fecha de inicio:</span>{' '}
-                            {group.startDate}
+                            {new Date(group.startDate).toLocaleDateString()}
                           </li>
                           <li className="font-medium text-primary">
                             <a
