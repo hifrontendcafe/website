@@ -1,24 +1,18 @@
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
 
-// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = (url: URL) => {
-  window.gtag('config', GA_TRACKING_ID, {
-    page_path: url,
-  });
-};
+import * as ReactGA from 'react-ga';
+export class GaService {
+  private initialized = false;
 
-type GTagEvent = {
-  action: string;
-  category: string;
-  label: string;
-  value: number;
-};
+  initGA = (): void => {
+    ReactGA.initialize(GA_TRACKING_ID);
+    this.initialized = true;
+  };
 
-// https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = ({ action, category, label, value }: GTagEvent) => {
-  window.gtag('event', action, {
-    event_category: category,
-    event_label: label,
-    value: value,
-  });
-};
+  pageView = (url: URL): void => {
+    this.initialized && ReactGA.pageview(url.toString());
+  };
+}
+
+const gaService = new GaService();
+export default gaService;
