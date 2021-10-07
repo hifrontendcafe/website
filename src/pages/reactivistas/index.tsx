@@ -13,6 +13,7 @@ import GroupRequirementsModal from '../../components/reactivistas/GroupRequireme
 
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SectionHero from '@/components/SectionHero';
 
 const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
   ({ data, preview }) => {
@@ -26,35 +27,12 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
     const [infoModalOpen, setInfoModalOpen] = useState(false);
 
     return (
-      <Layout title="Iniciativas">
-        <div className="pt-20">
-          <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-36">
-            <div className="text-left sm:px-10 xl:px-0">
-              <h2 className="mt-2 leading-snug tracking-tight title">
-                ⚛️ Reactivistas
-              </h2>
-              <p className="max-w-3xl mt-4 text-lg text-gray-200">
-                Reactivistas es una iniciativa que promueve el estudio de React
-                en grupos auto-organizados por integrantes de la comunidad.
-                <br />
-                Si participas podrás intercambiar ideas con tus pares y acceder
-                a las Office Hours, que son reuniones con nuestro staff exponer
-                tus dudas y realizar consultas.
-              </p>
-              <span className="flex mt-5 cursor-pointer text-primary">
-                <a
-                  target="_blank"
-                  href="https://frontend.cafe/docs/guia-reactivistas"
-                  rel="noreferrer"
-                >
-                  Conocé más sobre la iniciativa&nbsp;
-                </a>
-                <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
-              </span>
-            </div>
-          </div>
-        </div>
-
+      <Layout title="Reactivistas">
+        <SectionHero
+          title="Reactivistas"
+          paragraph="Grupos auto-organizados por integrantes de la comunidad. Si participas podrás intercambiar ideas con tus pares y acceder
+          a las Office Hours, que son reuniones con nuestro staff exponer tus dudas y realizar consultas."
+        />
         <div className="container p-6 m-10 mx-auto lg:px-36">
           {groups.length > 0 && (
             <>

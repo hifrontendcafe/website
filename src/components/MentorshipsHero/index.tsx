@@ -1,46 +1,37 @@
 import Link from 'next/link';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const MentorshipsHero: React.FC = () => {
   return (
     <section className="relative text-gray-100 body-font">
-      <div className="container flex flex-col items-center px-5 py-32 mx-auto md:flex-row">
-        <div className="w-5/6 mb-10 lg:max-w-lg lg:w-full md:w-1/2 md:mb-0">
-          <img
-            className="object-cover object-center rounded shadow-sm"
-            alt="hero"
-            src="/img/mentorship.jpg"
-          />
-        </div>
-        <div className="flex flex-col items-center lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 md:items-start md:text-left sm:text-center">
-          <h1 className="mb-4 text-center title">Programa de mentorías</h1>
-          <p className="mb-4 leading-relaxed">
+      <div className="container flex flex-col items-center py-32 mx-auto md:flex-row">
+        <div className="max-w-3xl mt-4 text-lg text-gray-200">
+          <h1 className="mt-2 leading-snug tracking-tight title">
+            Programa de mentorías
+          </h1>
+          <p className="max-w-3xl mt-4 mb-4 text-lg leading-relaxed text-gray-200">
             Iniciarnos en el mundo de la tecnología puede resultar abrumador o
             verse como un desafío. Eso nos puede llevar a preguntarnos por dónde
             comenzar y qué elegir de todo lo que abarca el rubro de IT.
           </p>
-          <p className="mb-8 leading-relaxed">
+          <p className="max-w-3xl mt-4 mb-8 text-lg leading-relaxed text-gray-200">
             El programa de mentorías de FrontendCafé busca servirte de guía en
             este camino, conectándote con profesionales y referentes capacitados
             en los múltiples y diversos temas que engloba el universo de las
             tecnologías de la información.
           </p>
-          <div className="flex justify-center">
-            <Link href="/docs/guia-para-realizar-mentorias">
+          <div>
+            <span className="flex mt-5 cursor-pointer text-primary">
               <a
                 target="_blank"
-                className="inline-flex px-6 py-2 text-lg text-white border-0 rounded bg-primary focus:outline-none hover:bg-primarydark"
+                href="https://frontend.cafe/docs/guia-para-realizar-mentorias"
+                rel="noreferrer"
               >
-                Reglas
+                Conocé más sobre la iniciativa&nbsp;
               </a>
-            </Link>
-            <Link href="/docs/codigo-de-conducta">
-              <a
-                target="_blank"
-                className="inline-flex px-6 py-2 ml-4 text-lg text-gray-700 bg-gray-200 border-0 rounded focus:outline-none hover:bg-gray-300"
-              >
-                Código de conducta
-              </a>
-            </Link>
+              <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
+            </span>
           </div>
         </div>
       </div>

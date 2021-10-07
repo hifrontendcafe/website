@@ -8,6 +8,7 @@ import { Mentor, Topic } from '../../lib/types';
 import { getAllMentors, getMentoringTopics, getSettings } from '@/lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
+import SectionHero from '@/components/SectionHero';
 
 type MentorshipsPageProps = {
   mentors: Mentor[];
@@ -36,7 +37,13 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
       description="El programa de mentorías de FrontendCafé  busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
       preview={preview}
     >
-      <MentorshipsHero />
+      <SectionHero
+        title="Programa de mentorías"
+        paragraph="Iniciarnos en el mundo de la tecnología puede resultar abrumador o
+            verse como un desafío. Eso nos puede llevar a preguntarnos por dónde
+            comenzar y qué elegir de todo lo que abarca el rubro de IT."
+        cta="https://frontend.cafe/docs/guia-para-realizar-mentorias"
+      />
       <MentorshipsSteps />
       <MentorList topics={topics} mentors={mentors} />
     </Layout>

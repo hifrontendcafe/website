@@ -7,6 +7,7 @@ import { Event } from '../lib/types';
 import { getAllEvents, getSettings } from '../lib/api';
 import { usePreviewSubscription } from '../lib/sanity';
 import { eventsQuery } from '../lib/queries';
+import SectionHero from '@/components/SectionHero';
 
 type EventsPageProps = {
   data: Event[];
@@ -25,6 +26,10 @@ const EventsPage: React.FC<EventsPageProps> = ({ data, preview }) => {
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
       preview={preview}
     >
+      <SectionHero
+        title="Eventos"
+        paragraph="Aca deberiamos describir algo de eventos quizas?? O no, que facciamo con la cosa?"
+      />
       <EventList events={events} />
     </Layout>
   );

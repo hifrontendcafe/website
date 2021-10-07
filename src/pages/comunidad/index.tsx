@@ -11,6 +11,7 @@ import { findProfiles } from '@/lib/prisma-queries';
 import { useSession } from 'next-auth/client';
 import Spinner from '@/components/Spinner';
 import { shuffle } from '@/lib/shuffle';
+import SectionHero from '@/components/SectionHero';
 
 type PostsPageProps = {
   profiles: ExtendedProfile[];
@@ -127,7 +128,12 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
-      <div className="container max-w-3xl px-4 pt-10 pb-10 mx-auto md:pt-16 sm:px-6">
+      <SectionHero
+        title="Conoce nuestra comunidad"
+        paragraph="Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
+        intereses y poder conectarte a través de sus redes sociales."
+      />
+      {/* <div className="container max-w-3xl px-4 pt-10 pb-10 mx-auto md:pt-16 sm:px-6">
         <h1 className="mt-2 leading-snug tracking-tight text-center title">
           Conoce nuestra comunidad
         </h1>
@@ -135,7 +141,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
           intereses y poder conectarte a través de sus redes sociales.
         </p>
-      </div>
+      </div> */}
       <div className="container min-h-screen mx-auto">
         <div className="max-w-5xl mx-auto mb-4">
           <form

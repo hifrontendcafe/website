@@ -10,6 +10,7 @@ import { useState } from 'react';
 import Modal from '@/components/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import SectionHero from '@/components/SectionHero';
 
 type CMYKProjectsProps = {
   preview?: boolean;
@@ -27,36 +28,15 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
     <Layout title="Proyectos CMYK" preview={preview}>
-      <div className="pt-20">
-        <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-          <div className="text-left lg:pl-28">
-            <h2 className="mt-2 leading-snug tracking-tight title">
-              Proyectos CMYK&nbsp;
-              <img
-                src="/icons/hearth.svg"
-                width="50px"
-                className="inline"
-                alt="heart"
-              />
-            </h2>
-            <p className="max-w-3xl mt-4 text-lg text-gray-200">
-              Desde FrontendCafé impulsamos el desarrollo de proyectos
+      <SectionHero
+        title="Proyectos CMYK"
+        paragraph="Desde FrontendCafé impulsamos el desarrollo de proyectos
               colaborativos realizados por miembros de la comunidad con el
               objetivo de ganar experiencia en un entorno profesional. Aquí
               conocerás los diferentes proyectos que los equipos CMYK crearon y
-              desarrollaron dentro la comunidad. <br />
-            </p>
-            <span
-              className="flex mt-5 cursor-pointer text-primary"
-              onClick={() => {
-                setIsModalOpen(true);
-              }}
-            >
-              Conocé más sobre la iniciativa&nbsp;
-              <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
-            </span>
-          </div>
-        </div>
+              desarrollaron dentro la comunidad."
+      />
+      <div className="pt-20">
         <div className="w-full h-full mt-12 md:mt-8">
           <div className="relative z-10 grid max-w-6xl grid-cols-1 gap-6 p-6 mx-auto sm:px-6 lg:px-8 md:grid-cols-2 justify-items-center md:gap-2">
             {projects.map((project, index) => (

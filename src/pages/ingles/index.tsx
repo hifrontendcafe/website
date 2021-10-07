@@ -4,6 +4,7 @@ import Layout from '../../components/Layout';
 import EventPreview from '../../components/EventPreview';
 import JoinSection from '../../components/JoinSection';
 import { Event } from '../../lib/types';
+import SectionHero from '@/components/SectionHero';
 
 type EnglishPageProps = {
   upcomingEvents: Event[];
@@ -17,33 +18,12 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
       description="Únete a nuestras charlas de inglés en Discord"
     >
       <div className="container px-8 pt-16 mx-auto text-gray-200 sm:px-6 md:pt-8">
-        <div className="flex flex-wrap items-center justify-between py-8">
-          <div className="lg:w-1/2 lg:pr-12">
-            <h1 className="title lg:text-4xl xl:title">
-              Práctica de inglés 🌎
-            </h1>
-            <p>
-              Nos divertimos charlando con el objetivo de perder el miedo a
+        <SectionHero
+          title="Práctica de inglés"
+          paragraph="Nos divertimos charlando con el objetivo de perder el miedo a
               hablar en inglés en público. Mejorando la comunicación y la
-              confianza, divirtiéndonos y conectándonos.
-            </p>
-            <br />
-            <ul className="pl-1 list-none list-inside">
-              <li>✔️ Puedes ingresar desde cualquier nivel</li>
-              <li>✔️ Son encuentros online gratis</li>
-              <li>✔️ No necesitas inscribirte</li>
-              <li>✔️ Sucede desde el mismo canal de discord</li>
-            </ul>
-            <br />
-          </div>
-          <div className="hidden lg:w-1/2 xl:w-1/2 md:block">
-            <img
-              className="rounded-md shadow-md"
-              src="img/english-talk.svg"
-              alt="english session preview on discord"
-            />
-          </div>
-        </div>
+              confianza, divirtiéndonos y conectándonos."
+        />
         {upcomingEvents.length > 0 && (
           <div>
             <div className="flex flex-row gap-3">

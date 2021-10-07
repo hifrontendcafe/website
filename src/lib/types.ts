@@ -18,6 +18,7 @@ export interface SocialNetworks {
   twitch: string;
   twitter: string;
   youtube: string;
+  instagram: string;
 }
 
 export interface Image {
