@@ -6,6 +6,7 @@ export class GaService {
 
   initGA = (): void => {
     ReactGA.initialize(GA_TRACKING_ID);
+    ReactGA.pageview(window.location.pathname + window.location.search);
     this.initialized = true;
   };
 
