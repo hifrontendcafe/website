@@ -5,6 +5,7 @@ import {
   faLinkedin,
   faTwitch,
   faYoutube,
+  faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useSettings } from '@/lib/settings';
@@ -68,6 +69,17 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
                   className="grid w-6 h-6 rounded-full place-items-center"
                 >
                   <FontAwesomeIcon icon={faTwitter} size="lg" />
+                </a>
+              </Link>
+            )}
+
+            {socialnetworks?.instagram && (
+              <Link href={socialnetworks?.instagram}>
+                <a
+                  target="_blank"
+                  className="grid w-6 h-6 rounded-full place-items-center"
+                >
+                  <FontAwesomeIcon icon={faInstagram} size="lg" />
                 </a>
               </Link>
             )}
