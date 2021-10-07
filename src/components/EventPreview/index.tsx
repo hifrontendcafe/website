@@ -35,7 +35,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
 
   const AddToCalendar = ({ event }) => {
     return (
-      <div title="Add to Calendar" className="addeventatc button">
+      <button title="Add to Calendar" className="addeventatc button">
         Añadir a tu Calendario
         <span className="start">
           {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
@@ -47,7 +47,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
         <span className="title">{event.title}</span>
         <span className="description">{event.description}</span>
         <span className="location">{event.location}</span>
-      </div>
+      </button>
     );
   };
 
