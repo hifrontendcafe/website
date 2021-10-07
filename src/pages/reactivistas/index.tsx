@@ -32,6 +32,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
           title="Reactivistas"
           paragraph="Grupos auto-organizados por integrantes de la comunidad. Si participas podrás intercambiar ideas con tus pares y acceder
           a las Office Hours, que son reuniones con nuestro staff exponer tus dudas y realizar consultas."
+          cta="https://frontend.cafe/docs/guia-reactivistas"
         />
         <div className="container p-6 m-10 mx-auto lg:px-36">
           {groups.length > 0 && (
