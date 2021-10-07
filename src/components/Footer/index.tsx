@@ -73,6 +73,17 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
               </Link>
             )}
 
+            {socialnetworks?.instagram && (
+              <Link href={socialnetworks?.instagram}>
+                <a
+                  target="_blank"
+                  className="grid w-6 h-6 rounded-full place-items-center"
+                >
+                  <FontAwesomeIcon icon={faInstagram} size="lg" />
+                </a>
+              </Link>
+            )}
+
             {socialnetworks?.github && (
               <Link href={socialnetworks?.github}>
                 <a

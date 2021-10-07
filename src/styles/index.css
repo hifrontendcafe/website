@@ -103,6 +103,7 @@ html {
   border-radius: 3px !important;
   color: #fff !important;
   padding: 8px !important;
+  z-index: unset;
 }
 
 .addeventatc_dropdown {

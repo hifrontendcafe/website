@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "//": "opens prisma studio",
+    "prisma:studio": "prisma studio",
+    "//": "generate types for prisma models",
+    "prisma:generate": "prisma generate"
   },
   "browser": {
     "fs": false
@@ -34,7 +38,9 @@
     "postcss": "^8.2.10",
     "prisma": "2.25.0",
     "react": "^17.0.2",
+    "react-cookie-consent": "^6.4.1",
     "react-dom": "^17.0.2",
+    "react-ga": "^3.3.0",
     "react-hook-form": "^7.12.2",
     "react-image-file-resizer": "^0.4.7",
     "react-multi-carousel": "^2.6.1",

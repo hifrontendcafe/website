@@ -1,29 +1,19 @@
 export const GA_TRACKING_ID = process.env.NEXT_PUBLIC_GA_TRACKING_ID;
-// No creo que esto sea la solución correcta pero funciona, ponele 👀
-declare global {
-  interface Window {
-    gtag: any;
-  }
+
+import * as ReactGA from 'react-ga';
+export class GaService {
+  private initialized = false;
+
+  initGA = (): void => {
+    ReactGA.initialize(GA_TRACKING_ID);
+    ReactGA.pageview(window.location.pathname + window.location.search);
+    this.initialized = true;
+  };
+
+  pageView = (url: URL): void => {
+    this.initialized && ReactGA.pageview(url.toString());
+  };
 }
-// https://developers.google.com/analytics/devguides/collection/gtagjs/pages
-export const pageview = (url: URL) => {
-  window.gtag('config', GA_TRACKING_ID, {
-    page_path: url,
-  });
-};
 
-type GTagEvent = {
-  action: string;
-  category: string;
-  label: string;
-  value: number;
-};
-
-// https://developers.google.com/analytics/devguides/collection/gtagjs/events
-export const event = ({ action, category, label, value }: GTagEvent) => {
-  window.gtag('event', action, {
-    event_category: category,
-    event_label: label,
-    value: value,
-  });
-};
+const gaService = new GaService();
+export default gaService;
