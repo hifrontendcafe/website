@@ -39,15 +39,12 @@ const Layout: React.FC<LayoutProps> = ({
   preview = false,
   children,
 }) => {
+  const SelectedLayout = mode === 'simple' ? SimpleLayout : MainLayout;
+
   return (
     <>
       <FecHead title={title} description={description} ogImage={ogImage} />
-      {
-        {
-          main: <MainLayout preview={preview}>{children}</MainLayout>,
-          simple: <SimpleLayout preview={preview}>{children}</SimpleLayout>,
-        }[mode]
-      }
+      <SelectedLayout preview={preview}>{children}</SelectedLayout>
     </>
   );
 };

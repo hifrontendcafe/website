@@ -104,7 +104,8 @@ export const docsQuery = groq`
   *[_type == "docs" ] | order(date desc) {
     title,
     'slug': slug.current,
-    body
+    body,
+    content
   }
 `;
 
@@ -112,7 +113,8 @@ export const docQuery = groq`
   *[_type == "docs" && slug.current == $slug][0]{
     title,
     'slug': slug.current,
-    body
+    body,
+    content
   }
 `;
 
@@ -138,6 +140,16 @@ export const personQuery = groq`
     lastName,
   }
 `;
+
+export const personQueryByDiscordID = groq`
+  *[_type == "person" &&  discordID.current == $id]{
+    _id,
+    username,
+    discordID,
+    "cmykParticipant": *[_type=="cmykParticipant" && references(^._id)]
+  }
+`;
+
 export const staffQuery = groq`
   *[_type == "person" && fecTeam] | order(_id desc){
     _id,
@@ -150,6 +162,7 @@ export const staffQuery = groq`
     },
   }
 `;
+
 export const reactGroupQuery = groq`
 *[_type == 'reactGroup' && status == 'approved']{
     _id,

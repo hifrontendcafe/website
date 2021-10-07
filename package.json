@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "//": "opens prisma studio",
+    "prisma:studio": "prisma studio",
+    "//": "generate types for prisma models",
+    "prisma:generate": "prisma generate"
   },
   "browser": {
     "fs": false
@@ -15,33 +19,41 @@
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@prisma/client": "^2.27.0",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/client": "^1.150.7",
     "@sanity/image-url": "^0.140.19",
+    "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/typography": "^0.4.0",
+    "@types/react-select": "^4.0.17",
     "autoprefixer": "^10.2.5",
     "date-fns": "^2.16.1",
+    "emailjs-com": "^3.2.0",
     "framer-motion": "^2.9.1",
-    "googleapis": "^73.0.0",
     "gray-matter": "4.0.2",
-    "next": "^10.2.0",
+    "next": "^11.1.0",
+    "next-auth": "^3.27.3",
+    "next-mdx-remote": "^3.0.4",
     "next-sanity": "^0.1.8",
     "postcss": "^8.2.10",
+    "prisma": "2.25.0",
     "react": "^17.0.2",
     "react-day-picker": "^7.4.10",
     "react-dom": "^17.0.2",
-    "react-hook-form": "^6.15.1",
+    "react-hook-form": "^7.12.2",
+    "react-image-file-resizer": "^0.4.7",
     "react-multi-carousel": "^2.6.1",
-    "react-query": "^3.13.10",
     "react-scripts": "^4.0.3",
+    "react-select": "^4.3.1",
     "react-twitter-embed": "^3.0.3",
     "remark": "11.0.2",
-    "remark-html": "10.0.0",
+    "remark-html": "13.0.2",
     "tinycolor2": "^1.4.2"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
     "@babel/preset-react": "^7.9.0",
+    "@types/gtag.js": "^0.0.7",
     "@types/node": "^14.11.2",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
@@ -54,6 +66,6 @@
     "postcss-preset-env": "^6.7.0",
     "prettier": "^2.1.2",
     "tailwindcss": "^2.1.1",
-    "typescript": "^4.0.3"
+    "typescript": "^4.3.5"
   }
 }

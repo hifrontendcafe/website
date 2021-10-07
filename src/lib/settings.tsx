@@ -1,20 +1,29 @@
-import { createContext, useContext, useEffect, useState } from 'react';
-import { getSettings } from './api';
+import React, { createContext } from 'react';
+import { Settings } from './types';
 
 export const AppSettings = createContext(null);
 
-export function AppWrapper({ children }) {
-  const [settings, setSettings] = useState({});
+interface SettingsProviderProps {
+  settings: Settings;
+}
 
-  useEffect(() => {
-    getSettings().then((res) => setSettings(res));
-  }, []);
-
+export const SettingsProvider: React.FC<SettingsProviderProps> = ({
+  settings,
+  children,
+}) => {
   return (
     <AppSettings.Provider value={settings}>{children}</AppSettings.Provider>
   );
-}
+};
 
-export function useSettings() {
-  return useContext(AppSettings);
+export function useSettings(): Settings {
+  const context = React.useContext<Settings>(AppSettings);
+
+  if (context === undefined) {
+    throw new Error(
+      'useSettings must be used within a SettingsProvider (be sure that the page is exposing settings in getStaticProps)',
+    );
+  }
+
+  return context;
 }

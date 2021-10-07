@@ -5,11 +5,9 @@ import MentorshipsHero from '../../components/MentorshipsHero';
 import Layout from '../../components/Layout';
 
 import { Mentor, Topic } from '../../lib/types';
-import { getAllMentors, getMentoringTopics } from '../../lib/api';
+import { getAllMentors, getMentoringTopics, getSettings } from '@/lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { getLayout } from '@/utils/get-layout';
-import { getAllMentorSchedules } from '@/lib/calomentorAPI';
 
 type MentorshipsPageProps = {
   mentors: Mentor[];
@@ -120,7 +118,6 @@ const MentorshipsSteps: React.FC = () => {
                 consultas a tu mentor para ayudar a prepararnos mejor y
                 aprovechar el tiempo al máximo.
               </p>
-              <p>¡Recordá ser puntual! ⌚</p>
             </div>
           </div>
         </div>
@@ -132,10 +129,10 @@ const MentorshipsSteps: React.FC = () => {
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const mentors = await getAllMentors(preview);
   const topics = await getMentoringTopics(preview);
-  const mentorsSchedule = await getAllMentorSchedules();
-  const { dehydratedState } = await getLayout({ preview });
+  const settings = await getSettings(preview);
+
   return {
-    props: { mentors, topics, preview, dehydratedState, mentorsSchedule },
+    props: { mentors, topics, preview, settings },
     revalidate: 1,
   };
 };

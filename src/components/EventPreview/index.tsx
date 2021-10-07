@@ -1,4 +1,5 @@
 import { format } from 'date-fns';
+import { es } from 'date-fns/locale';
 import BlockContent from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
@@ -35,7 +36,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   const AddToCalendar = ({ event }) => {
     return (
       <div title="Add to Calendar" className="addeventatc button">
-        Añadir a mi calendario
+        Añadir a tu Calendario
         <span className="start">
           {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
         </span>
@@ -76,27 +77,36 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           <h1 className="mb-3 text-xl font-medium leading-tight text-gray-900 title-font">
             {event.title}
           </h1>
-          <p className="mb-6 font-light text-gray-700 title-font">
-            {format(new Date(event.date), 'MMM d - HH:mm')} hrs (horario local)
+          <p className="mb-6 font-medium text-gray-700 title-font break-all	">
+            {format(new Date(event.date), 'd  MMMM - HH:mm ', {
+              locale: es,
+            })}
+            hrs
+            <span className="inline-block font-light text-sm">
+              Horario en tu ubicación actual
+            </span>
           </p>
           <div className={`mb-5 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
-          {past
-            ? event.recording && (
-                <div className="mt-auto mb-2">
-                  <a
-                    href={event.recording}
-                    className="px-5 py-2 text-sm text-white rounded bg-tertiary"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Ver grabación
-                  </a>
-                </div>
-              )
-            : // <AddToCalendar event={calendar} />
-              null}
+          {past ? (
+            event.recording && (
+              <div className="mt-auto mb-2">
+                <a
+                  href={event.recording}
+                  className="px-5 py-2 text-sm text-white rounded bg-tertiary"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Ver grabación
+                </a>
+              </div>
+            )
+          ) : (
+            <div className="mt-auto mb-2">
+              <AddToCalendar event={calendar} />
+            </div>
+          )}
         </div>
       </div>
     </div>

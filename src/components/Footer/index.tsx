@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import styles from './styles.module.css';
 import {
   faTwitter,
   faGithubAlt,
@@ -8,12 +7,13 @@ import {
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSettings } from '@/hooks/api';
+import { useSettings } from '@/lib/settings';
 
-const Footer: React.FC = () => {
-  const {
-    data: { socialnetworks },
-  } = useSettings();
+type FooterProps = {
+  mainClasses?: string;
+};
+const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
+  const { socialnetworks } = useSettings();
 
   const navItems = [
     { title: 'Mentorías', link: '/mentorias' },
@@ -30,21 +30,21 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-black">
+    <footer className={`bg-black ${mainClasses}`}>
       <div className="container flex flex-col-reverse justify-center gap-12 p-16 mx-auto text-white md:gap-0 md:flex-row md:justify-between">
         <div className="flex flex-col gap-5 text-center md:text-left">
           <img
             src="/logo-square.png"
             className="hidden w-10 h-10 rounded-full md:block md:h-12 md:w-12"
           />
-          <div className="grid justify-center w-full pb-8 font-medium md:grid-cols-3 gap-y-2 gap-x-5 md:pb-3 text-left">
+          <div className="grid justify-center w-full pb-8 font-medium text-left md:grid-cols-3 gap-y-2 gap-x-5 md:pb-3">
             {navItems?.map(({ link, title }) => (
               <Link href={link} key={link}>
                 <a>{title}</a>
               </Link>
             ))}
           </div>
-          <div className="flex flex-col md:flex-row items-center">
+          <div className="flex flex-col items-center md:flex-row">
             <div>
               <p className="font-light">© FrontendCafé {currentYear}</p>
             </div>

@@ -1,9 +1,8 @@
 import Layout from '../../components/Layout';
 import { GetStaticProps } from 'next';
 
-import { getFecTeam } from '../../lib/api';
+import { getFecTeam, getSettings } from '../../lib/api';
 import { Person } from '../../lib/types';
-import { getLayout } from '@/utils/get-layout';
 import StaffCard from '@/components/StaffCard';
 
 type PostsPageProps = {
@@ -36,10 +35,10 @@ const StaffPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const profiles = await getFecTeam(preview);
-  const { dehydratedState } = await getLayout({ preview });
+  const settings = await getSettings(preview);
 
   return {
-    props: { preview, profiles, dehydratedState },
+    props: { preview, profiles, settings },
     revalidate: 1,
   };
 };

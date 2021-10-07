@@ -1,27 +1,36 @@
-import { useRef } from 'react';
 import { AppProps } from 'next/app';
-import '../styles/index.css';
-import '../styles/menu.css';
-import '../styles/scrollbar.css';
+import { Provider } from 'next-auth/client';
+import { useRouter } from 'next/router';
 
-import { QueryClientProvider, QueryClient } from 'react-query';
-import { Hydrate } from 'react-query/hydration';
-import { AppWrapper } from '../lib/settings';
+import { useEffect } from 'react';
+
+import '@/styles/index.css';
+import '@/styles/menu.css';
+import '@/styles/scrollbar.css';
+
+import { SettingsProvider } from '@/lib/settings';
+
+import * as gtag from '@/lib/gtag';
 
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
-  const queryClientRef = useRef<QueryClient>();
-  if (!queryClientRef.current) {
-    queryClientRef.current = new QueryClient();
-  }
+  const router = useRouter();
+
+  useEffect(() => {
+    const handleRouteChange = (url: URL) => {
+      gtag.pageview(url);
+    };
+    router.events.on('routeChangeComplete', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeComplete', handleRouteChange);
+    };
+  }, [router.events]);
 
   return (
-    <QueryClientProvider client={queryClientRef.current}>
-      <Hydrate state={pageProps.dehydratedState}>
-        <AppWrapper>
-          <Component {...pageProps} />
-        </AppWrapper>
-      </Hydrate>
-    </QueryClientProvider>
+    <Provider session={pageProps.session}>
+      <SettingsProvider settings={pageProps.settings}>
+        <Component {...pageProps} />
+      </SettingsProvider>
+    </Provider>
   );
 };
 

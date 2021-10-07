@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import { GetStaticProps } from 'next';
 
-import { getAllFeaturedCards } from '../lib/api';
+import { getAllFeaturedCards, getSettings } from '@/lib/api';
 
 import Hero from '../components/Hero';
 import Layout from '../components/Layout';
@@ -13,10 +13,10 @@ import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 //import CMYKBanner from '../components/CMYKBanner';
 import JoinSection from '../components/JoinSection';
 import AboutSection from '../components/AboutSection';
-import { useSettings } from '@/hooks/api';
-import { getLayout } from '@/utils/get-layout';
 import { getTweetsByUsername } from '@/lib/twitter';
 import { Tweet, FeaturedCards } from '@/lib/types';
+
+import { useSettings } from '@/lib/settings';
 
 type IndexProps = {
   preview?: boolean;
@@ -26,9 +26,7 @@ type IndexProps = {
 
 const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
   const [counter, setCounter] = useState(0);
-  const {
-    data: { heroWords = ['Creamos'], description },
-  } = useSettings();
+  const { heroWords = ['Creamos'], description } = useSettings();
 
   if (counter >= heroWords?.length) {
     setCounter(0);
@@ -58,9 +56,9 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
 
 const Featured = ({ cards }) => (
   <div className="flex flex-col mb-12 md:mb-24">
-    <div className="flex flex-col items-center justify-center m-auto mt-20 text-center lg:w-2/3 px-5">
+    <div className="flex flex-col items-center justify-center px-5 m-auto mt-20 text-center lg:w-2/3">
       <h1 className="mb-5 title">¡Descubre lo que tenemos para ti!</h1>
-      <p className="w-5/6 lg:text-lg text-md text-left">
+      <p className="w-5/6 text-left lg:text-lg text-md">
         En FrontendCafé con la participación de la comunidad creamos diferentes
         actividades para mejorar nuestras habilidades tanto profesionales como
         comunidad.
@@ -72,12 +70,12 @@ const Featured = ({ cards }) => (
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const cards = await getAllFeaturedCards(preview);
+  const settings = await getSettings(preview);
 
-  const { dehydratedState } = await getLayout({ preview });
   const { data: tweets } = await getTweetsByUsername('FrontEndCafe');
 
   return {
-    props: { tweets, preview, cards, dehydratedState },
+    props: { tweets, preview, cards, settings },
     revalidate: 1,
   };
 };

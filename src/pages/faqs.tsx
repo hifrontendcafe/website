@@ -1,4 +1,4 @@
-import { getLayout } from '@/utils/get-layout';
+import { getSettings } from '@/lib/api';
 import { GetStaticProps } from 'next';
 import Layout from '../components/Layout';
 
@@ -11,15 +11,15 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
     <Layout title="FAQS" preview={preview}>
       <section className="text-gray-700">
         <div className="container px-5 py-24 mx-auto">
-          <div className="text-center mb-20">
-            <h1 className="sm:text-3xl text-2xl font-medium  mb-4 text-primary">
+          <div className="mb-20 text-center">
+            <h1 className="mb-4 text-2xl font-medium sm:text-3xl text-primary">
               Preguntas frecuentes
             </h1>
           </div>
-          <div className="flex flex-wrap lg:w-4/5 sm:mx-auto sm:mb-2 -mx-2">
-            <div className="w-full lg:w-1/2 px-4 py-2">
+          <div className="flex flex-wrap -mx-2 lg:w-4/5 sm:mx-auto sm:mb-2">
+            <div className="w-full px-4 py-2 lg:w-1/2">
               <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4 ">
+                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md ">
                   ¿Qué es FrontendCafé?
                 </summary>
                 <p className="p-4">
@@ -30,7 +30,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="font-semibold bg-gray-200 rounded-md py-2 px-4">
+                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
                   ¿Qué es el coworking?
                 </summary>
                 <p className="p-4">
@@ -41,7 +41,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
                   ¿Qué es el pair-programming / programar a la par?
                 </summary>
                 <p className="p-4">
@@ -52,7 +52,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
                   ¿Cómo son los eventos de inglés?
                 </summary>
                 <p className="p-4">
@@ -64,9 +64,9 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
             </div>
-            <div className="w-full lg:w-1/2 px-4 py-2">
+            <div className="w-full px-4 py-2 lg:w-1/2">
               <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
                   ¿Cuándo son los eventos de inglés?
                 </summary>
                 <p className="p-4">
@@ -76,7 +76,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
                   ¿Qué nivel hay que tener para participar en los eventos de
                   inglés?
                 </summary>
@@ -87,7 +87,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
                   ¿Qué son las mentorías?
                 </summary>
                 <p className="p-4">
@@ -99,7 +99,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="font-semibold  bg-gray-200 rounded-md py-2 px-4">
+                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
                   ¿Cómo me anoto a la mentorías?
                 </summary>
                 <p className="p-4">
@@ -120,9 +120,9 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const { dehydratedState } = await getLayout({ preview });
+  const settings = await getSettings(preview);
 
-  return { props: { preview, dehydratedState }, revalidate: 1 };
+  return { props: { preview, settings }, revalidate: 1 };
 };
 
 export default Faqs;

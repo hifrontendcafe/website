@@ -2,23 +2,17 @@ import Link from 'next/link';
 
 const MentorshipsHero: React.FC = () => {
   return (
-    <section className="relative text-gray-700 body-font bg-white">
-      <div
-        className="container mx-auto flex px-5 py-32 md:flex-row flex-col
-        items-center"
-      >
-        <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
+    <section className="relative text-gray-700 bg-white body-font">
+      <div className="container flex flex-col items-center px-5 py-32 mx-auto md:flex-row">
+        <div className="w-5/6 mb-10 lg:max-w-lg lg:w-full md:w-1/2 md:mb-0">
           <img
             className="object-cover object-center rounded shadow-sm"
             alt="hero"
             src="/img/mentorship.jpg"
           />
         </div>
-        <div
-          className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col
-          md:items-start md:text-left items-center sm:text-center"
-        >
-          <h1 className="title mb-4 text-center">Programa de mentorías</h1>
+        <div className="flex flex-col items-center lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 md:items-start md:text-left sm:text-center">
+          <h1 className="mb-4 text-center title">Programa de mentorías</h1>
           <p className="mb-4 leading-relaxed">
             Iniciarnos en el mundo de la tecnología puede resultar abrumador o
             verse como un desafío. Eso nos puede llevar a preguntarnos por dónde
@@ -33,16 +27,16 @@ const MentorshipsHero: React.FC = () => {
           <div className="flex justify-center">
             <Link href="/docs/guia-para-realizar-mentorias">
               <a
-                className="inline-flex text-white bg-primary border-0 py-2 px-6
-              focus:outline-none hover:bg-primarydark rounded text-lg"
+                target="_blank"
+                className="inline-flex px-6 py-2 text-lg text-white border-0 rounded bg-primary focus:outline-none hover:bg-primarydark"
               >
                 Reglas
               </a>
             </Link>
             <Link href="/docs/codigo-de-conducta">
               <a
-                className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0
-              py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg"
+                target="_blank"
+                className="inline-flex px-6 py-2 ml-4 text-lg text-gray-700 bg-gray-200 border-0 rounded focus:outline-none hover:bg-gray-300"
               >
                 Código de conducta
               </a>
@@ -51,7 +45,7 @@ const MentorshipsHero: React.FC = () => {
         </div>
       </div>
       <div
-        className="top-auto bottom-0 left-0 right-0 w-full absolute pointer-events-none overflow-hidden"
+        className="absolute bottom-0 left-0 right-0 top-auto w-full overflow-hidden pointer-events-none"
         style={{ height: '70px', transform: 'translateZ(0)' }}
       >
         <svg

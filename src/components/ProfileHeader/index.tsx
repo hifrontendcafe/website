@@ -1,4 +1,3 @@
-
 import ProfileSocialMedia from '../ProfileSocialMedia';
 
 type Props = {
@@ -7,22 +6,22 @@ type Props = {
   role: string;
   socialMedia: {
     [name: string]: string;
-  }
+  };
 };
 
 const ProfileHeader = ({ name, coverImage, role, socialMedia }: Props) => {
   return (
-    <div className="md:flex items-center">
+    <div className="items-center md:flex">
       <img
         src={coverImage}
-        className="w-32 h-32 rounded-full mr-4 object-cover shadow-lg border-2 border-white"
+        className="object-cover w-32 h-32 mr-4 border-2 border-white rounded-full shadow-lg"
         alt={name}
       />
       <div>
-        <h1 className="mb-0 text-4xl md:text-5xl font-bold tracking-tighter leading-tight md:leading-none">
+        <h1 className="mb-0 text-4xl font-bold leading-tight tracking-tighter md:text-5xl md:leading-none">
           {name}
         </h1>
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-700 tracking-wide leading-none">
+        <h2 className="text-2xl font-bold leading-none tracking-wide text-gray-700 md:text-3xl">
           {role}
         </h2>
 

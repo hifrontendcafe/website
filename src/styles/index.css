@@ -68,13 +68,23 @@ html {
   }
 
   .subtitle {
-    @apply text-2xl font-extrabold leading-normal text-gray-800 md:text-3xl lg:text-4xl;
+    @apply text-2xl font-extrabold leading-normal text-gray-800 md:text-3xl;
   }
 
   .title-colorful {
     @apply text-gradient bg-gradient-to-r from-green-400 to-blue-500;
   }
 }
+
+.filter-selector .react-select__control{
+  @apply border-gray-300;
+}
+.react-select__control .react-select__indicator{
+  @apply text-gray-500;
+}
+.react-select__value-container .react-select__placeholder {
+  @apply text-gray-600 text-sm;
+ }
 
 .twitter-blue {
   color: #55acee;

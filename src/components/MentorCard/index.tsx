@@ -11,6 +11,8 @@ import CalomentorModal from '../CalomentorModal';
 interface MentorCardProps {
   mentor: Mentor;
   topics: Topic[];
+  isLogged: boolean;
+  openModal: () => void;
 }
 
 const MentorCard: React.FC<MentorCardProps> = ({ mentor, topics }) => {

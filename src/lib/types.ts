@@ -1,3 +1,6 @@
+import { Profile } from '@prisma/client';
+import { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
 export interface Settings {
   description: string;
   heroBackground: Image;
@@ -75,6 +78,7 @@ export interface CMYK {
 }
 
 export interface CMYKParticipant {
+  _id?: string;
   discordUser: {
     _type: string;
     _ref: string;
@@ -85,6 +89,7 @@ export interface CMYKParticipant {
   experience: string;
   timeAvailability: string;
   otherQuestions: string;
+  cmykVersion: string;
   status: string;
 }
 
@@ -112,10 +117,23 @@ export interface Post {
   content: any;
 }
 
+export type ExtendedProfile = Profile & {
+  seniority: {
+    id: string;
+    name: string;
+  };
+  role: {
+    id: string;
+    name: string;
+  };
+  technologies: { name: string }[];
+};
+
 export interface Doc {
   title: string;
   slug: string;
   body: string;
+  content?: MDXRemoteSerializeResult;
 }
 
 export interface FeaturedCards {
@@ -150,6 +168,7 @@ export interface Person {
   username: {
     current: string;
   };
+  discordID: string;
   photo: {
     src: string;
     alt?: string;
@@ -162,27 +181,26 @@ export interface Person {
   portfolio?: string;
   github?: string;
   fecTeam?: boolean;
+  cmykParticipant?: CMYKParticipant[];
 }
-
-export type Profile = {
-  date: string;
-  email: string;
-  name: string;
-  available: boolean;
-  discord: string;
-  role: string;
-  technologies: string[];
-  portfolio: string;
-  linkedin: string;
-  twitter: string;
-  github: string;
-  description: string;
-  image: string;
-  nationality: string;
-};
 
 export type Tweet = {
   id: string;
   text: string;
   in_reply_to_user_id: string;
 };
+
+export interface Technologies {
+  id: string;
+  name: string;
+}
+
+export interface ProfileFilters {
+  roleId?: string;
+  location?: string;
+  seniorityId?: string;
+  description?: string;
+  technologies?: Technologies[];
+  available?: boolean;
+  active?: boolean;
+}

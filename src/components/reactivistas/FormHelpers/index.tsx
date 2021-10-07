@@ -26,7 +26,7 @@ export const DiscordUserTooltip: React.FC = () => {
 
       <div
         className={`absolute bg-gradient-to-r bg-primary text-white px-4 py-2 rounded flex items-center transition-all duration-150 ${
-          showHelp ? 'opacity-100' : 'opacity-0'
+          showHelp ? '' : 'hidden'
         }`}
         style={{ right: '0px', bottom: '-50' }}
       >
