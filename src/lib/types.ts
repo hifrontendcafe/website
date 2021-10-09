@@ -14,7 +14,6 @@ export interface Settings {
 
 export interface SocialNetworks {
   github: string;
-  instagram: string;
   linkedin: string;
   twitch: string;
   twitter: string;
