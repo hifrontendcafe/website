@@ -57,7 +57,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
         past ? 'lg:w-1/4' : 'lg:w-1/3'
       }`}
     >
-      <div className="flex flex-col items-start h-full bg-gray-800 rounded shadow-lg">
+      <div className="flex flex-col items-start h-full bg-gray-900 rounded shadow-lg">
         <img
           className="w-full"
           src={imageBuilder.image(event.cover.src).width(450).url()}
