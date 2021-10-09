@@ -33,20 +33,20 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
 
   return (
     <header
-      className={`w-full flex flex-col sticky top-0 z-50 shadow-sm bg-gradient-to-r from-current via-gray-900 to-current ${
+      className={`w-full flex flex-col sticky top-0 z-50 shadow-sm  ${
         preview ? 'pt-10' : ''
       }`}
     >
       <nav
         id="site-menu"
-        className="flex flex-col items-center justify-between w-full px-4 mx-auto xl:px-44 lg:flex-row lg:shadow-none"
+        className="flex flex-col items-center justify-between w-full h-16 px-4 mx-auto xl:px-44 lg:flex-row lg:shadow-none"
       >
         <div className="flex flex-row flex-no-wrap items-center self-start justify-between w-full lg:w-auto lg:self-center lg:flex-none">
           <Link href="/">
-            <a className="flex items-center h-16 text-gray-900 title-font">
+            <a className="flex items-center text-gray-900 title-font">
               <img
                 src={logoIMG}
-                className="h-12 p-2 text-white rounded-full"
+                className="p-2 text-white rounded-full"
                 alt="Logo FrontendCafe"
               />
             </a>

@@ -17,13 +17,13 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
       title="Inglés"
       description="Únete a nuestras charlas de inglés en Discord"
     >
-      <div className="container px-8 pt-16 mx-auto text-gray-200 sm:px-6 md:pt-8">
-        <SectionHero
-          title="Práctica de inglés"
-          paragraph="Nos divertimos charlando con el objetivo de perder el miedo a
+      <SectionHero
+        title="Práctica de inglés"
+        paragraph="Nos divertimos charlando con el objetivo de perder el miedo a
               hablar en inglés en público. Mejorando la comunicación y la
               confianza, divirtiéndonos y conectándonos."
-        />
+      />
+      <div className="container px-8 pt-16 mx-auto text-gray-200 sm:px-6 md:pt-8">
         {upcomingEvents.length > 0 && (
           <div>
             <div className="flex flex-row gap-3">

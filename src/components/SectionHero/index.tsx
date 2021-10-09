@@ -11,9 +11,9 @@ interface SectionHeroProps {
 const SectionHero: React.FC<SectionHeroProps> = ({ title, paragraph, cta }) => {
   return (
     <section className="relative text-gray-100 body-font">
-      <div className="container flex flex-col items-center justify-center pt-32 mx-auto md:flex-row">
-        <div className="max-w-3xl mt-4 text-lg text-center text-gray-200">
-          <h1 className="mt-2 leading-snug tracking-tight title">{title}</h1>
+      <div className="container flex flex-col items-center justify-center pt-24 mx-auto md:flex-row">
+        <div className="max-w-3xl text-lg text-center text-gray-200">
+          <h1 className="leading-snug tracking-tight title">{title}</h1>
           <p className="max-w-3xl mt-4 mb-4 text-lg leading-relaxed text-gray-200">
             {paragraph}
           </p>
