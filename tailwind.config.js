@@ -60,6 +60,7 @@ module.exports = {
       colors: {
         bgDark: '#0C071A',
         bgLight: '#260F21',
+        ellipseBlue: '#142A4A',
       },
     },
   },

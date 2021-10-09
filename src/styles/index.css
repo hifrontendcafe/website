@@ -28,6 +28,9 @@ html {
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .ellipse {
+    border-radius: 50%;
+  }
 }
 
 @layer components {

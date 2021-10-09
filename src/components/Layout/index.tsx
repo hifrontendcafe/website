@@ -16,14 +16,14 @@ type LayoutPreviewProps = {
 };
 
 const MainLayout: React.FC<LayoutPreviewProps> = ({ preview, children }) => (
-  <div
-    style={{ backgroundColor: '#0D071A' }}
-    className="antialiased bg-gradient-to-r from-current via-gray-900 to-current"
-  >
-    {preview && <PreviewBanner />}
-    <Header preview={preview} />
-    {children}
-    <Footer />
+  <div style={{ backgroundColor: '#0D071A' }} className="w-full">
+    <div className="absolute w-3/4 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-to-b from-ellipseBlue via-ellipseBlue to-transparent left-1/2 h-3/5 ellipse filter blur-3xl opacity-70"></div>
+    <div className="z-10">
+      {preview && <PreviewBanner />}
+      <Header preview={preview} />
+      {children}
+      <Footer />
+    </div>
   </div>
 );
 
