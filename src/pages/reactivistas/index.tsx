@@ -6,10 +6,10 @@ import { ReactGroup } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { reactGroupQuery } from '../../lib/queries';
 import Layout from '../../components/Layout';
-import AddParticipantForm from '../../components/reactivistas/AddParticipantForm';
-import GroupInfoModal from '../../components/reactivistas/GroupInfoModal';
-import CreateGroupForm from '../../components/reactivistas/CreateGroupForm';
-import GroupRequirementsModal from '../../components/reactivistas/GroupRequirementsModal';
+import AddParticipantForm from '../../components/Reactivistas/AddParticipantForm';
+import GroupInfoModal from '../../components/Reactivistas/GroupInfoModal';
+import CreateGroupForm from '../../components/Reactivistas/CreateGroupForm';
+import GroupRequirementsModal from '../../components/Reactivistas/GroupRequirementsModal';
 
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
