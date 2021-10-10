@@ -13,13 +13,10 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
   const bg = imageBuilder.image(heroBackground).width(1280).url();
 
   return (
-    <div
-      style={{ height: '500px' }}
-      className="relative mx-auto bg-white bg-opacity-0 md:container"
-    >
-      <div className="flex items-center justify-center h-full bg-center bg-cover md:justify-around">
+    <div className="container relative px-8 py-32 mx-auto bg-white bg-opacity-0">
+      <div className="flex items-center justify-center h-full text-white bg-center bg-cover md:justify-around">
         <div className="z-10 w-auto text-center">
-          <div className="text-5xl font-extrabold md:text-7xl">
+          <div className="text-4xl font-extrabold sm:text-5xl md:text-7xl">
             <div>
               <p>
                 <motion.span
@@ -38,18 +35,18 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="px-2 -mt-2 text-5xl text-white md:text-7xl"
+                className="px-2 -mt-2 text-4xl sm:text-5xl md:text-7xl"
               >
-                en comunidad
+                en comunidaddd
               </span>
-              <p className="mt-4 text-xl font-medium text-white">
+              <p className="mt-4 text-xl font-medium text-gray-300">
                 El lugar de encuentro para potenciar tus ideas y conectar con
                 otras personas.
               </p>
               <a
                 target="_blank"
                 href="https://discord.gg/frontendcafe"
-                className="bg-white btn"
+                className="text-black bg-white btn"
                 rel="noreferrer"
               >
                 Unirme a Discord
