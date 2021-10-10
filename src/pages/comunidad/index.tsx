@@ -86,6 +86,15 @@ const SignupButton: React.FC<SignupButtonProps> = ({ loading, hasProfile }) => {
   return <SignupUnregisteredButton />;
 };
 
+const initialProfileState = {
+  roleId: '',
+  location: '',
+  seniorityId: '',
+  description: '',
+  technologies: [],
+  available: false,
+};
+
 const ProfilesPage: React.FC<PostsPageProps> = ({
   profiles,
   preview,
@@ -99,14 +108,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
     (profile) => profile.discordId === session?.user?.id,
   );
 
-  const [filters, setFilters] = useState<ProfileFilters>({
-    roleId: '',
-    location: '',
-    seniorityId: '',
-    description: '',
-    technologies: [],
-    available: false,
-  });
+  const [filters, setFilters] = useState<ProfileFilters>(initialProfileState);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [filteredProfiles, setFilteredProfiles] =
