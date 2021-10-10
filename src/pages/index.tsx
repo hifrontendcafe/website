@@ -11,10 +11,8 @@ import MediaFeed from '../components/MediaFeed';
 import FeaturedCardsCarousel from '../components/FeaturedCardsCarousel';
 
 //import CMYKBanner from '../components/CMYKBanner';
-import JoinSection from '../components/JoinSection';
-import AboutSection from '../components/AboutSection';
 import { getEmbeddedTweets } from '@/lib/twitter';
-import { Tweet, FeaturedCards } from '@/lib/types';
+import { FeaturedCards } from '@/lib/types';
 
 import { useSettings } from '@/lib/settings';
 
@@ -60,12 +58,8 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
     <Layout title="Home" description={description} preview={preview}>
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero title={heroWords[counter]} />
-      {/* <div className="p-1">
-        <AboutSection description={description} />
-      </div> */}
       <Featured cards={cards} />
       <MediaFeed tweets={tweets} />
-      {/* <JoinSection /> */}
     </Layout>
   );
 };
