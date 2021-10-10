@@ -13,6 +13,8 @@ import Spinner from '@/components/Spinner';
 import { shuffle } from '@/lib/shuffle';
 import SectionHero from '@/components/SectionHero';
 
+const maxTechnologies = 5;
+
 type PostsPageProps = {
   profiles: ExtendedProfile[];
   preview?: boolean;
@@ -120,7 +122,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
   };
 
   const isValidNewOption = (inputValue, selectValue) =>
-    inputValue.length > 0 && selectValue.length < 5;
+    inputValue.length > 0 && selectValue.length < maxTechnologies;
 
   return (
     <Layout
@@ -229,9 +231,13 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   setFilters({ ...filters, technologies: [...techs] })
                 }
                 isValidNewOption={isValidNewOption}
-                options={filters.technologies?.length === 5 ? [] : technologies}
+                options={
+                  filters.technologies?.length === maxTechnologies
+                    ? []
+                    : technologies
+                }
                 noOptionsMessage={() => {
-                  return filters.technologies.length === 5
+                  return filters.technologies.length === maxTechnologies
                     ? 'Has alcanzado el máximo de opciones'
                     : 'No opciones disponibles';
                 }}
