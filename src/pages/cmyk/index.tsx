@@ -1,11 +1,11 @@
 import CMYKItemCard from '@/components/CMYKItemCard';
 import { GetStaticProps } from 'next';
-import { getAllCMYKProjects, getSettings } from '../../lib/api';
-import { CMYK } from '../../lib/types';
+import { getAllCMYKProjects, getSettings } from '@/lib/api';
+import { CMYK } from '@/lib/types';
 import Layout from '@/components/Layout';
 
-import { cmykQuery } from '../../lib/queries';
-import { usePreviewSubscription } from '../../lib/sanity';
+import { cmykQuery } from '@/lib/queries';
+import { usePreviewSubscription } from '@/lib/sanity';
 import { useState } from 'react';
 import Modal from '@/components/Modal';
 
@@ -15,7 +15,22 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 type CMYKProjectsProps = {
   preview?: boolean;
   data: CMYK[];
-};
+}
+
+const cmykVersions = [
+  {
+    version: "cmyk-1",
+    name: "CMYK"
+  },
+  {
+    version: "cmyk-2",
+    name: "CMYK++"
+  },
+  {
+    version: "cmyk-3",
+    name: "CMYK v3.0"
+  }
+]
 
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   preview = false,
@@ -27,19 +42,9 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [projectsPerPage, setProjectsPerPage] = useState(3);
+  const [currentCMYK, setCurrentCMYK] = useState(cmykVersions[0].version)
 
-  const indexOfLastProject = currentPage * projectsPerPage;
-  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
-  const [currentCMYK, setCurrentCMYK] = useState('cmyk-1');
-  const currentProjects = projects.filter((project) => {
-    return project.cmykVersion === currentCMYK;
-  });
-
-  const paginate = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
+  const currentProjects = projects.filter(project => project.cmykVersion === currentCMYK);
 
   const tabStyle = `py-2 px-4 mt-4 mr-1 bg-green-300 cursor-pointer rounded-md border-r-2`;
   
@@ -62,7 +67,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               colaborativos realizados por miembros de la comunidad con el
               objetivo de ganar experiencia en un entorno profesional. Aquí
               conocerás los diferentes proyectos que los equipos CMYK crearon y
-              desarrollaron dentro la comunidad. <br />
+              desarrollaron dentro la comunidad.
             </p>
             <span
               className="cursor-pointer text-primary flex mt-5"
@@ -75,24 +80,17 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
             </span>
             <div>
               <ul className="flex flex-wrap">
-                <li
-                  onClick={() => setCurrentCMYK('cmyk-1')}
-                  className={tabStyle}
-                >
-                  CMYK
-                </li>
-                <li
-                  onClick={() => setCurrentCMYK('cmyk-2')}
-                  className={tabStyle}
-                >
-                  CMYK++
-                </li>
-                <li
-                  onClick={() => setCurrentCMYK('cmyk-3')}
-                  className={tabStyle}
-                >
-                  CMYK v3.0
-                </li>
+                {
+                  cmykVersions.map(cmykVersion => (
+                    <li
+                      onClick={() => setCurrentCMYK(cmykVersion.version)}
+                      className={tabStyle}
+                      key={cmykVersion.version}
+                    >
+                      {cmykVersion.name}
+                    </li>
+                  ))
+                }
               </ul>
             </div>
           </div>
@@ -105,7 +103,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
           </div>
           <div className="text-center py-20">
             <h2 className="subtitle mb-8 tracking-tight">
-              El siguiente puede ser el tuyo{' '}
+              El siguiente puede ser el tuyo&nbsp;
               <img
                 src="/icons/hearth.svg"
                 className="inline"
