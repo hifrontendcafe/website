@@ -102,9 +102,9 @@ html {
 }
 
 .addeventatc.button {
-  background-color: #7289da !important;
+  background-color: #f9f9fa !important;
   border-radius: 3px !important;
-  color: #fff !important;
+  color: #08080a !important;
   padding: 8px !important;
   z-index: unset;
 }

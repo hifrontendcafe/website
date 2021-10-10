@@ -36,7 +36,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   const AddToCalendar = ({ event }) => {
     return (
       <button title="Add to Calendar" className="addeventatc button">
-        Añadir a tu Calendario
+        Añadir a calendario
         <span className="start">
           {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
         </span>
@@ -52,20 +52,16 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   };
 
   return (
-    <div
-      className={`py-8 md:pb-24 px-4 md:w-1/2 ${
-        past ? 'lg:w-1/4' : 'lg:w-1/3'
-      }`}
-    >
-      <div className="flex flex-col items-start h-full bg-gray-900 rounded shadow-lg">
+    <div className={`pt-12 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}>
+      <div className="flex flex-col items-start h-full bg-gray-800 border-2 border-gray-500 rounded-md shadow-lg">
         <img
-          className="w-full"
-          src={imageBuilder.image(event.cover.src).width(450).url()}
+          className="w-full p-4"
+          src={imageBuilder.image(event.cover.src).width(400).url()}
           alt={event.cover.alt || event.title}
           style={{ filter: past ? 'grayscale(66%)' : 'none' }}
         />
         <div
-          className={`flex-grow p-4 flex flex-col ${
+          className={`flex-grow p-4 pt-0 flex flex-col ${
             past && !event.recording ? styles['past-event-text'] : ''
           }`}
         >
@@ -91,7 +87,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           </div>
           {past ? (
             event.recording && (
-              <div className="mt-auto mb-2">
+              <div className="mt-auto">
                 <a
                   href={event.recording}
                   className="px-5 py-2 text-sm text-white rounded bg-tertiary"
@@ -103,7 +99,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               </div>
             )
           ) : (
-            <div className="mt-auto mb-2">
+            <div className="mt-auto">
               <AddToCalendar event={calendar} />
             </div>
           )}

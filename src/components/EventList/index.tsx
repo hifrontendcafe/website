@@ -20,18 +20,18 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
       <div className="container px-5 py-12 mx-auto">
         {futureEvents(events).length > 0 && (
           <>
-            <h1 className="pt-10 pb-6 mx-4 md:pt-0 subtitle">
-              Próximos eventos 📅
+            <h1 className="pt-12 pb-4 mx-4 md:pt-0 subtitle">
+              Próximos eventos
             </h1>
-            <div className="flex flex-wrap px-4 -mx-4 -my-8">
+            <div className="flex flex-wrap px-4 mb-12 -mx-4 -my-8">
               {futureEvents(events)?.map((event) => (
                 <EventPreview key={event.slug} event={event} />
               ))}
             </div>
           </>
         )}
-        <h1 className="pt-12 pb-4 mx-4 md:pt-0 subtitle">
-          Revive nuestros eventos ⏯️
+        <h1 className="pb-4 mx-4 mt-20 md:pt-0 subtitle">
+          Revive nuestros eventos
         </h1>
         <div className="flex flex-wrap px-4 -mx-4 -my-8">
           {pastEvents(events)?.map(

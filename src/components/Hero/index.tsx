@@ -37,7 +37,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
                 style={{ width: 'min-content' }}
                 className="px-2 -mt-2 text-4xl sm:text-5xl md:text-7xl"
               >
-                en comunidaddd
+                en comunidad
               </span>
               <p className="mt-4 text-xl font-medium text-gray-300">
                 El lugar de encuentro para potenciar tus ideas y conectar con
