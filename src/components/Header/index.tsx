@@ -33,7 +33,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
 
   return (
     <header
-      className={`w-full flex flex-col sticky top-0 z-50 shadow-sm  ${
+      className={`w-full flex flex-col sticky top-0 z-50 ${
         preview ? 'pt-10' : ''
       }`}
     >
@@ -42,7 +42,17 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
         className="flex flex-col items-center justify-between w-full h-16 px-4 mx-auto xl:px-44 lg:flex-row lg:shadow-none"
       >
         <div className="flex flex-row flex-no-wrap items-center self-start justify-between w-full lg:w-auto lg:self-center lg:flex-none">
+          {/* ATENCION esta hardcodeado el logo, antes de salir a prod. eliminar codigo debajo de este codigo y dejar el que esta comentado. */}
           <Link href="/">
+            <a>
+              <img
+                src="./logotype-fec.svg"
+                className="p-2 text-white rounded-full"
+                alt="Logo FrontendCafe"
+              />
+            </a>
+          </Link>
+          {/* <Link href="/">
             <a className="flex items-center text-gray-900 title-font">
               <img
                 src={logoIMG}
@@ -50,7 +60,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
                 alt="Logo FrontendCafe"
               />
             </a>
-          </Link>
+          </Link> */}
           <button
             ref={menuBtn}
             className="block hamburger lg:hidden focus:outline-none"

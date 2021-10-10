@@ -55,7 +55,7 @@ const MentorshipsSteps: React.FC = () => {
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
               <h2 className="mb-3 text-2xl font-medium title-font text-gray-50">
-                <strong>Paso 1:</strong> Inicia sesión &#128273;
+                <strong>1</strong> Inicia sesión
               </h2>
               <p className="text-lg leading-relaxed text-left">
                 Recuerda que para solicitar una mentoría debes ser parte del
@@ -66,7 +66,7 @@ const MentorshipsSteps: React.FC = () => {
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
               <h2 className="mb-3 text-2xl font-medium title-font text-gray-50">
-                <strong>Paso 2:</strong> Encuentra un mentor 🔍
+                <strong>2</strong> Encuentra un mentor
               </h2>
               <p className="text-lg leading-relaxed">
                 Encuentra un mentor cuyo perfil se ajuste a tus intereses y
@@ -77,7 +77,7 @@ const MentorshipsSteps: React.FC = () => {
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
               <h2 className="mb-3 text-2xl font-medium title-font text-gray-50">
-                <strong>Paso 3:</strong> Agenda la mentoría 📝
+                <strong>3</strong> Agenda la mentoría
               </h2>
               <p className="mb-2 text-lg leading-relaxed">
                 Contacta al mentor a través de su agenda virtual y reserva una

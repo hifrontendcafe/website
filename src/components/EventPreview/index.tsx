@@ -26,7 +26,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   }
 
   const calendar = {
-    title: `${event.title} - FrontEndCafe`,
+    title: `${event.title} - FrontendCafé`,
     description: toPlainText(event.description),
     location: 'Discord',
     startTime: new Date(event.date),
@@ -52,7 +52,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   };
 
   return (
-    <div className={`pt-12 px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}>
+    <div className={`pt-12 md:px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}>
       <div className="flex flex-col items-start h-full bg-gray-800 border-2 border-gray-500 rounded-md shadow-lg">
         <img
           className="w-full p-4"
