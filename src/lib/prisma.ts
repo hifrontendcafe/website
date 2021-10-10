@@ -1,7 +1,7 @@
-// lib/prisma.ts
 import { PrismaClient } from '@prisma/client';
 
 export interface Global {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   prisma: any;
 }
 
