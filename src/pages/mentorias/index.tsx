@@ -1,7 +1,6 @@
 import { GetStaticProps } from 'next';
 
 import MentorList from '../../components/MentorList';
-import MentorshipsHero from '../../components/MentorshipsHero';
 import Layout from '../../components/Layout';
 
 import { Mentor, Topic } from '../../lib/types';
