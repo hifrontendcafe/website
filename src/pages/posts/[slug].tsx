@@ -36,7 +36,7 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
     <Layout title={post.title} preview={preview}>
       <Hero title="Posts" />
       <div className="pb-24 bg-indigo-100 sm:pt-10">
-        <div className="container min-h-screen mx-auto overflow-hidden bg-white rounded-lg shadow ">
+        <div className="min-h-screen overflow-hidden bg-white rounded-lg shadow ">
           <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
             <div className="mt-2 md:flex md:items-center md:justify-between">
               <div className="flex-1 min-w-0">

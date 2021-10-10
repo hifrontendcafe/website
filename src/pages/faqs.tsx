@@ -10,7 +10,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
   return (
     <Layout title="FAQS" preview={preview}>
       <section className="text-gray-700">
-        <div className="container px-5 py-24 mx-auto">
+        <div className="px-5 py-24">
           <div className="mb-20 text-center">
             <h1 className="mb-4 text-2xl font-medium sm:text-3xl text-primary">
               Preguntas frecuentes

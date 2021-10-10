@@ -17,7 +17,7 @@ const pastEvents = (events: Event[]) =>
 const EventList: React.FC<EventListProps> = ({ events }) => {
   return (
     <section id="events" className="relative body-font">
-      <div className="container px-5 py-12 mx-auto">
+      <div className="px-5 py-12">
         {futureEvents(events).length > 0 && (
           <>
             <h1 className="pt-12 pb-4 mx-4 md:pt-0 subtitle">

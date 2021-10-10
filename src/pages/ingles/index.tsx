@@ -23,7 +23,7 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
               hablar en inglés en público. Mejorando la comunicación y la
               confianza, divirtiéndonos y conectándonos."
       />
-      <div className="container px-8 pt-16 mx-auto text-gray-200 sm:px-6 md:pt-8">
+      <div className="px-8 pt-16 text-gray-200 sm:px-6 md:pt-8">
         {upcomingEvents.length > 0 && (
           <div>
             <div className="flex flex-wrap">

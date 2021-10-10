@@ -24,7 +24,7 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
     <Layout title="Entradas" description="Blog" preview={preview}>
       <Hero title="Entradas" />
       <div className="pb-24 bg-indigo-100 sm:pt-10">
-        <div className="container min-h-screen mx-auto overflow-hidden bg-white rounded-lg shadow ">
+        <div className="min-h-screen overflow-hidden bg-white rounded-lg shadow ">
           <div className="px-4 py-5 border-b border-gray-200 sm:px-6">
             <div></div>
             <div className="mt-2 md:flex md:items-center md:justify-between">

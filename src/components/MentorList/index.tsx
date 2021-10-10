@@ -33,7 +33,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   }, [filter]);
 
   return (
-    <div className="container mx-auto">
+    <div>
       <div className="flex justify-between">
         <h1 className="mb-4 text-2xl font-medium text-white">
           Busca un mentor segun su especialidad

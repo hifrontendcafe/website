@@ -6,7 +6,7 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ title }) => {
   return (
-    <div className="container relative px-8 py-32 mx-auto bg-white bg-opacity-0">
+    <div className="relative px-8 py-32 mx-auto bg-white bg-opacity-0">
       <div className="flex items-center justify-center h-full text-white bg-center bg-cover md:justify-around">
         <div className="z-10 w-auto text-center">
           <div className="text-4xl font-extrabold sm:text-5xl md:text-7xl">

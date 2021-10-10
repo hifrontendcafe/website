@@ -1,4 +1,3 @@
-import { getRandomInt } from '@/lib/helpers';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
@@ -19,8 +18,8 @@ const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
   };
 
   return (
-    <section id="comunidad" className="relative w-full">
-      <div className="container px-5 py-12 mx-auto">
+    <section id="media-feed" className="relative w-full">
+      <div className="px-5 py-12 mx-auto">
         <div className="flex items-center pb-12 md:pl-24">
           <img
             className="w-10 h-10"
@@ -41,7 +40,7 @@ const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
           centerMode={false}
           responsive={responsive}
           transitionDuration={700}
-          containerClass="container px-3 md:px-0 mx-auto py-5 gap-2"
+          containerClass="container px-3 md:px-0 py-5 gap-2"
           itemClass="px-2"
           partialVisible={false}
           autoPlay

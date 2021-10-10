@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -11,7 +10,7 @@ interface SectionHeroProps {
 const SectionHero: React.FC<SectionHeroProps> = ({ title, paragraph, cta }) => {
   return (
     <section className="relative body-font">
-      <div className="container flex flex-col items-center justify-center pt-24 mx-auto md:flex-row">
+      <div className="flex flex-col items-center justify-center pt-24 md:flex-row">
         <div className="max-w-3xl text-lg text-center">
           <h1 className="leading-snug tracking-tight text-gray-50 title">
             {title}

@@ -11,8 +11,6 @@ import GroupInfoModal from '../../components/Reactivistas/GroupInfoModal';
 import CreateGroupForm from '../../components/Reactivistas/CreateGroupForm';
 import GroupRequirementsModal from '../../components/Reactivistas/GroupRequirementsModal';
 
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import SectionHero from '@/components/SectionHero';
 
 const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
@@ -34,7 +32,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
           a las Office Hours, que son reuniones con nuestro staff exponer tus dudas y realizar consultas."
           cta="https://frontend.cafe/docs/guia-reactivistas"
         />
-        <div className="container p-6 m-10 mx-auto lg:px-36">
+        <div className="p-6 m-10 lg:px-36">
           {groups.length > 0 && (
             <>
               <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
@@ -113,7 +111,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
             </h2>
           </div>
 
-          <div className="container mx-auto overflow-hidden rounded-lg shadow">
+          <div className="overflow-hidden rounded-lg shadow">
             <div className="px-6 py-5 md:px-8">
               <CreateGroupForm />
             </div>

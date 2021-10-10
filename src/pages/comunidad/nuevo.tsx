@@ -144,7 +144,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         description="Encontrá los perfiles dentro de FEC"
         preview={preview}
       >
-        <div className="container py-32 mx-auto my-20 text-2xl text-center rounded-lg shadow bg-gray-50">
+        <div className="py-32 my-20 text-2xl text-center rounded-lg shadow bg-gray-50">
           Cargando Sesión...
         </div>
       </Layout>
@@ -157,12 +157,12 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
-      <div className="container max-w-3xl px-4 pt-10 pb-10 mx-auto md:pt-16 sm:px-6">
+      <div className="max-w-3xl px-4 pt-10 pb-10 md:pt-16 sm:px-6">
         <h1 className="mt-2 leading-snug tracking-tight text-center title">
           Crea tu perfil en nuestro portal
         </h1>
       </div>
-      <div className="container mx-auto mb-8 overflow-hidden rounded-lg shadow bg-gray-50">
+      <div className="mb-8 overflow-hidden rounded-lg shadow bg-gray-50">
         {message.text && (
           <div
             className={`text-center text-white rounded p-4 m-4 ${

@@ -1,5 +1,5 @@
 const JoinSection: React.FC = () => (
-  <section className="container flex flex-col items-center gap-5 mx-auto mt-12 mb-24">
+  <section className="flex flex-col items-center gap-5 mt-12 mb-24">
     <span className="relative inline-flex items-center gap-2 subtitle">
       ¿Estás listo para unirte?
       <img className="w-8 h-8" src="/icons/hearth.svg" />
