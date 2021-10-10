@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
-import { signIn } from 'next-auth/client';
 import Layout from '@/components/Layout';
 import ProfileCard from '@/components/ProfileCard';
 import prisma from '@/lib/prisma';
@@ -9,9 +8,9 @@ import Select from 'react-select';
 import { ExtendedProfile, ProfileFilters } from '@/lib/types';
 import { findProfiles } from '@/lib/prisma-queries';
 import { useSession } from 'next-auth/client';
-import Spinner from '@/components/Spinner';
 import { shuffle } from '@/lib/shuffle';
 import SectionHero from '@/components/SectionHero';
+import SignupButton from '@/components/ProfileSignupButton';
 
 const maxTechnologies = 5;
 
@@ -35,56 +34,6 @@ function post(url: string, body: Record<string, any>) {
 function searchProfiles(filters: ProfileFilters) {
   return post('/api/profiles/search', { filters });
 }
-
-function signInDiscord() {
-  return signIn('discord', {
-    callbackUrl: `${window.location.origin}/comunidad/nuevo`,
-  });
-}
-
-const SignupLoadingButton = () => (
-  <button
-    onClick={signInDiscord}
-    className="text-xs btn btn-primary md:text-md"
-  >
-    <Spinner />
-  </button>
-);
-
-const SignupRegisteredButton = () => (
-  <button
-    onClick={signInDiscord}
-    className="text-xs btn btn-primary md:text-md"
-  >
-    Modifica tu perfil
-  </button>
-);
-
-const SignupUnregisteredButton = () => (
-  <button
-    onClick={signInDiscord}
-    className="text-xs btn btn-primary md:text-md"
-  >
-    Crea tu perfil
-  </button>
-);
-
-interface SignupButtonProps {
-  loading: boolean;
-  hasProfile: boolean;
-}
-
-const SignupButton: React.FC<SignupButtonProps> = ({ loading, hasProfile }) => {
-  if (loading) {
-    return <SignupLoadingButton />;
-  }
-
-  if (hasProfile) {
-    return <SignupRegisteredButton />;
-  }
-
-  return <SignupUnregisteredButton />;
-};
 
 const initialProfileState = {
   roleId: '',
