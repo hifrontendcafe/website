@@ -12,17 +12,17 @@ const Unauthorized: React.FC<IUnauthorized> = ({ preview }) => {
   return (
     <>
       <FecHead title="No autorizado" />
-      <div className="flex flex-col justify-between h-screen">
+      <div className="bg-gray-900 flex flex-col justify-between h-screen">
         <Header preview={preview} />
         <div className="flex flex-col items-center ">
-          <div className="container flex flex-col justify-center max-w-lg p-4 bg-white border rounded-lg shadow-xl outline-none focus:outline-none">
+          <div className="container flex flex-col justify-center max-w-lg p-4 bg-gray-800 border border-gray-500 rounded-lg shadow-xl outline-none focus:outline-none">
             <div className="flex items-center justify-center px-5 py-2 rounded-t">
-              <h3 className="text-2xl font-semibold md:text-3xl">
-                <span className="text-red-700">¡Oh no!</span> Todavía no formas
+              <h3 className="text-2xl font-semibold md:text-3xl text-gray-50">
+                <span className="text-red-500">¡Oh no!</span> Todavía no formas
                 parte de nuestra comunidad.
               </h3>
             </div>
-            <div className="p-6 ">
+            <div className="p-6 text-gray-50">
               Es necesario que te unas a nuestro servidor de Discord para poder
               acceder a esta sección.
             </div>
