@@ -39,9 +39,7 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
     >
       <SectionHero
         title="Programa de mentorías"
-        paragraph="Iniciarnos en el mundo de la tecnología puede resultar abrumador o
-            verse como un desafío. Eso nos puede llevar a preguntarnos por dónde
-            comenzar y qué elegir de todo lo que abarca el rubro de IT."
+        paragraph="Conéctate con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
         cta="https://frontend.cafe/docs/guia-para-realizar-mentorias"
       />
       <MentorshipsSteps />
@@ -52,12 +50,12 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
 
 const MentorshipsSteps: React.FC = () => {
   return (
-    <section className="text-gray-400 body-font">
+    <section className="text-gray-100 body-font">
       <div className="container px-5 py-32 mx-auto">
         <div className="flex flex-wrap -mx-4 -mt-4 -mb-10 sm:-m-4">
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
-              <h2 className="mb-3 text-2xl font-medium title-font">
+              <h2 className="mb-3 text-2xl font-medium title-font text-gray-50">
                 <strong>Paso 1:</strong> Inicia sesión &#128273;
               </h2>
               <p className="text-lg leading-relaxed text-left">
@@ -68,7 +66,7 @@ const MentorshipsSteps: React.FC = () => {
           </div>
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
-              <h2 className="mb-3 text-2xl font-medium title-font">
+              <h2 className="mb-3 text-2xl font-medium title-font text-gray-50">
                 <strong>Paso 2:</strong> Encuentra un mentor 🔍
               </h2>
               <p className="text-lg leading-relaxed">
@@ -79,7 +77,7 @@ const MentorshipsSteps: React.FC = () => {
           </div>
           <div className="flex flex-col items-center p-4 mb-6 text-center md:w-1/3 md:mb-0 ">
             <div className="flex-grow text-left">
-              <h2 className="mb-3 text-2xl font-medium title-font">
+              <h2 className="mb-3 text-2xl font-medium title-font text-gray-50">
                 <strong>Paso 3:</strong> Agenda la mentoría 📝
               </h2>
               <p className="mb-2 text-lg leading-relaxed">

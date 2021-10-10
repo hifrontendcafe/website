@@ -30,8 +30,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     <Layout title="Proyectos CMYK" preview={preview}>
       <SectionHero
         title="Proyectos CMYK"
-        paragraph="Desde FrontendCafé impulsamos el desarrollo de proyectos
-              colaborativos realizados por miembros de la comunidad con el
+        paragraph="Proyectos colaborativos realizados por miembros de la comunidad con el
               objetivo de ganar experiencia en un entorno profesional."
       />
       <div className="pt-20">

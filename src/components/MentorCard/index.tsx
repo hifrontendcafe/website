@@ -29,7 +29,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="w-full col-span-1 bg-gray-800 rounded-lg shadow"
+      className="w-full col-span-1 bg-gray-800 border-2 border-gray-500 rounded-lg shadow"
     >
       <div className="flex flex-col items-center w-full px-6 py-4 text-center md:flex-row md:text-left">
         <div className="flex flex-col items-center text-white md:mr-6">
@@ -71,10 +71,10 @@ const MentorCard: React.FC<MentorCardProps> = ({
             )}
           </div>
         </div>
-        <div className="flex-1 border-gray-700 md:border-l md:pl-6">
+        <div className="flex-1 border-gray-500 md:border-l md:pl-6">
           <div className="flex flex-col flex-grow items">
             <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
-              <h2 className="text-2xl font-medium text-primary title-font">
+              <h2 className="text-2xl font-bold text-white title-font">
                 {mentor.name}
               </h2>
               {!mentor.isActive ? (

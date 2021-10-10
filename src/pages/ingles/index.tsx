@@ -26,10 +26,6 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
       <div className="container px-8 pt-16 mx-auto text-gray-200 sm:px-6 md:pt-8">
         {upcomingEvents.length > 0 && (
           <div>
-            <div className="flex flex-row gap-3">
-              <h1 className="pt-4 mt-0 subtitle md:my-4">Próximos Eventos</h1>
-              <img src="/icons/masuno.svg" alt="mas eventos" />
-            </div>
             <div className="flex flex-wrap">
               {upcomingEvents.map((event) => (
                 <EventPreview key={event.slug} event={event} />

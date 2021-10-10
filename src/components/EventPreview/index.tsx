@@ -66,7 +66,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           }`}
         >
           <div className="flex justify-between w-full">
-            <h2 className="py-2 mb-1 text-xs font-medium tracking-widest text-green-500 title-font">
+            <h2 className="py-2 mb-1 text-sm font-medium tracking-widest text-primary title-font">
               {event.category.name}
             </h2>
           </div>

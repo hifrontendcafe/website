@@ -151,12 +151,12 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             }}
             className="px-2 py-2 mx-4"
           >
-            <div className="justify-around md:flex md:items-center md:space-x-4">
+            <div className="justify-around md:flex md:items-center md:space-x-4 text-gray-50">
               <div className="w-full mt-3 md:mt-0">
                 <select
                   name="role"
                   placeholder="Rol"
-                  className="w-full py-2 text-sm leading-tight text-gray-500 bg-transparent border border-gray-500 rounded"
+                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded"
                   onChange={(event) =>
                     setFilters({ ...filters, roleId: event.target.value })
                   }
@@ -177,7 +177,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
               <div className="w-full mt-3 md:mt-0">
                 <select
                   name="seniority"
-                  className="w-full py-2 text-sm leading-tight text-gray-500 bg-transparent border border-gray-500 rounded"
+                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded "
                   onChange={(event) =>
                     setFilters({ ...filters, seniorityId: event.target.value })
                   }
@@ -200,7 +200,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   name="location"
                   type="text"
                   placeholder="Ubicación"
-                  className="w-full py-2 text-sm leading-tight text-gray-500 placeholder-gray-600 bg-transparent border border-gray-500 rounded"
+                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50"
                   onChange={(event) =>
                     setFilters({ ...filters, location: event.target.value })
                   }
@@ -211,7 +211,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   name="seniority"
                   type="text"
                   placeholder="Explora las biografías"
-                  className="w-full py-2 text-sm leading-tight text-gray-500 placeholder-gray-600 bg-transparent border border-gray-500 rounded"
+                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50"
                   onChange={(event) =>
                     setFilters({ ...filters, description: event.target.value })
                   }
@@ -239,7 +239,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
               <div className="flex items-center flex-shrink-0 mt-4 space-x-2 md:mt-0">
                 <label
                   htmlFor="toggle"
-                  className="flex-shrink w-24 text-sm leading-4 text-gray-500"
+                  className="flex-shrink w-24 text-sm leading-4 text-gray-50"
                 >
                   En búsqueda activa
                 </label>
@@ -269,7 +269,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 </div>
               </div>
               <input
-                className="w-full mt-4 text-xs md:w-auto md:mt-0 btn btn-primary md:text-md"
+                className="w-full mt-4 text-xs bg-gray-400 md:w-auto md:mt-0 btn md:text-md"
                 type="submit"
                 value="Buscar"
               />
@@ -277,9 +277,6 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
           </form>
         </div>
         <div className="px-4 py-5 sm:px-6 md:flex md:justify-between">
-          <div className="mb-2 font-bold leading-7 md:text-xl text-primary md:mb-0">
-            Perfiles registrados
-          </div>
           <SignupButton loading={loadingSession} hasProfile={hasProfile} />
         </div>
         {loading ? (

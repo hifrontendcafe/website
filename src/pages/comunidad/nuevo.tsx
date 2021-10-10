@@ -159,7 +159,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     >
       <div className="container max-w-3xl px-4 pt-10 pb-10 mx-auto md:pt-16 sm:px-6">
         <h1 className="mt-2 leading-snug tracking-tight text-center title">
-          Crea tu propio perfil en nuestro portal
+          Crea tu perfil en nuestro portal
         </h1>
       </div>
       <div className="container mx-auto mb-8 overflow-hidden rounded-lg shadow bg-gray-50">
@@ -252,7 +252,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     <label className="block mb-2 text-sm font-bold">
                       Twitter
                     </label>
-                    <p className="text-gray-600 my-2 text-xs">
+                    <p className="my-2 text-xs text-gray-600">
                       Incluye enlace completo de tu perfil.
                     </p>
                     <div className="relative">
@@ -271,7 +271,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     <label className="block mb-2 text-sm font-bold">
                       Linkedin
                     </label>
-                    <p className="text-gray-600 my-2 text-xs">
+                    <p className="my-2 text-xs text-gray-600">
                       Incluye enlace completo de tu perfil.
                     </p>
                     <div className="relative">
@@ -290,7 +290,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     <label className="block mb-2 text-sm font-bold">
                       Github
                     </label>
-                    <p className="text-gray-600 my-2 text-xs">
+                    <p className="my-2 text-xs text-gray-600">
                       Incluye enlace completo de tu perfil.
                     </p>
                     <div className="relative">
@@ -308,7 +308,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     <label className="block mb-2 text-sm font-bold">
                       Portfolio
                     </label>
-                    <p className="text-gray-600 my-2 text-xs">
+                    <p className="my-2 text-xs text-gray-600">
                       Incluye enlace completo de tu web personal.
                     </p>
                     <div className="relative">

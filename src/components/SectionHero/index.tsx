@@ -10,18 +10,20 @@ interface SectionHeroProps {
 
 const SectionHero: React.FC<SectionHeroProps> = ({ title, paragraph, cta }) => {
   return (
-    <section className="relative text-gray-100 body-font">
+    <section className="relative body-font">
       <div className="container flex flex-col items-center justify-center pt-24 mx-auto md:flex-row">
-        <div className="max-w-3xl text-lg text-center text-gray-200">
-          <h1 className="leading-snug tracking-tight title">{title}</h1>
-          <p className="max-w-3xl mt-4 mb-4 text-lg leading-relaxed text-gray-200">
+        <div className="max-w-3xl text-lg text-center">
+          <h1 className="leading-snug tracking-tight text-gray-50 title">
+            {title}
+          </h1>
+          <p className="max-w-3xl mt-4 mb-4 text-lg leading-relaxed text-gray-300">
             {paragraph}
           </p>
           <div className="flex justify-center">
             {cta && (
               <span className="flex mt-5 cursor-pointer text-primary">
                 <a target="_blank" href={cta} rel="noreferrer">
-                  Conocé más sobre la iniciativa&nbsp;
+                  Conoce más sobre la iniciativa&nbsp;
                 </a>
                 <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
               </span>

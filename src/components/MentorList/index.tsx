@@ -35,12 +35,10 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   return (
     <div className="container mx-auto">
       <div className="flex justify-between">
-        <h1 className="text-3xl text-primary">Mentores</h1>
+        <h1 className="mb-4 text-2xl font-medium text-white">
+          Busca un mentor segun su especialidad
+        </h1>
       </div>
-
-      <label className="block mb-2 ml-2 text-xs font-bold text-gray-700 uppercase">
-        Especialidades
-      </label>
       <div className="relative inline-block w-full mb-6 md:w-1/2 lg:w-1/3">
         <select
           onChange={() => setFilter((event.target as HTMLInputElement).value)}

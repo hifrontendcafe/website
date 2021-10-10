@@ -41,7 +41,7 @@ module.exports = {
     },
     backgroundColor: (theme) => ({
       ...theme('colors'),
-      primary: '#00c39d',
+      primary: '#097E91',
       primarydark: '#00987a',
       secondary: '#667eea',
       secondarydark: '#3b4c99',
@@ -50,7 +50,7 @@ module.exports = {
     }),
     textColor: (theme) => ({
       ...theme('colors'),
-      primary: '#00c39d',
+      primary: '#097E91',
       primarydark: '#00987a',
       secondary: '#667eea',
       secondarydark: '#3b4c99',
@@ -72,6 +72,7 @@ module.exports = {
           900: '#08080A',
         },
         ellipseBlue: '#142A4A',
+        primary: '#097E91',
       },
     },
   },

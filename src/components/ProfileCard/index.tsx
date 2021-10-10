@@ -15,16 +15,16 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full p-6 text-center bg-gray-800 rounded-lg shadow-lg">
+    <div className="flex flex-col justify-between w-full p-6 text-center bg-gray-800 border-2 border-gray-500 rounded-lg shadow-lg">
       <div className="flex justify-center space-x-3 text-center items-top">
         <img
           src={profile.photo || '/img/user.svg'}
-          className={`object-cover object-top w-28 h-28 ring ring-white ${
-            profile.available ? 'ring-green-700' : ''
+          className={`object-cover object-top w-28 h-28 ring ring-gray-300 ${
+            profile.available ? 'ring-primary' : ''
           } rounded-full shadow-lg`}
           alt={profile.name}
         />
-        <div className="flex flex-col justify-between flex-grow text-left flex-nowrap w-min">
+        <div className="flex flex-col justify-between flex-grow text-left text-gray-50 flex-nowrap w-min">
           <div className="flex-grow">
             <h1 className="text-xl font-bold leading-none tracking-tighter">
               {profile.name}
@@ -42,9 +42,8 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
                   alt="location"
                   height={16}
                   width={16}
-                  className="text-red-500"
                 />
-                <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-witde">
+                <h3 className="text-xs font-semibold uppercase tracking-witde">
                   {profile.location}
                 </h3>
               </div>
@@ -60,7 +59,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           </div>
         </div>
       </div>
-      <div className="items-center justify-center w-full h-full my-4 text-sm text-left whitespace-pre-line">
+      <div className="items-center justify-center w-full h-full my-4 text-sm text-left text-gray-100 whitespace-pre-line">
         {profile.description}
       </div>
       <div className="group-hover:hidden">
@@ -69,7 +68,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
             {profile.technologies?.map((tech) => (
               <span
                 key={tech.name}
-                className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all border border-indigo-400 rounded-md"
+                className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all border border-gray-300 rounded-md text-gray-50"
               >
                 {tech.name}
               </span>
