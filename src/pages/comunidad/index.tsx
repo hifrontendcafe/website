@@ -11,6 +11,7 @@ import { useSession } from 'next-auth/client';
 import { shuffle } from '@/lib/shuffle';
 import SectionHero from '@/components/SectionHero';
 import SignupButton from '@/components/ProfileSignupButton';
+import ProfileList from '@/components/ProfileList';
 
 const maxTechnologies = 5;
 
@@ -227,21 +228,11 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
         <div className="px-4 py-5 sm:px-6 md:flex md:justify-between">
           <SignupButton loading={loadingSession} hasProfile={hasProfile} />
         </div>
-        {loading ? (
-          <div className="w-full mt-4 text-center">Cargando...</div>
-        ) : filteredProfiles.length > 0 ? (
-          <div className="grid grid-cols-1 gap-8 py-5 text-gray-300 lg:px-6 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
-            {filteredProfiles.map((profile) => (
-              <div key={profile.name} className="flex">
-                <ProfileCard profile={profile} />
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="w-full mt-4 text-center">
-            No se han encontrado perfiles con los filtros aplicados.
-          </div>
-        )}
+        <ProfileList
+          isLoading={loading}
+          isError={false}
+          profiles={filteredProfiles}
+        />
       </div>
     </Layout>
   );
