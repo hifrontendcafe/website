@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
+
 interface MentorListProps {
   mentors: Mentor[];
   topics: Topic[];
@@ -18,19 +19,19 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [session, loading] = useSession();
 
-  const filterTopics = () => {
-    const filtered = [];
-    mentors.forEach((mentor) => {
-      const find = mentor.topics.filter((topic) => topic._ref == filter);
-      if (find.length > 0) filtered.push(mentor);
-    });
-    setfilteredTopics(filtered);
-  };
-
   useEffect(() => {
+    const filterTopics = () => {
+      const filtered = [];
+      mentors.forEach((mentor) => {
+        const find = mentor.topics.filter((topic) => topic._ref == filter);
+        if (find.length > 0) filtered.push(mentor);
+      });
+      setfilteredTopics(filtered);
+    };
+
     filterTopics();
     return () => filterTopics();
-  }, [filter]);
+  }, [filter, mentors]);
 
   return (
     <div className="container px-5 py-24 mx-auto min">
@@ -44,7 +45,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
       <div className="relative inline-block w-full mb-6 md:w-1/2 lg:w-1/3">
         <select
           onChange={() => setFilter((event.target as HTMLInputElement).value)}
-          className="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline"
+          className="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline bg-none"
         >
           <option value="">--</option>
           {topics?.map((topic, index) => (
