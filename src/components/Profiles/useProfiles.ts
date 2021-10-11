@@ -1,6 +1,7 @@
 import { useState, useEffect, useReducer, Dispatch } from 'react';
 import { ExtendedProfile, ProfileFilters } from '@/lib/types';
 import { filterReducer, FilterProfileAction } from './filterReducer';
+import { useDebounce } from '@/lib/useDebounce';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function post(url: string, body: Record<string, any>) {
@@ -30,6 +31,12 @@ const initialProfileFilters: ProfileFilters = {
   available: false,
 };
 
+// https://www.telerik.com/blogs/debouncing-and-throttling-in-javascript
+/**
+ * Minimum time between requests to database
+ */
+const debounceTime = 300;
+
 interface UseProfilesResult {
   filters: ProfileFilters;
   dispatchFilter: Dispatch<FilterProfileAction>;
@@ -51,31 +58,28 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
       profiles,
     });
 
+  const debouncedFilters = useDebounce(filters, debounceTime);
+
+  useEffect(() => {
+    setFilteredProfiles({ isLoading: true, isError: false, profiles: [] });
+  }, [filters]);
+
   useEffect(() => {
     const fn = async () => {
-      setFilteredProfiles({ isLoading: true, isError: false, profiles: [] });
-      const response = await searchProfiles(filters);
+      const response = await searchProfiles(debouncedFilters);
 
       let profiles = [];
       try {
         profiles = await response.json();
       } catch (error) {
-        setFilteredProfiles({
-          isLoading: false,
-          isError: true,
-          profiles: [],
-        });
+        setFilteredProfiles({ isLoading: false, isError: true, profiles: [] });
       }
 
-      setFilteredProfiles({
-        isLoading: false,
-        isError: false,
-        profiles,
-      });
+      setFilteredProfiles({ isLoading: false, isError: false, profiles });
     };
 
     fn();
-  }, [filters]);
+  }, [debouncedFilters]);
 
   return {
     filters,
