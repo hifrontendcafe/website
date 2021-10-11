@@ -76,6 +76,7 @@ export interface CMYK {
   };
   github: string;
   demo: string;
+  cmykVersion: string;
 }
 
 export interface CMYKParticipant {
