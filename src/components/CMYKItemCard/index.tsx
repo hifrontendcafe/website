@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { CMYK } from '../../lib/types';
+import { CMYK } from '@/lib/types';
 
 import tinycolor from 'tinycolor2';
 
@@ -9,15 +9,11 @@ type CMYKItemProps = {
   index: number;
 };
 
-const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
+const CMYKItemCard: React.FC<CMYKItemProps> = ({ project }) => {
   const textColor = tinycolor(project.color);
 
   return (
-    <div
-      className={`max-w-md rounded overflow-hidden flex flex-col ${
-        index % 2 === 0 ? 'md:mb-16' : 'md:mt-16'
-      }`}
-    >
+    <div className={`rounded overflow-hidden flex flex-col`}>
       <img
         className="h-40 object-cover w-full"
         src={project.image.src}
@@ -58,9 +54,6 @@ const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
               GITHUB
             </a>
           </Link>
-          {/* <a href="#" className="btn whitespace-no-wrap" style={btnStyles}>
-            Ver más
-          </a> */}
         </div>
       </div>
     </div>

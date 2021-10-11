@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
+
 interface MentorListProps {
   mentors: Mentor[];
   topics: Topic[];
@@ -18,19 +19,19 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [session, loading] = useSession();
 
-  const filterTopics = () => {
-    const filtered = [];
-    mentors.forEach((mentor) => {
-      const find = mentor.topics.filter((topic) => topic._ref == filter);
-      if (find.length > 0) filtered.push(mentor);
-    });
-    setfilteredTopics(filtered);
-  };
-
   useEffect(() => {
+    const filterTopics = () => {
+      const filtered = [];
+      mentors.forEach((mentor) => {
+        const find = mentor.topics.filter((topic) => topic._ref == filter);
+        if (find.length > 0) filtered.push(mentor);
+      });
+      setfilteredTopics(filtered);
+    };
+
     filterTopics();
     return () => filterTopics();
-  }, [filter]);
+  }, [filter, mentors]);
 
   return (
     <div>
