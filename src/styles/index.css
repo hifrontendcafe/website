@@ -89,20 +89,41 @@ html {
   }
 }
 
+/* react-select styles */
+.filter-selector .react-select__multi-value {
+  @apply bg-gray-700;
+}
+
+.filter-selector .react-select__multi-value__label {
+  @apply text-gray-100;
+}
+
+.filter-selector .react-select__menu {
+  @apply bg-gray-900 text-gray-50 border border-gray-500;
+}
+
 .filter-selector .react-select__control {
-  @apply border-gray-300;
+  @apply border-gray-300 bg-gray-900 text-gray-300;
 }
-.react-select__control .react-select__indicator {
-  @apply text-gray-500;
+
+.filter-selector .react-select__option--is-focused {
+  @apply bg-gray-700;
 }
-.react-select__value-container .react-select__placeholder {
-  @apply text-sm text-gray-600;
+
+.filter-selector .react-select__control .react-select__indicator {
+  /* @apply text-gray-500; */
 }
+
+.filter-selector .react-select__value-container .react-select__placeholder {
+  /* @apply text-sm text-gray-600; */
+}
+/* end react-select styles */
 
 .twitter-blue {
   color: #55acee;
 }
 
+/* add calendar button styles */
 .addeventatc.button {
   background-color: #f9f9fa !important;
   border-radius: 3px !important;
