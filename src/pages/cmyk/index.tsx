@@ -97,7 +97,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
           </div>
         </div>
         <div className="w-full h-full">
-          <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-4 relative z-10">
+          <div className="max-w-4xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-10 relative z-10">
             {currentProjects.map((project, index) => (
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}

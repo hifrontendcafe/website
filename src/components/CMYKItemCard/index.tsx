@@ -13,7 +13,7 @@ const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
   const textColor = tinycolor(project.color);
 
   return (
-    <div className={`max-w-md rounded overflow-hidden flex flex-col`}>
+    <div className={`rounded overflow-hidden flex flex-col`}>
       <img
         className="h-40 object-cover w-full"
         src={project.image.src}
