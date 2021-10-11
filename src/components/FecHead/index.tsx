@@ -9,7 +9,6 @@ interface FecHeadProps {
 const FecHead: React.FC<FecHeadProps> = ({
   title = 'FrontendCafé ',
   description = 'Somos una comunidad de personas interesadas en tecnología y ciencias informáticas en donde charlamos sobre lenguajes de programación, diseño web, infraestructura, compartimos dudas, preguntamos y respondemos.',
-  children,
   ogImage = 'https://frontend.cafe/logo-square.png',
 }) => {
   return (
