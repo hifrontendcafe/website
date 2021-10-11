@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { GetStaticProps } from 'next';
 import Layout from '@/components/Layout';
 import prisma from '@/lib/prisma';
@@ -11,6 +11,7 @@ import SectionHero from '@/components/SectionHero';
 import SignupButton from '@/components/ProfileSignupButton';
 import ProfileList from '@/components/ProfileList';
 import ProfilesFilterForm from '@/components/ProfilesFilterForm';
+import { filterReducer } from '@/components/Profiles/filterReducer';
 
 type PostsPageProps = {
   profiles: ExtendedProfile[];
@@ -55,7 +56,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
     (profile) => profile.discordId === session?.user?.id,
   );
 
-  const [filters, setFilters] = useState<ProfileFilters>(initialProfileState);
+  const [filters, setFilters] = useReducer(filterReducer, initialProfileState);
 
   const [loading, setLoading] = useState<boolean>(false);
   const [filteredProfiles, setFilteredProfiles] =
@@ -89,7 +90,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
             roles={roles}
             seniorities={seniorities}
             filters={filters}
-            setFilters={setFilters}
+            dispatch={setFilters}
           />
         </div>
         <div className="px-4 py-5 sm:px-6 md:flex md:justify-between">

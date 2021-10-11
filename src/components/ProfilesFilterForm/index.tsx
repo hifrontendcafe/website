@@ -1,10 +1,11 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch } from 'react';
 import Select from 'react-select';
 import { ProfileFilters } from '@/lib/types';
+import { FilterProfileAction } from '@/components/Profiles/filterReducer';
 
 interface FormProps {
   filters: ProfileFilters;
-  setFilters: Dispatch<SetStateAction<ProfileFilters>>;
+  dispatch: Dispatch<FilterProfileAction>;
   filterProfiles: () => void;
   technologies: { name: string; id: string }[];
   roles: { name: string; id: string }[];
@@ -18,7 +19,7 @@ const isValidNewOption = (inputValue, selectValue) =>
 
 const FilterForm: React.FC<FormProps> = ({
   filters,
-  setFilters,
+  dispatch,
   filterProfiles,
   technologies,
   roles,
@@ -37,8 +38,8 @@ const FilterForm: React.FC<FormProps> = ({
             name="role"
             placeholder="Rol"
             className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded"
-            onChange={(event) =>
-              setFilters({ ...filters, roleId: event.target.value })
+            onChange={(e) =>
+              dispatch({ type: 'ADD_ROLE', payload: e.target.value })
             }
           >
             {roles.map((role) => (
@@ -58,8 +59,8 @@ const FilterForm: React.FC<FormProps> = ({
           <select
             name="seniority"
             className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded "
-            onChange={(event) =>
-              setFilters({ ...filters, seniorityId: event.target.value })
+            onChange={(e) =>
+              dispatch({ type: 'ADD_SENIORITY', payload: e.target.value })
             }
           >
             {seniorities.map((seniority) => (
@@ -81,19 +82,19 @@ const FilterForm: React.FC<FormProps> = ({
             type="text"
             placeholder="Ubicación"
             className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50"
-            onChange={(event) =>
-              setFilters({ ...filters, location: event.target.value })
+            onChange={(e) =>
+              dispatch({ type: 'ADD_LOCATION', payload: e.target.value })
             }
           />
         </div>
         <div className="w-full mt-3 md:mt-0">
           <input
-            name="seniority"
+            name="description"
             type="text"
             placeholder="Explora las biografías"
             className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50"
-            onChange={(event) =>
-              setFilters({ ...filters, description: event.target.value })
+            onChange={(e) =>
+              dispatch({ type: 'ADD_DESCRIPTION', payload: e.target.value })
             }
           />
         </div>
@@ -106,7 +107,7 @@ const FilterForm: React.FC<FormProps> = ({
           className="w-full filter-selector bg"
           placeholder="Selecciona tecnologías"
           onChange={(techs) =>
-            setFilters({ ...filters, technologies: [...techs] })
+            dispatch({ type: 'ADD_TECHNOLOGIES', payload: techs })
           }
           isValidNewOption={isValidNewOption}
           options={
@@ -130,11 +131,8 @@ const FilterForm: React.FC<FormProps> = ({
               checked={filters.available}
               name="toggle"
               type="checkbox"
-              onChange={(event) =>
-                setFilters({
-                  ...filters,
-                  available: event.target.checked,
-                })
+              onChange={(e) =>
+                dispatch({ type: 'SET_AVAILABLE', payload: e.target.checked })
               }
               className={`absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
                 filters.available
