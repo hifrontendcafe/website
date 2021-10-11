@@ -30,6 +30,14 @@ const cmykVersions = [
     version: 'cmyk-3',
     name: 'CMYK 3',
   },
+  {
+    version: 'cmyk-4',
+    name: 'CMYK 4',
+  },
+  {
+    version: 'cmyk-5',
+    name: 'CMYK 5',
+  },
 ];
 
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
@@ -40,6 +48,15 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     initialData: data,
     enabled: preview,
   });
+
+  const projectVersions = new Set(
+    projects.map((project) => project.cmykVersion),
+  );
+
+  const filteredVersions = cmykVersions.filter((cmykVersion) =>
+    projectVersions.has(cmykVersion.version),
+  );
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [currentCMYK, setCurrentCMYK] = useState(cmykVersions[0].version);
@@ -48,7 +65,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     (project) => project.cmykVersion === currentCMYK,
   );
 
-  const tabStyle = `py-2 font-semibold cursor-pointer text-gray-700 w-1/3 flex justify-center border-b`;
+  const tabStyle = `py-2 cursor-pointer text-gray-700 w-1/3 flex justify-center border-b`;
   const tabStyleActive = `py-2 font-semibold cursor-pointer text-gray-900 w-1/3 flex justify-center border-b-4 border-gray-700`;
 
   return (
@@ -80,7 +97,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
             </span>
             <h3 className="subtitle mt-24">Ediciones</h3>
             <ul className="flex w-full md:w-8/12 my-6">
-              {cmykVersions.map((cmykVersion) => (
+              {filteredVersions.map((cmykVersion) => (
                 <li
                   onClick={() => setCurrentCMYK(cmykVersion.version)}
                   className={
