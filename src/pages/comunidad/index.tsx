@@ -1,47 +1,21 @@
-import React, { useState, useReducer } from 'react';
+import React from 'react';
 import { GetStaticProps } from 'next';
 import Layout from '@/components/Layout';
 import prisma from '@/lib/prisma';
 import { getSettings } from '@/lib/api';
-import { ExtendedProfile, ProfileFilters } from '@/lib/types';
+import { ExtendedProfile } from '@/lib/types';
 import { findProfiles } from '@/lib/prisma-queries';
-import { useSession } from 'next-auth/client';
 import { shuffle } from '@/lib/shuffle';
 import SectionHero from '@/components/SectionHero';
-import SignupButton from '@/components/ProfileSignupButton';
-import ProfileList from '@/components/ProfileList';
-import ProfilesFilterForm from '@/components/ProfilesFilterForm';
-import { filterReducer } from '@/components/Profiles/filterReducer';
+import Profiles from '@/components/Profiles';
 
-type PostsPageProps = {
+interface PostsPageProps {
   profiles: ExtendedProfile[];
   preview?: boolean;
   technologies: { name: string; id: string }[];
   roles: { name: string; id: string }[];
   seniorities: { name: string; id: string }[];
-};
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function post(url: string, body: Record<string, any>) {
-  return fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
 }
-
-function searchProfiles(filters: ProfileFilters) {
-  return post('/api/profiles/search', { filters });
-}
-
-const initialProfileState = {
-  roleId: '',
-  location: '',
-  seniorityId: '',
-  description: '',
-  technologies: [],
-  available: false,
-};
 
 const ProfilesPage: React.FC<PostsPageProps> = ({
   profiles,
@@ -50,27 +24,6 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
   roles,
   technologies,
 }) => {
-  const [session, loadingSession] = useSession();
-
-  const hasProfile = profiles.some(
-    (profile) => profile.discordId === session?.user?.id,
-  );
-
-  const [filters, setFilters] = useReducer(filterReducer, initialProfileState);
-
-  const [loading, setLoading] = useState<boolean>(false);
-  const [filteredProfiles, setFilteredProfiles] =
-    useState<ExtendedProfile[]>(profiles);
-
-  const filterProfiles = async () => {
-    setLoading(true);
-    const response = await searchProfiles(filters);
-    setLoading(false);
-
-    const profiles = await response.json();
-    setFilteredProfiles(profiles);
-  };
-
   return (
     <Layout
       title="Comunidad"
@@ -82,26 +35,12 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
         paragraph="Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
         intereses y poder conectarte a través de sus redes sociales."
       />
-      <div className="min-h-screen mx-auto">
-        <div className="max-w-5xl mx-auto mb-4">
-          <ProfilesFilterForm
-            filterProfiles={filterProfiles}
-            technologies={technologies}
-            roles={roles}
-            seniorities={seniorities}
-            filters={filters}
-            dispatch={setFilters}
-          />
-        </div>
-        <div className="px-4 py-5 sm:px-6 md:flex md:justify-between">
-          <SignupButton loading={loadingSession} hasProfile={hasProfile} />
-        </div>
-        <ProfileList
-          isLoading={loading}
-          isError={false}
-          profiles={filteredProfiles}
-        />
-      </div>
+      <Profiles
+        profiles={profiles}
+        technologies={technologies}
+        roles={roles}
+        seniorities={seniorities}
+      />
     </Layout>
   );
 };

@@ -6,7 +6,6 @@ import { FilterProfileAction } from '@/components/Profiles/filterReducer';
 interface FormProps {
   filters: ProfileFilters;
   dispatch: Dispatch<FilterProfileAction>;
-  filterProfiles: () => void;
   technologies: { name: string; id: string }[];
   roles: { name: string; id: string }[];
   seniorities: { name: string; id: string }[];
@@ -20,14 +19,12 @@ const isValidNewOption = (inputValue, selectValue) =>
 const FilterForm: React.FC<FormProps> = ({
   filters,
   dispatch,
-  filterProfiles,
   technologies,
   roles,
   seniorities,
 }) => {
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    filterProfiles();
   };
 
   return (
@@ -38,8 +35,8 @@ const FilterForm: React.FC<FormProps> = ({
             name="role"
             placeholder="Rol"
             className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded"
-            onChange={(e) =>
-              dispatch({ type: 'ADD_ROLE', payload: e.target.value })
+            onChange={(event) =>
+              dispatch({ type: 'ADD_ROLE', payload: event.target.value })
             }
           >
             {roles.map((role) => (
@@ -59,8 +56,8 @@ const FilterForm: React.FC<FormProps> = ({
           <select
             name="seniority"
             className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded "
-            onChange={(e) =>
-              dispatch({ type: 'ADD_SENIORITY', payload: e.target.value })
+            onChange={(event) =>
+              dispatch({ type: 'ADD_SENIORITY', payload: event.target.value })
             }
           >
             {seniorities.map((seniority) => (
@@ -82,8 +79,8 @@ const FilterForm: React.FC<FormProps> = ({
             type="text"
             placeholder="Ubicación"
             className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50"
-            onChange={(e) =>
-              dispatch({ type: 'ADD_LOCATION', payload: e.target.value })
+            onChange={(event) =>
+              dispatch({ type: 'ADD_LOCATION', payload: event.target.value })
             }
           />
         </div>
@@ -93,8 +90,8 @@ const FilterForm: React.FC<FormProps> = ({
             type="text"
             placeholder="Explora las biografías"
             className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50"
-            onChange={(e) =>
-              dispatch({ type: 'ADD_DESCRIPTION', payload: e.target.value })
+            onChange={(event) =>
+              dispatch({ type: 'ADD_DESCRIPTION', payload: event.target.value })
             }
           />
         </div>
@@ -131,8 +128,11 @@ const FilterForm: React.FC<FormProps> = ({
               checked={filters.available}
               name="toggle"
               type="checkbox"
-              onChange={(e) =>
-                dispatch({ type: 'SET_AVAILABLE', payload: e.target.checked })
+              onChange={(event) =>
+                dispatch({
+                  type: 'SET_AVAILABLE',
+                  payload: event.target.checked,
+                })
               }
               className={`absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
                 filters.available
@@ -148,11 +148,6 @@ const FilterForm: React.FC<FormProps> = ({
             ></label>
           </div>
         </div>
-        <input
-          className="w-full mt-4 text-xs bg-gray-400 md:w-auto md:mt-0 btn md:text-md"
-          type="submit"
-          value="Buscar"
-        />
       </div>
     </form>
   );
