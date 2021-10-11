@@ -20,7 +20,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
         <img
           src={profile.photo || '/img/user.svg'}
           className={`object-cover object-top w-28 h-28 ring ring-gray-300 ${
-            profile.available ? 'ring-primary' : ''
+            profile.available ? 'ring-profileRing' : ''
           } rounded-full shadow-lg`}
           alt={profile.name}
         />

@@ -46,14 +46,14 @@ const CreateGroupForm: React.FC = () => {
       {session ? (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col w-full grid-cols-2 gap-5 text-gray-300 rounded sm:px-8 sm:pt-6 sm:pb-8 md:grid "
+          className="flex flex-col w-full grid-cols-2 gap-5 p-2 text-gray-300 border border-gray-500 rounded sm:px-8 sm:pt-6 sm:pb-8 md:grid "
         >
           <div className="mb-4">
             <label className="block mb-2 text-sm font-bold">
               Nombre del grupo*
             </label>
             <input
-              className="w-full px-3 py-2 text-sm leading-tight text-gray-700 bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 text-sm leading-tight bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Nombre del grupo"
               required
@@ -66,7 +66,7 @@ const CreateGroupForm: React.FC = () => {
             </label>
             <div className="relative">
               <input
-                className="w-full px-3 py-2 text-sm leading-tight text-gray-700 bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
+                className="w-full px-3 py-2 text-sm leading-tight bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
                 type="text"
                 placeholder="Ingresa tu usuario de Discord"
                 value={session.user.name}
@@ -80,7 +80,7 @@ const CreateGroupForm: React.FC = () => {
           <div className="mb-4">
             <label className="block mb-2 text-sm font-bold">Tema*</label>
             <input
-              className="w-full px-3 py-2 text-sm leading-tight text-gray-700 bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 text-sm leading-tight bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
               type="text"
               placeholder="Ingresa el tema"
               required
@@ -92,7 +92,7 @@ const CreateGroupForm: React.FC = () => {
               Material de estudio*
             </label>
             <input
-              className="w-full px-3 py-2 text-sm leading-tight text-gray-700 bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 text-sm leading-tight bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
               type="url"
               placeholder="Ingresa un link al material de estudio seleccionado"
               required
@@ -105,7 +105,7 @@ const CreateGroupForm: React.FC = () => {
             </label>
             <textarea
               rows={5}
-              className="w-full px-3 py-2 text-sm leading-tight text-gray-700 bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 text-sm leading-tight bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
               placeholder="Ingresa la dinámica que se va a utilizar en su grupo de estudio"
               required
               {...register('meetings', { required: true })}
@@ -117,7 +117,7 @@ const CreateGroupForm: React.FC = () => {
             </label>
             <textarea
               rows={5}
-              className="w-full px-3 py-2 text-sm leading-tight text-gray-700 bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 text-sm leading-tight bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
               placeholder="Ingresa como va a ser el plan de estudio"
               {...register('plan')}
             ></textarea>
@@ -127,7 +127,7 @@ const CreateGroupForm: React.FC = () => {
               Fecha tentativa de inicio
             </label>
             <input
-              className="w-full px-3 py-2 text-sm leading-tight text-gray-700 bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
+              className="w-full px-3 py-2 text-sm leading-tight bg-transparent border rounded appearance-none focus:outline-none focus:shadow-outline"
               name="startDate"
               type="date"
               {...register('startDate')}
@@ -137,7 +137,7 @@ const CreateGroupForm: React.FC = () => {
             <div className="flex justify-end">
               <button
                 type="submit"
-                className="inline-flex justify-center px-6 py-3 font-medium text-white border border-transparent rounded-md shadow-sm text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="inline-flex justify-center btn btn-primary"
                 disabled={isLoading}
               >
                 {isLoading ? 'Enviando...' : 'Enviar propuesta'}
@@ -149,7 +149,7 @@ const CreateGroupForm: React.FC = () => {
                 <div
                   className={`flex items-center ${
                     isError ? 'bg-red-500' : 'bg-green-500'
-                  } text-white text-sm font-bold px-4 py-3 mt-5 transition-all	 duration-500 ease-in-out ${
+                  } text-gray-50 text-sm font-bold px-4 py-3 mt-5 transition-all	 duration-500 ease-in-out ${
                     isSuccess || isError ? 'opacity-100' : 'opacity-0'
                   }`}
                   role="alert"
@@ -168,7 +168,7 @@ const CreateGroupForm: React.FC = () => {
           </div>
         </form>
       ) : (
-        <div className="p-4 text-gray-200">
+        <div className="p-6 text-gray-200 bg-gray-800 rounded-md">
           Para poder crear un nuevo grupo de Reactivistas es necesario que
           inicies sesión con Discord. <br />
           <br />

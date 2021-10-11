@@ -36,7 +36,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
               </h2>
             </div>
             <button
-              className="self-center justify-center px-4 py-2 my-2 font-medium text-white border border-transparent rounded-md shadow-sm lg:self-end text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="self-center justify-center px-4 py-2 my-2 font-medium text-gray-50 border border-transparent rounded-md shadow-sm lg:self-end text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               onClick={() => setIsModalOpen(true)}
             >
               Conocé el cronograma

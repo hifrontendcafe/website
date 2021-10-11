@@ -28,8 +28,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
       <Layout title="Reactivistas">
         <SectionHero
           title="Reactivistas"
-          paragraph="Grupos auto-organizados por integrantes de la comunidad. Si participas podrás intercambiar ideas con tus pares y acceder
-          a las Office Hours, que son reuniones con nuestro staff exponer tus dudas y realizar consultas."
+          paragraph="Grupos auto-organizados por integrantes de la comunidad para aprender React.js con pares y con ayuda de mentores"
           cta="https://frontend.cafe/docs/guia-reactivistas"
         />
         <div className="p-6 m-10 lg:px-36">
@@ -101,7 +100,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
             <h1 className="font-bold leading-7 text-gray-200 titletext-2xl sm:text-2xl sm:leading-9 sm:truncate">
               Dale vida a un nuevo grupo
             </h1>
-            <h2 className="leading-7 text-md text-primary sm:leading-9 sm:truncate">
+            <h2 className="leading-7 text-md text-informational sm:leading-9 sm:truncate">
               <span
                 className="cursor-pointer"
                 onClick={() => setIsModalOpen(true)}
@@ -110,12 +109,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
               </span>
             </h2>
           </div>
-
-          <div className="overflow-hidden rounded-lg shadow">
-            <div className="px-6 py-5 md:px-8">
-              <CreateGroupForm />
-            </div>
-          </div>
+          <CreateGroupForm />
         </div>
 
         <GroupRequirementsModal

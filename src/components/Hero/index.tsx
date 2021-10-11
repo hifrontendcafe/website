@@ -7,9 +7,9 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ title }) => {
   return (
     <div className="relative py-32 mx-auto bg-white bg-opacity-0">
-      <div className="flex items-center justify-center h-full text-white bg-center bg-cover md:justify-around">
+      <div className="flex items-center justify-center h-full bg-center bg-cover text-gray-50 md:justify-around">
         <div className="z-10 w-auto text-center">
-          <div className="text-4xl font-extrabold sm:text-5xl md:text-7xl">
+          <div className="text-4xl font-black md:font-extrabold sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl">
             <div>
               <p>
                 <motion.span
@@ -28,11 +28,11 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="px-2 -mt-2 text-4xl sm:text-5xl md:text-7xl"
+                className="px-2 -mt-2 text-4xl sm:text-5xl md:text-7xl lg:text-8xl xl:text-9xl"
               >
                 en comunidad
               </span>
-              <p className="mt-4 text-xl font-medium text-gray-300">
+              <p className="mt-4 text-base font-medium text-gray-300 md:text-2xl">
                 El lugar de encuentro para potenciar tus ideas y conectar con
                 otras personas.
               </p>

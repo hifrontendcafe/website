@@ -300,7 +300,7 @@ const CMYKParticipantForm: React.FC = () => {
         <div className="flex justify-end">
           <button
             type="submit"
-            className="inline-flex justify-center px-6 py-3 mr-6 font-medium text-white border border-transparent rounded-md shadow-sm text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex justify-center px-6 py-3 mr-6 font-medium text-gray-50 border border-transparent rounded-md shadow-sm text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             {isLoading ? 'Enviando...' : 'Enviar'}
           </button>
@@ -309,7 +309,7 @@ const CMYKParticipantForm: React.FC = () => {
         <div
           className={`flex items-center ${
             isError ? 'bg-red-500' : isInfo ? 'bg-yellow-500' : 'bg-green-500'
-          } text-white text-sm font-bold px-4 py-3 mt-5 transition-all	 duration-500 ease-in-out ${
+          } text-gray-50 text-sm font-bold px-4 py-3 mt-5 transition-all	 duration-500 ease-in-out ${
             isSuccess || isError || isInfo ? 'opacity-100' : 'opacity-0'
           }`}
           role="alert"

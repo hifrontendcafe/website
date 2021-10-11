@@ -19,13 +19,10 @@ const StaffPage: React.FC<PostsPageProps> = ({ profiles, preview }) => {
       preview={preview}
     >
       <div className="px-4 pt-16 sm:px-6 md:pt-0">
-        <SectionHero
-          title="Conoce nuestro equipo"
-          paragraph="We are the best"
-        />
+        <SectionHero title="Nuestro equipo" />
       </div>
       <div className="mb-20">
-        <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-200 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 place-content-stretch">
+        <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-200 lg:pt-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 place-content-stretch">
           {profiles?.map((profile) => (
             <StaffCard profile={profile} key={profile._id} />
           ))}

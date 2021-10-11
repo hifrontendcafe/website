@@ -32,7 +32,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       className="w-full col-span-1 bg-gray-800 border-2 border-gray-500 rounded-lg shadow"
     >
       <div className="flex flex-col items-center w-full px-6 py-4 text-center md:flex-row md:text-left">
-        <div className="flex flex-col items-center text-white md:mr-6">
+        <div className="flex flex-col items-center text-gray-50 md:mr-6">
           <img
             className="object-cover w-24 h-24 bg-gray-300 rounded-full"
             src={mentor.photo.src}
@@ -74,18 +74,18 @@ const MentorCard: React.FC<MentorCardProps> = ({
         <div className="flex-1 border-gray-500 md:border-l md:pl-6">
           <div className="flex flex-col flex-grow items">
             <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
-              <h2 className="text-2xl font-bold text-white title-font">
+              <h2 className="text-2xl font-bold text-gray-50 title-font">
                 {mentor.name}
               </h2>
               {!mentor.isActive ? (
-                <button className="px-3 py-1 text-sm text-white uppercase bg-gray-500 rounded cursor-not-allowed font-base">
+                <button className="text-xs uppercase cursor-not-allowed btn btn-secondary">
                   No Disponible
                 </button>
               ) : mentor.isActive && mentor.calendly && isLogged ? (
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
-                    className="px-3 py-1 text-sm text-white uppercase rounded bg-primary hover:bg-teal-400 font-base"
+                    className="text-xs uppercase btn btn-primary"
                   >
                     <span>Contactame</span>
                   </a>
@@ -93,14 +93,14 @@ const MentorCard: React.FC<MentorCardProps> = ({
               ) : (
                 <button
                   onClick={() => openModal()}
-                  className="px-3 py-1 text-sm text-white uppercase bg-gray-500 rounded font-base"
+                  className="text-xs uppercase btn btn-primary"
                 >
                   Contactame
                 </button>
               )}
             </div>
 
-            <span className="text-xs leading-relaxed text-gray-300 md:min-h-64">
+            <span className="text-xs leading-relaxed text-gray-100 md:min-h-64">
               {mentor.description ? mentor.description : '---'}
             </span>
             <div className="flex flex-wrap justify-center my-3 md:justify-start">

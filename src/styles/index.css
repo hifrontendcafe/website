@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -35,35 +37,27 @@ html {
 
 @layer components {
   .btn {
-    @apply px-6 py-2 text-sm font-medium rounded-lg;
+    @apply px-6 py-2 text-sm font-medium rounded-md;
   }
 
   .btn-primary {
-    @apply text-white bg-primary;
+    @apply text-gray-900 bg-gray-50;
   }
 
   .btn-primary:hover {
-    @apply shadow bg-primarydark;
+    @apply bg-gray-200 shadow;
   }
 
   .btn-secondary {
-    @apply text-white bg-secondary;
+    @apply border-2 border-gray-500 text-gray-50;
   }
 
   .btn-secondary:hover {
-    @apply shadow bg-secondarydark;
-  }
-
-  .btn-tertiary {
-    @apply text-white bg-tertiary;
-  }
-
-  .btn-tertiary:hover {
-    @apply shadow bg-tertiarydark;
+    @apply bg-gray-900 shadow;
   }
 
   .btn-border {
-    @apply text-white border;
+    @apply border text-gray-50;
   }
 
   .btn-border:hover {
@@ -75,11 +69,19 @@ html {
   }
 
   .title {
-    @apply text-3xl font-extrabold leading-normal text-white md:text-4xl lg:text-5xl;
+    @apply text-4xl font-extrabold leading-normal text-gray-50 md:text-5xl lg:text-7xl;
   }
 
   .subtitle {
-    @apply text-2xl font-extrabold leading-normal text-gray-100 md:text-3xl;
+    @apply text-2xl font-extrabold leading-normal text-gray-100 md:text-3xl lg:text-5xl;
+  }
+
+  .paragraph {
+    @apply text-xl leading-normal text-gray-300 md:text-2xl;
+  }
+
+  .cards-title {
+    @apply text-lg font-extrabold leading-normal text-gray-100 md:text-xl lg:text-2xl;
   }
 
   .title-colorful {

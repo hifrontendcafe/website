@@ -165,7 +165,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
       <div className="mb-8 overflow-hidden rounded-lg shadow bg-gray-50">
         {message.text && (
           <div
-            className={`text-center text-white rounded p-4 m-4 ${
+            className={`text-center text-gray-50 rounded p-4 m-4 ${
               message.error ? 'bg-red-600' : 'bg-green-700'
             }`}
           >
@@ -466,7 +466,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   <div className="flex justify-end">
                     <button
                       type="submit"
-                      className="inline-flex justify-center px-6 py-3 font-medium text-white border border-transparent rounded-md shadow-sm text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                      className="inline-flex justify-center px-6 py-3 font-medium text-gray-50 border border-transparent rounded-md shadow-sm text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                     >
                       Enviar
                     </button>

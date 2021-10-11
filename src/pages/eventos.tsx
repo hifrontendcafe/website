@@ -26,10 +26,7 @@ const EventsPage: React.FC<EventsPageProps> = ({ data, preview }) => {
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
       preview={preview}
     >
-      <SectionHero
-        title="Eventos"
-        paragraph="Aca deberiamos describir algo de eventos quizas?? O no, que facciamo con la cosa?"
-      />
+      <SectionHero title="Eventos" />
       <EventList events={events} />
     </Layout>
   );

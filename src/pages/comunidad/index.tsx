@@ -151,7 +151,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                 <select
                   name="role"
                   placeholder="Rol"
-                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded"
+                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded form-select"
                   onChange={(event) =>
                     setFilters({ ...filters, roleId: event.target.value })
                   }
@@ -172,7 +172,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
               <div className="w-full mt-3 md:mt-0">
                 <select
                   name="seniority"
-                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded "
+                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded form-select"
                   onChange={(event) =>
                     setFilters({ ...filters, seniorityId: event.target.value })
                   }
@@ -195,7 +195,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   name="location"
                   type="text"
                   placeholder="Ubicación"
-                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50"
+                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50 form-input"
                   onChange={(event) =>
                     setFilters({ ...filters, location: event.target.value })
                   }
@@ -206,7 +206,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                   name="seniority"
                   type="text"
                   placeholder="Explora las biografías"
-                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50"
+                  className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-50 form-input"
                   onChange={(event) =>
                     setFilters({ ...filters, description: event.target.value })
                   }
@@ -253,7 +253,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
                         available: event.target.checked,
                       })
                     }
-                    className={`absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
+                    className={`form-checkbox absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
                       filters.available
                         ? ' translate-x-4 text-green-400'
                         : 'border-gray-500'

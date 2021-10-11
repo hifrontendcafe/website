@@ -25,7 +25,7 @@ const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
       />
       <div
         className={`flex flex-col md:flex-row h-auto ${
-          textColor.isLight() ? 'text-gray-900' : 'text-white'
+          textColor.isLight() ? 'text-gray-900' : 'text-gray-50'
         }`}
         style={{ backgroundColor: project.color }}
       >

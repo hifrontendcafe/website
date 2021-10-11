@@ -39,7 +39,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
     >
       <nav
         id="site-menu"
-        className="flex flex-col items-center justify-between w-full h-16 px-4 mx-auto xl:px-44 lg:flex-row lg:shadow-none"
+        className="container flex flex-col items-center justify-between w-full h-16 mx-auto lg:flex-row"
       >
         <div className="flex flex-row flex-no-wrap items-center self-start justify-between w-full lg:w-auto lg:self-center lg:flex-none">
           {/* ATENCION esta hardcodeado el logo, antes de salir a prod. eliminar codigo debajo de este codigo y dejar el que esta comentado. */}
@@ -47,7 +47,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
             <a>
               <img
                 src="./logotype-fec.svg"
-                className="p-2 text-white rounded-full"
+                className="p-2 text-gray-50 rounded-full"
                 alt="Logo FrontendCafe"
               />
             </a>
@@ -56,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
             <a className="flex items-center text-gray-900 title-font">
               <img
                 src={logoIMG}
-                className="p-2 text-white rounded-full"
+                className="p-2 text-gray-50 rounded-full"
                 alt="Logo FrontendCafe"
               />
             </a>
@@ -91,7 +91,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
           ))}
           {!loading && !session && (
             <button
-              className="flex items-center mt-2 btn btn-border lg:mt-0 lg:ml-10 "
+              className="flex items-center mt-2 ml-0 btn btn-border lg:mt-0 lg:ml-4 "
               style={{ transition: 'all .15s ease' }}
               onClick={() => signIn('discord')}
             >
@@ -100,7 +100,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
             </button>
           )}
           {!loading && session && (
-            <div className="flex items-center mt-2 lg:mt-0 lg:ml-10">
+            <div className="flex items-center mt-2 lg:mt-0 lg:ml-4">
               <div>
                 <Image
                   className="inline-block rounded-full"

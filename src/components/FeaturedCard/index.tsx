@@ -27,13 +27,13 @@ const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
             >
               {card.icon}
             </span>
-            <h1 className="pl-2 subtitle">{card.title}</h1>
+            <h1 className="pl-2 cards-title">{card.title}</h1>
           </div>
           <p className="pt-5 pb-8 text-sm text-gray-200 lg:text-lg">
             {card.description}
           </p>
         </div>
-        <button className="pl-5 text-left text-white w-60 h-14">
+        <button className="pl-5 text-left text-gray-50 w-60 h-14">
           <Link href={card.link}>
             <a
               className="text-sm font-normal normal-case btn lg:text-lg"

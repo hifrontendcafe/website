@@ -32,6 +32,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
         title="Proyectos CMYK"
         paragraph="Proyectos colaborativos realizados por miembros de la comunidad con el
               objetivo de ganar experiencia en un entorno profesional."
+        cta="https://frontend.cafe/docs/guia-cmyk"
       />
       <div className="pt-20">
         <div className="w-full h-full mt-12 md:mt-8">

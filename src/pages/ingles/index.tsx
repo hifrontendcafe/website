@@ -18,10 +18,10 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
       description="Únete a nuestras charlas de inglés en Discord"
     >
       <SectionHero
-        title="Práctica de inglés"
-        paragraph="Nos divertimos charlando con el objetivo de perder el miedo a
-              hablar en inglés en público. Mejorando la comunicación y la
-              confianza, divirtiéndonos y conectándonos."
+        title="Prácticas de inglés"
+        paragraph="Charlas abiertas con el objetivo de perder el miedo a
+              hablar en público, ganar confianza, fluidez y divertirnos en comunidad"
+        cta="https://frontend.cafe/docs/practicas-de-ingles"
       />
       <div className="pt-16 text-gray-200 md:px-8 sm:px-6 md:pt-8">
         {upcomingEvents.length > 0 && (

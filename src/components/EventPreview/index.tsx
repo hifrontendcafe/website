@@ -90,7 +90,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               <div className="mt-auto">
                 <a
                   href={event.recording}
-                  className="px-5 py-2 text-sm text-white rounded bg-tertiary"
+                  className="px-5 py-2 text-sm text-gray-50 rounded bg-tertiary"
                   target="_blank"
                   rel="noreferrer"
                 >

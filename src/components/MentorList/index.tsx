@@ -35,23 +35,23 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="mb-4 text-2xl font-medium text-white">
-          Busca un mentor segun su especialidad
+        <h1 className="mb-4 text-2xl font-medium text-gray-50">
+          Solicita una mentoría segun especialidad
         </h1>
       </div>
       <div className="relative inline-block w-full mb-6 md:w-1/2 lg:w-1/3">
         <select
           onChange={() => setFilter((event.target as HTMLInputElement).value)}
-          className="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline"
+          className="block w-full px-4 py-2 pr-8 leading-tight bg-gray-800 border border-gray-400 rounded shadow appearance-none text-gray-50 hover:border-gray-500 focus:outline-none focus:shadow-outline"
         >
-          <option value="">--</option>
+          <option value="">Buscar</option>
           {topics?.map((topic, index) => (
             <option value={topic._id} key={index}>
               {topic.title}
             </option>
           ))}
         </select>
-        <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-50">
           <svg
             className="w-4 h-4 fill-current"
             xmlns="http://www.w3.org/2000/svg"
