@@ -12,8 +12,6 @@ import SignupButton from '@/components/ProfileSignupButton';
 import ProfileList from '@/components/ProfileList';
 import ProfilesFilterForm from '@/components/ProfilesFilterForm';
 
-const maxTechnologies = 5;
-
 type PostsPageProps = {
   profiles: ExtendedProfile[];
   preview?: boolean;
