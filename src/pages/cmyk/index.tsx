@@ -20,15 +20,15 @@ type CMYKProjectsProps = {
 const cmykVersions = [
   {
     version: 'cmyk-1',
-    name: 'CMYK',
+    name: 'CMYK 1',
   },
   {
     version: 'cmyk-2',
-    name: 'CMYK++',
+    name: 'CMYK 2',
   },
   {
     version: 'cmyk-3',
-    name: 'CMYK v3.0',
+    name: 'CMYK 3',
   },
 ];
 
@@ -48,13 +48,14 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     (project) => project.cmykVersion === currentCMYK,
   );
 
-  const tabStyle = `py-2 px-4 mt-4 mr-1 bg-green-300 cursor-pointer rounded-md border-r-2`;
+  const tabStyle = `py-2 font-semibold cursor-pointer text-gray-700 w-1/3 flex justify-center border-b`;
+  const tabStyleActive = `py-2 font-semibold cursor-pointer text-gray-900 w-1/3 flex justify-center border-b-4 border-gray-700`;
 
   return (
     <Layout title="Proyectos CMYK" preview={preview}>
       <div className="pt-20">
         <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
-          <div className="text-left lg:pl-28">
+          <div className="text-center flex flex-col items-center">
             <h2 className="title mt-2 leading-snug tracking-tight">
               Proyectos CMYK&nbsp;
               <img
@@ -65,14 +66,11 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               />
             </h2>
             <p className="mt-4 max-w-3xl text-lg">
-              Desde FrontendCafé impulsamos el desarrollo de proyectos
-              colaborativos realizados por miembros de la comunidad con el
-              objetivo de ganar experiencia en un entorno profesional. Aquí
-              conocerás los diferentes proyectos que los equipos CMYK crearon y
-              desarrollaron dentro la comunidad.
+              Proyectos colaborativos realizados por miembros de la comunidad
+              con el objetivo de ganar experiencia en un entorno profesional.
             </p>
             <span
-              className="cursor-pointer text-primary flex mt-5"
+              className="cursor-pointer text-primary flex justify-center mt-5"
               onClick={() => {
                 setIsModalOpen(true);
               }}
@@ -80,23 +78,26 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               Conocé más sobre la iniciativa&nbsp;
               <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
             </span>
-            <div>
-              <ul className="flex flex-wrap">
-                {cmykVersions.map((cmykVersion) => (
-                  <li
-                    onClick={() => setCurrentCMYK(cmykVersion.version)}
-                    className={tabStyle}
-                    key={cmykVersion.version}
-                  >
-                    {cmykVersion.name}
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <h3 className="subtitle mt-24">Ediciones</h3>
+            <ul className="flex w-full md:w-8/12 my-6">
+              {cmykVersions.map((cmykVersion) => (
+                <li
+                  onClick={() => setCurrentCMYK(cmykVersion.version)}
+                  className={
+                    cmykVersion.version === currentCMYK
+                      ? tabStyleActive
+                      : tabStyle
+                  }
+                  key={cmykVersion.version}
+                >
+                  {cmykVersion.name}
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
         <div className="w-full h-full">
-          <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-2 relative z-10">
+          <div className="max-w-6xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-4 relative z-10">
             {currentProjects.map((project, index) => (
               <CMYKItemCard key={project._id} project={project} index={index} />
             ))}
