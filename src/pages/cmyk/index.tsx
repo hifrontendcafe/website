@@ -15,22 +15,22 @@ import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 type CMYKProjectsProps = {
   preview?: boolean;
   data: CMYK[];
-}
+};
 
 const cmykVersions = [
   {
-    version: "cmyk-1",
-    name: "CMYK"
+    version: 'cmyk-1',
+    name: 'CMYK',
   },
   {
-    version: "cmyk-2",
-    name: "CMYK++"
+    version: 'cmyk-2',
+    name: 'CMYK++',
   },
   {
-    version: "cmyk-3",
-    name: "CMYK v3.0"
-  }
-]
+    version: 'cmyk-3',
+    name: 'CMYK v3.0',
+  },
+];
 
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   preview = false,
@@ -42,12 +42,14 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   });
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [currentCMYK, setCurrentCMYK] = useState(cmykVersions[0].version)
+  const [currentCMYK, setCurrentCMYK] = useState(cmykVersions[0].version);
 
-  const currentProjects = projects.filter(project => project.cmykVersion === currentCMYK);
+  const currentProjects = projects.filter(
+    (project) => project.cmykVersion === currentCMYK,
+  );
 
   const tabStyle = `py-2 px-4 mt-4 mr-1 bg-green-300 cursor-pointer rounded-md border-r-2`;
-  
+
   return (
     <Layout title="Proyectos CMYK" preview={preview}>
       <div className="pt-20">
@@ -80,17 +82,15 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
             </span>
             <div>
               <ul className="flex flex-wrap">
-                {
-                  cmykVersions.map(cmykVersion => (
-                    <li
-                      onClick={() => setCurrentCMYK(cmykVersion.version)}
-                      className={tabStyle}
-                      key={cmykVersion.version}
-                    >
-                      {cmykVersion.name}
-                    </li>
-                  ))
-                }
+                {cmykVersions.map((cmykVersion) => (
+                  <li
+                    onClick={() => setCurrentCMYK(cmykVersion.version)}
+                    className={tabStyle}
+                    key={cmykVersion.version}
+                  >
+                    {cmykVersion.name}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
