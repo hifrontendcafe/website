@@ -17,7 +17,6 @@ const Layout: React.FC<LayoutProps> = ({
   preview = false,
   children,
 }) => {
-  // asdfkjhlsdfkhjkjhsdfkjhsdf
   return (
     <>
       <FecHead title={title} description={description} ogImage={ogImage} />
