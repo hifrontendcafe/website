@@ -1,0 +1,15 @@
+name: Deploy Refactor Branch
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy Refactor
+      uses: fjogeleit/http-request-action@master
+      with:
+        url: ${{ secrets.VERCEL_REFACTOR_DEPLOY }}
+        method: 'POST'
