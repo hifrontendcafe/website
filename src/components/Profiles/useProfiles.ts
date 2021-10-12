@@ -33,7 +33,7 @@ const initialProfileFilters: ProfileFilters = {
 
 // https://www.telerik.com/blogs/debouncing-and-throttling-in-javascript
 /**
- * Minimum time between requests to database
+ * Minimum time between requests to database (in ms)
  */
 const debounceTime = 300;
 

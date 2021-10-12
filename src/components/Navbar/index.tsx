@@ -1,20 +1,13 @@
 import Link from 'next/link';
 import { Session } from 'next-auth';
-import { signIn, signOut } from 'next-auth/client';
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
 import { useMenuToggle } from './useMenuToggle';
 import MenuBtn from './MenuBtn';
-
-interface NavItem {
-  title: string;
-  link: string;
-}
+import NavItem, { NavItemProps } from './NavItem';
+import UserSettings from './UserSettings';
 
 interface NavbarProps {
   loading: boolean;
-  navItems: NavItem[];
+  navItems: NavItemProps[];
   user?: Session['user'];
   pathname: string;
   logoImg: string;
@@ -61,52 +54,10 @@ const Navbar: React.FC<NavbarProps> = ({
           isOpen ? '' : 'hidden'
         } w-full h-full py-1 pb-4 text-sm lg:w-auto lg:self-center lg:flex lg:flex-row lg:py-0 lg:pb-0 flex`}
       >
-        {navItems?.map((item) => (
-          <Link href={`/${item.link}`} key={item.link}>
-            <a
-              className={
-                (pathname === `/${item.link}`
-                  ? 'text-gray-300 font-bold '
-                  : 'text-gray-300 ') +
-                'w-full px-2 py-1 font-medium  text-center md:w-auto hover:text-gray-100'
-              }
-            >
-              {item.title}
-            </a>
-          </Link>
+        {navItems?.map(({ link, title }) => (
+          <NavItem link={link} title={title} pathname={pathname} key={link} />
         ))}
-        {!loading && !user && (
-          <button
-            className="flex items-center mt-2 ml-0 btn btn-border lg:mt-0 lg:ml-4 "
-            style={{ transition: 'all .15s ease' }}
-            onClick={() => signIn('discord')}
-          >
-            <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-2" />
-            Iniciar Sesión
-          </button>
-        )}
-        {!loading && user && (
-          <div className="flex items-center mt-2 lg:mt-0 lg:ml-4">
-            <div>
-              <Image
-                className="inline-block rounded-full"
-                src={user.image}
-                alt="Profile image"
-                width="36px"
-                height="36px"
-              />
-            </div>
-            <div className="ml-3">
-              <p className="text-sm font-medium text-gray-700">{user.name}</p>
-              <button
-                className="text-xs font-medium text-gray-500 hover:text-gray-700"
-                onClick={() => signOut()}
-              >
-                Cerrar Sesión
-              </button>
-            </div>
-          </div>
-        )}
+        {!loading && <UserSettings user={user} />}
       </div>
     </nav>
   );
