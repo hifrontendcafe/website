@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { Session } from 'next-auth';
 import { useMenuToggle } from './useMenuToggle';
 import MenuBtn from './MenuBtn';
-import NavItem, { NavItemProps } from './NavItem';
+import NavItem from './NavItem';
 import UserSettings from './UserSettings';
 
 interface NavbarProps {
   loading: boolean;
-  navItems: NavItemProps[];
+  navItems: { title: string; link: string }[];
   user?: Session['user'];
   pathname: string;
   logoImg: string;
