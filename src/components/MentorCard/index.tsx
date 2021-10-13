@@ -35,7 +35,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
         <div className="flex flex-col items-center text-white md:mr-6">
           <img
             className="object-cover w-24 h-24 bg-gray-300 rounded-full"
-            src={mentor.photo.src}
+            src={`${mentor.photo.src}?h=200`}
             alt={`${mentor.name} Avatar`}
           />
           <div className="flex mt-2 space-x-1">
