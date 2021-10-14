@@ -13,7 +13,9 @@ const SectionHero: React.FC<SectionHeroProps> = ({ title, paragraph, cta }) => {
       <div className="flex flex-col items-center justify-center pt-12 lg:pt-24 md:flex-row">
         <div className="text-lg md:text-center">
           <h1 className="title">{title}</h1>
-          {paragraph && <p className="max-w-4xl my-4 paragraph">{paragraph}</p>}
+          {paragraph && (
+            <p className="max-w-4xl my-4 paragraph mx-auto">{paragraph}</p>
+          )}
           <div className="flex md:justify-center">
             {cta && (
               <span className="flex text-xl cursor-pointer text-informational">
