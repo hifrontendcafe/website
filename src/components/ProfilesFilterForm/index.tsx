@@ -27,14 +27,18 @@ const FilterForm: React.FC<FormProps> = ({
     e.preventDefault();
   };
 
+  const isRoleSelected = filters.roleId !== '';
+  const isSenioritySelected = filters.seniorityId !== '';
+
   return (
     <form onSubmit={onSubmit} className="px-2 py-2 mx-4">
       <div className="justify-around md:flex md:items-center md:space-x-4 text-gray-50">
         <div className="w-full mt-3 md:mt-0">
           <select
             name="role"
-            placeholder="Rol"
-            className="w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded appearance-none form-select"
+            className={`w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded form-select ${
+              isRoleSelected ? 'text-gray-50' : 'text-gray-300'
+            }`}
             onChange={(event) =>
               dispatch({ type: 'ADD_ROLE', payload: event.target.value })
             }
@@ -55,7 +59,9 @@ const FilterForm: React.FC<FormProps> = ({
         <div className="w-full mt-3 md:mt-0">
           <select
             name="seniority"
-            className="w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded form-select"
+            className={`w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded form-select ${
+              isSenioritySelected ? 'text-gray-50' : 'text-gray-300'
+            }`}
             onChange={(event) =>
               dispatch({ type: 'ADD_SENIORITY', payload: event.target.value })
             }
