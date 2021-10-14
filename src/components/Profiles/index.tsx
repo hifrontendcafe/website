@@ -31,7 +31,7 @@ const Profiles: React.FC<PostsPageProps> = ({
 
   return (
     <div className="min-h-screen mx-auto">
-      <div className="max-w-5xl mx-auto mb-4">
+      <div className="max-w">
         <FilterForm
           filters={filters}
           dispatch={dispatchFilter}
