@@ -1,0 +1,16 @@
+export const topics = {
+  mobile: 'Mobile',
+  ui: 'Diseño UX-UI',
+  backend: 'Backend',
+  product: 'Product management',
+  english: 'Inglés',
+  entrepreneurship: 'Entrepreneurship',
+  analytics: 'Analítica web / App',
+  frontend: 'Frontend',
+  git: 'Git',
+  data: 'Data science / Data engineer',
+  architect: 'Diseño y arquitectura de software',
+  soft: 'Soft skills',
+  cv: 'Orientación / CV',
+  intro: 'Intro a la programación',
+};
