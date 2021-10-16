@@ -20,7 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({
   pathname,
   logoImg,
 }) => {
-  const [isOpen, toggle] = useMenuToggle();
+  const [isOpen, toggle] = useMenuToggle(false);
 
   return (
     <nav
@@ -50,15 +50,15 @@ const Navbar: React.FC<NavbarProps> = ({
         <MenuBtn onClick={() => toggle()} isOpen={isOpen} />
       </div>
       <div
-        className={`flex-col items-center ${
-          isOpen ? '' : 'hidden'
-        } w-full h-full py-1 pb-4 text-sm lg:w-auto lg:self-center lg:flex lg:flex-row lg:py-0 lg:pb-0 flex`}
+        className={`lg:flex lg:flex-row lg:self-center items-center lg:pb-0 lg:py-0 lg:w-auto text-sm ${
+          isOpen ? 'py-1 pb-4 flex flex-col w-full' : 'hidden'
+        }`}
       >
         {navItems?.map(({ link, title }) => (
           <NavItem link={link} title={title} pathname={pathname} key={link} />
         ))}
-        {!loading && <UserSettings user={user} />}
       </div>
+      {!loading && <UserSettings user={user} navIsOpen={isOpen} />}
     </nav>
   );
 };
