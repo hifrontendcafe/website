@@ -55,6 +55,10 @@ module.exports = {
       tertiarydark: '#9d2e67',
     }),
   },
-  variants: {},
+  variants: {
+    extend: {
+      opacity: ['disabled'],
+    },
+  },
   plugins: [require('@tailwindcss/typography'), require('@tailwindcss/forms')],
 };

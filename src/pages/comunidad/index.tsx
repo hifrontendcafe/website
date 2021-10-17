@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { GetStaticProps } from 'next';
 import { signIn } from 'next-auth/client';
 import Layout from '@/components/Layout';
@@ -11,6 +11,8 @@ import { findProfiles } from '@/lib/prisma-queries';
 import { useSession } from 'next-auth/client';
 import Spinner from '@/components/Spinner';
 import { shuffle } from '@/lib/shuffle';
+
+const ITEMS_PER_PAGE = 10;
 
 type PostsPageProps = {
   profiles: ExtendedProfile[];
@@ -91,7 +93,11 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
   technologies,
 }) => {
   const [session, loadingSession] = useSession();
-
+  const [page, setPage] = useState(1);
+  const [pagesCount, setPageCount] = useState(
+    Math.ceil(profiles.length / ITEMS_PER_PAGE),
+  );
+  const [profilesList, setProfilesList] = useState(profiles);
   const hasProfile = profiles.some(
     (profile) => profile.discordId === session?.user?.id,
   );
@@ -110,13 +116,19 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
     useState<ExtendedProfile[]>(profiles);
 
   const filterProfiles = async () => {
+    setPage(1);
     setLoading(true);
     const response = await searchProfiles(filters);
     setLoading(false);
-
     const profiles = await response.json();
-    setFilteredProfiles(profiles);
+    setPageCount(Math.ceil(profiles.length / ITEMS_PER_PAGE));
+    setProfilesList(profiles);
   };
+
+  useEffect(() => {
+    const offset = (page - 1) * ITEMS_PER_PAGE;
+    setFilteredProfiles(profilesList.slice(offset, offset + ITEMS_PER_PAGE));
+  }, [page, pagesCount, profilesList]);
 
   const isValidNewOption = (inputValue, selectValue) =>
     inputValue.length > 0 && selectValue.length < 5;
@@ -279,12 +291,40 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
         {loading ? (
           <div className="w-full mt-4 text-center">Cargando...</div>
         ) : filteredProfiles.length > 0 ? (
-          <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
-            {filteredProfiles.map((profile) => (
-              <div key={profile.name} className="flex">
-                <ProfileCard profile={profile} />
+          <div>
+            <div className="grid grid-cols-1 gap-8 px-6 py-5 text-gray-700 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
+              {filteredProfiles.map((profile) => (
+                <div key={profile.name} className="flex">
+                  <ProfileCard profile={profile} />
+                </div>
+              ))}
+            </div>
+            <div className="flex items-center justify-between my-4 px-8">
+              <div>
+                <button
+                  className="btn-secondary rounded-md px-2 py-1 disabled:opacity-50"
+                  disabled={page === 1}
+                  onClick={() => setPage((page) => page - 1)}
+                >
+                  ←
+                </button>
+                <span className="px-2">
+                  Página {page} de {pagesCount}
+                </span>
+                <button
+                  className="btn-secondary rounded-md px-2 py-1 disabled:opacity-50"
+                  disabled={page === pagesCount}
+                  onClick={() => setPage((page) => page + 1)}
+                >
+                  →
+                </button>
               </div>
-            ))}
+              <span>
+                Total de{' '}
+                <span className="font-semibold">{profilesList.length}</span>{' '}
+                perfiles
+              </span>
+            </div>
           </div>
         ) : (
           <div className="w-full mt-4 text-center">
