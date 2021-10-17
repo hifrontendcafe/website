@@ -3,7 +3,7 @@ import { useSettings } from '@/lib/settings';
 import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/client';
 import Navbar from '@/components/Navbar';
-import { useScrollPosition } from './useScroll';
+import { useZeroScrollY } from './useScroll';
 
 type HeaderProps = {
   preview: boolean;
@@ -11,9 +11,7 @@ type HeaderProps = {
 
 const Header: React.FC<HeaderProps> = ({ preview }) => {
   const { logo, menu } = useSettings();
-  const { scrollPosition } = useScrollPosition();
-
-  const isAtTop = scrollPosition === 0;
+  const isAtTop = useZeroScrollY();
 
   const logoImg = imageBuilder.image(logo).url();
   const router = useRouter();

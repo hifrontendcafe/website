@@ -1,13 +1,17 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
-type UseScrollPosition = () => { scrollPosition: number };
+type UseScrollPosition = () => boolean;
 
-const useScrollPosition: UseScrollPosition = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
+const useZeroScrollY: UseScrollPosition = () => {
+  const [isAtTop, setIsAtTop] = useState(true);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const updatePosition = () => {
-      setScrollPosition(window.scrollY);
+      if (isAtTop && window.scrollY !== 0) {
+        setIsAtTop(false);
+      } else if (!isAtTop && window.scrollY === 0) {
+        setIsAtTop(true);
+      }
     };
 
     window.addEventListener('scroll', updatePosition, { passive: true });
@@ -18,7 +22,7 @@ const useScrollPosition: UseScrollPosition = () => {
     };
   });
 
-  return { scrollPosition };
+  return isAtTop;
 };
 
-export { useScrollPosition };
+export { useZeroScrollY };
