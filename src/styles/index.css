@@ -33,6 +33,9 @@ html {
   .ellipse {
     border-radius: 50%;
   }
+  .nav-shadow {
+    box-shadow: 0px 1px 0px #434345;
+  }
 }
 
 @layer components {
@@ -86,6 +89,10 @@ html {
 
   .title-colorful {
     @apply text-gradient bg-gradient-to-r from-green-400 to-blue-500;
+  }
+
+  .nav-scroll {
+    @apply bg-gray-900 nav-shadow items-center;
   }
 }
 
