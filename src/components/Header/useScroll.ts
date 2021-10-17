@@ -20,7 +20,7 @@ const useZeroScrollY: UseScrollPosition = () => {
     return () => {
       window.removeEventListener('scroll', updatePosition);
     };
-  });
+  }, [isAtTop]);
 
   return isAtTop;
 };
