@@ -33,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <a>
             <img
               src="/logotype-fec.svg"
-              className="p-2 text-gray-50 rounded-full"
+              className="p-2 rounded-full text-gray-50"
               alt="Logo FrontendCafe"
             />
           </a>
@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({
             <a className="flex items-center text-gray-900 title-font">
               <img
                 src={logoIMG}
-                className="p-2 text-gray-50 rounded-full"
+                className="p-2 rounded-full text-gray-50"
                 alt="Logo FrontendCafe"
               />
             </a>
@@ -50,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <MenuBtn onClick={() => toggle()} isOpen={isOpen} />
       </div>
       <div
-        className={`lg:flex lg:flex-row lg:self-center items-center lg:pb-0 lg:py-0 lg:w-auto text-sm ${
+        className={`lg:flex lg:flex-row lg:self-center lg:pb-0 lg:py-0 lg:w-auto text-sm ${
           isOpen ? 'py-1 pb-4 flex flex-col w-full' : 'hidden'
         }`}
       >

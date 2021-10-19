@@ -10,35 +10,18 @@ type FeaturedCardsItemProps = {
 const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
   return (
     <div
-      // style={{ backgroundColor: '#090C14' }}
-      className={`${styles.card} shadow-lg bg-gray-800 md:m-18 sm:m-5 mt-10 px-5 py-6 flex justify-between mr-3`}
+      className={`${styles.card} items-stretch shadow-lg border-2 border-gray-500 md:m-18 sm:m-5 mt-10 px-5 py-6 flex justify-between mr-3`}
     >
-      <div className="relative flex flex-col justify-center">
-        <div
-          className="absolute top-0 w-2 h-24 mt-2 mr-4 rounded-sm"
-          style={{ backgroundColor: card.color }}
-        />
-        <div className="pl-5">
-          <div className="flex items-center">
-            <span
-              role="img"
-              aria-label="mentorias"
-              className="text-xl lg:text-3xl"
-            >
-              {card.icon}
-            </span>
-            <h1 className="pl-2 cards-title">{card.title}</h1>
-          </div>
+      <div className="relative flex flex-col items-start justify-between">
+        <div className="items-start">
+          <h1 className="cards-title">{card.title}</h1>
           <p className="pt-5 pb-8 text-sm text-gray-200 lg:text-lg">
             {card.description}
           </p>
         </div>
-        <button className="pl-5 text-left text-gray-50 w-60 h-14">
+        <button className="text-left text-gray-50 w-60 h-14">
           <Link href={card.link}>
-            <a
-              className="text-sm font-normal normal-case btn lg:text-lg"
-              style={{ backgroundColor: card.color }}
-            >
+            <a className="text-sm font-normal normal-case lg:text-lg text-informational hover:underline">
               {card.btnText}
             </a>
           </Link>

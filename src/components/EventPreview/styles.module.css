@@ -1,6 +1,5 @@
 .description a {
-  color: #00c39d;
-  text-decoration: underline;
+  @apply underline text-primary;
 }
 
 .description ul {

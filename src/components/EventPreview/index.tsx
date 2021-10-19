@@ -66,14 +66,14 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           }`}
         >
           <div className="flex justify-between w-full">
-            <h2 className="py-2 mb-1 text-sm font-medium tracking-widest text-primary title-font">
+            <h2 className="text-sm font-medium tracking-widest text-primary title-font">
               {event.category.name}
             </h2>
           </div>
           <h1 className="mb-3 text-xl font-medium leading-tight text-gray-200 title-font">
             {event.title}
           </h1>
-          <p className="mb-6 font-medium text-gray-200 break-all title-font ">
+          <p className="font-medium text-gray-200 break-all title-font ">
             {format(new Date(event.date), 'd  MMMM - HH:mm ', {
               locale: es,
             })}
@@ -90,7 +90,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               <div className="mt-auto">
                 <a
                   href={event.recording}
-                  className="px-5 py-2 text-sm text-gray-50 rounded bg-tertiary"
+                  className="px-5 py-2 text-sm rounded text-gray-50 bg-secondary"
                   target="_blank"
                   rel="noreferrer"
                 >
