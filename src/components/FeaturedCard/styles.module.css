@@ -1,6 +1,6 @@
 .card {
-  border-radius: 29px;
-  height: fit-content;
+  border-radius: 12px;
+  height: 400px;
   user-select: none;
   min-width: 350px;
 }

@@ -1,4 +1,18 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = {
+  gray: {
+    50: '#F9F9FA',
+    100: '#DEDEDF',
+    200: '#BDBDBF',
+    300: '#9C9C9F',
+    400: '#808084',
+    500: '#414144',
+    600: '#323235',
+    700: '#232326',
+    800: '#19191C',
+    900: '#08080A',
+  },
+};
 
 module.exports = {
   future: {
@@ -26,23 +40,14 @@ module.exports = {
     },
     backgroundColor: (theme) => ({
       ...theme('colors'),
-      primary: '#8C00D7',
+      primary: '#6366F1',
       primarydark: '#7300B0',
       secondary: '#667eea',
       secondarydark: '#3b4c99',
       tertiary: '#d53f8c',
       tertiarydark: '#9d2e67',
     }),
-    textColor: (theme) => ({
-      ...theme('colors'),
-      primary: '#00DDFF',
-      primarydark: '#7300B0',
-      secondary: '#667eea',
-      secondarydark: '#3b4c99',
-      tertiary: '#d53f8c',
-      tertiarydark: '#9d2e67',
-      informational: '#4991DA',
-    }),
+
     extend: {
       fontFamily: {
         sans: ['Lexend Deca', 'sans-serif'],
@@ -58,19 +63,21 @@ module.exports = {
       },
       colors: {
         gray: {
-          50: '#F9F9FA',
-          100: '#DEDEDF',
-          200: '#BDBDBF',
-          300: '#9C9C9F',
-          400: '#808084',
-          500: '#414144',
-          600: '#323235',
-          700: '#232326',
-          800: '#19191C',
-          900: '#08080A',
+          ...colors.gray,
         },
         ellipseBlue: '#142A4A',
-        profileRing: '#00DDFF',
+        profileRing: '#00C39D',
+        violet: '#6366F1',
+        darkViolet: '#3336A3',
+        testblue: '#0089C4',
+        greenFec: '#00C39D',
+      },
+      textColor: {
+        primary: colors.gray[50],
+        secondary: colors.gray[300],
+        tertiary: colors.gray[200],
+        accent: '#6366F1',
+        informational: '#4991DA',
       },
     },
   },

@@ -41,7 +41,7 @@ html {
   }
 
   .btn-primary {
-    @apply text-gray-900 bg-gray-50;
+    @apply text-gray-50 bg-greenFec;
   }
 
   .btn-primary:hover {
@@ -69,19 +69,19 @@ html {
   }
 
   .title {
-    @apply text-4xl font-extrabold leading-normal text-gray-50 md:text-5xl lg:text-7xl;
+    @apply text-4xl font-extrabold leading-normal text-primary md:text-5xl lg:text-6xl;
   }
 
   .subtitle {
-    @apply text-2xl font-extrabold leading-normal text-gray-100 md:text-3xl lg:text-5xl;
+    @apply text-2xl font-extrabold leading-normal text-primary md:text-3xl lg:text-4xl;
   }
 
   .paragraph {
-    @apply text-xl leading-normal text-gray-300 md:text-2xl;
+    @apply text-xl leading-normal text-secondary md:text-2xl;
   }
 
   .cards-title {
-    @apply text-lg font-extrabold leading-normal text-gray-100 md:text-xl lg:text-2xl;
+    @apply text-lg font-extrabold leading-normal text-primary md:text-xl lg:text-2xl;
   }
 
   .title-colorful {
@@ -99,11 +99,11 @@ html {
 }
 
 .filter-selector .react-select__menu {
-  @apply bg-gray-900 text-gray-50 border border-gray-500;
+  @apply bg-gray-900 border border-gray-500 text-gray-50;
 }
 
 .filter-selector .react-select__control {
-  @apply border-gray-300 bg-gray-900 text-gray-300;
+  @apply text-gray-300 bg-gray-900 border-gray-300;
 }
 
 .filter-selector .react-select__option--is-focused {
@@ -125,9 +125,9 @@ html {
 
 /* add calendar button styles */
 .addeventatc.button {
-  background-color: #f9f9fa !important;
+  background-color: #6366f1 !important;
   border-radius: 3px !important;
-  color: #08080a !important;
+  @apply text-gray-50 !important;
   padding: 8px !important;
   z-index: unset;
 }

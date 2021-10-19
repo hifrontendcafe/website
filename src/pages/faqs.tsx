@@ -9,17 +9,17 @@ type FAQSProps = {
 const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
   return (
     <Layout title="FAQS" preview={preview}>
-      <section className="text-gray-700">
+      <section className="text-gray-50">
         <div className="px-5 py-24">
           <div className="mb-20 text-center">
-            <h1 className="mb-4 text-2xl font-medium sm:text-3xl text-primary">
+            <h1 className="mb-4 text-2xl font-medium sm:text-3xl text-gray-50">
               Preguntas frecuentes
             </h1>
           </div>
           <div className="flex flex-wrap -mx-2 lg:w-4/5 sm:mx-auto sm:mb-2">
             <div className="w-full px-4 py-2 lg:w-1/2">
               <details className="mb-4">
-                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md ">
+                <summary className="px-4 py-2 font-semibold cursor-pointer hover:text-primary">
                   ¿Qué es FrontendCafé?
                 </summary>
                 <p className="p-4">
@@ -30,7 +30,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
+                <summary className="px-4 py-2 font-semibold cursor-pointer hover:text-primary">
                   ¿Qué es el coworking?
                 </summary>
                 <p className="p-4">
@@ -41,7 +41,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
+                <summary className="px-4 py-2 font-semibold cursor-pointer hover:text-primary">
                   ¿Qué es el pair-programming / programar a la par?
                 </summary>
                 <p className="p-4">
@@ -52,7 +52,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
+                <summary className="px-4 py-2 font-semibold cursor-pointer hover:text-primary">
                   ¿Cómo son los eventos de inglés?
                 </summary>
                 <p className="p-4">
@@ -66,7 +66,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
             </div>
             <div className="w-full px-4 py-2 lg:w-1/2">
               <details className="mb-4">
-                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
+                <summary className="px-4 py-2 font-semibold cursor-pointer hover:text-primary">
                   ¿Cuándo son los eventos de inglés?
                 </summary>
                 <p className="p-4">
@@ -76,7 +76,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
+                <summary className="px-4 py-2 font-semibold cursor-pointer hover:text-primary">
                   ¿Qué nivel hay que tener para participar en los eventos de
                   inglés?
                 </summary>
@@ -87,7 +87,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
+                <summary className="px-4 py-2 font-semibold cursor-pointer hover:text-primary">
                   ¿Qué son las mentorías?
                 </summary>
                 <p className="p-4">
@@ -99,7 +99,7 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </p>
               </details>
               <details className="mb-4">
-                <summary className="px-4 py-2 font-semibold bg-gray-200 rounded-md">
+                <summary className="px-4 py-2 font-semibold cursor-pointer hover:text-primary">
                   ¿Cómo me anoto a la mentorías?
                 </summary>
                 <p className="p-4">

@@ -49,7 +49,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
               </div>
             )}
             {profile.available && (
-              <div className="text-sm font-semibold text-primary whitespace-nowrap">
+              <div className="text-sm font-semibold text-greenFec whitespace-nowrap">
                 En búsqueda activa
               </div>
             )}
