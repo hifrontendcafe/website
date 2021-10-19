@@ -84,7 +84,7 @@ const FilterForm: React.FC<FormProps> = ({
             name="location"
             type="text"
             placeholder="Ubicación"
-            className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-300 form-input"
+            className="w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded placeholder-gray-300 form-input"
             onChange={(event) =>
               dispatch({ type: 'ADD_LOCATION', payload: event.target.value })
             }
@@ -95,7 +95,7 @@ const FilterForm: React.FC<FormProps> = ({
             name="description"
             type="text"
             placeholder="Explora las biografías"
-            className="w-full py-2 text-sm leading-tight bg-transparent border border-gray-300 rounded placeholder-gray-300 form-input"
+            className="w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded placeholder-gray-300 form-input"
             onChange={(event) =>
               dispatch({ type: 'ADD_DESCRIPTION', payload: event.target.value })
             }
