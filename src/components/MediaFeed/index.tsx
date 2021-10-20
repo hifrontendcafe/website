@@ -58,7 +58,7 @@ const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
 const SkeletonTwitterCard: React.FC<{ tweet: string }> = ({ tweet }) => {
   return (
     <div
-      className="w-full p-4 mx-auto mb-2 text-gray-300 border border-gray-700 rounded-md shadow"
+      className="w-full p-4 mx-auto mb-2 text-gray-300 bg-gray-800 border border-gray-700 rounded-md"
       dangerouslySetInnerHTML={{ __html: tweet }}
     ></div>
   );

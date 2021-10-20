@@ -44,11 +44,11 @@ html {
   }
 
   .btn-primary {
-    @apply text-gray-50 bg-greenFec;
+    @apply text-gray-800 bg-gray-50;
   }
 
   .btn-primary:hover {
-    @apply bg-gray-200 shadow;
+    @apply text-gray-800 bg-greenFec;
   }
 
   .btn-secondary {
@@ -92,7 +92,7 @@ html {
   }
 
   .nav-scroll {
-    @apply bg-gray-900 nav-shadow items-center;
+    @apply items-center bg-gray-900 nav-shadow;
   }
 }
 

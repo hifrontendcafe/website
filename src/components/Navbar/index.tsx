@@ -25,7 +25,7 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav
       id="site-menu"
-      className="container flex flex-col items-center justify-between w-full h-16 mx-auto lg:flex-row"
+      className="container flex flex-col items-center justify-between w-full mx-auto lg:flex-row"
     >
       <div className="flex flex-row flex-no-wrap items-center self-start justify-between w-full lg:w-auto lg:self-center lg:flex-none">
         {/* ATENCION esta hardcodeado el logo, antes de salir a prod. eliminar codigo debajo de este codigo y dejar el que esta comentado. */}
@@ -33,7 +33,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <a>
             <img
               src="/logotype-fec.svg"
-              className="p-2 rounded-full text-gray-50"
+              className="rounded-full text-gray-50"
               alt="Logo FrontendCafe"
             />
           </a>
@@ -42,7 +42,7 @@ const Navbar: React.FC<NavbarProps> = ({
             <a className="flex items-center text-gray-900 title-font">
               <img
                 src={logoIMG}
-                className="p-2 rounded-full text-gray-50"
+                className="rounded-full text-gray-50"
                 alt="Logo FrontendCafe"
               />
             </a>

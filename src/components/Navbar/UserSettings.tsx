@@ -13,7 +13,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
   if (!user) {
     return (
       <button
-        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 lg:ml-4 ${
+        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${
           navIsOpen ? 'flex' : 'hidden'
         }`}
         style={{ transition: 'all .15s ease' }}
@@ -41,8 +41,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
             height="36px"
           />
         </div>
-        <div className="ml-3">
-          <p className="text-sm font-medium text-gray-100">{user.name}</p>
+        <div className="my-auto ml-3">
+          <p className="text-xs font-medium text-gray-100">{user.name}</p>
           <button
             className="text-xs font-medium text-gray-400 hover:text-gray-50"
             onClick={() => signOut()}

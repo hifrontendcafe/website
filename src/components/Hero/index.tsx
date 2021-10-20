@@ -9,9 +9,9 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
     <div className="relative py-32 mx-auto bg-white bg-opacity-0">
       <div className="flex items-center justify-center h-full bg-center bg-cover text-gray-50 md:justify-around">
         <div className="z-10 w-auto text-center">
-          <div className="text-4xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl">
-            <div>
-              <p>
+          <div>
+            <div className="mb-16">
+              <p className="text-4xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl">
                 <motion.span
                   key={title}
                   initial={{ opacity: 0, y: 20 }}
@@ -28,23 +28,23 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="px-2 -mt-2 text-4xl sm:text-5xl md:text-7xl xl:text-8xl"
+                className="px-2 -mt-2 text-4xl sm:text-5xl md:text-7xl xl:text-8xl md:font-extrabold"
               >
                 en comunidad
               </span>
-              <p className="mt-4 text-base font-medium text-gray-300 md:text-2xl">
-                El lugar de encuentro para potenciar tus ideas y conectar con
-                otras personas.
+              <p className="mt-4 text-base font-medium text-gray-300 md:text-lg">
+                El lugar de encuentro para conectar con otras personas y
+                potenciar tus ideas.
               </p>
-              <a
-                target="_blank"
-                href="https://discord.gg/frontendcafe"
-                className="text-xl btn btn-primary"
-                rel="noreferrer"
-              >
-                Súmate a Discord
-              </a>
             </div>
+            <a
+              target="_blank"
+              href="https://discord.gg/frontendcafe"
+              className="px-8 py-4 btn btn-primary"
+              rel="noreferrer"
+            >
+              Unirme a Discord
+            </a>
           </div>
         </div>
       </div>

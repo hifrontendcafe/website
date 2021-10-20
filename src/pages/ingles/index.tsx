@@ -2,7 +2,6 @@ import { GetStaticProps } from 'next';
 import { getEventsByCategory, getSettings } from '@/lib/api';
 import Layout from '../../components/Layout';
 import EventPreview from '../../components/EventPreview';
-import JoinSection from '../../components/JoinSection';
 import { Event } from '../../lib/types';
 import SectionHero from '@/components/SectionHero';
 
@@ -33,7 +32,6 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
             </div>
           </div>
         )}
-        <JoinSection />
       </div>
     </Layout>
   );

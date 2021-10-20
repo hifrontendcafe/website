@@ -61,10 +61,10 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
         cta="https://frontend.cafe/docs/guia-cmyk"
       />
       <div className="pt-20">
-        <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
-          <div className="text-center flex flex-col items-center">
-            <h3 className="subtitle mt-24">Ediciones</h3>
-            <ul className="flex w-full md:w-8/12 my-6">
+        <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center text-center">
+            <h3 className="subtitle">Ediciones</h3>
+            <ul className="flex w-full my-6 md:w-8/12">
               {filteredVersions.map((cmykVersion) => (
                 <li
                   onClick={() => setCurrentCMYK(cmykVersion.version)}
@@ -81,7 +81,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
             </ul>
           </div>
           <div className="w-full h-full">
-            <div className="max-w-4xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-10 relative z-10">
+            <div className="relative z-10 grid max-w-4xl grid-cols-1 gap-6 p-6 mx-auto sm:px-6 lg:px-8 md:grid-cols-2 justify-items-center md:gap-10">
               {currentProjects.map((project, index) => (
                 <CMYKItemCard
                   key={project._id}
@@ -89,23 +89,6 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
                   index={index}
                 />
               ))}
-            </div>
-            <div className="py-20 text-center">
-              <h2 className="mb-8 tracking-tight subtitle">
-                El siguiente puede ser el tuyo{' '}
-                <img
-                  src="/icons/hearth.svg"
-                  className="inline"
-                  alt="heart"
-                  width="30px"
-                />
-              </h2>
-              <a
-                href="https://discord.gg/frontendcafe"
-                className="px-6 py-3 mt-1 btn btn-secondary"
-              >
-                Súmate a Discord
-              </a>
             </div>
           </div>
         </div>
