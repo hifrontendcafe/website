@@ -24,6 +24,9 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    letterSpacing: {
+      tight: '-0.125em',
+    },
     screens: Object.fromEntries(
       Object.entries(defaultTheme.screens).filter(([key]) => key !== '2xl'),
     ),
@@ -78,6 +81,9 @@ module.exports = {
         tertiary: colors.gray[200],
         accent: '#6366F1',
         informational: '#4991DA',
+        lightBlue: '#00CCFF',
+        darkBlue: '#0066CC',
+        hover: '#2469FF',
       },
     },
   },
