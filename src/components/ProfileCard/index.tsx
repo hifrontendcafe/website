@@ -15,7 +15,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full p-6 text-center bg-gray-800 border-2 border-gray-500 rounded-lg shadow-lg">
+    <div className="flex flex-col justify-between w-full p-3 text-center bg-gray-800 border-2 border-gray-500 rounded-lg shadow-lg md:p-4 md:p-6">
       <div className="flex justify-center space-x-3 text-center items-top">
         <img
           src={profile.photo || '/img/user.svg'}
@@ -37,12 +37,6 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
             </h3>
             {profile.location && (
               <div className="flex items-center">
-                <img
-                  src="img/location.svg"
-                  alt="location"
-                  height={16}
-                  width={16}
-                />
                 <h3 className="text-xs font-semibold uppercase tracking-witde">
                   {profile.location}
                 </h3>

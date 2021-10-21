@@ -31,7 +31,7 @@ const Profiles: React.FC<ProfilesProps> = ({
   }
 
   return (
-    <div className="grid grid-cols-1 gap-8 py-5 text-gray-300 lg:px-6 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
+    <div className="grid gap-8 text-gray-300 md:grid-cols-2 lg:grid-cols-3 place-content-stretch">
       {profiles.map((profile) => (
         <ProfileCard key={profile.id} profile={profile} />
       ))}

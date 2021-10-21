@@ -17,23 +17,19 @@ const pastEvents = (events: Event[]) =>
 const EventList: React.FC<EventListProps> = ({ events }) => {
   return (
     <section id="events" className="relative body-font">
-      <div className="py-12 lg:px-5">
+      <div>
         {futureEvents(events).length > 0 && (
           <>
-            <h1 className="pt-12 pb-4 mx-4 md:pt-0 subtitle">
-              Próximos eventos
-            </h1>
-            <div className="flex flex-wrap px-4 mb-12 -mx-4 -my-8">
+            <h1 className="subtitle">Próximos eventos</h1>
+            <div className="flex flex-wrap">
               {futureEvents(events)?.map((event) => (
                 <EventPreview key={event.slug} event={event} />
               ))}
             </div>
           </>
         )}
-        <h1 className="pb-4 mx-4 mt-20 md:pt-0 subtitle">
-          Revive nuestros eventos
-        </h1>
-        <div className="flex flex-wrap px-4 -mx-4 -my-8">
+        <h1 className="subtitle">Revive nuestros eventos</h1>
+        <div className="flex flex-wrap">
           {pastEvents(events)?.map(
             (event) =>
               event.recording && (

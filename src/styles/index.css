@@ -80,7 +80,7 @@ html {
   }
 
   .paragraph {
-    @apply text-xl leading-normal text-secondary md:text-2xl;
+    @apply text-lg leading-normal text-secondary md:text-2xl;
   }
 
   .cards-title {

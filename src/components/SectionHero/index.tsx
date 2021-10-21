@@ -10,15 +10,15 @@ interface SectionHeroProps {
 const SectionHero: React.FC<SectionHeroProps> = ({ title, paragraph, cta }) => {
   return (
     <section className="relative body-font">
-      <div className="flex flex-col items-center justify-center pt-12 lg:pt-24 md:flex-row">
+      <div className="flex flex-col py-12 md:items-center md:justify-center lg:pt-24 md:flex-row">
         <div className="text-lg md:text-center">
           <h1 className="title">{title}</h1>
           {paragraph && (
-            <p className="max-w-4xl my-4 paragraph mx-auto">{paragraph}</p>
+            <p className="max-w-4xl mx-auto my-4 paragraph">{paragraph}</p>
           )}
           <div className="flex md:justify-center">
             {cta && (
-              <span className="flex text-xl cursor-pointer text-informational">
+              <span className="flex cursor-pointer md:text-xl text-informational">
                 <a target="_blank" href={cta} rel="noreferrer">
                   Conoce más sobre la iniciativa&nbsp;
                 </a>

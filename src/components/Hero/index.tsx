@@ -28,11 +28,11 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="px-2 -mt-2 text-4xl sm:text-5xl md:text-7xl xl:text-8xl md:font-extrabold"
+                className="px-2 -mt-2 text-4xl md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl"
               >
                 en comunidad
               </span>
-              <p className="mt-4 text-base font-medium text-gray-300 md:text-lg">
+              <p className="mt-4 text-xl font-medium text-gray-300 md:text-lg">
                 El lugar de encuentro para conectar con otras personas y
                 potenciar tus ideas.
               </p>
@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
             <a
               target="_blank"
               href="https://discord.gg/frontendcafe"
-              className="px-8 py-4 btn btn-primary"
+              className="md:px-8 md:py-4 btn btn-primary"
               rel="noreferrer"
             >
               Unirme a Discord

@@ -1,7 +1,6 @@
 export const Paragraph = ({ children }) => (
   <p
-    className="my-12 mx-0 text-white text-xl font-medium tracking-normal leading-6
-  "
+    className="mx-0 my-12 text-xl font-medium leading-6 tracking-normal text-primary "
   >
     {children}
   </p>

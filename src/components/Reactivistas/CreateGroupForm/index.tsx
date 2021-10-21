@@ -168,7 +168,7 @@ const CreateGroupForm: React.FC = () => {
           </div>
         </form>
       ) : (
-        <div className="p-6 text-gray-200 bg-gray-800 rounded-md">
+        <div className="p-6 text-gray-200 border border-gray-500 rounded-md">
           Para poder crear un nuevo grupo de Reactivistas es necesario que
           inicies sesión con Discord. <br />
           <br />

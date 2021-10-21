@@ -31,7 +31,7 @@ const FilterForm: React.FC<FormProps> = ({
   const isSenioritySelected = filters.seniorityId !== '';
 
   return (
-    <form onSubmit={onSubmit} className="px-2 py-2 mx-4">
+    <form onSubmit={onSubmit}>
       <div className="justify-around md:flex md:items-center md:space-x-4 text-gray-50">
         <div className="w-full mt-3 md:mt-0">
           <select
@@ -84,7 +84,7 @@ const FilterForm: React.FC<FormProps> = ({
             name="location"
             type="text"
             placeholder="Ubicación"
-            className="w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded placeholder-gray-300 form-input"
+            className="w-full py-2 text-sm leading-tight placeholder-gray-300 bg-gray-900 border border-gray-300 rounded form-input"
             onChange={(event) =>
               dispatch({ type: 'ADD_LOCATION', payload: event.target.value })
             }
@@ -95,19 +95,19 @@ const FilterForm: React.FC<FormProps> = ({
             name="description"
             type="text"
             placeholder="Explora las biografías"
-            className="w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded placeholder-gray-300 form-input"
+            className="w-full py-2 text-sm leading-tight placeholder-gray-300 bg-gray-900 border border-gray-300 rounded form-input"
             onChange={(event) =>
               dispatch({ type: 'ADD_DESCRIPTION', payload: event.target.value })
             }
           />
         </div>
       </div>
-      <div className="items-center bg-gray-900 w-full mt-4 md:flex md:space-x-4">
+      <div className="items-center w-full mt-4 bg-gray-900 md:flex md:space-x-4">
         <Select
           instanceId="technologies-selector"
           isMulti
           classNamePrefix="react-select"
-          className="w-full bg-gray-900 bg-transparent filter-selector bg"
+          className="w-full bg-transparent bg-gray-900 filter-selector bg"
           placeholder="Selecciona tecnologías"
           onChange={(techs) =>
             dispatch({ type: 'ADD_TECHNOLOGIES', payload: techs })
