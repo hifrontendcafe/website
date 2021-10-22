@@ -11,7 +11,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
         <div className="z-10 w-auto text-center">
           <div>
             <div className="mb-16">
-              <p className="text-4xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl">
+              <p className="text-5xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl">
                 <motion.span
                   key={title}
                   initial={{ opacity: 0, y: 20 }}
@@ -28,7 +28,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="px-2 -mt-2 text-4xl md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl"
+                className="text-5xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl"
               >
                 en comunidad
               </span>

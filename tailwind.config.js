@@ -34,7 +34,13 @@ module.exports = {
       sans: ['Inter', 'sans-serif'],
     },
     container: {
-      padding: '2rem',
+      padding: {
+        DEFAULT: '1rem',
+        sm: '2rem',
+        lg: '4rem',
+        xl: '5rem',
+        '2xl': '6rem',
+      },
     },
     minHeight: {
       64: '64px',
