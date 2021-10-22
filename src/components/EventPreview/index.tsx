@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import BlockContent from '@sanity/block-content-to-react';
@@ -5,25 +6,36 @@ import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
 import styles from './styles.module.css';
 
+declare global {
+  interface Window {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    addeventatc: any;
+  }
+}
+
 interface EventPreviewProps {
   event: Event;
   past?: boolean;
 }
 
+function toPlainText(blocks) {
+  return blocks
+    ?.map((block) => {
+      if (block._type !== 'block' || !block.children) {
+        return '';
+      }
+      return block.children?.map((child) => child.text).join('');
+    })
+    .join('\n\n');
+}
+
 const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
+  useEffect(() => {
+    window.addeventatc.refresh();
+  });
+
   const endDate = new Date(event.date);
   endDate.setHours(endDate.getHours() + 1);
-
-  function toPlainText(blocks) {
-    return blocks
-      ?.map((block) => {
-        if (block._type !== 'block' || !block.children) {
-          return '';
-        }
-        return block.children?.map((child) => child.text).join('');
-      })
-      .join('\n\n');
-  }
 
   const calendar = {
     title: `${event.title} - FrontendCafé`,
