@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/client';
 import Spinner from '@/components/Spinner';
 import { shuffle } from '@/lib/shuffle';
 
-const ITEMS_PER_PAGE = 10;
+const ITEMS_PER_PAGE = 18;
 
 type PostsPageProps = {
   profiles: ExtendedProfile[];
