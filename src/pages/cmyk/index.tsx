@@ -17,11 +17,11 @@ type CMYKProjectsProps = {
 };
 
 const cmykVersions = [
-  { version: 'cmyk-1', name: 'CMYK 1' },
-  { version: 'cmyk-2', name: 'CMYK 2' },
-  { version: 'cmyk-3', name: 'CMYK 3' },
-  { version: 'cmyk-4', name: 'CMYK 4' },
-  { version: 'cmyk-5', name: 'CMYK 5' },
+  { version: 'cmyk-1', name: '1' },
+  { version: 'cmyk-2', name: '2' },
+  { version: 'cmyk-3', name: '3' },
+  { version: 'cmyk-4', name: '4' },
+  { version: 'cmyk-5', name: '5' },
 ];
 
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
@@ -60,7 +60,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               objetivo de ganar experiencia en un entorno profesional."
         cta="https://frontend.cafe/docs/guia-cmyk"
       />
-      <div className="pt-20">
+      <div>
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center">
             <h3 className="subtitle">Ediciones</h3>
