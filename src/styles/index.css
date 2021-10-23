@@ -87,6 +87,10 @@ html {
     @apply text-lg font-extrabold leading-normal text-primary md:text-xl lg:text-2xl;
   }
 
+  .cards-paragraph {
+    @apply text-gray-200 text-sm font-light md:text-base lg:text-lg;
+  }
+
   .title-colorful {
     @apply text-gradient bg-gradient-to-r from-green-400 to-blue-500;
   }
