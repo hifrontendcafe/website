@@ -59,7 +59,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
               ) : (
                 <button
                   onClick={() => openModal()}
-                  className="text-xs uppercase btn btn-primary"
+                  className="text-xs uppercase border text-gray-50 border-gray-50 btn hover:text-gray-800 hover:bg-gray-300 hover:border-gray-300"
                 >
                   Solicitar mentoría
                 </button>
