@@ -23,7 +23,6 @@ export const getMentorTimeSlots = async (
         return response.data.filter((ts) => !ts.is_occupied);
       });
   } catch (error) {
-    console.log(error);
     return error;
   }
 };
@@ -41,7 +40,6 @@ export const getMentorList = async (): Promise<MentorCalomentor[]> => {
         return response.data;
       });
   } catch (error) {
-    console.log(error);
     return error;
   }
 };
@@ -61,11 +59,9 @@ export const createMentorship = async (
     })
       .then((response) => response.json())
       .then((response: MentorshipResponse) => {
-        console.log(response);
         return response;
       });
   } catch (error) {
-    console.log(error);
     return error;
   }
 };

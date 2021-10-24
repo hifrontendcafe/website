@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-  MentorCalomentor,
-  Mentorship,
-  MentorshipResponse,
-  TimeSlot,
-  Topic,
-} from '@/lib/types';
+import { MentorCalomentor, Mentorship, TimeSlot, Topic } from '@/lib/types';
 import { motion, AnimatePresence } from 'framer-motion';
 import TopicBadge from '../TopicBadge';
 import {
@@ -66,7 +60,6 @@ const CalomentorModal: React.FC<ModalProps> = ({
   const getTimes = (slots: TimeSlot[], date: Date) => {
     return slots?.reduce((times, slot) => {
       const slotDate = new Date(slot.date);
-      console.log(slotDate.toDateString(), date.toDateString());
       if (slotDate.toDateString() === date.toDateString()) {
         times.push(new Date(slot.date));
       }
@@ -105,7 +98,6 @@ const CalomentorModal: React.FC<ModalProps> = ({
     if (checkDateAvailable(slots, date)?.length === 0) {
       return setError(true);
     }
-    console.log(data);
     setLoading(true);
 
     const time_slot_id = slots.find(
@@ -142,7 +134,6 @@ const CalomentorModal: React.FC<ModalProps> = ({
   };
 
   useEffect(() => {
-    console.log('hola', checkDateAvailable(slots, date));
     setError(false);
     if (checkDateAvailable(slots, date)?.length === 0) {
       return setError(true);

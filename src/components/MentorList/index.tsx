@@ -2,7 +2,7 @@ import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/client';
 import { useEffect, useState } from 'react';
-import { Mentor, MentorCalomentor, Topic } from '../../lib/types';
+import { MentorCalomentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 

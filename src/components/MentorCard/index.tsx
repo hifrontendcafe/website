@@ -1,4 +1,4 @@
-import { Mentor, MentorCalomentor, TimeSlot, Topic } from '../../lib/types';
+import { MentorCalomentor, TimeSlot, Topic } from '../../lib/types';
 import {
   faGithubAlt,
   faLinkedinIn,

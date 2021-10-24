@@ -4,7 +4,7 @@ import MentorList from '../../components/MentorList';
 import Layout from '../../components/Layout';
 
 import { Mentor, Topic } from '../../lib/types';
-import { getAllMentors, getMentoringTopics, getSettings } from '@/lib/api';
+import { getMentoringTopics, getSettings } from '@/lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 import SectionHero from '@/components/SectionHero';
