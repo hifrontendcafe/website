@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next';
 import MentorList from '../../components/MentorList';
 import Layout from '../../components/Layout';
 
-import { Mentor, MentorCalomentor, Topic } from '../../lib/types';
+import { MentorCalomentor, Topic } from '../../lib/types';
 import { getMentoringTopics, getSettings } from '@/lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
@@ -12,25 +12,13 @@ import { getMentorList } from '@/lib/calomentorApi';
 
 type MentorshipsPageProps = {
   mentors: MentorCalomentor[];
-  topics: Topic[];
   preview?: boolean;
 };
 
 const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
-  topics: topicsData,
-  mentors: mentorsData,
+  mentors,
   preview,
 }) => {
-  const { data: mentors } = usePreviewSubscription(mentorsQuery, {
-    initialData: mentorsData,
-    enabled: preview,
-  });
-
-  const { data: topics } = usePreviewSubscription(mentorsTopicsQuery, {
-    initialData: topicsData,
-    enabled: preview,
-  });
-
   return (
     <Layout
       title="Mentorías"
@@ -43,7 +31,7 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
         cta="https://frontend.cafe/docs/guia-para-realizar-mentorias"
       />
       <MentorshipsSteps />
-      <MentorList topics={topics} mentors={mentors} />
+      <MentorList mentors={mentors} />
     </Layout>
   );
 };
@@ -94,11 +82,10 @@ const MentorshipsSteps: React.FC = () => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const mentors = await getMentorList();
-  const topics = await getMentoringTopics(preview);
   const settings = await getSettings(preview);
 
   return {
-    props: { mentors, topics, preview, settings },
+    props: { mentors, preview, settings },
     revalidate: 1,
   };
 };
