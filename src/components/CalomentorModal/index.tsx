@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { Mentor, TimeSlot, Topic } from '@/lib/types';
+import {
+  MentorCalomentor,
+  Mentorship,
+  MentorshipResponse,
+  TimeSlot,
+  Topic,
+} from '@/lib/types';
 import { motion, AnimatePresence } from 'framer-motion';
 import TopicBadge from '../TopicBadge';
-import CalomentorStep1 from './Step1';
-import CalomentorStep2 from './Step2';
 import {
   faMapMarkerAlt,
   faClock,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getMentorTimeSlots } from '../../lib/calomentorApi';
 import { addMonths } from 'date-fns';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -18,12 +21,13 @@ import 'react-datepicker/dist/react-datepicker.css';
 import es from 'date-fns/locale/es';
 import { useSession } from 'next-auth/client';
 import { useForm } from 'react-hook-form';
+import { createMentorship } from '@/lib/calomentorApi';
 registerLocale('es', es);
 
 type ModalProps = {
   isOpen: boolean;
   close: () => void;
-  mentor: Mentor;
+  mentor: MentorCalomentor;
   topics: Topic[];
   slots: TimeSlot[];
 };
@@ -39,18 +43,12 @@ type FormInputs = {
 const CalomentorModal: React.FC<ModalProps> = ({
   isOpen,
   close,
-  mentor: {
-    name,
-    photo: { src, alt },
-    topics: mentorTopics,
-  },
+  mentor: { full_name, url_photo, skills, id },
   topics,
   slots,
 }) => {
   const [date, setDate] = useState<Date>();
-  const [step, setStep] = useState(1);
   const [error, setError] = useState(false);
-  const [userData, setUserData] = useState({});
   const [loading, setLoading] = useState(false);
 
   const [startDate, setStartDate] = useState(new Date());
@@ -87,8 +85,8 @@ const CalomentorModal: React.FC<ModalProps> = ({
   }, []);
 
   const findTopicsName = (id: string) => {
-    const topic = topics.find((e) => e._id == id);
-    return topic.title;
+    const topic = topics.find((e) => e.value == id);
+    return topic.value;
   };
 
   const handleClick = (e: React.MouseEvent) => {
@@ -99,19 +97,57 @@ const CalomentorModal: React.FC<ModalProps> = ({
     close();
   };
 
-  const checkDateAvailable = (st) =>
-    st?.filter((s) => s.date.toString() === date?.getTime().toString());
+  const checkDateAvailable = (st, dateSelected) =>
+    st?.filter((s) => s.date.toString() === dateSelected?.getTime().toString());
 
-  const onSubmit = (data: FormInputs) => {
-    if (checkDateAvailable(slots)?.length === 0) {
+  const onSubmit = async (data: FormInputs) => {
+    setError(false);
+    if (checkDateAvailable(slots, date)?.length === 0) {
       return setError(true);
     }
     console.log(data);
     setLoading(true);
-    setUserData(data);
-    setTimeout(() => setLoading(false), 1000);
-    return reset();
+
+    const time_slot_id = slots.find(
+      (st) => st.date.toString() === date.getTime().toString(),
+    );
+
+    if (!time_slot_id.id) {
+      return setError(true);
+    }
+
+    const body: Mentorship = {
+      mentor_id: id,
+      mentee_id: data.discordID,
+      mentee_name: data.name,
+      mentee_username_discord: data.discordUser,
+      mentee_email: data.email,
+      info: data.info,
+      time_slot_id: time_slot_id.id,
+    };
+    try {
+      const createMentorshipResponse = await createMentorship(body);
+      setLoading(false);
+      if (createMentorshipResponse.status === 200) {
+        return reset();
+      }
+
+      return;
+    } catch (error) {
+      setLoading(false);
+      return;
+    }
+
+    //TODO: Abrir modal de error
   };
+
+  useEffect(() => {
+    console.log('hola', checkDateAvailable(slots, date));
+    setError(false);
+    if (checkDateAvailable(slots, date)?.length === 0) {
+      return setError(true);
+    }
+  }, [date]);
 
   return (
     <AnimatePresence>
@@ -144,18 +180,20 @@ const CalomentorModal: React.FC<ModalProps> = ({
                   <div className="flex flex-col flex-1 px-4 my-4 sm:border-r-2 sm:border-gray-300">
                     <div className="flex items-center">
                       <img
-                        src={src}
-                        alt={alt}
+                        src={url_photo}
+                        alt={full_name}
                         className="w-16 h-16 rounded-full"
                       />
-                      <h2 className="pl-3 text-3xl text-green-900">{name}</h2>
+                      <h2 className="pl-3 text-3xl text-green-900">
+                        {full_name}
+                      </h2>
                     </div>
                     <div className="py-2">
-                      {mentorTopics &&
-                        mentorTopics?.map((topic) => (
+                      {skills &&
+                        skills?.map((topic) => (
                           <TopicBadge
-                            key={topic._key}
-                            topic={findTopicsName(topic._ref)}
+                            key={topic}
+                            topic={findTopicsName(topic)}
                           />
                         ))}
                       <p className="py-2 text-gray-800">
@@ -221,7 +259,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                       {console.log(session)}
                       <input
                         type="text"
-                        defaultValue={(session && session.user.id) || ''}
+                        defaultValue={'641995600946003998'}
                         readOnly
                         hidden
                         {...register('discordID', { required: true })}
@@ -236,7 +274,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                             type="text"
                             placeholder="Ingresa tu usuario de Discord"
                             autoComplete="off"
-                            defaultValue={(session && session.user.name) || ''}
+                            defaultValue={'franmper#4289'}
                             readOnly
                             {...register('discordUser', {
                               required: 'El usuario es requerido',
@@ -254,7 +292,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                           placeholder="Ingresa tu email"
                           autoComplete="off"
                           readOnly
-                          defaultValue={(session && session.user.email) || ''}
+                          defaultValue={'fran.mper@gmail.com'}
                           {...register('email', { required: true })}
                         />
                         {errors.email && (
@@ -289,6 +327,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                           placeholder="Ingresa tu nombre"
                           autoComplete="off"
                           {...register('info', { required: true })}
+                          maxLength={450}
                         />
                         {errors.info && (
                           <p className="pl-1 text-sm text-red-600">
@@ -314,11 +353,9 @@ const CalomentorModal: React.FC<ModalProps> = ({
                         </button>
                       </div>
                     </form>
-                    {/*footer*/}
                   </div>
                 </div>
               </div>
-              {/* content */}
             </motion.div>
           </div>
           <motion.div

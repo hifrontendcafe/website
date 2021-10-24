@@ -4,7 +4,6 @@ import {
   Post,
   Doc,
   Event,
-  Mentor,
   Topic,
   ReactGroup,
   Person,
@@ -19,7 +18,6 @@ import {
   postQuery,
   cmykQuery,
   postsQuery,
-  mentorsQuery,
   mentorsTopicsQuery,
   docsQuery,
   docQuery,
@@ -74,10 +72,6 @@ export async function getAllAPIEvents(
       ${eventFields}
     }`,
   );
-}
-
-export async function getAllMentors(preview = false): Promise<Mentor[]> {
-  return await getClient(preview).fetch(mentorsQuery);
 }
 
 export async function getAllDocs(preview = false): Promise<Doc[]> {

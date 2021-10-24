@@ -97,9 +97,8 @@ export interface CMYKParticipant {
 }
 
 export interface Topic {
-  _id: string;
-  title: string;
-  description: string;
+  value: string;
+  label: string;
 }
 
 export interface Author {
@@ -216,4 +215,36 @@ export interface TimeSlot {
   date: string;
   mentee_username: string;
   id: string;
+}
+
+interface Links {
+  github: string;
+  twitter: string;
+  linkedin: string;
+  portfolio: string;
+}
+export interface MentorCalomentor {
+  links: Links;
+  isActive: boolean;
+  about_me: string;
+  role: string[];
+  full_name: string;
+  skills: string[];
+  email: string;
+  id: string;
+  url_photo: string;
+}
+
+export interface Mentorship {
+  mentor_id: string;
+  mentee_id: string;
+  mentee_name: string;
+  mentee_username_discord: string;
+  mentee_email: string;
+  info: string;
+  time_slot_id: string;
+}
+export interface MentorshipResponse {
+  status: number;
+  info: string;
 }

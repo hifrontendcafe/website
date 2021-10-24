@@ -2,20 +2,41 @@ import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/client';
 import { useEffect, useState } from 'react';
-import { Mentor, Topic } from '../../lib/types';
+import { Mentor, MentorCalomentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 
+const topics: Topic[] = [
+  { value: 'Diseño UX-UI', label: 'Diseño UX-UI' },
+  { value: 'Backend', label: 'Backend' },
+  { value: 'Product management', label: 'Product management' },
+  { value: 'Inglés', label: 'Inglés' },
+  { value: 'Entrepreneurship', label: 'Entrepreneurship' },
+  { value: 'Analítica web / App', label: 'Analítica web / App' },
+  { value: 'Frontend', label: 'Frontend' },
+  { value: 'Git', label: 'Git' },
+  {
+    value: 'Data science / Data engineer',
+    label: 'Data science / Data engineer',
+  },
+  {
+    value: 'Diseño y arquitectura de software',
+    label: 'Diseño y arquitectura de software',
+  },
+  { value: 'Soft skills', label: 'Soft skills' },
+  { value: 'Orientación / CV', label: 'Orientación / CV' },
+  { value: 'Intro a la programación', label: 'Intro a la programación' },
+];
+
 interface MentorListProps {
-  mentors: Mentor[];
-  topics: Topic[];
+  mentors: MentorCalomentor[];
 }
 
-const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
+const MentorList: React.FC<MentorListProps> = ({ mentors }) => {
   const [filter, setFilter] = useState<string>();
-  const [filteredTopics, setfilteredTopics] = useState<Mentor[] | undefined>(
-    undefined,
-  );
+  const [filteredTopics, setfilteredTopics] = useState<
+    MentorCalomentor[] | undefined
+  >(undefined);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [session, loading] = useSession();
 
@@ -23,7 +44,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     const filterTopics = () => {
       const filtered = [];
       mentors.forEach((mentor) => {
-        const find = mentor.topics.filter((topic) => topic._ref == filter);
+        const find = mentor.skills.filter((topic) => topic == filter);
         if (find.length > 0) filtered.push(mentor);
       });
       setfilteredTopics(filtered);
@@ -47,8 +68,8 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         >
           <option value="">Buscar</option>
           {topics?.map((topic, index) => (
-            <option value={topic._id} key={index}>
-              {topic.title}
+            <option value={topic.value} key={index}>
+              {topic.label}
             </option>
           ))}
         </select>

@@ -1,5 +1,9 @@
-import { Mentor, TimeSlot, Topic } from '../../lib/types';
-import { faGithubAlt, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { Mentor, MentorCalomentor, TimeSlot, Topic } from '../../lib/types';
+import {
+  faGithubAlt,
+  faLinkedinIn,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +13,7 @@ import { useState } from 'react';
 import CalomentorModal from '../CalomentorModal';
 import { getMentorTimeSlots } from '@/lib/calomentorApi';
 interface MentorCardProps {
-  mentor: Mentor;
+  mentor: MentorCalomentor;
   topics: Topic[];
   isLogged: boolean;
   openModal: () => void;
@@ -25,8 +29,8 @@ const MentorCard: React.FC<MentorCardProps> = ({
   const [slots, setSlots] = useState<TimeSlot[] | null>(null);
 
   const findTopicsName = (id: string) => {
-    const topic = topics.find((e) => e._id == id);
-    return topic.title;
+    const topic = topics.find((e) => e.value == id);
+    return topic.value;
   };
 
   const getTimeSlots = async (mentorId: string) => {
@@ -35,7 +39,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
   };
 
   const handleContactButton = async () => {
-    await getTimeSlots('121437193309782017');
+    await getTimeSlots(mentor.id);
     setIsModalOpen(!isModalOpen);
   };
 
@@ -52,8 +56,12 @@ const MentorCard: React.FC<MentorCardProps> = ({
             <div className="text-gray-50">
               <img
                 className="object-cover w-24 h-24 mr-2 bg-gray-300 rounded-full"
-                src={`${mentor.photo.src}?h=200`}
-                alt={`${mentor.name} Avatar`}
+                src={
+                  mentor.url_photo && mentor.url_photo != ''
+                    ? `${mentor.url_photo}`
+                    : 'https://res.cloudinary.com/frontendcafe/image/upload/v1631388475/defaultUserImage_advu4k.svg'
+                }
+                alt={`${mentor.full_name} Avatar`}
               />
             </div>
 
@@ -63,15 +71,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   <button className="text-xs uppercase cursor-not-allowed btn btn-secondary">
                     No Disponible
                   </button>
-                ) : mentor.isActive && mentor.calendly && isLogged ? (
-                  // <Link href={mentor.calendly}>
-                  //   <a
-                  //     target="_blank"
-                  //     className="text-xs uppercase border text-gray-50 border-gray-50 btn hover:text-gray-800 hover:bg-gray-300 hover:border-gray-300"
-                  //   >
-                  //     <span>Solicitar mentoría</span>
-                  //   </a>
-                  // </Link>
+                ) : isLogged ? (
                   <button
                     onClick={() => handleContactButton()}
                     className="text-xs uppercase border text-gray-50 border-gray-50 btn hover:text-gray-800 hover:bg-gray-300 hover:border-gray-300"
@@ -88,15 +88,15 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 )}
               </div>
               <div className="flex mt-2">
-                {mentor.web && (
-                  <Link href={mentor.web}>
+                {mentor.links.portfolio && (
+                  <Link href={mentor.links.portfolio}>
                     <a target="_blank" className="w-8 h-8 text-gray-50">
                       <FontAwesomeIcon className="w-4 h-4" icon={faGlobe} />
                     </a>
                   </Link>
                 )}
-                {mentor.linkedin && (
-                  <Link href={mentor.linkedin}>
+                {mentor.links.linkedin && (
+                  <Link href={mentor.links.linkedin}>
                     <a target="_blank" className="w-8 h-8 text-gray-50">
                       <FontAwesomeIcon
                         className="w-4 h-4"
@@ -105,10 +105,17 @@ const MentorCard: React.FC<MentorCardProps> = ({
                     </a>
                   </Link>
                 )}
-                {mentor.github && (
-                  <Link href={mentor.github}>
+                {mentor.links.github && (
+                  <Link href={mentor.links.github}>
                     <a target="_blank" className="w-8 h-8 text-gray-50">
                       <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
+                    </a>
+                  </Link>
+                )}
+                {mentor.links.twitter && (
+                  <Link href={mentor.links.twitter}>
+                    <a target="_blank" className="w-8 h-8 text-gray-50">
+                      <FontAwesomeIcon className="w-4 h-4" icon={faTwitter} />
                     </a>
                   </Link>
                 )}
@@ -119,23 +126,20 @@ const MentorCard: React.FC<MentorCardProps> = ({
         <div className="flex flex-col justify-between h-full">
           <div>
             <h2 className="mb-2 text-xl font-bold text-gray-50">
-              {mentor.name}
+              {mentor.full_name}
             </h2>
           </div>
           <div className="flex">
             <div>
               <p className="text-xs leading-relaxed text-gray-100 md:min-h-64">
-                {mentor.description ? mentor.description : '---'}
+                {mentor.about_me ? mentor.about_me : '---'}
               </p>
             </div>
           </div>
           <div className="flex flex-wrap my-3 md:justify-start">
-            {mentor.topics &&
-              mentor.topics?.map((topic) => (
-                <TopicBadge
-                  key={topic._key}
-                  topic={findTopicsName(topic._ref)}
-                />
+            {mentor.skills &&
+              mentor.skills?.map((topic) => (
+                <TopicBadge key={topic} topic={findTopicsName(topic)} />
               ))}
           </div>
         </div>

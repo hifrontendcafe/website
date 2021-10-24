@@ -8,6 +8,7 @@ import { getAllMentors, getMentoringTopics, getSettings } from '@/lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 import SectionHero from '@/components/SectionHero';
+import { getMentorList } from '@/lib/calomentorApi';
 
 type MentorshipsPageProps = {
   mentors: Mentor[];
@@ -92,7 +93,7 @@ const MentorshipsSteps: React.FC = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const mentors = await getAllMentors(preview);
+  const mentors = await getMentorList();
   const topics = await getMentoringTopics(preview);
   const settings = await getSettings(preview);
 
