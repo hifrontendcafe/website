@@ -3,7 +3,7 @@ import { GetStaticProps } from 'next';
 import MentorList from '../../components/MentorList';
 import Layout from '../../components/Layout';
 
-import { Mentor, Topic } from '../../lib/types';
+import { Mentor, MentorCalomentor, Topic } from '../../lib/types';
 import { getMentoringTopics, getSettings } from '@/lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
@@ -11,7 +11,7 @@ import SectionHero from '@/components/SectionHero';
 import { getMentorList } from '@/lib/calomentorApi';
 
 type MentorshipsPageProps = {
-  mentors: Mentor[];
+  mentors: MentorCalomentor[];
   topics: Topic[];
   preview?: boolean;
 };
