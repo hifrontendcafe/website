@@ -47,6 +47,7 @@ export interface Event {
 }
 
 export interface Mentor {
+  id?: string;
   name: string;
   description: string;
   photo: {
@@ -205,4 +206,14 @@ export interface ProfileFilters {
   technologies?: Technologies[];
   available?: boolean;
   active?: boolean;
+}
+
+export interface TimeSlot {
+  is_occupied: boolean;
+  user_id: string;
+  is_cancelled: boolean;
+  mentee_id: string;
+  date: string;
+  mentee_username: string;
+  id: string;
 }

@@ -148,3 +148,58 @@ html {
 .copyx {
   display: none !important;
 }
+
+/* React Detepicker */
+.react-datepicker {
+  @apply border-cardContentLight !important;
+}
+.react-datepicker__month-container,
+.react-datepicker__month {
+  @apply bg-cardContent !important;
+}
+
+.react-datepicker__header {
+  @apply bg-cardHeader border-cardContentLight !important;
+}
+
+.react-datepicker__current-month,
+.react-datepicker__day-name {
+  @apply text-mainTextColor !important;
+}
+
+.react-datepicker__day {
+  @apply text-gray-300 !important;
+}
+
+.react-datepicker__day--disabled {
+  @apply text-gray-600 !important;
+}
+
+.react-datepicker__day--selected {
+  @apply bg-mainBtnColor !important;
+}
+
+.react-datepicker__day:hover {
+  @apply bg-mainBtnHoverColor !important;
+}
+
+.react-datepicker__day--keyboard-selected {
+  @apply bg-transparent !important;
+}
+
+.react-datepicker-time__header {
+  @apply text-mainTextColor !important;
+}
+
+.react-datepicker__time-list-item {
+  @apply bg-cardContent text-gray-300 !important;
+}
+
+.react-datepicker__time-list-item--disabled {
+  @apply text-gray-600 !important;
+}
+
+.react-datepicker__time-list-item:hover {
+  @apply bg-mainBtnHoverColor !important;
+}
+/* End React Detepicker */

@@ -1,5 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const defaultColors = require('tailwindcss/colors');
+
 const colors = {
+  ...defaultColors,
   gray: {
     50: '#F9F9FA',
     100: '#DEDEDF',
@@ -80,6 +83,17 @@ module.exports = {
         darkViolet: '#3336A3',
         testblue: '#0089C4',
         greenFec: '#00C39D',
+
+        // Calomentor Date Picker Colors
+        cardHeader: '#161B22',
+        cardContent: '#161B22',
+        cardContentLight: '#0D1117',
+        mainTextColor: colors.teal[200],
+        logoTextColor: colors.white,
+        mainBtnTxt: colors.teal[200],
+        mainBtnColor: colors.teal[600],
+        mainBtnHoverColor: colors.teal[800],
+        mainBtnActiveColor: colors.teal[600],
       },
       textColor: {
         primary: colors.gray[50],

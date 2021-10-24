@@ -6,9 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "//": "opens prisma studio",
-    "prisma:studio": "prisma studio",
     "//": "generate types for prisma models",
+    "prisma:studio": "prisma studio",
     "prisma:generate": "prisma generate"
   },
   "browser": {
@@ -39,6 +38,7 @@
     "prisma": "2.25.0",
     "react": "^17.0.2",
     "react-cookie-consent": "^6.4.1",
+    "react-datepicker": "^4.3.0",
     "react-dom": "^17.0.2",
     "react-ga": "^3.3.0",
     "react-hook-form": "^7.12.2",
