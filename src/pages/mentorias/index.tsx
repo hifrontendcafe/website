@@ -3,10 +3,8 @@ import { GetStaticProps } from 'next';
 import MentorList from '../../components/MentorList';
 import Layout from '../../components/Layout';
 
-import { MentorCalomentor, Topic } from '../../lib/types';
-import { getMentoringTopics, getSettings } from '@/lib/api';
-import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
-import { usePreviewSubscription } from '../../lib/sanity';
+import { MentorCalomentor } from '../../lib/types';
+import { getSettings } from '@/lib/api';
 import SectionHero from '@/components/SectionHero';
 import { getMentorList } from '@/lib/calomentorApi';
 
@@ -81,7 +79,7 @@ const MentorshipsSteps: React.FC = () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const mentors = await getMentorList();
+  const mentors = await getMentorList(preview);
   const settings = await getSettings(preview);
 
   return {
