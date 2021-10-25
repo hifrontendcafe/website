@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { MentorCalomentor, Mentorship, TimeSlot, Topic } from '@/lib/types';
+import {
+  MentorCalomentor,
+  Mentorship,
+  MentorshipResponse,
+  TimeSlot,
+  Topic,
+} from '@/lib/types';
 import { motion, AnimatePresence } from 'framer-motion';
 import TopicBadge from '../TopicBadge';
 import {
@@ -126,7 +132,6 @@ const CalomentorModal: React.FC<ModalProps> = ({
 
       return;
     } catch (error) {
-      setLoading(false);
       return;
     }
 
@@ -250,7 +255,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                       {console.log(session)}
                       <input
                         type="text"
-                        defaultValue={'641995600946003998'}
+                        defaultValue={(session && session.user.id) || ''}
                         readOnly
                         hidden
                         {...register('discordID', { required: true })}
@@ -265,7 +270,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                             type="text"
                             placeholder="Ingresa tu usuario de Discord"
                             autoComplete="off"
-                            defaultValue={'franmper#4289'}
+                            defaultValue={(session && session.user.name) || ''}
                             readOnly
                             {...register('discordUser', {
                               required: 'El usuario es requerido',
@@ -283,7 +288,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                           placeholder="Ingresa tu email"
                           autoComplete="off"
                           readOnly
-                          defaultValue={'fran.mper@gmail.com'}
+                          defaultValue={(session && session.user.email) || ''}
                           {...register('email', { required: true })}
                         />
                         {errors.email && (

@@ -39,7 +39,6 @@ export const getMentorList = async (
     })
       .then((response) => response.json())
       .then((response: { data: MentorCalomentor[] }) => {
-        console.log(response.data);
         return response.data;
       });
   } catch (error) {
@@ -52,7 +51,6 @@ export const createMentorship = async (
 ): Promise<MentorshipResponse> => {
   try {
     const url = `${process.env.NEXT_PUBLIC_CALOMENTOR_BASE_URL}/sf/mentorship`;
-    console.log(url);
     return await fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
@@ -63,11 +61,9 @@ export const createMentorship = async (
     })
       .then((response) => response.json())
       .then((response: MentorshipResponse) => {
-        console.log(response);
         return response;
       });
   } catch (error) {
-    console.log(error);
     return error;
   }
 };
