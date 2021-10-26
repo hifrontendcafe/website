@@ -21,7 +21,7 @@
 }
 
 .hamburger:hover [class*='-bun'] {
-  background: #333;
+  background: #f9f9fa;
 }
 
 .hamburger__top-bun {

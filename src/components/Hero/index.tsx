@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
 
 interface HeroProps {
   title?: string;
@@ -40,10 +43,16 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
             <a
               target="_blank"
               href="https://discord.gg/frontendcafe"
-              className="md:px-8 md:py-4 btn btn-primary"
               rel="noreferrer"
             >
-              Unirme a Discord
+              <button className="flex m-auto text-lg md:px-8 md:py-4 btn btn-primary">
+                Súmate a Discord
+                <FontAwesomeIcon
+                  icon={faExternalLinkAlt}
+                  width="20px"
+                  className="ml-2"
+                />
+              </button>
             </a>
           </div>
         </div>
