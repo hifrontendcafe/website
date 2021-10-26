@@ -14,7 +14,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
     return (
       <button
         className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${
-          navIsOpen ? 'flex' : 'hidden'
+          navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
         }`}
         style={{ transition: 'all .15s ease' }}
         onClick={() => signIn('discord')}
