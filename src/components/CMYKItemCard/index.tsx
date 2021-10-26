@@ -9,17 +9,17 @@ type CMYKItemProps = {
 
 const CMYKItemCard: React.FC<CMYKItemProps> = ({ project }) => {
   return (
-    <div className="p-5 w-72 lg:w-96 bg-gray-800 border border-gray-500 rounded-lg flex flex-col justify-between overflow-hidden">
+    <div className="flex flex-col justify-between p-5 overflow-hidden border-2 border-gray-500 rounded-lg lg:w-96 bg-coolGray-900">
       <div>
         <img
-          className="rounded-lg object-cover h-40 w-full"
+          className="object-cover w-full h-40 rounded-lg"
           src={project.image.src}
           alt="Project image"
         />
-        <h1 className="cards-title my-2">{project.name}</h1>
+        <h1 className="my-2 cards-title">{project.name}</h1>
         <p className="cards-paragraph">{project.description}</p>
       </div>
-      <div className="w-full flex justify-between mt-5">
+      <div className="flex justify-between w-full mt-5">
         <Link href={project.demo}>
           <a
             target="_blank"

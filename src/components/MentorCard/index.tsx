@@ -29,7 +29,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="flex flex-col w-full p-5 rounded-lg bg-coolGray-800 space-between "
+      className="flex flex-col w-full p-6 rounded-lg bg-coolGray-800 space-between "
     >
       <div>
         <div className="flex justify-between w-full">
@@ -68,21 +68,30 @@ const MentorCard: React.FC<MentorCardProps> = ({
             <div className="flex mt-2 place-content-end">
               {mentor.web && (
                 <Link href={mentor.web}>
-                  <a target="_blank" className="w-8 h-8 text-coolGray-50">
-                    <FontAwesomeIcon className="w-4 h-4" icon={faGlobe} />
+                  <a
+                    target="_blank"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                  >
+                    <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
                   </a>
                 </Link>
               )}
               {mentor.linkedin && (
                 <Link href={mentor.linkedin}>
-                  <a target="_blank" className="w-8 h-8 text-coolGray-50">
+                  <a
+                    target="_blank"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                  >
                     <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
                   </a>
                 </Link>
               )}
               {mentor.github && (
                 <Link href={mentor.github}>
-                  <a target="_blank" className="w-8 h-8 text-coolGray-50">
+                  <a
+                    target="_blank"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                  >
                     <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
                   </a>
                 </Link>

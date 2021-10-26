@@ -21,7 +21,7 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
           !invalidSocialNetworks[value] && (
             <a
               key={value}
-              className="flex items-center justify-center w-6 h-6 rounded-full hover:opacity-75 bg-coolGray-600"
+              className="flex items-center justify-center w-6 h-6 rounded-full hover:opacity-75 bg-coolGray-700"
               href={socialMedia[value]}
             >
               <Image

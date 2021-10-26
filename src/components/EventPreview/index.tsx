@@ -64,13 +64,12 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   };
 
   return (
-    <div className={`pt-12 md:px-4 md:w-1/2 ${past ? 'lg:w-1/4' : 'lg:w-1/3'}`}>
-      <div className="flex flex-col items-start h-full bg-gray-800 border-2 border-gray-500 rounded-md shadow-lg">
+    <div>
+      <div className="flex flex-col items-start h-full border-2 rounded-md shadow-lg bg-coolGray-900 border-coolGray-600">
         <img
           className="w-full p-4"
           src={imageBuilder.image(event.cover.src).width(400).url()}
           alt={event.cover.alt || event.title}
-          style={{ filter: past ? 'grayscale(66%)' : 'none' }}
         />
         <div
           className={`flex-grow p-4 pt-0 flex flex-col ${
@@ -82,33 +81,33 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               {event.category.name}
             </h2>
           </div>
-          <h1 className="mb-3 text-xl font-medium leading-tight text-gray-200 title-font">
+          <h1 className="mb-3 text-xl font-medium leading-tight text-coolGray-100 title-font">
             {event.title}
           </h1>
-          <p className="font-medium text-gray-200 break-all title-font ">
+          <p className="font-medium break-all text-coolGray-200 title-font ">
             {format(new Date(event.date), 'd  MMMM - HH:mm ', {
               locale: es,
             })}
             hrs
-            <span className="inline-block text-sm font-light">
+            <span className="inline-block text-xs font-light text-coolGray-400">
               Horario en tu ubicación actual
             </span>
           </p>
-          <div className={`mb-5 text-gray-400 ${styles.description}`}>
+          <div className={`mt-2 mb-6 text-coolGray-300 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
           {past ? (
             event.recording && (
-              <div className="mt-auto">
+              <button className="mt-auto btn btn-primary">
                 <a
                   href={event.recording}
-                  className="px-5 py-2 text-sm rounded text-gray-50 bg-secondary"
+                  className=""
                   target="_blank"
                   rel="noreferrer"
                 >
                   Ver grabación
                 </a>
-              </div>
+              </button>
             )
           ) : (
             <div className="mt-auto">
