@@ -9,26 +9,26 @@ type FeaturedCardsItemProps = {
 
 const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
   return (
-    <div className="flex justify-between p-6 transition duration-500 ease-in-out transform scale-100 border-2 border-gray-500 shadow-lg hover:scale-105 rounded-xl">
-      <div className="relative flex flex-col items-start justify-between">
-        <div className="items-start">
-          <h1 className="cards-title">{card.title}</h1>
-          <p className="pt-5 pb-8 text-sm text-gray-200 lg:text-lg">
-            {card.description}
-          </p>
-        </div>
-        <button>
-          <Link href={card.link}>
+    <Link href={card.link}>
+      <div className="flex justify-between p-6 transition duration-500 ease-in-out transform scale-100 border-2 border-gray-500 shadow-lg cursor-pointer hover:scale-105 rounded-xl">
+        <div className="relative flex flex-col items-start justify-between">
+          <div className="items-start">
+            <h1 className="cards-title">{card.title}</h1>
+            <p className="pt-5 pb-8 text-sm text-gray-200 lg:text-lg">
+              {card.description}
+            </p>
+          </div>
+          <button>
             <a className="flex items-center text-sm font-normal normal-case lg:text-lg text-informational hover:underline">
               {card.btnText}
               <span className="ml-2">
                 <FontAwesomeIcon icon={faArrowRight} width="12px" />
               </span>
             </a>
-          </Link>
-        </button>
+          </button>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

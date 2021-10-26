@@ -27,7 +27,7 @@ const Navbar: React.FC<NavbarProps> = ({
       id="site-menu"
       className="container flex flex-col items-center justify-between w-full mx-auto lg:flex-row"
     >
-      <div className="flex flex-row flex-no-wrap items-center self-start justify-between w-full lg:w-auto lg:self-center lg:flex-none">
+      <div className="flex flex-row flex-no-wrap items-center justify-between w-full lg:w-auto lg:self-center lg:flex-none">
         {/* ATENCION esta hardcodeado el logo, antes de salir a prod. eliminar codigo debajo de este codigo y dejar el que esta comentado. */}
         <Link href="/">
           <a>
@@ -50,7 +50,7 @@ const Navbar: React.FC<NavbarProps> = ({
         <MenuBtn onClick={() => toggle()} isOpen={isOpen} />
       </div>
       <div
-        className={`lg:flex lg:flex-row lg:self-center lg:pb-0 lg:py-0 lg:w-auto text-sm ${
+        className={`lg:flex lg:flex-row lg:self-center lg:pb-0 lg:py-0 lg:w-auto text-md md:text-sm ${
           isOpen ? 'py-1 pb-4 flex flex-col w-full' : 'hidden'
         }`}
       >

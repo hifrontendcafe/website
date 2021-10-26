@@ -1,4 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
+const tailwindColors = require('tailwindcss/colors');
+
 const colors = {
   gray: {
     50: '#F9F9FA',
@@ -74,6 +76,8 @@ module.exports = {
         gray: {
           ...colors.gray,
         },
+        blueGray: tailwindColors.blueGray,
+        coolGray: tailwindColors.coolGray,
         ellipseBlue: '#142A4A',
         profileRing: '#00C39D',
         violet: '#6366F1',

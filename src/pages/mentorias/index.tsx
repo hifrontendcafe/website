@@ -57,7 +57,7 @@ const MentorshipsSteps: React.FC = () => {
               <h2 className="mb-3 text-2xl font-medium title-font">
                 1 Inicia sesión
               </h2>
-              <p className="text-lg leading-relaxed text-left">
+              <p className="text-lg leading-relaxed text-gray-300">
                 Recuerda que para solicitar una mentoría debes ser parte del
                 servidor de Discord de FrontendCafé.
               </p>
@@ -68,7 +68,7 @@ const MentorshipsSteps: React.FC = () => {
               <h2 className="mb-3 text-2xl font-medium title-font">
                 2 Encuentra un mentor
               </h2>
-              <p className="text-lg leading-relaxed">
+              <p className="text-lg leading-relaxed text-gray-300">
                 Encuentra un mentor cuyo perfil se ajuste a tus intereses y
                 sientas que pueda ayudarte en lo que necesites.
               </p>
@@ -79,7 +79,7 @@ const MentorshipsSteps: React.FC = () => {
               <h2 className="mb-3 text-2xl font-medium title-font">
                 3 Agenda la mentoría
               </h2>
-              <p className="mb-2 text-lg leading-relaxed">
+              <p className="mb-2 text-lg leading-relaxed text-gray-300">
                 Contacta al mentor a través de su agenda virtual y reserva una
                 fecha y hora entre las disponibles.
               </p>

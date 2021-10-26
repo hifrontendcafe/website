@@ -28,8 +28,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
   if (user) {
     return (
       <div
-        className={`lg:flex items-center mt-2 lg:mt-0 lg:ml-4 ${
-          navIsOpen ? 'flex' : 'hidden'
+        className={`lg:flex items-center mt-2 mb-0 lg:mt-0 lg:ml-4 ${
+          navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
         }`}
       >
         <div>
