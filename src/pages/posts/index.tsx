@@ -35,7 +35,7 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
               </div>
             </div>
           </div>
-          <div className="px-6 py-5 text-gray-700">
+          <div className="px-6 py-5 text-coolGray-700">
             <ul className="text-lg">
               {posts?.map(({ title, slug, excerpt }) => (
                 <li className="list-none hover:text-teal-400" key={title}>

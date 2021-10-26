@@ -10,7 +10,7 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ title }) => {
   return (
     <div className="relative py-32 mx-auto bg-white bg-opacity-0">
-      <div className="flex items-center justify-center h-full bg-center bg-cover text-gray-50 md:justify-around">
+      <div className="flex items-center justify-center h-full bg-center bg-cover text-coolGray-50 md:justify-around">
         <div className="z-10 w-auto text-center">
           <div>
             <div className="mb-16">
@@ -35,7 +35,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               >
                 en comunidad
               </span>
-              <p className="mt-4 text-xl font-medium text-gray-300 md:text-lg">
+              <p className="mt-4 text-xl font-medium text-coolGray-300 md:text-lg">
                 El lugar de encuentro para conectar con otras personas y
                 potenciar tus ideas.
               </p>
@@ -45,7 +45,7 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               href="https://discord.gg/frontendcafe"
               rel="noreferrer"
             >
-              <button className="flex m-auto text-lg md:px-8 md:py-4 btn btn-primary">
+              <button className="flex m-auto text-lg md:px-7 md:py-3 btn btn-primary">
                 Súmate a Discord
                 <FontAwesomeIcon
                   icon={faExternalLinkAlt}

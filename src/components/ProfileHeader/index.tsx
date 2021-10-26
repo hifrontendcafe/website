@@ -21,7 +21,7 @@ const ProfileHeader = ({ name, coverImage, role, socialMedia }: Props) => {
         <h1 className="mb-0 text-4xl font-bold leading-tight tracking-tighter md:text-5xl md:leading-none">
           {name}
         </h1>
-        <h2 className="text-2xl font-bold leading-none tracking-wide text-gray-700 md:text-3xl">
+        <h2 className="text-2xl font-bold leading-none tracking-wide text-coolGray-700 md:text-3xl">
           {role}
         </h2>
 

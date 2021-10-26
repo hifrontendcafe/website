@@ -49,8 +49,8 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     (project) => project.cmykVersion === currentCMYK,
   );
 
-  const tabStyle = `py-2 cursor-pointer text-gray-300 w-1/3 flex justify-center border-b`;
-  const tabStyleActive = `py-2 font-semibold cursor-pointer text-gray-100 w-1/3 flex justify-center border-b-4 border-gray-100`;
+  const tabStyle = `py-2 cursor-pointer text-coolGray-300 w-1/3 flex justify-center border-b`;
+  const tabStyleActive = `py-2 font-semibold cursor-pointer text-coolGray-100 w-1/3 flex justify-center border-b-4 border-gray-100`;
 
   return (
     <Layout title="Proyectos CMYK" preview={preview}>
@@ -63,8 +63,8 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
       <div>
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="flex flex-col items-center text-center">
-            <h3 className="subtitle">Ediciones</h3>
-            <ul className="flex w-full my-6 md:w-8/12">
+            <h3 className="font-medium subtitle">Ediciones</h3>
+            <ul className="flex w-full mt-6 mb-16 md:w-8/12">
               {filteredVersions.map((cmykVersion) => (
                 <li
                   onClick={() => setCurrentCMYK(cmykVersion.version)}
@@ -81,7 +81,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
             </ul>
           </div>
           <div className="w-full h-full">
-            <div className="relative z-10 grid gap-6 mx-auto sm:px-6 lg:px-8 md:grid-cols-2 justify-items-center md:gap-10">
+            <div className="relative z-10 grid max-w-4xl grid-cols-1 gap-6 p-6 mx-auto sm:px-6 lg:px-12 md:grid-cols-2 justify-items-center md:gap-10">
               {currentProjects.map((project, index) => (
                 <CMYKItemCard
                   key={project._id}

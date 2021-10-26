@@ -37,7 +37,7 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
               </div>
             </div>
           </div>
-          <div className="px-12 py-5 text-gray-700">
+          <div className="px-12 py-5 text-coolGray-700">
             <ul className="text-lg">
               {docs?.map(({ title, slug }) => (
                 <li className="hover:text-teal-400" key={slug}>

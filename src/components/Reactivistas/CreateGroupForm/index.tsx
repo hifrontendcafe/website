@@ -46,7 +46,7 @@ const CreateGroupForm: React.FC = () => {
       {session ? (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col w-full grid-cols-2 gap-5 p-2 text-gray-300 border border-gray-500 rounded sm:px-8 sm:pt-6 sm:pb-8 md:grid "
+          className="flex flex-col w-full grid-cols-2 gap-5 p-2 border border-gray-500 rounded text-coolGray-300 sm:px-8 sm:pt-6 sm:pb-8 md:grid "
         >
           <div className="mb-4">
             <label className="block mb-2 text-sm font-bold">
@@ -149,7 +149,7 @@ const CreateGroupForm: React.FC = () => {
                 <div
                   className={`flex items-center ${
                     isError ? 'bg-red-500' : 'bg-green-500'
-                  } text-gray-50 text-sm font-bold px-4 py-3 mt-5 transition-all	 duration-500 ease-in-out ${
+                  } text-coolGray-50 text-sm font-bold px-4 py-3 mt-5 transition-all	 duration-500 ease-in-out ${
                     isSuccess || isError ? 'opacity-100' : 'opacity-0'
                   }`}
                   role="alert"
@@ -168,7 +168,7 @@ const CreateGroupForm: React.FC = () => {
           </div>
         </form>
       ) : (
-        <div className="p-6 text-gray-200 border border-gray-500 rounded-md">
+        <div className="p-6 border border-gray-500 rounded-md text-coolGray-200">
           Para poder crear un nuevo grupo de Reactivistas es necesario que
           inicies sesión con Discord. <br />
           <br />

@@ -49,13 +49,13 @@ const MentorCard: React.FC<MentorCardProps> = ({
         initial={{ y: 100, opacity: 0 }}
         animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
         exit={{ y: -100, opacity: 0 }}
-        className="flex flex-col w-full p-5 rounded-lg bg-coolGray-800 space-between "
+        className="flex flex-col w-full p-6 rounded-lg bg-coolGray-800 space-between "
       >
         <div>
           <div className="flex justify-between w-full">
             <div>
               <img
-                className="object-cover w-24 h-24 mr-2 bg-gray-300 rounded-full"
+                className="object-cover w-24 h-24 mr-4 rounded-full bg-coolGray-300"
                 src={
                   mentor.url_photo && mentor.url_photo != ''
                     ? `${mentor.url_photo}`
@@ -65,61 +65,69 @@ const MentorCard: React.FC<MentorCardProps> = ({
               />
             </div>
 
-            <div>
-              <div className="mb-4">
-                {!mentor.isActive ? (
-                  <button className="text-xs uppercase cursor-not-allowed btn btn-secondary">
-                    No Disponible
-                  </button>
-                ) : mentor.isActive && isLogged ? (
-                  <button
-                    onClick={() => handleContactButton()}
-                    className="text-xs uppercase border text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-300 hover:border-coolGray-300"
+            <div className="mb-4">
+              {!mentor.isActive ? (
+                <button className="text-xs uppercase cursor-not-allowed btn btn-secondary">
+                  No Disponible
+                </button>
+              ) : mentor.isActive && isLogged ? (
+                <button
+                  onClick={() => handleContactButton()}
+                  className="text-xs uppercase border text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-300 hover:border-coolGray-300"
+                >
+                  // Solicitar mentoría
+                </button>
+              ) : (
+                <button
+                  onClick={() => openModal()}
+                  className="text-xs uppercase border text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-300 hover:border-coolGray-300gi"
+                >
+                  Solicitar mentoría
+                </button>
+              )}
+            </div>
+
+            <div className="flex mt-2 place-content-end">
+              {mentor.links.portfolio && (
+                <Link href={mentor.links.portfolio}>
+                  <a
+                    target="_blank"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
                   >
-                    Solicitar mentoría
-                  </button>
-                ) : (
-                  <button
-                    onClick={() => openModal()}
-                    className="text-xs uppercase border text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-300 hover:border-coolGray-300gi"
+                    <FontAwesomeIcon className="w-4 h-4" icon={faGlobe} />
+                  </a>
+                </Link>
+              )}
+              {mentor.links.linkedin && (
+                <Link href={mentor.links.linkedin}>
+                  <a
+                    target="_blank"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
                   >
-                    Solicitar mentoría
-                  </button>
-                )}
-              </div>
-              <div className="flex mt-2 place-content-end">
-                {mentor.links.portfolio && (
-                  <Link href={mentor.links.portfolio}>
-                    <a target="_blank" className="w-8 h-8 text-coolGray-50">
-                      <FontAwesomeIcon className="w-4 h-4" icon={faGlobe} />
-                    </a>
-                  </Link>
-                )}
-                {mentor.links.linkedin && (
-                  <Link href={mentor.links.linkedin}>
-                    <a target="_blank" className="w-8 h-8 text-coolGray-50">
-                      <FontAwesomeIcon
-                        className="w-4 h-4"
-                        icon={faLinkedinIn}
-                      />
-                    </a>
-                  </Link>
-                )}
-                {mentor.links.github && (
-                  <Link href={mentor.links.github}>
-                    <a target="_blank" className="w-8 h-8 text-coolGray-50">
-                      <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
-                    </a>
-                  </Link>
-                )}
-                {mentor.links.twitter && (
-                  <Link href={mentor.links.twitter}>
-                    <a target="_blank" className="w-8 h-8 text-coolGray-50">
-                      <FontAwesomeIcon className="w-4 h-4" icon={faTwitter} />
-                    </a>
-                  </Link>
-                )}
-              </div>
+                    <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
+                  </a>
+                </Link>
+              )}
+              {mentor.links.github && (
+                <Link href={mentor.links.github}>
+                  <a
+                    target="_blank"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                  >
+                    <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
+                  </a>
+                </Link>
+              )}
+              {mentor.links.twitter && (
+                <Link href={mentor.links.twitter}>
+                  <a
+                    target="_blank"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                  >
+                    <FontAwesomeIcon className="w-4 h-4" icon={faTwitter} />
+                  </a>
+                </Link>
+              )}
             </div>
           </div>
         </div>
@@ -150,7 +158,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
         mentor={mentor}
         topics={topics}
         slots={slots}
-      />{' '}
+      />
     </>
   );
 };

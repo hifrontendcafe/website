@@ -27,7 +27,7 @@ const Modal: React.FC<ModalProps> = ({
       {isOpen && (
         <>
           <div
-            className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed z-50 inset-0 outline-none p-5 lg:p-0 focus:outline-none"
+            className="fixed inset-0 z-50 flex items-center justify-center p-5 overflow-x-hidden overflow-y-auto outline-none lg:p-0 focus:outline-none"
             onClick={close}
             style={{ zIndex: 999 }}
           >
@@ -36,13 +36,13 @@ const Modal: React.FC<ModalProps> = ({
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
               transition={{ type: 'tween' }}
-              className="relative w-auto my-6 mx-auto max-w-3xl"
+              className="relative w-auto max-w-3xl mx-auto my-6"
               onClick={handleClick}
             >
               {/*content*/}
-              <div className="border rounded-lg shadow-xl relative flex flex-col w-full bg-white outline-none focus:outline-none">
+              <div className="relative flex flex-col w-full border rounded-lg shadow-xl outline-none bg-coolGray-900 focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
+                <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-coolGray-600">
                   <h3
                     className={`text-xl md:text-3xl font-semibold ${
                       titleClasses ? titleClasses : ''
@@ -51,20 +51,20 @@ const Modal: React.FC<ModalProps> = ({
                     {title}
                   </h3>
                   <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                    className="float-right p-1 ml-auto text-3xl font-semibold leading-none bg-transparent border-0 outline-none text-coolGray-50 opacity-5 focus:outline-none"
                     onClick={close}
                   >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
+                    <span className="z-50 block w-6 h-6 text-2xl bg-transparent outline-none text-coolGray-50 opacity-5 focus:outline-none">
                       ×
                     </span>
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 flex-auto overflow-y-scroll max-h-80">
+                <div className="relative flex-auto p-5 overflow-y-scroll max-h-80">
                   {children}
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-end p-2 border-t border-solid border-gray-300 rounded-b">
+                <div className="flex items-center justify-end p-2 border-t border-solid rounded-b border-coolGray-500">
                   <button
                     className={`text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ${
                       buttonClasses ? buttonClasses : ''
@@ -82,7 +82,7 @@ const Modal: React.FC<ModalProps> = ({
           <motion.div
             exit={{ opacity: 0 }}
             style={{ zIndex: 500 }}
-            className="opacity-25 w-screen h-screen fixed inset-0 bg-black"
+            className="fixed inset-0 w-screen h-screen bg-black opacity-25"
           ></motion.div>
         </>
       )}

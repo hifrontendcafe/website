@@ -68,7 +68,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
                           <li className="font-medium text-primary">
                             <a
                               href={group.studyMaterial}
-                              className="text-gray-600"
+                              className="text-coolGray-600"
                             >
                               📚 Material de estudio
                             </a>
@@ -97,7 +97,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
           )}
 
           <div className="flex-1 min-w-0 mb-8">
-            <h1 className="text-2xl font-bold leading-7 text-gray-200 title sm:text-2xl sm:leading-9 sm:truncate">
+            <h1 className="text-2xl font-bold leading-7 text-coolGray-200 title sm:text-2xl sm:leading-9 sm:truncate">
               Dale vida a un nuevo grupo
             </h1>
             <h2 className="leading-7 text-md text-informational sm:leading-9 sm:truncate">
