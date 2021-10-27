@@ -407,6 +407,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </label>
                   <div className="relative">
                     <Select
+                      classNamePrefix="react-select"
+                      className="w-full bg-transparent form-user"
                       instanceId="technologies-selector"
                       isMulti
                       placeholder=""

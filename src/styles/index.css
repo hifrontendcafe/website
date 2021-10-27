@@ -100,7 +100,7 @@ html {
   }
 }
 
-/* react-select styles */
+/* react-select filter styles */
 .filter-selector .react-select__multi-value {
   @apply bg-gray-700;
 }
@@ -126,6 +126,36 @@ html {
 }
 
 .filter-selector .react-select__value-container .react-select__placeholder {
+  /* @apply text-sm text-coolGray-600; */
+}
+/* end react-select styles */
+
+/* react-select form-user styles */
+.form-user .react-select__multi-value {
+  @apply bg-coolGray-700;
+}
+
+.form-user .react-select__multi-value__label {
+  @apply text-coolGray-100;
+}
+
+.form-user .react-select__menu {
+  @apply bg-coolGray-800 border border-coolGray-500 text-coolGray-50;
+}
+
+.form-user .react-select__control {
+  @apply bg-coolGray-800 border-coolGray-300 text-coolGray-300;
+}
+
+.form-user .react-select__option--is-focused {
+  @apply bg-coolGray-700;
+}
+
+.form-user .react-select__control .react-select__indicator {
+  /* @apply text-coolGray-500; */
+}
+
+.form-user .react-select__value-container .react-select__placeholder {
   /* @apply text-sm text-coolGray-600; */
 }
 /* end react-select styles */
