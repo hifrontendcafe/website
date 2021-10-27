@@ -19,10 +19,10 @@ const SectionHero: React.FC<SectionHeroProps> = ({ title, paragraph, cta }) => {
           <div className="flex md:justify-center">
             {cta && (
               <span className="flex cursor-pointer md:text-xl text-informational">
-                <a target="_blank" href={cta} rel="noreferrer">
-                  Conoce más sobre la iniciativa&nbsp;
+                <a target="_blank" href={cta} rel="noreferrer" className="mr-2">
+                  Conoce más sobre la iniciativa
                 </a>
-                <FontAwesomeIcon icon={faExternalLinkAlt} width="20px" />
+                <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
               </span>
             )}
           </div>
