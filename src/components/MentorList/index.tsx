@@ -82,7 +82,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         isOpen={isModalOpen}
         close={() => setIsModalOpen(false)}
         title="¡Oh no!"
-        titleClasses="text-red-500"
+        titleClasses="text-red-600 mt-2 ml-2"
         buttonLabel="Entiendo"
         buttonClasses="text-primary"
         footer={
@@ -96,7 +96,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
           </button>
         }
       >
-        <div className="px-2 overflow-auto text-lg">
+        <div className="px-2 overflow-auto text-lg text-coolGray-100">
           <p>Para poder solicitar una mentoría primero debes iniciar sesión.</p>
         </div>
       </SimpleModal>

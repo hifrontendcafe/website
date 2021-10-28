@@ -41,7 +41,7 @@ const SimpleModal: React.FC<ModalProps> = ({
               onClick={handleClick}
             >
               {/*content*/}
-              <div className="relative flex flex-col w-full bg-white border rounded-lg shadow-xl outline-none focus:outline-none">
+              <div className="relative flex flex-col w-full bg-gray-900 border rounded-lg shadow-xl outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-center justify-between px-5 py-2 rounded-t">
                   <h3
@@ -52,10 +52,10 @@ const SimpleModal: React.FC<ModalProps> = ({
                     {title}
                   </h3>
                   <button
-                    className="text-3xl font-semibold leading-none text-black bg-transparent border-0 outline-none focus:outline-none"
+                    className="text-3xl font-semibold leading-none bg-transparent border-0 outline-none text-coolGray-50 focus:outline-none"
                     onClick={close}
                   >
-                    <span className="block w-6 h-6 text-2xl text-black outline-none hover:opacity-50 focus:outline-none">
+                    <span className="block w-6 h-6 mb-2 text-2xl outline-none text-coolGray-50 hover:opacity-50 focus:outline-none">
                       ×
                     </span>
                   </button>
