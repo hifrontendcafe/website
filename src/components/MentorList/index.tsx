@@ -90,7 +90,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
       </div>
 
       <div className="flex flex-col min-h-screen align-center">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 auto-rows-min">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
           {(filteredTopics && filter ? filteredTopics : mentors)?.map(
             (mentor, index) => (
               <MentorCard
@@ -109,7 +109,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
         isOpen={isModalOpen}
         close={() => setIsModalOpen(false)}
         title="¡Oh no!"
-        titleClasses="text-red-500"
+        titleClasses="text-red-600 mt-2 ml-2"
         buttonLabel="Entiendo"
         buttonClasses="text-primary"
         footer={
@@ -123,7 +123,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
           </button>
         }
       >
-        <div className="px-2 overflow-auto text-lg">
+        <div className="px-2 overflow-auto text-lg text-coolGray-100">
           <p>Para poder solicitar una mentoría primero debes iniciar sesión.</p>
         </div>
       </SimpleModal>

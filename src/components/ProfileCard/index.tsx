@@ -16,7 +16,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
 
   return (
     <div className="flex flex-col justify-between w-full pb-4 rounded-lg shadow-lg bg-coolGray-800">
-      <div className="p-3 md:p-6">
+      <div className="px-3 pt-3 md:pt-6 md:px-6">
         <div className="space-x-3 items-top">
           <img
             src={profile.photo || '/img/user.svg'}
@@ -28,20 +28,17 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
         </div>
         <div className="flex flex-col justify-between flex-grow text-coolGray-50">
           <div className="flex-grow">
-            <h1 className="mt-2 text-xl font-bold leading-none tracking-tighter">
-              {profile.name}
-            </h1>
-            <h2 className="leading-none tracking-tighter">
-              {profile.role.name}
-            </h2>
-            <h3 className="my-1 text-xs font-semibold leading-none tracking-tighter">
-              {profile.seniority.name}
-            </h3>
+            <h2 className="mt-2 text-xl font-bold">{profile.name}</h2>
+            <div className="flex">
+              <h2 className="mr-2 text-lg font-semibold">
+                {profile.role.name}
+              </h2>
+              <h2 className="text-lg">|&nbsp;{profile.seniority.name}</h2>
+            </div>
+
             {profile.location && (
               <div className="flex items-center">
-                <h3 className="text-xs font-semibold uppercase tracking-witde">
-                  {profile.location}
-                </h3>
+                <h2 className="text-base capitalize ">{profile.location}</h2>
               </div>
             )}
           </div>
@@ -50,7 +47,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="my-4 text-sm text-coolGray-100 whitespace-pre-line ">
+          <div className="mt-4 mb-2 text-sm leading-tight whitespace-pre-line text-coolGray-100">
             {profile.description}
           </div>
         </div>

@@ -25,9 +25,9 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
       description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
       preview={preview}
     >
-      <div className="bg-indigo-100 sm:pt-10 pb-24">
-        <div className="min-h-screen bg-white overflow-hidden shadow rounded-lg">
-          <div className="border-b border-gray-200 px-4 py-5 sm:px-6">
+      <div className="pb-40 sm:pt-10">
+        <div className="mt-10 overflow-hidden border-2 border-gray-500 rounded-lg shadow bg-coolGray-900">
+          <div className="px-4 py-5 border-b border-gray-500 sm:px-6">
             <div></div>
             <div className="mt-2 md:flex md:items-center md:justify-between">
               <div className="flex-1 min-w-0">
@@ -37,10 +37,10 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
               </div>
             </div>
           </div>
-          <div className="px-12 py-5 text-coolGray-700">
+          <div className="py-5 px-7 text-coolGray-300">
             <ul className="text-lg">
               {docs?.map(({ title, slug }) => (
-                <li className="hover:text-teal-400" key={slug}>
+                <li className="hover:text-informational" key={slug}>
                   <Link href="/docs/[slug]" as={`/docs/${slug}`}>
                     <a>{title}</a>
                   </Link>
