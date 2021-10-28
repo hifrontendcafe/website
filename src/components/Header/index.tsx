@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import { useSession } from 'next-auth/client';
 import Navbar from '@/components/Navbar';
 import { useZeroScrollY } from './useScroll';
+import { useMenuToggle } from './useMenuToggle';
 
 type HeaderProps = {
   preview: boolean;
@@ -12,6 +13,9 @@ type HeaderProps = {
 const Header: React.FC<HeaderProps> = ({ preview }) => {
   const { logo, menu } = useSettings();
   const isAtTop = useZeroScrollY();
+  const [isOpen, toggle] = useMenuToggle(false);
+
+  const isClosed = !isOpen;
 
   const logoImg = imageBuilder.image(logo).url();
   const router = useRouter();
@@ -26,7 +30,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
     <header
       className={`w-full flex flex-col sticky top-0 z-50 transition duration-300 ${
         preview ? 'pt-10' : ''
-      } ${isAtTop ? '' : 'nav-scroll'}`}
+      } ${isAtTop && isClosed ? '' : 'nav-scroll'}`}
     >
       <Navbar
         logoImg={logoImg}
@@ -34,6 +38,8 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
         pathname={router.pathname}
         navItems={navItems}
         loading={loading}
+        isOpen={isOpen}
+        toggle={toggle}
       />
     </header>
   );
