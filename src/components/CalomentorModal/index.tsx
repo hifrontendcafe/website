@@ -40,19 +40,42 @@ type FormInputs = {
   info: string;
 };
 
+const _getTimes: (slots: TimeSlot[], date: Date) => Date[] = (
+  slots: TimeSlot[],
+  date: Date,
+) => {
+  return slots?.reduce((times, slot) => {
+    const slotDate = new Date(slot.date);
+    if (slotDate.toDateString() === date.toDateString()) {
+      times.push(new Date(slot.date));
+    }
+    return times;
+  }, []);
+};
+
+const _getDates: (slots: TimeSlot[]) => Date[] = (slots: TimeSlot[]) => {
+  return slots?.map((s) => {
+    return new Date(s.date);
+  });
+};
+
 const CalomentorModal: React.FC<ModalProps> = ({
   isOpen,
   close,
-  mentor: { full_name, url_photo, skills, id },
+  mentor: { full_name, url_photo, skills, id, about_me },
   topics,
   slots,
 }) => {
   const [date, setDate] = useState<Date>();
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [errorDate, setErrorDate] = useState<boolean>(false);
+  const [errorCreate, setErrorCreate] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [success, setSuccess] = useState<boolean>(false);
 
-  const [startDate, setStartDate] = useState(new Date());
-  const [timesAvailables, setTimesAvailables] = useState([]);
+  const [startDate, setStartDate] = useState<Date>(new Date());
+  const [timesAvailables, setTimesAvailables] = useState<Date[]>(
+    _getTimes(slots, startDate),
+  );
 
   const [session] = useSession();
 
@@ -62,26 +85,6 @@ const CalomentorModal: React.FC<ModalProps> = ({
     handleSubmit,
     reset,
   } = useForm<FormInputs>();
-
-  const getTimes = (slots: TimeSlot[], date: Date) => {
-    return slots?.reduce((times, slot) => {
-      const slotDate = new Date(slot.date);
-      if (slotDate.toDateString() === date.toDateString()) {
-        times.push(new Date(slot.date));
-      }
-      return times;
-    }, []);
-  };
-
-  const getDates = (slots: TimeSlot[]) => {
-    return slots?.map((s) => {
-      return new Date(s.date);
-    });
-  };
-
-  useEffect(() => {
-    setTimesAvailables(getTimes(slots, startDate));
-  }, []);
 
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e.value == id);
@@ -100,9 +103,10 @@ const CalomentorModal: React.FC<ModalProps> = ({
     st?.filter((s) => s.date.toString() === dateSelected?.getTime().toString());
 
   const onSubmit = async (data: FormInputs) => {
-    setError(false);
+    setErrorDate(false);
+    setErrorCreate(false);
     if (checkDateAvailable(slots, date)?.length === 0) {
-      return setError(true);
+      return setErrorDate(true);
     }
     setLoading(true);
 
@@ -111,7 +115,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
     );
 
     if (!time_slot_id.id) {
-      return setError(true);
+      return setErrorDate(true);
     }
 
     const body: Mentorship = {
@@ -124,24 +128,21 @@ const CalomentorModal: React.FC<ModalProps> = ({
       time_slot_id: time_slot_id.id,
     };
     try {
-      const createMentorshipResponse = await createMentorship(body);
+      await createMentorship(body);
       setLoading(false);
-      if (createMentorshipResponse.status === 200) {
-        return reset();
-      }
-
-      return;
+      setSuccess(true);
+      return reset();
     } catch (error) {
-      return;
+      setErrorCreate(true);
+      return setSuccess(true);
     }
-
-    //TODO: Abrir modal de error
   };
 
   useEffect(() => {
-    setError(false);
+    setErrorDate(false);
+    setErrorCreate(false);
     if (checkDateAvailable(slots, date)?.length === 0) {
-      return setError(true);
+      return setErrorDate(true);
     }
   }, [date]);
 
@@ -192,11 +193,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                             topic={findTopicsName(topic)}
                           />
                         ))}
-                      <p className="py-2 text-gray-800">
-                        Esto es un texto hardcodeado que va a tener que venir de
-                        sanity, hay que ponerle una cantidad límite de
-                        caracteres para que no quede terrible testamento :)
-                      </p>
+                      <p className="py-2 text-gray-800">{about_me}</p>
                       <div className="py-8">
                         <div className="flex items-center py-1">
                           <FontAwesomeIcon
@@ -207,7 +204,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                             Discord de FEC - Salas de Mentorías
                           </span>
                         </div>
-                        {error ? (
+                        {errorDate ? (
                           <span className="pl-2">
                             Debes seleccionar una fecha y hora que este
                             disponible para le mentoria
@@ -233,18 +230,18 @@ const CalomentorModal: React.FC<ModalProps> = ({
                     <DatePicker
                       selected={startDate}
                       onChange={(date: Date) => {
-                        setTimesAvailables(getTimes(slots, date));
+                        setTimesAvailables(_getTimes(slots, date));
                         setDate(date);
                         return setStartDate(date);
                       }}
-                      includeDates={getDates(slots)}
-                      includeTimes={timesAvailables}
+                      includeDates={_getDates(slots)}
+                      includeTimes={
+                        timesAvailables?.length > 0 ? timesAvailables : []
+                      }
                       locale="es"
                       showTimeSelect
                       className="custom_input"
                       minDate={new Date()}
-                      maxDate={addMonths(new Date(), 2)}
-                      showDisabledMonthNavigation
                       dateFormat="dd/MM/yyyy HH:mm"
                       timeIntervals={15}
                     />
@@ -252,7 +249,6 @@ const CalomentorModal: React.FC<ModalProps> = ({
                       onSubmit={handleSubmit(onSubmit)}
                       className="flex flex-col w-full bg-white rounded"
                     >
-                      {console.log(session)}
                       <input
                         type="text"
                         defaultValue={(session && session.user.id) || ''}
@@ -332,22 +328,46 @@ const CalomentorModal: React.FC<ModalProps> = ({
                         )}
                       </div>
 
-                      <div className="flex items-center justify-end p-2 rounded-b">
-                        <button
-                          className="px-6 py-2 text-lg text-white border-0 rounded bg-primary focus:outline-none hover:bg-primarydark"
-                          type="submit"
-                          style={{ transition: 'all .15s ease' }}
-                          disabled={error}
+                      {!success ? (
+                        <div
+                          className={
+                            errorCreate
+                              ? 'flex justify-between'
+                              : 'flex justify-end'
+                          }
                         >
-                          {loading ? (
-                            <div className=" flex justify-center items-center px-9 py-1 text-lg text-white border-0 rounded bg-primary">
-                              <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                          {errorCreate && (
+                            <div>
+                              <span>
+                                Hubo un error al registrar tu mentoría.
+                              </span>
                             </div>
-                          ) : (
-                            'Confirmar'
                           )}
-                        </button>
-                      </div>
+                          <div className="flex items-center justify-end p-2 rounded-b">
+                            <button
+                              className="px-6 py-2 text-lg text-white border-0 rounded bg-primary focus:outline-none hover:bg-primarydark"
+                              type="submit"
+                              style={{ transition: 'all .15s ease' }}
+                              disabled={errorDate}
+                            >
+                              {loading ? (
+                                <div className=" flex justify-center items-center px-9 py-1 text-lg text-white border-0 rounded bg-primary">
+                                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white"></div>
+                                </div>
+                              ) : (
+                                'Confirmar'
+                              )}
+                            </button>
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <span>
+                            Tu mentoría se ha registrado correctamente, para
+                            confirmar la mentoría se te enviará un mail.
+                          </span>
+                        </div>
+                      )}
                     </form>
                   </div>
                 </div>

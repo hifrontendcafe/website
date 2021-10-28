@@ -2,7 +2,7 @@ import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/client';
 import { useEffect, useState } from 'react';
-import { MentorCalomentor, Topic } from '../../lib/types';
+import { MentorCalomentor, TimeSlot, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 
@@ -30,9 +30,14 @@ const topics: Topic[] = [
 
 interface MentorListProps {
   mentors: MentorCalomentor[];
+  slots: TimeSlot[][];
 }
 
-const MentorList: React.FC<MentorListProps> = ({ mentors }) => {
+function _getMentorSlot(slots: TimeSlot[][], mentorId: string) {
+  return slots.find((s) => s[0].user_id === mentorId);
+}
+
+const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
   const [filter, setFilter] = useState<string>();
   const [filteredTopics, setfilteredTopics] = useState<
     MentorCalomentor[] | undefined
@@ -94,6 +99,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors }) => {
                 topics={topics}
                 isLogged={session && !loading}
                 openModal={() => setIsModalOpen(true)}
+                mentorSlots={_getMentorSlot(slots, mentor.id)}
               />
             ),
           )}

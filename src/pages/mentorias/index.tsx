@@ -3,18 +3,20 @@ import { GetStaticProps } from 'next';
 import MentorList from '../../components/MentorList';
 import Layout from '../../components/Layout';
 
-import { MentorCalomentor } from '../../lib/types';
+import { MentorCalomentor, TimeSlot } from '../../lib/types';
 import { getSettings } from '@/lib/api';
 import SectionHero from '@/components/SectionHero';
-import { getMentorList } from '@/lib/calomentorApi';
+import { getAllMentorTimeSlots, getMentorList } from '@/lib/calomentorApi';
 
 type MentorshipsPageProps = {
   mentors: MentorCalomentor[];
+  slots: TimeSlot[][];
   preview?: boolean;
 };
 
 const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
   mentors,
+  slots,
   preview,
 }) => {
   return (
@@ -29,7 +31,7 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
         cta="https://frontend.cafe/docs/guia-para-realizar-mentorias"
       />
       <MentorshipsSteps />
-      <MentorList mentors={mentors} />
+      <MentorList mentors={mentors} slots={slots} />
     </Layout>
   );
 };
@@ -80,10 +82,11 @@ const MentorshipsSteps: React.FC = () => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const mentors = await getMentorList(preview);
+  const slots = await getAllMentorTimeSlots(mentors);
   const settings = await getSettings(preview);
 
   return {
-    props: { mentors, preview, settings },
+    props: { mentors, slots, preview, settings },
     revalidate: 1,
   };
 };

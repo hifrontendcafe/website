@@ -14,6 +14,7 @@ import CalomentorModal from '../CalomentorModal';
 import { getMentorTimeSlots } from '@/lib/calomentorApi';
 interface MentorCardProps {
   mentor: MentorCalomentor;
+  mentorSlots: TimeSlot[];
   topics: Topic[];
   isLogged: boolean;
   openModal: () => void;
@@ -21,25 +22,20 @@ interface MentorCardProps {
 
 const MentorCard: React.FC<MentorCardProps> = ({
   mentor,
+  mentorSlots,
   topics,
   isLogged,
   openModal,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [slots, setSlots] = useState<TimeSlot[] | null>(null);
+  const [slots, setSlots] = useState<TimeSlot[]>(mentorSlots);
 
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e.value == id);
     return topic.value;
   };
 
-  const getTimeSlots = async (mentorId: string) => {
-    const timeslots: TimeSlot[] = await getMentorTimeSlots(mentorId);
-    return setSlots(timeslots);
-  };
-
   const handleContactButton = async () => {
-    await getTimeSlots(mentor.id);
     setIsModalOpen(!isModalOpen);
   };
 
@@ -47,9 +43,12 @@ const MentorCard: React.FC<MentorCardProps> = ({
     <>
       <motion.div
         initial={{ y: 100, opacity: 0 }}
-        animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
+        animate={{
+          y: 0,
+          opacity: mentor.isActive && slots?.length > 0 ? 1 : 0.66,
+        }}
         exit={{ y: -100, opacity: 0 }}
-        className="flex flex-col w-full p-6 rounded-lg bg-coolGray-800 space-between "
+        className="flex flex-col w-full p-6 rounded-lg bg-coolGray-800 space-between"
       >
         <div>
           <div className="flex justify-between w-full">
@@ -66,7 +65,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
             </div>
             <div>
               <div className="mb-4">
-                {!mentor.isActive ? (
+                {!mentor.isActive || !slots || slots?.length === 0 ? (
                   <button className="text-xs uppercase cursor-not-allowed btn btn-secondary">
                     No Disponible
                   </button>

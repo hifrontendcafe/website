@@ -27,6 +27,19 @@ export const getMentorTimeSlots = async (
   }
 };
 
+export const getAllMentorTimeSlots = async (
+  mentors: MentorCalomentor[],
+): Promise<TimeSlot[][]> => {
+  try {
+    const mentorsTimeSlots = await Promise.all(
+      mentors.map((m) => getMentorTimeSlots(m.id)),
+    );
+    return mentorsTimeSlots.filter((m) => m.length > 0);
+  } catch (error) {
+    return error;
+  }
+};
+
 export const getMentorList = async (
   preview = false,
 ): Promise<MentorCalomentor[]> => {
