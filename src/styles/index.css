@@ -140,7 +140,7 @@ html {
 }
 
 .form-user .react-select__menu {
-  @apply bg-coolGray-800 border border-coolGray-500 text-coolGray-50;
+  @apply border bg-coolGray-800 border-coolGray-500 text-coolGray-50;
 }
 
 .form-user .react-select__control {
@@ -169,8 +169,13 @@ html {
   background-color: #f9fafb !important;
   border-radius: 3px !important;
   @apply text-coolGray-800 !important;
-  padding: 8px !important;
+  padding: 10px !important;
   z-index: unset;
+  width: 100%;
+}
+
+.addeventatc.button:hover {
+  background-color: #00c39d !important;
 }
 
 .addeventatc_dropdown {
