@@ -64,7 +64,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
       </div>
 
       <div className="flex flex-col min-h-screen align-center">
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 auto-rows-min">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
           {(filteredTopics && filter ? filteredTopics : mentors)?.map(
             (mentor, index) => (
               <MentorCard
