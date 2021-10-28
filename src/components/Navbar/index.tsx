@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Session } from 'next-auth';
-import { useMenuToggle } from './useMenuToggle';
 import MenuBtn from './MenuBtn';
 import NavItem from './NavItem';
 import UserSettings from './UserSettings';
@@ -11,6 +10,8 @@ interface NavbarProps {
   user?: Session['user'];
   pathname: string;
   logoImg: string;
+  isOpen: boolean;
+  toggle: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({
@@ -19,9 +20,9 @@ const Navbar: React.FC<NavbarProps> = ({
   user,
   pathname,
   logoImg,
+  isOpen,
+  toggle,
 }) => {
-  const [isOpen, toggle] = useMenuToggle(false);
-
   return (
     <nav
       id="site-menu"
