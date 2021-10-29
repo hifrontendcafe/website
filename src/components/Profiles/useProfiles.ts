@@ -2,6 +2,7 @@ import { useState, useEffect, useReducer, Dispatch } from 'react';
 import { ExtendedProfile, ProfileFilters } from '@/lib/types';
 import { filterReducer, FilterProfileAction } from './filterReducer';
 import { useDebounce } from '@/lib/useDebounce';
+import { shuffle } from '@/lib/shuffle';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 function post(url: string, body: Record<string, any>) {
@@ -75,6 +76,8 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
         setFilteredProfiles({ isLoading: false, isError: true, profiles: [] });
       }
 
+      // randomizes profiles in place
+      shuffle(profiles);
       setFilteredProfiles({ isLoading: false, isError: false, profiles });
     };
 
