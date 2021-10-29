@@ -23,7 +23,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
 
   const navItems = menu?.map((item) => {
     const split = item.indexOf('/');
-    return { title: item.substring(0, split), link: item.substring(split) };
+    return { title: item.substring(0, split), link: item.substring(split + 1) };
   });
 
   return (
