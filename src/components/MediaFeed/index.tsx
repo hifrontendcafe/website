@@ -1,5 +1,8 @@
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
   const responsive: ResponsiveType = {
@@ -59,10 +62,48 @@ const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
 
 const SkeletonTwitterCard: React.FC<{ tweet: string }> = ({ tweet }) => {
   return (
-    <div
-      className="w-full p-4 mx-auto mb-2 border border-gray-700 rounded-md text-coolGray-300 bg-coolGray-900"
-      dangerouslySetInnerHTML={{ __html: tweet }}
-    ></div>
+    <div>
+      <div className="w-full p-5 mx-auto mb-2 rounded-md text-coolGray-300 bg-coolGray-900">
+        <div className="flex justify-between">
+          <div className="flex">
+            <div className="w-12 h-12 bg-gray-500 rounded-full"></div>
+            <div className="ml-2">
+              <h2 className="font-semibold font-title">Marty McFLy</h2>
+              <h3 className="text-coolGray-500">@mcfly</h3>
+            </div>
+          </div>
+          <div className="flex mb-auto">
+            <FontAwesomeIcon
+              icon={faTwitter}
+              width="18px"
+              className="fill-current text-lightBlue "
+            />
+            <FontAwesomeIcon
+              icon={faExternalLinkAlt}
+              width="18px"
+              className="ml-3"
+            />
+          </div>
+        </div>
+        <div className="my-2">
+          I think we need a rematch. I don't know, Doc, I guess she felt sorry
+          for him cause her did hit him with the car, hit me with the car. Hey,
+          hey listen guys. Look, I don't wanna mess with no reefer addicts,
+          okay? Crazy drunk drivers. Quiet.
+        </div>
+        <div>
+          <img
+            className="object-cover rounded-md"
+            src="https://images2-mega.cdn.mdstrm.com/meganoticias/2020/11/16/319144_1_5fb2863ad8781.jpg?d=950x535"
+            alt=""
+          />
+        </div>
+      </div>
+      <div
+        className="w-full p-4 mx-auto mb-2 rounded-md text-coolGray-300 bg-coolGray-900"
+        dangerouslySetInnerHTML={{ __html: tweet }}
+      ></div>
+    </div>
   );
 };
 
