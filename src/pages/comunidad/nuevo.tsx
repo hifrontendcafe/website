@@ -473,7 +473,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
             )}
           </div>
         ) : (
-          <div className="p-4 text-coolGray-100">
+          <div className="p-4 bg-gray-900 text-coolGray-100">
             Para poder registrar tu perfil es necesario que inicies sesión con
             Discord. <br />
             <br />
