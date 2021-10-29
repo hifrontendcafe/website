@@ -44,14 +44,14 @@ const MentorCard: React.FC<MentorCardProps> = ({
           <div>
             <div className="mb-4">
               {!mentor.isActive ? (
-                <button className="text-xs uppercase cursor-not-allowed btn btn-secondary">
+                <button className="capitalize cursor-not-allowed text-md btn btn-secondary">
                   No Disponible
                 </button>
               ) : mentor.isActive && mentor.calendly && isLogged ? (
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
-                    className="text-xs uppercase border text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-300 hover:border-coolGray-300"
+                    className="capitalize border text-md text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-50 hover:border-coolGray-50"
                   >
                     <span>Solicitar mentoría</span>
                   </a>
@@ -59,7 +59,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
               ) : (
                 <button
                   onClick={() => openModal()}
-                  className="text-xs uppercase border text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-300 hover:border-coolGray-300gi"
+                  className="capitalize border text-md text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-50 hover:border-coolGray-50"
                 >
                   Solicitar mentoría
                 </button>
@@ -108,7 +108,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       <div className="flex flex-col justify-between h-full">
         <div className="flex">
           <div>
-            <p className="text-xs leading-relaxed text-coolGray-100 md:min-h-64">
+            <p className="leading-relaxed text-md text-coolGray-400 md:min-h-64">
               {mentor.description ? mentor.description : '---'}
             </p>
           </div>

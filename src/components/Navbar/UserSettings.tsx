@@ -19,7 +19,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
         style={{ transition: 'all .15s ease' }}
         onClick={() => signIn('discord')}
       >
-        <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-2" />
+        <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-3" />
         Iniciar Sesión
       </button>
     );

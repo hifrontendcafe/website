@@ -24,7 +24,7 @@ const CMYKItemCard: React.FC<CMYKItemProps> = ({ project }) => {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            className="btn px-9 lg:px-14 btn-primary"
+            className="flex items-center btn px-9 lg:px-14 btn-primary"
           >
             Demo
           </a>

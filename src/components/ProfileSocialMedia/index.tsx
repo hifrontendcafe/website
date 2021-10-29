@@ -15,7 +15,7 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
     setInvalidSocialNetworks({ ...invalidSocialNetworks, [value]: true });
   };
   return (
-    <div className="flex items-center space-x-1">
+    <div className="flex items-center space-x-2">
       {Object.keys(socialMedia)?.map(
         (value) =>
           !invalidSocialNetworks[value] && (
@@ -29,8 +29,8 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
                 onErrorCapture={() => onImageError(value)}
                 onError={() => onImageError(value)}
                 alt={value}
-                width={14}
-                height={14}
+                width={16}
+                height={16}
               />
             </a>
           ),

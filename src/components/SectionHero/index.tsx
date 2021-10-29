@@ -14,11 +14,13 @@ const SectionHero: React.FC<SectionHeroProps> = ({ title, paragraph, cta }) => {
         <div className="text-lg md:text-center">
           <h1 className="title">{title}</h1>
           {paragraph && (
-            <p className="max-w-4xl mx-auto my-4 paragraph">{paragraph}</p>
+            <p className="max-w-4xl mx-auto my-4 font-medium paragraph">
+              {paragraph}
+            </p>
           )}
           <div className="flex md:justify-center">
             {cta && (
-              <span className="flex cursor-pointer md:text-xl text-informational">
+              <span className="flex items-center font-medium cursor-pointer md:text-2xl text-informational">
                 <a target="_blank" href={cta} rel="noreferrer" className="mr-2">
                   Conoce más sobre la iniciativa
                 </a>

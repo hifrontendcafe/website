@@ -37,7 +37,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     <div>
       <div className="flex justify-between">
         <h1 className="mb-4 text-2xl font-medium text-coolGray-50">
-          Solicita una mentoría segun especialidad
+          Solicita una mentoría según especialidad
         </h1>
       </div>
       <div className="relative inline-block w-full mb-6 md:w-1/2 lg:w-1/3">

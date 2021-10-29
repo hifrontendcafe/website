@@ -13,25 +13,27 @@ const Profiles: React.FC<ProfilesProps> = ({
   profiles,
 }) => {
   if (isLoading)
-    return <div className="w-full mt-4 text-center">Cargando...</div>;
+    return (
+      <div className="w-full mt-4 text-center text-primary">Cargando...</div>
+    );
 
   if (isError)
     return (
-      <div className="w-full mt-4 text-center">
+      <div className="w-full mt-4 text-center text-primary">
         Hubo un error al cargar los perfiles, intente de nuevo
       </div>
     );
 
   if (profiles.length === 0) {
     return (
-      <div className="w-full mt-4 text-center">
+      <div className="w-full mt-4 text-center text-primary">
         No se han encontrado perfiles con los filtros aplicados.
       </div>
     );
   }
 
   return (
-    <div className="grid gap-12 text-coolGray-300 md:grid-cols-2 place-content-stretch">
+    <div className="grid gap-8 text-coolGray-300 md:grid-cols-3 place-content-stretch">
       {profiles.map((profile) => (
         <ProfileCard key={profile.id} profile={profile} />
       ))}

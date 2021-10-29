@@ -32,9 +32,7 @@ module.exports = {
     screens: Object.fromEntries(
       Object.entries(defaultTheme.screens).filter(([key]) => key !== '2xl'),
     ),
-    fontFamily: {
-      sans: ['Inter', 'sans-serif'],
-    },
+
     container: {
       padding: {
         DEFAULT: '1rem',
@@ -61,7 +59,8 @@ module.exports = {
 
     extend: {
       fontFamily: {
-        sans: ['Lexend Deca', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        title: ['Lexend Deca', 'sans-serif'],
       },
       fontSize: {
         xs: '.75rem',
@@ -86,9 +85,9 @@ module.exports = {
         greenFec: '#00C39D',
       },
       textColor: {
-        primary: colors.gray[50],
-        secondary: colors.gray[300],
-        tertiary: colors.gray[200],
+        primary: tailwindColors.coolGray[50],
+        secondary: tailwindColors.coolGray[300],
+        tertiary: tailwindColors.coolGray[200],
         accent: '#6366F1',
         informational: '#4991DA',
         lightBlue: '#00CCFF',

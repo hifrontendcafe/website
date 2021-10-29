@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -52,11 +53,11 @@ html {
   }
 
   .btn-secondary {
-    @apply border-2 border-gray-500 text-coolGray-50;
+    @apply border text-coolGray-50;
   }
 
   .btn-secondary:hover {
-    @apply shadow bg-coolGray-900;
+    @apply border shadow text-greenFec border-greenFec;
   }
 
   .btn-border {
@@ -64,7 +65,7 @@ html {
   }
 
   .btn-border:hover {
-    @apply text-purple-400 border-2 border-purple-400 shadow;
+    @apply border shadow text-greenFec border-greenFec;
   }
 
   .social-circle {
@@ -72,11 +73,11 @@ html {
   }
 
   .title {
-    @apply text-4xl font-extrabold leading-normal text-primary md:text-5xl lg:text-6xl;
+    @apply text-4xl font-extrabold leading-normal text-primary md:text-5xl lg:text-6xl font-title;
   }
 
   .subtitle {
-    @apply text-2xl font-extrabold leading-normal text-primary md:text-3xl lg:text-4xl;
+    @apply text-2xl font-extrabold leading-normal text-primary md:text-3xl lg:text-4xl font-title;
   }
 
   .paragraph {
@@ -84,7 +85,7 @@ html {
   }
 
   .cards-title {
-    @apply text-lg font-extrabold leading-normal text-primary md:text-xl lg:text-2xl;
+    @apply text-lg font-extrabold leading-normal text-primary md:text-xl lg:text-2xl font-title;
   }
 
   .cards-paragraph {
@@ -167,7 +168,7 @@ html {
 /* add calendar button styles */
 .addeventatc.button {
   background-color: #f9fafb !important;
-  border-radius: 3px !important;
+  border-radius: 6px !important;
   @apply text-coolGray-800 !important;
   padding: 10px !important;
   z-index: unset;
