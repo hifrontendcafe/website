@@ -67,18 +67,6 @@ function signInDiscord() {
 const NavItem: React.FC<NavItemProps> = ({ title, link, pathname }) => {
   const isActive = pathname === `/${link}`;
 
-  if (link === 'perfil') {
-    return (
-      <ForwardedAnchor
-        isActive={isActive}
-        onClick={() => signInDiscord()}
-        type="button"
-      >
-        {title}
-      </ForwardedAnchor>
-    );
-  }
-
   return (
     <Link href={`/${link}`} passHref>
       <ForwardedAnchor type="a" isActive={isActive}>
