@@ -77,6 +77,7 @@ module.exports = {
         },
         blueGray: tailwindColors.blueGray,
         coolGray: tailwindColors.coolGray,
+        coolGrayDark: '#050C1A',
         ellipseBlue: '#142A4A',
         profileRing: '#00C39D',
         violet: '#6366F1',

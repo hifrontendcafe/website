@@ -108,7 +108,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       <div className="flex flex-col justify-between h-full">
         <div className="flex">
           <div>
-            <p className="leading-relaxed text-md text-coolGray-400 md:min-h-64">
+            <p className="leading-relaxed text-md text-coolGray-300 md:min-h-64">
               {mentor.description ? mentor.description : '---'}
             </p>
           </div>

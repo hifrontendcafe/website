@@ -10,6 +10,7 @@ import React, { useState, useEffect } from 'react';
 import prisma from '../../lib/prisma';
 import Select from 'react-select';
 import Resizer from 'react-image-file-resizer';
+import SectionHero from '@/components/SectionHero';
 
 type NewProfileProps = {
   preview?: boolean;
@@ -157,10 +158,13 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
-      <div className="px-4 pt-10 pb-10 md:pt-16 sm:px-6">
-        <h1 className="mt-2 text-center title">Tu perfil</h1>
-      </div>
-      <div className="overflow-hidden border-2 rounded-lg shadow bg-coolGray-900">
+      <SectionHero
+        title="Tu perfil"
+        paragraph="Buscamos darle visibilidad quienes participan dentro del servidor, principalmente a quienes se encuentren en búsqueda de su primera experiencia. 
+        Si creas tu perfil aparecerás en la sección Comunidad donde recruiters y empresas puedan referirse a la hora de buscar talento."
+      />
+
+      <div className="overflow-hidden border-2 rounded-lg shadow border-coolGray-600 bg-coolGray-900">
         {message.text && (
           <div
             className={`text-center text-coolGray-50 rounded p-4 m-4 ${
@@ -173,7 +177,9 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         {session ? (
           <div>
             {loadingForm ? (
-              <div className="p-4">Enviando Formulario...</div>
+              <div className="p-4 text-coolGray-100">
+                Enviando Formulario...
+              </div>
             ) : (
               <form
                 onSubmit={handleSubmit(onSubmit, onError)}
@@ -187,7 +193,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </label>
                     <div className="relative z-10">
                       <input
-                        className={`w-full bg-coolGray-800 px-3 py-2 text-sm leading-tight text-coolGray-200 border rounded appearance-none focus:outline-none focus:shadow-outline ${
+                        className={`input ${
                           errors.discord && 'border-red-400'
                         }`}
                         type="text"
@@ -205,9 +211,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </label>
                     <div className="relative">
                       <input
-                        className={`w-full bg-coolGray-800 px-3 py-2 text-sm leading-tight text-coolGray-200 border rounded appearance-none focus:outline-none focus:shadow-outline ${
-                          errors.email && 'border-red-400'
-                        }`}
+                        className={`input ${errors.email && 'border-red-400'}`}
                         type="email"
                         required
                         placeholder="Ingresa tu email"
@@ -222,9 +226,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                       Nombre y Apellido*
                     </label>
                     <input
-                      className={`w-full px-3 py-2 text-sm leading-tight text-coolGray-200 bg-coolGray-800 border rounded appearance-none focus:outline-none focus:shadow-outline ${
-                        errors.name && 'border-red-400'
-                      }`}
+                      className={`input ${errors.name && 'border-red-400'}`}
                       type="text"
                       placeholder="Ingresa nombre completo"
                       {...register('name', { required: true })}
@@ -236,7 +238,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </label>
                     <div className="relative">
                       <input
-                        className={`w-full px-3 py-2 text-sm leading-tight text-coolGray-200 bg-coolGray-800  border rounded appearance-none focus:outline-none focus:shadow-outline ${
+                        className={`input focus:outline-none focus:shadow-outline ${
                           errors.location && 'border-red-400'
                         }`}
                         type="text"
@@ -255,7 +257,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </p>
                     <div className="relative">
                       <input
-                        className={`w-full px-3 py-2 text-sm leading-tight text-coolGray-200 bg-coolGray-800  border rounded appearance-none focus:outline-none focus:shadow-outline ${
+                        className={`input ${
                           errors.twitter && 'border-red-400'
                         }`}
                         type="url"
@@ -274,7 +276,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </p>
                     <div className="relative">
                       <input
-                        className={`w-full px-3 py-2 text-sm leading-tight text-coolGray-200 bg-coolGray-800  border rounded appearance-none focus:outline-none focus:shadow-outline ${
+                        className={`input ${
                           errors.linkedin && 'border-red-400'
                         }`}
                         type="url"
@@ -293,9 +295,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </p>
                     <div className="relative">
                       <input
-                        className={`w-full px-3 py-2 text-sm leading-tight text-coolGray-200 bg-coolGray-800  border rounded appearance-none focus:outline-none focus:shadow-outline ${
-                          errors.github && 'border-red-400'
-                        }`}
+                        className={`input ${errors.github && 'border-red-400'}`}
                         type="url"
                         placeholder="https://github.com/usuario"
                         {...register('github')}
@@ -311,7 +311,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </p>
                     <div className="relative">
                       <input
-                        className={`w-full px-3 py-2 text-sm leading-tight text-coolGray-200 bg-coolGray-800  border rounded appearance-none focus:outline-none focus:shadow-outline ${
+                        className={`input ${
                           errors.portfolio && 'border-red-400'
                         }`}
                         type="url"
@@ -327,9 +327,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </label>
                     <div className="relative">
                       <select
-                        className={`w-full px-3 py-2 text-sm leading-tight text-coolGray-200 bg-coolGray-800  border rounded focus:outline-none focus:shadow-outline ${
-                          errors.roleId && 'border-red-400'
-                        }`}
+                        className={`input ${errors.roleId && 'border-red-400'}`}
                         {...register('roleId', { required: true })}
                       >
                         {roles.map((role) => (
@@ -347,7 +345,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </label>
                     <div className="relative">
                       <select
-                        className={`w-full px-3 py-2 text-sm leading-tight text-coolGray-200 bg-coolGray-800  border rounded appearance-none focus:outline-none focus:shadow-outline ${
+                        className={`input ${
                           errors.seniorityId && 'border-red-400'
                         }`}
                         {...register('seniorityId', { required: true })}
@@ -433,7 +431,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   <textarea
                     rows={5}
                     required
-                    className={`w-full px-3 py-2 text-sm leading-tight text-coolGray-200 bg-coolGray-800  border rounded appearance-none focus:outline-none focus:shadow-outline ${
+                    className={`input ${
                       errors.description && 'border-red-400'
                     }`}
                     {...register('description', { required: true })}

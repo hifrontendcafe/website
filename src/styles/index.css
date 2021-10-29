@@ -41,7 +41,7 @@ html {
 
 @layer components {
   .btn {
-    @apply px-6 py-2 text-sm font-medium rounded-md;
+    @apply px-6 py-2 text-sm font-semibold rounded-md;
   }
 
   .btn-primary {
@@ -99,6 +99,10 @@ html {
   .nav-scroll {
     @apply items-center bg-gray-900 nav-shadow;
   }
+
+  .input {
+    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-coolGrayDark text-coolGray-200 border-coolGray-600;
+  }
 }
 
 /* react-select filter styles */
@@ -141,15 +145,15 @@ html {
 }
 
 .form-user .react-select__menu {
-  @apply border bg-coolGray-800 border-coolGray-500 text-coolGray-50;
+  @apply border bg-coolGrayDark border-coolGray-700 text-coolGray-50;
 }
 
 .form-user .react-select__control {
-  @apply bg-coolGray-800 border-coolGray-300 text-coolGray-300;
+  @apply bg-coolGrayDark border-coolGray-700 text-coolGray-300;
 }
 
 .form-user .react-select__option--is-focused {
-  @apply bg-coolGray-700;
+  @apply bg-coolGray-500;
 }
 
 .form-user .react-select__control .react-select__indicator {
@@ -157,7 +161,7 @@ html {
 }
 
 .form-user .react-select__value-container .react-select__placeholder {
-  /* @apply text-sm text-coolGray-600; */
+  /* @apply text-sm bg-coolGray-500; */
 }
 /* end react-select styles */
 

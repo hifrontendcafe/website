@@ -17,11 +17,11 @@ type CMYKProjectsProps = {
 };
 
 const cmykVersions = [
-  { version: 'cmyk-1', name: '1' },
-  { version: 'cmyk-2', name: '2' },
-  { version: 'cmyk-3', name: '3' },
-  { version: 'cmyk-4', name: '4' },
-  { version: 'cmyk-5', name: '5' },
+  { version: 'cmyk-1', name: 'CMYK 1' },
+  { version: 'cmyk-2', name: 'CMYK 2' },
+  { version: 'cmyk-3', name: 'CMYK 3' },
+  { version: 'cmyk-4', name: 'CMYK 4' },
+  { version: 'cmyk-5', name: 'CMYK 5' },
 ];
 
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({

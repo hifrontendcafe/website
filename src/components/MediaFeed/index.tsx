@@ -20,13 +20,15 @@ const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
   return (
     <section id="media-feed" className="relative w-full">
       <div className="px-5 py-12 mx-auto">
-        <div className="flex items-center pb-12 md:pl-24">
+        <div className="flex items-center pb-12 md:pl-2">
           <img
-            className="w-10 h-10"
+            className="w-6 h-6"
             src="/icons/twitter.svg"
             alt="twitter-logo"
           />
-          <h1 className="pl-2 twitter-blue subtitle">@frontendcafe</h1>
+          <h1 className="pl-2 text-xl font-medium twitter-blue subtitle">
+            @frontendcafe
+          </h1>
         </div>
 
         <Carousel

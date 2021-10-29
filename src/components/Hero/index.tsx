@@ -1,6 +1,10 @@
 import { motion } from 'framer-motion';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faExternalLinkAlt,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import Link from 'next/link';
 
 interface HeroProps {
@@ -54,7 +58,14 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
                 />
               </button>
             </a>
-            <div>Conoce las iniciativas</div>
+            <div className="flex items-center justify-center font-medium text-coolGray-50">
+              Conoce las iniciativas
+              <FontAwesomeIcon
+                icon={faChevronDown}
+                width="16px"
+                className="ml-3 animate-bounce"
+              />
+            </div>
           </div>
         </div>
       </div>
