@@ -32,6 +32,7 @@ const Card = ({ card, href, onClick }: FeaturedCardsItemProps, ref) => {
         </div>
         <button>
           <a
+            ref={ref}
             href={href}
             onClick={onClick}
             className="flex items-center text-sm font-normal normal-case lg:text-lg text-informational hover:underline"
