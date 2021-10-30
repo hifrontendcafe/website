@@ -1,6 +1,12 @@
-import { useState } from 'react';
+import {
+  faGithubAlt,
+  faLinkedinIn,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Link from 'next/link';
+import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 
-import Image from 'next/image';
 type Props = {
   socialMedia: SocialMedia;
 };
@@ -10,30 +16,47 @@ type SocialMedia = {
 };
 
 const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
-  const [invalidSocialNetworks, setInvalidSocialNetworks] = useState({});
-  const onImageError = (value: string) => {
-    setInvalidSocialNetworks({ ...invalidSocialNetworks, [value]: true });
-  };
   return (
     <div className="flex items-center space-x-2">
-      {Object.keys(socialMedia)?.map(
-        (value) =>
-          !invalidSocialNetworks[value] && (
-            <a
-              key={value}
-              className="flex items-center justify-center w-6 h-6 rounded-full hover:opacity-75 bg-coolGray-700"
-              href={socialMedia[value]}
-            >
-              <Image
-                src={`/img/${value}.svg`}
-                onErrorCapture={() => onImageError(value)}
-                onError={() => onImageError(value)}
-                alt={value}
-                width={16}
-                height={16}
-              />
-            </a>
-          ),
+      {socialMedia.twitter && (
+        <Link href={socialMedia.twitter}>
+          <a
+            target="_blank"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-coolGray-50 bg-coolGray-700"
+          >
+            <FontAwesomeIcon className="w-4 h-4" icon={faTwitter} />
+          </a>
+        </Link>
+      )}
+      {socialMedia.web && (
+        <Link href={socialMedia.web}>
+          <a
+            target="_blank"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-coolGray-50 bg-coolGray-700"
+          >
+            <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
+          </a>
+        </Link>
+      )}
+      {socialMedia.linkedin && (
+        <Link href={socialMedia.linkedin}>
+          <a
+            target="_blank"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-coolGray-50 bg-coolGray-700"
+          >
+            <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
+          </a>
+        </Link>
+      )}
+      {socialMedia.github && (
+        <Link href={socialMedia.github}>
+          <a
+            target="_blank"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-coolGray-50 bg-coolGray-700"
+          >
+            <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
+          </a>
+        </Link>
       )}
     </div>
   );
