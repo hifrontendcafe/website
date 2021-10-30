@@ -86,10 +86,10 @@ const SkeletonTwitterCard: React.FC<{ tweet: string }> = ({ tweet }) => {
           </div>
         </div>
         <div className="my-2">
-          I think we need a rematch. I don't know, Doc, I guess she felt sorry
-          for him cause her did hit him with the car, hit me with the car. Hey,
-          hey listen guys. Look, I don't wanna mess with no reefer addicts,
-          okay? Crazy drunk drivers. Quiet.
+          I think we need a rematch. I don&apos;t know, Doc, I guess she felt
+          sorry for him cause her did hit him with the car, hit me with the car.
+          Hey, hey listen guys. Look, I don&apos;t wanna mess with no reefer
+          addicts, okay? Crazy drunk drivers. Quiet.
         </div>
         <div>
           <img
