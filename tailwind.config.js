@@ -97,7 +97,11 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      opacity: ['disabled'],
+    },
+  },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms')({ strategy: 'class' }),

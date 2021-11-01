@@ -1,4 +1,10 @@
-import { useState, useEffect, useReducer, Dispatch } from 'react';
+import {
+  useState,
+  useEffect,
+  useReducer,
+  Dispatch,
+  SetStateAction,
+} from 'react';
 import { ExtendedProfile, ProfileFilters } from '@/lib/types';
 import { filterReducer, FilterProfileAction } from './filterReducer';
 import { useDebounce } from '@/lib/useDebounce';
@@ -36,20 +42,33 @@ const initialProfileFilters: ProfileFilters = {
 /**
  * Minimum time between requests to database (in ms)
  */
-const debounceTime = 300;
+const DEBOUNCE_TIME = 300;
+
+/**
+ * Number of profiles per page
+ */
+const ITEMS_PER_PAGE = 18;
 
 interface UseProfilesResult {
   filters: ProfileFilters;
   dispatchFilter: Dispatch<FilterProfileAction>;
   isLoading: boolean;
   isError: boolean;
-  filteredProfiles: ExtendedProfile[];
+  pageProfiles: ExtendedProfile[];
+  page: number;
+  pagesCount: number;
+  setPage: Dispatch<SetStateAction<number>>;
 }
 
 export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
   const [filters, dispatchFilter] = useReducer(
     filterReducer,
     initialProfileFilters,
+  );
+
+  const [page, setPage] = useState(1);
+  const [pagesCount, setPageCount] = useState(
+    Math.ceil(profiles.length / ITEMS_PER_PAGE),
   );
 
   const [filteredProfiles, setFilteredProfiles] =
@@ -59,7 +78,7 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
       profiles,
     });
 
-  const debouncedFilters = useDebounce(filters, debounceTime);
+  const debouncedFilters = useDebounce(filters, DEBOUNCE_TIME);
 
   useEffect(() => {
     setFilteredProfiles({ isLoading: true, isError: false, profiles: [] });
@@ -78,17 +97,32 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
 
       // randomizes profiles in place
       shuffle(profiles);
+
+      // go back to page 1 in new search
+      setPage(1);
+
+      setPageCount(Math.ceil(profiles.length / ITEMS_PER_PAGE));
+
       setFilteredProfiles({ isLoading: false, isError: false, profiles });
     };
 
     fn();
   }, [debouncedFilters]);
 
+  const offset = (page - 1) * ITEMS_PER_PAGE;
+  const pageProfiles = filteredProfiles.profiles.slice(
+    offset,
+    offset + ITEMS_PER_PAGE,
+  );
+
   return {
     filters,
     dispatchFilter,
-    filteredProfiles: filteredProfiles.profiles,
+    pageProfiles: pageProfiles,
     isLoading: filteredProfiles.isLoading,
     isError: filteredProfiles.isError,
+    page,
+    pagesCount,
+    setPage,
   };
 }

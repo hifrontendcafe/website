@@ -19,8 +19,16 @@ const Profiles: React.FC<PostsPageProps> = ({
   roles,
   technologies,
 }) => {
-  const { filters, dispatchFilter, filteredProfiles, isLoading, isError } =
-    useProfiles(profiles);
+  const {
+    filters,
+    dispatchFilter,
+    isLoading,
+    isError,
+    page,
+    setPage,
+    pagesCount,
+    pageProfiles,
+  } = useProfiles(profiles);
 
   return (
     <div className="min-h-screen mx-auto">
@@ -34,10 +42,35 @@ const Profiles: React.FC<PostsPageProps> = ({
         />
       </div>
       <ProfileList
-        profiles={filteredProfiles}
+        profiles={pageProfiles}
         isLoading={isLoading}
         isError={isError}
       />
+      <div className="flex items-center justify-between my-4 px-8">
+        <div>
+          <button
+            className="btn-secondary rounded-md px-2 py-1 disabled:opacity-50"
+            disabled={page === 1}
+            onClick={() => setPage((page) => page - 1)}
+          >
+            ←
+          </button>
+          <span className="px-2">
+            Página {page} de {pagesCount}
+          </span>
+          <button
+            className="btn-secondary rounded-md px-2 py-1 disabled:opacity-50"
+            disabled={page === pagesCount}
+            onClick={() => setPage((page) => page + 1)}
+          >
+            →
+          </button>
+        </div>
+        <span>
+          Total de <span className="font-semibold">{pageProfiles.length}</span>{' '}
+          perfiles
+        </span>
+      </div>
     </div>
   );
 };
