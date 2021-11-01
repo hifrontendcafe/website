@@ -57,6 +57,7 @@ interface UseProfilesResult {
   pageProfiles: ExtendedProfile[];
   page: number;
   pagesCount: number;
+  totalProfiles: number;
   setPage: Dispatch<SetStateAction<number>>;
 }
 
@@ -123,6 +124,7 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
     isError: filteredProfiles.isError,
     page,
     pagesCount,
+    totalProfiles: profiles.length,
     setPage,
   };
 }

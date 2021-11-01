@@ -28,6 +28,7 @@ const Profiles: React.FC<PostsPageProps> = ({
     setPage,
     pagesCount,
     pageProfiles,
+    totalProfiles,
   } = useProfiles(profiles);
 
   return (
@@ -67,7 +68,7 @@ const Profiles: React.FC<PostsPageProps> = ({
           </button>
         </div>
         <span>
-          Total de <span className="font-semibold">{pageProfiles.length}</span>{' '}
+          Total de <span className="font-semibold">{totalProfiles}</span>{' '}
           perfiles
         </span>
       </div>
