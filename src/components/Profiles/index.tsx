@@ -46,7 +46,7 @@ const Profiles: React.FC<PostsPageProps> = ({
         isLoading={isLoading}
         isError={isError}
       />
-      <div className="flex items-center justify-between my-4 px-8">
+      <div className="flex text-primary items-center justify-between my-4">
         <div>
           <button
             className="btn-secondary rounded-md px-2 py-1 disabled:opacity-50"
