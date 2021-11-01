@@ -5,18 +5,17 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import Link from 'next/link';
-
 interface HeroProps {
   title?: string;
+  handleIniciativasClick?: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ title }) => {
+const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
   return (
     <div className="relative py-32 mx-auto bg-white bg-opacity-0">
       <div className="flex items-center justify-center h-full bg-center bg-cover text-coolGray-50 md:justify-around">
         <div className="z-10 w-auto text-center">
-          <div>
+          <div className="flex flex-col items-center">
             <div className="mb-16">
               <p className="text-5xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl font-title">
                 <motion.span
@@ -58,14 +57,17 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
                 />
               </button>
             </a>
-            <div className="flex items-center justify-center font-medium text-coolGray-50">
+            <button
+              onClick={handleIniciativasClick}
+              className="flex items-center justify-center self-center font-medium text-coolGray-50"
+            >
               Conoce las iniciativas
               <FontAwesomeIcon
                 icon={faChevronDown}
                 width="16px"
                 className="ml-3 animate-bounce"
               />
-            </div>
+            </button>
           </div>
         </div>
       </div>
