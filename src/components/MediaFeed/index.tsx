@@ -3,8 +3,23 @@ import 'react-multi-carousel/lib/styles.css';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { EmbeddedTweet } from '@/lib/types';
+import Image from 'next/image';
 
-const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
+interface TwitterCardProps {
+  id: string;
+  text: string;
+  author: EmbeddedTweet['author'];
+  media?: EmbeddedTweet['media'];
+  created_at: string;
+  referenced_tweets?: EmbeddedTweet['referenced_tweets'];
+}
+
+interface MediaFeedProps {
+  tweets: EmbeddedTweet[];
+}
+
+const MediaFeed: React.FC<MediaFeedProps> = ({ tweets }) => {
   const responsive: ResponsiveType = {
     large: {
       breakpoint: { max: 3000, min: 1080 },
@@ -51,58 +66,110 @@ const MediaFeed: React.FC<{ tweets: string[] }> = ({ tweets }) => {
           autoPlay
           autoPlaySpeed={5000}
         >
-          {tweets.map((tweet) => (
-            <SkeletonTwitterCard key={tweet} tweet={tweet} />
-          ))}
+          {tweets.map(
+            ({ id, author, text, media, created_at, referenced_tweets }) => (
+              <TwitterCard
+                key={id}
+                id={id}
+                text={text}
+                author={author}
+                media={media}
+                created_at={created_at}
+                referenced_tweets={referenced_tweets}
+              />
+            ),
+          )}
         </Carousel>
       </div>
     </section>
   );
 };
 
-const SkeletonTwitterCard: React.FC<{ tweet: string }> = ({ tweet }) => {
+const TwitterCard: React.FC<TwitterCardProps> = ({
+  id,
+  text,
+  author,
+  media,
+  created_at,
+  referenced_tweets,
+}) => {
+  const tweetUrl = `https://twitter.com/${author.username}/status/${id}`;
+  const authorUrl = `https://twitter.com/${author.username}`;
+  const quoteTweet =
+    referenced_tweets && referenced_tweets.find((t) => t.type === 'quoted');
+
+  const retweet =
+    referenced_tweets && referenced_tweets.find((t) => t.type === 'retweeted');
+
+  if (retweet) {
+    return (
+      <TwitterCard
+        key={retweet.id}
+        id={retweet.id}
+        text={retweet.text}
+        author={retweet.author}
+        created_at={retweet.created_at}
+        media={retweet.media}
+      />
+    );
+  }
+
   return (
     <div>
       <div className="w-full p-5 mx-auto mb-2 rounded-md text-coolGray-300 bg-coolGray-900">
         <div className="flex justify-between">
-          <div className="flex">
-            <div className="w-12 h-12 bg-gray-500 rounded-full"></div>
+          <a href={authorUrl} className="flex">
+            <Image
+              alt={author.username}
+              height={48}
+              width={48}
+              src={author.profile_image_url}
+              className="w-12 rounded-full"
+            />
             <div className="ml-2">
-              <h2 className="font-semibold font-title">Marty McFLy</h2>
-              <h3 className="text-coolGray-500">@mcfly</h3>
+              <h2 className="font-semibold font-title">{author.name}</h2>
+              <h3 className="text-coolGray-500">@{author.username}</h3>
             </div>
-          </div>
+          </a>
           <div className="flex mb-auto">
             <FontAwesomeIcon
               icon={faTwitter}
               width="18px"
               className="fill-current text-lightBlue "
             />
-            <FontAwesomeIcon
-              icon={faExternalLinkAlt}
-              width="18px"
-              className="ml-3"
-            />
+            <a href={tweetUrl}>
+              <FontAwesomeIcon
+                icon={faExternalLinkAlt}
+                width="18px"
+                className="ml-3"
+              />
+            </a>
           </div>
         </div>
-        <div className="my-2">
-          I think we need a rematch. I don&apos;t know, Doc, I guess she felt
-          sorry for him cause her did hit him with the car, hit me with the car.
-          Hey, hey listen guys. Look, I don&apos;t wanna mess with no reefer
-          addicts, okay? Crazy drunk drivers. Quiet.
-        </div>
+        <div className="my-2">{text}</div>
         <div>
-          <img
-            className="object-cover rounded-md"
-            src="https://images2-mega.cdn.mdstrm.com/meganoticias/2020/11/16/319144_1_5fb2863ad8781.jpg?d=950x535"
-            alt=""
-          />
+          {media
+            ? media.map((img) => (
+                <img
+                  key={img.url}
+                  className="object-cover rounded-md"
+                  src={img.url}
+                  alt={img.alt_text}
+                />
+              ))
+            : null}
         </div>
+        {quoteTweet ? (
+          <TwitterCard
+            key={quoteTweet.id}
+            id={quoteTweet.id}
+            text={quoteTweet.text}
+            author={quoteTweet.author}
+            created_at={quoteTweet.created_at}
+            media={quoteTweet.media}
+          />
+        ) : null}
       </div>
-      <div
-        className="w-full p-4 mx-auto mb-2 rounded-md text-coolGray-300 bg-coolGray-900"
-        dangerouslySetInnerHTML={{ __html: tweet }}
-      ></div>
     </div>
   );
 };
