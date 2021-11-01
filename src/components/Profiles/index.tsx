@@ -5,6 +5,7 @@ import { useProfiles } from './useProfiles';
 
 import FilterForm from '@/components/ProfilesFilterForm';
 import ProfileList from '@/components/ProfileList';
+import PaginationBar from './PaginationBar';
 
 interface PostsPageProps {
   profiles: ExtendedProfile[];
@@ -53,31 +54,12 @@ const Profiles: React.FC<PostsPageProps> = ({
         isLoading={isLoading}
         isError={isError}
       />
-      <div className="flex text-primary items-center justify-between my-4">
-        <div>
-          <button
-            className="btn-secondary rounded-md px-2 py-1 disabled:opacity-50"
-            disabled={page === 1}
-            onClick={() => setPage((page) => page - 1)}
-          >
-            ←
-          </button>
-          <span className="px-2">
-            Página {page} de {pagesCount}
-          </span>
-          <button
-            className="btn-secondary rounded-md px-2 py-1 disabled:opacity-50"
-            disabled={page === pagesCount}
-            onClick={() => setPage((page) => page + 1)}
-          >
-            →
-          </button>
-        </div>
-        <span>
-          Total de <span className="font-semibold">{totalProfiles}</span>{' '}
-          perfiles
-        </span>
-      </div>
+      <PaginationBar
+        page={page}
+        pagesCount={pagesCount}
+        setPage={setPage}
+        totalProfiles={totalProfiles}
+      />
     </div>
   );
 };
