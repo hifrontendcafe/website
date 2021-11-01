@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { ExtendedProfile } from '@/lib/types';
 import { useProfiles } from './useProfiles';
@@ -31,9 +31,15 @@ const Profiles: React.FC<PostsPageProps> = ({
     totalProfiles,
   } = useProfiles(profiles);
 
+  const profileListRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    profileListRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [page]);
+
   return (
     <div className="min-h-screen mx-auto">
-      <div className="max-w mb-24">
+      <div ref={profileListRef} className="max-w mb-24">
         <FilterForm
           filters={filters}
           dispatch={dispatchFilter}
