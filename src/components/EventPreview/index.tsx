@@ -84,32 +84,33 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           <h1 className="mb-3 text-xl font-medium leading-tight text-coolGray-100 title-font">
             {event.title}
           </h1>
-          <p className="font-medium break-all text-coolGray-200 title-font ">
-            {format(new Date(event.date), 'd  MMMM - HH:mm ', {
-              locale: es,
-            })}
-            hrs
-            <span className="inline-block text-xs font-light text-coolGray-400">
-              Horario en tu ubicación actual
-            </span>
-          </p>
+          {!past && (
+            <p className="font-medium break-all text-coolGray-200 title-font ">
+              {format(new Date(event.date), 'd  MMMM - HH:mm ', {
+                locale: es,
+              })}
+              hrs
+              <span className="inline-block text-xs font-light text-coolGray-400">
+                Horario en tu ubicación actual
+              </span>
+            </p>
+          )}
           <div className={`mt-2 mb-6 text-coolGray-300 ${styles.description}`}>
             <BlockContent blocks={event.description} />
           </div>
-          {past ? (
-            event.recording && (
-              <button className="mt-auto btn btn-primary">
-                <a
-                  href={event.recording}
-                  className=""
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  Ver grabación
-                </a>
-              </button>
-            )
-          ) : (
+          {past && event.recording && (
+            <button className="mt-auto btn btn-primary">
+              <a
+                href={event.recording}
+                className=""
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ver grabación
+              </a>
+            </button>
+          )}
+          {!past && (
             <div className="mt-auto">
               <AddToCalendar event={calendar} />
             </div>

@@ -10,7 +10,7 @@ const StaffCard = ({ profile }: Props) => {
       <a href={profile.linkedin} target="_blank" rel="noreferrer">
         {profile.photo.src && (
           <img
-            className="object-cover mx-auto rounded-full sm:h-36 sm:w-36 md:h-32 md:w-32"
+            className="object-cover mx-auto rounded-full h-36 w-36 md:h-32 md:w-32"
             src={profile.photo.src}
             alt={profile.firstName}
           />

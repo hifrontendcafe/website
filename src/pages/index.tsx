@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, forwardRef, useRef } from 'react';
 
 import { GetStaticProps } from 'next';
 
@@ -12,19 +12,19 @@ import FeaturedCardList from '../components/FeaturedCardList';
 
 //import CMYKBanner from '../components/CMYKBanner';
 import { getEmbeddedTweets } from '@/lib/twitter';
-import { FeaturedCards } from '@/lib/types';
+import { FeaturedCards, EmbeddedTweet } from '@/lib/types';
 
 import { useSettings } from '@/lib/settings';
 
 type IndexProps = {
   preview?: boolean;
   cards: FeaturedCards[];
-  tweets: string[];
+  tweets: EmbeddedTweet[];
 };
 
-function Featured({ cards }) {
+function FeaturedSection({ cards }, ref) {
   return (
-    <div className="flex flex-col mb-12 md:mb-24">
+    <div ref={ref} className="flex flex-col mb-12 md:mb-24">
       <div className="flex flex-col items-center justify-center m-auto text-center my-28">
         <h1 className="mb-5 subtitle">¡Descubre lo que tenemos para ti!</h1>
         <p className="text-coolGray-300 lg:text-xl text-md lg:w-2/3">
@@ -38,9 +38,17 @@ function Featured({ cards }) {
   );
 }
 
+const ForwardedFeaturedSection = forwardRef(FeaturedSection);
+
 const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
   const [counter, setCounter] = useState(0);
   const { heroWords = ['Creamos'], description } = useSettings();
+
+  const featuredRef = useRef<HTMLElement>(null);
+
+  const goToFeaturedSection = () => {
+    featuredRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
 
   if (counter >= heroWords?.length) {
     setCounter(0);
@@ -57,8 +65,11 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
   return (
     <Layout title="Home" description={description} preview={preview}>
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
-      <Hero title={heroWords[counter]} />
-      <Featured cards={cards} />
+      <Hero
+        title={heroWords[counter]}
+        handleIniciativasClick={goToFeaturedSection}
+      />
+      <ForwardedFeaturedSection ref={featuredRef} cards={cards} />
       <MediaFeed tweets={tweets} />
     </Layout>
   );
@@ -71,8 +82,8 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   let tweets = [];
   try {
     tweets = await getEmbeddedTweets();
-  } catch {
-    console.info("Couldn't load tweets");
+  } catch (error) {
+    console.info("Couldn't load tweets", error);
   }
 
   return {

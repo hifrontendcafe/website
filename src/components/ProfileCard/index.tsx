@@ -20,8 +20,8 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
         <div className="space-x-3 items-top">
           <img
             src={profile.photo || '/img/user.svg'}
-            className={`object-cover object-top w-28 h-28 ring ring-gray-300 ${
-              profile.available ? 'ring-profileRing' : ''
+            className={`object-cover object-top w-28 h-28  ${
+              profile.available ? ' ring ring-profileRing' : ''
             } rounded-full shadow-lg`}
             alt={profile.name}
           />
@@ -30,10 +30,10 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           <div className="flex-grow">
             <h2 className="mt-2 text-xl font-bold">{profile.name}</h2>
             <div className="flex">
-              <h2 className="mr-2 text-lg font-semibold">
+              <h2 className="mr-2 font-semibold text-md">
                 {profile.role.name}
               </h2>
-              <h2 className="text-lg">|&nbsp;{profile.seniority.name}</h2>
+              <h2 className="text-md">|&nbsp;{profile.seniority.name}</h2>
             </div>
 
             {profile.location && (

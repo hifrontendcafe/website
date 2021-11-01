@@ -33,9 +33,7 @@ module.exports = {
     screens: Object.fromEntries(
       Object.entries(defaultTheme.screens).filter(([key]) => key !== '2xl'),
     ),
-    fontFamily: {
-      sans: ['Inter', 'sans-serif'],
-    },
+
     container: {
       padding: {
         DEFAULT: '1rem',
@@ -62,7 +60,8 @@ module.exports = {
 
     extend: {
       fontFamily: {
-        sans: ['Lexend Deca', 'sans-serif'],
+        sans: ['Inter', 'sans-serif'],
+        title: ['Lexend Deca', 'sans-serif'],
       },
       fontSize: {
         xs: '.75rem',
@@ -77,8 +76,9 @@ module.exports = {
         gray: {
           ...colors.gray,
         },
-        blueGray: colors.blueGray,
-        coolGray: colors.coolGray,
+        blueGray: tailwindColors.blueGray,
+        coolGray: tailwindColors.coolGray,
+        coolGrayDark: '#050C1A',
         ellipseBlue: '#142A4A',
         profileRing: '#00C39D',
         violet: '#6366F1',
@@ -98,9 +98,9 @@ module.exports = {
         mainBtnActiveColor: colors.teal[600],
       },
       textColor: {
-        primary: colors.gray[50],
-        secondary: colors.gray[300],
-        tertiary: colors.gray[200],
+        primary: tailwindColors.coolGray[50],
+        secondary: tailwindColors.coolGray[300],
+        tertiary: tailwindColors.coolGray[200],
         accent: '#6366F1',
         informational: '#4991DA',
         lightBlue: '#00CCFF',
@@ -109,7 +109,11 @@ module.exports = {
       },
     },
   },
-  variants: {},
+  variants: {
+    extend: {
+      opacity: ['disabled'],
+    },
+  },
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/forms')({ strategy: 'class' }),

@@ -22,8 +22,8 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   const [session, loading] = useSession();
 
   const navItems = menu?.map((item) => {
-    const [title, link] = item.split('/');
-    return { title, link };
+    const split = item.indexOf('/');
+    return { title: item.substring(0, split), link: item.substring(split + 1) };
   });
 
   return (

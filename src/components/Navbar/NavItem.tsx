@@ -1,4 +1,56 @@
 import Link from 'next/link';
+import { MouseEventHandler, forwardRef, ReactNode } from 'react';
+import { signIn } from 'next-auth/client';
+
+export interface AnchorProps {
+  isActive: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
+  href?: string;
+  children: ReactNode;
+  type: 'button' | 'a';
+}
+
+const Anchor = (
+  { isActive, onClick, children, href, type }: AnchorProps,
+  ref,
+) => {
+  if (type === 'button') {
+    return (
+      <button
+        className={
+          (isActive
+            ? 'text-coolGray-50 lg:border-b-2 pb-2 border-greenFec'
+            : 'text-coolGray-400') +
+          ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-gray-50'
+        }
+        onClick={onClick}
+      >
+        {children}
+      </button>
+    );
+  }
+
+  return (
+    <a
+      className={
+        (isActive
+          ? 'text-coolGray-50 lg:border-b-2 pb-2 border-greenFec'
+          : 'text-coolGray-400') +
+        ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-gray-50'
+      }
+      onClick={onClick}
+      href={href}
+      ref={ref}
+    >
+      {children}
+    </a>
+  );
+};
+
+const ForwardedAnchor = forwardRef<
+  HTMLButtonElement | HTMLAnchorElement,
+  AnchorProps
+>(Anchor);
 
 export interface NavItemProps {
   title: string;
@@ -6,21 +58,20 @@ export interface NavItemProps {
   pathname: string;
 }
 
+function signInDiscord() {
+  return signIn('discord', {
+    callbackUrl: `${window.location.origin}/comunidad/nuevo`,
+  });
+}
+
 const NavItem: React.FC<NavItemProps> = ({ title, link, pathname }) => {
   const isActive = pathname === `/${link}`;
 
   return (
-    <Link href={`/${link}`}>
-      <a
-        className={
-          (isActive
-            ? 'text-coolGray-50 lg:border-b-2 pb-2 border-greenFec'
-            : 'text-coolGray-400') +
-          ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-gray-50'
-        }
-      >
+    <Link href={`/${link}`} passHref>
+      <ForwardedAnchor type="a" isActive={isActive}>
         {title}
-      </a>
+      </ForwardedAnchor>
     </Link>
   );
 };

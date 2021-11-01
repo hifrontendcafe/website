@@ -1,20 +1,23 @@
 import { motion } from 'framer-motion';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import {
+  faExternalLinkAlt,
+  faChevronDown,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
 
 interface HeroProps {
   title?: string;
+  handleIniciativasClick?: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ title }) => {
+const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
   return (
     <div className="relative py-32 mx-auto bg-white bg-opacity-0">
       <div className="flex items-center justify-center h-full bg-center bg-cover text-coolGray-50 md:justify-around">
         <div className="z-10 w-auto text-center">
-          <div>
+          <div className="flex flex-col items-center">
             <div className="mb-16">
-              <p className="text-5xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl">
+              <p className="text-5xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl font-title">
                 <motion.span
                   key={title}
                   initial={{ opacity: 0, y: 20 }}
@@ -31,11 +34,11 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               </p>
               <span
                 style={{ width: 'min-content' }}
-                className="text-5xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl"
+                className="text-5xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl font-title"
               >
                 en comunidad
               </span>
-              <p className="mt-4 text-xl font-medium text-coolGray-300 md:text-lg">
+              <p className="max-w-xl mx-auto mt-4 text-xl font-medium text-coolGray-300 md:text-2xl">
                 El lugar de encuentro para conectar con otras personas y
                 potenciar tus ideas.
               </p>
@@ -45,15 +48,26 @@ const Hero: React.FC<HeroProps> = ({ title }) => {
               href="https://discord.gg/frontendcafe"
               rel="noreferrer"
             >
-              <button className="flex m-auto text-lg md:px-7 md:py-3 btn btn-primary">
+              <button className="flex items-center m-auto mb-20 text-md md:px-8 md:py-3 btn btn-primary">
                 Súmate a Discord
                 <FontAwesomeIcon
                   icon={faExternalLinkAlt}
-                  width="20px"
-                  className="ml-2"
+                  width="16px"
+                  className="ml-3"
                 />
               </button>
             </a>
+            <button
+              onClick={handleIniciativasClick}
+              className="flex items-center justify-center self-center font-medium text-coolGray-50"
+            >
+              Conoce las iniciativas
+              <FontAwesomeIcon
+                icon={faChevronDown}
+                width="16px"
+                className="ml-3 animate-bounce"
+              />
+            </button>
           </div>
         </div>
       </div>

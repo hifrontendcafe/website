@@ -3,6 +3,6 @@ module.exports = {
     optimizeFonts: true,
   },
   images: {
-    domains: ['cdn.discordapp.com'],
+    domains: ['cdn.discordapp.com', 'pbs.twimg.com'],
   },
 };
