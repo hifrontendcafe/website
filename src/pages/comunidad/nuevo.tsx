@@ -183,7 +183,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
             ) : (
               <form
                 onSubmit={handleSubmit(onSubmit, onError)}
-                className="w-full rounded sm:px-8 sm:pt-6 sm:pb-8 bg-coolGray-900"
+                className="w-full p-6 rounded sm:px-8 sm:pt-6 sm:pb-8 bg-coolGray-900"
                 noValidate
               >
                 <div className="flex flex-col grid-cols-2 gap-5 md:grid">
