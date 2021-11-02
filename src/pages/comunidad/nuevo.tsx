@@ -160,8 +160,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     >
       <SectionHero
         title="Tu perfil"
-        paragraph="Buscamos darle visibilidad quienes participan dentro del servidor, principalmente a quienes se encuentren en búsqueda de su primera experiencia. 
-        Si creas tu perfil aparecerás en la sección Comunidad donde recruiters y empresas puedan referirse a la hora de buscar talento."
+        paragraph="Buscamos darle visibilidad a quienes participan dentro del servidor, principalmente aquellas personas que se encuentran en búsqueda de su primera experiencia laboral.
+        Tu perfil será visible en la sección Comunidad, diseñada para que recruiters y empresas puedan identificar talentos de nuestra comunidad"
       />
 
       <div className="overflow-hidden border-2 rounded-lg shadow border-coolGray-600 bg-coolGray-900">
