@@ -46,7 +46,7 @@ const CreateGroupForm: React.FC = () => {
       {session ? (
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex flex-col w-full grid-cols-2 gap-5 p-2 border-2 rounded border-coolGray-600 text-coolGray-300 sm:px-8 sm:pt-6 sm:pb-8 md:grid bg-coolGray-900 "
+          className="flex flex-col w-full grid-cols-2 gap-5 p-4 border-2 rounded border-coolGray-600 text-coolGray-300 sm:px-8 sm:pt-6 sm:pb-8 md:grid bg-coolGray-900 "
         >
           <div className="mb-4">
             <label className="block mb-2 text-sm font-bold">

@@ -17,24 +17,24 @@ const PaginationBar: React.FC<PaginationBarProps> = ({
   totalProfiles,
 }) => {
   return (
-    <div className="flex text-primary items-center justify-between my-4">
-      <div>
+    <div className="flex items-center justify-between my-4 text-primary">
+      <div className="flex items-center">
         <button
-          className="btn-secondary rounded-md px-2 py-1 disabled:opacity-50"
+          className="disabled:opacity-50 hover:text-greenFec"
           disabled={page === 1}
           onClick={() => setPage((page) => page - 1)}
         >
-          <FontAwesomeIcon icon={faArrowLeft} />
+          <FontAwesomeIcon icon={faArrowLeft} width="18px" />
         </button>
         <span className="px-2">
           Página {page} de {pagesCount}
         </span>
         <button
-          className="btn-secondary rounded-md px-2 py-1 disabled:opacity-50"
+          className="disabled:opacity-50 hover:text-greenFec"
           disabled={page === pagesCount}
           onClick={() => setPage((page) => page + 1)}
         >
-          <FontAwesomeIcon icon={faArrowRight} />
+          <FontAwesomeIcon icon={faArrowRight} width="18px" />
         </button>
       </div>
       <span>

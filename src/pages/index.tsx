@@ -26,11 +26,12 @@ function FeaturedSection({ cards }, ref) {
   return (
     <div ref={ref} className="flex flex-col mb-12 md:mb-24">
       <div className="flex flex-col items-center justify-center m-auto text-center my-28">
-        <h1 className="mb-5 subtitle">¡Descubre lo que tenemos para ti!</h1>
+        <h1 className="mb-5 subtitle">¡Descubre nuestra comunidad!</h1>
         <p className="text-coolGray-300 lg:text-xl text-md lg:w-2/3">
-          En FrontendCafé con la participación de la comunidad creamos
-          diferentes actividades para mejorar nuestras habilidades tanto
-          profesionales como comunidad.
+          Somos una comunidad de personas apasionadas por la tecnología en busca
+          de facilitar la inserción laboral y el crecimiento personal a través
+          de diferentes iniciativas que promueven la colaboración y el
+          intercambio de conocimiento.
         </p>
       </div>
       <FeaturedCardList featuredCards={cards} />

@@ -59,7 +59,7 @@ const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
             </a>
             <button
               onClick={handleIniciativasClick}
-              className="flex items-center justify-center self-center font-medium text-coolGray-50"
+              className="flex items-center self-center justify-center font-semibold text-coolGray-50"
             >
               Conoce las iniciativas
               <FontAwesomeIcon

@@ -38,7 +38,10 @@ const MediaFeed: React.FC<MediaFeedProps> = ({ tweets }) => {
   return (
     <section id="media-feed" className="relative w-full">
       <div className="px-5 py-12 mx-auto">
-        <div className="flex items-center pb-12 md:pl-2">
+        <a
+          href="https://twitter.com/FrontEndCafe/"
+          className="flex items-center pb-12 md:pl-2"
+        >
           <img
             className="w-6 h-6"
             src="/icons/twitter.svg"
@@ -47,7 +50,7 @@ const MediaFeed: React.FC<MediaFeedProps> = ({ tweets }) => {
           <h1 className="pl-2 text-xl font-medium twitter-blue subtitle">
             @frontendcafe
           </h1>
-        </div>
+        </a>
 
         <Carousel
           ssr
