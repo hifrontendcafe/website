@@ -87,7 +87,7 @@ module.exports = {
       },
       textColor: {
         primary: tailwindColors.coolGray[50],
-        secondary: tailwindColors.coolGray[300],
+        secondary: tailwindColors.coolGray[400],
         tertiary: tailwindColors.coolGray[200],
         accent: '#6366F1',
         informational: '#4991DA',
