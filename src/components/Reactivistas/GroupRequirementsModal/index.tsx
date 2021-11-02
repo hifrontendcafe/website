@@ -17,7 +17,7 @@ const GroupRequirementsModal = (props: ModalProps) => {
       buttonLabel="Cerrar"
       buttonClasses="text-primary"
     >
-      <div className="text-sm overflow-auto px-2">
+      <div className="px-2 overflow-auto text-sm text-coolGray-300">
         <ul className="list-none list-inside">
           <li className="mb-1"> ✔️Un nombre (puede ser cualquier nombre)</li>
           <li>
@@ -32,7 +32,7 @@ const GroupRequirementsModal = (props: ModalProps) => {
           <li className="mb-1">
             ✔️ Un plan, con su respectivo bosquejo, de entre 4 y 16 semanas
           </li>
-          <h2 className="text-base my-2 font-semibold">Observaciones</h2>
+          <h2 className="my-2 text-base font-semibold">Observaciones</h2>
           <li className="mb-1">
             ✔️ El grupo podrá iniciar sus actividades una vez que cuente con el
             mínimo de participantes, que es 4. El máximo será de 10.

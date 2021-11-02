@@ -34,27 +34,25 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   }, [filter, mentors]);
 
   return (
-    <div className="container px-5 py-24 mx-auto min">
+    <div>
       <div className="flex justify-between">
-        <h1 className="text-3xl text-primary">Mentores</h1>
+        <h1 className="mb-4 text-2xl font-medium text-coolGray-50">
+          Solicita una mentoría según especialidad
+        </h1>
       </div>
-
-      <label className="block mb-2 ml-2 text-xs font-bold text-gray-700 uppercase">
-        Especialidades
-      </label>
       <div className="relative inline-block w-full mb-6 md:w-1/2 lg:w-1/3">
         <select
           onChange={() => setFilter((event.target as HTMLInputElement).value)}
-          className="block w-full px-4 py-2 pr-8 leading-tight bg-white border border-gray-400 rounded shadow appearance-none hover:border-gray-500 focus:outline-none focus:shadow-outline bg-none"
+          className="block w-full px-4 py-2 pr-8 leading-tight bg-gray-900 border border-gray-400 rounded shadow appearance-none text-coolGray-50 hover:border-gray-500 focus:outline-none focus:shadow-outline"
         >
-          <option value="">--</option>
+          <option value="">Buscar</option>
           {topics?.map((topic, index) => (
             <option value={topic._id} key={index}>
               {topic.title}
             </option>
           ))}
         </select>
-        <div className="absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 pointer-events-none">
+        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-coolGray-50">
           <svg
             className="w-4 h-4 fill-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +64,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
       </div>
 
       <div className="flex flex-col min-h-screen align-center">
-        <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 auto-rows-min">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
           {(filteredTopics && filter ? filteredTopics : mentors)?.map(
             (mentor, index) => (
               <MentorCard
@@ -84,7 +82,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         isOpen={isModalOpen}
         close={() => setIsModalOpen(false)}
         title="¡Oh no!"
-        titleClasses="text-red-500"
+        titleClasses="text-red-600 mt-2 ml-2"
         buttonLabel="Entiendo"
         buttonClasses="text-primary"
         footer={
@@ -98,7 +96,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
           </button>
         }
       >
-        <div className="px-2 overflow-auto text-lg">
+        <div className="px-2 overflow-auto text-lg text-coolGray-100">
           <p>Para poder solicitar una mentoría primero debes iniciar sesión.</p>
         </div>
       </SimpleModal>

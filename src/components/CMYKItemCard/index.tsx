@@ -1,60 +1,43 @@
 import Link from 'next/link';
 
-import { CMYK } from '@/lib/types';
-
-import tinycolor from 'tinycolor2';
+import { CMYK } from '../../lib/types';
 
 type CMYKItemProps = {
   project: CMYK;
   index: number;
 };
 
-const CMYKItemCard: React.FC<CMYKItemProps> = ({ project, index }) => {
-  const textColor = tinycolor(project.color);
-
+const CMYKItemCard: React.FC<CMYKItemProps> = ({ project }) => {
   return (
-    <div className={`rounded overflow-hidden flex flex-col`}>
-      <img
-        className="h-40 object-cover w-full"
-        src={project.image.src}
-        alt="Project image"
-      />
-      <div
-        className={`flex flex-col md:flex-row h-full ${
-          textColor.isLight() ? 'text-gray-900' : 'text-white'
-        }`}
-        style={{ backgroundColor: project.color }}
-      >
-        <div className="px-6 py-4">
-          <div className="font-semibold text-2xl mb-2">{project.name}</div>
-          <p className="text-sm">{project.description}</p>
-        </div>
-        <div
-          className={`px-6 md:px-3 md:py-8 flex xs:flex-row md:flex-col md:justify-between ${
-            textColor.isLight() ? 'border-gray-800' : 'border-white'
-          }  md:border-l-2 md:border-t-0 my-4`}
-        >
-          <Link href={project.demo}>
-            <a
-              className={`font-semibold mr-3 hover:underline border-t-2 md:border-t-0 ${
-                textColor.isLight() ? 'border-gray-800' : 'border-white'
-              }`}
-              target="_blank"
-            >
-              DEMO
-            </a>
-          </Link>
-          <Link href={project.github}>
-            <a
-              className={`font-semibold mr-3 hover:underline border-t-2 md:border-t-0 ${
-                textColor.isLight() ? 'border-gray-800' : 'border-white'
-              }`}
-              target="_blank"
-            >
-              GITHUB
-            </a>
-          </Link>
-        </div>
+    <div className="flex flex-col justify-between p-5 overflow-hidden border-2 border-gray-500 rounded-lg lg:w-96 bg-coolGray-900">
+      <div>
+        <img
+          className="object-cover w-full h-40 rounded-lg"
+          src={project.image.src}
+          alt="Project image"
+        />
+        <h1 className="my-2 cards-title">{project.name}</h1>
+        <p className="cards-paragraph">{project.description}</p>
+      </div>
+      <div className="flex justify-between w-full mt-5">
+        <Link href={project.demo}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center btn px-9 lg:px-14 btn-primary"
+          >
+            Demo
+          </a>
+        </Link>
+        <Link href={project.github}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn px-9 lg:px-14 btn-secondary"
+          >
+            GitHub
+          </a>
+        </Link>
       </div>
     </div>
   );

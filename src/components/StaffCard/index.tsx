@@ -6,11 +6,11 @@ type Props = {
 
 const StaffCard = ({ profile }: Props) => {
   return (
-    <div className="p-5 text-center transition duration-500 ease-in-out transform scale-100 hover:scale-110">
+    <div className="p-2 text-center transition duration-500 ease-in-out transform scale-100 hover:scale-110">
       <a href={profile.linkedin} target="_blank" rel="noreferrer">
         {profile.photo.src && (
           <img
-            className="rounded-full mx-auto h-36 w-36 md:h-32 md:w-32 object-cover"
+            className="object-cover mx-auto rounded-full h-36 w-36 md:h-32 md:w-32"
             src={profile.photo.src}
             alt={profile.firstName}
           />

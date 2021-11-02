@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -28,35 +31,41 @@ html {
     background-clip: text;
     -webkit-text-fill-color: transparent;
   }
+  .ellipse {
+    border-radius: 50%;
+  }
+  .nav-shadow {
+    box-shadow: 0px 1px 0px #434345;
+  }
 }
 
 @layer components {
   .btn {
-    @apply px-6 py-2 text-sm font-medium rounded;
+    @apply px-6 py-2 text-sm font-semibold rounded-md;
   }
 
   .btn-primary {
-    @apply text-white bg-primary;
+    @apply text-coolGray-800 bg-coolGray-50;
   }
 
   .btn-primary:hover {
-    @apply shadow bg-primarydark;
+    @apply text-coolGray-800 bg-greenFec;
   }
 
   .btn-secondary {
-    @apply text-white bg-secondary;
+    @apply border text-coolGray-50;
   }
 
   .btn-secondary:hover {
-    @apply shadow bg-secondarydark;
+    @apply border shadow text-greenFec border-greenFec;
   }
 
-  .btn-tertiary {
-    @apply text-white bg-tertiary;
+  .btn-border {
+    @apply border text-coolGray-50;
   }
 
-  .btn-tertiary:hover {
-    @apply shadow bg-tertiarydark;
+  .btn-border:hover {
+    @apply border shadow text-greenFec border-greenFec;
   }
 
   .social-circle {
@@ -64,38 +73,114 @@ html {
   }
 
   .title {
-    @apply text-3xl font-extrabold leading-normal text-gray-800 md:text-4xl lg:text-5xl;
+    @apply text-4xl font-extrabold leading-normal text-primary md:text-5xl lg:text-6xl font-title;
   }
 
   .subtitle {
-    @apply text-2xl font-extrabold leading-normal text-gray-800 md:text-3xl;
+    @apply text-2xl font-extrabold leading-normal text-primary md:text-3xl lg:text-4xl font-title;
+  }
+
+  .paragraph {
+    @apply text-lg leading-normal text-secondary md:text-2xl;
+  }
+
+  .cards-title {
+    @apply text-lg font-extrabold leading-normal text-primary md:text-xl lg:text-2xl font-title;
+  }
+
+  .cards-paragraph {
+    @apply text-sm font-light text-coolGray-200 md:text-base lg:text-lg;
   }
 
   .title-colorful {
     @apply text-gradient bg-gradient-to-r from-green-400 to-blue-500;
   }
+
+  .nav-scroll {
+    @apply items-center bg-gray-900 nav-shadow;
+  }
+
+  .input {
+    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-coolGrayDark text-coolGray-200 border-coolGray-600;
+  }
 }
 
-.filter-selector .react-select__control{
-  @apply border-gray-300;
+/* react-select filter styles */
+.filter-selector .react-select__multi-value {
+  @apply bg-gray-700;
 }
-.react-select__control .react-select__indicator{
-  @apply text-gray-500;
+
+.filter-selector .react-select__multi-value__label {
+  @apply text-gray-100;
 }
-.react-select__value-container .react-select__placeholder {
-  @apply text-gray-600 text-sm;
- }
+
+.filter-selector .react-select__menu {
+  @apply bg-gray-900 border border-gray-500 text-coolGray-50;
+}
+
+.filter-selector .react-select__control {
+  @apply bg-gray-900 border-gray-300 text-coolGray-300;
+}
+
+.filter-selector .react-select__option--is-focused {
+  @apply bg-gray-700;
+}
+
+.filter-selector .react-select__control .react-select__indicator {
+  /* @apply text-gray-500; */
+}
+
+.filter-selector .react-select__value-container .react-select__placeholder {
+  /* @apply text-sm text-coolGray-600; */
+}
+/* end react-select styles */
+
+/* react-select form-user styles */
+.form-user .react-select__multi-value {
+  @apply bg-coolGray-700;
+}
+
+.form-user .react-select__multi-value__label {
+  @apply text-coolGray-100;
+}
+
+.form-user .react-select__menu {
+  @apply border bg-coolGrayDark border-coolGray-700 text-coolGray-50;
+}
+
+.form-user .react-select__control {
+  @apply bg-coolGrayDark border-coolGray-700 text-coolGray-300;
+}
+
+.form-user .react-select__option--is-focused {
+  @apply bg-coolGray-500;
+}
+
+.form-user .react-select__control .react-select__indicator {
+  /* @apply text-coolGray-500; */
+}
+
+.form-user .react-select__value-container .react-select__placeholder {
+  /* @apply text-sm bg-coolGray-500; */
+}
+/* end react-select styles */
 
 .twitter-blue {
   color: #55acee;
 }
 
+/* add calendar button styles */
 .addeventatc.button {
-  background-color: #7289da !important;
-  border-radius: 3px !important;
-  color: #fff !important;
-  padding: 8px !important;
+  background-color: #f9fafb !important;
+  border-radius: 6px !important;
+  @apply text-coolGray-800 !important;
+  padding: 10px !important;
   z-index: unset;
+  width: 100%;
+}
+
+.addeventatc.button:hover {
+  background-color: #00c39d !important;
 }
 
 .addeventatc_dropdown {

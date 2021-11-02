@@ -9,8 +9,7 @@ import { usePreviewSubscription } from '@/lib/sanity';
 import { useState } from 'react';
 import Modal from '@/components/Modal';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import SectionHero from '@/components/SectionHero';
 
 type CMYKProjectsProps = {
   preview?: boolean;
@@ -18,26 +17,11 @@ type CMYKProjectsProps = {
 };
 
 const cmykVersions = [
-  {
-    version: 'cmyk-1',
-    name: 'CMYK 1',
-  },
-  {
-    version: 'cmyk-2',
-    name: 'CMYK 2',
-  },
-  {
-    version: 'cmyk-3',
-    name: 'CMYK 3',
-  },
-  {
-    version: 'cmyk-4',
-    name: 'CMYK 4',
-  },
-  {
-    version: 'cmyk-5',
-    name: 'CMYK 5',
-  },
+  { version: 'cmyk-1', name: 'CMYK 1' },
+  { version: 'cmyk-2', name: 'CMYK 2' },
+  { version: 'cmyk-3', name: 'CMYK 3' },
+  { version: 'cmyk-4', name: 'CMYK 4' },
+  { version: 'cmyk-5', name: 'CMYK 5' },
 ];
 
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
@@ -65,38 +49,22 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     (project) => project.cmykVersion === currentCMYK,
   );
 
-  const tabStyle = `py-2 cursor-pointer text-gray-700 w-1/3 flex justify-center border-b`;
-  const tabStyleActive = `py-2 font-semibold cursor-pointer text-gray-900 w-1/3 flex justify-center border-b-4 border-gray-700`;
+  const tabStyle = `py-2 cursor-pointer text-coolGray-300 w-1/3 flex justify-center border-b`;
+  const tabStyleActive = `py-2 font-semibold cursor-pointer text-coolGray-100 w-1/3 flex justify-center border-b-4 border-gray-100`;
 
   return (
     <Layout title="Proyectos CMYK" preview={preview}>
-      <div className="pt-20">
-        <div className="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
-          <div className="text-center flex flex-col items-center">
-            <h2 className="title mt-2 leading-snug tracking-tight">
-              Proyectos CMYK&nbsp;
-              <img
-                src="/icons/hearth.svg"
-                width="50px"
-                className="inline"
-                alt="heart"
-              />
-            </h2>
-            <p className="mt-4 max-w-3xl text-lg">
-              Proyectos colaborativos realizados por miembros de la comunidad
-              con el objetivo de ganar experiencia en un entorno profesional.
-            </p>
-            <span
-              className="cursor-pointer text-primary flex justify-center mt-5"
-              onClick={() => {
-                setIsModalOpen(true);
-              }}
-            >
-              Conocé más sobre la iniciativa&nbsp;
-              <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
-            </span>
-            <h3 className="subtitle mt-24">Ediciones</h3>
-            <ul className="flex w-full md:w-8/12 my-6">
+      <SectionHero
+        title="Proyectos CMYK"
+        paragraph="Proyectos colaborativos realizados por miembros de la comunidad con el
+              objetivo de ganar experiencia en un entorno profesional."
+        cta="https://frontend.cafe/docs/guia-cmyk"
+      />
+      <div>
+        <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
+          <div className="flex flex-col items-center text-center">
+            <h3 className="font-medium subtitle">Ediciones</h3>
+            <ul className="flex w-full mt-6 mb-16 md:w-8/12">
               {filteredVersions.map((cmykVersion) => (
                 <li
                   onClick={() => setCurrentCMYK(cmykVersion.version)}
@@ -112,29 +80,16 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
               ))}
             </ul>
           </div>
-        </div>
-        <div className="w-full h-full">
-          <div className="max-w-4xl mx-auto p-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-2 justify-items-center gap-6 md:gap-10 relative z-10">
-            {currentProjects.map((project, index) => (
-              <CMYKItemCard key={project._id} project={project} index={index} />
-            ))}
-          </div>
-          <div className="text-center py-20">
-            <h2 className="subtitle mb-8 tracking-tight">
-              El siguiente puede ser el tuyo&nbsp;
-              <img
-                src="/icons/hearth.svg"
-                className="inline"
-                alt="heart"
-                width="30px"
-              />
-            </h2>
-            <a
-              href="https://discord.gg/frontendcafe"
-              className="btn mt-1 btn-secondary py-3 px-6"
-            >
-              Súmate a Discord
-            </a>
+          <div className="w-full h-full">
+            <div className="relative z-10 grid max-w-4xl grid-cols-1 gap-6 p-6 mx-auto sm:px-6 lg:px-12 md:grid-cols-2 justify-items-center md:gap-10">
+              {currentProjects.map((project, index) => (
+                <CMYKItemCard
+                  key={project._id}
+                  project={project}
+                  index={index}
+                />
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -146,7 +101,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
         buttonLabel="Cerrar"
         buttonClasses="text-primary"
       >
-        <div className="text-sm overflow-auto px-2 ">
+        <div className="px-2 overflow-auto text-sm ">
           <ul className="list-none list-inside">
             <li className="mb-1">
               ✔️ La iniciativa CMYK promueve el desarrollo de proyectos

@@ -2,10 +2,7 @@ import { AppProps } from 'next/app';
 import { Provider } from 'next-auth/client';
 import { useRouter } from 'next/router';
 
-import CookieConsent, {
-  getCookieConsentValue,
-  Cookies,
-} from 'react-cookie-consent';
+import CookieConsent, { getCookieConsentValue } from 'react-cookie-consent';
 
 import { useEffect } from 'react';
 import gaService from '@/lib/gtag';
@@ -16,12 +13,16 @@ import '@/styles/scrollbar.css';
 
 import { SettingsProvider } from '@/lib/settings';
 
+function handleAcceptCookie() {
+  gaService.initGA();
+}
+
+function handleRouteChange(url: URL) {
+  gaService.pageView(url);
+}
+
 const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   const router = useRouter();
-
-  const handleAcceptCookie = () => {
-    gaService.initGA();
-  };
 
   useEffect(() => {
     const isConsent = getCookieConsentValue();
@@ -31,9 +32,6 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   }, []);
 
   useEffect(() => {
-    const handleRouteChange = (url: URL) => {
-      gaService.pageView(url);
-    };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange);
@@ -46,7 +44,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <Component {...pageProps} />
         <CookieConsent
           disableStyles
-          containerClasses="fixed mb-4 left-0 right-0 bottom-4 flex text-white justify-between px-4 py-2 items-center bg-gray-600 z-20 container mx-auto rounded-md"
+          containerClasses="fixed mb-4 left-0 right-0 bottom-4 flex text-coolGray-50 justify-between px-4 py-2 items-center bg-coolGray-600 z-20 container mx-auto rounded-md"
           buttonText="Aceptar"
           buttonClasses="btn btn-primary rounded-lg"
           onAccept={handleAcceptCookie}

@@ -5,7 +5,7 @@ const CMYKBanner: React.FC = ({ children }) => {
   return (
     <div className={`${styles.root} h-24`}>
       <Link href="/cmyk">
-        <a className="block flex items-center justify-center cursor-pointer w-full h-full text-white font-bold">
+        <a className="block flex items-center justify-center cursor-pointer w-full h-full text-coolGray-50 font-bold">
           <span className="block py-2 px-4 bg-black bg-opacity-50 hover:bg-opacity-75">
             Proyectos CMYK: Presentación final
           </span>

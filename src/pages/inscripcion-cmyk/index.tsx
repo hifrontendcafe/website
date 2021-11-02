@@ -24,19 +24,19 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
 
   return (
     <Layout title="CMYK" preview={preview}>
-      <div className="container flex flex-col items-center px-5 pt-20 mx-auto md:flex-row">
+      <div className="flex flex-col items-center px-5 pt-20 md:flex-row">
         <div className="flex flex-col items-center text-center lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 md:items-start md:text-left">
           <div className="flex flex-col items-center justify-between w-full lg:flex-row">
             <div className="flex flex-col">
-              <h1 className="text-5xl font-extrabold text-gray-900 title-font">
+              <h1 className="text-5xl font-extrabold text-coolGray-900 title-font">
                 CMYK 4.0
               </h1>
-              <h2 className="text-4xl font-medium text-gray-900 title-font">
+              <h2 className="text-4xl font-medium text-coolGray-900 title-font">
                 Agosto 2021
               </h2>
             </div>
             <button
-              className="self-center justify-center px-4 py-2 my-2 font-medium text-white border border-transparent rounded-md shadow-sm lg:self-end text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="self-center justify-center px-4 py-2 my-2 font-medium text-coolGray-50 border border-transparent rounded-md shadow-sm lg:self-end text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               onClick={() => setIsModalOpen(true)}
             >
               Conocé el cronograma
@@ -65,7 +65,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
         </div>
       </div>
       {cmykInscription ? (
-        <div className="container px-5 mx-auto overflow-hidden bg-white rounded-lg">
+        <div className="px-5 overflow-hidden bg-white rounded-lg">
           <div className="pt-10 md:pt-15 lg:pt-20 md:py-5 lg:px-24 md:px-16">
             {session && !loading ? (
               <div className="flex flex-col justify-center items-left">
@@ -99,7 +99,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
           {session && !loading && <CMYKParticipantForm />}
         </div>
       ) : (
-        <div className="container mx-auto bg-white px-7">
+        <div className="bg-white px-7">
           <h1 className="py-10 mx-auto text-xl font-bold leading-7 text-center text-black md:py-20 md:text-2xl lg:text-3xl sm:leading-9 sm:truncate">
             Las inscripciones a CMYK 4.0 se encuentran cerradas (cupo agotado)
           </h1>

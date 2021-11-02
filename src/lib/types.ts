@@ -14,11 +14,11 @@ export interface Settings {
 
 export interface SocialNetworks {
   github: string;
-  instagram: string;
   linkedin: string;
   twitch: string;
   twitter: string;
   youtube: string;
+  instagram: string;
 }
 
 export interface Image {
@@ -186,11 +186,108 @@ export interface Person {
   cmykParticipant?: CMYKParticipant[];
 }
 
-export type Tweet = {
+export interface Tweets {
+  data: {
+    id: string;
+    text: string;
+    in_reply_to_user_id: string;
+    created_at: string;
+    author_id: string;
+    attachments: { media_keys: string[] };
+    referenced_tweets: { type: 'quoted' | 'retweeted'; id: string }[];
+    public_metrics: {
+      retweet_count: number;
+      reply_count: number;
+      like_count: number;
+      quote_count: number;
+    };
+  }[];
+  includes: {
+    users: {
+      id: string;
+      name: string;
+      username: string;
+      profile_image_url: string;
+      protected: string;
+      url: string;
+      verified: boolean;
+    }[];
+    tweets: {
+      id: string;
+      attachments: { media_keys: string[] };
+      text: string;
+      in_reply_to_user_id: string;
+      created_at: string;
+      author_id: string;
+    }[];
+    media: {
+      height: number;
+      type: string;
+      width: number;
+      media_key: string;
+      url: string;
+      alt_text: string;
+    }[];
+  };
+}
+
+export interface EmbeddedTweet {
+  media: {
+    height: number;
+    type: string;
+    width: number;
+    media_key: string;
+    url: string;
+    alt_text: string;
+  }[];
+  referenced_tweets: {
+    id: string;
+    attachments: { media_keys: string[] };
+    text: string;
+    in_reply_to_user_id: string;
+    created_at: string;
+    author_id: string;
+    type: 'quoted' | 'retweeted';
+    author: {
+      id: string;
+      name: string;
+      username: string;
+      profile_image_url: string;
+      protected: string;
+      url: string;
+      verified: boolean;
+    };
+    media: {
+      height: number;
+      type: string;
+      width: number;
+      media_key: string;
+      url: string;
+      alt_text: string;
+    }[];
+  }[];
+  author: {
+    id: string;
+    name: string;
+    username: string;
+    profile_image_url: string;
+    protected: string;
+    url: string;
+    verified: boolean;
+  };
   id: string;
   text: string;
   in_reply_to_user_id: string;
-};
+  created_at: string;
+  author_id: string;
+  attachments: { media_keys: string[] };
+  public_metrics: {
+    retweet_count: number;
+    reply_count: number;
+    like_count: number;
+    quote_count: number;
+  };
+}
 
 export interface Technologies {
   id: string;

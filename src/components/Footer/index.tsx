@@ -31,8 +31,8 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={`bg-black ${mainClasses}`}>
-      <div className="container flex flex-col-reverse justify-center gap-12 p-16 mx-auto text-white md:gap-0 md:flex-row md:justify-between">
+    <footer className={` ${mainClasses} mt-40 border-t border-gray-500`}>
+      <div className="container flex flex-col-reverse justify-center gap-12 py-16 mx-auto text-coolGray-50 md:gap-0 md:flex-row md:justify-between">
         <div className="flex flex-col gap-5 text-center md:text-left">
           <img
             src="/logo-square.png"
@@ -47,7 +47,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
           </div>
           <div className="flex flex-col items-center md:flex-row">
             <div>
-              <p className="font-light">© FrontendCafé {currentYear}</p>
+              <p className="mr-4 font-light">© FrontendCafé {currentYear}</p>
             </div>
             <div className="mt-5 md:mt-0">
               <a href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">

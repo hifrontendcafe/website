@@ -1,11 +1,25 @@
-import { TwitterTweetEmbed } from 'react-twitter-embed';
-import { CustomButtonGroup } from '../FeaturedCardsCarousel/CustomArrows';
-import { getRandomInt } from '@/lib/helpers';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { Tweet } from 'lib/types';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { faTwitter } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { EmbeddedTweet } from '@/lib/types';
+import Image from 'next/image';
 
-const MediaFeed: React.FC<{ tweets: Tweet[] }> = ({ tweets }) => {
+interface TwitterCardProps {
+  id: string;
+  text: string;
+  author: EmbeddedTweet['author'];
+  media?: EmbeddedTweet['media'];
+  created_at: string;
+  referenced_tweets?: EmbeddedTweet['referenced_tweets'];
+}
+
+interface MediaFeedProps {
+  tweets: EmbeddedTweet[];
+}
+
+const MediaFeed: React.FC<MediaFeedProps> = ({ tweets }) => {
   const responsive: ResponsiveType = {
     large: {
       breakpoint: { max: 3000, min: 1080 },
@@ -22,35 +36,21 @@ const MediaFeed: React.FC<{ tweets: Tweet[] }> = ({ tweets }) => {
   };
 
   return (
-    <section id="comunidad" className="relative w-full bg-white">
-      <div
-        className="absolute top-0 left-0 right-0 bottom-auto w-full -mt-20 overflow-hidden pointer-events-none"
-        style={{ height: '80px', transform: 'translateZ(0)' }}
-      >
-        <svg
-          className="absolute bottom-0 overflow-hidden"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          version="1.1"
-          viewBox="0 0 2560 100"
-          x="0"
-          y="0"
+    <section id="media-feed" className="relative w-full">
+      <div className="px-5 py-12 mx-auto">
+        <a
+          href="https://twitter.com/FrontEndCafe/"
+          className="flex items-center pb-12 md:pl-2"
         >
-          <polygon
-            className="text-white fill-current"
-            points="2560 0 2560 100 0 100"
-          ></polygon>
-        </svg>
-      </div>
-      <div className="container px-5 py-12 mx-auto">
-        <div className="flex items-center pb-12 md:pl-24">
           <img
-            className="w-10 h-10"
+            className="w-6 h-6"
             src="/icons/twitter.svg"
             alt="twitter-logo"
           />
-          <h1 className="pl-2 twitter-blue subtitle">@frontendcafe</h1>
-        </div>
+          <h1 className="pl-2 text-xl font-medium twitter-blue subtitle">
+            @frontendcafe
+          </h1>
+        </a>
 
         <Carousel
           ssr
@@ -63,60 +63,115 @@ const MediaFeed: React.FC<{ tweets: Tweet[] }> = ({ tweets }) => {
           centerMode={false}
           responsive={responsive}
           transitionDuration={700}
-          containerClass="container px-3 md:px-0 mx-auto py-5 gap-2"
+          containerClass="container px-3 md:px-0 py-5 gap-2"
           itemClass="px-2"
           partialVisible={false}
           autoPlay
           autoPlaySpeed={5000}
         >
-          {tweets
-            .filter((x) => !x.in_reply_to_user_id)
-            .map((tweet) => (
-              <TwitterTweetEmbed
-                key={tweet.id}
-                tweetId={tweet.id}
-                options={{
-                  maxHeight: 500,
-                }}
-                placeholder={<SkeletonTwitterCard />}
+          {tweets.map(
+            ({ id, author, text, media, created_at, referenced_tweets }) => (
+              <TwitterCard
+                key={id}
+                id={id}
+                text={text}
+                author={author}
+                media={media}
+                created_at={created_at}
+                referenced_tweets={referenced_tweets}
               />
-            ))}
+            ),
+          )}
         </Carousel>
       </div>
     </section>
   );
 };
 
-const SkeletonTwitterCard: React.FC = () => {
+const TwitterCard: React.FC<TwitterCardProps> = ({
+  id,
+  text,
+  author,
+  media,
+  created_at,
+  referenced_tweets,
+}) => {
+  const tweetUrl = `https://twitter.com/${author.username}/status/${id}`;
+  const authorUrl = `https://twitter.com/${author.username}`;
+  const quoteTweet =
+    referenced_tweets && referenced_tweets.find((t) => t.type === 'quoted');
+
+  const retweet =
+    referenced_tweets && referenced_tweets.find((t) => t.type === 'retweeted');
+
+  if (retweet) {
+    return (
+      <TwitterCard
+        key={retweet.id}
+        id={retweet.id}
+        text={retweet.text}
+        author={retweet.author}
+        created_at={retweet.created_at}
+        media={retweet.media}
+      />
+    );
+  }
+
   return (
-    <div className="w-full p-4 mx-auto mb-2 bg-white border border-gray-300 rounded-md shadow">
-      <div className="flex space-x-4 animate-pulse">
-        <div className="flex-1 py-1 space-y-4">
-          <div className="flex justify-between">
-            <div className="flex items-center w-3/4">
-              <div className="w-12 h-12 bg-gray-400 rounded-full"></div>
-              <div className="w-40 ml-2">
-                <div className="h-4 mb-2 bg-gray-400 rounded"></div>
-                <div className="h-3 bg-gray-400 rounded"></div>
-              </div>
-            </div>
-            <img
-              className="w-6 h-6"
-              src="/icons/twitter.svg"
-              alt="twitter-logo"
+    <div>
+      <div className="w-full p-5 mx-auto mb-2 rounded-md text-coolGray-300 bg-coolGray-900">
+        <div className="flex justify-between">
+          <a href={authorUrl} className="flex">
+            <Image
+              alt={author.username}
+              height={48}
+              width={48}
+              src={author.profile_image_url}
+              className="w-12 rounded-full"
             />
-          </div>
-          <div className="space-y-2">
-            <div className="h-4 bg-gray-400 rounded"></div>
-            <div className="w-5/6 h-4 bg-gray-400 rounded"></div>
-          </div>
-          <div className="space-y-2">
-            <div
-              style={{ height: getRandomInt(200, 500) }}
-              className="bg-gray-400 rounded"
-            ></div>
+            <div className="ml-2">
+              <h2 className="font-semibold font-title">{author.name}</h2>
+              <h3 className="text-coolGray-500">@{author.username}</h3>
+            </div>
+          </a>
+          <div className="flex mb-auto">
+            <FontAwesomeIcon
+              icon={faTwitter}
+              width="18px"
+              className="fill-current text-lightBlue "
+            />
+            <a href={tweetUrl}>
+              <FontAwesomeIcon
+                icon={faExternalLinkAlt}
+                width="18px"
+                className="ml-3"
+              />
+            </a>
           </div>
         </div>
+        <div className="my-2">{text}</div>
+        <div>
+          {media
+            ? media.map((img) => (
+                <img
+                  key={img.url}
+                  className="object-cover rounded-md"
+                  src={img.url}
+                  alt={img.alt_text}
+                />
+              ))
+            : null}
+        </div>
+        {quoteTweet ? (
+          <TwitterCard
+            key={quoteTweet.id}
+            id={quoteTweet.id}
+            text={quoteTweet.text}
+            author={quoteTweet.author}
+            created_at={quoteTweet.created_at}
+            media={quoteTweet.media}
+          />
+        ) : null}
       </div>
     </div>
   );

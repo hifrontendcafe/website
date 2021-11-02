@@ -15,43 +15,30 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="p-4 text-center rounded-lg shadow-lg flex flex-col justify-between w-full">
-      <div className="flex items-top justify-center space-x-3 text-center">
-        <img
-          src={profile.photo || '/img/user.svg'}
-          className={`object-cover object-top w-28 h-28 ring ring-white ${
-            profile.available ? 'ring-green-400' : ''
-          } rounded-full shadow-lg`}
-          alt={profile.name}
-        />
-        <div className="text-left flex justify-between flex-nowrap w-min flex-grow flex-col">
+    <div className="flex flex-col justify-between w-full pb-4 rounded-lg shadow-lg bg-coolGray-800">
+      <div className="px-3 pt-3 md:pt-6 md:px-6">
+        <div className="space-x-3 items-top">
+          <img
+            src={profile.photo || '/img/user.svg'}
+            className={`object-cover object-top w-28 h-28  ${
+              profile.available ? ' ring ring-profileRing' : ''
+            } rounded-full shadow-lg`}
+            alt={profile.name}
+          />
+        </div>
+        <div className="flex flex-col justify-between flex-grow text-coolGray-50">
           <div className="flex-grow">
-            <h1 className="leading-none text-xl font-bold tracking-tighter">
-              {profile.name}
-            </h1>
-            <h2 className="leading-none tracking-tighter">
-              {profile.role.name}
-            </h2>
-            <h3 className="leading-none tracking-tighter uppercase font-semibold text-xs my-1">
-              {profile.seniority.name}
-            </h3>
+            <h2 className="mt-2 text-xl font-bold">{profile.name}</h2>
+            <div className="flex">
+              <h2 className="mr-2 font-semibold text-md">
+                {profile.role.name}
+              </h2>
+              <h2 className="text-md">|&nbsp;{profile.seniority.name}</h2>
+            </div>
+
             {profile.location && (
               <div className="flex items-center">
-                <img
-                  src="img/location.svg"
-                  alt="location"
-                  height={16}
-                  width={16}
-                  className="text-red-500"
-                />
-                <h3 className="text-xs text-gray-500 tracking-witde uppercase font-semibold">
-                  {profile.location}
-                </h3>
-              </div>
-            )}
-            {profile.available && (
-              <div className="font-semibold text-sm text-primary whitespace-nowrap">
-                En búsqueda activa
+                <h2 className="text-base capitalize ">{profile.location}</h2>
               </div>
             )}
           </div>
@@ -59,21 +46,30 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
             <ProfileSocialMedia socialMedia={socialMediaList} />
           </div>
         </div>
+        <div className="flex flex-col">
+          <div className="mt-4 mb-2 text-sm leading-tight whitespace-pre-line text-coolGray-100">
+            {profile.description}
+          </div>
+        </div>
       </div>
-      <div className="text-left text-sm w-full h-full items-center justify-center my-4 whitespace-pre-line">
-        {profile.description}
-      </div>
-      <div className="group-hover:hidden">
-        {profile.technologies?.length > 0 && (
-          <div className="flex flex-wrap items-center justify-start">
-            {profile.technologies?.map((tech) => (
-              <span
-                key={tech.name}
-                className="px-3 py-1 mr-2 mt-2 text-xs break-all border border-indigo-400 rounded-md uppercase"
-              >
-                {tech.name}
-              </span>
-            ))}
+      <div>
+        <div className="px-3 md:px-6">
+          {profile.technologies?.length > 0 && (
+            <div className="flex flex-wrap items-center justify-start">
+              {profile.technologies?.map((tech) => (
+                <span
+                  key={tech.name}
+                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all rounded-md bg-coolGray-900 text-coolGray-50"
+                >
+                  {tech.name}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        {profile.available && (
+          <div className="w-full py-1 mt-4 text-sm font-semibold text-center text-coolGray-900 bg-greenFec">
+            En búsqueda activa
           </div>
         )}
       </div>

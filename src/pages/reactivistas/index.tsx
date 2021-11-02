@@ -6,13 +6,12 @@ import { ReactGroup } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { reactGroupQuery } from '../../lib/queries';
 import Layout from '../../components/Layout';
-import AddParticipantForm from '../../components/reactivistas/AddParticipantForm';
-import GroupInfoModal from '../../components/reactivistas/GroupInfoModal';
-import CreateGroupForm from '../../components/reactivistas/CreateGroupForm';
-import GroupRequirementsModal from '../../components/reactivistas/GroupRequirementsModal';
+import AddParticipantForm from '../../components/Reactivistas/AddParticipantForm';
+import GroupInfoModal from '../../components/Reactivistas/GroupInfoModal';
+import CreateGroupForm from '../../components/Reactivistas/CreateGroupForm';
+import GroupRequirementsModal from '../../components/Reactivistas/GroupRequirementsModal';
 
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import SectionHero from '@/components/SectionHero';
 
 const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
   ({ data, preview }) => {
@@ -26,36 +25,13 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
     const [infoModalOpen, setInfoModalOpen] = useState(false);
 
     return (
-      <Layout title="Iniciativas">
-        <div className="pt-20">
-          <div className="px-6 mx-auto max-w-7xl sm:px-6 lg:px-36">
-            <div className="text-left sm:px-10 xl:px-0">
-              <h2 className="mt-2 leading-snug tracking-tight title">
-                ⚛️ Reactivistas
-              </h2>
-              <p className="max-w-3xl mt-4 text-lg">
-                Reactivistas es una iniciativa que promueve el estudio de React
-                en grupos auto-organizados por integrantes de la comunidad.
-                <br />
-                Si participas podrás intercambiar ideas con tus pares y acceder
-                a las Office Hours, que son reuniones con nuestro staff exponer
-                tus dudas y realizar consultas.
-              </p>
-              <span className="flex mt-5 cursor-pointer text-primary">
-                <a
-                  target="_blank"
-                  href="https://frontend.cafe/docs/guia-reactivistas"
-                  rel="noreferrer"
-                >
-                  Conocé más sobre la iniciativa&nbsp;
-                </a>
-                <FontAwesomeIcon icon={faExternalLinkAlt} width="16px" />
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="container p-6 m-10 mx-auto lg:px-36">
+      <Layout title="Reactivistas">
+        <SectionHero
+          title="Reactivistas"
+          paragraph="Grupos auto-organizados por integrantes de la comunidad para aprender React.js con pares y con ayuda de mentores"
+          cta="https://frontend.cafe/docs/guia-reactivistas"
+        />
+        <div>
           {groups.length > 0 && (
             <>
               <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
@@ -92,7 +68,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
                           <li className="font-medium text-primary">
                             <a
                               href={group.studyMaterial}
-                              className="text-gray-600"
+                              className="text-coolGray-600"
                             >
                               📚 Material de estudio
                             </a>
@@ -121,10 +97,10 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
           )}
 
           <div className="flex-1 min-w-0 mb-8">
-            <h1 className="text-2xl font-bold leading-7 text-black sm:text-2xl sm:leading-9 sm:truncate">
+            <h1 className="text-2xl font-bold leading-7 text-coolGray-200 title sm:text-2xl sm:leading-9 sm:truncate">
               Dale vida a un nuevo grupo
             </h1>
-            <h2 className="leading-7 text-md text-primary sm:leading-9 sm:truncate">
+            <h2 className="leading-7 text-md text-informational sm:leading-9 sm:truncate">
               <span
                 className="cursor-pointer"
                 onClick={() => setIsModalOpen(true)}
@@ -133,12 +109,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
               </span>
             </h2>
           </div>
-
-          <div className="container mx-auto overflow-hidden rounded-lg shadow bg-gray-50">
-            <div className="px-6 py-5 border-b border-gray-200 md:px-8">
-              <CreateGroupForm />
-            </div>
-          </div>
+          <CreateGroupForm />
         </div>
 
         <GroupRequirementsModal

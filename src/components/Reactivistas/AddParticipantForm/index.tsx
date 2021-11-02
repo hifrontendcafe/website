@@ -48,7 +48,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
       <div className="flex flex-wrap sm:flex-row">
         <div className="relative flex-grow">
           <input
-            className="w-full h-full px-3 py-2 flex-1 text-sm leading-tight text-gray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+            className="w-full h-full px-3 py-2 flex-1 text-sm leading-tight text-coolGray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
             name="discordUser"
             type="text"
             value={discordUser}
@@ -63,7 +63,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
           type="submit"
           form={group.name}
           disabled={isLoading || isSuccess}
-          className="justify-items-end w-full sm:w-auto mt-2 sm:mt-0 px-3 py-2 sm:ml-2 text-sm font-small text-white border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          className="justify-items-end w-full sm:w-auto mt-2 sm:mt-0 px-3 py-2 sm:ml-2 text-sm font-small text-coolGray-50 border border-transparent rounded-md shadow-sm bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           {isLoading ? 'Enviando...' : 'Unite a este grupo'}
         </button>
