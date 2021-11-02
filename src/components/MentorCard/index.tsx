@@ -11,7 +11,6 @@ import TopicBadge from '../TopicBadge';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import CalomentorModal from '../CalomentorModal';
-import { getMentorTimeSlots } from '@/lib/calomentorApi';
 interface MentorCardProps {
   mentor: MentorCalomentor;
   mentorSlots: TimeSlot[];

@@ -351,7 +351,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                               disabled={errorDate}
                             >
                               {loading ? (
-                                <div className="flex items-center justify-center py-1 text-lg text-white border-0 rounded px-9 bg-primary">
+                                <div className="flex items-center justify-center py-1 text-lg text-white border-0 rounded px-9 btn-primary">
                                   <div className="w-4 h-4 border-b-2 border-white rounded-full animate-spin"></div>
                                 </div>
                               ) : (
