@@ -13,7 +13,7 @@ interface MentorListProps {
 
 const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   const [filter, setFilter] = useState<string>();
-  const [filteredTopics, setfilteredTopics] = useState<Mentor[] | undefined>(
+  const [filteredMentors, setFilteredMentors] = useState<Mentor[] | undefined>(
     undefined,
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,12 +26,19 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         const find = mentor.topics.filter((topic) => topic._ref == filter);
         if (find.length > 0) filtered.push(mentor);
       });
-      setfilteredTopics(filtered);
+      setFilteredMentors(filtered);
     };
 
     filterTopics();
     return () => filterTopics();
   }, [filter, mentors]);
+
+  /**
+   * sort modifies the original orray, so make a copy to be safe
+   */
+  const sortedTopics = [...topics].sort((a, b) =>
+    a.title.localeCompare(b.title),
+  );
 
   return (
     <div>
@@ -46,7 +53,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
           className="block w-full px-4 py-2 pr-8 leading-tight bg-gray-900 border border-gray-400 rounded shadow appearance-none text-coolGray-50 hover:border-gray-500 focus:outline-none focus:shadow-outline"
         >
           <option value="">Buscar</option>
-          {topics?.map((topic, index) => (
+          {sortedTopics?.map((topic, index) => (
             <option value={topic._id} key={index}>
               {topic.title}
             </option>
@@ -65,7 +72,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
       <div className="flex flex-col min-h-screen align-center">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
-          {(filteredTopics && filter ? filteredTopics : mentors)?.map(
+          {(filteredMentors && filter ? filteredMentors : mentors)?.map(
             (mentor, index) => (
               <MentorCard
                 key={index}
