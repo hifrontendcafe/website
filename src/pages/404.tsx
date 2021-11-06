@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Layout from '../components/Layout';
 import heart from '../../public/corazon-1.png';
 
 export default function Custom404() {
@@ -11,7 +10,8 @@ export default function Custom404() {
         height={164}
         width={164}
         className="text-center"
-        alt="Logo FrontendCafe"
+        alt="Broken heart"
+        placeholder="blur"
       />
       <h1 className="my-3 text-coolGray-50 subtitle">404 - Page Not Found</h1>
     </div>
