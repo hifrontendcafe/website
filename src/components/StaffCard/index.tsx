@@ -1,24 +1,49 @@
 import { Person } from '../../lib/types';
+import Image from 'next/image';
+import Link from 'next/link';
 
 type Props = {
   profile: Person;
 };
 
+const ProfileImage = ({ profile }: Props) => {
+  return (
+    <Image
+      className="object-cover mx-auto rounded-full h-36 w-36 md:h-32 md:w-32"
+      src={`${profile.photo.src}?h=256`}
+      alt={`Foto de ${profile.firstName}`}
+      width={128}
+      height={128}
+      placeholder="blur"
+      blurDataURL={`${profile.photo.src}?h=50`}
+    />
+  );
+};
+
+const ProfileText = ({ profile }: Props) => {
+  return (
+    <h2 className="my-2 text-3xl font-semibold md:text-sm">
+      {profile.firstName} {profile.lastName}
+    </h2>
+  );
+};
+
 const StaffCard = ({ profile }: Props) => {
   return (
     <div className="p-2 text-center transition duration-500 ease-in-out transform scale-100 hover:scale-110">
-      <a href={profile.linkedin} target="_blank" rel="noreferrer">
-        {profile.photo.src && (
-          <img
-            className="object-cover mx-auto rounded-full h-36 w-36 md:h-32 md:w-32"
-            src={profile.photo.src}
-            alt={profile.firstName}
-          />
-        )}
-        <h2 className="my-2 text-3xl font-semibold md:text-sm">
-          {profile.firstName} {profile.lastName}
-        </h2>
-      </a>
+      {profile.linkedin ? (
+        <Link href={profile.linkedin ?? ''}>
+          <a target="_blank" rel="noreferrer">
+            {profile.photo.src && <ProfileImage profile={profile} />}
+            <ProfileText profile={profile} />
+          </a>
+        </Link>
+      ) : (
+        <>
+          {profile.photo.src && <ProfileImage profile={profile} />}
+          <ProfileText profile={profile} />
+        </>
+      )}
     </div>
   );
 };
