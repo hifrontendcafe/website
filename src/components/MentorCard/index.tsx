@@ -2,6 +2,7 @@ import { Mentor, Topic } from '../../lib/types';
 import { faGithubAlt, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
+import Image from 'next/image';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import TopicBadge from '../TopicBadge';
 import { motion } from 'framer-motion';
@@ -34,18 +35,23 @@ const MentorCard: React.FC<MentorCardProps> = ({
       <div>
         <div className="flex justify-between w-full">
           <div>
-            <img
+            <Image
               className="object-cover w-24 h-24 mr-4 rounded-full bg-coolGray-300"
               src={`${mentor.photo.src}?h=200`}
-              alt={`${mentor.name} Avatar`}
+              alt={`Foto de ${mentor.name} `}
+              height={96}
+              width={96}
             />
           </div>
 
           <div>
             <div className="mb-4">
               {!mentor.isActive ? (
-                <button className="capitalize cursor-not-allowed text-md btn btn-secondary">
-                  No Disponible
+                <button
+                  type="button"
+                  className="capitalize cursor-not-allowed text-md btn btn-secondary"
+                >
+                  No disponible
                 </button>
               ) : mentor.isActive && mentor.calendly && isLogged ? (
                 <Link href={mentor.calendly}>
@@ -58,6 +64,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 </Link>
               ) : (
                 <button
+                  type="button"
                   onClick={() => openModal()}
                   className="capitalize border text-md text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-50 hover:border-coolGray-50"
                 >

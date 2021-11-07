@@ -49,6 +49,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
       </div>
       <div className="relative inline-block w-full mb-6 md:w-1/2 lg:w-1/3">
         <select
+          aria-label="Buscar"
           onChange={() => setFilter((event.target as HTMLInputElement).value)}
           className="block w-full px-4 py-2 pr-8 leading-tight bg-gray-900 border border-gray-400 rounded shadow appearance-none text-coolGray-50 hover:border-gray-500 focus:outline-none focus:shadow-outline"
         >
@@ -94,11 +95,12 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         buttonClasses="text-primary"
         footer={
           <button
+            type="button"
             className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
             style={{ transition: 'all .15s ease' }}
             onClick={() => signIn('discord')}
           >
-            Iniciar Sesión
+            Iniciar sesión
             <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
           </button>
         }

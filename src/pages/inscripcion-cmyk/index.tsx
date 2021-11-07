@@ -86,7 +86,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
                   style={{ transition: 'all .15s ease' }}
                   onClick={() => signIn('discord')}
                 >
-                  Iniciar Sesión
+                  Iniciar sesión
                   <FontAwesomeIcon
                     icon={faDiscord}
                     width="15px"
