@@ -181,7 +181,7 @@ const CreateGroupForm: React.FC = () => {
               }
               className="text-xs btn btn-primary md:text-md"
             >
-              Iniciar Sesión
+              Iniciar sesión
             </button>
           </Link>
         </div>

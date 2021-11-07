@@ -146,7 +146,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         preview={preview}
       >
         <div className="py-32 my-20 text-2xl text-center text-gray-100 rounded-lg shadow bg-coolGray-800">
-          Cargando Sesión...
+          Cargando sesión...
         </div>
       </Layout>
     );
@@ -486,7 +486,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 }
                 className="text-xs btn btn-primary md:text-md"
               >
-                Iniciar Sesión
+                Iniciar sesión
               </button>
             </Link>
           </div>

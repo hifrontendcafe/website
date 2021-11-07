@@ -20,7 +20,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
         onClick={() => signIn('discord')}
       >
         <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-3" />
-        Iniciar Sesión
+        Iniciar sesión
       </button>
     );
   }
@@ -47,7 +47,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
             className="text-xs font-medium text-gray-400 hover:text-gray-50"
             onClick={() => signOut()}
           >
-            Cerrar Sesión
+            Cerrar sesión
           </button>
         </div>
       </div>
