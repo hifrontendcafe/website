@@ -41,6 +41,8 @@ const MentorCard: React.FC<MentorCardProps> = ({
               alt={`Foto de ${mentor.name} `}
               height={96}
               width={96}
+              placeholder="blur"
+              blurDataURL={`${mentor.photo.src}?h=50`}
             />
           </div>
 
@@ -66,7 +68,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <button
                   type="button"
                   onClick={() => openModal()}
-                  className="capitalize border text-md text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-50 hover:border-coolGray-50"
+                  className=" border text-md text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-50 hover:border-coolGray-50"
                 >
                   Solicitar mentoría
                 </button>
