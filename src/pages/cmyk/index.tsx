@@ -21,7 +21,6 @@ const cmykVersions = [
   { version: 'cmyk-2', name: 'CMYK 2' },
   { version: 'cmyk-3', name: 'CMYK 3' },
   { version: 'cmyk-4', name: 'CMYK 4' },
-  { version: 'cmyk-5', name: 'CMYK 5' },
 ];
 
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
@@ -42,9 +41,10 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [currentCMYK, setCurrentCMYK] = useState(cmykVersions[0].version);
-
+  const lastVersionIndex = cmykVersions.length - 1;
+  const [currentCMYK, setCurrentCMYK] = useState(
+    cmykVersions[lastVersionIndex].version,
+  );
   const currentProjects = projects.filter(
     (project) => project.cmykVersion === currentCMYK,
   );
