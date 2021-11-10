@@ -5,13 +5,7 @@ import BlockContent from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
 import styles from './styles.module.css';
-
-declare global {
-  interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    addeventatc: any;
-  }
-}
+import Timezones from '@/lib/completeTimezones.json';
 
 interface EventPreviewProps {
   event: Event;
@@ -30,36 +24,51 @@ function toPlainText(blocks) {
 }
 
 const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
-  useEffect(() => {
-    window.addeventatc.refresh();
-  });
-
   const endDate = new Date(event.date);
   endDate.setHours(endDate.getHours() + 1);
 
   const calendar = {
     title: `${event.title} - FrontendCafé`,
-    description: toPlainText(event.description),
-    location: 'Discord',
+    description: toPlainText(event.description).replace(/[#]+/g, '%23'),
+    location: 'FrontendCafé Discord',
     startTime: new Date(event.date),
     endTime: endDate,
   };
 
   const AddToCalendar = ({ event }) => {
+    const getTimezone = () => {
+      const timezone = Intl.DateTimeFormat()
+        .resolvedOptions()
+        .timeZone.split('/')[
+        Intl.DateTimeFormat().resolvedOptions().timeZone.split('/').length - 1 // Crotada porque por alguna razón ".at is not a function" 🙄
+      ];
+      return (
+        timezone && Timezones.find((tz) => tz.tzCode.includes(timezone))?.tzCode
+      );
+    };
+
+    const formatedStartDatetime = new Date(event.startTime)
+      .toISOString()
+      .replace(/[-:.]/g, '');
+
+    const formatedEndDatetime = new Date(event.endTime)
+      .toISOString()
+      .replace(/[-:.]/g, '');
+
+    const googleCalendarURL = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${
+      event.title
+    }&dates=${formatedStartDatetime}/${formatedEndDatetime}&details=${
+      event.description
+    }&location=${event.location}&trp=true&ctz=${getTimezone()}`;
     return (
-      <button title="Add to Calendar" className="addeventatc button">
+      <a
+        href={googleCalendarURL}
+        target="_blank"
+        rel="noreferrer"
+        className="mt-auto text-center btn btn-primary"
+      >
         Añadir a calendario
-        <span className="start">
-          {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
-        </span>
-        <span className="end">
-          {format(new Date(event.endTime), 'MM/dd/yyyy HH:mm')}
-        </span>
-        <span className="timezone">America/Argentina/Buenos_Aires</span>
-        <span className="title">{event.title}</span>
-        <span className="description">{event.description}</span>
-        <span className="location">{event.location}</span>
-      </button>
+      </a>
     );
   };
 
@@ -99,22 +108,16 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
             <BlockContent blocks={event.description} />
           </div>
           {past && event.recording && (
-            <button className="mt-auto btn btn-primary">
-              <a
-                href={event.recording}
-                className=""
-                target="_blank"
-                rel="noreferrer"
-              >
-                Ver grabación
-              </a>
-            </button>
+            <a
+              href={event.recording}
+              className="mt-auto text-center btn btn-primary"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Ver grabación
+            </a>
           )}
-          {!past && (
-            <div className="mt-auto">
-              <AddToCalendar event={calendar} />
-            </div>
-          )}
+          {!past && <AddToCalendar event={calendar} />}
         </div>
       </div>
     </div>
