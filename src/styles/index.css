@@ -168,27 +168,3 @@ html {
 .twitter-blue {
   color: #55acee;
 }
-
-/* add calendar button styles */
-.addeventatc.button {
-  background-color: #f9fafb !important;
-  border-radius: 6px !important;
-  @apply text-coolGray-800 !important;
-  padding: 10px !important;
-  z-index: unset;
-  width: 100%;
-}
-
-.addeventatc.button:hover {
-  background-color: #00c39d !important;
-}
-
-.addeventatc_dropdown {
-  overflow: hidden;
-}
-.addeventatc_icon {
-  display: none;
-}
-.copyx {
-  display: none !important;
-}

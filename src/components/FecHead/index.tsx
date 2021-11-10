@@ -27,13 +27,6 @@ const FecHead: React.FC<FecHeadProps> = ({
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
       {/* Imports */}
-      <script
-        type="text/javascript"
-        src="https://addevent.com/libs/atc/1.6.1/atc.min.js"
-        async
-        defer
-      ></script>
-
       <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet"
