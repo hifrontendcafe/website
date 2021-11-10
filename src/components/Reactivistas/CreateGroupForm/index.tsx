@@ -53,7 +53,7 @@ const CreateGroupForm: React.FC = () => {
               Nombre del grupo*
             </label>
             <input
-              className="input focus:outline-none focus:shadow-outline"
+              className="input focus:outline-none focus:ring"
               type="text"
               placeholder="Nombre del grupo"
               required
@@ -66,7 +66,7 @@ const CreateGroupForm: React.FC = () => {
             </label>
             <div className="relative">
               <input
-                className="input focus:outline-none focus:shadow-outline"
+                className="input focus:outline-none focus:ring"
                 type="text"
                 placeholder="Ingresa tu usuario de Discord"
                 value={session.user.name}
@@ -80,7 +80,7 @@ const CreateGroupForm: React.FC = () => {
           <div className="mb-4">
             <label className="block mb-2 text-sm font-bold">Tema*</label>
             <input
-              className="input focus:outline-none focus:shadow-outline"
+              className="input focus:outline-none focus:ring"
               type="text"
               placeholder="Ingresa el tema"
               required
@@ -92,7 +92,7 @@ const CreateGroupForm: React.FC = () => {
               Material de estudio*
             </label>
             <input
-              className="input focus:outline-none focus:shadow-outline"
+              className="input focus:outline-none focus:ring"
               type="url"
               placeholder="Ingresa un link al material de estudio seleccionado"
               required
@@ -105,7 +105,7 @@ const CreateGroupForm: React.FC = () => {
             </label>
             <textarea
               rows={5}
-              className="input focus:outline-none focus:shadow-outline"
+              className="input focus:outline-none focus:ring"
               placeholder="Ingresa la dinámica que se va a utilizar en su grupo de estudio"
               required
               {...register('meetings', { required: true })}
@@ -117,7 +117,7 @@ const CreateGroupForm: React.FC = () => {
             </label>
             <textarea
               rows={5}
-              className="input focus:outline-none focus:shadow-outline"
+              className="input focus:outline-none focus:ring"
               placeholder="Ingresa como va a ser el plan de estudio"
               {...register('plan')}
             ></textarea>
@@ -127,7 +127,7 @@ const CreateGroupForm: React.FC = () => {
               Fecha tentativa de inicio
             </label>
             <input
-              className="input focus:outline-none focus:shadow-outline"
+              className="input focus:outline-none focus:ring"
               name="startDate"
               type="date"
               {...register('startDate')}

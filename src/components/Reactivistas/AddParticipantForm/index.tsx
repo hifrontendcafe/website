@@ -48,7 +48,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
       <div className="flex flex-wrap sm:flex-row">
         <div className="relative flex-grow">
           <input
-            className="w-full h-full px-3 py-2 flex-1 text-sm leading-tight text-coolGray-700 border rounded appearance-none focus:outline-none focus:shadow-outline"
+            className="w-full h-full px-3 py-2 flex-1 text-sm leading-tight text-coolGray-700 border rounded appearance-none focus:outline-none focus:ring"
             name="discordUser"
             type="text"
             value={discordUser}

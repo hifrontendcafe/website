@@ -86,7 +86,7 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <div className="relative">
           <input
-            className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+            className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
             type="text"
             placeholder="Ingresa tu usuario de Discord"
             autoComplete="off"
@@ -103,7 +103,7 @@ const CMYKParticipantForm: React.FC = () => {
           Email*
         </label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
           type="email"
           placeholder="Ingresa tu email"
           autoComplete="off"
@@ -119,7 +119,7 @@ const CMYKParticipantForm: React.FC = () => {
           Nombre*
         </label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
           type="text"
           placeholder="Ingresa tu nombre"
           autoComplete="off"
@@ -134,7 +134,7 @@ const CMYKParticipantForm: React.FC = () => {
           Apellido*
         </label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
           type="text"
           placeholder="Ingresa tu apellido"
           autoComplete="off"
@@ -151,7 +151,7 @@ const CMYKParticipantForm: React.FC = () => {
         <select
           id="timezone"
           {...register('timezone', { required: true })}
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
         >
           <option value="">Por favor elige una opción</option>
           {timezones.map((tz) => (
@@ -169,7 +169,7 @@ const CMYKParticipantForm: React.FC = () => {
           Github*
         </label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
           type="url"
           placeholder="https://www.github.com/usuario"
           autoComplete="off"
@@ -184,7 +184,7 @@ const CMYKParticipantForm: React.FC = () => {
           Twitter
         </label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
           type="url"
           placeholder="https://www.twitter.com/usuario"
           autoComplete="off"
@@ -196,7 +196,7 @@ const CMYKParticipantForm: React.FC = () => {
           LinkedIn
         </label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
           type="url"
           placeholder="https://www.linkedin.com/in/usuario"
           autoComplete="off"
@@ -210,7 +210,7 @@ const CMYKParticipantForm: React.FC = () => {
         <select
           id="experience"
           {...register('experience', { required: true })}
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
         >
           <option value="">Por favor elige una opción</option>
           <option value="yes">Sí</option>
@@ -227,7 +227,7 @@ const CMYKParticipantForm: React.FC = () => {
         <select
           id="participationLevel"
           {...register('participationLevel', { required: true })}
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
         >
           <option value="">Por favor elige una opción</option>
           <option value="level1">Nivel 1 (HTML - CSS - JavaScript)</option>
@@ -246,7 +246,7 @@ const CMYKParticipantForm: React.FC = () => {
         <select
           id="timeAvailability"
           {...register('timeAvailability', { required: true })}
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
         >
           <option value="">Por favor elige una opción</option>
           <option value=">=6hours">6 o más horas semanales</option>
@@ -263,7 +263,7 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <textarea
           rows={1}
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
           placeholder="Si tienes conocimientos, cuéntanos"
           {...register('previousKnowledge', { required: true })}
         ></textarea>
@@ -278,7 +278,7 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <textarea
           rows={2}
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
           placeholder="Conocerte nos permitirá saber ubicarte en los proyectos"
           {...register('aboutParticipant', { required: true })}
         ></textarea>
@@ -292,7 +292,7 @@ const CMYKParticipantForm: React.FC = () => {
         </label>
         <textarea
           rows={2}
-          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:shadow-outline"
+          className="w-full px-3 py-3 text-sm leading-tight text-coolGray-700 placeholder-gray-700 border border-gray-500 rounded appearance-none focus:outline-none focus:ring"
           {...register('otherQuestions', { required: false })}
         ></textarea>
       </div>

@@ -238,7 +238,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </label>
                     <div className="relative">
                       <input
-                        className={`input focus:outline-none focus:shadow-outline ${
+                        className={`input focus:outline-none focus:ring ${
                           errors.location && 'border-red-400'
                         }`}
                         type="text"
@@ -440,7 +440,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 </div>
                 <div className="flex items-center mb-4">
                   <input
-                    className="mr-2 text-sm leading-tight border rounded text-coolGray-200 focus:outline-none focus:shadow-outline"
+                    className="mr-2 text-sm leading-tight border rounded text-coolGray-200 focus:outline-none focus:ring"
                     {...register('available')}
                     type="checkbox"
                   />
@@ -450,7 +450,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 </div>
                 <div className="flex items-center mb-4">
                   <input
-                    className={`mr-2 text-sm leading-tight text-coolGray-200 border rounded focus:outline-none focus:shadow-outline ${
+                    className={`mr-2 text-sm leading-tight text-coolGray-200 border rounded focus:outline-none focus:ring ${
                       errors.consent && 'border-red-400'
                     }`}
                     type="checkbox"
