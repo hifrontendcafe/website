@@ -12,7 +12,7 @@ export default NextAuth({
           const defaultAvatarNumber = parseInt(profile.discriminator) % 5;
           profile.image = `https://cdn.discordapp.com/embed/avatars/${defaultAvatarNumber}.png`;
         } else {
-          profile.image = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.${webp}`;
+          profile.image = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.webp`;
         }
         return {
           id: profile.id,
