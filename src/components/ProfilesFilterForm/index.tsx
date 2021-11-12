@@ -146,7 +146,6 @@ const FilterForm: React.FC<FormProps> = ({
           </label>
           <div className="relative inline-block w-10 mr-2 align-middle transition duration-200 ease-in select-none">
             <input
-              defaultChecked={activesQuery}
               checked={filters.available}
               name="toggle"
               type="checkbox"
