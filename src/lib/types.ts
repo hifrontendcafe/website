@@ -120,8 +120,8 @@ export interface Post {
 }
 
 export interface PageProfile {
-  preview?: boolean,
-  profile: Profile,
+  preview?: boolean;
+  profile: Profile;
 }
 
 export type ExtendedProfile = Profile & {

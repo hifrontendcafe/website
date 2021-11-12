@@ -27,6 +27,6 @@ export function findProfilesBasic(
   filters: ProfileWhereInput,
 ): PrismaPromise<Profile[]> {
   return prisma.profile.findMany({
-    where: filters
+    where: filters,
   });
-};
+}
