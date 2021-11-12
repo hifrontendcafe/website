@@ -2,6 +2,7 @@ import React, { Dispatch } from 'react';
 import Select from 'react-select';
 import { ProfileFilters } from '@/lib/types';
 import { FilterProfileAction } from '@/components/Profiles/filterReducer';
+import { useRouter } from 'next/router';
 
 interface FormProps {
   filters: ProfileFilters;
@@ -23,12 +24,26 @@ const FilterForm: React.FC<FormProps> = ({
   roles,
   seniorities,
 }) => {
+  const router = useRouter();
+  const activesQuery = Object.prototype.hasOwnProperty.call(
+    router.query,
+    'activos',
+  );
+
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
   };
 
   const isRoleSelected = filters.roleId !== '';
   const isSenioritySelected = filters.seniorityId !== '';
+
+  React.useEffect(() => {
+    if (activesQuery)
+      dispatch({
+        type: 'SET_AVAILABLE',
+        payload: true,
+      });
+  }, [activesQuery, dispatch]);
 
   return (
     <form onSubmit={onSubmit}>
@@ -131,15 +146,17 @@ const FilterForm: React.FC<FormProps> = ({
           </label>
           <div className="relative inline-block w-10 mr-2 align-middle transition duration-200 ease-in select-none">
             <input
+              defaultChecked={activesQuery}
               checked={filters.available}
               name="toggle"
               type="checkbox"
-              onChange={(event) =>
+              onChange={(event) => {
                 dispatch({
                   type: 'SET_AVAILABLE',
                   payload: event.target.checked,
-                })
-              }
+                });
+                activesQuery && router.push('/comunidad');
+              }}
               className={`form-checkbox absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
                 filters.available
                   ? ' translate-x-4 text-green-400'
