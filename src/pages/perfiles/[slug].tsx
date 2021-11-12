@@ -30,7 +30,7 @@ const ProfilePage: React.FC<PageProfile> = ({ preview, profile }) => {
               <b>Usuario: </b>
               {profile.name} ({profile.discord})
             </span>
-            {!!profile.github ? (
+            {profile.github ? (
               <span>
                 <b>GitHub: </b>
                 {profile.github}
@@ -38,7 +38,7 @@ const ProfilePage: React.FC<PageProfile> = ({ preview, profile }) => {
             ) : (
               ''
             )}
-            {!!profile.portfolio ? (
+            {profile.portfolio ? (
               <span>
                 <b>Portfolio: </b>
                 {profile.portfolio}
