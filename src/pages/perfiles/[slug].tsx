@@ -1,21 +1,21 @@
 import React from 'react';
+import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
-import Error from 'next/error';
+import Custom404 from '@/pages/404'
 import Layout from '@/components/Layout';
-import { findProfiles } from '@/lib/prisma-queries';
+import { findProfilesBasic } from '@/lib/prisma-queries';
 import { getSettings } from '@/lib/api';
+import { PageProfile } from '@/lib/types';
 
-const ProfilePage = ({ preview, profile }) => {
+
+const ProfilePage:React.FC<PageProfile> = ({ preview, profile }) => {
   const router = useRouter();
 
-  if (!router.isFallback && !profile?.discordId) return <Error statusCode={404} />;
+  if (!router.isFallback && !profile?.discordId) return <Custom404 />
 
-  if (router.isFallback) return <div>Cargando...</div>;
-
-  // TODO: Design, define show data
   return (
     <Layout
-      title="Perfil"
+      title={`Perfil: ${profile.name}`}
       description="Compartí tu profile FEC a las redes"
       preview={preview}
     >
@@ -49,11 +49,10 @@ const ProfilePage = ({ preview, profile }) => {
   );
 };
 
-// TODO: Create functions to get necessary data
-export const getStaticProps = async ({ params, preview = false }) => {
+export const getStaticProps: GetStaticProps = async ({ params, preview = false }) => {
   const settings = await getSettings(preview);
 
-  const response = await findProfiles({ active: true });
+  const response = await findProfilesBasic({ active: true });
 
   const profiles = response.map((profile) => ({
     ...profile,
@@ -65,6 +64,12 @@ export const getStaticProps = async ({ params, preview = false }) => {
     if (profile.discordId === params.slug) { return true }
   })
 
+  if (!dataProfile[0]) {
+    return {
+      notFound: true,
+    }
+  }
+
   return {
     props: {
       preview,
@@ -75,14 +80,14 @@ export const getStaticProps = async ({ params, preview = false }) => {
   }
 }
 
-export const getStaticPaths = async () => {
-  const profiles = await findProfiles({ active: true });
+export const getStaticPaths: GetStaticPaths = async () => {
+  const profiles = await findProfilesBasic({ active: true });
 
   const paths = profiles?.map((profile) => ({
-    params: { slug: profile.discordId}
+    params: { slug: profile.discordId }
   }));
 
-  return { paths, fallback: true };
+  return { paths, fallback: 'blocking' };
 };
 
 export default ProfilePage;
