@@ -154,7 +154,7 @@ const FilterForm: React.FC<FormProps> = ({
                   type: 'SET_AVAILABLE',
                   payload: event.target.checked,
                 });
-                activesQuery && router.push('/comunidad');
+                activesQuery && router.push('/talentos');
               }}
               className={`form-checkbox absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
                 filters.available

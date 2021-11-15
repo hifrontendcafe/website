@@ -60,7 +60,7 @@ export interface NavItemProps {
 
 function signInDiscord() {
   return signIn('discord', {
-    callbackUrl: `${window.location.origin}/comunidad/nuevo`,
+    callbackUrl: `${window.location.origin}/talentos/nuevo`,
   });
 }
 

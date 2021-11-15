@@ -141,7 +141,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
   if (loading && loadingProfile) {
     return (
       <Layout
-        title="Comunidad"
+        title="Talentos"
         description="Encontrá los perfiles dentro de FEC"
         preview={preview}
       >
@@ -154,14 +154,14 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 
   return (
     <Layout
-      title="Comunidad"
+      title="Talentos"
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
       <SectionHero
         title="Tu perfil"
         paragraph="Buscamos darle visibilidad a quienes participan dentro del servidor, principalmente aquellas personas que se encuentran en búsqueda de su primera experiencia laboral.
-        Tu perfil será visible en la sección Comunidad, diseñada para que recruiters y empresas puedan identificar talentos de nuestra comunidad"
+        Tu perfil será visible en la sección Talentos, diseñada para que recruiters y empresas puedan identificar talentos de nuestra comunidad"
       />
 
       <div className="overflow-hidden border-2 rounded-lg shadow border-coolGray-600 bg-coolGray-900">
@@ -477,11 +477,11 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
             Para poder registrar tu perfil es necesario que inicies sesión con
             Discord. <br />
             <br />
-            <Link href="/comunidad/nuevo">
+            <Link href="/talentos/nuevo">
               <button
                 onClick={() =>
                   signIn('discord', {
-                    callbackUrl: `${window.location.origin}/comunidad/nuevo`,
+                    callbackUrl: `${window.location.origin}/talentos/nuevo`,
                   })
                 }
                 className="text-xs btn btn-primary md:text-md"

@@ -26,12 +26,12 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
 }) => {
   return (
     <Layout
-      title="Comunidad"
+      title="Talentos"
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
       <SectionHero
-        title="Conoce nuestra comunidad"
+        title="Talentos FEC"
         paragraph="Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
         intereses y poder conectarte a través de sus redes sociales."
       />
