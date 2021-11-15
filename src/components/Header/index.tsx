@@ -28,7 +28,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
 
   return (
     <header
-      className={`w-full flex flex-col sticky top-0 z-50 transition duration-300 ${
+      className={`w-full flex flex-col fixed top-0 z-50 transition duration-300 ${
         preview ? 'pt-10' : ''
       } ${isAtTop && isClosed ? '' : 'nav-scroll'}`}
     >
