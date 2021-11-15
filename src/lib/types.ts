@@ -119,6 +119,11 @@ export interface Post {
   content: any;
 }
 
+export interface PageProfile {
+  preview?: boolean;
+  profile: Profile;
+}
+
 export type ExtendedProfile = Profile & {
   seniority: {
     id: string;
