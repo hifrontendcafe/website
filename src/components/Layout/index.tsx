@@ -25,7 +25,7 @@ const Layout: React.FC<LayoutProps> = ({
         <div className="z-10">
           {preview && <PreviewBanner />}
           <Header preview={preview} />
-          <div id="container" className="container relative z-20 mx-auto">
+          <div id="container" className="container relative z-20 mx-auto pt-12">
             {children}
           </div>
           <Footer />
