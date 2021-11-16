@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
   const navItems = [
     { title: 'Mentorías', link: '/mentorias' },
     { title: 'Prácticas de inglés', link: '/ingles' },
-    { title: 'Nuestra comunidad', link: '/comunidad' },
+    { title: 'Nuestros talentos', link: '/talentos' },
     { title: 'Reactivistas', link: '/reactivistas' },
     { title: 'Eventos', link: '/eventos' },
     { title: 'Conoce a nuestro equipo', link: '/equipo' },
