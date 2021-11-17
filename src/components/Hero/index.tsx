@@ -12,8 +12,8 @@ interface HeroProps {
 
 const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
   return (
-    <div className="relative py-32 mx-auto bg-white bg-opacity-0">
-      <div className="flex items-center justify-center h-full bg-center bg-cover text-coolGray-50 md:justify-around">
+    <div className="relative mx-auto bg-white bg-opacity-0">
+      <div className="flex items-center justify-center h-screen	bg-center bg-cover text-coolGray-50 md:justify-around">
         <div className="z-10 w-auto text-center">
           <div className="flex flex-col items-center">
             <div className="mb-16">
