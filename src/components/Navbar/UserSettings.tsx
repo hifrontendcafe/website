@@ -7,9 +7,10 @@ import Image from 'next/image';
 interface UserSettingsProps {
   user?: Session['user'];
   navIsOpen: boolean;
+  loading: boolean;
 }
 
-const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
+const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen, loading }) => {
   if (loading) {
     return (
       <button
