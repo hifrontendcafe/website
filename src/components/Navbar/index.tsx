@@ -19,7 +19,6 @@ const Navbar: React.FC<NavbarProps> = ({
   loading,
   user,
   pathname,
-  logoImg,
   isOpen,
   toggle,
 }) => {

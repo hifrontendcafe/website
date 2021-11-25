@@ -1,11 +1,11 @@
-import Modal from '../../Modal';
+import Modal from '@/components/Modal';
 
-type ModalProps = {
+interface ModalProps {
   open: boolean;
   onClose: () => void;
-};
+}
 
-const GroupRequirementsModal = (props: ModalProps) => {
+const GroupRequirementsModal: React.FC<ModalProps> = (props) => {
   const { open, onClose } = props;
 
   return (

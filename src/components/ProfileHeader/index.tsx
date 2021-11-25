@@ -1,15 +1,20 @@
 import ProfileSocialMedia from '../ProfileSocialMedia';
 
-type Props = {
+interface ProfileHeaderProps {
   name: string;
   coverImage: string;
   role: string;
   socialMedia: {
     [name: string]: string;
   };
-};
+}
 
-const ProfileHeader = ({ name, coverImage, role, socialMedia }: Props) => {
+const ProfileHeader: React.FC<ProfileHeaderProps> = ({
+  name,
+  coverImage,
+  role,
+  socialMedia,
+}) => {
   return (
     <div className="items-center md:flex">
       <img

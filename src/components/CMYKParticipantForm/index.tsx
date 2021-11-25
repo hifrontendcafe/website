@@ -35,7 +35,7 @@ const CMYKParticipantForm: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [isInfo, setIsInfo] = useState<boolean>(false);
-  const [session, loading] = useSession();
+  const [session] = useSession();
 
   const onSubmit = async (data: FormInputs) => {
     setIsLoading(true);

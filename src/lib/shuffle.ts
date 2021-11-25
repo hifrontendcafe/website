@@ -1,3 +1,6 @@
+// this algorithm really shuffles arrays of anything imaginable
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 /**
  * shuffle in place (Fisher-Yates)
  */

@@ -33,6 +33,8 @@ import {
   personQueryByDiscordID,
 } from './queries';
 
+import { createClient } from 'next-sanity';
+
 const eventFields = `
   title,
   'slug': slug.current,
@@ -48,8 +50,9 @@ const eventFields = `
   recording
 `;
 
-export const getClient = (preview = false) =>
-  preview ? previewClient : client;
+export function getClient(preview = false): ReturnType<typeof createClient> {
+  return preview ? previewClient : client;
+}
 
 export async function getAllEvents(preview = false): Promise<Event[]> {
   return await getClient(preview).fetch(eventsQuery);
@@ -161,13 +164,11 @@ export async function createPerson(data: any): Promise<Person> {
 
 export async function updatePerson(
   personId: string,
-  data: any,
+  data: Partial<Person>,
 ): Promise<Person> {
   return await postClient
     .patch(personId)
-    .set({
-      ...data,
-    })
+    .set({ ...data })
     .commit();
 }
 

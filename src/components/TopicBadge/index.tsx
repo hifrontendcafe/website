@@ -1,18 +1,3 @@
-import { topics } from './constants';
-
-const {
-  ui,
-  backend,
-  english,
-  analytics,
-  frontend,
-  git,
-  data,
-  architect,
-  cv,
-  intro,
-} = topics;
-
 interface TopicBadgeProps {
   topic: string;
 }

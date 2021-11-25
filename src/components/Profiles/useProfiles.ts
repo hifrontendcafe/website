@@ -4,6 +4,7 @@ import {
   useReducer,
   Dispatch,
   SetStateAction,
+  useRef,
 } from 'react';
 import { ExtendedProfile, ProfileFilters } from '@/lib/types';
 import { filterReducer, FilterProfileAction } from './filterReducer';
@@ -62,7 +63,7 @@ interface UseProfilesResult {
 }
 
 export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
-  const [initialLoad, setInitialLoad] = useState(true);
+  const initialLoad = useRef<boolean>(true);
 
   const [filters, dispatchFilter] = useReducer(
     filterReducer,
@@ -84,7 +85,7 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
   const debouncedFilters = useDebounce(filters, DEBOUNCE_TIME);
 
   useEffect(() => {
-    if (!initialLoad) {
+    if (!initialLoad.current) {
       setFilteredProfiles({ isLoading: true, isError: false, profiles: [] });
     }
   }, [filters]);
@@ -111,8 +112,8 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
       setFilteredProfiles({ isLoading: false, isError: false, profiles });
     };
 
-    if (initialLoad) {
-      setInitialLoad(false);
+    if (initialLoad.current) {
+      initialLoad.current = false;
     } else {
       fn();
     }

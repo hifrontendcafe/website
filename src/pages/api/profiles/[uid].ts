@@ -1,10 +1,15 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+
 import prisma from '@/lib/prisma';
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<void> {
   const { uid } = req.query;
   const response = await prisma.profile.findFirst({
     where: {
-      discordId: uid,
+      discordId: uid as string,
     },
     include: {
       role: {

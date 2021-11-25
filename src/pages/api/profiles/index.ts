@@ -1,7 +1,12 @@
-import { Technology } from '@prisma/client';
-import prisma from '../../../lib/prisma';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handle(req, res) {
+import { Technology } from '@prisma/client';
+import prisma from '@/lib/prisma';
+
+export default async function handle(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<void> {
   if (req.method === 'POST') {
     const {
       name,
@@ -71,48 +76,6 @@ export default async function handle(req, res) {
         },
       });
     }
-    res.json(result);
-  }
-  if (req.method === 'GET') {
-    const filters = {
-      role: {
-        id: req.filters.roleId,
-      },
-      location: req.filters.location,
-      seniority: {
-        id: req.filters.seniorityId,
-      },
-      description: {
-        contains: req.filters.description,
-      },
-      technologies: {
-        every: {
-          id: {
-            in: req.filters.technologies,
-          },
-        },
-      },
-    };
-
-    const response = await prisma.profile.findMany({
-      where: filters,
-      include: {
-        role: {
-          select: { name: true },
-        },
-        technologies: {
-          select: { name: true },
-        },
-        seniority: {
-          select: { name: true },
-        },
-      },
-    });
-    const result = response.map((profile) => ({
-      ...profile,
-      createdAt: profile.createdAt.toString(),
-      updatedAt: profile.createdAt.toString(),
-    }));
     res.json(result);
   }
 }

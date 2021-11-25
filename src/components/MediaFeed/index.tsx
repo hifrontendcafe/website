@@ -93,7 +93,6 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
   text,
   author,
   media,
-  created_at,
   referenced_tweets,
 }) => {
   const tweetUrl = `https://twitter.com/${author.username}/status/${id}`;

@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { ReactGroup } from '../../../lib/types';
-import { DiscordUserTooltip } from '../FormHelpers';
+import { ReactGroup } from '@/lib/types';
+import { DiscordUserTooltip } from '@/components/Reactivistas/FormHelpers';
 
-type Props = { group: ReactGroup };
+interface Props {
+  group: ReactGroup;
+}
 
 const AddParticipantForm: React.FC<Props> = ({ group }) => {
   const [discordUser, setDiscordUser] = useState('');
@@ -14,7 +16,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
     setIsLoading(true);
 
     try {
-      const res = await fetch('/api/add-participant', {
+      await fetch('/api/add-participant', {
         method: 'POST',
         body: JSON.stringify({
           discordUser: discordUser,
@@ -25,7 +27,6 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
         },
       });
 
-      const response = await res.json();
       setIsLoading(false);
       setIsSuccess(true);
       setDiscordUser('');

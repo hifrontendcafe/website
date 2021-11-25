@@ -31,7 +31,7 @@ export default NextAuth({
     jwt: true,
   },
   callbacks: {
-    async signIn(user, account, profile) {
+    async signIn(user, account) {
       const guildResp = await fetch(
         'https://discord.com/api/users/@me/guilds',
         {
