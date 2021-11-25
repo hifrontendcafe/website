@@ -62,6 +62,8 @@ interface UseProfilesResult {
 }
 
 export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
+  const [initialLoad, setInitialLoad] = useState(true);
+
   const [filters, dispatchFilter] = useReducer(
     filterReducer,
     initialProfileFilters,
@@ -82,7 +84,9 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
   const debouncedFilters = useDebounce(filters, DEBOUNCE_TIME);
 
   useEffect(() => {
-    setFilteredProfiles({ isLoading: true, isError: false, profiles: [] });
+    if (!initialLoad) {
+      setFilteredProfiles({ isLoading: true, isError: false, profiles: [] });
+    }
   }, [filters]);
 
   useEffect(() => {
@@ -107,7 +111,11 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
       setFilteredProfiles({ isLoading: false, isError: false, profiles });
     };
 
-    fn();
+    if (initialLoad) {
+      setInitialLoad(false);
+    } else {
+      fn();
+    }
   }, [debouncedFilters]);
 
   const offset = (page - 1) * ITEMS_PER_PAGE;
