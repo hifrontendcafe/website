@@ -59,7 +59,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <NavItem link={link} title={title} pathname={pathname} key={link} />
         ))}
       </div>
-      {!loading && <UserSettings user={user} navIsOpen={isOpen} />}
+      {<UserSettings loading={loading} user={user} navIsOpen={isOpen} />}
     </nav>
   );
 };

@@ -10,6 +10,21 @@ interface UserSettingsProps {
 }
 
 const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
+  if (loading) {
+    return (
+      <button
+        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${
+          navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
+        }`}
+        style={{ transition: 'all .15s ease' }}
+        onClick={() => signIn('discord')}
+      >
+        <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-3" />
+        Loading&hellip;
+      </button>
+    )
+  }
+
   if (!user) {
     return (
       <button
