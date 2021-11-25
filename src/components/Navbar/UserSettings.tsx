@@ -10,7 +10,11 @@ interface UserSettingsProps {
   loading: boolean;
 }
 
-const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen, loading }) => {
+const UserSettings: React.FC<UserSettingsProps> = ({
+  user,
+  navIsOpen,
+  loading,
+}) => {
   if (loading) {
     return (
       <button
@@ -23,7 +27,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen, loading })
         <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-3" />
         Loading&hellip;
       </button>
-    )
+    );
   }
 
   if (!user) {
