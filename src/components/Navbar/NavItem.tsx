@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { MouseEventHandler, forwardRef, ReactNode } from 'react';
-import { signIn } from 'next-auth/client';
 
 export interface AnchorProps {
   isActive: boolean;
@@ -56,12 +55,6 @@ export interface NavItemProps {
   title: string;
   link: string;
   pathname: string;
-}
-
-function signInDiscord() {
-  return signIn('discord', {
-    callbackUrl: `${window.location.origin}/talentos/nuevo`,
-  });
 }
 
 const NavItem: React.FC<NavItemProps> = ({ title, link, pathname }) => {

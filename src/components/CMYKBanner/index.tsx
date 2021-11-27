@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import styles from './styles.module.css';
 
-const CMYKBanner: React.FC = ({ children }) => {
+const CMYKBanner: React.FC = () => {
   return (
     <div className={`${styles.root} h-24`}>
       <Link href="/cmyk">

@@ -5,7 +5,10 @@ import {
   createPerson,
 } from '../../lib/api';
 
-export default async function post(req: NextApiRequest, res: NextApiResponse) {
+export default async function post(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<void> {
   const { body } = req;
 
   let user = await getPersonByDiscordId(body.teamCaptain.id);

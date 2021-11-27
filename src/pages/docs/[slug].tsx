@@ -1,14 +1,18 @@
 import { useRouter } from 'next/router';
 import Error from 'next/error';
 
-import Layout from '../../components/Layout';
+import type { GetStaticProps, GetStaticPaths } from 'next';
+import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
+
+import { MDXRemote } from 'next-mdx-remote';
+import { serialize } from 'next-mdx-remote/serialize';
+
+import Layout from '@/components/Layout';
 
 import { getAllDocs, getDocBySlug, getSettings } from '@/lib/api';
-import { usePreviewSubscription } from '../../lib/sanity';
-import { docQuery } from '../../lib/queries';
+import { usePreviewSubscription } from '@/lib/sanity';
+import { docQuery } from '@/lib/queries';
 
-import { serialize } from 'next-mdx-remote/serialize';
-import { MDXRemote } from 'next-mdx-remote';
 import {
   Heading,
   Link,
@@ -17,14 +21,17 @@ import {
   Paragraph,
   Strong,
   SubHeading,
-} from '../../components/MDX';
+} from '@/components/MDX';
 
-// type DocProps = {
-//   data: Doc,
-//   preview?: boolean,
-// };
+import type { Doc } from '@/lib/types';
 
-const DocPage = ({ mdx, data, preview }) => {
+interface DocProps {
+  data: Doc;
+  mdx: MDXRemoteSerializeResult<Record<string, unknown>>;
+  preview?: boolean;
+}
+
+const DocPage: React.FC<DocProps> = ({ mdx, data, preview }) => {
   const router = useRouter();
   const { data: doc } = usePreviewSubscription(docQuery, {
     params: { slug: data?.slug },
@@ -56,24 +63,28 @@ const DocPage = ({ mdx, data, preview }) => {
   );
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const docs = await getAllDocs();
 
   const paths = docs?.map((doc) => ({
     params: { slug: doc.slug },
   }));
+
   return { paths, fallback: true };
 };
 
-export const getStaticProps = async ({ params, preview = false }) => {
+export const getStaticProps: GetStaticProps = async ({
+  params,
+  preview = false,
+}) => {
   const settings = await getSettings(preview);
-  const data = await getDocBySlug(params.slug, preview);
+  const data = await getDocBySlug(params.slug as string, preview);
 
   const source = data.content;
-  const mdxSource = await serialize(source);
+  const mdx = await serialize(source);
 
   return {
-    props: { mdx: mdxSource, data, preview, settings },
+    props: { mdx, data, preview, settings },
     revalidate: 1,
   };
 };

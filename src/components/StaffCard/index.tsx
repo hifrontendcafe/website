@@ -2,11 +2,11 @@ import { Person } from '../../lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
-type Props = {
+interface ProfileProp {
   profile: Person;
-};
+}
 
-const ProfileImage = ({ profile }: Props) => {
+const ProfileImage = ({ profile }: ProfileProp) => {
   return (
     <Image
       className="object-cover mx-auto rounded-full h-36 w-36 md:h-32 md:w-32"
@@ -20,7 +20,7 @@ const ProfileImage = ({ profile }: Props) => {
   );
 };
 
-const ProfileText = ({ profile }: Props) => {
+const ProfileText = ({ profile }: ProfileProp) => {
   return (
     <h2 className="my-2 text-3xl font-semibold md:text-sm">
       {profile.firstName} {profile.lastName}
@@ -28,7 +28,7 @@ const ProfileText = ({ profile }: Props) => {
   );
 };
 
-const StaffCard = ({ profile }: Props) => {
+const StaffCard: React.FC<ProfileProp> = ({ profile }) => {
   return (
     <div className="p-2 text-center transition duration-500 ease-in-out transform scale-100 hover:scale-110">
       {profile.linkedin ? (

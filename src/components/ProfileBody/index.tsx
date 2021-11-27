@@ -1,8 +1,8 @@
-type Props = {
+type ProfileBodyProps = {
   content: string;
 };
 
-const ProfileBody = ({ content }: Props) => {
+const ProfileBody: React.FC<ProfileBodyProps> = ({ content }) => {
   return (
     <div className="mx-auto">
       <article

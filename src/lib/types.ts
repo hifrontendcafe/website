@@ -1,5 +1,4 @@
 import { Profile } from '@prisma/client';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 
 export interface Settings {
   description: string;
@@ -140,7 +139,7 @@ export interface Doc {
   title: string;
   slug: string;
   body: string;
-  content?: MDXRemoteSerializeResult;
+  content?: string;
 }
 
 export interface FeaturedCards {
@@ -182,12 +181,13 @@ export interface Person {
   };
   firstName?: string;
   lastName?: string;
-  emai?: string;
+  email?: string;
   linkedin?: string;
   twitter?: string;
   portfolio?: string;
   github?: string;
   fecTeam?: boolean;
+  timezone?: string;
   cmykParticipant?: CMYKParticipant[];
 }
 
