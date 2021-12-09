@@ -73,17 +73,19 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
       <div className="flex flex-col min-h-screen align-center">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
-          {(filteredMentors && filter ? filteredMentors : mentors)?.map(
-            (mentor, index) => (
-              <MentorCard
-                key={index}
-                mentor={mentor}
-                topics={topics}
-                isLogged={session && !loading}
-                openModal={() => setIsModalOpen(true)}
-              />
-            ),
-          )}
+          {filteredMentors && filter
+            ? filteredMentors
+            : mentors
+                ?.sort((a) => (a.isActive ? -1 : 1))
+                .map((mentor, index) => (
+                  <MentorCard
+                    key={index}
+                    mentor={mentor}
+                    topics={topics}
+                    isLogged={session && !loading}
+                    openModal={() => setIsModalOpen(true)}
+                  />
+                ))}
         </div>
       </div>
       <SimpleModal
