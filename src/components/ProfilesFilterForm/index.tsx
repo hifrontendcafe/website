@@ -156,7 +156,7 @@ const FilterForm: React.FC<FormProps> = ({
                 });
                 activesQuery && router.push('/talentos');
               }}
-              className={`form-checkbox absolute transform transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
+              className={`form-checkbox absolute transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
                 filters.available
                   ? ' translate-x-4 text-green-400'
                   : 'border-gray-500'
