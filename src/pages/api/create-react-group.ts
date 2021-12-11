@@ -11,11 +11,19 @@ export default async function post(
 ): Promise<void> {
   const { body } = req;
 
-  let user = await getPersonByDiscordId(body.teamCaptain.id);
-  if (!user) {
-    user = await createPerson({
-      username: body.teamCaptain.id,
-    });
+  let user: Awaited<ReturnType<typeof getPersonByDiscordId>>;
+
+  try {
+    user = await getPersonByDiscordId(body.teamCaptain.id);
+    if (!user) {
+      user = await createPerson({
+        username: body.teamCaptain.id,
+      });
+    }
+  } catch (error) {
+    console.error(`Can't get user.`, error);
+    res.status(500);
+    return;
   }
 
   try {
@@ -30,6 +38,7 @@ export default async function post(
 
     res.status(200).json(reactGroup);
   } catch (e) {
+    console.error(e);
     res.status(500);
   }
 }
