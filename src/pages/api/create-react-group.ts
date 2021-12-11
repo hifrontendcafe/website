@@ -24,7 +24,7 @@ export default async function post(
     }
   } catch (error) {
     console.error(`Can't get user.`, error);
-    res.status(500);
+    res.status(500).send(null);
     return;
   }
 
@@ -41,6 +41,6 @@ export default async function post(
     res.status(200).json(reactGroup);
   } catch (e) {
     console.error(e);
-    res.status(500);
+    res.status(500).send(null);
   }
 }
