@@ -5,6 +5,8 @@ import {
   createPerson,
 } from '../../lib/api';
 
+type Awaited<T> = T extends Promise<infer R> ? R : T;
+
 export default async function post(
   req: NextApiRequest,
   res: NextApiResponse,
