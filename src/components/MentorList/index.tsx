@@ -1,7 +1,7 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/client';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
@@ -19,10 +19,23 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [session, loading] = useSession();
 
+  /**
+   * sort modifies the original orray, so make a copy to be safe
+   */
+  const sortedTopics = useMemo(
+    () => [...topics].sort((a, b) => a.title.localeCompare(b.title)),
+    [topics],
+  );
+
+  const sortedMentors = useMemo(
+    () => [...mentors].sort((a) => (a.isActive ? -1 : 1)),
+    [mentors],
+  );
+
   useEffect(() => {
     const filterTopics = () => {
       const filtered = [];
-      mentors.forEach((mentor) => {
+      sortedMentors.forEach((mentor) => {
         const find = mentor.topics.filter((topic) => topic._ref == filter);
         if (find.length > 0) filtered.push(mentor);
       });
@@ -31,14 +44,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
     filterTopics();
     return () => filterTopics();
-  }, [filter, mentors]);
-
-  /**
-   * sort modifies the original orray, so make a copy to be safe
-   */
-  const sortedTopics = [...topics].sort((a, b) =>
-    a.title.localeCompare(b.title),
-  );
+  }, [filter, sortedMentors]);
 
   return (
     <div>
@@ -73,19 +79,17 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
       <div className="flex flex-col min-h-screen align-center">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
-          {filteredMentors && filter
-            ? filteredMentors
-            : mentors
-                ?.sort((a) => (a.isActive ? -1 : 1))
-                .map((mentor, index) => (
-                  <MentorCard
-                    key={index}
-                    mentor={mentor}
-                    topics={topics}
-                    isLogged={session && !loading}
-                    openModal={() => setIsModalOpen(true)}
-                  />
-                ))}
+          {(filteredMentors && filter ? filteredMentors : sortedMentors)?.map(
+            (mentor, index) => (
+              <MentorCard
+                key={index}
+                mentor={mentor}
+                topics={topics}
+                isLogged={session && !loading}
+                openModal={() => setIsModalOpen(true)}
+              />
+            ),
+          )}
         </div>
       </div>
       <SimpleModal
