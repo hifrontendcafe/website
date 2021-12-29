@@ -15,25 +15,30 @@ const CreateGroupForm: React.FC = () => {
   const onSubmit = async (data) => {
     setIsLoading(true);
     try {
-      await fetch('/api/create-react-group', {
+      const result = await fetch('/api/create-react-group', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      setIsSuccess(true);
-      emailjs
-        .send(
-          'fec_gmail',
-          'new_reactivistas',
-          {},
-          process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
-        )
-        .catch((error) => console.error(error));
       setIsLoading(false);
-      reset();
-      setTimeout(() => setIsSuccess(false), 5000);
+      if (result.status === 200) {
+        emailjs
+          .send(
+            'fec_gmail',
+            'new_reactivistas',
+            {},
+            process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
+          )
+          .catch((error) => console.error(error));
+        setIsSuccess(true);
+        setTimeout(() => setIsSuccess(false), 5000);
+        reset();
+      } else {
+        setIsError(true);
+        setTimeout(() => setIsError(false), 5000);
+      }
     } catch (e) {
       setIsError(true);
       setIsLoading(false);
