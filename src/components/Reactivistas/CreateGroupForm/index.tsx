@@ -11,37 +11,38 @@ const CreateGroupForm: React.FC = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
-
   const onSubmit = async (data) => {
     setIsLoading(true);
+    let result: Response;
     try {
-      const result = await fetch('/api/create-react-group', {
+      result = await fetch('/api/create-react-group', {
         method: 'POST',
         body: JSON.stringify(data),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-      setIsLoading(false);
-      if (result.status === 200) {
-        emailjs
-          .send(
-            'fec_gmail',
-            'new_reactivistas',
-            {},
-            process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
-          )
-          .catch((error) => console.error(error));
-        setIsSuccess(true);
-        setTimeout(() => setIsSuccess(false), 5000);
-        reset();
-      } else {
-        setIsError(true);
-        setTimeout(() => setIsError(false), 5000);
-      }
     } catch (e) {
       setIsError(true);
       setIsLoading(false);
+      setTimeout(() => setIsError(false), 5000);
+      return;
+    }
+    setIsLoading(false);
+    if (result.ok) {
+      setIsSuccess(true);
+      setTimeout(() => setIsSuccess(false), 5000);
+      reset();
+      emailjs
+        .send(
+          'fec_gmail',
+          'new_reactivistas',
+          {},
+          process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
+        )
+        .catch((error) => console.error(error));
+    } else {
+      setIsError(true);
       setTimeout(() => setIsError(false), 5000);
     }
   };
