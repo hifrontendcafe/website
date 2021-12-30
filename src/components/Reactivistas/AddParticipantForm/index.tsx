@@ -26,7 +26,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
       result = await fetch('/api/add-participant', {
         method: 'POST',
         body: JSON.stringify({
-          discordUser: session.user.name,
+          participant: session.user,
           id: id,
         }),
         headers: {
