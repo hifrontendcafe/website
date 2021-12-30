@@ -17,7 +17,7 @@ const CreateGroupForm: React.FC = () => {
     try {
       result = await fetch('/api/create-react-group', {
         method: 'POST',
-        body: JSON.stringify(data),
+        body: JSON.stringify({ group: data, captain: session.user }),
         headers: {
           'Content-Type': 'application/json',
         },
