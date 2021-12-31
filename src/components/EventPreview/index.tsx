@@ -5,6 +5,8 @@ import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
 import styles from './styles.module.css';
 import Timezones from '@/lib/completeTimezones.json';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface EventPreviewProps {
   event: Event;
@@ -60,25 +62,31 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
       event.description
     }&location=${event.location}&trp=true&ctz=${getTimezone()}`;
     return (
-      <a
-        href={googleCalendarURL}
-        target="_blank"
-        rel="noreferrer"
-        className="mt-auto text-center btn btn-primary"
-      >
-        Añadir a calendario
-      </a>
+      <Link href={googleCalendarURL}>
+        <a
+          target="_blank"
+          rel="noreferrer"
+          className="mt-auto text-center btn btn-primary"
+        >
+          Añadir a calendario
+        </a>
+      </Link>
     );
   };
 
   return (
     <div>
       <div className="flex flex-col items-start h-full border-2 rounded-md shadow-lg bg-coolGray-900 border-coolGray-600">
-        <img
-          className="w-full p-4"
-          src={imageBuilder.image(event.cover.src).width(400).url()}
-          alt={event.cover.alt || event.title}
-        />
+        <div className="w-full p-4">
+          <Image
+            src={imageBuilder.image(event.cover.src).url()}
+            alt={event.cover.alt || event.title}
+            width={316}
+            height={156}
+            placeholder="blur"
+            blurDataURL={`${imageBuilder.image(event.cover.src).url()}`}
+          />
+        </div>
         <div
           className={`flex-grow p-4 pt-0 flex flex-col ${
             past && !event.recording ? styles['past-event-text'] : ''
@@ -107,14 +115,15 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
             <BlockContent blocks={event.description} />
           </div>
           {past && event.recording && (
-            <a
-              href={event.recording}
-              className="mt-auto text-center btn btn-primary"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Ver grabación
-            </a>
+            <Link href={event.recording}>
+              <a
+                className="mt-auto text-center btn btn-primary"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Ver grabación
+              </a>
+            </Link>
           )}
           {!past && <AddToCalendar event={calendar} />}
         </div>
