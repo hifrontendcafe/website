@@ -30,7 +30,7 @@ const ProfileText = ({ profile }: ProfileProp) => {
 
 const StaffCard: React.FC<ProfileProp> = ({ profile }) => {
   return (
-    <div className="p-2 text-center transition duration-500 ease-in-out transform scale-100 hover:scale-110">
+    <div className="p-2 text-center transition duration-500 ease-in-out scale-100 hover:scale-110">
       {profile.linkedin ? (
         <Link href={profile.linkedin ?? ''}>
           <a target="_blank" rel="noreferrer">

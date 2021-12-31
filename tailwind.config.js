@@ -17,6 +17,7 @@ const colors = {
 };
 
 module.exports = {
+  mode: 'jit',
   purge: [
     './src/components/**/*.{js,ts,jsx,tsx}',
     './src/pages/**/*.{js,ts,jsx,tsx}',
@@ -91,11 +92,6 @@ module.exports = {
         darkBlue: '#0066CC',
         hover: '#2469FF',
       },
-    },
-  },
-  variants: {
-    extend: {
-      opacity: ['disabled'],
     },
   },
   plugins: [
