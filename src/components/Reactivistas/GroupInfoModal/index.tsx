@@ -41,7 +41,7 @@ const GroupInfoModal: React.FC<GroupInfoModalProps> = (props) => {
           </li>
           <li>
             <span className="font-bold">Fecha de inicio:</span>{' '}
-            {group.startDate}
+            {new Date(group.startDate).toLocaleDateString()}
           </li>
         </ul>
       </div>

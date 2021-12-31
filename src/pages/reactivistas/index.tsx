@@ -34,19 +34,19 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
         <div>
           {groups.length > 0 && (
             <>
-              <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
+              <h1 className="text-2xl font-bold leading-7 text-justify text-primary sm:text-2xl sm:leading-9 sm:truncate ">
                 Súmate a los grupos que están comenzando
               </h1>
-              <div className="flex flex-wrap m-2 md:m-10">
+              <div className="flex flex-wrap m-2 md:m-10 text-primary">
                 {groups?.map((group: ReactGroup) => {
                   return (
                     <div
                       key={group.name}
-                      className="flex flex-col flex-auto p-5 mx-1 my-5 rounded-md shadow-lg md:mx-5 md:p-10"
+                      className="flex flex-col flex-auto p-5 mx-1 my-5 rounded-md md:mx-5 md:p-10 border-2 border-gray-500 bg-coolGray-900"
                     >
                       <div>
-                        <div className="flex items-baseline justify-between">
-                          <h3 className="mb-5 mr-5 text-lg font-medium leading-7 text-primary sm:leading-9 sm:truncate">
+                        <div className="flex items-baseline justify-between ">
+                          <h3 className="mb-5 mr-5 text-lg font-medium leading-7 sm:leading-9 sm:truncate">
                             ⚛ {group.name}
                           </h3>
                           <button
@@ -68,7 +68,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
                           <li className="font-medium text-primary">
                             <a
                               href={group.studyMaterial}
-                              className="text-coolGray-600"
+                              className="text-informational"
                             >
                               📚 Material de estudio
                             </a>
