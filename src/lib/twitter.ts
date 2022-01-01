@@ -108,7 +108,7 @@ export const getEmbeddedTweets = async (): Promise<EmbeddedTweet[]> => {
     return {
       ...tweet,
       media:
-        tweet?.attachments?.media_keys.map((key) =>
+        tweet?.attachments?.media_keys?.map((key) =>
           tweets.includes.media.find((media) => media.media_key === key),
         ) || [],
       referenced_tweets: getReferencedTweets(tweet, tweets),
