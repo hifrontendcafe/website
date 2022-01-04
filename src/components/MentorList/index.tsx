@@ -1,6 +1,7 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
@@ -12,12 +13,24 @@ interface MentorListProps {
 }
 
 const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
-  const [filter, setFilter] = useState<string>();
   const [filteredMentors, setFilteredMentors] = useState<Mentor[] | undefined>(
     undefined,
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [session, loading] = useSession();
+
+  const router = useRouter();
+  const { query } = router;
+
+  const queryTopic = (topic: string) => {
+    const url = new URL(window.location.href);
+
+    const params = new URLSearchParams(url.search);
+    params.set('especialidad', topic);
+    url.search = `?${params}`;
+
+    router.push(url, null, { scroll: false });
+  };
 
   /**
    * sort modifies the original orray, so make a copy to be safe
@@ -36,7 +49,9 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     const filterTopics = () => {
       const filtered = [];
       sortedMentors.forEach((mentor) => {
-        const find = mentor.topics.filter((topic) => topic._ref == filter);
+        const find = mentor.topics.filter(
+          (topic) => topic._ref == query.especialidad,
+        );
         if (find.length > 0) filtered.push(mentor);
       });
       setFilteredMentors(filtered);
@@ -44,7 +59,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
     filterTopics();
     return () => filterTopics();
-  }, [filter, sortedMentors]);
+  }, [query.especialidad, sortedMentors]);
 
   return (
     <div>
@@ -56,7 +71,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
       <div className="relative inline-block w-full mb-6 md:w-1/2 lg:w-1/3">
         <select
           aria-label="Buscar"
-          onChange={() => setFilter((event.target as HTMLInputElement).value)}
+          onChange={(event) => queryTopic(event.target.value)}
           className="block w-full px-4 py-2 pr-8 leading-tight bg-gray-900 border border-gray-400 rounded shadow appearance-none text-coolGray-50 hover:border-gray-500 focus:outline-none focus:ring"
         >
           <option value="">Buscar</option>
@@ -79,17 +94,18 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
       <div className="flex flex-col min-h-screen align-center">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
-          {(filteredMentors && filter ? filteredMentors : sortedMentors)?.map(
-            (mentor, index) => (
-              <MentorCard
-                key={index}
-                mentor={mentor}
-                topics={topics}
-                isLogged={session && !loading}
-                openModal={() => setIsModalOpen(true)}
-              />
-            ),
-          )}
+          {(filteredMentors && query.especialidad
+            ? filteredMentors
+            : sortedMentors
+          )?.map((mentor, index) => (
+            <MentorCard
+              key={index}
+              mentor={mentor}
+              topics={topics}
+              isLogged={session && !loading}
+              openModal={() => setIsModalOpen(true)}
+            />
+          ))}
         </div>
       </div>
       <SimpleModal
