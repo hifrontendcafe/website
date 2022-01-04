@@ -76,7 +76,11 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         >
           <option value="">Buscar</option>
           {sortedTopics?.map((topic, index) => (
-            <option value={topic._id} key={index}>
+            <option
+              value={topic._id}
+              key={index}
+              selected={topic._id === query.especialidad}
+            >
               {topic.title}
             </option>
           ))}
