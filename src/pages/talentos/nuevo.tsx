@@ -436,6 +436,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     }`}
                     {...register('description', { required: true })}
                     placeholder="Cuentanos un poco de tí"
+                    maxLength={500}
                   ></textarea>
                 </div>
                 <div className="flex items-center mb-4">
