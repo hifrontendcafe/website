@@ -32,7 +32,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
           cta="https://frontend.cafe/docs/guia-reactivistas"
         />
         {data.isEnabled && (
-          <di v>
+          <div>
             {groups.length > 0 && (
               <>
                 <h1 className="text-2xl font-bold leading-7 text-justify text-primary sm:text-2xl sm:leading-9 sm:truncate ">
@@ -113,7 +113,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
               </h2>
             </div>
             <CreateGroupForm />
-          </di>
+          </div>
         )}
         <GroupRequirementsModal
           open={isModalOpen}
