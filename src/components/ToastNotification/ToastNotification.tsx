@@ -12,6 +12,21 @@ type ToastNotificationProps = {
 
 const showTime = 3500;
 const delayByAnimation = 500;
+const getBackgroundColorClass = (type: typeToastNotification) => {
+  switch (type) {
+    case 'success':
+      return 'bg-green-500';
+    case 'error':
+      return 'bg-red-500';
+    case 'warning':
+      return 'bg-yellow-500';
+    case 'info':
+      return 'bg-blue-500';
+    default:
+      return 'bg-blue-500';
+  }
+};
+
 const ToastNotification: React.FC<ToastNotificationProps> = ({
   children,
   type,
@@ -19,14 +34,7 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
 }) => {
   const [show, setShow] = useState(true);
   const [didDismiss, setDidDismiss] = useState(false);
-  const backgroundColor =
-    type === 'error'
-      ? 'bg-red-500'
-      : type === 'success'
-      ? 'bg-green-500'
-      : type === 'warning'
-      ? 'bg-yellow-500'
-      : 'bg-blue-500';
+  const backgroundColorClass = getBackgroundColorClass(type);
   useEffect(() => {
     let timeoutDismiss = null;
     let timeoutHide = null;
@@ -55,7 +63,7 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={`fixed top-12 max-w-md w-11/12 rounded-lg overflow-hidden mx-auto inset-x-0 flex justify-center items-center 
-                     ${backgroundColor} text-coolGray-50 text-sm font-bold px-4 py-3 mt-2`}
+                     ${backgroundColorClass} text-coolGray-50 text-sm font-bold px-4 py-3 mt-2`}
           role="alert"
           onClick={() => setShow(false)}
         >
