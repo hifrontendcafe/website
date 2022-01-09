@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ReactGroup } from '@/lib/types';
 import { signIn, useSession } from 'next-auth/client';
 import { Link } from '../../MDX/Link';
+import ToastNotification from '../../ToastNotification/ToastNotification';
 
 interface Props {
   group: ReactGroup;
@@ -13,11 +14,16 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
+  const resetState = () => {
+    setIsLoading(false);
+    setIsSuccess(false);
+    setIsError(false);
+  };
+
   const onAddParticipantSubmit = async (id: string) => {
     if (!session || !session.user || !session.user.name) {
       setIsLoading(false);
       setIsError(true);
-      setTimeout(() => setIsError(false), 5000);
       return;
     }
     setIsLoading(true);
@@ -36,17 +42,14 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
     } catch (e) {
       setIsLoading(false);
       setIsError(true);
-      setTimeout(() => setIsError(false), 5000);
       return;
     }
     if (result.ok) {
       setIsLoading(false);
       setIsSuccess(true);
-      setTimeout(() => setIsSuccess(false), 5000);
     } else {
       setIsLoading(false);
       setIsError(true);
-      setTimeout(() => setIsError(false), 5000);
     }
   };
 
@@ -81,15 +84,15 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
               {isLoading ? 'Enviando...' : 'Unite a este grupo'}
             </button>
           </div>
-          {isError && (
-            <div className="mt-4 text-sm text-red-500">
-              Ha ocurrido un error.
-            </div>
-          )}
           {isSuccess && (
-            <div className="mt-4 text-sm text-green-500 font-bold">
-              ¡Te has unido correctamente al grupo!
-            </div>
+            <ToastNotification type="success" onDidDismiss={resetState}>
+              <p>¡Te has unido correctamente al grupo!</p>
+            </ToastNotification>
+          )}
+          {isError && (
+            <ToastNotification type="error" onDidDismiss={resetState}>
+              <p>Ha ocurrido un error.</p>
+            </ToastNotification>
           )}
         </form>
       ) : (
