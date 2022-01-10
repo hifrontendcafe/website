@@ -5,22 +5,19 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import ToastNotification from '../../ToastNotification/ToastNotification';
 
+type RequestState = 'initial' | 'loading' | 'success' | 'error';
+
 const CreateGroupForm: React.FC = () => {
   const [session] = useSession();
-
   const { register, handleSubmit, reset } = useForm();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [requestState, setRequestState] = useState<RequestState>('initial');
 
   const resetState = () => {
-    setIsLoading(false);
-    setIsSuccess(false);
-    setIsError(false);
+    setRequestState('initial');
   };
 
   const onSubmit = async (data) => {
-    setIsLoading(true);
+    setRequestState('loading');
     let result: Response;
     try {
       result = await fetch('/api/create-react-group', {
@@ -31,13 +28,11 @@ const CreateGroupForm: React.FC = () => {
         },
       });
     } catch (e) {
-      setIsError(true);
-      setIsLoading(false);
+      setRequestState('error');
       return;
     }
-    setIsLoading(false);
     if (result.ok) {
-      setIsSuccess(true);
+      setRequestState('success');
       reset();
       emailjs
         .send(
@@ -48,7 +43,7 @@ const CreateGroupForm: React.FC = () => {
         )
         .catch((error) => console.error(error));
     } else {
-      setIsError(true);
+      setRequestState('error');
     }
   };
 
@@ -149,17 +144,19 @@ const CreateGroupForm: React.FC = () => {
               <button
                 type="submit"
                 className="inline-flex justify-center btn btn-primary"
-                disabled={isLoading}
+                disabled={requestState === 'loading'}
               >
-                {isLoading ? 'Enviando...' : 'Enviar propuesta'}
+                {requestState === 'loading'
+                  ? 'Enviando...'
+                  : 'Enviar propuesta'}
               </button>
             </div>
-            {isSuccess && (
+            {requestState === 'success' && (
               <ToastNotification type="success" onDidDismiss={resetState}>
                 <p>Propuesta enviada ¡Muchas gracias! </p>
               </ToastNotification>
             )}
-            {isError && (
+            {requestState === 'error' && (
               <ToastNotification type="error" onDidDismiss={resetState}>
                 <p>Ocurrió un error al enviar la propuesta</p>
               </ToastNotification>

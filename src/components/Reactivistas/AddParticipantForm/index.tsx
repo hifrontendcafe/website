@@ -7,26 +7,23 @@ import ToastNotification from '../../ToastNotification/ToastNotification';
 interface Props {
   group: ReactGroup;
 }
+type RequestState = 'initial' | 'loading' | 'success' | 'error';
 
 const AddParticipantForm: React.FC<Props> = ({ group }) => {
   const [session] = useSession();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [requestState, setRequestState] = useState<RequestState>('initial');
+  const [userAdded, setUserAdded] = useState(false);
 
   const resetState = () => {
-    setIsLoading(false);
-    setIsSuccess(false);
-    setIsError(false);
+    setRequestState('initial');
   };
 
   const onAddParticipantSubmit = async (id: string) => {
     if (!session || !session.user || !session.user.name) {
-      setIsLoading(false);
-      setIsError(true);
+      setRequestState('error');
       return;
     }
-    setIsLoading(true);
+    setRequestState('loading');
     let result: Response;
     try {
       result = await fetch('/api/add-participant', {
@@ -40,16 +37,14 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
         },
       });
     } catch (e) {
-      setIsLoading(false);
-      setIsError(true);
+      setRequestState('error');
       return;
     }
     if (result.ok) {
-      setIsLoading(false);
-      setIsSuccess(true);
+      setRequestState('success');
+      setUserAdded(true);
     } else {
-      setIsLoading(false);
-      setIsError(true);
+      setRequestState('error');
     }
   };
 
@@ -78,18 +73,22 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
             <button
               type="submit"
               form={group.name}
-              disabled={isLoading || isSuccess}
-              className="justify-items-end w-full sm:w-auto mt-2 sm:mt-0 px-3 py-2 sm:ml-2 text-sm font-small btn btn-primary"
+              disabled={requestState === 'loading' || userAdded}
+              className="justify-items-end w-full sm:w-auto mt-2 sm:mt-0 px-3 py-2 sm:ml-2 text-sm font-small btn btn-primary disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Enviando...' : 'Unite a este grupo'}
+              {requestState === 'loading'
+                ? 'Enviando...'
+                : userAdded
+                ? 'Te uniste al grupo'
+                : 'Unite a este grupo'}
             </button>
           </div>
-          {isSuccess && (
+          {requestState === 'success' && (
             <ToastNotification type="success" onDidDismiss={resetState}>
               <p>¡Te has unido correctamente al grupo!</p>
             </ToastNotification>
           )}
-          {isError && (
+          {requestState === 'error' && (
             <ToastNotification type="error" onDidDismiss={resetState}>
               <p>Ha ocurrido un error.</p>
             </ToastNotification>

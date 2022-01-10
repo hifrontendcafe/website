@@ -2,17 +2,17 @@ import React, { useState, useEffect, ReactNode } from 'react';
 import ToastNotificationIcon from './ToastNotificationIcon';
 import { AnimatePresence, motion } from 'framer-motion';
 
-export type typeToastNotification = 'success' | 'error' | 'info' | 'warning';
+export type TypeToastNotification = 'success' | 'error' | 'info' | 'warning';
 
 type ToastNotificationProps = {
   children: ReactNode;
-  type: typeToastNotification;
+  type: TypeToastNotification;
   onDidDismiss: () => void;
 };
 
 const showTime = 3500;
 const delayByAnimation = 500;
-const getBackgroundColorClass = (type: typeToastNotification) => {
+const getBackgroundColorClass = (type: TypeToastNotification) => {
   switch (type) {
     case 'success':
       return 'bg-green-500';

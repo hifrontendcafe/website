@@ -1,8 +1,8 @@
 import React from 'react';
-import { typeToastNotification } from './ToastNotification';
+import { TypeToastNotification } from './ToastNotification';
 
 type ToastNotificationIconProps = {
-  type: typeToastNotification;
+  type: TypeToastNotification;
 };
 
 const ToastNotificationIcon: React.FC<ToastNotificationIconProps> = ({
