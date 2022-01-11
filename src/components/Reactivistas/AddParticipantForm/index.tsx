@@ -9,6 +9,12 @@ interface Props {
 }
 type RequestState = 'initial' | 'loading' | 'success' | 'error';
 
+const getButtonText = (state: RequestState, userAdded: boolean) => {
+  if (state === 'loading') return 'Enviando...';
+  if (userAdded) return 'Te uniste al grupo';
+  return 'Unite a este grupo';
+};
+
 const AddParticipantForm: React.FC<Props> = ({ group }) => {
   const [session] = useSession();
   const [requestState, setRequestState] = useState<RequestState>('initial');
@@ -76,11 +82,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
               disabled={requestState === 'loading' || userAdded}
               className="justify-items-end w-full sm:w-auto mt-2 sm:mt-0 px-3 py-2 sm:ml-2 text-sm font-small btn btn-primary disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
             >
-              {requestState === 'loading'
-                ? 'Enviando...'
-                : userAdded
-                ? 'Te uniste al grupo'
-                : 'Unite a este grupo'}
+              {getButtonText(requestState, userAdded)}
             </button>
           </div>
           {requestState === 'success' && (
