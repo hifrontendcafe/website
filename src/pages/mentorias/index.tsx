@@ -49,20 +49,20 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
 
 const MentorshipsSteps: React.FC = () => {
   return (
-    <section className="text-coolGray-100 body-font">
+    <section className="text-gray-100 body-font">
       <div className="px-5 py-32 lg:px-0">
         <div className="flex flex-wrap -mx-4 -mt-4 -mb-10 sm:-m-4">
           <div className="flex flex-col items-center mb-6 text-center md:p-4 md:w-1/3 md:mb-0 ">
             <div className="mb-6 text-left md:mb-0">
               <div className="flex items-center mb-2 font-title">
-                <div className="flex items-center justify-center w-10 h-10 p-3 mr-2 text-2xl font-semibold rounded-full font-title text-coolGray-900 bg-greenFec">
+                <div className="flex items-center justify-center w-10 h-10 p-3 mr-2 text-2xl font-semibold rounded-full font-title text-gray-900 bg-greenFec">
                   1
                 </div>
                 <h2 className="text-2xl font-medium font-title">
                   Inicia sesión
                 </h2>
               </div>
-              <p className="text-lg md:text-xl text-coolGray-400">
+              <p className="text-lg md:text-xl text-gray-400">
                 Recuerda que para solicitar una mentoría debes ser parte del
                 servidor de Discord de FrontendCafé.
               </p>
@@ -71,14 +71,14 @@ const MentorshipsSteps: React.FC = () => {
           <div className="flex flex-col items-center mb-6 text-center md:p-4 md:w-1/3 md:mb-0">
             <div className="mb-6 text-left md:mb-0">
               <div className="flex items-center mb-2 font-title">
-                <div className="flex items-center justify-center w-10 h-10 p-3 mr-2 text-2xl font-semibold rounded-full font-title text-coolGray-900 bg-greenFec">
+                <div className="flex items-center justify-center w-10 h-10 p-3 mr-2 text-2xl font-semibold rounded-full font-title text-gray-900 bg-greenFec">
                   2
                 </div>
                 <h2 className="text-2xl font-medium font-title">
                   Encuentra un mentor
                 </h2>
               </div>
-              <p className="text-lg md:text-xl text-coolGray-400">
+              <p className="text-lg md:text-xl text-gray-400">
                 Encuentra un mentor cuyo perfil se ajuste a tus intereses y
                 sientas que pueda ayudarte en lo que necesites.
               </p>
@@ -87,14 +87,14 @@ const MentorshipsSteps: React.FC = () => {
           <div className="flex flex-col items-center mb-6 text-center md:p-4 md:w-1/3 md:mb-0 ">
             <div className="mb-6 text-left md:mb-0">
               <div className="flex items-center mb-2">
-                <div className="flex items-center justify-center w-10 h-10 p-3 mr-2 text-2xl font-semibold rounded-full font-title text-coolGray-900 bg-greenFec">
+                <div className="flex items-center justify-center w-10 h-10 p-3 mr-2 text-2xl font-semibold rounded-full font-title text-gray-900 bg-greenFec">
                   3
                 </div>
                 <h2 className="text-2xl font-medium font-title">
                   Agenda la mentoría
                 </h2>
               </div>
-              <p className="text-lg md:text-xl text-coolGray-400">
+              <p className="text-lg md:text-xl text-gray-400">
                 Contacta al mentor a través de su agenda virtual y reserva una
                 fecha y hora entre las disponibles.
               </p>
