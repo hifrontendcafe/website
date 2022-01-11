@@ -15,19 +15,18 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full pb-4 rounded-lg shadow-lg bg-coolGray-800">
+    <div className="flex flex-col justify-between w-full pb-4 rounded-lg shadow-lg bg-gray-800">
       <div className="px-3 pt-3 md:pt-6 md:px-6">
         <div className="space-x-3 items-top">
           <img
             src={profile.photo || '/img/user.svg'}
-            className={`object-cover object-top w-28 h-28  ${
-              profile.available ? ' ring ring-profileRing' : ''
-            } rounded-full shadow-lg`}
+            className={`object-cover object-top w-28 h-28  ${profile.available ? ' ring ring-profileRing' : ''
+              } rounded-full shadow-lg`}
             alt={profile.name}
           />
         </div>
-        <div className="flex flex-col justify-between flex-grow text-coolGray-50">
-          <div className="flex-grow">
+        <div className="flex flex-col justify-between grow text-gray-50">
+          <div className="grow">
             <h2 className="mt-2 text-xl font-bold">{profile.name}</h2>
             <div className="flex">
               <h2 className="mr-2 font-semibold text-md">
@@ -47,7 +46,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="mt-4 mb-2 text-sm leading-tight whitespace-pre-line text-coolGray-100">
+          <div className="mt-4 mb-2 text-sm leading-tight whitespace-pre-line text-gray-100">
             {profile.description}
           </div>
         </div>
@@ -59,7 +58,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
               {profile.technologies?.map((tech) => (
                 <span
                   key={tech.name}
-                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all rounded-md bg-coolGray-900 text-coolGray-50"
+                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all rounded-md bg-gray-900 text-gray-50"
                 >
                   {tech.name}
                 </span>
@@ -68,7 +67,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           )}
         </div>
         {profile.available && (
-          <div className="w-full py-1 mt-4 text-sm font-semibold text-center text-coolGray-900 bg-greenFec">
+          <div className="w-full py-1 mt-4 text-sm font-semibold text-center text-gray-900 bg-greenFec">
             En búsqueda activa
           </div>
         )}

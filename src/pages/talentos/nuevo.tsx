@@ -119,11 +119,10 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 
       setMessage({
         error: false,
-        text: `${
-          !userId
-            ? 'Tu perfil ha sido creado con éxito. Será publicado en nuestro portal en los próximos días.'
-            : 'Tu perfil ha sido actualizado con éxito.'
-        }`,
+        text: `${!userId
+          ? 'Tu perfil ha sido creado con éxito. Será publicado en nuestro portal en los próximos días.'
+          : 'Tu perfil ha sido actualizado con éxito.'
+          }`,
       });
     } catch (error) {
       setMessage({
@@ -145,7 +144,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         description="Encontrá los perfiles dentro de FEC"
         preview={preview}
       >
-        <div className="py-32 my-20 text-2xl text-center text-gray-100 rounded-lg shadow bg-coolGray-800">
+        <div className="py-32 my-20 text-2xl text-center text-zinc-100 rounded-lg shadow bg-gray-800">
           Cargando sesión...
         </div>
       </Layout>
@@ -164,12 +163,11 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         Tu perfil será visible en la sección Talentos, diseñada para que recruiters y empresas puedan identificar talentos de nuestra comunidad"
       />
 
-      <div className="overflow-hidden border-2 rounded-lg shadow border-coolGray-600 bg-coolGray-900">
+      <div className="overflow-hidden border-2 rounded-lg shadow border-gray-600 bg-gray-900">
         {message.text && (
           <div
-            className={`text-center text-coolGray-50 rounded p-4 m-4 ${
-              message.error ? 'bg-red-600' : 'bg-green-700'
-            }`}
+            className={`text-center text-gray-50 rounded p-4 m-4 ${message.error ? 'bg-red-600' : 'bg-emerald-700'
+              }`}
           >
             {message.text}
           </div>
@@ -177,25 +175,24 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         {session ? (
           <div>
             {loadingForm ? (
-              <div className="p-4 text-coolGray-100">
+              <div className="p-4 text-gray-100">
                 Enviando Formulario...
               </div>
             ) : (
               <form
                 onSubmit={handleSubmit(onSubmit, onError)}
-                className="w-full p-6 rounded sm:px-8 sm:pt-6 sm:pb-8 bg-coolGray-900"
+                className="w-full p-6 rounded sm:px-8 sm:pt-6 sm:pb-8 bg-gray-900"
                 noValidate
               >
                 <div className="flex flex-col grid-cols-2 gap-5 md:grid">
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Usuario de Discord*
                     </label>
                     <div className="relative z-10">
                       <input
-                        className={`input ${
-                          errors.discord && 'border-red-400'
-                        }`}
+                        className={`input ${errors.discord && 'border-red-400'
+                          }`}
                         type="text"
                         required
                         placeholder="Ingresa tu usuario de Discord"
@@ -206,7 +203,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </div>
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Email*
                     </label>
                     <div className="relative">
@@ -222,7 +219,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </div>
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Nombre y Apellido*
                     </label>
                     <input
@@ -233,14 +230,13 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     />
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Lugar de residencia*
                     </label>
                     <div className="relative">
                       <input
-                        className={`input focus:outline-none focus:ring ${
-                          errors.location && 'border-red-400'
-                        }`}
+                        className={`input focus:outline-none focus:ring ${errors.location && 'border-red-400'
+                          }`}
                         type="text"
                         required
                         placeholder="Tu ubicación actual"
@@ -249,17 +245,16 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </div>
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Twitter
                     </label>
-                    <p className="my-2 text-xs text-coolGray-300">
+                    <p className="my-2 text-xs text-gray-300">
                       Incluye enlace completo de tu perfil.
                     </p>
                     <div className="relative">
                       <input
-                        className={`input ${
-                          errors.twitter && 'border-red-400'
-                        }`}
+                        className={`input ${errors.twitter && 'border-red-400'
+                          }`}
                         type="url"
                         placeholder="https://twitter.com/usuario"
                         {...register('twitter')}
@@ -268,17 +263,16 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
 
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Linkedin
                     </label>
-                    <p className="my-2 text-xs text-coolGray-300">
+                    <p className="my-2 text-xs text-gray-300">
                       Incluye enlace completo de tu perfil.
                     </p>
                     <div className="relative">
                       <input
-                        className={`input ${
-                          errors.linkedin && 'border-red-400'
-                        }`}
+                        className={`input ${errors.linkedin && 'border-red-400'
+                          }`}
                         type="url"
                         placeholder="https://linkedin.com/in/usuario"
                         {...register('linkedin')}
@@ -287,10 +281,10 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
 
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Github
                     </label>
-                    <p className="my-2 text-xs text-coolGray-300">
+                    <p className="my-2 text-xs text-gray-300">
                       Incluye enlace completo de tu perfil.
                     </p>
                     <div className="relative">
@@ -303,17 +297,16 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </div>
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Portfolio
                     </label>
-                    <p className="my-2 text-xs text-coolGray-300">
+                    <p className="my-2 text-xs text-gray-300">
                       Incluye enlace completo de tu web personal.
                     </p>
                     <div className="relative">
                       <input
-                        className={`input ${
-                          errors.portfolio && 'border-red-400'
-                        }`}
+                        className={`input ${errors.portfolio && 'border-red-400'
+                          }`}
                         type="url"
                         placeholder="https://www.portfolio.com"
                         {...register('portfolio')}
@@ -322,7 +315,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
 
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Rol actual o con el que te defines*
                     </label>
                     <div className="relative">
@@ -340,14 +333,13 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
 
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                    <label className="block mb-2 text-sm font-bold text-gray-200">
                       Seniority*
                     </label>
                     <div className="relative">
                       <select
-                        className={`input ${
-                          errors.seniorityId && 'border-red-400'
-                        }`}
+                        className={`input ${errors.seniorityId && 'border-red-400'
+                          }`}
                         {...register('seniorityId', { required: true })}
                       >
                         {seniorities.map((seniority) => (
@@ -360,11 +352,11 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                  <label className="block mb-2 text-sm font-bold text-gray-200">
                     Foto de perfil
                   </label>
                   <div className="flex items-center justify-start w-full space-x-4">
-                    <label className="flex items-center justify-center w-32 h-32 overflow-hidden border-4 border-dashed rounded-md cursor-pointer hover:bg-coolGray-100 hover:border-primary group hover:opacity-75">
+                    <label className="flex items-center justify-center w-32 h-32 overflow-hidden border-4 border-dashed rounded-md cursor-pointer hover:bg-gray-100 hover:border-primary group hover:opacity-75">
                       {photo ? (
                         <img
                           src={photo}
@@ -397,9 +389,9 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                  <label className="block mb-2 text-sm font-bold text-gray-200">
                     Tecnologías
-                    <p className="text-sm font-medium text-coolGray-400">
+                    <p className="text-sm font-medium text-gray-400">
                       Selecciona un máximo de 5 tecnologías.
                     </p>
                   </label>
@@ -425,15 +417,14 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-coolGray-200">
+                  <label className="block mb-2 text-sm font-bold text-gray-200">
                     BIO*
                   </label>
                   <textarea
                     rows={5}
                     required
-                    className={`input ${
-                      errors.description && 'border-red-400'
-                    }`}
+                    className={`input ${errors.description && 'border-red-400'
+                      }`}
                     {...register('description', { required: true })}
                     placeholder="Cuentanos un poco de tí"
                     maxLength={500}
@@ -441,24 +432,23 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 </div>
                 <div className="flex items-center mb-4">
                   <input
-                    className="mr-2 text-sm leading-tight border rounded text-coolGray-200 focus:outline-none focus:ring"
+                    className="mr-2 text-sm leading-tight border rounded text-gray-200 focus:outline-none focus:ring"
                     {...register('available')}
                     type="checkbox"
                   />
-                  <label className="block text-sm font-bold text-coolGray-200">
+                  <label className="block text-sm font-bold text-gray-200">
                     ¿Te encuentras en búsqueda de trabajo activa?
                   </label>
                 </div>
                 <div className="flex items-center mb-4">
                   <input
-                    className={`mr-2 text-sm leading-tight text-coolGray-200 border rounded focus:outline-none focus:ring ${
-                      errors.consent && 'border-red-400'
-                    }`}
+                    className={`mr-2 text-sm leading-tight text-gray-200 border rounded focus:outline-none focus:ring ${errors.consent && 'border-red-400'
+                      }`}
                     type="checkbox"
                     required
                     {...register('consent', { required: true })}
                   />
-                  <label className="block text-sm font-bold text-coolGray-200">
+                  <label className="block text-sm font-bold text-gray-200">
                     ¿Aceptas que tu información sea compartida en la web de
                     FrontendCafé?*
                   </label>
@@ -474,7 +464,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
             )}
           </div>
         ) : (
-          <div className="p-4 bg-gray-900 text-coolGray-100">
+          <div className="p-4 bg-zinc-900 text-gray-100">
             Para poder registrar tu perfil es necesario que inicies sesión con
             Discord. <br />
             <br />

@@ -21,12 +21,12 @@ const Card = ({ card, href, onClick }: FeaturedCardsItemProps, ref) => {
   return (
     <div
       onClick={() => handleClick(router, card.link)}
-      className="flex justify-between p-6 transition duration-500 ease-in-out  scale-100 border-2 shadow-lg cursor-pointer border-coolGray-500 hover:border-coolGray-50 md:hover:scale-105 rounded-xl"
+      className="flex justify-between p-6 transition duration-500 ease-in-out  scale-100 border-2 shadow-lg cursor-pointer border-gray-500 hover:border-gray-50 md:hover:scale-105 rounded-xl"
     >
       <div className="relative flex flex-col items-start justify-between">
         <div className="items-start">
           <h1 className="cards-title">{card.title}</h1>
-          <p className="pt-5 pb-8 text-coolGray-200 lg:text-lg">
+          <p className="pt-5 pb-8 text-gray-200 lg:text-lg">
             {card.description}
           </p>
         </div>

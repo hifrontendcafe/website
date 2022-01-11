@@ -30,13 +30,13 @@ const MentorCard: React.FC<MentorCardProps> = ({
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="flex flex-col w-full p-6 rounded-lg bg-coolGray-800 space-between "
+      className="flex flex-col w-full p-6 rounded-lg bg-gray-800 space-between "
     >
       <div>
         <div className="flex justify-between w-full">
           <div>
             <Image
-              className="object-cover w-24 h-24 mr-4 rounded-full bg-coolGray-300"
+              className="object-cover w-24 h-24 mr-4 rounded-full bg-gray-300"
               src={`${mentor.photo.src}?h=200`}
               alt={`Foto de ${mentor.name} `}
               height={96}
@@ -59,7 +59,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
-                    className="capitalize border text-md text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-50 hover:border-coolGray-50"
+                    className="capitalize border text-md text-gray-50 border-gray-50 btn hover:text-gray-800 hover:bg-gray-50 hover:border-gray-50"
                   >
                     <span>Solicitar mentoría</span>
                   </a>
@@ -68,7 +68,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <button
                   type="button"
                   onClick={() => openModal()}
-                  className=" border text-md text-coolGray-50 border-coolGray-50 btn hover:text-coolGray-800 hover:bg-coolGray-50 hover:border-coolGray-50"
+                  className=" border text-md text-gray-50 border-gray-50 btn hover:text-gray-800 hover:bg-gray-50 hover:border-gray-50"
                 >
                   Solicitar mentoría
                 </button>
@@ -79,7 +79,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <Link href={mentor.web}>
                   <a
                     target="_blank"
-                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-gray-50 bg-gray-700"
                   >
                     <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
                   </a>
@@ -89,7 +89,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <Link href={mentor.linkedin}>
                   <a
                     target="_blank"
-                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-gray-50 bg-gray-700"
                   >
                     <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
                   </a>
@@ -99,7 +99,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <Link href={mentor.github}>
                   <a
                     target="_blank"
-                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-gray-50 bg-gray-700"
                   >
                     <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
                   </a>
@@ -110,14 +110,14 @@ const MentorCard: React.FC<MentorCardProps> = ({
         </div>
       </div>
       <div>
-        <h2 className="mb-2 text-xl font-bold text-coolGray-50">
+        <h2 className="mb-2 text-xl font-bold text-gray-50">
           {mentor.name}
         </h2>
       </div>
       <div className="flex flex-col justify-between h-full">
         <div className="flex">
           <div>
-            <p className="leading-relaxed text-md text-coolGray-300 md:min-h-64">
+            <p className="leading-relaxed text-md text-gray-300 md:min-h-64">
               {mentor.description ? mentor.description : '---'}
             </p>
           </div>

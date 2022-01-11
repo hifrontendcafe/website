@@ -18,9 +18,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({
   if (loading) {
     return (
       <button
-        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${
-          navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
-        }`}
+        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
+          }`}
         style={{ transition: 'all .15s ease' }}
         onClick={() => signIn('discord')}
       >
@@ -33,9 +32,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({
   if (!user) {
     return (
       <button
-        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${
-          navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
-        }`}
+        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
+          }`}
         style={{ transition: 'all .15s ease' }}
         onClick={() => signIn('discord')}
       >
@@ -48,9 +46,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({
   if (user) {
     return (
       <div
-        className={`lg:flex items-center mt-2 mb-0 lg:mt-0 lg:ml-4 ${
-          navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
-        }`}
+        className={`lg:flex items-center mt-2 mb-0 lg:mt-0 lg:ml-4 ${navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
+          }`}
       >
         <div>
           <Image
@@ -62,9 +59,9 @@ const UserSettings: React.FC<UserSettingsProps> = ({
           />
         </div>
         <div className="my-auto ml-3">
-          <p className="text-xs font-medium text-gray-100">{user.name}</p>
+          <p className="text-xs font-medium text-zinc-100">{user.name}</p>
           <button
-            className="text-xs font-medium text-gray-400 hover:text-gray-50"
+            className="text-xs font-medium text-zinc-400 hover:text-zinc-50"
             onClick={() => signOut()}
           >
             Cerrar sesión
