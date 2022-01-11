@@ -86,8 +86,14 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           />
         </div>
         <div
+<<<<<<< HEAD
           className={`grow p-4 pt-0 flex flex-col ${past && !event.recording ? styles['past-event-text'] : ''
             }`}
+=======
+          className={`grow p-4 pt-0 flex flex-col ${
+            past && !event.recording ? styles['past-event-text'] : ''
+          }`}
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
         >
           <div className="flex justify-between w-full">
             <h2 className="text-sm font-medium tracking-widest text-primary title-font">

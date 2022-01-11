@@ -166,8 +166,14 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
       <div className="overflow-hidden border-2 rounded-lg shadow border-gray-600 bg-gray-900">
         {message.text && (
           <div
+<<<<<<< HEAD
             className={`text-center text-gray-50 rounded p-4 m-4 ${message.error ? 'bg-red-600' : 'bg-emerald-700'
               }`}
+=======
+            className={`text-center text-gray-50 rounded p-4 m-4 ${
+              message.error ? 'bg-red-600' : 'bg-emerald-700'
+            }`}
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
           >
             {message.text}
           </div>
@@ -175,9 +181,13 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         {session ? (
           <div>
             {loadingForm ? (
+<<<<<<< HEAD
               <div className="p-4 text-gray-100">
                 Enviando Formulario...
               </div>
+=======
+              <div className="p-4 text-gray-100">Enviando Formulario...</div>
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
             ) : (
               <form
                 onSubmit={handleSubmit(onSubmit, onError)}
@@ -442,8 +452,14 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 </div>
                 <div className="flex items-center mb-4">
                   <input
+<<<<<<< HEAD
                     className={`mr-2 text-sm leading-tight text-gray-200 border rounded focus:outline-none focus:ring ${errors.consent && 'border-red-400'
                       }`}
+=======
+                    className={`mr-2 text-sm leading-tight text-gray-200 border rounded focus:outline-none focus:ring ${
+                      errors.consent && 'border-red-400'
+                    }`}
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
                     type="checkbox"
                     required
                     {...register('consent', { required: true })}

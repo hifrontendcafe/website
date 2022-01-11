@@ -25,8 +25,14 @@ export const DiscordUserTooltip: React.FC = () => {
       </div>
 
       <div
+<<<<<<< HEAD
         className={`absolute bg-gradient-to-r bg-primary text-gray-50 px-4 py-2 rounded flex items-center transition-all duration-150 ${showHelp ? '' : 'hidden'
           }`}
+=======
+        className={`absolute bg-gradient-to-r bg-primary text-gray-50 px-4 py-2 rounded flex items-center transition-all duration-150 ${
+          showHelp ? '' : 'hidden'
+        }`}
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
         style={{ right: '0px', bottom: '-50' }}
       >
         <div

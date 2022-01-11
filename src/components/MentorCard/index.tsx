@@ -110,9 +110,13 @@ const MentorCard: React.FC<MentorCardProps> = ({
         </div>
       </div>
       <div>
+<<<<<<< HEAD
         <h2 className="mb-2 text-xl font-bold text-gray-50">
           {mentor.name}
         </h2>
+=======
+        <h2 className="mb-2 text-xl font-bold text-gray-50">{mentor.name}</h2>
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
       </div>
       <div className="flex flex-col justify-between h-full">
         <div className="flex">

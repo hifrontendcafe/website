@@ -152,9 +152,17 @@ const CreateGroupForm: React.FC = () => {
 
             {(isSuccess || isError) && (
               <div
+<<<<<<< HEAD
                 className={`flex items-center ${isError ? 'bg-red-500' : 'bg-emerald-500'
                   } text-gray-50 text-sm font-bold px-4 py-3 mt-5 transition-all	 duration-500 ease-in-out ${isSuccess || isError ? 'opacity-100' : 'opacity-0'
                   }`}
+=======
+                className={`flex items-center ${
+                  isError ? 'bg-red-500' : 'bg-emerald-500'
+                } text-gray-50 text-sm font-bold px-4 py-3 mt-5 transition-all	 duration-500 ease-in-out ${
+                  isSuccess || isError ? 'opacity-100' : 'opacity-0'
+                }`}
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
                 role="alert"
               >
                 <svg

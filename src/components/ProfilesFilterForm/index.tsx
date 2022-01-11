@@ -51,8 +51,14 @@ const FilterForm: React.FC<FormProps> = ({
         <div className="w-full mt-3 md:mt-0">
           <select
             name="role"
+<<<<<<< HEAD
             className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-300 rounded form-select ${isRoleSelected ? 'text-zinc-50' : 'text-zinc-300'
               }`}
+=======
+            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-300 rounded form-select ${
+              isRoleSelected ? 'text-zinc-50' : 'text-zinc-300'
+            }`}
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
             onChange={(event) =>
               dispatch({ type: 'ADD_ROLE', payload: event.target.value })
             }
@@ -73,8 +79,14 @@ const FilterForm: React.FC<FormProps> = ({
         <div className="w-full mt-3 md:mt-0">
           <select
             name="seniority"
+<<<<<<< HEAD
             className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-300 rounded form-select ${isSenioritySelected ? 'text-zinc-50' : 'text-zinc-300'
               }`}
+=======
+            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-300 rounded form-select ${
+              isSenioritySelected ? 'text-zinc-50' : 'text-zinc-300'
+            }`}
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
             onChange={(event) =>
               dispatch({ type: 'ADD_SENIORITY', payload: event.target.value })
             }
@@ -154,6 +166,7 @@ const FilterForm: React.FC<FormProps> = ({
                 });
                 activesQuery && router.push('/talentos');
               }}
+<<<<<<< HEAD
               className={`form-checkbox absolute transition-transform border-zinc focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${filters.available
                 ? ' translate-x-4 text-emerald-400'
                 : 'border-zinc-500'
@@ -163,6 +176,19 @@ const FilterForm: React.FC<FormProps> = ({
               htmlFor="toggle"
               className={`${filters.available ? 'bg-white-400' : 'bg-zinc-300'
                 } block overflow-hidden border bg-zinc-300 border-zinc-500 h-6 rounded-full cursor-pointer`}
+=======
+              className={`form-checkbox absolute transition-transform border-zinc focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
+                filters.available
+                  ? ' translate-x-4 text-emerald-400'
+                  : 'border-zinc-500'
+              }`}
+            />
+            <label
+              htmlFor="toggle"
+              className={`${
+                filters.available ? 'bg-white-400' : 'bg-zinc-300'
+              } block overflow-hidden border bg-zinc-300 border-zinc-500 h-6 rounded-full cursor-pointer`}
+>>>>>>> 7ebacd2 (refactor: updgrade tailwind and next to latest version)
             ></label>
           </div>
         </div>
