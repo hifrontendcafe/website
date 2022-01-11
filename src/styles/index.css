@@ -81,7 +81,7 @@ html {
   }
 
   .paragraph {
-    @apply text-lg leading-normal text-secondary-50 md:text-2xl;
+    @apply text-lg leading-normal text-secondary md:text-2xl;
   }
 
   .cards-title {
