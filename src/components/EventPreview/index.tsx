@@ -3,7 +3,6 @@ import { es } from 'date-fns/locale';
 import BlockContent from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
-import styles from './styles.module.css';
 import Timezones from '@/lib/completeTimezones.json';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -89,7 +88,9 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
         </div>
         <div
           className={`flex-grow p-4 pt-0 flex flex-col ${
-            past && !event.recording ? styles['past-event-text'] : ''
+            past && !event.recording
+              ? 'opacity-60 transition-opacity duration-150 ease-in-out'
+              : ''
           }`}
         >
           <div className="flex justify-between w-full">
@@ -111,7 +112,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               </span>
             </p>
           )}
-          <div className={`mt-2 mb-6 text-coolGray-300 ${styles.description}`}>
+          <div className={`mt-2 mb-6 text-coolGray-300`}>
             <BlockContent blocks={event.description} />
           </div>
           {past && event.recording && (
