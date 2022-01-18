@@ -3,7 +3,7 @@ import { Person } from '../../lib/types';
 import {
   createPerson,
   addParticipantToReactGroup,
-  getPersonByRealDiscordID,
+  getPersonByDiscordID,
 } from '../../lib/api';
 
 export default async function post(
@@ -14,7 +14,7 @@ export default async function post(
   const { participant } = body;
   let user: Person;
   try {
-    user = await getPersonByRealDiscordID(participant.id);
+    user = await getPersonByDiscordID(participant.id);
     if (!user) {
       user = await createPerson({
         username: participant.name,

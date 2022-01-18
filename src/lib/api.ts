@@ -172,15 +172,7 @@ export async function updatePerson(
     .commit();
 }
 
-export async function getPersonByDiscordId(
-  id: string,
-  preview = false,
-): Promise<Person> {
-  const result = await getClient(preview).fetch(personQuery, { id });
-  return result.length > 0 && result[0];
-}
-
-export async function getPersonByRealDiscordID(
+export async function getPersonByDiscordID(
   id: string,
   preview = false,
 ): Promise<Person> {
