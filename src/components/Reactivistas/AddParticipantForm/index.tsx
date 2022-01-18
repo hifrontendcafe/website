@@ -32,7 +32,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
     setRequestState('loading');
     let result: Response;
     try {
-      result = await fetch('/api/add-participant', {
+      result = await fetch('/api/add-react-participant', {
         method: 'POST',
         body: JSON.stringify({
           participant: session.user,
