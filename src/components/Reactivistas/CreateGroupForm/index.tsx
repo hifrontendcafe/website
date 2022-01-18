@@ -112,7 +112,7 @@ const CreateGroupForm: React.FC = () => {
             <textarea
               rows={5}
               className="input focus:outline-none focus:ring"
-              placeholder="Ingresa la dinámica que se va a utilizar en su grupo de estudio"
+              placeholder="Ingresa la dinámica y horarios que va a implementar su grupo de estudio. No olvides incluir zona horaria. Por ejemplo: Reuniones lunes 19 UTC-3 (Arg)"
               required
               {...register('meetings', { required: true })}
             ></textarea>
