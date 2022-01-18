@@ -1,12 +1,12 @@
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
+
 import BlockContent from '@sanity/block-content-to-react';
-import { Event } from '../../lib/types';
-import { imageBuilder } from '../../lib/sanity';
-import styles from './styles.module.css';
 import Timezones from '@/lib/completeTimezones.json';
-import Image from 'next/image';
-import Link from 'next/link';
+import { imageBuilder } from '@/lib/sanity';
+import { Event } from '@/lib/types';
+
+import { Card } from '../Card';
 
 interface EventPreviewProps {
   event: Event;
@@ -61,74 +61,55 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
     }&dates=${formatedStartDatetime}/${formatedEndDatetime}&details=${
       event.description
     }&location=${event.location}&trp=true&ctz=${getTimezone()}`;
+
     return (
-      <Link href={googleCalendarURL}>
-        <a
-          target="_blank"
-          rel="noreferrer"
-          className="mt-auto text-center btn btn-primary"
-        >
-          Añadir a calendario
-        </a>
-      </Link>
+      <Card.SecondaryAction href={googleCalendarURL}>
+        Añadir a calendario
+      </Card.SecondaryAction>
     );
   };
 
   return (
-    <div>
-      <div className="flex flex-col items-start h-full border-2 rounded-md shadow-lg bg-coolGray-900 border-coolGray-600">
-        <div className="w-full p-4">
-          <Image
-            src={imageBuilder.image(event.cover.src).url()}
-            alt={event.cover.alt || event.title}
-            width={316}
-            height={156}
-            placeholder="blur"
-            blurDataURL={`${imageBuilder.image(event.cover.src).url()}`}
-          />
+    <Card>
+      <Card.Header>
+        <Card.Image
+          src={imageBuilder.image(event.cover.src).url()}
+          alt={event.cover.alt || event.title}
+          width={400}
+          height={200}
+          blurDataURL={`${imageBuilder.image(event.cover.src).url()}`}
+        />
+
+        <Card.Headline>{event.category.name}</Card.Headline>
+        <Card.Title>{event.title}</Card.Title>
+      </Card.Header>
+
+      <Card.Body>
+        {!past && (
+          <Card.Paragraph>
+            {format(new Date(event.date), 'd  MMMM - HH:mm ', {
+              locale: es,
+            })}
+            hrs
+            <span className="inline-block text-xs font-light text-coolGray-400">
+              Horario en tu ubicación actual
+            </span>
+          </Card.Paragraph>
+        )}
+        <div className="text-coolGray-300">
+          <BlockContent blocks={event.description} />
         </div>
-        <div
-          className={`flex-grow p-4 pt-0 flex flex-col ${
-            past && !event.recording ? styles['past-event-text'] : ''
-          }`}
-        >
-          <div className="flex justify-between w-full">
-            <h2 className="text-sm font-medium tracking-widest text-primary title-font">
-              {event.category.name}
-            </h2>
-          </div>
-          <h1 className="mb-3 text-xl font-medium leading-tight text-coolGray-100 title-font">
-            {event.title}
-          </h1>
-          {!past && (
-            <p className="font-medium break-all text-coolGray-200 title-font ">
-              {format(new Date(event.date), 'd  MMMM - HH:mm ', {
-                locale: es,
-              })}
-              hrs
-              <span className="inline-block text-xs font-light text-coolGray-400">
-                Horario en tu ubicación actual
-              </span>
-            </p>
-          )}
-          <div className={`mt-2 mb-6 text-coolGray-300 ${styles.description}`}>
-            <BlockContent blocks={event.description} />
-          </div>
-          {past && event.recording && (
-            <Link href={event.recording}>
-              <a
-                className="mt-auto text-center btn btn-primary"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Ver grabación
-              </a>
-            </Link>
-          )}
-          {!past && <AddToCalendar event={calendar} />}
-        </div>
-      </div>
-    </div>
+      </Card.Body>
+
+      <Card.Actions>
+        {past && event.recording && (
+          <Card.PrimaryAction href={event.recording}>
+            Ver grabación
+          </Card.PrimaryAction>
+        )}
+        {!past && <AddToCalendar event={calendar} />}
+      </Card.Actions>
+    </Card>
   );
 };
 

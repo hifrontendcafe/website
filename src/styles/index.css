@@ -85,7 +85,7 @@ html {
   }
 
   .cards-title {
-    @apply text-lg font-extrabold leading-normal text-primary md:text-xl lg:text-2xl font-title;
+    @apply text-lg font-medium text-primary md:text-xl lg:text-2xl font-title;
   }
 
   .cards-paragraph {
