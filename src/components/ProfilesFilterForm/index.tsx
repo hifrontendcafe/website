@@ -47,12 +47,12 @@ const FilterForm: React.FC<FormProps> = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="justify-around md:flex md:items-center md:space-x-4 text-gray-50">
+      <div className="justify-around md:flex md:items-center md:space-x-4 text-zinc-50">
         <div className="w-full mt-3 md:mt-0">
           <select
             name="role"
-            className={`w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded form-select ${
-              isRoleSelected ? 'text-gray-50' : 'text-gray-300'
+            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-300 rounded form-select ${
+              isRoleSelected ? 'text-zinc-50' : 'text-zinc-300'
             }`}
             onChange={(event) =>
               dispatch({ type: 'ADD_ROLE', payload: event.target.value })
@@ -74,8 +74,8 @@ const FilterForm: React.FC<FormProps> = ({
         <div className="w-full mt-3 md:mt-0">
           <select
             name="seniority"
-            className={`w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded form-select ${
-              isSenioritySelected ? 'text-gray-50' : 'text-gray-300'
+            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-300 rounded form-select ${
+              isSenioritySelected ? 'text-zinc-50' : 'text-zinc-300'
             }`}
             onChange={(event) =>
               dispatch({ type: 'ADD_SENIORITY', payload: event.target.value })
@@ -99,7 +99,7 @@ const FilterForm: React.FC<FormProps> = ({
             name="location"
             type="text"
             placeholder="Ubicación"
-            className="w-full py-2 text-sm leading-tight placeholder-gray-300 bg-gray-900 border border-gray-300 rounded form-input"
+            className="w-full py-2 text-sm leading-tight placeholder-zinc-300 bg-zinc-900 border border-zinc-300 rounded form-input"
             onChange={(event) =>
               dispatch({ type: 'ADD_LOCATION', payload: event.target.value })
             }
@@ -110,19 +110,19 @@ const FilterForm: React.FC<FormProps> = ({
             name="description"
             type="text"
             placeholder="Explora las biografías"
-            className="w-full py-2 text-sm leading-tight placeholder-gray-300 bg-gray-900 border border-gray-300 rounded form-input"
+            className="w-full py-2 text-sm leading-tight placeholder-zinc-300 bg-zinc-900 border border-zinc-300 rounded form-input"
             onChange={(event) =>
               dispatch({ type: 'ADD_DESCRIPTION', payload: event.target.value })
             }
           />
         </div>
       </div>
-      <div className="items-center w-full mt-4 bg-gray-900 md:flex md:space-x-4">
+      <div className="items-center w-full mt-4 bg-zinc-900 md:flex md:space-x-4">
         <Select
           instanceId="technologies-selector"
           isMulti
           classNamePrefix="react-select"
-          className="w-full bg-transparent bg-gray-900 filter-selector bg"
+          className="w-full bg-transparent bg-zinc-900 filter-selector bg"
           placeholder="Selecciona tecnologías"
           onChange={(techs) =>
             dispatch({ type: 'ADD_TECHNOLOGIES', payload: techs })
@@ -137,10 +137,10 @@ const FilterForm: React.FC<FormProps> = ({
               : 'No opciones disponibles';
           }}
         />
-        <div className="flex items-center flex-shrink-0 mt-4 space-x-2 md:mt-0">
+        <div className="flex items-center shrink-0 mt-4 space-x-2 md:mt-0">
           <label
             htmlFor="toggle"
-            className="flex-shrink w-24 text-sm leading-4 text-gray-50"
+            className="shrink w-24 text-sm leading-4 text-zinc-50"
           >
             En búsqueda activa
           </label>
@@ -156,17 +156,17 @@ const FilterForm: React.FC<FormProps> = ({
                 });
                 activesQuery && router.push('/talentos');
               }}
-              className={`form-checkbox absolute transition-transform border-gray focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
+              className={`form-checkbox absolute transition-transform border-zinc focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
                 filters.available
-                  ? ' translate-x-4 text-green-400'
-                  : 'border-gray-500'
+                  ? ' translate-x-4 text-emerald-400'
+                  : 'border-zinc-500'
               }`}
             />
             <label
               htmlFor="toggle"
               className={`${
-                filters.available ? 'bg-white-400' : 'bg-gray-300'
-              } block overflow-hidden border bg-gray-300 border-gray-500 h-6 rounded-full cursor-pointer`}
+                filters.available ? 'bg-white-400' : 'bg-zinc-300'
+              } block overflow-hidden border bg-zinc-300 border-zinc-500 h-6 rounded-full cursor-pointer`}
             ></label>
           </div>
         </div>

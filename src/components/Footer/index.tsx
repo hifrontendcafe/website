@@ -35,8 +35,8 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={` ${mainClasses} mt-40 border-t border-gray-500`}>
-      <div className="container flex flex-col-reverse justify-center gap-12 py-16 mx-auto text-coolGray-50 md:gap-0 md:flex-row md:justify-between">
+    <footer className={` ${mainClasses} mt-40 border-t border-zinc-500`}>
+      <div className="container flex flex-col-reverse justify-center gap-12 py-16 mx-auto text-gray-50 md:gap-0 md:flex-row md:justify-between">
         <div className="flex flex-col gap-5 text-center md:text-left">
           <div className="hidden md:block md:h-12 md:w-12 self-center md:self-start">
             <Image

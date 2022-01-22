@@ -10,7 +10,7 @@ type CMYKItemProps = {
 
 const CMYKItemCard: React.FC<CMYKItemProps> = ({ project }) => {
   return (
-    <div className="flex flex-col justify-between p-5 overflow-hidden border-2 border-gray-500 rounded-lg lg:w-96 bg-coolGray-900">
+    <div className="flex flex-col justify-between p-5 overflow-hidden border-2 border-zinc-500 rounded-lg lg:w-96 bg-gray-900">
       <div>
         <Image
           className="object-cover w-full h-40 rounded-lg"
