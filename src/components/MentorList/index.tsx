@@ -64,7 +64,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="mb-4 text-2xl font-medium text-coolGray-50">
+        <h1 className="mb-4 text-2xl font-medium text-gray-50">
           Solicita una mentoría según especialidad
         </h1>
       </div>
@@ -72,7 +72,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         <select
           aria-label="Buscar"
           onChange={(event) => queryTopic(event.target.value)}
-          className="block w-full px-4 py-2 pr-8 leading-tight bg-gray-900 border border-gray-400 rounded shadow appearance-none text-coolGray-50 hover:border-gray-500 focus:outline-none focus:ring"
+          className="block w-full px-4 py-2 pr-8 leading-tight bg-zinc-900 border border-zinc-400 rounded shadow appearance-none text-gray-50 hover:border-zinc-500 focus:outline-none focus:ring"
         >
           <option value="">Buscar</option>
           {sortedTopics?.map((topic, index) => (
@@ -85,7 +85,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
             </option>
           ))}
         </select>
-        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-coolGray-50">
+        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-50">
           <svg
             className="w-4 h-4 fill-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -131,7 +131,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
           </button>
         }
       >
-        <div className="px-2 overflow-auto text-lg text-coolGray-100">
+        <div className="px-2 overflow-auto text-lg text-gray-100">
           <p>Para poder solicitar una mentoría primero debes iniciar sesión.</p>
         </div>
       </SimpleModal>
