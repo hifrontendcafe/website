@@ -13,7 +13,7 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
   return (
     <div className="relative py-32 mx-auto bg-white/0">
-      <div className="flex items-center justify-center h-full bg-center bg-cover text-coolGray-50 md:justify-around">
+      <div className="flex items-center justify-center h-full bg-center bg-cover text-gray-50 md:justify-around">
         <div className="z-10 w-auto text-center">
           <div className="flex flex-col items-center">
             <div className="mb-16">
@@ -38,7 +38,7 @@ const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
               >
                 en comunidad
               </span>
-              <p className="max-w-xl mx-auto mt-4 text-xl font-medium text-coolGray-300 md:text-2xl">
+              <p className="max-w-xl mx-auto mt-4 text-xl font-medium text-gray-300 md:text-2xl">
                 El lugar de encuentro para conectar con otras personas y
                 potenciar tus ideas.
               </p>
@@ -59,7 +59,7 @@ const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
             </a>
             <button
               onClick={handleIniciativasClick}
-              className="flex items-center self-center justify-center font-semibold text-coolGray-50"
+              className="flex items-center self-center justify-center font-semibold text-gray-50"
             >
               Conoce las iniciativas
               <FontAwesomeIcon

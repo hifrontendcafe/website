@@ -53,7 +53,7 @@ const ReactGroupPage: React.FC<ReactGroupPageProps> = ({
                   return (
                     <div
                       key={group.name}
-                      className="flex flex-col flex-auto p-5 mx-1 my-5 rounded-md md:mx-5 md:p-10 border-2 border-gray-500 bg-coolGray-900"
+                      className="flex flex-col flex-auto p-5 mx-1 my-5 rounded-md md:mx-5 md:p-10 border-2 border-zinc-500 bg-gray-900"
                     >
                       <div>
                         <div className="flex items-baseline justify-between ">
@@ -108,7 +108,7 @@ const ReactGroupPage: React.FC<ReactGroupPageProps> = ({
           )}
 
           <div className="flex-1 min-w-0 mb-8">
-            <h1 className="text-2xl font-bold leading-7 text-coolGray-200 title sm:text-2xl sm:leading-9 sm:truncate">
+            <h1 className="text-2xl font-bold leading-7 text-gray-200 title sm:text-2xl sm:leading-9 sm:truncate">
               Dale vida a un nuevo grupo
             </h1>
             <h2 className="leading-7 text-md text-informational sm:leading-9 sm:truncate">
