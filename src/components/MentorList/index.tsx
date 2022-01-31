@@ -49,9 +49,9 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     const filterTopics = () => {
       const filtered = [];
       sortedMentors.forEach((mentor) => {
-        const find = mentor.topics.filter(
-          (topic) => topic._ref == query.especialidad,
-        );
+        const find =
+          mentor.topics?.filter((topic) => topic._ref == query.especialidad) ??
+          [];
         if (find.length > 0) filtered.push(mentor);
       });
       setFilteredMentors(filtered);
