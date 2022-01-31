@@ -2,9 +2,9 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 import BlockContent from '@sanity/block-content-to-react';
+import { Event } from '../../lib/types';
+import { imageBuilder } from '../../lib/sanity';
 import Timezones from '@/lib/completeTimezones.json';
-import { imageBuilder } from '@/lib/sanity';
-import { Event } from '@/lib/types';
 
 import { Card } from '../Card';
 

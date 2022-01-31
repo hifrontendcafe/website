@@ -61,7 +61,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
           id={group.name}
         >
           <div className="flex flex-wrap sm:flex-row">
-            <div className="relative flex-grow">
+            <div className="relative grow">
               <input
                 className="input focus:outline-none focus:ring"
                 type="text"
@@ -87,13 +87,13 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
             </div>
           )}
           {isSuccess && (
-            <div className="mt-4 text-sm text-green-500 font-bold">
+            <div className="mt-4 text-sm text-emerald-500 font-bold">
               ¡Te has unido correctamente al grupo!
             </div>
           )}
         </form>
       ) : (
-        <div className="p-6 border-2 border-gray-600 rounded-md text-coolGray-200">
+        <div className="p-6 border-2 border-zinc-600 rounded-md text-gray-200">
           Para poder sumarte al grupo es necesario que inicies sesión con
           Discord. <br />
           <br />
