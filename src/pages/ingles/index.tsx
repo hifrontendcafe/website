@@ -22,7 +22,7 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
               hablar en público, ganar confianza, fluidez y divertirnos en comunidad"
         cta="https://frontend.cafe/docs/practicas-de-ingles"
       />
-      <div className="text-coolGray-200 md:px-8 sm:px-6 md:pt-8">
+      <div className="text-gray-200 md:px-8 sm:px-6 md:pt-8">
         {upcomingEvents.length > 0 && (
           <div>
             <div className="grid gap-8 mb-16 md:grid-cols-2 lg:grid-cols-3">

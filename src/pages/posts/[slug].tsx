@@ -35,9 +35,9 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
   return (
     <Layout title={post.title} preview={preview}>
       <Hero title="Posts" />
-      <div className="pb-24 bg-gray-900 sm:pt-10">
+      <div className="pb-24 bg-zinc-900 sm:pt-10">
         <div className="min-h-screen overflow-hidden bg-white rounded-lg shadow ">
-          <div className="px-4 py-5 border-b border-gray-500 sm:px-6">
+          <div className="px-4 py-5 border-b border-zinc-500 sm:px-6">
             <div className="mt-2 md:flex md:items-center md:justify-between">
               <div className="flex-1 min-w-0">
                 <h2 className="text-xl font-bold leading-7 text-primary sm:text-2xl sm:leading-9 sm:tr uncate">
@@ -46,11 +46,11 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
               </div>
             </div>
           </div>
-          <div className={`px-8 py-4 text-coolGray-600 italic ${styles.body}`}>
+          <div className={`px-8 py-4 text-gray-600 italic ${styles.body}`}>
             {post.excerpt}
           </div>
 
-          <div className={`px-8 py-2 text-coolGray-700 ${styles.body}`}>
+          <div className={`px-8 py-2 text-gray-700 ${styles.body}`}>
             <BlockContent blocks={post.content} />
           </div>
           {post.coverImage && (
@@ -60,7 +60,7 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
           )}
           <div className="flex items-center px-8 py-12">
             <img
-              className="w-20 h-20 rounded-full bg-coolGray-300"
+              className="w-20 h-20 rounded-full bg-gray-300"
               src={post.author.picture}
               title={post.author.name}
               alt={post.author.name}

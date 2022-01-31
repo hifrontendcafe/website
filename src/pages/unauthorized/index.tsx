@@ -12,23 +12,23 @@ const Unauthorized: React.FC<IUnauthorized> = ({ preview }) => {
   return (
     <>
       <FecHead title="No autorizado" />
-      <div className="flex flex-col justify-between h-screen bg-coolGray-900">
+      <div className="flex flex-col justify-between h-screen bg-gray-900">
         <Header preview={preview} />
         <div className="flex flex-col items-center ">
-          <div className="container flex flex-col justify-center max-w-lg p-4 border border-gray-500 rounded-lg shadow-xl outline-none bg-coolGray-800 focus:outline-none">
+          <div className="container flex flex-col justify-center max-w-lg p-4 border border-zinc-500 rounded-lg shadow-xl outline-none bg-gray-800 focus:outline-none">
             <div className="flex items-center justify-center px-5 py-2 rounded-t">
-              <h3 className="text-2xl font-semibold md:text-3xl text-coolGray-50">
+              <h3 className="text-2xl font-semibold md:text-3xl text-gray-50">
                 <span className="text-red-400">¡Oh no!</span> Todavía no formas
                 parte de nuestra comunidad.
               </h3>
             </div>
-            <div className="p-6 text-coolGray-50">
+            <div className="p-6 text-gray-50">
               Es necesario que te unas a nuestro servidor de Discord para poder
               acceder a esta sección.
             </div>
             <div className="flex items-center justify-end p-2 rounded-b">
               <Link href="/">
-                <a className="inline-flex items-center px-4 py-2 text-sm font-medium bg-white border border-gray-300 rounded-md shadow-sm text-coolGray-700 hover:text-primary hover:bg-coolGray-50 ">
+                <a className="inline-flex items-center px-4 py-2 text-sm font-medium bg-white border border-zinc-300 rounded-md shadow-sm text-gray-700 hover:text-primary hover:bg-gray-50 ">
                   Volver al inicio
                 </a>
               </Link>

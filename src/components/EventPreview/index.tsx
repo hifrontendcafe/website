@@ -75,7 +75,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
 
   return (
     <div>
-      <div className="flex flex-col items-start h-full border-2 rounded-md shadow-lg bg-coolGray-900 border-coolGray-600">
+      <div className="flex flex-col items-start h-full border-2 rounded-md shadow-lg bg-gray-900 border-gray-600">
         <div className="w-full p-4">
           <Image
             src={imageBuilder.image(event.cover.src).url()}
@@ -98,16 +98,16 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               {event.category.name}
             </h2>
           </div>
-          <h1 className="mb-3 text-xl font-medium leading-tight text-coolGray-100 title-font">
+          <h1 className="mb-3 text-xl font-medium leading-tight text-gray-100 title-font">
             {event.title}
           </h1>
           {!past && (
-            <p className="font-medium break-all text-coolGray-200 title-font ">
+            <p className="font-medium break-all text-gray-200 title-font ">
               {format(new Date(event.date), 'd  MMMM - HH:mm ', {
                 locale: es,
               })}
               hrs
-              <span className="inline-block text-xs font-light text-coolGray-400">
+              <span className="inline-block text-xs font-light text-gray-400">
                 Horario en tu ubicación actual
               </span>
             </p>
