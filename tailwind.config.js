@@ -90,6 +90,9 @@ module.exports = {
         darkBlue: '#0066CC',
         hover: '#2469FF',
       },
+      blur: {
+        '4xl': '128px',
+      },
     },
   },
   plugins: [
