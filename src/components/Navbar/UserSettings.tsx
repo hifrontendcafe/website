@@ -62,9 +62,9 @@ const UserSettings: React.FC<UserSettingsProps> = ({
           />
         </div>
         <div className="my-auto ml-3">
-          <p className="text-xs font-medium text-gray-100">{user.name}</p>
+          <p className="text-xs font-medium text-zinc-100">{user.name}</p>
           <button
-            className="text-xs font-medium text-gray-400 hover:text-gray-50"
+            className="text-xs font-medium text-zinc-400 hover:text-zinc-50"
             onClick={() => signOut()}
           >
             Cerrar sesión

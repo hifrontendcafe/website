@@ -1,0 +1,113 @@
+import type { ImageProps } from 'next/image';
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+
+type CardSubcomponents = {
+  Header: React.FC;
+  Image: React.FC;
+  Headline: React.FC;
+  Title: React.FC;
+  Paragraph: React.FC;
+  Body: React.FC;
+  Actions: React.FC;
+  PrimaryAction: React.FC;
+  SecondaryAction: React.FC;
+};
+
+const Card: React.FC & CardSubcomponents = ({ children }) => (
+  <div className="flex flex-col justify-between p-4 h-full rounded-md shadow-lg bg-gray-800 ">
+    {children}
+  </div>
+);
+
+const CardHeader: React.FC = ({ children }) => (
+  <div className="flex flex-col w-full mb-1">{children}</div>
+);
+
+const CardImage: React.FC<ImageProps> = ({ className, src, ...props }) => (
+  <div className="mb-2">
+    <Image
+      className={`object-cover w-full h-40 rounded-sm ${className}`}
+      placeholder="blur"
+      blurDataURL={
+        /* Would rather use FEC's logo form Sanity */ '/logotype-fec.svg'
+      }
+      src={src}
+      width={340}
+      height={160}
+      {...props}
+    />
+  </div>
+);
+
+const CardHeadline: React.FC = ({ children }) => (
+  <p className="text-sm font-medium tracking-widest text-primary title-font">
+    {children}
+  </p>
+);
+
+const CardTitle: React.FC = ({ children }) => (
+  <h2 className="cards-title">{children}</h2>
+);
+
+const CardBody: React.FC = ({ children }) => <div>{children}</div>;
+
+const CardParagraph: React.FC = ({ children }) => (
+  <p className="cards-paragraph">{children}</p>
+);
+
+const CardActions: React.FC = ({ children }) => (
+  <div className="flex-grow w-full mt-5 flex items-end">
+    <div className="w-full flex gap-4 justify-between">{children}</div>
+  </div>
+);
+
+type CardActionProps = { href: string; className: string };
+const CardAction: React.FC<CardActionProps> = ({
+  children,
+  href,
+  className,
+  ...props
+}) => (
+  <Link href={href}>
+    <a
+      className={`text-center btn w-full ${className}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      {...props}
+    >
+      {children}
+    </a>
+  </Link>
+);
+
+const CardPrimaryAction: React.FC<CardActionProps> = ({
+  children,
+  ...props
+}) => (
+  <CardAction className="btn-primary" {...props}>
+    {children}
+  </CardAction>
+);
+
+const CardSecondaryAction: React.FC<CardActionProps> = ({
+  children,
+  ...props
+}) => (
+  <CardAction className="btn-secondary" {...props}>
+    {children}
+  </CardAction>
+);
+
+Card.Header = CardHeader;
+Card.Image = CardImage;
+Card.Headline = CardHeadline;
+Card.Title = CardTitle;
+Card.Body = CardBody;
+Card.Paragraph = CardParagraph;
+Card.Actions = CardActions;
+Card.PrimaryAction = CardPrimaryAction;
+Card.SecondaryAction = CardSecondaryAction;
+
+export { Card };

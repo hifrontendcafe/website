@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import { Card } from '../Card';
 
 import { CMYK } from '../../lib/types';
 
@@ -10,41 +9,29 @@ type CMYKItemProps = {
 
 const CMYKItemCard: React.FC<CMYKItemProps> = ({ project }) => {
   return (
-    <div className="flex flex-col justify-between p-5 overflow-hidden border-2 border-gray-500 rounded-lg lg:w-96 bg-coolGray-900">
-      <div>
-        <Image
-          className="object-cover w-full h-40 rounded-lg"
+    <Card>
+      <Card.Header>
+        <Card.Image
           src={project.image.src}
           alt={`Imagen del proyecto ${project.name}`}
-          placeholder="blur"
           blurDataURL={project.image.src}
-          width={340}
-          height={160}
+          width={400}
+          height={200}
         />
-        <h1 className="my-2 cards-title">{project.name}</h1>
-        <p className="cards-paragraph">{project.description}</p>
-      </div>
-      <div className="flex justify-between w-full mt-5">
-        <Link href={project.demo}>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center btn px-9 lg:px-14 btn-primary"
-          >
-            Demo
-          </a>
-        </Link>
-        <Link href={project.github}>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn px-9 lg:px-14 btn-secondary"
-          >
-            GitHub
-          </a>
-        </Link>
-      </div>
-    </div>
+        <Card.Title>{project.name}</Card.Title>
+      </Card.Header>
+
+      <Card.Body>
+        <Card.Paragraph>{project.description}</Card.Paragraph>
+      </Card.Body>
+
+      <Card.Actions>
+        <Card.PrimaryAction href={project.demo}>Demo</Card.PrimaryAction>
+        <Card.SecondaryAction href={project.github}>
+          GitHub
+        </Card.SecondaryAction>
+      </Card.Actions>
+    </Card>
   );
 };
 
