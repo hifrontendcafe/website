@@ -12,7 +12,29 @@
 npm install / yarn install
 ```
 
-- Contact an administrator to request environment variables
+- Contact an administrator to request environment variables; if you have been granted access to the vercel project, just run
+
+```bash
+vercel env pull
+```
+
+Tip: Make sure you run it in the project directory!
+
+Once run, you should be asked to `link` the project:
+
+```bash
+vercel link
+```
+
+1. Set up “~/Documents/dev/js/fec/website”?: `y`.
+2. Make sure you choose the `frontendcafe` organization.
+3. Found project “hifrontendcafe/website”: `y`.
+
+- Generate the DB schemas:
+
+```bash
+npm run prisma:generate / yarn prisma:generate
+```
 
 - Run the development server:
 
@@ -21,7 +43,6 @@ npm run dev / yarn dev
 ```
 
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
 
 <h3 align="left">Connect with us:</h3>
 <p align="left">
