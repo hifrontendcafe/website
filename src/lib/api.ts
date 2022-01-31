@@ -25,7 +25,6 @@ import {
   docQuery,
   eventsQuery,
   eventsQueryByType,
-  personQuery,
   reactGroupQuery,
   settingsQuery,
   staffQuery,
