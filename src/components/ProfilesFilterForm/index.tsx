@@ -47,12 +47,12 @@ const FilterForm: React.FC<FormProps> = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="justify-around md:flex md:items-center md:space-x-4 text-gray-50">
+      <div className="justify-around md:flex md:items-center md:space-x-4 text-zinc-50">
         <div className="w-full mt-3 md:mt-0">
           <select
             name="role"
             className={`w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded form-select ${
-              isRoleSelected ? 'text-gray-50' : 'text-gray-300'
+              isRoleSelected ? 'text-zinc-50' : 'text-gray-300'
             }`}
             onChange={(event) =>
               dispatch({ type: 'ADD_ROLE', payload: event.target.value })
@@ -75,7 +75,7 @@ const FilterForm: React.FC<FormProps> = ({
           <select
             name="seniority"
             className={`w-full py-2 text-sm leading-tight bg-gray-900 border border-gray-300 rounded form-select ${
-              isSenioritySelected ? 'text-gray-50' : 'text-gray-300'
+              isSenioritySelected ? 'text-zinc-50' : 'text-gray-300'
             }`}
             onChange={(event) =>
               dispatch({ type: 'ADD_SENIORITY', payload: event.target.value })
@@ -139,16 +139,17 @@ const FilterForm: React.FC<FormProps> = ({
         />
         <div className="flex items-center flex-shrink-0 mt-4 space-x-2 md:mt-0">
           <label
-            htmlFor="toggle"
-            className="flex-shrink w-24 text-sm leading-4 text-gray-50"
+            htmlFor="available"
+            className="flex-shrink w-24 text-sm leading-4 text-zinc-50"
           >
             En búsqueda activa
           </label>
           <div className="relative inline-block w-10 mr-2 align-middle transition duration-200 ease-in select-none">
             <input
-              checked={filters.available}
-              name="toggle"
+              id="available"
+              name="available"
               type="checkbox"
+              checked={filters.available}
               onChange={(event) => {
                 dispatch({
                   type: 'SET_AVAILABLE',
@@ -163,7 +164,7 @@ const FilterForm: React.FC<FormProps> = ({
               }`}
             />
             <label
-              htmlFor="toggle"
+              htmlFor="available"
               className={`${
                 filters.available ? 'bg-white-400' : 'bg-gray-300'
               } block overflow-hidden border bg-gray-300 border-gray-500 h-6 rounded-full cursor-pointer`}
