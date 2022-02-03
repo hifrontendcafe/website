@@ -1,11 +1,11 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
 import Layout from '@/components/Layout';
-import prisma from '@/lib/prisma';
+// import prisma from '@/lib/prisma';
 import { getSettings } from '@/lib/api';
 import { ExtendedProfile } from '@/lib/types';
-import { findProfiles } from '@/lib/prisma-queries';
-import { shuffle } from '@/lib/shuffle';
+// import { findProfiles } from '@/lib/prisma-queries';
+// import { shuffle } from '@/lib/shuffle';
 import SectionHero from '@/components/SectionHero';
 import Profiles from '@/components/Profiles';
 
@@ -46,55 +46,55 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const sortResponse = (array) => {
-    return [
-      ...array.sort((a, b) => {
-        if (a.name < b.name) {
-          return -1;
-        }
-        if (a.name > b.name) {
-          return 1;
-        }
-        return 0;
-      }),
-    ];
-  };
+  // const sortResponse = (array) => {
+  //   return [
+  //     ...array.sort((a, b) => {
+  //       if (a.name < b.name) {
+  //         return -1;
+  //       }
+  //       if (a.name > b.name) {
+  //         return 1;
+  //       }
+  //       return 0;
+  //     }),
+  //   ];
+  // };
 
   const settings = await getSettings(preview);
 
-  const rolesRepose = await prisma.role.findMany();
-  const roles = sortResponse(rolesRepose);
-  const technologiesResponse = await prisma.technology.findMany();
-  const technologies = sortResponse(technologiesResponse);
+  // const rolesRepose = await prisma.role.findMany();
+  // const roles = sortResponse(rolesRepose);
+  // const technologiesResponse = await prisma.technology.findMany();
+  // const technologies = sortResponse(technologiesResponse);
 
-  const formattedTechnologies = technologies.map((technology) => ({
-    ...technology,
-    label: technology.name,
-    value: technology.id,
-  }));
+  // const formattedTechnologies = technologies.map((technology) => ({
+  //   ...technology,
+  //   label: technology.name,
+  //   value: technology.id,
+  // }));
 
-  const senioritiesResponse = await prisma.seniority.findMany();
-  const seniorities = sortResponse(senioritiesResponse);
+  // const senioritiesResponse = await prisma.seniority.findMany();
+  // const seniorities = sortResponse(senioritiesResponse);
 
-  const response = await findProfiles({ active: true });
-
-  const profiles = response.map((profile) => ({
-    ...profile,
-    createdAt: profile.createdAt.toString(),
-    updatedAt: profile.createdAt.toString(),
-  }));
+  // const response = await findProfiles({ active: true });
+  //
+  // const profiles = response.map((profile) => ({
+  //   ...profile,
+  //   createdAt: profile.createdAt.toString(),
+  //   updatedAt: profile.createdAt.toString(),
+  // }));
 
   // randomizes profiles in place
-  shuffle(profiles);
+  // shuffle(profiles);
 
   return {
     props: {
-      profiles,
+      // profiles,
       preview,
       settings,
-      technologies: formattedTechnologies,
-      roles,
-      seniorities,
+      // technologies: formattedTechnologies,
+      // roles,
+      // seniorities,
     },
     revalidate: 1,
   };

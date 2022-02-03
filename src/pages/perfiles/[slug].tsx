@@ -1,10 +1,10 @@
 import React from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
+// import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import Custom404 from '@/pages/404';
 import Layout from '@/components/Layout';
-import { findProfilesBasic } from '@/lib/prisma-queries';
-import { getSettings } from '@/lib/api';
+// import { findProfilesBasic } from '@/lib/prisma-queries';
+// import { getSettings } from '@/lib/api';
 import { PageProfile } from '@/lib/types';
 
 const ProfilePage: React.FC<PageProfile> = ({ preview, profile }) => {
@@ -18,14 +18,14 @@ const ProfilePage: React.FC<PageProfile> = ({ preview, profile }) => {
       description="Compartí tu profile FEC a las redes"
       preview={preview}
     >
-      <div className="mx-auto py-10 flex justify-center items-center">
-        <div className="flex justify-between w-3/5 border-4 border-greenFec rounded-lg py-4 px-10">
+      <div className="flex items-center justify-center py-10 mx-auto">
+        <div className="flex justify-between w-3/5 px-10 py-4 border-4 rounded-lg border-greenFec">
           <img
             src={profile.photo}
             alt={profile.name}
             className="object-cover object-top w-40 h-40 rounded-full shadow-lg"
           />
-          <div className="text-greenFec flex flex-col ml-8">
+          <div className="flex flex-col ml-8 text-greenFec">
             <span>
               <b>Usuario: </b>
               {profile.name} ({profile.discord})
@@ -53,50 +53,50 @@ const ProfilePage: React.FC<PageProfile> = ({ preview, profile }) => {
   );
 };
 
-export const getStaticProps: GetStaticProps = async ({
-  params,
-  preview = false,
-}) => {
-  const settings = await getSettings(preview);
+// export const getStaticProps: GetStaticProps = async ({
+//   params,
+//   preview = false,
+// }) => {
+//   const settings = await getSettings(preview);
 
-  const response = await findProfilesBasic({ active: true });
+// const response = await findProfilesBasic({ active: true });
 
-  const profiles = response.map((profile) => ({
-    ...profile,
-    createdAt: profile.createdAt.toString(),
-    updatedAt: profile.createdAt.toString(),
-  }));
+// const profiles = response.map((profile) => ({
+//   ...profile,
+//   createdAt: profile.createdAt.toString(),
+//   updatedAt: profile.createdAt.toString(),
+// }));
 
-  const dataProfile = profiles?.filter((profile) => {
-    if (profile.discordId === params.slug) {
-      return true;
-    }
-  });
+// const dataProfile = profiles?.filter((profile) => {
+//   if (profile.discordId === params.slug) {
+//     return true;
+//   }
+// });
 
-  if (!dataProfile[0]) {
-    return {
-      notFound: true,
-    };
-  }
+// if (!dataProfile[0]) {
+//   return {
+//     notFound: true,
+//   };
+// }
 
-  return {
-    props: {
-      preview,
-      profile: dataProfile[0],
-      settings,
-    },
-    revalidate: 1,
-  };
-};
+// return {
+//   props: {
+//     preview,
+//     profile: dataProfile[0],
+//     settings,
+//   },
+//   revalidate: 1,
+// };
+// };
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const profiles = await findProfilesBasic({ active: true });
+// export const getStaticPaths: GetStaticPaths = async () => {
+//   const profiles = await findProfilesBasic({ active: true });
 
-  const paths = profiles?.map((profile) => ({
-    params: { slug: profile.discordId },
-  }));
+//   const paths = profiles?.map((profile) => ({
+//     params: { slug: profile.discordId },
+//   }));
 
-  return { paths, fallback: 'blocking' };
-};
+//   return { paths, fallback: 'blocking' };
+// };
 
 export default ProfilePage;

@@ -7,7 +7,7 @@ import { useForm } from 'react-hook-form';
 import { ReactGroup } from '@/lib/types';
 import { Technology, Role, Seniority } from '@prisma/client';
 import React, { useState, useEffect } from 'react';
-import prisma from '../../lib/prisma';
+// import prisma from '../../lib/prisma';
 import Select from 'react-select';
 import Resizer from 'react-image-file-resizer';
 import SectionHero from '@/components/SectionHero';
@@ -145,7 +145,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         description="Encontrá los perfiles dentro de FEC"
         preview={preview}
       >
-        <div className="py-32 my-20 text-2xl text-center text-zinc-100 rounded-lg shadow bg-gray-800">
+        <div className="py-32 my-20 text-2xl text-center bg-gray-800 rounded-lg shadow text-zinc-100">
           Cargando sesión...
         </div>
       </Layout>
@@ -164,7 +164,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         Tu perfil será visible en la sección Talentos, diseñada para que recruiters y empresas puedan identificar talentos de nuestra comunidad"
       />
 
-      <div className="overflow-hidden border-2 rounded-lg shadow border-gray-600 bg-gray-900">
+      <div className="overflow-hidden bg-gray-900 border-2 border-gray-600 rounded-lg shadow">
         {message.text && (
           <div
             className={`text-center text-gray-50 rounded p-4 m-4 ${
@@ -181,7 +181,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
             ) : (
               <form
                 onSubmit={handleSubmit(onSubmit, onError)}
-                className="w-full p-6 rounded sm:px-8 sm:pt-6 sm:pb-8 bg-gray-900"
+                className="w-full p-6 bg-gray-900 rounded sm:px-8 sm:pt-6 sm:pb-8"
                 noValidate
               >
                 <div className="flex flex-col grid-cols-2 gap-5 md:grid">
@@ -439,7 +439,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 </div>
                 <div className="flex items-center mb-4">
                   <input
-                    className="mr-2 text-sm leading-tight border rounded text-gray-200 focus:outline-none focus:ring"
+                    className="mr-2 text-sm leading-tight text-gray-200 border rounded focus:outline-none focus:ring"
                     {...register('available')}
                     type="checkbox"
                   />
@@ -472,7 +472,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
             )}
           </div>
         ) : (
-          <div className="p-4 bg-zinc-900 text-gray-100">
+          <div className="p-4 text-gray-100 bg-zinc-900">
             Para poder registrar tu perfil es necesario que inicies sesión con
             Discord. <br />
             <br />
@@ -498,23 +498,23 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const settings = await getSettings(preview);
 
-  const roles = await prisma.role.findMany();
-  const technologies = await prisma.technology.findMany();
-  const formattedTechnologies = technologies.map((technology) => ({
-    ...technology,
-    label: technology.name,
-    value: technology.id,
-  }));
+  // const roles = await prisma.role.findMany();
+  // const technologies = await prisma.technology.findMany();
+  // const formattedTechnologies = technologies.map((technology) => ({
+  //   ...technology,
+  //   label: technology.name,
+  //   value: technology.id,
+  // }));
 
-  const seniorities = await prisma.seniority.findMany();
+  // const seniorities = await prisma.seniority.findMany();
 
   return {
     props: {
-      technologies: formattedTechnologies,
+      // technologies: formattedTechnologies,
       preview,
       settings,
-      roles,
-      seniorities,
+      // roles,
+      // seniorities,
     },
   };
 };
