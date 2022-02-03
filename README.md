@@ -56,3 +56,6 @@ npm run dev / yarn dev
 <a href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">
   <img src="https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg" alt="Powered by Vercel" />
 </a>
+<a href="https://sanity.io">
+  <img src="https://cdn.sanity.io/images/3do82whm/next/51af00784c5addcf63ae7f0c416756acca7e63ac-353x71.svg?w=190&fm=png&dl=sanity-logo.png" alt="Sanity" />
+</a>
