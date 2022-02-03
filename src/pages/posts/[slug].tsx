@@ -6,7 +6,6 @@ import BlockContent from '@sanity/block-content-to-react';
 
 import Layout from '../../components/Layout';
 import Hero from '../../components/Hero';
-import styles from '../docs/styles.module.css';
 
 import { getPost, getAllPostsSlugs, getSettings } from '../../lib/api';
 import { usePreviewSubscription } from '../../lib/sanity';
@@ -46,11 +45,9 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
               </div>
             </div>
           </div>
-          <div className={`px-8 py-4 text-gray-600 italic ${styles.body}`}>
-            {post.excerpt}
-          </div>
+          <div className="px-8 py-4 italic text-gray-600">{post.excerpt}</div>
 
-          <div className={`px-8 py-2 text-gray-700 ${styles.body}`}>
+          <div className="px-8 py-2 text-gray-700">
             <BlockContent blocks={post.content} />
           </div>
           {post.coverImage && (
@@ -60,7 +57,7 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
           )}
           <div className="flex items-center px-8 py-12">
             <img
-              className="w-20 h-20 rounded-full bg-gray-300"
+              className="w-20 h-20 bg-gray-300 rounded-full"
               src={post.author.picture}
               title={post.author.name}
               alt={post.author.name}
