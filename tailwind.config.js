@@ -55,7 +55,7 @@ module.exports = {
 
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Poppins', 'sans-serif'],
         title: ['Lexend Deca', 'sans-serif'],
       },
       fontSize: {
