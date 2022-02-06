@@ -96,7 +96,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
             </span>
           </Card.Paragraph>
         )}
-        <div className="text-primary">
+        <div className="text-secondary">
           <BlockContent blocks={event.description} />
         </div>
       </Card.Body>
