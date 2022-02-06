@@ -91,12 +91,12 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               locale: es,
             })}
             hrs
-            <span className="inline-block text-xs font-light text-gray-400">
+            <span className="inline-block text-xs font-light text-quaternary">
               Horario en tu ubicación actual
             </span>
           </Card.Paragraph>
         )}
-        <div className="text-gray-300">
+        <div className="text-primary">
           <BlockContent blocks={event.description} />
         </div>
       </Card.Body>
