@@ -82,8 +82,9 @@ module.exports = {
       },
       textColor: {
         primary: tailwindColors.gray[50],
-        secondary: tailwindColors.gray[300],
         tertiary: tailwindColors.gray[200],
+        secondary: tailwindColors.gray[300],
+        quaternary: tailwindColors.gray[400],
         accent: '#6366F1',
         informational: '#4991DA',
         lightBlue: '#00CCFF',
