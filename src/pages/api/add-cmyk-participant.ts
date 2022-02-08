@@ -3,14 +3,14 @@ import {
   createPerson,
   createCMYKParticipant,
   updatePerson,
-  getPersonByRealDiscordID,
+  getPersonByDiscordID,
 } from '../../lib/api';
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default async function post(req: NextApiRequest, res: NextApiResponse) {
   const { body } = req;
   try {
-    const user = await getPersonByRealDiscordID(body.discordID);
+    const user = await getPersonByDiscordID(body.discordID);
     let newUser;
     // If user does not existe create it
     if (!user) {

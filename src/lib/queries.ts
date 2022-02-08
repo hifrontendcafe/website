@@ -133,15 +133,6 @@ export const cmykQuery = groq`
   }
 `;
 
-export const personQuery = groq`
-  *[_type == "person" && username == $id]{
-    _id,
-    username,
-    firstName,
-    lastName,
-  }
-`;
-
 export const personQueryByDiscordID = groq`
   *[_type == "person" &&  discordID.current == $id]{
     _id,

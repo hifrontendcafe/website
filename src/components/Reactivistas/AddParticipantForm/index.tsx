@@ -1,29 +1,38 @@
 import { useState } from 'react';
 import { ReactGroup } from '@/lib/types';
 import { signIn, useSession } from 'next-auth/client';
-import { Link } from '../../MDX/Link';
+import ToastNotification from '../../ToastNotification/ToastNotification';
+import { Link } from '@/components/MDX';
 
 interface Props {
   group: ReactGroup;
 }
+type RequestState = 'initial' | 'loading' | 'success' | 'error';
+
+const getButtonText = (state: RequestState, userAdded: boolean) => {
+  if (state === 'loading') return 'Enviando...';
+  if (userAdded) return 'Te uniste al grupo';
+  return 'Unite a este grupo';
+};
 
 const AddParticipantForm: React.FC<Props> = ({ group }) => {
   const [session] = useSession();
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [requestState, setRequestState] = useState<RequestState>('initial');
+  const [userAdded, setUserAdded] = useState(false);
+
+  const resetState = () => {
+    setRequestState('initial');
+  };
 
   const onAddParticipantSubmit = async (id: string) => {
     if (!session || !session.user || !session.user.name) {
-      setIsLoading(false);
-      setIsError(true);
-      setTimeout(() => setIsError(false), 5000);
+      setRequestState('error');
       return;
     }
-    setIsLoading(true);
+    setRequestState('loading');
     let result: Response;
     try {
-      result = await fetch('/api/add-participant', {
+      result = await fetch('/api/add-react-participant', {
         method: 'POST',
         body: JSON.stringify({
           participant: session.user,
@@ -34,19 +43,14 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
         },
       });
     } catch (e) {
-      setIsLoading(false);
-      setIsError(true);
-      setTimeout(() => setIsError(false), 5000);
+      setRequestState('error');
       return;
     }
     if (result.ok) {
-      setIsLoading(false);
-      setIsSuccess(true);
-      setTimeout(() => setIsSuccess(false), 5000);
+      setRequestState('success');
+      setUserAdded(true);
     } else {
-      setIsLoading(false);
-      setIsError(true);
-      setTimeout(() => setIsError(false), 5000);
+      setRequestState('error');
     }
   };
 
@@ -75,25 +79,25 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
             <button
               type="submit"
               form={group.name}
-              disabled={isLoading || isSuccess}
-              className="justify-items-end w-full sm:w-auto mt-2 sm:mt-0 px-3 py-2 sm:ml-2 text-sm font-small btn btn-primary"
+              disabled={requestState === 'loading' || userAdded}
+              className="w-full px-3 py-2 mt-2 text-sm justify-items-end sm:w-auto sm:mt-0 sm:ml-2 font-small btn btn-primary disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
             >
-              {isLoading ? 'Enviando...' : 'Unite a este grupo'}
+              {getButtonText(requestState, userAdded)}
             </button>
           </div>
-          {isError && (
-            <div className="mt-4 text-sm text-red-500">
-              Ha ocurrido un error.
-            </div>
+          {requestState === 'success' && (
+            <ToastNotification type="success" onDidDismiss={resetState}>
+              <p>¡Te has unido correctamente al grupo!</p>
+            </ToastNotification>
           )}
-          {isSuccess && (
-            <div className="mt-4 text-sm text-emerald-500 font-bold">
-              ¡Te has unido correctamente al grupo!
-            </div>
+          {requestState === 'error' && (
+            <ToastNotification type="error" onDidDismiss={resetState}>
+              <p>Ha ocurrido un error.</p>
+            </ToastNotification>
           )}
         </form>
       ) : (
-        <div className="p-6 border-2 border-zinc-600 rounded-md text-gray-200">
+        <div className="p-6 text-gray-200 border-2 rounded-md border-zinc-600">
           Para poder sumarte al grupo es necesario que inicies sesión con
           Discord. <br />
           <br />

@@ -14,13 +14,15 @@ import { usePreviewSubscription } from '@/lib/sanity';
 import { docQuery } from '@/lib/queries';
 
 import {
-  Heading,
+  Heading1,
+  Heading2,
+  Heading3,
   Link,
-  List,
   ListItem,
+  OrderedList,
   Paragraph,
   Strong,
-  SubHeading,
+  UnorderedList,
 } from '@/components/MDX';
 
 import type { Doc } from '@/lib/types';
@@ -49,12 +51,14 @@ const DocPage: React.FC<DocProps> = ({ mdx, data, preview }) => {
         <MDXRemote
           {...mdx}
           components={{
-            h1: Heading,
-            h2: SubHeading,
+            h1: Heading1,
+            h2: Heading2,
+            h3: Heading3,
             p: Paragraph,
             strong: Strong,
             a: Link,
-            ul: List,
+            ul: UnorderedList,
+            ol: OrderedList,
             li: ListItem,
           }}
         />
