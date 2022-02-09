@@ -148,7 +148,7 @@ export interface FeaturedCards {
   description: string;
   color: string;
   btnText: string;
-  link: string;
+  link?: string;
 }
 export interface ReactGroup {
   _id: string;
