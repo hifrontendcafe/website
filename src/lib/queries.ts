@@ -181,3 +181,52 @@ export const featuredCardsQuery = groq`
     btnText
   }
   `;
+
+export const technologiesQuery = groq`
+  *[_type == 'technology'] {
+    _id,
+    name
+  }
+`;
+
+export const senioritiesQuery = groq`
+  *[_type == 'seniority'] {
+    _id,
+    name
+  }
+`;
+
+export const rolesQuery = groq`
+  *[_type == 'role'] {
+    _id,
+    name
+  }
+`;
+
+export const profilesQuery = groq`
+  *[_type == "profile" && isActive == true] {
+   _id,
+   description,
+   location,
+   isAvailable,
+   role-> {
+     _id,
+     name
+   },
+   person-> {
+     "discord": discordID.current,
+     email,
+     firstName,
+     github,
+     linkedin,
+     "photo": photo.asset->url,
+     portfolio,
+     twitter,
+     username
+   },
+   seniority-> {
+     _id,
+     name
+   }
+ }
+`;

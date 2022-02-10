@@ -294,6 +294,21 @@ export interface EmbeddedTweet {
   };
 }
 
+export interface Role {
+  _id: string;
+  name: string;
+}
+
+export interface Seniority {
+  _id: string;
+  name: string;
+}
+
+export interface Technology {
+  _id: string;
+  name: string;
+}
+
 export interface Technologies {
   id: string;
   name: string;
@@ -304,7 +319,27 @@ export interface ProfileFilters {
   location?: string;
   seniorityId?: string;
   description?: string;
-  technologies?: Technologies[];
+  technologies?: Technology[];
   available?: boolean;
   active?: boolean;
+}
+
+export interface Profile {
+  _id: string;
+  description: string;
+  isAvailable: boolean;
+  location: string;
+  person: {
+    discord: string;
+    email: string;
+    firstName: string;
+    github: string;
+    linkedin: string;
+    photo: string;
+    portfolio: string;
+    twitter: string;
+    username: string;
+  };
+  role: Role;
+  seniority: Role;
 }

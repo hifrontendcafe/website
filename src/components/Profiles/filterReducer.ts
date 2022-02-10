@@ -1,4 +1,4 @@
-import { ProfileFilters, Technologies } from '@/lib/types';
+import { ProfileFilters, Technology } from '@/lib/types';
 
 interface FilterStringAction {
   type: 'ADD_ROLE' | 'ADD_LOCATION' | 'ADD_SENIORITY' | 'ADD_DESCRIPTION';
@@ -7,7 +7,7 @@ interface FilterStringAction {
 
 interface FilterTechnologyAction {
   type: 'ADD_TECHNOLOGIES';
-  payload: readonly Technologies[];
+  payload: readonly Technology[];
 }
 
 interface FilterBooleanAction {
