@@ -203,34 +203,6 @@ export const rolesQuery = groq`
   }
 `;
 
-export const profilesQuery = groq`
-  *[_type == "profile" && isActive == true] {
-   _id,
-   description,
-   location,
-   isAvailable,
-   role-> {
-     _id,
-     name
-   },
-   person-> {
-     "discord": discordID.current,
-     email,
-     firstName,
-     github,
-     linkedin,
-     "photo": photo.asset->url,
-     portfolio,
-     twitter,
-     username
-   },
-   seniority-> {
-     _id,
-     name
-   }
- }
-`;
-
 export const profilesProjections = `
    _id,
    description,
@@ -255,4 +227,30 @@ export const profilesProjections = `
      _id,
      name
    }
+`;
+
+export const profilesQuery = `
+  *[_type == "profile" && isActive == true] {
+   ${profilesProjections}
+ }
+`;
+
+export const profileQuery = `
+  *[_type == "profile" && isActive == true && person->discordID.current == $id][0] {
+   ${profilesProjections}
+ }
+`;
+
+export const personQuery = groq`
+  *[_type == "person" && discordID.current == $id][0] {
+    _id,
+    email,
+    firstName,
+    github,
+    linkedin,
+    photo,
+    portfolio,
+    twitter,
+    username
+ }
 `;

@@ -38,6 +38,8 @@ import {
   senioritiesQuery,
   rolesQuery,
   profilesQuery,
+  profileQuery,
+  personQuery,
 } from './queries';
 
 import { createClient } from 'next-sanity';
@@ -214,4 +216,18 @@ export async function getAllRoles(preview = false): Promise<Role[]> {
 
 export async function getAllProfiles(preview = false): Promise<Profile[]> {
   return await getClient(preview).fetch(profilesQuery);
+}
+
+export async function getProfile(
+  id: string,
+  preview = false,
+): Promise<Profile> {
+  return await getClient(preview).fetch(profileQuery, { id });
+}
+
+export async function getPerson(
+  id: string,
+  preview = false,
+): Promise<Profile['person']> {
+  return await getClient(preview).fetch(personQuery, { id });
 }

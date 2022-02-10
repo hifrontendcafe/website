@@ -9,7 +9,7 @@ import {
   getSettings,
 } from '@/lib/api';
 import { useForm } from 'react-hook-form';
-import { ReactGroup } from '@/lib/types';
+import { Profile, ReactGroup } from '@/lib/types';
 import type { Technology, Role, Seniority } from '@/lib/types';
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
@@ -70,22 +70,24 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     const fetchUser = async (uId) => {
       setLoadingProfile(true);
       const response = await fetch(`/api/profiles/${uId}`);
-      const user = await response.json();
-      if (!user.error) {
-        setSelectedTechnologies(user.technologies);
-        setPhoto(user.photo);
-        setUserId(user.id);
-        setValue('email', user.email);
-        setValue('name', user.name);
+      const user = (await response.json()) as
+        | (Profile & { error: false })
+        | { error: true };
+      if (user.error === false) {
+        setSelectedTechnologies([]);
+        setPhoto(user.person.photo);
+        setUserId(user._id);
+        setValue('email', user.person.email);
+        setValue('name', user.person.firstName);
         setValue('location', user.location);
-        setValue('twitter', user.twitter);
-        setValue('linkedin', user.linkedin);
-        setValue('github', user.github);
-        setValue('portfolio', user.portfolio);
-        setValue('roleId', user.roleId);
-        setValue('seniorityId', user.seniorityId);
+        setValue('twitter', user.person.twitter);
+        setValue('linkedin', user.person.linkedin);
+        setValue('github', user.person.github);
+        setValue('portfolio', user.person.portfolio);
+        setValue('roleId', user.role._id);
+        setValue('seniorityId', user.seniority._id);
         setValue('description', user.description);
-        setValue('available', user.available);
+        setValue('available', user.isAvailable);
       }
       setLoadingProfile(false);
     };

@@ -3,48 +3,43 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import Custom404 from '@/pages/404';
 import Layout from '@/components/Layout';
-import { findProfilesBasic } from '@/lib/prisma-queries';
-import { getSettings } from '@/lib/api';
+import { getAllProfiles, getProfile, getSettings } from '@/lib/api';
 import { PageProfile } from '@/lib/types';
 
 const ProfilePage: React.FC<PageProfile> = ({ preview, profile }) => {
   const router = useRouter();
 
-  if (!router.isFallback && !profile?.discordId) return <Custom404 />;
+  if (!router.isFallback && !profile?.person?.discord) return <Custom404 />;
 
   return (
     <Layout
-      title={`Perfil: ${profile.name}`}
+      title={`Perfil: ${profile.person.firstName}`}
       description="Compartí tu profile FEC a las redes"
       preview={preview}
     >
-      <div className="mx-auto py-10 flex justify-center items-center">
-        <div className="flex justify-between w-3/5 border-4 border-greenFec rounded-lg py-4 px-10">
+      <div className="flex items-center justify-center py-10 mx-auto">
+        <div className="flex justify-between w-3/5 px-10 py-4 border-4 rounded-lg border-greenFec">
           <img
-            src={profile.photo}
-            alt={profile.name}
+            src={profile.person.photo}
+            alt={profile.person.firstName}
             className="object-cover object-top w-40 h-40 rounded-full shadow-lg"
           />
-          <div className="text-greenFec flex flex-col ml-8">
+          <div className="flex flex-col ml-8 text-greenFec">
             <span>
               <b>Usuario: </b>
-              {profile.name} ({profile.discord})
+              {profile.person.firstName} ({profile.person.discord})
             </span>
-            {profile.github ? (
+            {profile.person.github && (
               <span>
                 <b>GitHub: </b>
-                {profile.github}
+                {profile.person.github}
               </span>
-            ) : (
-              ''
             )}
-            {profile.portfolio ? (
+            {profile.person.portfolio && (
               <span>
                 <b>Portfolio: </b>
-                {profile.portfolio}
+                {profile.person.portfolio}
               </span>
-            ) : (
-              ''
             )}
           </div>
         </div>
@@ -59,21 +54,9 @@ export const getStaticProps: GetStaticProps = async ({
 }) => {
   const settings = await getSettings(preview);
 
-  const response = await findProfilesBasic({ active: true });
+  const profile = await getProfile(params.slug as string, preview);
 
-  const profiles = response.map((profile) => ({
-    ...profile,
-    createdAt: profile.createdAt.toString(),
-    updatedAt: profile.createdAt.toString(),
-  }));
-
-  const dataProfile = profiles?.filter((profile) => {
-    if (profile.discordId === params.slug) {
-      return true;
-    }
-  });
-
-  if (!dataProfile[0]) {
+  if (!profile) {
     return {
       notFound: true,
     };
@@ -82,7 +65,7 @@ export const getStaticProps: GetStaticProps = async ({
   return {
     props: {
       preview,
-      profile: dataProfile[0],
+      profile,
       settings,
     },
     revalidate: 1,
@@ -90,10 +73,10 @@ export const getStaticProps: GetStaticProps = async ({
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const profiles = await findProfilesBasic({ active: true });
+  const profiles = await getAllProfiles();
 
   const paths = profiles?.map((profile) => ({
-    params: { slug: profile.discordId },
+    params: { slug: profile.person.discord },
   }));
 
   return { paths, fallback: 'blocking' };

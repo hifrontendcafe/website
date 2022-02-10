@@ -1,5 +1,3 @@
-import { Profile } from '@prisma/client';
-
 export interface Settings {
   description: string;
   heroBackground: Image;
@@ -330,6 +328,7 @@ export interface Profile {
   isAvailable: boolean;
   location: string;
   person: {
+    _id: string;
     discord: string;
     email: string;
     firstName: string;

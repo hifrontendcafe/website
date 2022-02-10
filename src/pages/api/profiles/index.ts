@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { Technology } from '@prisma/client';
-import prisma from '@/lib/prisma';
+import { postClient } from '@/lib/sanity';
+import { getPerson } from '@/lib/api';
 
 export default async function handle(
   req: NextApiRequest,
@@ -23,59 +23,145 @@ export default async function handle(
       seniorityId,
       roleId,
       available,
-      technologies,
       description,
     } = req.body;
 
-    const tech: Technology[] = technologies.map((t) => ({
-      id: t.value,
-    }));
+    // const tech: Technology[] = technologies.map((t) => ({
+    //   id: t.value,
+    // }));
 
-    let result;
+    const person = await getPerson(discordId);
+
+    let photoObj = {};
+
+    if (photo) {
+      const photoBlob = Buffer.from(photo.split(';base64,')[1], 'base64');
+
+      const asset = await postClient.assets.upload('image', photoBlob);
+
+      photoObj = {
+        _type: 'image',
+        asset: {
+          _type: 'reference',
+          _ref: asset._id,
+        },
+      };
+    } else photoObj = undefined;
+
     if (id) {
-      result = await prisma.profile.update({
-        where: {
+      const transaction = postClient.transaction();
+
+      transaction.patch(person._id, {
+        set: {
+          firstName: name,
           email,
-        },
-        data: {
-          name,
-          discord,
+          twitter,
+          portfolio,
           github,
           linkedin,
-          available,
-          active: true,
-          portfolio,
-          twitter,
-          location,
-          photo,
-          description,
-          seniority: { connect: { id: seniorityId } },
-          technologies: { connect: tech },
-          role: { connect: { id: roleId } },
+          username: discord,
+          photo: photoObj,
         },
       });
-    } else {
-      result = await prisma.profile.create({
-        data: {
-          name,
-          email,
-          discord,
-          github,
-          linkedin,
-          available,
-          active: false,
-          portfolio,
-          twitter,
+
+      transaction.patch(id, {
+        set: {
+          isAvailable: available,
           location,
-          photo,
-          discordId,
+          isActive: true,
           description,
-          seniority: { connect: { id: seniorityId } },
-          technologies: { connect: tech },
-          role: { connect: { id: roleId } },
+          seniority: {
+            _type: 'reference',
+            _ref: seniorityId,
+          },
+          role: {
+            _type: 'reference',
+            _ref: roleId,
+          },
         },
       });
+
+      await transaction.commit();
     }
-    res.json(result);
+
+    if (person._id) {
+      const transaction = postClient.transaction();
+
+      transaction.patch(person._id, {
+        set: {
+          firstName: name,
+          email,
+          twitter,
+          portfolio,
+          github,
+          linkedin,
+          username: discord,
+          photo: photoObj,
+        },
+      });
+
+      transaction.create({
+        _type: 'profile',
+        isAvailable: available,
+        location,
+        isActive: true,
+        description,
+        seniority: {
+          _type: 'reference',
+          _ref: seniorityId,
+        },
+        role: {
+          _type: 'reference',
+          _ref: roleId,
+        },
+        person: {
+          _type: 'reference',
+          _ref: person._id,
+        },
+      });
+
+      await transaction.commit();
+      res.json({});
+
+      return;
+    }
+
+    const newPerson = await postClient.create({
+      _type: 'person',
+      firstName: name,
+      email,
+      twitter,
+      portfolio,
+      username: discord,
+      discordID: {
+        _type: 'slug',
+        current: discordId,
+      },
+      github,
+      linkedin,
+      photo: photoObj,
+    });
+
+    await postClient.create({
+      _type: 'profile',
+      isAvailable: available,
+      location,
+      isActive: true,
+      description,
+      seniority: {
+        _type: 'reference',
+        _ref: seniorityId,
+      },
+      role: {
+        _type: 'reference',
+        _ref: roleId,
+      },
+      person: {
+        _type: 'reference',
+        _ref: newPerson._id,
+      },
+    });
+
+    res.json({});
   }
 }
