@@ -230,3 +230,29 @@ export const profilesQuery = groq`
    }
  }
 `;
+
+export const profilesProjections = `
+   _id,
+   description,
+   location,
+   isAvailable,
+   role-> {
+     _id,
+     name
+   },
+   person-> {
+     "discord": discordID.current,
+     email,
+     firstName,
+     github,
+     linkedin,
+     "photo": photo.asset->url,
+     portfolio,
+     twitter,
+     username
+   },
+   seniority-> {
+     _id,
+     name
+   }
+`;

@@ -1,99 +1,75 @@
-import { Prisma } from '@prisma/client';
-import { ProfileFilters } from '@/lib/types';
-import { NextApiResponse } from 'next';
-import { findProfiles } from '@/lib/prisma-queries';
+import { getClient } from '@/lib/api';
+import { profilesProjections } from '@/lib/queries';
+import { Profile, ProfileFilters } from '@/lib/types';
+import { NextApiRequest, NextApiResponse } from 'next';
 
-const fullstackRoleId = 'ed07741b-f317-4fb9-9a76-7bacf95d7e5e';
-const frontendRoleId = '348d3725-30a4-458d-b299-2d2d9381795c';
-const backendRoleId = '391270dd-4121-4f80-b6da-811c9a0b84cf';
+const sanityKeys: Record<
+  keyof Omit<ProfileFilters, 'technologies'>,
+  string | { type: string; value: string }
+> = {
+  roleId: 'role->_id',
+  active: 'isActive',
+  available: {
+    type: 'bool',
+    value: 'isAvailable',
+  },
+  description: {
+    type: 'match',
+    value: 'description',
+  },
+  location: {
+    type: 'match',
+    value: 'location',
+  },
+  seniorityId: 'seniority->_id',
+};
 
-type Insensitive = 'insensitive';
-const mode: Insensitive = 'insensitive';
+function makeQuery(filters: ProfileFilters): string {
+  const queryFilters = Object.entries(filters)
+    .reduce((result, entry) => {
+      const [key, value] = entry;
 
-type ProfileWhereInput = Prisma.ProfileWhereInput;
+      if (!value || !sanityKeys[key]) return result;
 
-function makeFilters({
-  roleId,
-  available,
-  location,
-  seniorityId,
-  description,
-  technologies,
-  active,
-}: ProfileFilters): ProfileWhereInput {
-  const retval: ProfileWhereInput = {};
+      const type =
+        typeof sanityKeys[key] === 'string' || sanityKeys[key].type === 'bool'
+          ? '=='
+          : sanityKeys[key].type;
 
-  if (roleId) {
-    if (roleId === frontendRoleId) {
-      retval.role = {
-        OR: [
-          {
-            id: frontendRoleId,
-          },
-          {
-            id: fullstackRoleId,
-          },
-        ],
-      };
-    } else if (roleId === backendRoleId) {
-      retval.role = {
-        OR: [
-          {
-            id: backendRoleId,
-          },
-          {
-            id: fullstackRoleId,
-          },
-        ],
-      };
-    } else {
-      retval.role = { id: roleId };
-    }
-  }
+      const sKey =
+        typeof sanityKeys[key] === 'string'
+          ? sanityKeys[key]
+          : sanityKeys[key].value;
 
-  if (available) {
-    retval.available = { equals: available };
-  }
+      const newValue =
+        typeof sanityKeys[key] === 'string'
+          ? `"${value}"`
+          : sanityKeys[key].type === 'bool'
+          ? value
+          : `"${value}"`;
 
-  if (location) {
-    retval.location = { contains: location };
-  }
+      return [...result, `${sKey} ${type} ${newValue}`];
+    }, [])
+    .join(' && ');
 
-  if (seniorityId) {
-    retval.seniority = { id: seniorityId };
-  }
-
-  if (description) {
-    retval.description = { mode, contains: description };
-  }
-
-  if (technologies?.length > 0) {
-    retval.technologies = {
-      some: { id: { in: technologies.map((tech) => tech.id) } },
-    };
-  }
-
-  // search only active users by default
-  retval.active = active ?? true;
-
-  return retval;
+  return `*[_type =='profile' && isActive == true ${
+    queryFilters.length > 0 ? '&&' : ''
+  } ${queryFilters}] {
+    ${profilesProjections}
+  }`;
 }
 
 type Handle = (
-  { body }: { body: { filters: ProfileFilters } },
+  req: NextApiRequest & { body: { filters: ProfileFilters } },
   res: NextApiResponse,
 ) => Promise<void>;
 
-const handle: Handle = async ({ body }, res) => {
-  const response = await findProfiles(makeFilters(body.filters));
+const handle: Handle = async ({ body, preview }, res) => {
+  const response = (await getClient(preview).fetch(
+    makeQuery(body.filters),
+  )) as Profile[];
 
-  const result = response.map((profile) => ({
-    ...profile,
-    createdAt: profile.createdAt.toString(),
-    updatedAt: profile.createdAt.toString(),
-  }));
-
-  res.json(result);
+  res.json(response);
 };
 
 export default handle;
