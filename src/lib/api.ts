@@ -11,6 +11,10 @@ import {
   FeaturedCards,
   CMYKParticipant,
   Settings,
+  Seniority,
+  Role,
+  Technology,
+  Profile,
 } from './types';
 
 import { createSlug } from './helpers';
@@ -30,6 +34,12 @@ import {
   staffQuery,
   featuredCardsQuery,
   personQueryByDiscordID,
+  technologiesQuery,
+  senioritiesQuery,
+  rolesQuery,
+  profilesQuery,
+  profileQuery,
+  personQuery,
 } from './queries';
 
 import { createClient } from 'next-sanity';
@@ -188,4 +198,36 @@ export async function getAllFeaturedCards(
   preview = false,
 ): Promise<FeaturedCards[]> {
   return await getClient(preview).fetch(featuredCardsQuery);
+}
+
+export async function getAllTechnologies(
+  preview = false,
+): Promise<Technology[]> {
+  return await getClient(preview).fetch(technologiesQuery);
+}
+
+export async function getAllSeniorities(preview = false): Promise<Seniority[]> {
+  return await getClient(preview).fetch(senioritiesQuery);
+}
+
+export async function getAllRoles(preview = false): Promise<Role[]> {
+  return await getClient(preview).fetch(rolesQuery);
+}
+
+export async function getAllProfiles(preview = false): Promise<Profile[]> {
+  return await getClient(preview).fetch(profilesQuery);
+}
+
+export async function getProfile(
+  id: string,
+  preview = false,
+): Promise<Profile> {
+  return await getClient(preview).fetch(profileQuery, { id });
+}
+
+export async function getPerson(
+  id: string,
+  preview = false,
+): Promise<Profile['person']> {
+  return await getClient(preview).fetch(personQuery, { id });
 }

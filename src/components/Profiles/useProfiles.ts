@@ -6,7 +6,7 @@ import {
   SetStateAction,
   useRef,
 } from 'react';
-import { ExtendedProfile, ProfileFilters } from '@/lib/types';
+import { Profile, ProfileFilters } from '@/lib/types';
 import { filterReducer, FilterProfileAction } from './filterReducer';
 import { useDebounce } from '@/lib/useDebounce';
 import { shuffle } from '@/lib/shuffle';
@@ -27,7 +27,7 @@ function searchProfiles(filters: ProfileFilters) {
 interface FilteredProfilesState {
   isLoading: boolean;
   isError: boolean;
-  profiles?: ExtendedProfile[];
+  profiles?: Profile[];
 }
 
 const initialProfileFilters: ProfileFilters = {
@@ -55,14 +55,14 @@ interface UseProfilesResult {
   dispatchFilter: Dispatch<FilterProfileAction>;
   isLoading: boolean;
   isError: boolean;
-  pageProfiles: ExtendedProfile[];
+  pageProfiles: Profile[];
   page: number;
   pagesCount: number;
   totalProfiles: number;
   setPage: Dispatch<SetStateAction<number>>;
 }
 
-export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
+export function useProfiles(profiles: Profile[]): UseProfilesResult {
   const initialLoad = useRef<boolean>(true);
 
   const [filters, dispatchFilter] = useReducer(
