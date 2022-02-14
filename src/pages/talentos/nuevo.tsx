@@ -413,6 +413,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                       className="w-full bg-transparent form-user"
                       instanceId="technologies-selector"
                       isMulti
+                      isDisabled
                       placeholder=""
                       value={selectedTechnologies}
                       onChange={handleTechnologies}
