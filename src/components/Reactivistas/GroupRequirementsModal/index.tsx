@@ -1,11 +1,11 @@
-import Modal from '../../Modal';
+import Modal from '@/components/Modal';
 
-type ModalProps = {
+interface ModalProps {
   open: boolean;
   onClose: () => void;
-};
+}
 
-const GroupRequirementsModal = (props: ModalProps) => {
+const GroupRequirementsModal: React.FC<ModalProps> = (props) => {
   const { open, onClose } = props;
 
   return (
@@ -17,7 +17,7 @@ const GroupRequirementsModal = (props: ModalProps) => {
       buttonLabel="Cerrar"
       buttonClasses="text-primary"
     >
-      <div className="px-2 overflow-auto text-sm text-coolGray-300">
+      <div className="px-2 overflow-auto text-sm text-gray-300">
         <ul className="list-none list-inside">
           <li className="mb-1"> ✔️Un nombre (puede ser cualquier nombre)</li>
           <li>

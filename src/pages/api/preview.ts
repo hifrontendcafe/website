@@ -1,9 +1,9 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function preview(
   req: NextApiRequest,
   res: NextApiResponse,
-) {
+): Promise<void> {
   if (req.query.secret !== process.env.SANITY_PREVIEW_SECRET) {
     return res.status(401).json({ message: 'Invalid token' });
   }

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { GetStaticProps, InferGetStaticPropsType } from 'next';
+import { GetStaticProps } from 'next';
 
 import { getApprovedReactGroups, getSettings } from '@/lib/api';
-import { ReactGroup } from '../../lib/types';
+import { ReactGroup, Settings } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { reactGroupQuery } from '../../lib/queries';
 import Layout from '../../components/Layout';
@@ -13,40 +13,51 @@ import GroupRequirementsModal from '../../components/Reactivistas/GroupRequireme
 
 import SectionHero from '@/components/SectionHero';
 
-const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
-  ({ data, preview }) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
+interface ReactGroupPageProps {
+  initialReactGroups: ReactGroup[];
+  preview: boolean;
+  settings: Settings;
+  isEnabled: boolean;
+}
 
-    const { data: groups } = usePreviewSubscription(reactGroupQuery, {
-      initialData: data,
-      enabled: preview,
-    });
+const ReactGroupPage: React.FC<ReactGroupPageProps> = ({
+  initialReactGroups,
+  preview,
+  isEnabled,
+}) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [infoModalOpen, setInfoModalOpen] = useState(false);
+  const { data: groups } = usePreviewSubscription(reactGroupQuery, {
+    initialData: initialReactGroups,
+    enabled: preview,
+  });
 
-    return (
-      <Layout title="Reactivistas">
-        <SectionHero
-          title="Reactivistas"
-          paragraph="Grupos auto-organizados por integrantes de la comunidad para aprender React.js con pares y con ayuda de mentores"
-          cta="https://frontend.cafe/docs/guia-reactivistas"
-        />
+  const [infoModalOpen, setInfoModalOpen] = useState(false);
+
+  return (
+    <Layout title="Reactivistas">
+      <SectionHero
+        title="Reactivistas"
+        paragraph="Grupos auto-organizados por integrantes de la comunidad para aprender React.js con pares y con ayuda de mentores"
+        cta="https://frontend.cafe/docs/guia-reactivistas"
+      />
+      {isEnabled && (
         <div>
           {groups.length > 0 && (
             <>
-              <h1 className="text-2xl font-bold leading-7 text-justify text-black sm:text-2xl sm:leading-9 sm:truncate ">
+              <h1 className="text-2xl font-bold leading-7 text-justify text-primary sm:text-2xl sm:leading-9 sm:truncate ">
                 Súmate a los grupos que están comenzando
               </h1>
-              <div className="flex flex-wrap m-2 md:m-10">
+              <div className="flex flex-wrap m-2 md:m-10 text-primary">
                 {groups?.map((group: ReactGroup) => {
                   return (
                     <div
                       key={group.name}
-                      className="flex flex-col flex-auto p-5 mx-1 my-5 rounded-md shadow-lg md:mx-5 md:p-10"
+                      className="flex flex-col flex-auto p-5 mx-1 my-5 rounded-md md:mx-5 md:p-10 border-2 border-zinc-500 bg-gray-900"
                     >
                       <div>
-                        <div className="flex items-baseline justify-between">
-                          <h3 className="mb-5 mr-5 text-lg font-medium leading-7 text-primary sm:leading-9 sm:truncate">
+                        <div className="flex items-baseline justify-between ">
+                          <h3 className="mb-5 mr-5 text-lg font-medium leading-7 sm:leading-9 sm:truncate">
                             ⚛ {group.name}
                           </h3>
                           <button
@@ -68,7 +79,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
                           <li className="font-medium text-primary">
                             <a
                               href={group.studyMaterial}
-                              className="text-coolGray-600"
+                              className="text-informational"
                             >
                               📚 Material de estudio
                             </a>
@@ -97,7 +108,7 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
           )}
 
           <div className="flex-1 min-w-0 mb-8">
-            <h1 className="text-2xl font-bold leading-7 text-coolGray-200 title sm:text-2xl sm:leading-9 sm:truncate">
+            <h1 className="text-2xl font-bold leading-7 text-gray-200 title sm:text-2xl sm:leading-9 sm:truncate">
               Dale vida a un nuevo grupo
             </h1>
             <h2 className="leading-7 text-md text-informational sm:leading-9 sm:truncate">
@@ -111,24 +122,28 @@ const ReactGroupPage: React.FC<InferGetStaticPropsType<typeof getStaticProps>> =
           </div>
           <CreateGroupForm />
         </div>
+      )}
+      <GroupRequirementsModal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
+    </Layout>
+  );
+};
 
-        <GroupRequirementsModal
-          open={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-        />
-      </Layout>
-    );
-  };
-
-export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const data = await getApprovedReactGroups(preview);
+export const getStaticProps: GetStaticProps<ReactGroupPageProps> = async ({
+  preview = false,
+}) => {
+  const initialReactGroups = await getApprovedReactGroups(preview);
   const settings = await getSettings(preview);
+  const isEnabled = process.env.REACTIVISTAS_ENABLED === 'true';
 
   return {
     props: {
-      data,
+      initialReactGroups,
       preview,
       settings,
+      isEnabled,
     },
     revalidate: 1,
   };

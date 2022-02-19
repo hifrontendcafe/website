@@ -21,7 +21,6 @@ const cmykVersions = [
   { version: 'cmyk-2', name: 'CMYK 2' },
   { version: 'cmyk-3', name: 'CMYK 3' },
   { version: 'cmyk-4', name: 'CMYK 4' },
-  { version: 'cmyk-5', name: 'CMYK 5' },
 ];
 
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
@@ -42,15 +41,16 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const [currentCMYK, setCurrentCMYK] = useState(cmykVersions[0].version);
-
+  const lastVersionIndex = cmykVersions.length - 1;
+  const [currentCMYK, setCurrentCMYK] = useState(
+    cmykVersions[lastVersionIndex].version,
+  );
   const currentProjects = projects.filter(
     (project) => project.cmykVersion === currentCMYK,
   );
 
-  const tabStyle = `py-2 cursor-pointer text-coolGray-300 w-1/3 flex justify-center border-b`;
-  const tabStyleActive = `py-2 font-semibold cursor-pointer text-coolGray-100 w-1/3 flex justify-center border-b-4 border-gray-100`;
+  const tabStyle = `py-2 cursor-pointer text-gray-300 w-1/3 flex justify-center border-b`;
+  const tabStyleActive = `py-2 font-semibold cursor-pointer text-gray-100 w-1/3 flex justify-center border-b-4 border-zinc-100`;
 
   return (
     <Layout title="Proyectos CMYK" preview={preview}>

@@ -10,6 +10,10 @@ import {
   FeaturedCards,
   CMYKParticipant,
   Settings,
+  Seniority,
+  Role,
+  Technology,
+  Profile,
 } from './types';
 
 import { createSlug } from './helpers';
@@ -23,13 +27,20 @@ import {
   docQuery,
   eventsQuery,
   eventsQueryByType,
-  personQuery,
   reactGroupQuery,
   settingsQuery,
   staffQuery,
   featuredCardsQuery,
   personQueryByDiscordID,
+  technologiesQuery,
+  senioritiesQuery,
+  rolesQuery,
+  profilesQuery,
+  profileQuery,
+  personQuery,
 } from './queries';
+
+import { createClient } from 'next-sanity';
 
 const eventFields = `
   title,
@@ -46,8 +57,9 @@ const eventFields = `
   recording
 `;
 
-export const getClient = (preview = false) =>
-  preview ? previewClient : client;
+export function getClient(preview = false): ReturnType<typeof createClient> {
+  return preview ? previewClient : client;
+}
 
 export async function getAllEvents(preview = false): Promise<Event[]> {
   return await getClient(preview).fetch(eventsQuery);
@@ -155,25 +167,15 @@ export async function createPerson(data: any): Promise<Person> {
 
 export async function updatePerson(
   personId: string,
-  data: any,
+  data: Partial<Person>,
 ): Promise<Person> {
   return await postClient
     .patch(personId)
-    .set({
-      ...data,
-    })
+    .set({ ...data })
     .commit();
 }
 
-export async function getPersonByDiscordId(
-  id: string,
-  preview = false,
-): Promise<Person> {
-  const result = await getClient(preview).fetch(personQuery, { id });
-  return result.length > 0 && result[0];
-}
-
-export async function getPersonByRealDiscordID(
+export async function getPersonByDiscordID(
   id: string,
   preview = false,
 ): Promise<Person> {
@@ -190,4 +192,36 @@ export async function getAllFeaturedCards(
   preview = false,
 ): Promise<FeaturedCards[]> {
   return await getClient(preview).fetch(featuredCardsQuery);
+}
+
+export async function getAllTechnologies(
+  preview = false,
+): Promise<Technology[]> {
+  return await getClient(preview).fetch(technologiesQuery);
+}
+
+export async function getAllSeniorities(preview = false): Promise<Seniority[]> {
+  return await getClient(preview).fetch(senioritiesQuery);
+}
+
+export async function getAllRoles(preview = false): Promise<Role[]> {
+  return await getClient(preview).fetch(rolesQuery);
+}
+
+export async function getAllProfiles(preview = false): Promise<Profile[]> {
+  return await getClient(preview).fetch(profilesQuery);
+}
+
+export async function getProfile(
+  id: string,
+  preview = false,
+): Promise<Profile> {
+  return await getClient(preview).fetch(profileQuery, { id });
+}
+
+export async function getPerson(
+  id: string,
+  preview = false,
+): Promise<Profile['person']> {
+  return await getClient(preview).fetch(personQuery, { id });
 }

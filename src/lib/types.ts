@@ -1,6 +1,3 @@
-import { Profile } from '@prisma/client';
-import { MDXRemoteSerializeResult } from 'next-mdx-remote';
-
 export interface Settings {
   description: string;
   heroBackground: Image;
@@ -119,6 +116,11 @@ export interface Post {
   content: any;
 }
 
+export interface PageProfile {
+  preview?: boolean;
+  profile: Profile;
+}
+
 export type ExtendedProfile = Profile & {
   seniority: {
     id: string;
@@ -135,7 +137,7 @@ export interface Doc {
   title: string;
   slug: string;
   body: string;
-  content?: MDXRemoteSerializeResult;
+  content?: string;
 }
 
 export interface FeaturedCards {
@@ -144,7 +146,7 @@ export interface FeaturedCards {
   description: string;
   color: string;
   btnText: string;
-  link: string;
+  link?: string;
 }
 export interface ReactGroup {
   _id: string;
@@ -177,12 +179,13 @@ export interface Person {
   };
   firstName?: string;
   lastName?: string;
-  emai?: string;
+  email?: string;
   linkedin?: string;
   twitter?: string;
   portfolio?: string;
   github?: string;
   fecTeam?: boolean;
+  timezone?: string;
   cmykParticipant?: CMYKParticipant[];
 }
 
@@ -289,6 +292,21 @@ export interface EmbeddedTweet {
   };
 }
 
+export interface Role {
+  _id: string;
+  name: string;
+}
+
+export interface Seniority {
+  _id: string;
+  name: string;
+}
+
+export interface Technology {
+  _id: string;
+  name: string;
+}
+
 export interface Technologies {
   id: string;
   name: string;
@@ -299,7 +317,7 @@ export interface ProfileFilters {
   location?: string;
   seniorityId?: string;
   description?: string;
-  technologies?: Technologies[];
+  technologies?: Technology[];
   available?: boolean;
   active?: boolean;
 }
@@ -344,4 +362,24 @@ export interface Mentorship {
 export interface MentorshipResponse {
   status: number;
   info: string;
+}
+export interface Profile {
+  _id: string;
+  description: string;
+  isAvailable: boolean;
+  location: string;
+  person: {
+    _id: string;
+    discord: string;
+    email: string;
+    firstName: string;
+    github: string;
+    linkedin: string;
+    photo: string;
+    portfolio: string;
+    twitter: string;
+    username: string;
+  };
+  role: Role;
+  seniority: Role;
 }

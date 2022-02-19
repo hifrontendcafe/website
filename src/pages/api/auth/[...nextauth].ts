@@ -8,11 +8,17 @@ export default NextAuth({
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
       scope: 'identify email guilds',
       profile: (profile: Profile) => {
+        if (profile.avatar === null) {
+          const defaultAvatarNumber = parseInt(profile.discriminator) % 5;
+          profile.image = `https://cdn.discordapp.com/embed/avatars/${defaultAvatarNumber}.png`;
+        } else {
+          profile.image = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.webp`;
+        }
         return {
           id: profile.id,
           name: `${profile.username}#${profile.discriminator}`,
           email: profile.email,
-          image: `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.webp`,
+          image: profile.image,
         };
       },
     }),
@@ -25,7 +31,7 @@ export default NextAuth({
     jwt: true,
   },
   callbacks: {
-    async signIn(user, account, profile) {
+    async signIn(user, account) {
       const guildResp = await fetch(
         'https://discord.com/api/users/@me/guilds',
         {

@@ -1,10 +1,10 @@
-import { ExtendedProfile } from '@/lib/types';
+import { Profile } from '@/lib/types';
 import ProfileCard from '@/components/ProfileCard';
 
 interface ProfilesProps {
   isLoading: boolean;
   isError: boolean;
-  profiles: ExtendedProfile[];
+  profiles: Profile[];
 }
 
 const Profiles: React.FC<ProfilesProps> = ({
@@ -33,9 +33,9 @@ const Profiles: React.FC<ProfilesProps> = ({
   }
 
   return (
-    <div className="grid gap-8 text-coolGray-300 md:grid-cols-3 place-content-stretch">
+    <div className="grid gap-8 text-gray-300 md:grid-cols-3 place-content-stretch">
       {profiles.map((profile) => (
-        <ProfileCard key={profile.id} profile={profile} />
+        <ProfileCard key={profile._id} profile={profile} />
       ))}
     </div>
   );

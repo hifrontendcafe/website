@@ -19,7 +19,6 @@ const Navbar: React.FC<NavbarProps> = ({
   loading,
   user,
   pathname,
-  logoImg,
   isOpen,
   toggle,
 }) => {
@@ -28,22 +27,22 @@ const Navbar: React.FC<NavbarProps> = ({
       id="site-menu"
       className="container flex flex-col items-center justify-between w-full mx-auto lg:flex-row"
     >
-      <div className="flex flex-row flex-no-wrap items-center justify-between w-full lg:w-auto lg:self-center lg:flex-none">
+      <div className="flex flex-row flex-nowrap items-center justify-between w-full lg:w-auto lg:self-center lg:flex-none">
         {/* ATENCION esta hardcodeado el logo, antes de salir a prod. eliminar codigo debajo de este codigo y dejar el que esta comentado. */}
         <Link href="/">
           <a>
             <img
               src="/logotype-fec.svg"
-              className="rounded-full text-gray-50"
+              className="rounded-full text-zinc-50"
               alt="Logo FrontendCafe"
             />
           </a>
         </Link>
         {/* <Link href="/">
-            <a className="flex items-center text-gray-900 title-font">
+            <a className="flex items-center text-zinc-900 title-font">
               <img
                 src={logoIMG}
-                className="rounded-full text-gray-50"
+                className="rounded-full text-zinc-50"
                 alt="Logo FrontendCafe"
               />
             </a>
@@ -59,7 +58,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <NavItem link={link} title={title} pathname={pathname} key={link} />
         ))}
       </div>
-      {!loading && <UserSettings user={user} navIsOpen={isOpen} />}
+      {<UserSettings loading={loading} user={user} navIsOpen={isOpen} />}
     </nav>
   );
 };

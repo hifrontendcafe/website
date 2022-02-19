@@ -1,4 +1,8 @@
 import Link from 'next/link';
+import Image from 'next/image';
+import logo_vercel from '../../../public/img/powered-by-vercel.svg';
+import logo_square from '../../../public/logo-square.png';
+
 import {
   faTwitter,
   faGithubAlt,
@@ -19,7 +23,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
   const navItems = [
     { title: 'Mentorías', link: '/mentorias' },
     { title: 'Prácticas de inglés', link: '/ingles' },
-    { title: 'Nuestra comunidad', link: '/comunidad' },
+    { title: 'Nuestros talentos', link: '/talentos' },
     { title: 'Reactivistas', link: '/reactivistas' },
     { title: 'Eventos', link: '/eventos' },
     { title: 'Conoce a nuestro equipo', link: '/equipo' },
@@ -31,13 +35,19 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={` ${mainClasses} mt-40 border-t border-gray-500`}>
-      <div className="container flex flex-col-reverse justify-center gap-12 py-16 mx-auto text-coolGray-50 md:gap-0 md:flex-row md:justify-between">
+    <footer className={` ${mainClasses} mt-40 border-t border-zinc-500`}>
+      <div className="container flex flex-col-reverse justify-center gap-12 py-16 mx-auto text-gray-50 md:gap-0 md:flex-row md:justify-between">
         <div className="flex flex-col gap-5 text-center md:text-left">
-          <img
-            src="/logo-square.png"
-            className="hidden w-10 h-10 rounded-full md:block md:h-12 md:w-12"
-          />
+          <div className="hidden md:block md:h-12 md:w-12 self-center md:self-start">
+            <Image
+              layout="fixed"
+              src={logo_square}
+              height={48}
+              width={48}
+              placeholder="blur"
+              className="rounded-full"
+            />
+          </div>
           <div className="grid justify-center w-full pb-8 font-medium text-left md:grid-cols-3 gap-y-2 gap-x-5 md:pb-3">
             {navItems?.map(({ link, title }) => (
               <Link href={link} key={link}>
@@ -50,9 +60,16 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
               <p className="mr-4 font-light">© FrontendCafé {currentYear}</p>
             </div>
             <div className="mt-5 md:mt-0">
-              <a href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">
-                <img src="/img/powered-by-vercel.svg" alt="Powered by Vercel" />
-              </a>
+              <Link href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">
+                <a target="_blank" rel="noopener noreferrer">
+                  <Image
+                    src={logo_vercel}
+                    alt="Powered by Vercel"
+                    placeholder="blur"
+                    blurDataURL={logo_vercel}
+                  />
+                </a>
+              </Link>
             </div>
           </div>
         </div>

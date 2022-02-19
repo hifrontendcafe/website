@@ -7,9 +7,29 @@ import Image from 'next/image';
 interface UserSettingsProps {
   user?: Session['user'];
   navIsOpen: boolean;
+  loading: boolean;
 }
 
-const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
+const UserSettings: React.FC<UserSettingsProps> = ({
+  user,
+  navIsOpen,
+  loading,
+}) => {
+  if (loading) {
+    return (
+      <button
+        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${
+          navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
+        }`}
+        style={{ transition: 'all .15s ease' }}
+        onClick={() => signIn('discord')}
+      >
+        <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-3" />
+        Loading&hellip;
+      </button>
+    );
+  }
+
   if (!user) {
     return (
       <button
@@ -20,7 +40,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
         onClick={() => signIn('discord')}
       >
         <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-3" />
-        Iniciar Sesión
+        Iniciar sesión
       </button>
     );
   }
@@ -42,12 +62,12 @@ const UserSettings: React.FC<UserSettingsProps> = ({ user, navIsOpen }) => {
           />
         </div>
         <div className="my-auto ml-3">
-          <p className="text-xs font-medium text-gray-100">{user.name}</p>
+          <p className="text-xs font-medium text-zinc-100">{user.name}</p>
           <button
-            className="text-xs font-medium text-gray-400 hover:text-gray-50"
+            className="text-xs font-medium text-zinc-400 hover:text-zinc-50"
             onClick={() => signOut()}
           >
-            Cerrar Sesión
+            Cerrar sesión
           </button>
         </div>
       </div>

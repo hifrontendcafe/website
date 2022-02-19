@@ -1,13 +1,13 @@
-import Modal from '../../Modal';
-import { ReactGroup } from '../../../lib/types';
+import Modal from '@/components/Modal';
+import { ReactGroup } from '@/lib/types';
 
-type GroupInfoModalProps = {
+interface GroupInfoModalProps {
   group: ReactGroup;
   open: boolean;
   onClose: () => void;
-};
+}
 
-const GroupInfoModal = (props: GroupInfoModalProps) => {
+const GroupInfoModal: React.FC<GroupInfoModalProps> = (props) => {
   const { open, onClose, group } = props;
   return (
     <Modal isOpen={open} close={onClose} title={group.name}>
@@ -41,7 +41,7 @@ const GroupInfoModal = (props: GroupInfoModalProps) => {
           </li>
           <li>
             <span className="font-bold">Fecha de inicio:</span>{' '}
-            {group.startDate}
+            {new Date(group.startDate).toLocaleDateString()}
           </li>
         </ul>
       </div>

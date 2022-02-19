@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-import { ExtendedProfile } from '@/lib/types';
+import { Profile, Role, Seniority, Technology } from '@/lib/types';
 import { useProfiles } from './useProfiles';
 
 import FilterForm from '@/components/ProfilesFilterForm';
@@ -8,10 +8,10 @@ import ProfileList from '@/components/ProfileList';
 import PaginationBar from './PaginationBar';
 
 interface PostsPageProps {
-  profiles: ExtendedProfile[];
-  technologies: { name: string; id: string }[];
-  roles: { name: string; id: string }[];
-  seniorities: { name: string; id: string }[];
+  profiles: Profile[];
+  technologies: Technology[];
+  roles: Role[];
+  seniorities: Seniority[];
 }
 
 const Profiles: React.FC<PostsPageProps> = ({
@@ -40,7 +40,7 @@ const Profiles: React.FC<PostsPageProps> = ({
 
   return (
     <div className="min-h-screen mx-auto">
-      <div ref={profileListRef} className="max-w mb-24">
+      <div ref={profileListRef} className="mb-24 max-w">
         <FilterForm
           filters={filters}
           dispatch={dispatchFilter}

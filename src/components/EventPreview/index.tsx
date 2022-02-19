@@ -1,17 +1,12 @@
-import { useEffect } from 'react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
+
 import BlockContent from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
-import styles from './styles.module.css';
+import Timezones from '@/lib/completeTimezones.json';
 
-declare global {
-  interface Window {
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    addeventatc: any;
-  }
-}
+import { Card } from '../Card';
 
 interface EventPreviewProps {
   event: Event;
@@ -30,94 +25,91 @@ function toPlainText(blocks) {
 }
 
 const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
-  useEffect(() => {
-    window.addeventatc.refresh();
-  });
-
   const endDate = new Date(event.date);
   endDate.setHours(endDate.getHours() + 1);
 
   const calendar = {
     title: `${event.title} - FrontendCafé`,
-    description: toPlainText(event.description),
-    location: 'Discord',
+    description: toPlainText(event.description).replace(/[#]+/g, '%23'),
+    location: 'FrontendCafé Discord',
     startTime: new Date(event.date),
     endTime: endDate,
   };
 
   const AddToCalendar = ({ event }) => {
+    const getTimezone = () => {
+      const timezone = Intl.DateTimeFormat()
+        .resolvedOptions()
+        .timeZone.split('/')[
+        Intl.DateTimeFormat().resolvedOptions().timeZone.split('/').length - 1 // Crotada porque por alguna razón ".at is not a function" 🙄
+      ];
+      return (
+        timezone && Timezones.find((tz) => tz.tzCode.includes(timezone))?.tzCode
+      );
+    };
+
+    const formatedStartDatetime = new Date(event.startTime)
+      .toISOString()
+      .replace(/[-:.]/g, '');
+
+    const formatedEndDatetime = new Date(event.endTime)
+      .toISOString()
+      .replace(/[-:.]/g, '');
+
+    const googleCalendarURL = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${
+      event.title
+    }&dates=${formatedStartDatetime}/${formatedEndDatetime}&details=${
+      event.description
+    }&location=${event.location}&trp=true&ctz=${getTimezone()}`;
+
     return (
-      <button title="Add to Calendar" className="addeventatc button">
+      <Card.SecondaryAction href={googleCalendarURL}>
         Añadir a calendario
-        <span className="start">
-          {format(new Date(event.startTime), 'MM/dd/yyyy HH:mm')}
-        </span>
-        <span className="end">
-          {format(new Date(event.endTime), 'MM/dd/yyyy HH:mm')}
-        </span>
-        <span className="timezone">America/Argentina/Buenos_Aires</span>
-        <span className="title">{event.title}</span>
-        <span className="description">{event.description}</span>
-        <span className="location">{event.location}</span>
-      </button>
+      </Card.SecondaryAction>
     );
   };
 
   return (
-    <div>
-      <div className="flex flex-col items-start h-full border-2 rounded-md shadow-lg bg-coolGray-900 border-coolGray-600">
-        <img
-          className="w-full p-4"
-          src={imageBuilder.image(event.cover.src).width(400).url()}
+    <Card>
+      <Card.Header>
+        <Card.Image
+          src={imageBuilder.image(event.cover.src).url()}
           alt={event.cover.alt || event.title}
+          width={400}
+          height={200}
+          blurDataURL={`${imageBuilder.image(event.cover.src).url()}`}
         />
-        <div
-          className={`flex-grow p-4 pt-0 flex flex-col ${
-            past && !event.recording ? styles['past-event-text'] : ''
-          }`}
-        >
-          <div className="flex justify-between w-full">
-            <h2 className="text-sm font-medium tracking-widest text-primary title-font">
-              {event.category.name}
-            </h2>
-          </div>
-          <h1 className="mb-3 text-xl font-medium leading-tight text-coolGray-100 title-font">
-            {event.title}
-          </h1>
-          {!past && (
-            <p className="font-medium break-all text-coolGray-200 title-font ">
-              {format(new Date(event.date), 'd  MMMM - HH:mm ', {
-                locale: es,
-              })}
-              hrs
-              <span className="inline-block text-xs font-light text-coolGray-400">
-                Horario en tu ubicación actual
-              </span>
-            </p>
-          )}
-          <div className={`mt-2 mb-6 text-coolGray-300 ${styles.description}`}>
-            <BlockContent blocks={event.description} />
-          </div>
-          {past && event.recording && (
-            <button className="mt-auto btn btn-primary">
-              <a
-                href={event.recording}
-                className=""
-                target="_blank"
-                rel="noreferrer"
-              >
-                Ver grabación
-              </a>
-            </button>
-          )}
-          {!past && (
-            <div className="mt-auto">
-              <AddToCalendar event={calendar} />
-            </div>
-          )}
+
+        <Card.Headline>{event.category.name}</Card.Headline>
+        <Card.Title>{event.title}</Card.Title>
+      </Card.Header>
+
+      <Card.Body>
+        {!past && (
+          <Card.Paragraph>
+            {format(new Date(event.date), 'd  MMMM - HH:mm ', {
+              locale: es,
+            })}
+            hrs
+            <span className="inline-block text-xs font-light text-quaternary">
+              Horario en tu ubicación actual
+            </span>
+          </Card.Paragraph>
+        )}
+        <div className="text-secondary">
+          <BlockContent blocks={event.description} />
         </div>
-      </div>
-    </div>
+      </Card.Body>
+
+      <Card.Actions>
+        {past && event.recording && (
+          <Card.PrimaryAction href={event.recording}>
+            Ver grabación
+          </Card.PrimaryAction>
+        )}
+        {!past && <AddToCalendar event={calendar} />}
+      </Card.Actions>
+    </Card>
   );
 };
 

@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import { Person } from '../../lib/types';
 import {
-  createReactGroup,
   createPerson,
+  addParticipantToReactGroup,
   getPersonByDiscordID,
 } from '../../lib/api';
 
@@ -10,18 +10,19 @@ export default async function post(
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> {
-  const { group, captain } = req.body;
+  const { body } = req;
+  const { participant } = body;
   let user: Person;
   try {
-    user = await getPersonByDiscordID(captain.id);
+    user = await getPersonByDiscordID(participant.id);
     if (!user) {
       user = await createPerson({
-        username: captain.name,
+        username: participant.name,
         discordID: {
           _type: 'slug',
-          current: captain.id,
+          current: participant.id,
         },
-        email: captain.email,
+        email: participant.email,
       });
     }
   } catch (err) {
@@ -29,18 +30,11 @@ export default async function post(
     res.status(500).json({ message: 'Could not get user' });
     return;
   }
-  try {
-    const reactGroup = await createReactGroup({
-      ...group,
-      teamCaptain: {
-        _type: 'reference',
-        _ref: user._id,
-      },
-      status: 'draft',
-    });
 
-    res.status(200).json(reactGroup);
-  } catch (error) {
-    res.status(500).json({ message: 'Could not create group' });
+  try {
+    await addParticipantToReactGroup(body.id, user._id);
+    res.status(200).json({});
+  } catch (e) {
+    res.status(500).json({ message: 'Could not add participant' });
   }
 }

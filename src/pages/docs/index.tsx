@@ -26,8 +26,8 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
       preview={preview}
     >
       <div className="pb-40 sm:pt-10">
-        <div className="mt-10 overflow-hidden border-2 border-gray-500 rounded-lg shadow bg-coolGray-900">
-          <div className="px-4 py-5 border-b border-gray-500 sm:px-6">
+        <div className="mt-10 overflow-hidden border-2 border-zinc-500 rounded-lg shadow bg-gray-900">
+          <div className="px-4 py-5 border-b border-zinc-500 sm:px-6">
             <div></div>
             <div className="mt-2 md:flex md:items-center md:justify-between">
               <div className="flex-1 min-w-0">
@@ -37,7 +37,7 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
               </div>
             </div>
           </div>
-          <div className="py-5 px-7 text-coolGray-300">
+          <div className="py-5 px-7 text-gray-300">
             <ul className="text-lg">
               {docs?.map(({ title, slug }) => (
                 <li className="hover:text-informational" key={slug}>

@@ -1,8 +1,9 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/client';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { MentorCalomentor, TimeSlot, Topic } from '../../lib/types';
+import { useRouter } from 'next/router';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 
@@ -45,6 +46,32 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [session, loading] = useSession();
 
+  const router = useRouter();
+  const { query } = router;
+
+  const queryTopic = (topic: string) => {
+    const url = new URL(window.location.href);
+
+    const params = new URLSearchParams(url.search);
+    params.set('especialidad', topic);
+    url.search = `?${params}`;
+
+    router.push(url, null, { scroll: false });
+  };
+
+  /**
+   * sort modifies the original orray, so make a copy to be safe
+   */
+  const sortedTopics = useMemo(
+    () => [...topics].sort((a, b) => a.title.localeCompare(b.title)),
+    [topics],
+  );
+
+  const sortedMentors = useMemo(
+    () => [...mentors].sort((a) => (a.isActive ? -1 : 1)),
+    [mentors],
+  );
+
   useEffect(() => {
     const filterTopics = () => {
       const filtered = [];
@@ -52,24 +79,25 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
         const find = mentor.skills.filter((topic) => topic == filter);
         if (find.length > 0) filtered.push(mentor);
       });
-      setfilteredTopics(filtered);
+      setFilteredMentors(filtered);
     };
 
     filterTopics();
     return () => filterTopics();
-  }, [filter, mentors]);
+  }, [query.especialidad, sortedMentors]);
 
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="mb-4 text-2xl font-medium text-coolGray-50">
+        <h1 className="mb-4 text-2xl font-medium text-gray-50">
           Solicita una mentoría según especialidad
         </h1>
       </div>
       <div className="relative inline-block w-full mb-6 md:w-1/2 lg:w-1/3">
         <select
-          onChange={() => setFilter((event.target as HTMLInputElement).value)}
-          className="block w-full px-4 py-2 pr-8 leading-tight bg-gray-900 border border-gray-400 rounded shadow appearance-none text-coolGray-50 hover:border-gray-500 focus:outline-none focus:shadow-outline"
+          aria-label="Buscar"
+          onChange={(event) => queryTopic(event.target.value)}
+          className="block w-full px-4 py-2 pr-8 leading-tight bg-zinc-900 border border-zinc-400 rounded shadow appearance-none text-gray-50 hover:border-zinc-500 focus:outline-none focus:ring"
         >
           <option value="">Buscar</option>
           {topics?.map((topic, index) => (
@@ -78,7 +106,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
             </option>
           ))}
         </select>
-        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-coolGray-50">
+        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-gray-50">
           <svg
             className="w-4 h-4 fill-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -114,16 +142,17 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
         buttonClasses="text-primary"
         footer={
           <button
+            type="button"
             className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
             style={{ transition: 'all .15s ease' }}
             onClick={() => signIn('discord')}
           >
-            Iniciar Sesión
+            Iniciar sesión
             <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
           </button>
         }
       >
-        <div className="px-2 overflow-auto text-lg text-coolGray-100">
+        <div className="px-2 overflow-auto text-lg text-gray-100">
           <p>Para poder solicitar una mentoría primero debes iniciar sesión.</p>
         </div>
       </SimpleModal>

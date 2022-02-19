@@ -16,6 +16,7 @@ const client = createClient(config);
 
 export const postClient = sanityClient({
   ...config,
+  useCdn: false,
   token: process.env.SANITY_TOKEN,
 });
 
@@ -24,7 +25,7 @@ export const imageBuilder = sanityImage(client);
 export const previewClient = createClient({
   ...config,
   useCdn: false,
-  token: process.env.NEXT_PUBLIC_SANITY_TOKEN,
+  token: process.env.SANITY_TOKEN,
 });
 
 export const usePreviewSubscription = createPreviewSubscriptionHook(config);

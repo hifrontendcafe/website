@@ -4,8 +4,9 @@ import {
   useReducer,
   Dispatch,
   SetStateAction,
+  useRef,
 } from 'react';
-import { ExtendedProfile, ProfileFilters } from '@/lib/types';
+import { Profile, ProfileFilters } from '@/lib/types';
 import { filterReducer, FilterProfileAction } from './filterReducer';
 import { useDebounce } from '@/lib/useDebounce';
 import { shuffle } from '@/lib/shuffle';
@@ -26,7 +27,7 @@ function searchProfiles(filters: ProfileFilters) {
 interface FilteredProfilesState {
   isLoading: boolean;
   isError: boolean;
-  profiles?: ExtendedProfile[];
+  profiles?: Profile[];
 }
 
 const initialProfileFilters: ProfileFilters = {
@@ -54,14 +55,16 @@ interface UseProfilesResult {
   dispatchFilter: Dispatch<FilterProfileAction>;
   isLoading: boolean;
   isError: boolean;
-  pageProfiles: ExtendedProfile[];
+  pageProfiles: Profile[];
   page: number;
   pagesCount: number;
   totalProfiles: number;
   setPage: Dispatch<SetStateAction<number>>;
 }
 
-export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
+export function useProfiles(profiles: Profile[]): UseProfilesResult {
+  const initialLoad = useRef<boolean>(true);
+
   const [filters, dispatchFilter] = useReducer(
     filterReducer,
     initialProfileFilters,
@@ -82,7 +85,9 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
   const debouncedFilters = useDebounce(filters, DEBOUNCE_TIME);
 
   useEffect(() => {
-    setFilteredProfiles({ isLoading: true, isError: false, profiles: [] });
+    if (!initialLoad.current) {
+      setFilteredProfiles({ isLoading: true, isError: false, profiles: [] });
+    }
   }, [filters]);
 
   useEffect(() => {
@@ -107,7 +112,11 @@ export function useProfiles(profiles: ExtendedProfile[]): UseProfilesResult {
       setFilteredProfiles({ isLoading: false, isError: false, profiles });
     };
 
-    fn();
+    if (initialLoad.current) {
+      initialLoad.current = false;
+    } else {
+      fn();
+    }
   }, [debouncedFilters]);
 
   const offset = (page - 1) * ITEMS_PER_PAGE;

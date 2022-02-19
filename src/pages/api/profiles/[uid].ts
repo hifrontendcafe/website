@@ -1,37 +1,17 @@
-import prisma from '@/lib/prisma';
+import { getProfile } from '@/lib/api';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req, res) {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse,
+): Promise<void> {
   const { uid } = req.query;
-  const response = await prisma.profile.findFirst({
-    where: {
-      discordId: uid,
-    },
-    include: {
-      role: {
-        select: { name: true },
-      },
-      technologies: {
-        select: { name: true, id: true },
-      },
-      seniority: {
-        select: { name: true },
-      },
-    },
-  });
-  let result = {};
-  if (response) {
-    result = {
-      ...response,
-      createdAt: response.createdAt.toString(),
-      updatedAt: response.createdAt.toString(),
-      technologies: response.technologies.map((tech) => ({
-        ...tech,
-        label: tech.name,
-        value: tech.id,
-      })),
-    };
-  } else {
-    result = { error: true };
+  const profile = await getProfile(uid as string, req.preview);
+
+  if (!profile._id) {
+    res.json({ error: true });
+    return;
   }
-  res.json(result);
+
+  res.json({ ...profile, error: false });
 }

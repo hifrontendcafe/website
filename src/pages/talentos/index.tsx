@@ -1,20 +1,24 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
 import Layout from '@/components/Layout';
-import prisma from '@/lib/prisma';
-import { getSettings } from '@/lib/api';
-import { ExtendedProfile } from '@/lib/types';
-import { findProfiles } from '@/lib/prisma-queries';
+import {
+  getAllRoles,
+  getAllSeniorities,
+  getAllTechnologies,
+  getAllProfiles,
+  getSettings,
+} from '@/lib/api';
+import { Profile, Role, Seniority, Technology } from '@/lib/types';
 import { shuffle } from '@/lib/shuffle';
 import SectionHero from '@/components/SectionHero';
 import Profiles from '@/components/Profiles';
 
 interface PostsPageProps {
-  profiles: ExtendedProfile[];
+  profiles: Profile[];
   preview?: boolean;
-  technologies: { name: string; id: string }[];
-  roles: { name: string; id: string }[];
-  seniorities: { name: string; id: string }[];
+  technologies: Technology[];
+  roles: Role[];
+  seniorities: Seniority[];
 }
 
 const ProfilesPage: React.FC<PostsPageProps> = ({
@@ -26,12 +30,12 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
 }) => {
   return (
     <Layout
-      title="Comunidad"
+      title="Talentos"
       description="Encontrá los perfiles dentro de FEC"
       preview={preview}
     >
       <SectionHero
-        title="Conoce nuestra comunidad"
+        title="Talentos FEC"
         paragraph="Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
         intereses y poder conectarte a través de sus redes sociales."
       />
@@ -46,7 +50,7 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const sortResponse = (array) => {
+  function sortResponse<T extends { name: string }>(array: T[]) {
     return [
       ...array.sort((a, b) => {
         if (a.name < b.name) {
@@ -58,31 +62,25 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
         return 0;
       }),
     ];
-  };
+  }
 
   const settings = await getSettings(preview);
 
-  const rolesRepose = await prisma.role.findMany();
+  const rolesRepose = await getAllRoles(preview);
   const roles = sortResponse(rolesRepose);
-  const technologiesResponse = await prisma.technology.findMany();
+  const technologiesResponse = await getAllTechnologies(preview);
   const technologies = sortResponse(technologiesResponse);
 
   const formattedTechnologies = technologies.map((technology) => ({
     ...technology,
     label: technology.name,
-    value: technology.id,
+    value: technology._id,
   }));
 
-  const senioritiesResponse = await prisma.seniority.findMany();
+  const senioritiesResponse = await getAllSeniorities(preview);
   const seniorities = sortResponse(senioritiesResponse);
 
-  const response = await findProfiles({ active: true });
-
-  const profiles = response.map((profile) => ({
-    ...profile,
-    createdAt: profile.createdAt.toString(),
-    updatedAt: profile.createdAt.toString(),
-  }));
+  const profiles = await getAllProfiles(preview);
 
   // randomizes profiles in place
   shuffle(profiles);

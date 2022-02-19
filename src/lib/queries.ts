@@ -133,15 +133,6 @@ export const cmykQuery = groq`
   }
 `;
 
-export const personQuery = groq`
-  *[_type == "person" && username == $id]{
-    _id,
-    username,
-    firstName,
-    lastName,
-  }
-`;
-
 export const personQueryByDiscordID = groq`
   *[_type == "person" &&  discordID.current == $id]{
     _id,
@@ -190,3 +181,76 @@ export const featuredCardsQuery = groq`
     btnText
   }
   `;
+
+export const technologiesQuery = groq`
+  *[_type == 'technology'] {
+    _id,
+    name
+  }
+`;
+
+export const senioritiesQuery = groq`
+  *[_type == 'seniority'] {
+    _id,
+    name
+  }
+`;
+
+export const rolesQuery = groq`
+  *[_type == 'role'] {
+    _id,
+    name
+  }
+`;
+
+export const profilesProjections = `
+   _id,
+   description,
+   location,
+   isAvailable,
+   role-> {
+     _id,
+     name
+   },
+   person-> {
+     "discord": discordID.current,
+     email,
+     firstName,
+     github,
+     linkedin,
+     "photo": photo.asset->url,
+     portfolio,
+     twitter,
+     username
+   },
+   seniority-> {
+     _id,
+     name
+   }
+`;
+
+export const profilesQuery = `
+  *[_type == "profile" && isActive == true] {
+   ${profilesProjections}
+ }
+`;
+
+export const profileQuery = `
+  *[_type == "profile" && isActive == true && person->discordID.current == $id][0] {
+   ${profilesProjections}
+ }
+`;
+
+export const personQuery = groq`
+  *[_type == "person" && discordID.current == $id][0] {
+    _id,
+    email,
+    firstName,
+    github,
+    linkedin,
+    photo,
+    portfolio,
+    twitter,
+    username
+ }
+`;
