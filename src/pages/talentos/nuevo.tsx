@@ -15,6 +15,7 @@ import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
 import Resizer from 'react-image-file-resizer';
 import SectionHero from '@/components/SectionHero';
+import emailjs from '@emailjs/browser';
 
 type NewProfileProps = {
   preview?: boolean;
@@ -137,8 +138,17 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         text: 'Tu perfil no ha podido ser guardado, por favor vuelva a intentarlo nuevamente',
       });
     }
-    setLoadingForm(false);
+    emailjs.send(
+      'fec_gmail',
+      'talentos_ingreso',
+      {
+        user: session.user.name,
+        id: session.user.id,
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
+    );
 
+    setLoadingForm(false);
     setTimeout(() => setMessage({ error: false, text: '' }), 5000);
   };
 
@@ -183,7 +193,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         {session ? (
           <div>
             {loadingForm ? (
-              <div className="p-4 text-gray-100">Enviando Formulario...</div>
+              <div className="p-4 text-gray-100">Enviando formulario...</div>
             ) : (
               <form
                 onSubmit={handleSubmit(onSubmit, onError)}
