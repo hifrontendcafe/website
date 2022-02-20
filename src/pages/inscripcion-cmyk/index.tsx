@@ -111,7 +111,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
         buttonLabel="Entiendo"
         buttonClasses="text-primary"
       >
-        <div className="px-2 overflow-auto text-sm">
+        <div className="px-2 overflow-auto text-sm text-gray-300">
           <p className="my-3">
             <span className="font-semibold">19 / 08 / 21</span>&nbsp;&nbsp;
             Apertura de formulario para participantes (Hasta llenar cupo de 25
