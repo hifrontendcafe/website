@@ -70,7 +70,7 @@ const CMYKParticipantForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col w-full grid-cols-2 gap-5 pt-6 pb-8 mb-4 bg-white rounded lg:px-24 md:px-16 md:grid"
+      className="flex flex-col w-full grid-cols-2 gap-5 p-4 border-2 rounded border-gray-600 text-gray-300 sm:px-8 sm:pt-6 sm:pb-8 md:grid bg-gray-900"
     >
       <input
         type="text"
@@ -80,13 +80,13 @@ const CMYKParticipantForm: React.FC = () => {
         {...register('discordID', { required: true })}
       />
 
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">
           Usuario de Discord
         </label>
         <div className="relative">
           <input
-            className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+            className="input focus:outline-none focus:ring"
             type="text"
             placeholder="Ingresa tu usuario de Discord"
             autoComplete="off"
@@ -98,12 +98,10 @@ const CMYKParticipantForm: React.FC = () => {
           />
         </div>
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
-          Email*
-        </label>
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">Email*</label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
           type="email"
           placeholder="Ingresa tu email"
           autoComplete="off"
@@ -114,12 +112,10 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">Email es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
-          Nombre*
-        </label>
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">Nombre*</label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
           type="text"
           placeholder="Ingresa tu nombre"
           autoComplete="off"
@@ -129,12 +125,10 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">Nombre es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
-          Apellido*
-        </label>
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">Apellido*</label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
           type="text"
           placeholder="Ingresa tu apellido"
           autoComplete="off"
@@ -144,14 +138,12 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">Apellido es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
-          Zona horaria
-        </label>
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">Zona horaria</label>
         <select
           id="timezone"
           {...register('timezone', { required: true })}
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
         >
           <option value="">Por favor elige una opción</option>
           {timezones.map((tz) => (
@@ -164,12 +156,10 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">Zona horaria es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
-          Github*
-        </label>
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">Github*</label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
           type="url"
           placeholder="https://www.github.com/usuario"
           autoComplete="off"
@@ -179,38 +169,34 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">GitHub es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
-          Twitter
-        </label>
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">Twitter</label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
           type="url"
           placeholder="https://www.twitter.com/usuario"
           autoComplete="off"
           {...register('twitter', { required: false })}
         />
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
-          LinkedIn
-        </label>
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">LinkedIn</label>
         <input
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
           type="url"
           placeholder="https://www.linkedin.com/in/usuario"
           autoComplete="off"
           {...register('linkedIn', { required: false })}
         />
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">
           ¿Ya tienes experiencia laboral en IT?*
         </label>
         <select
           id="experience"
           {...register('experience', { required: true })}
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
         >
           <option value="">Por favor elige una opción</option>
           <option value="yes">Sí</option>
@@ -220,14 +206,14 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">
           Nivel de participación*
         </label>
         <select
           id="participationLevel"
           {...register('participationLevel', { required: true })}
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
         >
           <option value="">Por favor elige una opción</option>
           <option value="level1">Nivel 1 (HTML - CSS - JavaScript)</option>
@@ -239,14 +225,14 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">
           Disponibilidad horaria*
         </label>
         <select
           id="timeAvailability"
           {...register('timeAvailability', { required: true })}
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
         >
           <option value="">Por favor elige una opción</option>
           <option value=">=6hours">6 o más horas semanales</option>
@@ -257,13 +243,13 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">
           Conocimientos previos*
         </label>
         <textarea
           rows={1}
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          className="input focus:outline-none focus:ring"
           placeholder="Si tienes conocimientos, cuéntanos"
           {...register('previousKnowledge', { required: true })}
         ></textarea>
@@ -271,14 +257,13 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
-          Contanos algo sobre vos y por qué te interesa formar parte de este
-          proyecto*
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">
+          Contanos algo sobre vos y por qué te interesa participar*
         </label>
         <textarea
-          rows={2}
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          rows={4}
+          className="input focus:outline-none focus:ring"
           placeholder="Conocerte nos permitirá saber ubicarte en los proyectos"
           {...register('aboutParticipant', { required: true })}
         ></textarea>
@@ -286,23 +271,23 @@ const CMYKParticipantForm: React.FC = () => {
           <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
         )}
       </div>
-      <div className="px-5 mb-4">
-        <label className="block mb-2 text-lg font-bold md:text-1xl">
-          ¿Tenés alguna pregunta o duda que quieras comunicarnos?
+      <div className="mb-4">
+        <label className="block mb-2 text-sm font-bold">
+          ¿Tenés alguna duda que quieras comunicarnos?
         </label>
         <textarea
-          rows={2}
-          className="w-full px-3 py-3 text-sm leading-tight text-gray-700 placeholder-zinc-700 border border-zinc-500 rounded appearance-none focus:outline-none focus:ring"
+          rows={4}
+          className="input focus:outline-none focus:ring"
           {...register('otherQuestions', { required: false })}
         ></textarea>
       </div>
-      <div className="col-span-2 pt-8">
+      <div className="col-span-2">
         <div className="flex justify-end">
           <button
             type="submit"
-            className="inline-flex justify-center px-6 py-3 mr-6 font-medium text-gray-50 border border-transparent rounded-md shadow-sm text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="inline-flex justify-center btn btn-primary"
           >
-            {isLoading ? 'Enviando...' : 'Enviar'}
+            {isLoading ? 'Enviando...' : 'Enviar registro'}
           </button>
         </div>
 
