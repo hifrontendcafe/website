@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import emailjs from 'emailjs-com';
+import emailjs from '@emailjs/browser';
 import { signIn, useSession } from 'next-auth/client';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
