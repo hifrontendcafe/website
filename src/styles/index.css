@@ -173,7 +173,7 @@ html {
 .addeventatc.button {
   background-color: #f9fafb !important;
   border-radius: 6px !important;
-  @apply text-coolGray-800 !important;
+  @apply text-zinc-800 !important;
   padding: 10px !important;
   z-index: unset;
   width: 100%;
@@ -201,21 +201,21 @@ html {
 }
 
 .react-datepicker {
-  @apply border-coolGray-500 !important;
+  @apply border-zinc-500 !important;
   padding: 2px !important;
-  @apply bg-coolGray-900 !important;
+  @apply bg-zinc-900 !important;
 }
 .react-datepicker__month-container {
   border-radius: 2px !important;
 }
 
 .react-datepicker__month {
-  @apply bg-coolGray-900 !important;
+  @apply bg-zinc-900 !important;
   border-radius: 2px !important;
 }
 
 .react-datepicker__header {
-  @apply bg-coolGray-900 border-coolGray-700 !important;
+  @apply bg-zinc-900 border-zinc-700 !important;
 }
 
 .react-datepicker__current-month,
@@ -228,17 +228,17 @@ html {
 }
 
 .react-datepicker__day--disabled {
-  @apply text-coolGray-500 !important;
+  @apply text-zinc-500 !important;
 }
 
 .react-datepicker__day--selected {
   @apply bg-greenFec !important;
-  @apply text-coolGray-900 !important;
+  @apply text-zinc-900 !important;
 }
 
 .react-datepicker__day:hover {
   @apply bg-mainBtnHoverColor !important;
-  @apply text-coolGray-100 !important;
+  @apply text-zinc-100 !important;
 }
 
 .react-datepicker__day--keyboard-selected {
@@ -250,16 +250,16 @@ html {
 }
 
 .react-datepicker__time-list-item {
-  @apply bg-coolGray-900 text-greenFec !important;
+  @apply bg-zinc-900 text-greenFec !important;
 }
 
 .react-datepicker__time-list-item--disabled {
-  @apply text-coolGray-600 !important;
+  @apply text-zinc-600 !important;
 }
 
 .react-datepicker__time-list-item:hover {
   @apply bg-mainBtnHoverColor !important;
-  @apply text-coolGray-100 !important;
+  @apply text-zinc-100 !important;
 }
 
 /* End React Detepicker */

@@ -90,7 +90,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   <Link href={mentor.links.portfolio}>
                     <a
                       target="_blank"
-                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
                     >
                       <FontAwesomeIcon className="w-4 h-4" icon={faGlobe} />
                     </a>
@@ -100,7 +100,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   <Link href={mentor.links.linkedin}>
                     <a
                       target="_blank"
-                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
                     >
                       <FontAwesomeIcon
                         className="w-4 h-4"
@@ -113,7 +113,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   <Link href={mentor.links.github}>
                     <a
                       target="_blank"
-                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
                     >
                       <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
                     </a>
@@ -123,7 +123,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   <Link href={mentor.links.twitter}>
                     <a
                       target="_blank"
-                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-coolGray-50 bg-coolGray-700"
+                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
                     >
                       <FontAwesomeIcon className="w-4 h-4" icon={faTwitter} />
                     </a>
@@ -141,7 +141,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
         <div className="flex flex-col justify-between h-full">
           <div className="flex">
             <div>
-              <p className="text-md leading-relaxed text-coolGray-300 md:min-h-64">
+              <p className="text-md leading-relaxed text-zinc-300 md:min-h-64">
                 {mentor.about_me ? mentor.about_me : '---'}
               </p>
             </div>

@@ -151,7 +151,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
       {isOpen && (
         <>
           <div
-            className="fixed inset-0 flex items-center justify-center outline-none z-75 lg:p-0 focus:outline-none text-coolGray-100"
+            className="fixed inset-0 flex items-center justify-center outline-none z-75 lg:p-0 focus:outline-none text-zinc-100"
             onClick={handleCloseModal}
             style={{ zIndex: 999 }}
           >
@@ -164,7 +164,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
               onClick={handleClick}
             >
               {/* content */}
-              <div className="max-h-screen py-4 overflow-y-auto border rounded-lg shadow-xl outline-none bg-coolGray-800 focus:outline-none">
+              <div className="max-h-screen py-4 overflow-y-auto border rounded-lg shadow-xl outline-none bg-zinc-800 focus:outline-none">
                 {/*body*/}
                 <div className="absolute right-5">
                   <FontAwesomeIcon
@@ -193,7 +193,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                             topic={findTopicsName(topic)}
                           />
                         ))}
-                      <p className="pt-8 pb-2 text-coolGray-100">{about_me}</p>
+                      <p className="pt-8 pb-2 text-zinc-100">{about_me}</p>
                       <div className="py-8">
                         <div className="flex items-center py-1">
                           <FontAwesomeIcon
@@ -239,7 +239,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                       }
                       locale="es"
                       showTimeSelect
-                      className="custom_input bg-coolGray-800"
+                      className="custom_input bg-zinc-800"
                       placeholderText="Selecciona una fecha"
                       minDate={new Date()}
                       dateFormat="dd/MM/yyyy HH:mm"
@@ -247,7 +247,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                     />
                     <form
                       onSubmit={handleSubmit(onSubmit)}
-                      className="flex flex-col w-full rounded bg-coolGray-800 text-coolGray-100"
+                      className="flex flex-col w-full rounded bg-zinc-800 text-zinc-100"
                     >
                       <input
                         type="text"
@@ -262,7 +262,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                         </label>
                         <div className="relative">
                           <input
-                            className="w-full px-3 py-3 text-sm leading-tight border border-gray-500 rounded appearance-none text-coolGray-100 placeholder-coolGray-300 bg-coolGray-800 focus:outline-none focus:shadow-outline"
+                            className="w-full px-3 py-3 text-sm leading-tight border border-gray-500 rounded appearance-none text-zinc-100 placeholder-zinc-300 bg-zinc-800 focus:outline-none focus:shadow-outline"
                             type="text"
                             placeholder="Ingresa tu usuario de Discord"
                             autoComplete="off"
@@ -279,7 +279,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                           Email
                         </label>
                         <input
-                          className="w-full px-3 py-3 text-sm leading-tight border border-gray-500 rounded appearance-none text-coolGray-100 placeholder-coolGray-300 bg-coolGray-800 focus:outline-none focus:shadow-outline"
+                          className="w-full px-3 py-3 text-sm leading-tight border border-gray-500 rounded appearance-none text-zinc-100 placeholder-zinc-300 bg-zinc-800 focus:outline-none focus:shadow-outline"
                           type="email"
                           placeholder="Ingresa tu email"
                           autoComplete="off"
@@ -298,7 +298,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                           Nombre*
                         </label>
                         <input
-                          className="w-full px-3 py-3 text-sm leading-tight border border-gray-500 rounded appearance-none text-coolGray-100 placeholder-coolGray-300 bg-coolGray-800 focus:outline-none focus:shadow-outline"
+                          className="w-full px-3 py-3 text-sm leading-tight border border-gray-500 rounded appearance-none text-zinc-100 placeholder-zinc-300 bg-zinc-800 focus:outline-none focus:shadow-outline"
                           type="text"
                           placeholder="Ingresa tu nombre"
                           autoComplete="off"
@@ -315,7 +315,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
                           Contanos*
                         </label>
                         <textarea
-                          className="w-full px-3 py-3 text-sm leading-tight border border-gray-500 rounded appearance-none text-coolGray-100 placeholder-coolGray-300 bg-coolGray-800 focus:outline-none focus:shadow-outline"
+                          className="w-full px-3 py-3 text-sm leading-tight border border-gray-500 rounded appearance-none text-zinc-100 placeholder-zinc-300 bg-zinc-800 focus:outline-none focus:shadow-outline"
                           placeholder="Ingresa tu nombre"
                           autoComplete="off"
                           {...register('info', { required: true })}
