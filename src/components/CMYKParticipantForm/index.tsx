@@ -298,7 +298,7 @@ const CMYKParticipantForm: React.FC = () => {
                 : isInfo
                 ? 'bg-amber-500'
                 : 'bg-emerald-500'
-            } text-gray-50 text-sm font-bold px-4 py-3 mt-5 transition-all	 duration-500 ease-in-out ${
+            } text-gray-50 rounded text-sm font-bold px-4 py-3 mt-5 transition-all duration-500 ease-in-out ${
               isSuccess || isError || isInfo ? 'opacity-100' : 'opacity-0'
             }`}
             role="alert"
