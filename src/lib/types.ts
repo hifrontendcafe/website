@@ -1,5 +1,3 @@
-import { Profile } from '@prisma/client';
-
 export interface Settings {
   description: string;
   heroBackground: Image;
@@ -148,7 +146,7 @@ export interface FeaturedCards {
   description: string;
   color: string;
   btnText: string;
-  link: string;
+  link?: string;
 }
 export interface ReactGroup {
   _id: string;
@@ -294,6 +292,21 @@ export interface EmbeddedTweet {
   };
 }
 
+export interface Role {
+  _id: string;
+  name: string;
+}
+
+export interface Seniority {
+  _id: string;
+  name: string;
+}
+
+export interface Technology {
+  _id: string;
+  name: string;
+}
+
 export interface Technologies {
   id: string;
   name: string;
@@ -304,7 +317,28 @@ export interface ProfileFilters {
   location?: string;
   seniorityId?: string;
   description?: string;
-  technologies?: Technologies[];
+  technologies?: Technology[];
   available?: boolean;
   active?: boolean;
+}
+
+export interface Profile {
+  _id: string;
+  description: string;
+  isAvailable: boolean;
+  location: string;
+  person: {
+    _id: string;
+    discord: string;
+    email: string;
+    firstName: string;
+    github: string;
+    linkedin: string;
+    photo: string;
+    portfolio: string;
+    twitter: string;
+    username: string;
+  };
+  role: Role;
+  seniority: Role;
 }

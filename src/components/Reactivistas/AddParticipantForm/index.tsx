@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { ReactGroup } from '@/lib/types';
 import { signIn, useSession } from 'next-auth/client';
-import { Link } from '../../MDX/Link';
 import ToastNotification from '../../ToastNotification/ToastNotification';
+import { Link } from '@/components/MDX';
 
 interface Props {
   group: ReactGroup;
@@ -80,7 +80,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
               type="submit"
               form={group.name}
               disabled={requestState === 'loading' || userAdded}
-              className="justify-items-end w-full sm:w-auto mt-2 sm:mt-0 px-3 py-2 sm:ml-2 text-sm font-small btn btn-primary disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
+              className="w-full px-3 py-2 mt-2 text-sm justify-items-end sm:w-auto sm:mt-0 sm:ml-2 font-small btn btn-primary disabled:bg-gray-50 disabled:text-gray-500 disabled:cursor-not-allowed"
             >
               {getButtonText(requestState, userAdded)}
             </button>
@@ -97,7 +97,7 @@ const AddParticipantForm: React.FC<Props> = ({ group }) => {
           )}
         </form>
       ) : (
-        <div className="p-6 border-2 border-zinc-600 rounded-md text-gray-200">
+        <div className="p-6 text-gray-200 border-2 rounded-md border-zinc-600">
           Para poder sumarte al grupo es necesario que inicies sesión con
           Discord. <br />
           <br />

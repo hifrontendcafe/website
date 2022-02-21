@@ -2,7 +2,7 @@ const PreviewBanner: React.FC = () => {
   return (
     <div
       style={{ zIndex: 51 }}
-      className="bg-green-400 fixed font-semibold w-full text-center text-coolGray-50 py-2 uppercase"
+      className="bg-green-400 fixed font-semibold w-full text-center text-primary py-2 uppercase"
     >
       Preview mode{' '}
       <a
