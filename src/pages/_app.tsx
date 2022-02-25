@@ -31,7 +31,10 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
       handleAcceptCookie();
     }
 
-    hotjar.initialize(2827081, 6);
+    hotjar.initialize(
+      parseInt(process.env.HOTJAR_HJID, 10),
+      parseInt(process.env.HOTJAR_HJSV, 10),
+    );
   }, []);
 
   useEffect(() => {
