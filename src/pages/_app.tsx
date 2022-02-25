@@ -6,6 +6,7 @@ import CookieConsent, { getCookieConsentValue } from 'react-cookie-consent';
 
 import { useEffect } from 'react';
 import gaService from '@/lib/gtag';
+import { hotjar } from 'react-hotjar';
 
 import '@/styles/index.css';
 import '@/styles/menu.css';
@@ -29,6 +30,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     if (isConsent === 'true') {
       handleAcceptCookie();
     }
+
+    hotjar.initialize(
+      parseInt(process.env.HOTJAR_HJID, 10),
+      parseInt(process.env.HOTJAR_HJSV, 10),
+    );
   }, []);
 
   useEffect(() => {
