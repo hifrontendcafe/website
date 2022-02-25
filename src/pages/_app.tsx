@@ -32,8 +32,8 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
     }
 
     hotjar.initialize(
-      parseInt(process.env.HOTJAR_HJID, 10),
-      parseInt(process.env.HOTJAR_HJSV, 10),
+      parseInt(process.env.NEXT_PUBLIC_HOTJAR_HJID, 10),
+      parseInt(process.env.NEXT_PUBLIC_HOTJAR_HJSV, 10),
     );
   }, []);
 
