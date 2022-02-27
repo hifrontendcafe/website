@@ -342,3 +342,18 @@ export interface Profile {
   role: Role;
   seniority: Role;
 }
+
+export interface Page {
+  hero: string;
+  title: string;
+  shortDescription?: string;
+  metadata?: Metadata[];
+  description?: string;
+  doc?: string;
+}
+
+export interface Metadata {
+  _key: string;
+  property: string;
+  content: string;
+}
