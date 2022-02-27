@@ -4,14 +4,14 @@ import Head from 'next/head';
 interface FecHeadProps {
   title: string;
   description?: string;
-  ogImage?: string;
   metadata: Metadata[];
 }
+
+const ogImage = 'https://frontend.cafe/logo-square.png';
 
 const FecHead: React.FC<FecHeadProps> = ({
   title = 'FrontendCafé ',
   description = 'Somos una comunidad de personas interesadas en tecnología y ciencias informáticas en donde charlamos sobre lenguajes de programación, diseño web, infraestructura, compartimos dudas, preguntamos y respondemos.',
-  ogImage = 'https://frontend.cafe/logo-square.png',
   metadata = [],
 }) => {
   return (
