@@ -4,7 +4,7 @@ import Head from 'next/head';
 interface FecHeadProps {
   title: string;
   description?: string;
-  metadata: Metadata[];
+  metadata?: Metadata[];
 }
 
 const ogImage = 'https://frontend.cafe/logo-square.png';
