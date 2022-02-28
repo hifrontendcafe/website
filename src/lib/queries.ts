@@ -13,6 +13,17 @@ export const settingsQuery = groq`
   }
 `;
 
+export const pageQueryByHero = groq`
+  *[_type == "page" && hero == $hero][0]{
+    hero,
+    title,
+    'shortDescription': coalesce(shortDescription, ''),
+    'description': coalesce(description, ''),
+    'doc': coalesce(doc, ''),
+    metadata
+  }
+`;
+
 export const eventsQuery = groq`
   *[_type == "event" && category->name != "Práctica de inglés"] | order(date desc) {
     title,

@@ -3,8 +3,13 @@ import { GetStaticProps } from 'next';
 import MentorList from '../../components/MentorList';
 import Layout from '../../components/Layout';
 
-import { Mentor, Topic } from '../../lib/types';
-import { getAllMentors, getMentoringTopics, getSettings } from '@/lib/api';
+import { Mentor, Topic, Page } from '../../lib/types';
+import {
+  getAllMentors,
+  getMentoringTopics,
+  getSettings,
+  getPageByHero,
+} from '../../lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 import SectionHero from '@/components/SectionHero';
@@ -13,11 +18,13 @@ type MentorshipsPageProps = {
   mentors: Mentor[];
   topics: Topic[];
   preview?: boolean;
+  page: Page;
 };
 
 const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
   topics: topicsData,
   mentors: mentorsData,
+  page: pageData,
   preview,
 }) => {
   const { data: mentors } = usePreviewSubscription(mentorsQuery, {
@@ -32,14 +39,15 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
 
   return (
     <Layout
-      title="Mentorías"
-      description="El programa de mentorías de FrontendCafé  busca servirte de guía en este camino, conectándote con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
+      title={pageData.title}
+      description={pageData.shortDescription}
+      metadata={pageData.metadata}
       preview={preview}
     >
       <SectionHero
-        title="Mentorías"
-        paragraph="Conéctate con profesionales y referentes capacitados en los múltiples y diversos temas que engloba el universo de las tecnologías de la información."
-        cta="https://frontend.cafe/docs/guia-para-realizar-mentorias"
+        title={pageData.title}
+        paragraph={pageData.description}
+        cta={pageData.doc}
       />
       <MentorshipsSteps />
       <MentorList topics={topics} mentors={mentors} />
@@ -110,9 +118,10 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const mentors = await getAllMentors(preview);
   const topics = await getMentoringTopics(preview);
   const settings = await getSettings(preview);
+  const page = await getPageByHero(preview, 'Mentorías');
 
   return {
-    props: { mentors, topics, preview, settings },
+    props: { mentors, topics, preview, settings, page },
     revalidate: 1,
   };
 };
