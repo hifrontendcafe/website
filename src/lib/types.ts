@@ -3,10 +3,15 @@ export interface Settings {
   heroBackground: Image;
   heroWords: string[];
   logo: Image;
-  menu: string[];
+  navItems: NavItemData[];
   socialnetworks: SocialNetworks;
   title: string;
   cmykInscription: boolean;
+}
+
+export interface NavItemData {
+  title: string;
+  link: string;
 }
 
 export interface SocialNetworks {
