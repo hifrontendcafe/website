@@ -1,21 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const tailwindColors = require('tailwindcss/colors');
 
-const colors = {
-  zinc: {
-    50: '#F9F9FA',
-    100: '#DEDEDF',
-    200: '#BDBDBF',
-    300: '#9C9C9F',
-    400: '#808084',
-    500: '#414144',
-    600: '#323235',
-    700: '#232326',
-    800: '#19191C',
-    900: '#08080A',
-  },
-};
-
 module.exports = {
   content: [
     './src/components/**/*.{js,ts,jsx,tsx}',
@@ -69,9 +54,7 @@ module.exports = {
       },
       colors: {
         current: 'currentColor',
-        zinc: {
-          ...colors.zinc,
-        },
+        backgroundColor: '#08080a',
         coolGrayDark: '#050C1A',
         ellipseBlue: '#142A4A',
         profileRing: '#00C39D',

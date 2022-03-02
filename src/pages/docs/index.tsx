@@ -26,7 +26,7 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
       preview={preview}
     >
       <div className="pb-40 sm:pt-10">
-        <div className="mt-10 overflow-hidden border-2 border-zinc-500 rounded-lg shadow bg-gray-900">
+        <div className="mt-10 overflow-hidden border-2 border-zinc-500 rounded-lg shadow bg-zinc-800">
           <div className="px-4 py-5 border-b border-zinc-500 sm:px-6">
             <div></div>
             <div className="mt-2 md:flex md:items-center md:justify-between">

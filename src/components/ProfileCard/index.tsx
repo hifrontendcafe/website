@@ -15,7 +15,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full pb-4 bg-gray-800 rounded-lg shadow-lg">
+    <div className="flex flex-col justify-between w-full pb-4 bg-zinc-800 rounded-lg shadow-lg">
       <div className="px-3 pt-3 md:pt-6 md:px-6">
         <div className="space-x-3 items-top">
           <img

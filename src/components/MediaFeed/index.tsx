@@ -118,7 +118,7 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
 
   return (
     <div>
-      <div className="w-full p-5 mx-auto mb-2 rounded-md text-gray-300 bg-gray-900">
+      <div className="w-full p-5 mx-auto mb-2 rounded-md text-zinc-300 bg-zinc-800">
         <div className="flex justify-between">
           <a href={authorUrl} className="flex">
             <Image

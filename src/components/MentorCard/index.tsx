@@ -30,7 +30,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="flex flex-col w-full p-6 rounded-lg bg-gray-800 space-between "
+      className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between "
     >
       <div>
         <div className="flex justify-between w-full">

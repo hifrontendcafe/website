@@ -97,7 +97,7 @@ html {
   }
 
   .nav-scroll {
-    @apply items-center bg-zinc-900 nav-shadow;
+    @apply items-center bg-backgroundColor nav-shadow;
   }
 
   .input {
@@ -119,7 +119,7 @@ html {
 }
 
 .filter-selector .react-select__control {
-  @apply bg-zinc-900 border-zinc-300 text-gray-300;
+  @apply bg-zinc-900 border-zinc-500 text-gray-300;
 }
 
 .filter-selector .react-select__option--is-focused {
