@@ -4,7 +4,19 @@ export const settingsQuery = groq`
   *[_type == "settings"][0]{
     title,
     description,
-    menu,
+    'navItems': navbar[]{
+      _type == 'reference' => @-> 
+        {
+        _type == 'page' => {
+          "link": path.current,
+          "title":name
+        },
+        _type == 'externalUrl' => {
+          "link":url,
+          "title":name
+        }
+      }
+    },
     logo,
     heroBackground,
     heroWords,
