@@ -7,11 +7,21 @@ export interface Settings {
   socialnetworks: SocialNetworks;
   title: string;
   cmykInscription: boolean;
+  footerNavItems: LinkItemData[];
 }
 
 export interface NavItemData {
   title: string;
   link: string;
+}
+
+interface LinkData {
+  value: string;
+}
+
+export interface LinkItemData {
+  title: string;
+  link: LinkData;
 }
 
 export interface SocialNetworks {
