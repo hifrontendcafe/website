@@ -18,20 +18,7 @@ type FooterProps = {
   mainClasses?: string;
 };
 const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
-  const { socialnetworks } = useSettings();
-
-  const navItems = [
-    { title: 'Mentorías', link: '/mentorias' },
-    { title: 'Prácticas de inglés', link: '/ingles' },
-    { title: 'Nuestros talentos', link: '/talentos' },
-    { title: 'Reactivistas', link: '/reactivistas' },
-    { title: 'Eventos', link: '/eventos' },
-    { title: 'Conoce a nuestro equipo', link: '/equipo' },
-    { title: 'Proyectos CMYK', link: '/cmyk' },
-    { title: 'Preguntas frecuentes', link: '/faqs' },
-    { title: 'Únete a Discord', link: 'https://discord.gg/frontendcafe' },
-  ];
-
+  const { socialnetworks, footerNavItems } = useSettings();
   const currentYear = new Date().getFullYear();
 
   return (
@@ -49,8 +36,8 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
             />
           </div>
           <div className="grid justify-center w-full pb-8 font-medium text-left md:grid-cols-3 gap-y-2 gap-x-5 md:pb-3">
-            {navItems?.map(({ link, title }) => (
-              <Link href={link} key={link}>
+            {footerNavItems?.map(({ link, title }) => (
+              <Link href={link.value} key={link.value}>
                 <a>{title}</a>
               </Link>
             ))}

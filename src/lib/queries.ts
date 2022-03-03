@@ -17,6 +17,18 @@ export const settingsQuery = groq`
         }
       }
     },
+    'footerNavItems': footerNav[]{
+      "title":text,
+      "link": link-> 
+        {
+        _type == 'page' => {
+          "value": path.current,
+        },
+        _type == 'externalUrl' => {
+          "value":url,
+        }
+      }
+    },
     logo,
     heroBackground,
     heroWords,
