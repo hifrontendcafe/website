@@ -5,7 +5,7 @@ export const settingsQuery = groq`
     title,
     description,
     'navItems': navbar[]{
-      _type == 'reference' => @-> 
+      _type == 'reference' => @->
         {
         _type == 'page' => {
           "link": path.current,
@@ -19,7 +19,7 @@ export const settingsQuery = groq`
     },
     'footerNavItems': footerNav[]{
       "title":text,
-      "link": link-> 
+      "link": link->
         {
         _type == 'page' => {
           "value": path.current,
@@ -44,7 +44,8 @@ export const pageQueryByHero = groq`
     'shortDescription': coalesce(shortDescription, ''),
     'description': coalesce(description, ''),
     'doc': coalesce(doc, ''),
-    metadata
+    metadata,
+    steps
   }
 `;
 

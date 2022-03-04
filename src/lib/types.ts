@@ -365,6 +365,14 @@ export interface Page {
   metadata?: Metadata[];
   description?: string;
   doc?: string;
+  steps: Step[];
+}
+
+export interface Step {
+  _key: string;
+  description: string;
+  step: number;
+  title: string;
 }
 
 export interface Metadata {
