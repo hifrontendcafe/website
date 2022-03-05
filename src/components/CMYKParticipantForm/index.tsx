@@ -70,7 +70,7 @@ const CMYKParticipantForm: React.FC = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-col w-full grid-cols-2 gap-5 p-4 border-2 rounded border-gray-600 text-gray-300 sm:px-8 sm:pt-6 sm:pb-8 md:grid bg-gray-900"
+      className="flex flex-col w-full grid-cols-2 gap-5 p-4 border-2 rounded border-zinc-600 text-zinc-300 sm:px-8 sm:pt-6 sm:pb-8 md:grid bg-zinc-900"
     >
       <input
         type="text"
@@ -298,7 +298,7 @@ const CMYKParticipantForm: React.FC = () => {
                 : isInfo
                 ? 'bg-amber-500'
                 : 'bg-emerald-500'
-            } text-gray-50 rounded text-sm font-bold px-4 py-3 mt-5 transition-all duration-500 ease-in-out ${
+            } text-zinc-50 rounded text-sm font-bold px-4 py-3 mt-5 transition-all duration-500 ease-in-out ${
               isSuccess || isError || isInfo ? 'opacity-100' : 'opacity-0'
             }`}
             role="alert"

@@ -17,7 +17,7 @@ const GroupRequirementsModal: React.FC<ModalProps> = (props) => {
       buttonLabel="Cerrar"
       buttonClasses="text-primary"
     >
-      <div className="px-2 overflow-auto text-sm text-gray-300">
+      <div className="px-2 overflow-auto text-sm text-zinc-300">
         <ul className="list-none list-inside">
           <li className="mb-1"> ✔️Un nombre (puede ser cualquier nombre)</li>
           <li>

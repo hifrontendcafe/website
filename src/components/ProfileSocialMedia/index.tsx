@@ -22,7 +22,7 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
         <Link href={socialMedia.twitter}>
           <a
             target="_blank"
-            className="flex items-center justify-center w-8 h-8 rounded-full text-gray-50 bg-gray-700"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-zinc-50 bg-zinc-700"
           >
             <FontAwesomeIcon className="w-4 h-4" icon={faTwitter} />
           </a>
@@ -32,7 +32,7 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
         <Link href={socialMedia.web}>
           <a
             target="_blank"
-            className="flex items-center justify-center w-8 h-8 rounded-full text-gray-50 bg-gray-700"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-zinc-50 bg-zinc-700"
           >
             <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
           </a>
@@ -42,7 +42,7 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
         <Link href={socialMedia.linkedin}>
           <a
             target="_blank"
-            className="flex items-center justify-center w-8 h-8 rounded-full text-gray-50 bg-gray-700"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-zinc-50 bg-zinc-700"
           >
             <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
           </a>
@@ -52,7 +52,7 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
         <Link href={socialMedia.github}>
           <a
             target="_blank"
-            className="flex items-center justify-center w-8 h-8 rounded-full text-gray-50 bg-gray-700"
+            className="flex items-center justify-center w-8 h-8 rounded-full text-zinc-50 bg-zinc-700"
           >
             <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
           </a>

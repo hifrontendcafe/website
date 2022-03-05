@@ -40,9 +40,9 @@ const Modal: React.FC<ModalProps> = ({
               onClick={handleClick}
             >
               {/*content*/}
-              <div className="relative flex flex-col w-full border rounded-lg shadow-xl outline-none bg-gray-900 focus:outline-none">
+              <div className="relative flex flex-col w-full border rounded-lg shadow-xl outline-none bg-zinc-900 focus:outline-none">
                 {/*header*/}
-                <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-gray-600">
+                <div className="flex items-start justify-between p-5 border-b border-solid rounded-t border-zinc-600">
                   <h3
                     className={`text-xl md:text-3xl font-semibold ${
                       titleClasses ? titleClasses : ''
@@ -51,10 +51,10 @@ const Modal: React.FC<ModalProps> = ({
                     {title}
                   </h3>
                   <button
-                    className="float-right p-1 ml-auto text-3xl font-semibold leading-none bg-transparent border-0 outline-none text-gray-50 opacity-5 focus:outline-none"
+                    className="float-right p-1 ml-auto text-3xl font-semibold leading-none bg-transparent border-0 outline-none text-zinc-50 opacity-5 focus:outline-none"
                     onClick={close}
                   >
-                    <span className="z-50 block w-6 h-6 text-2xl bg-transparent outline-none text-gray-50 opacity-5 focus:outline-none">
+                    <span className="z-50 block w-6 h-6 text-2xl bg-transparent outline-none text-zinc-50 opacity-5 focus:outline-none">
                       ×
                     </span>
                   </button>
@@ -64,7 +64,7 @@ const Modal: React.FC<ModalProps> = ({
                   {children}
                 </div>
                 {/*footer*/}
-                <div className="flex items-center justify-end p-2 border-t border-solid rounded-b border-gray-500">
+                <div className="flex items-center justify-end p-2 border-t border-solid rounded-b border-zinc-500">
                   <button
                     className={`text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ${
                       buttonClasses ? buttonClasses : ''

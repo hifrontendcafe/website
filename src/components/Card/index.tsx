@@ -18,7 +18,7 @@ type CardSubcomponents = {
 };
 
 const Card: React.FC & CardSubcomponents = ({ children }) => (
-  <div className="flex flex-col justify-between h-full p-4 bg-gray-800 rounded-md shadow-lg ">
+  <div className="flex flex-col justify-between h-full p-4 bg-zinc-800 rounded-md shadow-lg ">
     {children}
   </div>
 );
