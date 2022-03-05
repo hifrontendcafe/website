@@ -111,6 +111,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
       return setErrorDate(true);
     }
 
+    const mentee_timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     const body: Mentorship = {
       mentor_id: id,
       mentee_id: data.discordID,
@@ -119,6 +120,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
       mentee_email: data.email,
       info: data.info,
       time_slot_id: time_slot_id.id,
+      mentee_timezone,
     };
     try {
       await createMentorship(body);

@@ -375,6 +375,7 @@ export interface Mentorship {
   mentee_name: string;
   mentee_username_discord: string;
   mentee_email: string;
+  mentee_timezone: string;
   info: string;
   time_slot_id: string;
 }
