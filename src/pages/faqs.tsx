@@ -9,10 +9,10 @@ type FAQSProps = {
 const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
   return (
     <Layout title="FAQS" preview={preview}>
-      <section className="text-gray-50">
+      <section className="text-zinc-50">
         <div className="px-5 py-24">
           <div className="mb-20 text-center">
-            <h1 className="mb-4 text-2xl font-medium sm:text-3xl text-gray-50">
+            <h1 className="mb-4 text-2xl font-medium sm:text-3xl text-zinc-50">
               Preguntas frecuentes
             </h1>
           </div>

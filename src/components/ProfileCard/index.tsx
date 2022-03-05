@@ -15,7 +15,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full pb-4 bg-gray-800 rounded-lg shadow-lg">
+    <div className="flex flex-col justify-between w-full pb-4 bg-zinc-800 rounded-lg shadow-lg">
       <div className="px-3 pt-3 md:pt-6 md:px-6">
         <div className="space-x-3 items-top">
           <img
@@ -26,7 +26,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
             alt={profile.person.firstName}
           />
         </div>
-        <div className="flex flex-col justify-between grow text-gray-50">
+        <div className="flex flex-col justify-between grow text-zinc-50">
           <div className="grow">
             <h2 className="mt-2 text-xl font-bold">
               {profile.person.firstName}
@@ -49,7 +49,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="mt-4 mb-2 text-sm leading-tight text-gray-100 whitespace-pre-line">
+          <div className="mt-4 mb-2 text-sm leading-tight text-zinc-100 whitespace-pre-line">
             {profile.description}
           </div>
         </div>
@@ -61,7 +61,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
               {profile.technologies?.map((tech) => (
                 <span
                   key={tech.name}
-                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all bg-gray-900 rounded-md text-gray-50"
+                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all bg-zinc-900 rounded-md text-zinc-50"
                 >
                   {tech.name}
                 </span>
@@ -70,7 +70,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           )}
         </div> */}
         {profile.isAvailable && (
-          <div className="w-full py-1 mt-4 text-sm font-semibold text-center text-gray-900 bg-greenFec">
+          <div className="w-full py-1 mt-4 text-sm font-semibold text-center text-zinc-900 bg-greenFec">
             En búsqueda activa
           </div>
         )}

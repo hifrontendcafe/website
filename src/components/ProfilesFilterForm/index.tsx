@@ -47,11 +47,11 @@ const FilterForm: React.FC<FormProps> = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="justify-around md:flex md:items-center md:space-x-4 text-zinc-50">
+      <div className="justify-around md:flex md:items-center md:space-x-4 text-zinc-100">
         <div className="w-full mt-3 md:mt-0">
           <select
             name="role"
-            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-300 rounded form-select ${
+            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-500 rounded form-select ${
               isRoleSelected ? 'text-zinc-50' : 'text-zinc-300'
             }`}
             onChange={(event) =>
@@ -74,7 +74,7 @@ const FilterForm: React.FC<FormProps> = ({
         <div className="w-full mt-3 md:mt-0">
           <select
             name="seniority"
-            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-300 rounded form-select ${
+            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-500 rounded form-select ${
               isSenioritySelected ? 'text-zinc-50' : 'text-zinc-300'
             }`}
             onChange={(event) =>
@@ -99,7 +99,7 @@ const FilterForm: React.FC<FormProps> = ({
             name="location"
             type="text"
             placeholder="Ubicación"
-            className="w-full py-2 text-sm leading-tight border rounded placeholder-zinc-300 bg-zinc-900 border-zinc-300 form-input"
+            className="w-full py-2 text-sm leading-tight border rounded placeholder-zinc-300 bg-zinc-900 border-zinc-500 form-input"
             onChange={(event) =>
               dispatch({ type: 'ADD_LOCATION', payload: event.target.value })
             }
@@ -110,14 +110,14 @@ const FilterForm: React.FC<FormProps> = ({
             name="description"
             type="text"
             placeholder="Explora las biografías"
-            className="w-full py-2 text-sm leading-tight border rounded placeholder-zinc-300 bg-zinc-900 border-zinc-300 form-input"
+            className="w-full py-2 text-sm leading-tight border rounded placeholder-zinc-300 bg-zinc-900 border-zinc-500 form-input"
             onChange={(event) =>
               dispatch({ type: 'ADD_DESCRIPTION', payload: event.target.value })
             }
           />
         </div>
       </div>
-      <div className="items-center w-full mt-4 bg-zinc-900 md:flex md:space-x-4">
+      <div className="items-center w-full mt-4 md:flex md:space-x-4">
         <Select
           instanceId="technologies-selector"
           isMulti
@@ -141,7 +141,7 @@ const FilterForm: React.FC<FormProps> = ({
         <div className="flex items-center mt-4 space-x-2 shrink-0 md:mt-0">
           <label
             htmlFor="available"
-            className="w-24 text-sm leading-4 shrink text-zinc-50"
+            className="w-24 text-sm leading-4 shrink text-zinc-200"
           >
             En búsqueda activa
           </label>

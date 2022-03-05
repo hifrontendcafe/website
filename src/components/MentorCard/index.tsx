@@ -74,13 +74,13 @@ const MentorCard: React.FC<MentorCardProps> = ({
           opacity: mentor.is_active && slots?.length > 0 ? 1 : 0.66,
         }}
         exit={{ y: -100, opacity: 0 }}
-        className="flex flex-col w-full p-6 rounded-lg bg-gray-800 space-between"
+        className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between"
       >
         <div>
           <div className="flex justify-between w-full">
             <div>
               <img
-                className="object-cover w-24 h-24 mr-4 rounded-full bg-gray-300"
+                className="object-cover w-24 h-24 mr-4 rounded-full bg-zinc-300"
                 src={
                   mentor.url_photo && mentor.url_photo != ''
                     ? `${mentor.url_photo}`
@@ -98,14 +98,14 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 ) : mentor.is_active && isLogged ? (
                   <button
                     onClick={() => handleContactButton()}
-                    className="capitalize border text-md text-gray-50 border-gray-50 btn hover:text-gray-800 hover:bg-gray-50 hover:border-gray-50"
+                    className="capitalize border text-md text-zinc-50 border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
                   >
                     Solicitar mentoría
                   </button>
                 ) : (
                   <button
                     onClick={() => openModal()}
-                    className="capitalize border text-md text-gray-50 border-gray-50 btn hover:text-gray-800 hover:bg-gray-50 hover:border-gray-50"
+                    className="capitalize border text-md text-zinc-50 border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
                   >
                     Solicitar mentoría
                   </button>
@@ -118,7 +118,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
           </div>
         </div>
         <div>
-          <h2 className="mb-2 text-xl font-bold text-gray-50">
+          <h2 className="mb-2 text-xl font-bold text-zinc-50">
             {mentor.full_name}
           </h2>
         </div>
