@@ -3,10 +3,25 @@ export interface Settings {
   heroBackground: Image;
   heroWords: string[];
   logo: Image;
-  menu: string[];
+  navItems: NavItemData[];
   socialnetworks: SocialNetworks;
   title: string;
   cmykInscription: boolean;
+  footerNavItems: LinkItemData[];
+}
+
+export interface NavItemData {
+  title: string;
+  link: string;
+}
+
+interface LinkData {
+  value: string;
+}
+
+export interface LinkItemData {
+  title: string;
+  link: LinkData;
 }
 
 export interface SocialNetworks {
@@ -341,4 +356,27 @@ export interface Profile {
   };
   role: Role;
   seniority: Role;
+}
+
+export interface Page {
+  hero: string;
+  title: string;
+  shortDescription?: string;
+  metadata?: Metadata[];
+  description?: string;
+  doc?: string;
+  steps: Step[];
+}
+
+export interface Step {
+  _key: string;
+  description: string;
+  step: number;
+  title: string;
+}
+
+export interface Metadata {
+  _key: string;
+  property: string;
+  content: string;
 }

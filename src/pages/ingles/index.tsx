@@ -1,26 +1,27 @@
 import { GetStaticProps } from 'next';
-import { getEventsByCategory, getSettings } from '@/lib/api';
+import { getEventsByCategory, getSettings, getPageByHero } from '@/lib/api';
 import Layout from '../../components/Layout';
 import EventPreview from '../../components/EventPreview';
-import { Event } from '../../lib/types';
+import { Event, Page } from '../../lib/types';
 import SectionHero from '@/components/SectionHero';
 
 type EnglishPageProps = {
   upcomingEvents: Event[];
   preview?: boolean;
+  page: Page;
 };
 
-const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
+const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents, page }) => {
   return (
     <Layout
-      title="Inglés"
-      description="Únete a nuestras charlas de inglés en Discord"
+      title={page.title}
+      description={page.shortDescription}
+      metadata={page.metadata}
     >
       <SectionHero
-        title="Prácticas de inglés"
-        paragraph="Charlas abiertas con el objetivo de perder el miedo a
-              hablar en público, ganar confianza, fluidez y divertirnos en comunidad"
-        cta="https://frontend.cafe/docs/practicas-de-ingles"
+        title={page.title}
+        paragraph={page.description}
+        cta={page.doc}
       />
       <div className="text-gray-200 md:px-8 sm:px-6 md:pt-8">
         {upcomingEvents.length > 0 && (
@@ -39,13 +40,13 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents }) => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const settings = await getSettings(preview);
-
+  const page = await getPageByHero(preview, 'Inglés');
   const upcomingEvents = await getEventsByCategory(
     preview,
     'Práctica de inglés',
   );
   return {
-    props: { upcomingEvents, preview, settings },
+    props: { upcomingEvents, preview, settings, page },
     revalidate: 1,
   };
 };

@@ -7,11 +7,13 @@ import {
   getAllTechnologies,
   getAllProfiles,
   getSettings,
+  getPageByHero,
 } from '@/lib/api';
 import { Profile, Role, Seniority, Technology } from '@/lib/types';
 import { shuffle } from '@/lib/shuffle';
 import SectionHero from '@/components/SectionHero';
 import Profiles from '@/components/Profiles';
+import { Page } from '../../lib/types';
 
 interface PostsPageProps {
   profiles: Profile[];
@@ -19,6 +21,7 @@ interface PostsPageProps {
   technologies: Technology[];
   roles: Role[];
   seniorities: Seniority[];
+  page: Page;
 }
 
 const ProfilesPage: React.FC<PostsPageProps> = ({
@@ -27,18 +30,16 @@ const ProfilesPage: React.FC<PostsPageProps> = ({
   seniorities,
   roles,
   technologies,
+  page,
 }) => {
   return (
     <Layout
-      title="Talentos"
-      description="Encontrá los perfiles dentro de FEC"
+      title={page.title}
+      description={page.shortDescription}
+      metadata={page.metadata}
       preview={preview}
     >
-      <SectionHero
-        title="Talentos FEC"
-        paragraph="Te invitamos a saber más sobre nuestros perfiles, sus iniciativas e
-        intereses y poder conectarte a través de sus redes sociales."
-      />
+      <SectionHero title={page.title} paragraph={page.description} />
       <Profiles
         profiles={profiles}
         technologies={technologies}
@@ -81,7 +82,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const seniorities = sortResponse(senioritiesResponse);
 
   const profiles = await getAllProfiles(preview);
-
+  const page = await getPageByHero(preview, 'Talentos FEC');
   // randomizes profiles in place
   shuffle(profiles);
 
@@ -93,6 +94,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       technologies: formattedTechnologies,
       roles,
       seniorities,
+      page,
     },
     revalidate: 1,
   };

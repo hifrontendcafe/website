@@ -140,16 +140,17 @@ const FilterForm: React.FC<FormProps> = ({
         />
         <div className="flex items-center mt-4 space-x-2 shrink-0 md:mt-0">
           <label
-            htmlFor="toggle"
+            htmlFor="available"
             className="w-24 text-sm leading-4 shrink text-zinc-200"
           >
             En búsqueda activa
           </label>
           <div className="relative inline-block w-10 mr-2 align-middle transition duration-200 ease-in select-none">
             <input
-              checked={filters.available}
-              name="toggle"
+              id="available"
+              name="available"
               type="checkbox"
+              checked={filters.available}
               onChange={(event) => {
                 dispatch({
                   type: 'SET_AVAILABLE',
@@ -159,12 +160,12 @@ const FilterForm: React.FC<FormProps> = ({
               }}
               className={`form-checkbox absolute transition-transform border-zinc focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
                 filters.available
-                  ? ' translate-x-4 text-emerald-400'
+                  ? ' translate-x-4 text-green-400'
                   : 'border-zinc-500'
               }`}
             />
             <label
-              htmlFor="toggle"
+              htmlFor="available"
               className={`${
                 filters.available ? 'bg-white-400' : 'bg-zinc-300'
               } block overflow-hidden border bg-zinc-300 border-zinc-500 h-6 rounded-full cursor-pointer`}
