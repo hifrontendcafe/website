@@ -10,7 +10,7 @@ const MentorshipsFeedback: React.FC = () => {
     >
       <div className="pb-24 mt-16 bg-indigo-100 sm:pt-10 md:mt-2">
         <div className="min-h-screen overflow-hidden bg-white rounded-lg shadow">
-          <div className="px-12 py-5 text-gray-700">
+          <div className="px-12 py-5 text-zinc-700">
             <iframe
               className="min-h-screen"
               src="https://docs.google.com/forms/d/e/1FAIpQLSclO2ve0vhcVe66YXk6prAAEtWt4zVmvNQ-tTnpNsmoCX_Yfw/viewform?embedded=true"

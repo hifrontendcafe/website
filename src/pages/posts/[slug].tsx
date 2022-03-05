@@ -45,9 +45,9 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
               </div>
             </div>
           </div>
-          <div className="px-8 py-4 italic text-gray-600">{post.excerpt}</div>
+          <div className="px-8 py-4 italic text-zinc-600">{post.excerpt}</div>
 
-          <div className="px-8 py-2 text-gray-700">
+          <div className="px-8 py-2 text-zinc-700">
             <BlockContent blocks={post.content} />
           </div>
           {post.coverImage && (
@@ -57,7 +57,7 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
           )}
           <div className="flex items-center px-8 py-12">
             <img
-              className="w-20 h-20 bg-gray-300 rounded-full"
+              className="w-20 h-20 bg-zinc-300 rounded-full"
               src={post.author.picture}
               title={post.author.name}
               alt={post.author.name}

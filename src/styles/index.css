@@ -45,15 +45,15 @@ html {
   }
 
   .btn-primary {
-    @apply text-gray-800 bg-gray-50;
+    @apply text-zinc-800 bg-zinc-50;
   }
 
   .btn-primary:hover {
-    @apply text-gray-800 bg-greenFec;
+    @apply text-zinc-800 bg-greenFec;
   }
 
   .btn-secondary {
-    @apply border text-gray-50;
+    @apply border text-zinc-50;
   }
 
   .btn-secondary:hover {
@@ -61,7 +61,7 @@ html {
   }
 
   .btn-border {
-    @apply border text-gray-50;
+    @apply border text-zinc-50;
   }
 
   .btn-border:hover {
@@ -89,7 +89,7 @@ html {
   }
 
   .cards-paragraph {
-    @apply text-sm font-light text-gray-200 md:text-base lg:text-lg;
+    @apply text-sm font-light text-zinc-200 md:text-base lg:text-lg;
   }
 
   .title-colorful {
@@ -97,11 +97,11 @@ html {
   }
 
   .nav-scroll {
-    @apply items-center bg-backgroundColor nav-shadow;
+    @apply items-center bg-zinc-900 nav-shadow;
   }
 
   .input {
-    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-coolGrayDark text-gray-200 border-gray-600;
+    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-coolGrayDark text-zinc-200 border-zinc-600;
   }
 }
 
@@ -115,11 +115,11 @@ html {
 }
 
 .filter-selector .react-select__menu {
-  @apply bg-zinc-900 border border-zinc-500 text-gray-50;
+  @apply border bg-zinc-900 border-zinc-500 text-zinc-50;
 }
 
 .filter-selector .react-select__control {
-  @apply bg-zinc-900 border-zinc-500 text-gray-300;
+  @apply bg-zinc-900 border-zinc-500 text-zinc-300;
 }
 
 .filter-selector .react-select__option--is-focused {
@@ -131,37 +131,37 @@ html {
 }
 
 .filter-selector .react-select__value-container .react-select__placeholder {
-  /* @apply text-sm text-gray-600; */
+  /* @apply text-sm text-zinc-600; */
 }
 /* end react-select styles */
 
 /* react-select form-user styles */
 .form-user .react-select__multi-value {
-  @apply bg-gray-700;
+  @apply bg-zinc-700;
 }
 
 .form-user .react-select__multi-value__label {
-  @apply text-gray-100;
+  @apply text-zinc-100;
 }
 
 .form-user .react-select__menu {
-  @apply border bg-coolGrayDark border-gray-700 text-gray-50;
+  @apply border bg-coolGrayDark border-zinc-700 text-zinc-50;
 }
 
 .form-user .react-select__control {
-  @apply bg-coolGrayDark border-gray-700 text-gray-300;
+  @apply bg-coolGrayDark border-zinc-700 text-zinc-300;
 }
 
 .form-user .react-select__option--is-focused {
-  @apply bg-gray-500;
+  @apply bg-zinc-500;
 }
 
 .form-user .react-select__control .react-select__indicator {
-  /* @apply text-gray-500; */
+  /* @apply text-zinc-500; */
 }
 
 .form-user .react-select__value-container .react-select__placeholder {
-  /* @apply text-sm bg-gray-500; */
+  /* @apply text-sm bg-zinc-500; */
 }
 /* end react-select styles */
 

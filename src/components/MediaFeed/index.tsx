@@ -130,7 +130,7 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
             />
             <div className="ml-2">
               <h2 className="font-semibold font-title">{author.name}</h2>
-              <h3 className="text-gray-500">@{author.username}</h3>
+              <h3 className="text-zinc-500">@{author.username}</h3>
             </div>
           </a>
           <div className="flex mb-auto">

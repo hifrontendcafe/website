@@ -31,7 +31,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
       />
       <div className="flex flex-col-reverse items-center md:flex-row">
         <div className="flex text-center lg:grow md:w-1/2  md:text-left">
-          <div className="mt-8 text-gray-200">
+          <div className="mt-8 text-zinc-200">
             <p className="mb-4 text-lg leading-relaxed">
               Desde <b>FrontendCafé </b> impulsamos el desarrollo de proyectos
               colaborativos realizados por miembros de la comunidad con el
@@ -64,16 +64,16 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
           <div className="pt-10 md:pt-15 lg:pt-20 md:py-5">
             {session && !loading ? (
               <div className="flex flex-col justify-center items-left">
-                <h2 className="text-2xl font-bold leading-7 text-gray-200 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                <h2 className="text-2xl font-bold leading-7 text-zinc-200 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
                   ¡Es la hora!
                 </h2>
-                <h2 className="py-1 text-2xl font-bold leading-7 text-gray-200 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                <h2 className="py-1 text-2xl font-bold leading-7 text-zinc-200 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
                   ¡Participa de los proyectos CMYK! &#x1F396;&#xFE0F;
                 </h2>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center">
-                <h2 className="text-2xl font-bold leading-7 text-gray-200 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                <h2 className="text-2xl font-bold leading-7 text-zinc-200 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
                   ¡Es la hora, inicia sesión para poder inscribirte!
                 </h2>
                 <button
@@ -98,7 +98,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
           className="rounded-lg overflow-hidden mx-auto inset-x-0 flex justify-center items-center 
                    bg-blue-500 text-primary text-sm font-bold px-4 py-3 my-6"
         >
-          <p className="mx-auto text-lg font-bold text-center text-gray-200 sm:leading-9 sm:truncate">
+          <p className="mx-auto text-lg font-bold text-center text-zinc-200 sm:leading-9 sm:truncate">
             Las inscripciones a CMYK 4.0 se encuentran cerradas
           </p>
         </div>
@@ -111,7 +111,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
         buttonLabel="Entiendo"
         buttonClasses="text-primary"
       >
-        <div className="px-2 overflow-auto text-sm text-gray-300">
+        <div className="px-2 overflow-auto text-sm text-zinc-300">
           <p className="my-3">
             <span className="font-semibold">19 / 08 / 21</span>&nbsp;&nbsp;
             Apertura de formulario para participantes (Hasta llenar cupo de 25

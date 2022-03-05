@@ -52,10 +52,10 @@ const SimpleModal: React.FC<ModalProps> = ({
                     {title}
                   </h3>
                   <button
-                    className="text-3xl font-semibold leading-none bg-transparent border-0 outline-none text-gray-50 focus:outline-none"
+                    className="text-3xl font-semibold leading-none bg-transparent border-0 outline-none text-zinc-50 focus:outline-none"
                     onClick={close}
                   >
-                    <span className="block w-6 h-6 mb-2 text-2xl outline-none text-gray-50 hover:opacity-50 focus:outline-none">
+                    <span className="block w-6 h-6 mb-2 text-2xl outline-none text-zinc-50 hover:opacity-50 focus:outline-none">
                       ×
                     </span>
                   </button>
