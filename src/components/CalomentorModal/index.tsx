@@ -1,27 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import { createMentorship } from '@/lib/calomentorApi';
+import { MentorCalomentor, Mentorship, TimeSlot, Topic } from '@/lib/types';
 import {
-  MentorCalomentor,
-  Mentorship,
-  MentorshipResponse,
-  TimeSlot,
-  Topic,
-} from '@/lib/types';
-import { motion, AnimatePresence } from 'framer-motion';
-import TopicBadge from '../TopicBadge';
-import {
-  faMapMarkerAlt,
   faClock,
+  faMapMarkerAlt,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { addMonths } from 'date-fns';
+import es from 'date-fns/locale/es';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useSession } from 'next-auth/client';
+import React, { useEffect, useState } from 'react';
 import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-
-import es from 'date-fns/locale/es';
-import { useSession } from 'next-auth/client';
 import { useForm } from 'react-hook-form';
-import { createMentorship } from '@/lib/calomentorApi';
+import TopicBadge from '../TopicBadge';
+
 registerLocale('es', es);
 
 type ModalProps = {

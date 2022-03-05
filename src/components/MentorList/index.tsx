@@ -1,9 +1,9 @@
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/client';
+import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
 import { MentorCalomentor, TimeSlot, Topic } from '../../lib/types';
-import { useRouter } from 'next/router';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 
