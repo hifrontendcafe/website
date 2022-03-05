@@ -1,14 +1,27 @@
-import { Profile } from '@prisma/client';
-
 export interface Settings {
   description: string;
   heroBackground: Image;
   heroWords: string[];
   logo: Image;
-  menu: string[];
+  navItems: NavItemData[];
   socialnetworks: SocialNetworks;
   title: string;
   cmykInscription: boolean;
+  footerNavItems: LinkItemData[];
+}
+
+export interface NavItemData {
+  title: string;
+  link: string;
+}
+
+interface LinkData {
+  value: string;
+}
+
+export interface LinkItemData {
+  title: string;
+  link: LinkData;
 }
 
 export interface SocialNetworks {
@@ -148,7 +161,7 @@ export interface FeaturedCards {
   description: string;
   color: string;
   btnText: string;
-  link: string;
+  link?: string;
 }
 export interface ReactGroup {
   _id: string;
@@ -294,6 +307,21 @@ export interface EmbeddedTweet {
   };
 }
 
+export interface Role {
+  _id: string;
+  name: string;
+}
+
+export interface Seniority {
+  _id: string;
+  name: string;
+}
+
+export interface Technology {
+  _id: string;
+  name: string;
+}
+
 export interface Technologies {
   id: string;
   name: string;
@@ -304,7 +332,51 @@ export interface ProfileFilters {
   location?: string;
   seniorityId?: string;
   description?: string;
-  technologies?: Technologies[];
+  technologies?: Technology[];
   available?: boolean;
   active?: boolean;
+}
+
+export interface Profile {
+  _id: string;
+  description: string;
+  isAvailable: boolean;
+  location: string;
+  person: {
+    _id: string;
+    discord: string;
+    email: string;
+    firstName: string;
+    github: string;
+    linkedin: string;
+    photo: string;
+    portfolio: string;
+    twitter: string;
+    username: string;
+  };
+  role: Role;
+  seniority: Role;
+}
+
+export interface Page {
+  hero: string;
+  title: string;
+  shortDescription?: string;
+  metadata?: Metadata[];
+  description?: string;
+  doc?: string;
+  steps: Step[];
+}
+
+export interface Step {
+  _key: string;
+  description: string;
+  step: number;
+  title: string;
+}
+
+export interface Metadata {
+  _key: string;
+  property: string;
+  content: string;
 }

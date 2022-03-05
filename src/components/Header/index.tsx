@@ -11,7 +11,7 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ preview }) => {
-  const { logo, menu } = useSettings();
+  const { logo, navItems } = useSettings();
   const isAtTop = useZeroScrollY();
   const [isOpen, toggle] = useMenuToggle(false);
 
@@ -20,11 +20,6 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   const logoImg = imageBuilder.image(logo).url();
   const router = useRouter();
   const [session, loading] = useSession();
-
-  const navItems = menu?.map((item) => {
-    const split = item.indexOf('/');
-    return { title: item.substring(0, split), link: item.substring(split + 1) };
-  });
 
   return (
     <header

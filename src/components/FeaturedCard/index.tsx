@@ -1,7 +1,7 @@
-import { forwardRef, MouseEventHandler } from 'react';
+import { forwardRef, MouseEventHandler, useCallback } from 'react';
 import { FeaturedCards } from '../../lib/types';
 import Link from 'next/link';
-import { useRouter, NextRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -11,17 +11,19 @@ type FeaturedCardsItemProps = {
   onClick?: MouseEventHandler<HTMLAnchorElement>;
 };
 
-function handleClick(router: NextRouter, link: string) {
-  router.push(link);
-}
-
 const Card = ({ card, href, onClick }: FeaturedCardsItemProps, ref) => {
   const router = useRouter();
 
+  const handleClick = useCallback(() => {
+    if (!card.link) return;
+
+    router.push(card.link);
+  }, [card.link, router]);
+
   return (
     <div
-      onClick={() => handleClick(router, card.link)}
-      className="flex justify-between p-6 transition duration-500 ease-in-out  scale-100 border-2 shadow-lg cursor-pointer border-gray-500 hover:border-gray-50 md:hover:scale-105 rounded-xl"
+      onClick={handleClick}
+      className="flex justify-between p-6 transition duration-500 ease-in-out scale-100 border-2 border-gray-500 shadow-lg cursor-pointer hover:border-gray-50 md:hover:scale-105 rounded-xl"
     >
       <div className="relative flex flex-col items-start justify-between">
         <div className="items-start">
@@ -30,19 +32,21 @@ const Card = ({ card, href, onClick }: FeaturedCardsItemProps, ref) => {
             {card.description}
           </p>
         </div>
-        <button>
-          <a
-            ref={ref}
-            href={href}
-            onClick={onClick}
-            className="flex items-center text-sm font-normal normal-case lg:text-lg text-informational hover:underline"
-          >
-            {card.btnText}
-            <span className="ml-2">
-              <FontAwesomeIcon icon={faArrowRight} width="12px" />
-            </span>
-          </a>
-        </button>
+        {card.link && (
+          <button>
+            <a
+              ref={ref}
+              href={href}
+              onClick={onClick}
+              className="flex items-center text-sm font-normal normal-case lg:text-lg text-informational hover:underline"
+            >
+              {card.btnText}
+              <span className="ml-2">
+                <FontAwesomeIcon icon={faArrowRight} width="12px" />
+              </span>
+            </a>
+          </button>
+        )}
       </div>
     </div>
   );
@@ -51,11 +55,15 @@ const Card = ({ card, href, onClick }: FeaturedCardsItemProps, ref) => {
 const ForwardedCard = forwardRef(Card);
 
 const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
-  return (
-    <Link href={card.link} passHref>
-      <ForwardedCard card={card}></ForwardedCard>
-    </Link>
-  );
+  if (card.link) {
+    return (
+      <Link href={card.link} passHref>
+        <ForwardedCard card={card} />
+      </Link>
+    );
+  }
+
+  return <ForwardedCard card={card} />;
 };
 
 export default FeaturedCard;

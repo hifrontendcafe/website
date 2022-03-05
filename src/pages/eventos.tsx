@@ -3,8 +3,8 @@ import { GetStaticProps } from 'next';
 import Layout from '../components/Layout';
 import EventList from '../components/EventList';
 
-import { Event } from '../lib/types';
-import { getAllEvents, getSettings } from '../lib/api';
+import { Event, Page } from '../lib/types';
+import { getAllEvents, getSettings, getPageByHero } from '../lib/api';
 import { usePreviewSubscription } from '../lib/sanity';
 import { eventsQuery } from '../lib/queries';
 import SectionHero from '@/components/SectionHero';
@@ -12,9 +12,10 @@ import SectionHero from '@/components/SectionHero';
 type EventsPageProps = {
   data: Event[];
   preview?: boolean;
+  page: Page;
 };
 
-const EventsPage: React.FC<EventsPageProps> = ({ data, preview }) => {
+const EventsPage: React.FC<EventsPageProps> = ({ data, preview, page }) => {
   const { data: events } = usePreviewSubscription(eventsQuery, {
     initialData: data,
     enabled: preview,
@@ -22,11 +23,12 @@ const EventsPage: React.FC<EventsPageProps> = ({ data, preview }) => {
 
   return (
     <Layout
-      title="Eventos"
-      description="Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología."
+      title={page.title}
+      description={page.shortDescription}
+      metadata={page.metadata}
       preview={preview}
     >
-      <SectionHero title="Eventos" />
+      <SectionHero title={page.title} />
       <EventList events={events} />
     </Layout>
   );
@@ -35,9 +37,11 @@ const EventsPage: React.FC<EventsPageProps> = ({ data, preview }) => {
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllEvents(preview);
   const settings = await getSettings(preview);
+  const page = await getPageByHero(preview, 'Eventos');
+  console.log(page);
 
   return {
-    props: { data, preview, settings },
+    props: { data, preview, settings, page },
     revalidate: 1,
   };
 };

@@ -63,7 +63,7 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           className={`fixed top-12 max-w-md w-11/12 rounded-lg overflow-hidden mx-auto inset-x-0 flex justify-center items-center 
-                     ${backgroundColorClass} text-coolGray-50 text-sm font-bold px-4 py-3 mt-2`}
+                     ${backgroundColorClass} text-primary text-sm font-bold px-4 py-3 mt-2`}
           role="alert"
           onClick={() => setShow(false)}
         >

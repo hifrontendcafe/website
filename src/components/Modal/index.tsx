@@ -60,7 +60,7 @@ const Modal: React.FC<ModalProps> = ({
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative flex-auto p-5 overflow-y-scroll max-h-80">
+                <div className="relative flex-auto p-5 overflow-y-auto max-h-80">
                   {children}
                 </div>
                 {/*footer*/}
