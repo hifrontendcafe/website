@@ -18,8 +18,8 @@ const Anchor = (
       <button
         className={
           (isActive
-            ? 'text-gray-50 lg:border-b-2 pb-2 border-greenFec'
-            : 'text-gray-400') +
+            ? 'text-zinc-50 lg:border-b-2 pb-2 border-greenFec'
+            : 'text-zinc-200') +
           ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-zinc-50'
         }
         onClick={onClick}
@@ -33,8 +33,8 @@ const Anchor = (
     <a
       className={
         (isActive
-          ? 'text-gray-50 lg:border-b-2 pb-2 border-greenFec'
-          : 'text-gray-400') +
+          ? 'text-zinc-50 lg:border-b-2 pb-2 border-greenFec'
+          : 'text-zinc-200') +
         ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-zinc-50'
       }
       onClick={onClick}
