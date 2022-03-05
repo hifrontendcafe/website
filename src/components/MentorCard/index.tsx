@@ -1,16 +1,16 @@
-import { MentorCalomentor, TimeSlot, Topic } from '../../lib/types';
 import {
   faGithubAlt,
   faLinkedinIn,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-import TopicBadge from '../TopicBadge';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import Link from 'next/link';
+import { useMemo, useState } from 'react';
+import { MentorCalomentor, TimeSlot, Topic, UserLinks } from '../../lib/types';
 import CalomentorModal from '../CalomentorModal';
+import TopicBadge from '../TopicBadge';
 interface MentorCardProps {
   mentor: MentorCalomentor;
   mentorSlots: TimeSlot[];
@@ -19,6 +19,13 @@ interface MentorCardProps {
   openModal: () => void;
 }
 
+const iconsLinks = {
+  portfolio: faGlobe,
+  linkedin: faLinkedinIn,
+  github: faGithubAlt,
+  twitter: faTwitter,
+};
+
 const MentorCard: React.FC<MentorCardProps> = ({
   mentor,
   mentorSlots,
@@ -26,16 +33,36 @@ const MentorCard: React.FC<MentorCardProps> = ({
   isLogged,
   openModal,
 }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [slots, setSlots] = useState<TimeSlot[]>(mentorSlots);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const findTopicsName = (id: string) => {
-    const topic = topics.find((e) => e.value == id);
-    return topic.value;
+  const slots = useMemo(() => mentorSlots ?? [], [mentorSlots]);
+
+  const findTopicsName = (skill: string) => {
+    const topic = topics.find((e) => e.title == skill);
+    return topic.title;
   };
 
   const handleContactButton = async () => {
     setIsModalOpen(!isModalOpen);
+  };
+
+  const renderMentorSkills = (links: UserLinks) => {
+    return Object.entries(links).map((link) => {
+      const [type, url] = link;
+      if (!url) {
+        return null;
+      }
+      return (
+        <Link href={url} key={type}>
+          <a
+            target="_blank"
+            className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
+          >
+            <FontAwesomeIcon className="w-4 h-4" icon={iconsLinks[type]} />
+          </a>
+        </Link>
+      );
+    });
   };
 
   return (
@@ -44,7 +71,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
         initial={{ y: 100, opacity: 0 }}
         animate={{
           y: 0,
-          opacity: mentor.isActive && slots?.length > 0 ? 1 : 0.66,
+          opacity: mentor.is_active && slots?.length > 0 ? 1 : 0.66,
         }}
         exit={{ y: -100, opacity: 0 }}
         className="flex flex-col w-full p-6 rounded-lg bg-gray-800 space-between"
@@ -64,11 +91,11 @@ const MentorCard: React.FC<MentorCardProps> = ({
             </div>
             <div>
               <div className="mb-4">
-                {!mentor.isActive || !slots || slots?.length === 0 ? (
+                {!mentor.is_active || !slots || slots?.length === 0 ? (
                   <button className="capitalize cursor-not-allowed text-md btn btn-secondary">
                     No Disponible
                   </button>
-                ) : mentor.isActive && isLogged ? (
+                ) : mentor.is_active && isLogged ? (
                   <button
                     onClick={() => handleContactButton()}
                     className="capitalize border text-md text-gray-50 border-gray-50 btn hover:text-gray-800 hover:bg-gray-50 hover:border-gray-50"
@@ -84,51 +111,8 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   </button>
                 )}
               </div>
-
               <div className="flex mt-2 place-content-end">
-                {mentor.links.portfolio && (
-                  <Link href={mentor.links.portfolio}>
-                    <a
-                      target="_blank"
-                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
-                    >
-                      <FontAwesomeIcon className="w-4 h-4" icon={faGlobe} />
-                    </a>
-                  </Link>
-                )}
-                {mentor.links.linkedin && (
-                  <Link href={mentor.links.linkedin}>
-                    <a
-                      target="_blank"
-                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
-                    >
-                      <FontAwesomeIcon
-                        className="w-4 h-4"
-                        icon={faLinkedinIn}
-                      />
-                    </a>
-                  </Link>
-                )}
-                {mentor.links.github && (
-                  <Link href={mentor.links.github}>
-                    <a
-                      target="_blank"
-                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
-                    >
-                      <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
-                    </a>
-                  </Link>
-                )}
-                {mentor.links.twitter && (
-                  <Link href={mentor.links.twitter}>
-                    <a
-                      target="_blank"
-                      className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
-                    >
-                      <FontAwesomeIcon className="w-4 h-4" icon={faTwitter} />
-                    </a>
-                  </Link>
-                )}
+                {renderMentorSkills(mentor.links)}
               </div>
             </div>
           </div>

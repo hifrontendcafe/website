@@ -7,40 +7,19 @@ import { useRouter } from 'next/router';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 
-const topics: Topic[] = [
-  { value: 'Diseño UX-UI', label: 'Diseño UX-UI' },
-  { value: 'Backend', label: 'Backend' },
-  { value: 'Product management', label: 'Product management' },
-  { value: 'Inglés', label: 'Inglés' },
-  { value: 'Entrepreneurship', label: 'Entrepreneurship' },
-  { value: 'Analítica web / App', label: 'Analítica web / App' },
-  { value: 'Frontend', label: 'Frontend' },
-  { value: 'Git', label: 'Git' },
-  {
-    value: 'Data science / Data engineer',
-    label: 'Data science / Data engineer',
-  },
-  {
-    value: 'Diseño y arquitectura de software',
-    label: 'Diseño y arquitectura de software',
-  },
-  { value: 'Soft skills', label: 'Soft skills' },
-  { value: 'Orientación / CV', label: 'Orientación / CV' },
-  { value: 'Intro a la programación', label: 'Intro a la programación' },
-];
-
 interface MentorListProps {
   mentors: MentorCalomentor[];
   slots: TimeSlot[][];
+  topics: Topic[];
 }
 
 function _getMentorSlot(slots: TimeSlot[][], mentorId: string) {
   return slots.find((s) => s[0].user_id === mentorId);
 }
 
-const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
+const MentorList: React.FC<MentorListProps> = ({ mentors, slots, topics }) => {
   const [filter, setFilter] = useState<string>();
-  const [filteredTopics, setfilteredTopics] = useState<
+  const [filteredMentors, setFilteredMentors] = useState<
     MentorCalomentor[] | undefined
   >(undefined);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -50,6 +29,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
   const { query } = router;
 
   const queryTopic = (topic: string) => {
+    setFilter(topic);
     const url = new URL(window.location.href);
 
     const params = new URLSearchParams(url.search);
@@ -68,7 +48,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
   );
 
   const sortedMentors = useMemo(
-    () => [...mentors].sort((a) => (a.isActive ? -1 : 1)),
+    () => [...mentors].sort((a) => (a.is_active ? -1 : 1)),
     [mentors],
   );
 
@@ -76,7 +56,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
     const filterTopics = () => {
       const filtered = [];
       mentors.forEach((mentor) => {
-        const find = mentor.skills.filter((topic) => topic == filter);
+        const find = mentor.skills.filter((topic) => topic === filter);
         if (find.length > 0) filtered.push(mentor);
       });
       setFilteredMentors(filtered);
@@ -100,9 +80,9 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
           className="block w-full px-4 py-2 pr-8 leading-tight bg-zinc-900 border border-zinc-400 rounded shadow appearance-none text-gray-50 hover:border-zinc-500 focus:outline-none focus:ring"
         >
           <option value="">Buscar</option>
-          {topics?.map((topic, index) => (
-            <option value={topic.value} key={index}>
-              {topic.label}
+          {sortedTopics?.map((topic, index) => (
+            <option value={topic.title} key={index}>
+              {topic.title}
             </option>
           ))}
         </select>
@@ -119,7 +99,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots }) => {
 
       <div className="flex flex-col min-h-screen align-center">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
-          {(filteredTopics && filter ? filteredTopics : mentors)?.map(
+          {(filteredMentors && filter ? filteredMentors : mentors)?.map(
             (mentor, index) => (
               <MentorCard
                 key={index}

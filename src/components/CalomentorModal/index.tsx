@@ -86,9 +86,9 @@ const CalomentorModal: React.FC<ModalProps> = ({
     reset,
   } = useForm<FormInputs>();
 
-  const findTopicsName = (id: string) => {
-    const topic = topics.find((e) => e.value == id);
-    return topic.value;
+  const findTopicsName = (skill: string) => {
+    const topic = topics.find((e) => e.title == skill);
+    return topic.title;
   };
 
   const handleClick = (e: React.MouseEvent) => {

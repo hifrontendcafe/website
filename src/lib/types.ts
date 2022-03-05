@@ -109,8 +109,8 @@ export interface CMYKParticipant {
 }
 
 export interface Topic {
-  value: string;
-  label: string;
+  _id: string;
+  title: string;
 }
 
 export interface Author {
@@ -347,22 +347,26 @@ export interface TimeSlot {
   id: string;
 }
 
-interface Links {
+export interface UserLinks {
   github: string;
   twitter: string;
   linkedin: string;
   portfolio: string;
 }
 export interface MentorCalomentor {
-  links: Links;
-  isActive: boolean;
-  about_me: string;
-  role: string[];
-  full_name: string;
-  skills: string[];
-  email: string;
   id: string;
-  url_photo: string;
+  discord_username?: string;
+  full_name?: string;
+  about_me?: string;
+  email?: string;
+  url_photo?: string;
+  role?: Role[];
+  links?: UserLinks;
+  skills?: string[];
+  is_active: boolean;
+  last_activated_by: string;
+  user_timezone: string;
+  user_token: string;
 }
 
 export interface Mentorship {
