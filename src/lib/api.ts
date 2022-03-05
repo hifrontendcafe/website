@@ -38,9 +38,11 @@ import {
   profilesQuery,
   profileQuery,
   personQuery,
+  pageQueryByHero,
 } from './queries';
 
 import { createClient } from 'next-sanity';
+import { Page } from './types';
 
 const eventFields = `
   title,
@@ -224,4 +226,11 @@ export async function getPerson(
   preview = false,
 ): Promise<Profile['person']> {
   return await getClient(preview).fetch(personQuery, { id });
+}
+
+export async function getPageByHero(
+  preview = false,
+  hero: string,
+): Promise<Page> {
+  return await getClient(preview).fetch(pageQueryByHero, { hero });
 }

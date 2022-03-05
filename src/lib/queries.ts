@@ -4,12 +4,48 @@ export const settingsQuery = groq`
   *[_type == "settings"][0]{
     title,
     description,
-    menu,
+    'navItems': navbar[]{
+      _type == 'reference' => @->
+        {
+        _type == 'page' => {
+          "link": path.current,
+          "title":name
+        },
+        _type == 'externalUrl' => {
+          "link":url,
+          "title":name
+        }
+      }
+    },
+    'footerNavItems': footerNav[]{
+      "title":text,
+      "link": link->
+        {
+        _type == 'page' => {
+          "value": path.current,
+        },
+        _type == 'externalUrl' => {
+          "value":url,
+        }
+      }
+    },
     logo,
     heroBackground,
     heroWords,
     socialnetworks,
     cmykInscription
+  }
+`;
+
+export const pageQueryByHero = groq`
+  *[_type == "page" && hero == $hero][0]{
+    hero,
+    title,
+    'shortDescription': coalesce(shortDescription, ''),
+    'description': coalesce(description, ''),
+    'doc': coalesce(doc, ''),
+    metadata,
+    steps
   }
 `;
 

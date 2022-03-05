@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
 
-import { getApprovedReactGroups, getSettings } from '@/lib/api';
-import { ReactGroup, Settings } from '../../lib/types';
+import { getApprovedReactGroups, getPageByHero, getSettings } from '@/lib/api';
+import { ReactGroup, Settings, Page } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { reactGroupQuery } from '../../lib/queries';
 import Layout from '../../components/Layout';
@@ -18,12 +18,14 @@ interface ReactGroupPageProps {
   preview: boolean;
   settings: Settings;
   isEnabled: boolean;
+  page: Page;
 }
 
 const ReactGroupPage: React.FC<ReactGroupPageProps> = ({
   initialReactGroups,
   preview,
   isEnabled,
+  page,
 }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -35,11 +37,16 @@ const ReactGroupPage: React.FC<ReactGroupPageProps> = ({
   const [infoModalOpen, setInfoModalOpen] = useState(false);
 
   return (
-    <Layout title="Reactivistas">
+    <Layout
+      title={page.title}
+      description={page.shortDescription}
+      metadata={page.metadata}
+      preview={preview}
+    >
       <SectionHero
-        title="Reactivistas"
-        paragraph="Grupos auto-organizados por integrantes de la comunidad para aprender React.js con pares y con ayuda de mentores"
-        cta="https://frontend.cafe/docs/guia-reactivistas"
+        title={page.title}
+        paragraph={page.description}
+        cta={page.doc}
       />
       {isEnabled && (
         <div>
@@ -137,6 +144,7 @@ export const getStaticProps: GetStaticProps<ReactGroupPageProps> = async ({
   const initialReactGroups = await getApprovedReactGroups(preview);
   const settings = await getSettings(preview);
   const isEnabled = process.env.REACTIVISTAS_ENABLED === 'true';
+  const page = await getPageByHero(preview, 'Reactivistas');
 
   return {
     props: {
@@ -144,6 +152,7 @@ export const getStaticProps: GetStaticProps<ReactGroupPageProps> = async ({
       preview,
       settings,
       isEnabled,
+      page,
     },
     revalidate: 1,
   };

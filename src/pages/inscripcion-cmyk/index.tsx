@@ -5,11 +5,11 @@ import { GetStaticProps } from 'next';
 import { getSettings } from '@/lib/api';
 
 import CMYKParticipantForm from '../../components/CMYKParticipantForm';
-import styles from './styles.module.css';
 import { useSettings } from '@/lib/settings';
 import { signIn, useSession } from 'next-auth/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+import SectionHero from '@/components/SectionHero';
 
 type CMYKRegisterPageProps = {
   preview?: boolean;
@@ -24,25 +24,14 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
 
   return (
     <Layout title="CMYK" preview={preview}>
-      <div className="flex flex-col items-center px-5 pt-20 md:flex-row">
-        <div className="flex flex-col items-center text-center lg:grow md:w-1/2 lg:pl-24 md:pl-16 md:items-start md:text-left">
-          <div className="flex flex-col items-center justify-between w-full lg:flex-row">
-            <div className="flex flex-col">
-              <h1 className="text-5xl font-extrabold text-gray-900 title-font">
-                CMYK 4.0
-              </h1>
-              <h2 className="text-4xl font-medium text-gray-900 title-font">
-                Agosto 2021
-              </h2>
-            </div>
-            <button
-              className="self-center justify-center px-4 py-2 my-2 font-medium text-gray-50 border border-transparent rounded-md shadow-sm lg:self-end text-md bg-primary hover:bg-primarydark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Conocé el cronograma
-            </button>
-          </div>
-          <div className="mt-8">
+      <SectionHero
+        title="CMYK 4.0"
+        paragraph="Agosto 2021"
+        cta="https://frontend.cafe/docs/guia-cmyk"
+      />
+      <div className="flex flex-col-reverse items-center md:flex-row">
+        <div className="flex text-center lg:grow md:w-1/2  md:text-left">
+          <div className="mt-8 text-gray-200">
             <p className="mb-4 text-lg leading-relaxed">
               Desde <b>FrontendCafé </b> impulsamos el desarrollo de proyectos
               colaborativos realizados por miembros de la comunidad con el
@@ -54,31 +43,37 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
               contestar tus dudas y ayudarte para cumplir los objetivos. La
               actividad se llevará a cabo en agosto 2021 y es <b>gratuita</b>.
             </p>
+            <button
+              className="inline-flex justify-center btn btn-primary"
+              onClick={() => setIsModalOpen(true)}
+            >
+              Conocé el cronograma
+            </button>
           </div>
         </div>
-        <div className="w-5/6 md:max-w-lg lg:max-w-xl lg:w-full md:w-1/2 md:mb-0 md:pl-10">
+        <div className="md:w-1/2 lg:w-full md:max-w-lg lg:max-w-xl md:mb-0 md:pl-10">
           <img
-            className={`object-cover object-center rounded ${styles.cmyk3heroimage}`}
+            className={`object-cover object-center rounded `}
             alt="hero"
             src="/img/cmyk-girl.min.svg"
           />
         </div>
       </div>
       {cmykInscription ? (
-        <div className="px-5 overflow-hidden bg-white rounded-lg">
-          <div className="pt-10 md:pt-15 lg:pt-20 md:py-5 lg:px-24 md:px-16">
+        <div className="overflow-hidden  rounded-lg">
+          <div className="pt-10 md:pt-15 lg:pt-20 md:py-5">
             {session && !loading ? (
               <div className="flex flex-col justify-center items-left">
-                <h2 className="text-2xl font-bold leading-7 text-black md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                <h2 className="text-2xl font-bold leading-7 text-gray-200 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
                   ¡Es la hora!
                 </h2>
-                <h2 className="py-1 text-2xl font-bold leading-7 text-black md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                <h2 className="py-1 text-2xl font-bold leading-7 text-gray-200 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
                   ¡Participa de los proyectos CMYK! &#x1F396;&#xFE0F;
                 </h2>
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center">
-                <h2 className="text-2xl font-bold leading-7 text-black md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                <h2 className="text-2xl font-bold leading-7 text-gray-200 md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
                   ¡Es la hora, inicia sesión para poder inscribirte!
                 </h2>
                 <button
@@ -99,10 +94,13 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
           {session && !loading && <CMYKParticipantForm />}
         </div>
       ) : (
-        <div className="bg-white px-7">
-          <h1 className="py-10 mx-auto text-xl font-bold leading-7 text-center text-black md:py-20 md:text-2xl lg:text-3xl sm:leading-9 sm:truncate">
-            Las inscripciones a CMYK 4.0 se encuentran cerradas (cupo agotado)
-          </h1>
+        <div
+          className="rounded-lg overflow-hidden mx-auto inset-x-0 flex justify-center items-center 
+                   bg-blue-500 text-primary text-sm font-bold px-4 py-3 my-6"
+        >
+          <p className="mx-auto text-lg font-bold text-center text-gray-200 sm:leading-9 sm:truncate">
+            Las inscripciones a CMYK 4.0 se encuentran cerradas
+          </p>
         </div>
       )}
       <Modal
@@ -113,7 +111,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
         buttonLabel="Entiendo"
         buttonClasses="text-primary"
       >
-        <div className="px-2 overflow-auto text-sm">
+        <div className="px-2 overflow-auto text-sm text-gray-300">
           <p className="my-3">
             <span className="font-semibold">19 / 08 / 21</span>&nbsp;&nbsp;
             Apertura de formulario para participantes (Hasta llenar cupo de 25

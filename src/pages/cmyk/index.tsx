@@ -1,7 +1,7 @@
 import CMYKItemCard from '@/components/CMYKItemCard';
 import { GetStaticProps } from 'next';
-import { getAllCMYKProjects, getSettings } from '@/lib/api';
-import { CMYK } from '@/lib/types';
+import { getAllCMYKProjects, getSettings, getPageByHero } from '@/lib/api';
+import { CMYK, Page } from '@/lib/types';
 import Layout from '@/components/Layout';
 
 import { cmykQuery } from '@/lib/queries';
@@ -14,6 +14,7 @@ import SectionHero from '@/components/SectionHero';
 type CMYKProjectsProps = {
   preview?: boolean;
   data: CMYK[];
+  page: Page;
 };
 
 const cmykVersions = [
@@ -26,6 +27,7 @@ const cmykVersions = [
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   preview = false,
   data,
+  page,
 }) => {
   const { data: projects } = usePreviewSubscription(cmykQuery, {
     initialData: data,
@@ -53,12 +55,16 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   const tabStyleActive = `py-2 font-semibold cursor-pointer text-gray-100 w-1/3 flex justify-center border-b-4 border-zinc-100`;
 
   return (
-    <Layout title="Proyectos CMYK" preview={preview}>
+    <Layout
+      title={page.title}
+      description={page.shortDescription}
+      metadata={page.metadata}
+      preview={preview}
+    >
       <SectionHero
-        title="Proyectos CMYK"
-        paragraph="Proyectos colaborativos realizados por miembros de la comunidad con el
-              objetivo de ganar experiencia en un entorno profesional."
-        cta="https://frontend.cafe/docs/guia-cmyk"
+        title={page.title}
+        paragraph={page.description}
+        cta={page.doc}
       />
       <div>
         <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -133,8 +139,9 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllCMYKProjects(preview);
   const settings = await getSettings(preview);
+  const page = await getPageByHero(preview, 'CMYK');
 
-  return { props: { preview, data, settings }, revalidate: 1 };
+  return { props: { preview, data, settings, page }, revalidate: 1 };
 };
 
 export default CMYKProjects;

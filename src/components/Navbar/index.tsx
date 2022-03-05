@@ -3,10 +3,11 @@ import { Session } from 'next-auth';
 import MenuBtn from './MenuBtn';
 import NavItem from './NavItem';
 import UserSettings from './UserSettings';
+import { NavItemData } from '../../lib/types';
 
 interface NavbarProps {
   loading: boolean;
-  navItems: { title: string; link: string }[];
+  navItems: NavItemData[];
   user?: Session['user'];
   pathname: string;
   logoImg: string;
