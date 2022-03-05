@@ -40,9 +40,7 @@ export const getAllMentorTimeSlots = async (
   }
 };
 
-export const getMentorList = async (
-  preview = false,
-): Promise<MentorCalomentor[]> => {
+export const getMentorList = async (): Promise<MentorCalomentor[]> => {
   try {
     const url = `${process.env.NEXT_PUBLIC_CALOMENTOR_BASE_URL}/user`;
     return await fetch(url, {

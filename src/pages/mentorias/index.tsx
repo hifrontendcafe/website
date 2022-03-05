@@ -43,7 +43,7 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const mentors = await getMentorList(preview);
+  const mentors = await getMentorList();
   const slots = await getAllMentorTimeSlots(mentors);
   const settings = await getSettings(preview);
   const page = await getPageByHero(preview, 'Mentorías');
