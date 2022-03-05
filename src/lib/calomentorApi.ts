@@ -61,7 +61,7 @@ export const createMentorship = async (
   data: Mentorship,
 ): Promise<MentorshipResponse> => {
   try {
-    const url = `${process.env.NEXT_PUBLIC_CALOMENTOR_BASE_URL}/sf/mentorship`;
+    const url = `${process.env.NEXT_PUBLIC_CALOMENTOR_BASE_URL}/mentorship`;
     return await fetch(url, {
       method: 'POST',
       body: JSON.stringify(data),
