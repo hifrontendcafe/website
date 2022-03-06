@@ -379,9 +379,11 @@ export interface Mentorship {
   info: string;
   time_slot_id: string;
 }
+
 export interface MentorshipResponse {
-  status: number;
-  info: string;
+  code: string;
+  message: string;
+  error?: unknown;
 }
 export interface Profile {
   _id: string;
