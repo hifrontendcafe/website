@@ -123,13 +123,16 @@ const CalomentorModal: React.FC<ModalProps> = ({
       mentee_timezone,
     };
     try {
-      await createMentorship(body);
+      const mentorship = await createMentorship(body);
       setLoading(false);
+      if (mentorship.code !== '100') {
+        return setErrorCreate(true);
+      }
       setSuccess(true);
       return reset();
     } catch (error) {
-      setErrorCreate(true);
-      return setSuccess(true);
+      setLoading(false);
+      return setErrorCreate(true);
     }
   };
 
