@@ -1,6 +1,6 @@
 const Spinner: React.FC = () => (
   <svg
-    className="animate-spin h-5 w-5 mr-3 text-zinc-50"
+    className="animate-spin h-5 w-5 mr-3 text-primary"
     fill="none"
     viewBox="0 0 24 24"
   >

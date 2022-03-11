@@ -183,7 +183,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
       <div className="overflow-hidden bg-zinc-900 border-2 border-zinc-600 rounded-lg shadow">
         {message.text && (
           <div
-            className={`text-center text-zinc-50 rounded p-4 m-4 ${
+            className={`text-center text-primary rounded p-4 m-4 ${
               message.error ? 'bg-red-600' : 'bg-emerald-700'
             }`}
           >
@@ -202,7 +202,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
               >
                 <div className="flex flex-col grid-cols-2 gap-5 md:grid">
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Usuario de Discord*
                     </label>
                     <div className="relative z-10">
@@ -220,7 +220,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </div>
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Email*
                     </label>
                     <div className="relative">
@@ -236,7 +236,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </div>
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Nombre y Apellido*
                     </label>
                     <input
@@ -247,7 +247,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     />
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Lugar de residencia*
                     </label>
                     <div className="relative">
@@ -263,10 +263,10 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </div>
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Twitter
                     </label>
-                    <p className="my-2 text-xs text-zinc-300">
+                    <p className="my-2 text-xs text-tertiary">
                       Incluye enlace completo de tu perfil.
                     </p>
                     <div className="relative">
@@ -282,10 +282,10 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
 
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Linkedin
                     </label>
-                    <p className="my-2 text-xs text-zinc-300">
+                    <p className="my-2 text-xs text-tertiary">
                       Incluye enlace completo de tu perfil.
                     </p>
                     <div className="relative">
@@ -301,10 +301,10 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
 
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Github
                     </label>
-                    <p className="my-2 text-xs text-zinc-300">
+                    <p className="my-2 text-xs text-tertiary">
                       Incluye enlace completo de tu perfil.
                     </p>
                     <div className="relative">
@@ -317,10 +317,10 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     </div>
                   </div>
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Portfolio
                     </label>
-                    <p className="my-2 text-xs text-zinc-300">
+                    <p className="my-2 text-xs text-tertiary">
                       Incluye enlace completo de tu web personal.
                     </p>
                     <div className="relative">
@@ -336,7 +336,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
 
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Rol actual o con el que te defines*
                     </label>
                     <div className="relative">
@@ -354,7 +354,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
 
                   <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-zinc-200">
+                    <label className="block mb-2 text-sm font-bold text-secondary">
                       Seniority*
                     </label>
                     <div className="relative">
@@ -374,7 +374,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-zinc-200">
+                  <label className="block mb-2 text-sm font-bold text-secondary">
                     Foto de perfil
                   </label>
                   <div className="flex items-center justify-start w-full space-x-4">
@@ -411,9 +411,9 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-zinc-200">
+                  <label className="block mb-2 text-sm font-bold text-secondary">
                     Tecnologías
-                    <p className="text-sm font-medium text-zinc-400">
+                    <p className="text-sm font-medium text-quaternary">
                       Selecciona un máximo de 5 tecnologías.
                     </p>
                   </label>
@@ -440,7 +440,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-zinc-200">
+                  <label className="block mb-2 text-sm font-bold text-secondary">
                     BIO*
                   </label>
                   <textarea
@@ -456,24 +456,24 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 </div>
                 <div className="flex items-center mb-4">
                   <input
-                    className="mr-2 text-sm leading-tight text-zinc-200 border rounded focus:outline-none focus:ring"
+                    className="mr-2 text-sm leading-tight text-secondary border rounded focus:outline-none focus:ring"
                     {...register('available')}
                     type="checkbox"
                   />
-                  <label className="block text-sm font-bold text-zinc-200">
+                  <label className="block text-sm font-bold text-secondary">
                     ¿Te encuentras en búsqueda de trabajo activa?
                   </label>
                 </div>
                 <div className="flex items-center mb-4">
                   <input
-                    className={`mr-2 text-sm leading-tight text-zinc-200 border rounded focus:outline-none focus:ring ${
+                    className={`mr-2 text-sm leading-tight text-secondary border rounded focus:outline-none focus:ring ${
                       errors.consent && 'border-red-400'
                     }`}
                     type="checkbox"
                     required
                     {...register('consent', { required: true })}
                   />
-                  <label className="block text-sm font-bold text-zinc-200">
+                  <label className="block text-sm font-bold text-secondary">
                     ¿Aceptas que tu información sea compartida en la web de
                     FrontendCafé?*
                   </label>

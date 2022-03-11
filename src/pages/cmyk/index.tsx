@@ -51,7 +51,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     (project) => project.cmykVersion === currentCMYK,
   );
 
-  const tabStyle = `py-2 cursor-pointer text-zinc-300 w-1/3 flex justify-center border-b`;
+  const tabStyle = `py-2 cursor-pointer text-tertiary w-1/3 flex justify-center border-b`;
   const tabStyleActive = `py-2 font-semibold cursor-pointer text-zinc-100 w-1/3 flex justify-center border-b-4 border-zinc-100`;
 
   return (

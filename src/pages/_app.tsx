@@ -50,7 +50,7 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
         <Component {...pageProps} />
         <CookieConsent
           disableStyles
-          containerClasses="fixed mb-4 left-0 right-0 bottom-4 flex text-zinc-50 justify-between px-4 py-2 items-center bg-zinc-700 z-20 container mx-auto rounded-md"
+          containerClasses="fixed mb-4 left-0 right-0 bottom-4 flex text-primary justify-between px-4 py-2 items-center bg-zinc-700 z-20 container mx-auto rounded-md"
           buttonText="Aceptar"
           buttonClasses="btn btn-primary rounded-lg"
           onAccept={handleAcceptCookie}

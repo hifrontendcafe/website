@@ -34,7 +34,7 @@ const Navbar: React.FC<NavbarProps> = ({
           <a>
             <img
               src="/logotype-fec.svg"
-              className="rounded-full text-zinc-50"
+              className="rounded-full text-primary"
               alt="Logo FrontendCafe"
             />
           </a>
@@ -43,7 +43,7 @@ const Navbar: React.FC<NavbarProps> = ({
             <a className="flex items-center text-zinc-900 title-font">
               <img
                 src={logoIMG}
-                className="rounded-full text-zinc-50"
+                className="rounded-full text-primary"
                 alt="Logo FrontendCafe"
               />
             </a>
