@@ -6,7 +6,7 @@ type StepsProps = {
 
 const Steps: React.FC<StepsProps> = ({ steps }) => {
   return (
-    <section className="text-zinc-50 body-font">
+    <section className="text-primary body-font">
       <div className="px-5 py-32 lg:px-0">
         <div className="flex flex-wrap -mx-4 -mt-4 -mb-10 sm:-m-4">
           {steps
@@ -25,7 +25,7 @@ const Steps: React.FC<StepsProps> = ({ steps }) => {
                       {step.title}
                     </h2>
                   </div>
-                  <p className="text-lg text-zinc-300 md:text-xl">
+                  <p className="text-lg text-tertiary md:text-xl">
                     {step.description}
                   </p>
                 </div>

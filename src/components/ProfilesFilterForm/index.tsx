@@ -52,7 +52,7 @@ const FilterForm: React.FC<FormProps> = ({
           <select
             name="role"
             className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-500 rounded form-select ${
-              isRoleSelected ? 'text-zinc-50' : 'text-zinc-300'
+              isRoleSelected ? 'text-primary' : 'text-tertiary'
             }`}
             onChange={(event) =>
               dispatch({ type: 'ADD_ROLE', payload: event.target.value })
@@ -75,7 +75,7 @@ const FilterForm: React.FC<FormProps> = ({
           <select
             name="seniority"
             className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-500 rounded form-select ${
-              isSenioritySelected ? 'text-zinc-50' : 'text-zinc-300'
+              isSenioritySelected ? 'text-primary' : 'text-tertiary'
             }`}
             onChange={(event) =>
               dispatch({ type: 'ADD_SENIORITY', payload: event.target.value })
@@ -141,7 +141,7 @@ const FilterForm: React.FC<FormProps> = ({
         <div className="flex items-center mt-4 space-x-2 shrink-0 md:mt-0">
           <label
             htmlFor="available"
-            className="w-24 text-sm leading-4 shrink text-zinc-200"
+            className="w-24 text-sm leading-4 shrink text-secondary"
           >
             En búsqueda activa
           </label>

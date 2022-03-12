@@ -64,7 +64,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   return (
     <div>
       <div className="flex justify-between">
-        <h1 className="mb-4 text-2xl font-medium text-zinc-50">
+        <h1 className="mb-4 text-2xl font-medium text-primary">
           Solicita una mentoría según especialidad
         </h1>
       </div>
@@ -72,7 +72,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         <select
           aria-label="Buscar"
           onChange={(event) => queryTopic(event.target.value)}
-          className="block w-full px-4 py-2 pr-8 leading-tight bg-zinc-900 border border-zinc-400 rounded shadow appearance-none text-zinc-50 hover:border-zinc-500 focus:outline-none focus:ring"
+          className="block w-full px-4 py-2 pr-8 leading-tight bg-zinc-900 border border-zinc-400 rounded shadow appearance-none text-primary hover:border-zinc-500 focus:outline-none focus:ring"
         >
           <option value="">Buscar</option>
           {sortedTopics?.map((topic, index) => (
@@ -85,7 +85,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
             </option>
           ))}
         </select>
-        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-zinc-50">
+        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-primary">
           <svg
             className="w-4 h-4 fill-current"
             xmlns="http://www.w3.org/2000/svg"

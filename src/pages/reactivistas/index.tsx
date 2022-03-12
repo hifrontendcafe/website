@@ -115,7 +115,7 @@ const ReactGroupPage: React.FC<ReactGroupPageProps> = ({
           )}
 
           <div className="flex-1 min-w-0 mb-8">
-            <h1 className="text-2xl font-bold leading-7 text-zinc-200 title sm:text-2xl sm:leading-9 sm:truncate">
+            <h1 className="text-2xl font-bold leading-7 text-secondary title sm:text-2xl sm:leading-9 sm:truncate">
               Dale vida a un nuevo grupo
             </h1>
             <h2 className="leading-7 text-md text-informational sm:leading-9 sm:truncate">

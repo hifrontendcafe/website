@@ -59,7 +59,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
-                    className="capitalize border text-md text-zinc-50 border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
+                    className="capitalize border text-md text-primary border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
                   >
                     <span>Solicitar mentoría</span>
                   </a>
@@ -68,7 +68,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <button
                   type="button"
                   onClick={() => openModal()}
-                  className=" border text-md text-zinc-50 border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
+                  className=" border text-md text-primary border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
                 >
                   Solicitar mentoría
                 </button>
@@ -79,7 +79,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <Link href={mentor.web}>
                   <a
                     target="_blank"
-                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
                   >
                     <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
                   </a>
@@ -89,7 +89,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <Link href={mentor.linkedin}>
                   <a
                     target="_blank"
-                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
                   >
                     <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
                   </a>
@@ -99,7 +99,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 <Link href={mentor.github}>
                   <a
                     target="_blank"
-                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
+                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
                   >
                     <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
                   </a>
@@ -110,12 +110,12 @@ const MentorCard: React.FC<MentorCardProps> = ({
         </div>
       </div>
       <div>
-        <h2 className="mb-2 text-xl font-bold text-zinc-50">{mentor.name}</h2>
+        <h2 className="mb-2 text-xl font-bold text-primary">{mentor.name}</h2>
       </div>
       <div className="flex flex-col justify-between h-full">
         <div className="flex">
           <div>
-            <p className="leading-relaxed text-md text-zinc-300 md:min-h-64">
+            <p className="leading-relaxed text-md text-tertiary md:min-h-64">
               {mentor.description ? mentor.description : '---'}
             </p>
           </div>
