@@ -3,6 +3,7 @@ import {
   Mentorship,
   MentorshipResponse,
   TimeSlot,
+  TIMESLOT_STATUS,
 } from './types';
 
 export const getMentorTimeSlots = async (
@@ -20,7 +21,9 @@ export const getMentorTimeSlots = async (
     })
       .then((response) => response.json())
       .then((response: { data: TimeSlot[] }) => {
-        return response.data.filter((ts) => !ts.is_occupied);
+        return response.data.filter(
+          (ts) => ts.timeslot_status === TIMESLOT_STATUS.FREE,
+        );
       });
   } catch (error) {
     return error;
@@ -50,9 +53,12 @@ export const getMentorList = async (): Promise<MentorCalomentor[]> => {
     })
       .then((response) => response.json())
       .then((response: { data: MentorCalomentor[] }) => {
-        return response.data;
+        // When mentor status is implemented, this will no longer be required.
+        const mentors = response.data.filter((mentor) => mentor.is_active);
+        return mentors;
       });
   } catch (error) {
+    console.log('err', error);
     return error;
   }
 };

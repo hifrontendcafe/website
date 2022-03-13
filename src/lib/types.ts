@@ -337,14 +337,22 @@ export interface ProfileFilters {
   active?: boolean;
 }
 
+export enum TIMESLOT_STATUS {
+  OCCUPIED = 'OCCUPIED',
+  FREE = 'FREE',
+  CANCELED_BY_MENTOR = 'CANCELED_BY_MENTOR',
+  FINISHED = 'FINISHED',
+}
+
 export interface TimeSlot {
-  is_occupied: boolean;
-  user_id: string;
-  is_cancelled: boolean;
-  mentee_id: string;
-  date: string;
-  mentee_username: string;
   id: string;
+  user_id: string;
+  date: number;
+  timeslot_status: TIMESLOT_STATUS;
+  mentee_username: string;
+  mentee_id: string;
+  mentorship_token: string;
+  duration: 30 | 45 | 60;
 }
 
 export interface UserLinks {
@@ -365,7 +373,7 @@ export interface MentorCalomentor {
   skills?: string[];
   is_active: boolean;
   last_activated_by: string;
-  user_timezone: string;
+  user_timezone?: string;
   user_token: string;
 }
 
