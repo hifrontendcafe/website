@@ -3,7 +3,7 @@ interface LinkProps {
 }
 
 export const Heading1: React.FC = ({ children }) => (
-  <h1 className="my-10 text-4xl lg:text-5xl font-bold text-center lg:my-24 text-primary">
+  <h1 className="my-10 text-4xl lg:text-5xl font-bold lg:text-center text-left lg:my-24 text-primary">
     {children}
   </h1>
 );
@@ -40,9 +40,7 @@ export const OrderedList: React.FC = ({ children }) => (
 export const ListItem: React.FC = ({ children }) => <li>{children}</li>;
 
 export const Paragraph: React.FC = ({ children }) => (
-  <p className="mx-0 my-5 text-lg leading-7 text-secondary lg:text-center">
-    {children}
-  </p>
+  <p className="mx-0 my-5 text-lg leading-7 text-secondary">{children}</p>
 );
 
 export const Strong: React.FC = ({ children }) => (
