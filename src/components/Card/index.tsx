@@ -2,7 +2,6 @@ import type { ImageProps } from 'next/image';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import PortableText from '@sanity/block-content-to-react';
 
 type CardActionProps = { href: string; className?: string };
 
