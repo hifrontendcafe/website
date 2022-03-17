@@ -1,13 +1,35 @@
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-import BlockContent from '@sanity/block-content-to-react';
+import PortableText from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
 import Timezones from '@/lib/completeTimezones.json';
 
 import { Card } from '../Card';
 
+const serializers = {
+  marks: {
+    // eslint-disable-next-line react/display-name
+    link: ({ mark, children }) => {
+      const { blank, href } = mark;
+      return blank ? (
+        <a
+          href={href}
+          className="text-informational"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ) : (
+        <a className="text-informational" href={href}>
+          {children}
+        </a>
+      );
+    },
+  },
+};
 interface EventPreviewProps {
   event: Event;
   past?: boolean;
@@ -97,7 +119,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           </Card.Paragraph>
         )}
         <div className="text-secondary">
-          <BlockContent blocks={event.description} />
+          <PortableText blocks={event.description} serializers={serializers} />
         </div>
       </Card.Body>
 
