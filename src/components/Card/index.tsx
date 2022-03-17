@@ -102,33 +102,6 @@ const CardSecondaryAction: React.FC<CardActionProps> = ({
   </CardAction>
 );
 
-const serializers = {
-  marks: {
-    // eslint-disable-next-line react/display-name
-    markDefs: ({ mark, children }) => {
-      const { blank, href } = mark;
-      return blank ? (
-        <Link href={href}>
-          <a
-            href={href}
-            className="text-informational"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {children}
-          </a>
-        </Link>
-      ) : (
-        <a href={href}>{children}</a>
-      );
-    },
-  },
-};
-
-const URL = (blocks) => (
-  <PortableText blocks={blocks} serializers={serializers} />
-);
-
 Card.Header = CardHeader;
 Card.Image = CardImage;
 Card.Headline = CardHeadline;
@@ -140,4 +113,3 @@ Card.PrimaryAction = CardPrimaryAction;
 Card.SecondaryAction = CardSecondaryAction;
 
 export { Card };
-export default URL;
