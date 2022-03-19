@@ -4,13 +4,14 @@ import Link from 'next/link';
 import React from 'react';
 
 type CardActionProps = { href: string; className?: string };
+type ParagraphProps = { className?: string };
 
 type CardSubcomponents = {
   Header: React.FC;
   Image: React.FC<ImageProps>;
   Headline: React.FC;
   Title: React.FC;
-  Paragraph: React.FC;
+  Paragraph: React.FC<ParagraphProps>;
   Body: React.FC;
   Actions: React.FC;
   PrimaryAction: React.FC<CardActionProps>;
@@ -18,7 +19,7 @@ type CardSubcomponents = {
 };
 
 const Card: React.FC & CardSubcomponents = ({ children }) => (
-  <div className="flex flex-col justify-between h-full p-4 bg-zinc-800 rounded-md shadow-lg ">
+  <div className="flex flex-col justify-between h-full p-4 bg-zinc-800 rounded-md shadow-lg">
     {children}
   </div>
 );
@@ -55,9 +56,10 @@ const CardTitle: React.FC = ({ children }) => (
 
 const CardBody: React.FC = ({ children }) => <div>{children}</div>;
 
-const CardParagraph: React.FC = ({ children }) => (
-  <p className="cards-paragraph">{children}</p>
-);
+const CardParagraph: React.FC<ParagraphProps> = ({
+  children,
+  className = '',
+}) => <p className={`cards-paragraph ${className}`}>{children}</p>;
 
 const CardActions: React.FC = ({ children }) => (
   <div className="flex items-end flex-grow w-full mt-5">
