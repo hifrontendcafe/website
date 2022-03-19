@@ -108,17 +108,19 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
 
       <Card.Body>
         {!past && (
-          <Card.Paragraph>
-            {format(new Date(event.date), 'd  MMMM - HH:mm ', {
-              locale: es,
-            })}
-            hrs <br />
-            <span className="inline-block text-xs font-light text-quaternary">
+          <div className="flex flex-col">
+            <Card.Paragraph>
+              {format(new Date(event.date), 'd  MMMM - HH:mm ', {
+                locale: es,
+              })}
+              hrs
+            </Card.Paragraph>
+            <Card.Paragraph className="p-0 text-xs font-light text-quaternary">
               Horario en tu ubicación actual
-            </span>
-          </Card.Paragraph>
+            </Card.Paragraph>
+          </div>
         )}
-        <div className="text-secondary">
+        <div className="text-secondary py-2">
           <PortableText blocks={event.description} serializers={serializers} />
         </div>
       </Card.Body>
