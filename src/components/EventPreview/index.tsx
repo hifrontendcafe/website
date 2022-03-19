@@ -112,7 +112,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
             {format(new Date(event.date), 'd  MMMM - HH:mm ', {
               locale: es,
             })}
-            hrs
+            hrs <br />
             <span className="inline-block text-xs font-light text-quaternary">
               Horario en tu ubicación actual
             </span>
