@@ -109,28 +109,21 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
       </Card.SecondaryAction>
     );
   };
+  const imageUrl =
+    event.origin !== 'Discord'
+      ? imageBuilder.image(event.cover.src).url()
+      : event.cover.src;
 
   return (
     <Card>
       <Card.Header>
-        {event.origin !== 'Discord' ? (
-          <Card.Image
-            src={imageBuilder.image(event.cover.src).url()}
-            alt={event.cover.alt || event.title}
-            width={400}
-            height={200}
-            blurDataURL={`${imageBuilder.image(event.cover.src).url()}`}
-          />
-        ) : (
-          <Card.Image
-            src={event.cover.src}
-            alt={event.cover.alt || event.title}
-            width={400}
-            height={200}
-            blurDataURL={`${event.cover.src}`}
-          />
-        )}
-
+        <Card.Image
+          src={imageUrl}
+          alt={event.cover.alt || event.title}
+          width={400}
+          height={200}
+          blurDataURL={imageUrl}
+        />
         <Card.Headline>{event.category.name}</Card.Headline>
         <Card.Title>{event.title}</Card.Title>
       </Card.Header>
