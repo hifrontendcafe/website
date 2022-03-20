@@ -69,7 +69,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   const calendar = {
     title: `${event.title} - FrontendCafé`,
     description:
-      typeof event.description === 'object'
+      event.origin !== 'Discord'
         ? toPlainText(event.description).replace(/[#]+/g, '%23')
         : event.description,
     location: 'FrontendCafé Discord',
