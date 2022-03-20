@@ -46,13 +46,32 @@ function toPlainText(blocks) {
     .join('\n\n');
 }
 
+function urlToLink(url) {
+  if (!url) {
+    return '';
+  }
+  return `<a class="text-informational" href=${url}> ${url} </a>`;
+}
+
+function textPlainToHtml(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text
+    .replace(urlRegex, urlToLink) // replace url with link
+    .replace(/\n/g, '<br/>') // replace new lines with <br/>
+    .replace(/\*\*(.*)\*\*/g, '<b>$1</b>') // bold
+    .replace(/\*(.*)\*/g, '<i>$1</i>'); // italic
+}
+
 const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   const endDate = new Date(event.date);
   endDate.setHours(endDate.getHours() + 1);
 
   const calendar = {
     title: `${event.title} - FrontendCafé`,
-    description: toPlainText(event.description).replace(/[#]+/g, '%23'),
+    description:
+      typeof event.description === 'object'
+        ? toPlainText(event.description).replace(/[#]+/g, '%23')
+        : event.description,
     location: 'FrontendCafé Discord',
     startTime: new Date(event.date),
     endTime: endDate,
@@ -94,13 +113,23 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   return (
     <Card>
       <Card.Header>
-        <Card.Image
-          src={imageBuilder.image(event.cover.src).url()}
-          alt={event.cover.alt || event.title}
-          width={400}
-          height={200}
-          blurDataURL={`${imageBuilder.image(event.cover.src).url()}`}
-        />
+        {event.origin !== 'Discord' ? (
+          <Card.Image
+            src={imageBuilder.image(event.cover.src).url()}
+            alt={event.cover.alt || event.title}
+            width={400}
+            height={200}
+            blurDataURL={`${imageBuilder.image(event.cover.src).url()}`}
+          />
+        ) : (
+          <Card.Image
+            src={event.cover.src}
+            alt={event.cover.alt || event.title}
+            width={400}
+            height={200}
+            blurDataURL={`${event.cover.src}`}
+          />
+        )}
 
         <Card.Headline>{event.category.name}</Card.Headline>
         <Card.Title>{event.title}</Card.Title>
@@ -121,7 +150,18 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           </div>
         )}
         <div className="text-secondary py-2">
-          <PortableText blocks={event.description} serializers={serializers} />
+          {event.origin !== 'Discord' ? (
+            <PortableText
+              blocks={event.description}
+              serializers={serializers}
+            />
+          ) : (
+            <p
+              dangerouslySetInnerHTML={{
+                __html: textPlainToHtml(event.description),
+              }}
+            ></p>
+          )}
         </div>
       </Card.Body>
 

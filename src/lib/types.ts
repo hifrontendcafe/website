@@ -43,7 +43,10 @@ export interface Asset {
   _type: string;
 }
 
+type EventOrigin = 'Sanity' | 'Discord';
+
 export interface Event {
+  origin?: EventOrigin;
   title: string;
   slug: string;
   category: {
@@ -379,4 +382,30 @@ export interface Metadata {
   _key: string;
   property: string;
   content: string;
+}
+
+export interface DiscordEvent {
+  id: string;
+  guild_id: string;
+  channel_id: string;
+  creator_id?: string;
+  name: string;
+  description?: string;
+  scheduled_start_time: string;
+  scheduled_end_time: string;
+  privacy_level: string;
+  status: string;
+  entity_type: string;
+  entity_id: string;
+  entity_metadata: string;
+  creator: string;
+  user_count?: number;
+  image?: string;
+}
+
+export interface EventChannel {
+  id: string;
+  name: string;
+  category: string;
+  defaultImage: string;
 }

@@ -29,6 +29,7 @@ import {
   docQuery,
   eventsQuery,
   eventsQueryByType,
+  eventChannelsQuery,
   reactGroupQuery,
   settingsQuery,
   staffQuery,
@@ -44,7 +45,8 @@ import {
 } from './queries';
 
 import { createClient } from 'next-sanity';
-import { Page } from './types';
+import { Page, DiscordEvent, EventChannel } from './types';
+import { getAllDiscordEvents, getDiscordEventImageUrl } from './discord';
 
 const eventFields = `
   title,
@@ -65,8 +67,56 @@ export function getClient(preview = false): ReturnType<typeof createClient> {
   return preview ? previewClient : client;
 }
 
+function discordEventToEvent(
+  discordEvent: DiscordEvent,
+  channelEvent: EventChannel,
+): Event {
+  return {
+    origin: 'Discord',
+    title: discordEvent.name,
+    slug: createSlug(discordEvent.name),
+    category: {
+      name: channelEvent.category,
+    },
+    cover: {
+      src: discordEvent.image
+        ? getDiscordEventImageUrl(discordEvent.id, discordEvent.image)
+        : channelEvent.defaultImage,
+    },
+    date: discordEvent.scheduled_start_time,
+    description: discordEvent.description,
+  };
+}
+
+async function getDiscordEvents(preview = false): Promise<Event[]> {
+  const eventChannels = await getClient(preview).fetch(eventChannelsQuery);
+  let discordEvents = [];
+  try {
+    const response = await getAllDiscordEvents();
+    const discordEventsAllValues: DiscordEvent[] = await response.json();
+    discordEvents = discordEventsAllValues
+      .filter(
+        (event) =>
+          eventChannels.findIndex(
+            (channel) => channel.id === event.channel_id,
+          ) !== -1,
+      )
+      .map((event) => {
+        const channelEvent = eventChannels.find(
+          (eventChannel) => eventChannel.id === event.channel_id,
+        );
+        return discordEventToEvent(event, channelEvent);
+      });
+  } catch (error) {
+    console.log(error);
+  }
+  return discordEvents;
+}
+
 export async function getAllEvents(preview = false): Promise<Event[]> {
-  return await getClient(preview).fetch(eventsQuery);
+  const sanityEvents = await getClient(preview).fetch(eventsQuery);
+  const discordEvents = await getDiscordEvents(preview);
+  return [...sanityEvents, ...discordEvents];
 }
 
 export async function getSettings(preview = false): Promise<Settings> {

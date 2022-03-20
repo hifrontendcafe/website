@@ -85,6 +85,14 @@ export const eventsQueryByType = groq`
   }
 `;
 
+export const eventChannelsQuery = groq`
+  *[_type == "eventChannel"] | order(date asc) {
+    id,
+    name,
+    category,
+    'defaultImage' : defaultImage.asset->url,
+  }
+`;
 export const postQuery = groq`
   *[_type == "post" && slug.current == $slug][0]{
     name,
