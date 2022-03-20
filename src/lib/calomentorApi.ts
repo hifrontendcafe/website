@@ -13,7 +13,9 @@ export const getMentorTimeSlots = async (
   try {
     const url = `${
       process.env.NEXT_PUBLIC_CALOMENTOR_BASE_URL
-    }/time-slot/user/${id}?only_free=true${date ? '&slot_date=' + date : ''}`;
+    }/time-slot/user/${id}?only_free=true&only_future=true${
+      date ? '&slot_date=' + date : ''
+    }`;
     return await fetch(url, {
       headers: {
         'x-api-key': process.env.NEXT_PUBLIC_CALOMENTOR_API_KEY,
