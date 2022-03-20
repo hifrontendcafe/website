@@ -3,7 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/client';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo, useState } from 'react';
-import { MentorCalomentor, TimeSlot, Topic } from '../../lib/types';
+import {
+  MentorCalomentor,
+  TimeSlot,
+  Topic,
+  USER_STATUS,
+} from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 
@@ -48,7 +53,8 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots, topics }) => {
   );
 
   const sortedMentors = useMemo(
-    () => [...mentors].sort((a) => (a.is_active ? -1 : 1)),
+    () =>
+      [...mentors].sort((a) => (a.user_status === USER_STATUS.ACTIVE ? -1 : 1)),
     [mentors],
   );
 
@@ -56,8 +62,8 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, slots, topics }) => {
     const filterTopics = () => {
       const filtered = [];
       mentors.forEach((mentor) => {
-        const find = mentor.skills.filter((topic) => topic === filter);
-        if (find.length > 0) filtered.push(mentor);
+        const find = mentor.skills?.filter((topic) => topic === filter);
+        if (find?.length > 0) filtered.push(mentor);
       });
       setFilteredMentors(filtered);
     };

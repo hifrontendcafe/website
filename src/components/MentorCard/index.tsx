@@ -6,9 +6,16 @@ import {
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
+import { link } from 'fs';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
-import { MentorCalomentor, TimeSlot, Topic, UserLinks } from '../../lib/types';
+import {
+  MentorCalomentor,
+  TimeSlot,
+  Topic,
+  UserLinks,
+  USER_STATUS,
+} from '../../lib/types';
 import CalomentorModal from '../CalomentorModal';
 import TopicBadge from '../TopicBadge';
 interface MentorCardProps {
@@ -47,6 +54,9 @@ const MentorCard: React.FC<MentorCardProps> = ({
   };
 
   const renderMentorSkills = (links: UserLinks) => {
+    if (!links) {
+      return [];
+    }
     return Object.entries(links).map((link) => {
       const [type, url] = link;
       if (!url) {
@@ -71,7 +81,10 @@ const MentorCard: React.FC<MentorCardProps> = ({
         initial={{ y: 100, opacity: 0 }}
         animate={{
           y: 0,
-          opacity: mentor.is_active && slots?.length > 0 ? 1 : 0.66,
+          opacity:
+            mentor.user_status === USER_STATUS.ACTIVE && slots?.length > 0
+              ? 1
+              : 0.66,
         }}
         exit={{ y: -100, opacity: 0 }}
         className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between"
@@ -91,11 +104,13 @@ const MentorCard: React.FC<MentorCardProps> = ({
             </div>
             <div>
               <div className="mb-4">
-                {!mentor.is_active || !slots || slots?.length === 0 ? (
+                {mentor.user_status === USER_STATUS.INACTIVE ||
+                !slots ||
+                slots?.length === 0 ? (
                   <button className="capitalize cursor-not-allowed text-md btn btn-secondary">
                     No Disponible
                   </button>
-                ) : mentor.is_active && isLogged ? (
+                ) : mentor.user_status === USER_STATUS.ACTIVE && isLogged ? (
                   <button
                     onClick={() => handleContactButton()}
                     className="capitalize border text-md text-zinc-50 border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
@@ -131,10 +146,9 @@ const MentorCard: React.FC<MentorCardProps> = ({
             </div>
           </div>
           <div className="flex flex-wrap mt-4 md:justify-start">
-            {mentor.skills &&
-              mentor.skills?.map((topic) => (
-                <TopicBadge key={topic} topic={findTopicsName(topic)} />
-              ))}
+            {mentor?.skills?.map((topic) => (
+              <TopicBadge key={topic} topic={findTopicsName(topic)} />
+            ))}
           </div>
         </div>
       </motion.div>

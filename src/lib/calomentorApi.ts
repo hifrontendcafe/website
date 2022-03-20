@@ -47,7 +47,7 @@ export const getAllMentorTimeSlots = async (
 
 export const getMentorList = async (): Promise<MentorCalomentor[]> => {
   try {
-    const url = `${process.env.NEXT_PUBLIC_CALOMENTOR_BASE_URL}/user`;
+    const url = `${process.env.NEXT_PUBLIC_CALOMENTOR_BASE_URL}/user?only_in_the_program=true`;
     return await fetch(url, {
       headers: {
         'x-api-key': process.env.NEXT_PUBLIC_CALOMENTOR_API_KEY,
@@ -55,9 +55,7 @@ export const getMentorList = async (): Promise<MentorCalomentor[]> => {
     })
       .then((response) => response.json())
       .then((response: { data: MentorCalomentor[] }) => {
-        // When mentor status is implemented, this will no longer be required.
-        const mentors = response.data.filter((mentor) => mentor.is_active);
-        return mentors;
+        return response.data;
       });
   } catch (error) {
     console.log('err', error);

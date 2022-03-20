@@ -361,6 +361,12 @@ export interface UserLinks {
   linkedin: string;
   portfolio: string;
 }
+
+export enum USER_STATUS {
+  ACTIVE = 'ACTIVE',
+  INACTIVE = 'INACTIVE',
+  OUTSIDE_THE_PROGRAM = 'OUTSIDE_THE_PROGRAM',
+}
 export interface MentorCalomentor {
   id: string;
   discord_username?: string;
@@ -371,10 +377,11 @@ export interface MentorCalomentor {
   role?: Role[];
   links?: UserLinks;
   skills?: string[];
-  is_active: boolean;
-  last_activated_by: string;
-  user_timezone?: string;
+  user_status: USER_STATUS;
+  modified_by: string;
+  user_timezone: string;
   user_token: string;
+  accepted_coc: boolean;
 }
 
 export interface Mentorship {
