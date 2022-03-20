@@ -125,7 +125,7 @@ const CalomentorModal: React.FC<ModalProps> = ({
     try {
       const mentorship = await createMentorship(body);
       setLoading(false);
-      if (mentorship.code !== '100') {
+      if (mentorship.data.code !== '100') {
         return setErrorCreate(true);
       }
       setSuccess(true);

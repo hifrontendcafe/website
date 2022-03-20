@@ -396,7 +396,11 @@ export interface Mentorship {
 }
 
 export interface MentorshipResponse {
-  code: string;
+  data: {
+    code: string;
+    executionArn: string;
+    startDate: Date;
+  };
   message: string;
   error?: unknown;
 }
