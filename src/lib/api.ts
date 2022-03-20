@@ -94,21 +94,17 @@ async function getDiscordEvents(preview = false): Promise<Event[]> {
   try {
     const response = await getAllDiscordEvents();
     const discordEventsAllValues: DiscordEvent[] = await response.json();
-    discordEvents = discordEventsAllValues
-      .filter(
-        (event) =>
-          eventChannels.findIndex(
-            (channel) => channel.id === event.channel_id,
-          ) !== -1,
-      )
-      .map((event) => {
-        const channelEvent = eventChannels.find(
-          (eventChannel) => eventChannel.id === event.channel_id,
-        );
-        return discordEventToEvent(event, channelEvent);
-      });
+    discordEvents = discordEventsAllValues.reduce((result, discordEvent) => {
+      const channelEvent = eventChannels.find(
+        (channel) => channel.id === discordEvent.channel_id,
+      );
+      if (channelEvent) {
+        result.push(discordEventToEvent(discordEvent, channelEvent));
+      }
+      return result;
+    }, [] as Event[]);
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
   return discordEvents;
 }
