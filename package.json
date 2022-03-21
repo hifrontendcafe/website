@@ -43,6 +43,7 @@
     "react-hook-form": "^7.12.2",
     "react-hotjar": "^5.0.0",
     "react-image-file-resizer": "^0.4.7",
+    "react-markdown": "^8.0.1",
     "react-multi-carousel": "^2.6.1",
     "react-scripts": "^4.0.3",
     "react-select": "^4.3.1",
