@@ -51,10 +51,10 @@ const Modal: React.FC<ModalProps> = ({
                     {title}
                   </h3>
                   <button
-                    className="float-right p-1 ml-auto text-3xl font-semibold leading-none bg-transparent border-0 outline-none text-zinc-50 opacity-5 focus:outline-none"
+                    className="float-right p-1 ml-auto text-3xl font-semibold leading-none bg-transparent border-0 outline-none text-primary opacity-5 focus:outline-none"
                     onClick={close}
                   >
-                    <span className="z-50 block w-6 h-6 text-2xl bg-transparent outline-none text-zinc-50 opacity-5 focus:outline-none">
+                    <span className="z-50 block w-6 h-6 text-2xl bg-transparent outline-none text-primary opacity-5 focus:outline-none">
                       ×
                     </span>
                   </button>

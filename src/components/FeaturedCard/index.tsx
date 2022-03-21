@@ -28,7 +28,7 @@ const Card = ({ card, href, onClick }: FeaturedCardsItemProps, ref) => {
       <div className="relative flex flex-col items-start justify-between">
         <div className="items-start">
           <h1 className="cards-title">{card.title}</h1>
-          <p className="pt-5 pb-8 text-zinc-200 lg:text-lg">
+          <p className="pt-5 pb-8 text-secondary lg:text-lg">
             {card.description}
           </p>
         </div>

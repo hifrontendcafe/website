@@ -26,7 +26,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
             alt={profile.person.firstName}
           />
         </div>
-        <div className="flex flex-col justify-between grow text-zinc-50">
+        <div className="flex flex-col justify-between grow text-primary">
           <div className="grow">
             <h2 className="mt-2 text-xl font-bold">
               {profile.person.firstName}
@@ -61,7 +61,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
               {profile.technologies?.map((tech) => (
                 <span
                   key={tech.name}
-                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all bg-zinc-900 rounded-md text-zinc-50"
+                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all bg-zinc-900 rounded-md text-primary"
                 >
                   {tech.name}
                 </span>

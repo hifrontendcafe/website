@@ -9,10 +9,10 @@ type FAQSProps = {
 const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
   return (
     <Layout title="FAQS" preview={preview}>
-      <section className="text-zinc-50">
+      <section className="text-primary">
         <div className="px-5 py-24">
           <div className="mb-20 text-center">
-            <h1 className="mb-4 text-2xl font-medium sm:text-3xl text-zinc-50">
+            <h1 className="mb-4 text-2xl font-medium sm:text-3xl text-primary">
               Preguntas frecuentes
             </h1>
           </div>
@@ -60,7 +60,13 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                   hablar en inglés en público, mejorar la comunicación en inglés
                   partiendo desde el propio nivel, divertirnos, y conectarnos.
                   Puedes mirar cuando serán los próximos eventos en nuestra{' '}
-                  <a href="https://frontend.cafe/eventos"> agenda</a>
+                  <a
+                    href="https://frontend.cafe/eventos"
+                    className="text-informational"
+                  >
+                    agenda
+                  </a>
+                  .
                 </p>
               </details>
             </div>
@@ -70,8 +76,8 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                   ¿Cuándo son los eventos de inglés?
                 </summary>
                 <p className="p-4">
-                  Los eventos de inglés son los días martes a las 17 hs Colombia
-                  y Perú (GMT-5), 18 hs Venezuela (GMT-4) y 19 hs Argentina
+                  Los eventos de inglés son los días jueves a las 18 hs Colombia
+                  y Perú (GMT-5), 19 hs Venezuela (GMT-4) y 20 hs Argentina
                   (GTM-3)
                 </p>
               </details>
@@ -82,8 +88,8 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                 </summary>
                 <p className="p-4">
                   No es necesario ningún nivel. Solo tener ganas de participar.
-                  Es muy importante que puedas abrir el micrófono y te animes a
-                  hablar.
+                  Es muy importante que puedas activar el micrófono y te animes
+                  a hablar.
                 </p>
               </details>
               <details className="mb-4">
@@ -103,8 +109,11 @@ const Faqs: React.FC<FAQSProps> = ({ preview = false }) => {
                   ¿Cómo me anoto a la mentorías?
                 </summary>
                 <p className="p-4">
-                  Puedes hacerlo directamente en
-                  <a href="https://frontend.cafe/mentorias">
+                  Puedes hacerlo directamente en{' '}
+                  <a
+                    href="https://frontend.cafe/mentorias"
+                    className="text-informational"
+                  >
                     la página de mentorías
                   </a>
                   , ahí coordinarás fecha y hora según los calendarios de los

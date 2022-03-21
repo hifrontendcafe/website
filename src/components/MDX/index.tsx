@@ -3,7 +3,7 @@ interface LinkProps {
 }
 
 export const Heading1: React.FC = ({ children }) => (
-  <h1 className="my-10 text-5xl font-bold text-center lg:my-24 text-primary">
+  <h1 className="my-10 text-4xl lg:text-5xl font-bold lg:text-center text-left lg:my-24 text-primary">
     {children}
   </h1>
 );

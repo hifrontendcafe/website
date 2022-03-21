@@ -15,7 +15,7 @@ export default function Custom404(): ReactElement {
         alt="Broken heart"
         placeholder="blur"
       />
-      <h1 className="my-3 text-zinc-50 subtitle">404 - Page Not Found</h1>
+      <h1 className="my-3 text-primary subtitle">404 - Page Not Found</h1>
     </div>
   );
 }

@@ -53,7 +53,7 @@ html {
   }
 
   .btn-secondary {
-    @apply border text-zinc-50;
+    @apply border text-primary;
   }
 
   .btn-secondary:hover {
@@ -61,7 +61,7 @@ html {
   }
 
   .btn-border {
-    @apply border text-zinc-50;
+    @apply border text-primary;
   }
 
   .btn-border:hover {
@@ -89,7 +89,7 @@ html {
   }
 
   .cards-paragraph {
-    @apply text-sm font-light text-zinc-200 md:text-base lg:text-lg;
+    @apply text-sm font-light text-secondary md:text-base lg:text-lg;
   }
 
   .title-colorful {
@@ -101,7 +101,7 @@ html {
   }
 
   .input {
-    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-coolGrayDark text-zinc-200 border-zinc-600;
+    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-coolGrayDark text-secondary border-zinc-600;
   }
 }
 
@@ -115,11 +115,11 @@ html {
 }
 
 .filter-selector .react-select__menu {
-  @apply border bg-zinc-900 border-zinc-500 text-zinc-50;
+  @apply border bg-zinc-900 border-zinc-500 text-primary;
 }
 
 .filter-selector .react-select__control {
-  @apply bg-zinc-900 border-zinc-500 text-zinc-300;
+  @apply bg-zinc-900 border-zinc-500 text-tertiary;
 }
 
 .filter-selector .react-select__option--is-focused {
@@ -127,7 +127,7 @@ html {
 }
 
 .filter-selector .react-select__control .react-select__indicator {
-  /* @apply text-zinc-500; */
+  /* @apply text-primary0; */
 }
 
 .filter-selector .react-select__value-container .react-select__placeholder {
@@ -145,11 +145,11 @@ html {
 }
 
 .form-user .react-select__menu {
-  @apply border bg-coolGrayDark border-zinc-700 text-zinc-50;
+  @apply border bg-coolGrayDark border-zinc-700 text-primary;
 }
 
 .form-user .react-select__control {
-  @apply bg-coolGrayDark border-zinc-700 text-zinc-300;
+  @apply bg-coolGrayDark border-zinc-700 text-tertiary;
 }
 
 .form-user .react-select__option--is-focused {
@@ -157,7 +157,7 @@ html {
 }
 
 .form-user .react-select__control .react-select__indicator {
-  /* @apply text-zinc-500; */
+  /* @apply text-primary0; */
 }
 
 .form-user .react-select__value-container .react-select__placeholder {

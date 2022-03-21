@@ -1,13 +1,35 @@
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-import BlockContent from '@sanity/block-content-to-react';
+import PortableText from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
 import Timezones from '@/lib/completeTimezones.json';
 
 import { Card } from '../Card';
 
+const serializers = {
+  marks: {
+    // eslint-disable-next-line react/display-name
+    link: ({ mark, children }) => {
+      const { blank, href } = mark;
+      return blank ? (
+        <a
+          href={href}
+          className="text-informational"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ) : (
+        <a className="text-informational" href={href}>
+          {children}
+        </a>
+      );
+    },
+  },
+};
 interface EventPreviewProps {
   event: Event;
   past?: boolean;
@@ -86,18 +108,20 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
 
       <Card.Body>
         {!past && (
-          <Card.Paragraph>
-            {format(new Date(event.date), 'd  MMMM - HH:mm ', {
-              locale: es,
-            })}
-            hrs
-            <span className="inline-block text-xs font-light text-quaternary">
+          <div className="flex flex-col">
+            <Card.Paragraph>
+              {format(new Date(event.date), 'd  MMMM - HH:mm ', {
+                locale: es,
+              })}
+              hrs
+            </Card.Paragraph>
+            <Card.Paragraph className="p-0 text-xs font-light text-quaternary">
               Horario en tu ubicación actual
-            </span>
-          </Card.Paragraph>
+            </Card.Paragraph>
+          </div>
         )}
-        <div className="text-secondary">
-          <BlockContent blocks={event.description} />
+        <div className="text-secondary py-2">
+          <PortableText blocks={event.description} serializers={serializers} />
         </div>
       </Card.Body>
 

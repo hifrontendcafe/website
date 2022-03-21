@@ -6,7 +6,6 @@ import {
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import { link } from 'fs';
 import Link from 'next/link';
 import { useMemo, useState } from 'react';
 import {
@@ -110,20 +109,17 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   <button className="capitalize cursor-not-allowed text-md btn btn-secondary">
                     No Disponible
                   </button>
-                ) : mentor.user_status === USER_STATUS.ACTIVE && isLogged ? (
-                  <button
-                    onClick={() => handleContactButton()}
-                    className="capitalize border text-md text-zinc-50 border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
-                  >
-                    Solicitar mentoría
-                  </button>
                 ) : (
-                  <button
-                    onClick={() => openModal()}
-                    className="capitalize border text-md text-zinc-50 border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
-                  >
-                    Solicitar mentoría
-                  </button>
+                  mentor.user_status === USER_STATUS.ACTIVE && (
+                    <button
+                      onClick={() => {
+                        isLogged ? handleContactButton() : openModal();
+                      }}
+                      className="capitalize border text-md text-zinc-50 border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
+                    >
+                      Solicitar mentoría
+                    </button>
+                  )
                 )}
               </div>
               <div className="flex mt-2 place-content-end">

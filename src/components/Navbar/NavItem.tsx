@@ -18,9 +18,9 @@ const Anchor = (
       <button
         className={
           (isActive
-            ? 'text-zinc-50 lg:border-b-2 pb-2 border-greenFec'
-            : 'text-zinc-200') +
-          ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-zinc-50'
+            ? 'text-primary lg:border-b-2 pb-2 border-greenFec'
+            : 'text-secondary') +
+          ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-primary'
         }
         onClick={onClick}
       >
@@ -33,9 +33,9 @@ const Anchor = (
     <a
       className={
         (isActive
-          ? 'text-zinc-50 lg:border-b-2 pb-2 border-greenFec'
-          : 'text-zinc-200') +
-        ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-zinc-50'
+          ? 'text-primary lg:border-b-2 pb-2 border-greenFec'
+          : 'text-secondary') +
+        ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-primary'
       }
       onClick={onClick}
       href={href}
@@ -61,7 +61,7 @@ const NavItem: React.FC<NavItemProps> = ({ title, link, pathname }) => {
   const isActive = pathname === `/${link}`;
 
   return (
-    <Link href={`/${link}`} passHref>
+    <Link href={link} passHref>
       <ForwardedAnchor type="a" isActive={isActive}>
         {title}
       </ForwardedAnchor>
