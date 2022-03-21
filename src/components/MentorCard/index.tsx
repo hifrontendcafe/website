@@ -65,7 +65,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
         <Link href={url} key={type}>
           <a
             target="_blank"
-            className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-zinc-50 bg-zinc-700"
+            className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
           >
             <FontAwesomeIcon className="w-4 h-4" icon={iconsLinks[type]} />
           </a>
@@ -115,7 +115,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                       onClick={() => {
                         isLogged ? handleContactButton() : openModal();
                       }}
-                      className="capitalize border text-md text-zinc-50 border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
+                      className="capitalize border text-md text-primary border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
                     >
                       Solicitar mentoría
                     </button>
@@ -129,7 +129,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
           </div>
         </div>
         <div>
-          <h2 className="mb-2 text-xl font-bold text-zinc-50">
+          <h2 className="mb-2 text-xl font-bold text-primary">
             {mentor.full_name}
           </h2>
         </div>
