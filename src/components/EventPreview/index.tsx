@@ -2,6 +2,8 @@ import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
 import PortableText from '@sanity/block-content-to-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
 import Timezones from '@/lib/completeTimezones.json';
@@ -46,20 +48,17 @@ function toPlainText(blocks) {
     .join('\n\n');
 }
 
-function urlToLink(url) {
-  if (!url) {
-    return '';
-  }
-  return `<a class="text-informational" href=${url}> ${url} </a>`;
-}
-
-function textPlainToHtml(text) {
-  const urlRegex = /(https?:\/\/[^\s]+)/g;
-  return text
-    .replace(urlRegex, urlToLink) // replace url with link
-    .replace(/\n/g, '<br/>') // replace new lines with <br/>
-    .replace(/\*\*(.*)\*\*/g, '<b>$1</b>') // bold
-    .replace(/\*(.*)\*/g, '<i>$1</i>'); // italic
+function LinkRenderer(props) {
+  return (
+    <a
+      href={props.href}
+      target="_blank"
+      rel="noreferrer"
+      className="text-informational"
+    >
+      {props.children}
+    </a>
+  );
 }
 
 const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
@@ -149,11 +148,12 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
               serializers={serializers}
             />
           ) : (
-            <p
-              dangerouslySetInnerHTML={{
-                __html: textPlainToHtml(event.description),
-              }}
-            ></p>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{ a: LinkRenderer }}
+            >
+              {event.description}
+            </ReactMarkdown>
           )}
         </div>
       </Card.Body>
