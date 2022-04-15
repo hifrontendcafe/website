@@ -75,7 +75,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         | (Profile & { error: false })
         | { error: true };
       if (user.error === false) {
-        setSelectedTechnologies([]);
+        setSelectedTechnologies(user.technologies);
         setPhoto(user.person.photo);
         setUserId(user._id);
         setValue('email', user.person.email);
@@ -161,7 +161,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         description="Encontrá los perfiles dentro de FEC"
         preview={preview}
       >
-        <div className="py-32 my-20 text-2xl text-center bg-zinc-800 rounded-lg shadow text-zinc-100">
+        <div className="py-32 my-20 text-2xl text-center rounded-lg shadow bg-zinc-800 text-zinc-100">
           Cargando sesión...
         </div>
       </Layout>
@@ -180,7 +180,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         Tu perfil será visible en la sección Talentos, diseñada para que recruiters y empresas puedan identificar talentos de nuestra comunidad"
       />
 
-      <div className="overflow-hidden bg-zinc-900 border-2 border-zinc-600 rounded-lg shadow">
+      <div className="overflow-hidden border-2 rounded-lg shadow bg-zinc-900 border-zinc-600">
         {message.text && (
           <div
             className={`text-center text-primary rounded p-4 m-4 ${
@@ -197,7 +197,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
             ) : (
               <form
                 onSubmit={handleSubmit(onSubmit, onError)}
-                className="w-full p-6 bg-zinc-900 rounded sm:px-8 sm:pt-6 sm:pb-8"
+                className="w-full p-6 rounded bg-zinc-900 sm:px-8 sm:pt-6 sm:pb-8"
                 noValidate
               >
                 <div className="flex flex-col grid-cols-2 gap-5 md:grid">
@@ -423,11 +423,12 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                       className="w-full bg-transparent form-user"
                       instanceId="technologies-selector"
                       isMulti
-                      isDisabled
                       placeholder=""
                       value={selectedTechnologies}
                       onChange={handleTechnologies}
                       isValidNewOption={isValidNewOption}
+                      getOptionLabel={(option) => option.name}
+                      getOptionValue={(option) => option._id}
                       options={
                         selectedTechnologies.length === 5 ? [] : technologies
                       }
@@ -456,7 +457,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 </div>
                 <div className="flex items-center mb-4">
                   <input
-                    className="mr-2 text-sm leading-tight text-secondary border rounded focus:outline-none focus:ring"
+                    className="mr-2 text-sm leading-tight border rounded text-secondary focus:outline-none focus:ring"
                     {...register('available')}
                     type="checkbox"
                   />

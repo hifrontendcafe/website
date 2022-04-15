@@ -2,6 +2,20 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 import { postClient } from '@/lib/sanity';
 import { getPerson } from '@/lib/api';
+import { profileQuery } from '@/lib/queries';
+import { Profile } from '@/lib/types';
+
+function isValidHttpUrl(string) {
+  let url: URL;
+
+  try {
+    url = new URL(string);
+  } catch (_) {
+    return false;
+  }
+
+  return url.protocol === 'http:' || url.protocol === 'https:';
+}
 
 export default async function handle(
   req: NextApiRequest,
@@ -10,7 +24,6 @@ export default async function handle(
   if (req.method === 'POST') {
     const {
       name,
-      id,
       email,
       discord,
       discordId,
@@ -21,6 +34,7 @@ export default async function handle(
       location,
       photo,
       seniorityId,
+      technologies: selectedTechnologies,
       roleId,
       available,
       description,
@@ -31,10 +45,19 @@ export default async function handle(
     // }));
 
     const person = await getPerson(discordId);
+    const profile = await postClient.fetch<Profile>(profileQuery, {
+      id: discordId,
+    });
+
+    const technologies = selectedTechnologies.map((tech: { _id: string }) => ({
+      _type: 'reference',
+      _ref: tech._id,
+      _key: tech._id,
+    }));
 
     let photoObj = {};
 
-    if (photo) {
+    if (photo && !isValidHttpUrl(photo)) {
       const photoBlob = Buffer.from(photo.split(';base64,')[1], 'base64');
 
       const asset = await postClient.assets.upload('image', photoBlob);
@@ -48,7 +71,7 @@ export default async function handle(
       };
     } else photoObj = undefined;
 
-    if (id) {
+    if (profile._id) {
       const transaction = postClient.transaction();
 
       transaction.patch(person._id, {
@@ -64,7 +87,7 @@ export default async function handle(
         },
       });
 
-      transaction.patch(id, {
+      transaction.patch(profile._id, {
         set: {
           isAvailable: available,
           location,
@@ -78,10 +101,15 @@ export default async function handle(
             _type: 'reference',
             _ref: roleId,
           },
+          technologies,
         },
       });
 
-      await transaction.commit();
+      await transaction.commit({ autoGenerateArrayKeys: true });
+
+      res.json({});
+
+      return;
     }
 
     if (person._id) {
@@ -118,9 +146,10 @@ export default async function handle(
           _type: 'reference',
           _ref: person._id,
         },
+        technologies,
       });
 
-      await transaction.commit();
+      await transaction.commit({ autoGenerateArrayKeys: true });
       res.json({});
 
       return;
@@ -142,25 +171,29 @@ export default async function handle(
       photo: photoObj,
     });
 
-    await postClient.create({
-      _type: 'profile',
-      isAvailable: available,
-      location,
-      isActive: true,
-      description,
-      seniority: {
-        _type: 'reference',
-        _ref: seniorityId,
+    await postClient.create(
+      {
+        _type: 'profile',
+        isAvailable: available,
+        location,
+        isActive: true,
+        description,
+        seniority: {
+          _type: 'reference',
+          _ref: seniorityId,
+        },
+        role: {
+          _type: 'reference',
+          _ref: roleId,
+        },
+        person: {
+          _type: 'reference',
+          _ref: newPerson._id,
+        },
+        technologies,
       },
-      role: {
-        _type: 'reference',
-        _ref: roleId,
-      },
-      person: {
-        _type: 'reference',
-        _ref: newPerson._id,
-      },
-    });
+      { autoGenerateArrayKeys: true },
+    );
 
     res.json({});
   }

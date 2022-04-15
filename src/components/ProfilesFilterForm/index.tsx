@@ -121,7 +121,6 @@ const FilterForm: React.FC<FormProps> = ({
         <Select
           instanceId="technologies-selector"
           isMulti
-          isDisabled
           classNamePrefix="react-select"
           className="w-full bg-transparent bg-zinc-900 filter-selector bg"
           placeholder="Selecciona tecnologías"

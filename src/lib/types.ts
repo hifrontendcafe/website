@@ -342,6 +342,7 @@ export interface Profile {
   description: string;
   isAvailable: boolean;
   location: string;
+  technologies: Technology[];
   person: {
     _id: string;
     discord: string;
