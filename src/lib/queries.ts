@@ -257,7 +257,11 @@ export const profilesProjections = `
      "photo": photo.asset->url,
      portfolio,
      twitter,
-     username
+     username,
+   },
+   technologies []-> {
+    _id,
+    name
    },
    seniority-> {
      _id,

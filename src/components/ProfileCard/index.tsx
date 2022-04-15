@@ -15,7 +15,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full pb-4 bg-zinc-800 rounded-lg shadow-lg">
+    <div className="flex flex-col justify-between w-full pb-4 rounded-lg shadow-lg bg-zinc-800">
       <div className="px-3 pt-3 md:pt-6 md:px-6">
         <div className="space-x-3 items-top">
           <img
@@ -49,26 +49,26 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="mt-4 mb-2 text-sm leading-tight text-zinc-100 whitespace-pre-line">
+          <div className="mt-4 mb-2 text-sm leading-tight whitespace-pre-line text-zinc-100">
             {profile.description}
           </div>
         </div>
       </div>
       <div>
-        {/* <div className="px-3 md:px-6">
+        <div className="px-3 md:px-6">
           {profile.technologies?.length > 0 && (
             <div className="flex flex-wrap items-center justify-start">
               {profile.technologies?.map((tech) => (
                 <span
-                  key={tech.name}
-                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all bg-zinc-900 rounded-md text-primary"
+                  key={tech._id}
+                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all rounded-md bg-zinc-900 text-primary"
                 >
                   {tech.name}
                 </span>
               ))}
             </div>
           )}
-        </div> */}
+        </div>
         {profile.isAvailable && (
           <div className="w-full py-1 mt-4 text-sm font-semibold text-center text-zinc-900 bg-greenFec">
             En búsqueda activa
