@@ -54,6 +54,7 @@ export interface Event {
     alt?: string;
   };
   date: string;
+  endDate?: string;
   description: string;
   recording?: string;
 }
