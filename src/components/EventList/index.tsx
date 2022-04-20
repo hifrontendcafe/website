@@ -27,9 +27,9 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
       const res = await fetch(
         `https://restcountries.com/v3.1/name/${ip.country_name.toLowerCase()}`,
       );
-      const country: Array<{ flag: string }> = await res.json();
+      const country: Array<{ flags: { svg: string } }> = await res.json();
 
-      setFlag(country[0].flag);
+      setFlag(country[0].flags.svg);
     }
   }, []);
 
