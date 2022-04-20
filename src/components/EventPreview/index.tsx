@@ -128,7 +128,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({
             <div className="flex items-center space-x-2">
               <Card.Paragraph className="text-sm">
                 {formatEventDate(event.date)}hrs
-                {true && ` / ${formatEventDate(endDate)}hrs`}
+                {event.endDate && ` / ${formatEventDate(endDate)}hrs`}
               </Card.Paragraph>
 
               {flag && (
