@@ -38,6 +38,10 @@ interface EventPreviewProps {
   flag?: string;
 }
 
+const formatEventDate = (date: string) => {
+  return format(new Date(date), 'd  MMMM HH:mm ', { locale: es });
+};
+
 function toPlainText(blocks) {
   return blocks
     ?.map((block) => {
@@ -123,15 +127,8 @@ const EventPreview: React.FC<EventPreviewProps> = ({
           <div className="flex flex-col">
             <div className="flex items-center space-x-2">
               <Card.Paragraph className="text-sm">
-                {format(new Date(event.date), 'd  MMMM HH:mm ', {
-                  locale: es,
-                })}
-                hrs
-                {event.endDate &&
-                  ` / ${format(new Date(endDate), 'd  MMMM HH:mm ', {
-                    locale: es,
-                  })}
-                  hrs`}
+                {formatEventDate(event.date)}hrs
+                {event.endDate && ` / ${formatEventDate(event.endDate)}hrs`}
               </Card.Paragraph>
 
               {flag && (

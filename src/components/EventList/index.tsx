@@ -1,8 +1,8 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { isPast } from 'date-fns';
 import { Event } from '../../lib/types';
 import EventPreview from '../EventPreview';
-
+import { getUserCountry } from '@/lib/country';
 interface EventListProps {
   events: Event[];
 }
@@ -18,24 +18,9 @@ const pastEvents = (events: Event[]) =>
 const EventList: React.FC<EventListProps> = ({ events }) => {
   const [flag, setFlag] = useState('');
 
-  const getUserFlag = useCallback(async () => {
-    const res = await fetch('https://ipapi.co/json/');
-
-    const ip: { country_name: string } = await res.json();
-
-    {
-      const res = await fetch(
-        `https://restcountries.com/v3.1/name/${ip.country_name.toLowerCase()}`,
-      );
-      const country: Array<{ flags: { svg: string } }> = await res.json();
-
-      setFlag(country[0].flags.svg);
-    }
-  }, []);
-
   useEffect(() => {
-    getUserFlag();
-  }, [getUserFlag]);
+    getUserCountry().then((country) => setFlag(country.flags.svg));
+  }, []);
 
   return (
     <section id="events" className="relative body-font">
