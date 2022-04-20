@@ -61,6 +61,7 @@ export const eventsQuery = groq`
       'src': cover.asset->url
     },
     date,
+    endDate,
     tags,
     recording,
     description
@@ -79,6 +80,7 @@ export const eventsQueryByType = groq`
       'src': cover.asset->url
     },
     date,
+    endDate,
     tags,
     recording,
     description

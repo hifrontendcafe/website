@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
@@ -47,8 +48,13 @@ function toPlainText(blocks) {
 }
 
 const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
-  const endDate = new Date(event.date);
-  endDate.setHours(endDate.getHours() + 1);
+  const endDate = useMemo(() => {
+    const date = event.endDate ? new Date(event.endDate) : new Date(event.date);
+
+    if (!event.endDate) date.setHours(date.getHours() + 1);
+
+    return date;
+  }, [event.endDate, event.date]);
 
   const calendar = {
     title: `${event.title} - FrontendCafé`,
@@ -109,18 +115,31 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
       <Card.Body>
         {!past && (
           <div className="flex flex-col">
-            <Card.Paragraph>
-              {format(new Date(event.date), 'd  MMMM - HH:mm ', {
-                locale: es,
-              })}
-              hrs
+            <Card.Paragraph className="flex items-center justify-between text-sm">
+              <span>
+                {format(new Date(event.date), 'd  MMMM HH:mm ', {
+                  locale: es,
+                })}
+                hrs
+              </span>
+
+              {event.endDate && <span>-</span>}
+
+              {event.endDate && (
+                <span>
+                  {format(new Date(endDate), 'd  MMMM HH:mm ', {
+                    locale: es,
+                  })}
+                  hrs
+                </span>
+              )}
             </Card.Paragraph>
             <Card.Paragraph className="p-0 text-xs font-light text-quaternary">
               Horario en tu ubicación actual
             </Card.Paragraph>
           </div>
         )}
-        <div className="text-secondary py-2">
+        <div className="py-2 text-secondary">
           <PortableText blocks={event.description} serializers={serializers} />
         </div>
       </Card.Body>
