@@ -1,3 +1,4 @@
+import { useState, useCallback, useEffect } from 'react';
 import { isPast } from 'date-fns';
 import { Event } from '../../lib/types';
 import EventPreview from '../EventPreview';
@@ -15,6 +16,27 @@ const pastEvents = (events: Event[]) =>
   events.filter((event) => isPast(new Date(event.date)));
 
 const EventList: React.FC<EventListProps> = ({ events }) => {
+  const [flag, setFlag] = useState('');
+
+  const getUserFlag = useCallback(async () => {
+    const res = await fetch('https://ipapi.co/json/');
+
+    const ip: { country_name: string } = await res.json();
+
+    {
+      const res = await fetch(
+        `https://restcountries.com/v3.1/name/${ip.country_name.toLowerCase()}`,
+      );
+      const country: Array<{ flag: string }> = await res.json();
+
+      setFlag(country[0].flag);
+    }
+  }, []);
+
+  useEffect(() => {
+    getUserFlag();
+  }, [getUserFlag]);
+
   return (
     <section id="events" className="relative body-font">
       {futureEvents(events).length > 0 && (
@@ -22,7 +44,7 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
           <h1 className="mb-10 subtitle">Próximos eventos</h1>
           <div className="grid gap-8 mb-16 md:grid-cols-2 lg:grid-cols-3">
             {futureEvents(events)?.map((event) => (
-              <EventPreview key={event.slug} event={event} />
+              <EventPreview flag={flag} key={event.slug} event={event} />
             ))}
           </div>
         </>
@@ -32,7 +54,12 @@ const EventList: React.FC<EventListProps> = ({ events }) => {
         {pastEvents(events)?.map(
           (event) =>
             event.recording && (
-              <EventPreview key={event.slug} event={event} past={true} />
+              <EventPreview
+                flag={flag}
+                key={event.slug}
+                event={event}
+                past={true}
+              />
             ),
         )}
       </div>

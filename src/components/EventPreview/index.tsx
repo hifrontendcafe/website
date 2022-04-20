@@ -34,6 +34,7 @@ const serializers = {
 interface EventPreviewProps {
   event: Event;
   past?: boolean;
+  flag?: string;
 }
 
 function toPlainText(blocks) {
@@ -47,7 +48,11 @@ function toPlainText(blocks) {
     .join('\n\n');
 }
 
-const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
+const EventPreview: React.FC<EventPreviewProps> = ({
+  event,
+  past = false,
+  flag,
+}) => {
   const endDate = useMemo(() => {
     const date = event.endDate ? new Date(event.endDate) : new Date(event.date);
 
@@ -121,6 +126,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
                   locale: es,
                 })}
                 hrs
+                {` ${flag}`}
               </span>
 
               {event.endDate && <span>-</span>}
@@ -131,11 +137,12 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
                     locale: es,
                   })}
                   hrs
+                  {` ${flag}`}
                 </span>
               )}
             </Card.Paragraph>
             <Card.Paragraph className="p-0 text-xs font-light text-quaternary">
-              Horario en tu ubicación actual
+              {!flag && 'Horario en tu ubicación actual'}
             </Card.Paragraph>
           </div>
         )}
