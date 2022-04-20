@@ -40,7 +40,7 @@ module.exports = {
 
     extend: {
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['Rubik', 'sans-serif'],
         title: ['Lexend Deca', 'sans-serif'],
       },
       fontSize: {
