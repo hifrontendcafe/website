@@ -38,7 +38,7 @@ interface EventPreviewProps {
   flag?: string;
 }
 
-const formatEventDate = (date: string) => {
+const formatEventDate = (date: string | Date) => {
   return format(new Date(date), 'd  MMMM HH:mm ', { locale: es });
 };
 
@@ -128,7 +128,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({
             <div className="flex items-center space-x-2">
               <Card.Paragraph className="text-sm">
                 {formatEventDate(event.date)}hrs
-                {event.endDate && ` / ${formatEventDate(event.endDate)}hrs`}
+                {true && ` / ${formatEventDate(endDate)}hrs`}
               </Card.Paragraph>
 
               {flag && (
