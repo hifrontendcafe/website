@@ -1,4 +1,4 @@
-import { GetStaticProps } from 'next';
+import type { GetStaticProps } from 'next';
 
 import Layout from '../components/Layout';
 import EventList from '../components/EventList';

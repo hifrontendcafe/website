@@ -6,6 +6,7 @@ import PortableText from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
 import Timezones from '@/lib/completeTimezones.json';
+import Image from 'next/image';
 
 import { Card } from '../Card';
 
@@ -34,7 +35,12 @@ const serializers = {
 interface EventPreviewProps {
   event: Event;
   past?: boolean;
+  flag?: string;
 }
+
+const formatEventDate = (date: string | Date) => {
+  return format(new Date(date), 'd  MMMM HH:mm ', { locale: es });
+};
 
 function toPlainText(blocks) {
   return blocks
@@ -47,7 +53,11 @@ function toPlainText(blocks) {
     .join('\n\n');
 }
 
-const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
+const EventPreview: React.FC<EventPreviewProps> = ({
+  event,
+  past = false,
+  flag,
+}) => {
   const endDate = useMemo(() => {
     const date = event.endDate ? new Date(event.endDate) : new Date(event.date);
 
@@ -115,27 +125,27 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
       <Card.Body>
         {!past && (
           <div className="flex flex-col">
-            <Card.Paragraph className="flex items-center justify-between text-sm">
-              <span>
-                {format(new Date(event.date), 'd  MMMM HH:mm ', {
-                  locale: es,
-                })}
-                hrs
-              </span>
+            <div className="flex items-center space-x-2">
+              <Card.Paragraph className="text-sm">
+                {formatEventDate(event.date)}hrs
+                {event.endDate && ` / ${formatEventDate(endDate)}hrs`}
+              </Card.Paragraph>
 
-              {event.endDate && <span>-</span>}
-
-              {event.endDate && (
-                <span>
-                  {format(new Date(endDate), 'd  MMMM HH:mm ', {
-                    locale: es,
-                  })}
-                  hrs
-                </span>
+              {flag && (
+                <div className="flex items-center justify-center">
+                  <Image
+                    className="rounded-full"
+                    src={flag}
+                    height="15"
+                    objectFit="cover"
+                    width="15"
+                    alt={flag}
+                  />
+                </div>
               )}
-            </Card.Paragraph>
+            </div>
             <Card.Paragraph className="p-0 text-xs font-light text-quaternary">
-              Horario en tu ubicación actual
+              {!flag && 'Horario en tu ubicación actual'}
             </Card.Paragraph>
           </div>
         )}
