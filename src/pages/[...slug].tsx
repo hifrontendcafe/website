@@ -29,13 +29,11 @@ const CustomPage: React.FC<CustomPageProps> = ({ page }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = (await getPagesPaths()).map((path) => ({
-    params: { slug: path.split('/').filter((path) => path !== '') },
-  }));
+  const paths = await getPagesPaths();
 
   return {
     paths,
-    fallback: true,
+    fallback: 'blocking',
   };
 };
 
