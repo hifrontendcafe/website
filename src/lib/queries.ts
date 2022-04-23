@@ -296,3 +296,19 @@ export const personQuery = groq`
     username
  }
 `;
+
+export const pagesPathsQuery = groq`
+  *[_type == "page" && defined(path)].path.current
+`;
+
+export const pageByPathQuery = groq`
+  *[_type == "page" && path.current == $path][0]{
+    hero,
+    title,
+    'shortDescription': coalesce(shortDescription, ''),
+    'description': coalesce(description, ''),
+    'doc': coalesce(doc, ''),
+    metadata,
+    components
+  }
+`;

@@ -360,6 +360,12 @@ export interface Profile {
   seniority: Role;
 }
 
+export type Component = {
+  _type: string;
+  _key: string;
+  [key: string]: any;
+};
+
 export interface Page {
   hero: string;
   title: string;
@@ -368,6 +374,7 @@ export interface Page {
   description?: string;
   doc?: string;
   steps: Step[];
+  components?: Component[];
 }
 
 export interface Step {

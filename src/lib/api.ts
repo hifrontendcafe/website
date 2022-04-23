@@ -41,10 +41,12 @@ import {
   profileQuery,
   personQuery,
   pageQueryByHero,
+  pagesPathsQuery,
 } from './queries';
 
 import { createClient } from 'next-sanity';
 import { Page } from './types';
+import { pageByPathQuery } from './queries';
 
 const eventFields = `
   title,
@@ -239,4 +241,15 @@ export async function getPageByHero(
   hero: string,
 ): Promise<Page> {
   return await getClient(preview).fetch(pageQueryByHero, { hero });
+}
+
+export async function getPagesPaths(preview = false): Promise<string[]> {
+  return await getClient(preview).fetch(pagesPathsQuery);
+}
+
+export async function getPageByPath(
+  path: string,
+  preview = false,
+): Promise<Page> {
+  return await getClient(preview).fetch(pageByPathQuery, { path });
 }
