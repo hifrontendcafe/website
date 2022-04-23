@@ -28,4 +28,16 @@ const Matcher: React.FC<Component> = ({ _type, ...props }) => {
   return <Component {...props} />;
 };
 
+export const PageComponents: React.FC<{ components?: Component[] }> = ({
+  components,
+}) => {
+  return (
+    <div>
+      {components?.map((component) => (
+        <Matcher key={component._key} {...component} />
+      ))}
+    </div>
+  );
+};
+
 export default Matcher;

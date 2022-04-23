@@ -5,7 +5,7 @@ import type {
 } from 'next';
 import { getSettings, getPageByPath } from '@/lib/api';
 import Layout from '@/components/Layout';
-import Matcher from '@/components/Page/Matcher';
+import { PageComponents } from '@/components/Page/Matcher';
 import { useRouter } from 'next/router';
 
 type CustomPageProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -20,9 +20,7 @@ const CustomPage: React.FC<CustomPageProps> = ({ page }) => {
   return (
     <Layout metadata={page.metadata} title={page.title}>
       <div className="mt-4">
-        {page.components?.map((component) => (
-          <Matcher key={component._key} {...component} />
-        ))}
+        <PageComponents components={page.components} />
       </div>
     </Layout>
   );

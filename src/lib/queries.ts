@@ -45,7 +45,8 @@ export const pageQueryByHero = groq`
     'description': coalesce(description, ''),
     'doc': coalesce(doc, ''),
     metadata,
-    steps
+    steps,
+    components
   }
 `;
 
