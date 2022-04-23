@@ -3,7 +3,7 @@ import type {
   GetStaticPaths,
   InferGetStaticPropsType,
 } from 'next';
-import { getSettings, getPagesPaths, getPageByPath } from '@/lib/api';
+import { getSettings, getPageByPath } from '@/lib/api';
 import Layout from '@/components/Layout';
 import Matcher from '@/components/Page/Matcher';
 import { useRouter } from 'next/router';
@@ -29,10 +29,10 @@ const CustomPage: React.FC<CustomPageProps> = ({ page }) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = await getPagesPaths();
+  // const paths = await getPagesPaths();
 
   return {
-    paths,
+    paths: [],
     fallback: 'blocking',
   };
 };
