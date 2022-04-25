@@ -2,7 +2,6 @@ import { GetStaticProps } from 'next';
 
 import MentorList from '../../components/MentorList';
 import Layout from '../../components/Layout';
-import Steps from '@/components/Steps';
 
 import { Mentor, Topic, Page } from '@/lib/types';
 import {
@@ -14,6 +13,7 @@ import {
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 import SectionHero from '@/components/SectionHero';
+import { PageComponents } from '@/components/Page/Matcher';
 
 type MentorshipsPageProps = {
   mentors: Mentor[];
@@ -50,7 +50,7 @@ const MentorshipsPage: React.FC<MentorshipsPageProps> = ({
         paragraph={pageData.description}
         cta={pageData.doc}
       />
-      <Steps steps={pageData.steps} />
+      <PageComponents components={pageData.components} />
       <MentorList topics={topics} mentors={mentors} />
     </Layout>
   );
