@@ -188,9 +188,7 @@ export const staffQuery = groq`
     firstName,
     lastName,
     linkedin,
-    'photo': {
-      'src': photo.asset->url
-    },
+    photo,
   }
 `;
 

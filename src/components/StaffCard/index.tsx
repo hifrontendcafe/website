@@ -1,4 +1,5 @@
-import { Person } from '../../lib/types';
+import { Person } from '@/lib/types';
+import { imageBuilder } from '@/lib/sanity';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -10,12 +11,12 @@ const ProfileImage = ({ profile }: ProfileProp) => {
   return (
     <Image
       className="object-cover mx-auto rounded-full h-36 w-36 md:h-32 md:w-32"
-      src={`${profile.photo.src}?h=256`}
+      src={imageBuilder.image(profile.photo).url()}
       alt={`Foto de ${profile.firstName}`}
       width={128}
       height={128}
       placeholder="blur"
-      blurDataURL={`${profile.photo.src}?h=50`}
+      blurDataURL={imageBuilder.image(profile.photo).height(50).url()}
     />
   );
 };
@@ -34,13 +35,13 @@ const StaffCard: React.FC<ProfileProp> = ({ profile }) => {
       {profile.linkedin ? (
         <Link href={profile.linkedin ?? ''}>
           <a target="_blank" rel="noreferrer">
-            {profile.photo.src && <ProfileImage profile={profile} />}
+            {profile.photo && <ProfileImage profile={profile} />}
             <ProfileText profile={profile} />
           </a>
         </Link>
       ) : (
         <>
-          {profile.photo.src && <ProfileImage profile={profile} />}
+          {profile.photo && <ProfileImage profile={profile} />}
           <ProfileText profile={profile} />
         </>
       )}
