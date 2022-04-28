@@ -1,3 +1,5 @@
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+
 export interface Settings {
   description: string;
   heroBackground: Image;
@@ -189,10 +191,12 @@ export interface Person {
     current: string;
   };
   discordID: string;
-  photo: {
-    src: string;
-    alt?: string;
-  };
+  photo:
+    | {
+        src: string;
+        alt?: string;
+      }
+    | SanityImageSource;
   firstName?: string;
   lastName?: string;
   email?: string;
