@@ -17,6 +17,7 @@ const client = createClient(config);
 export const postClient = sanityClient({
   ...config,
   useCdn: false,
+  apiVersion: '2022-04-30',
   token: process.env.SANITY_TOKEN,
 });
 
@@ -25,6 +26,7 @@ export const imageBuilder = sanityImage(client);
 export const previewClient = createClient({
   ...config,
   useCdn: false,
+  apiVersion: '2022-04-30',
   token: process.env.SANITY_TOKEN,
 });
 
