@@ -13,6 +13,7 @@ interface TwitterCardProps {
   media?: EmbeddedTweet['media'];
   created_at: string;
   referenced_tweets?: EmbeddedTweet['referenced_tweets'];
+  with_border?: boolean;
 }
 
 interface MediaFeedProps {
@@ -94,6 +95,7 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
   author,
   media,
   referenced_tweets,
+  with_border = false,
 }) => {
   const tweetUrl = `https://twitter.com/${author.username}/status/${id}`;
   const authorUrl = `https://twitter.com/${author.username}`;
@@ -116,9 +118,13 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
     );
   }
 
+  const border = with_border ? 'border border-zinc-500' : '';
+
   return (
     <div>
-      <div className="w-full p-5 mx-auto mb-2 rounded-md text-tertiary bg-zinc-800">
+      <div
+        className={`w-full p-5 mx-auto mb-2 rounded-md text-tertiary bg-zinc-800 ${border}`}
+      >
         <div className="flex justify-between">
           <a href={authorUrl} className="flex">
             <Image
@@ -169,6 +175,7 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
             author={quoteTweet.author}
             created_at={quoteTweet.created_at}
             media={quoteTweet.media}
+            with_border={true}
           />
         ) : null}
       </div>
