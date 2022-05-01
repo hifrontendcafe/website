@@ -1,6 +1,6 @@
 import CMYKItemCard from '@/components/CMYKItemCard';
 import { GetStaticProps } from 'next';
-import { getAllCMYKProjects, getSettings, getPageByHero } from '@/lib/api';
+import { getAllCMYKProjects, getSettings, getPageByName } from '@/lib/api';
 import { CMYK, Page } from '@/lib/types';
 import Layout from '@/components/Layout';
 
@@ -139,7 +139,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllCMYKProjects(preview);
   const settings = await getSettings(preview);
-  const page = await getPageByHero(preview, 'CMYK');
+  const page = await getPageByName(preview, 'CMYK');
 
   return { props: { preview, data, settings, page }, revalidate: 1 };
 };

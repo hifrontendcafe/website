@@ -6,10 +6,11 @@ import {
   getAllRoles,
   getAllSeniorities,
   getAllTechnologies,
+  getPageByHero,
   getSettings,
 } from '@/lib/api';
 import { useForm } from 'react-hook-form';
-import { Profile, ReactGroup } from '@/lib/types';
+import { Page, Profile, ReactGroup } from '@/lib/types';
 import type { Technology, Role, Seniority } from '@/lib/types';
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
@@ -17,11 +18,14 @@ import Resizer from 'react-image-file-resizer';
 import SectionHero from '@/components/SectionHero';
 import emailjs from '@emailjs/browser';
 
+type Technologies = Technology[];
+
 type NewProfileProps = {
   preview?: boolean;
-  technologies: Technology[];
+  technologies: Technologies;
   roles: Role[];
   seniorities: Seniority[];
+  page: Page;
 };
 
 const resizeFile = (newFile: File) =>
@@ -45,6 +49,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
   technologies,
   roles,
   seniorities,
+  page,
 }) => {
   const [session, loading] = useSession();
 
@@ -54,16 +59,15 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     setValue,
     formState: { errors },
   } = useForm();
-  const [selectedTechnologies, setSelectedTechnologies] = useState(
-    [] as Technology[],
-  );
+  const [selectedTechnologies, setSelectedTechnologies] =
+    useState<Technologies>([]);
   const [photo, setPhoto] = useState('');
   const [userId, setUserId] = useState('');
   const [loadingProfile, setLoadingProfile] = useState(true);
   const [message, setMessage] = useState({ error: false, text: '' });
   const [loadingForm, setLoadingForm] = useState(false);
 
-  const handleTechnologies = (techSelected) => {
+  const handleTechnologies = (techSelected: Technologies) => {
     setSelectedTechnologies(techSelected);
   };
 
@@ -159,7 +163,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     return (
       <Layout
         title="Talentos"
-        description="Encontrá los perfiles dentro de FEC"
+        description={page.shortDescription}
+        metadata={page.metadata}
         preview={preview}
       >
         <div className="py-32 my-20 text-2xl text-center rounded-lg shadow bg-zinc-800 text-zinc-100">
@@ -172,14 +177,11 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
   return (
     <Layout
       title="Talentos"
-      description="Encontrá los perfiles dentro de FEC"
+      description={page.shortDescription}
+      metadata={page.metadata}
       preview={preview}
     >
-      <SectionHero
-        title="Tu perfil"
-        paragraph="Buscamos darle visibilidad a quienes participan dentro del servidor, principalmente aquellas personas que se encuentran en búsqueda de su primera experiencia laboral.
-        Tu perfil será visible en la sección Talentos, diseñada para que recruiters y empresas puedan identificar talentos de nuestra comunidad"
-      />
+      <SectionHero title={page.title} paragraph={page.description} />
 
       <div className="overflow-hidden border-2 rounded-lg shadow bg-zinc-900 border-zinc-600">
         {message.text && (
@@ -526,6 +528,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   }));
 
   const seniorities = await getAllSeniorities(preview);
+  const page = await getPageByHero(preview, 'Talentos');
 
   return {
     props: {
@@ -534,6 +537,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       settings,
       roles,
       seniorities,
+      page,
     },
     revalidate: 1,
   };

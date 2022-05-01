@@ -1,5 +1,5 @@
 import { GetStaticProps } from 'next';
-import { getEventsByCategory, getSettings, getPageByHero } from '@/lib/api';
+import { getEventsByCategory, getSettings, getPageByName } from '@/lib/api';
 import Layout from '../../components/Layout';
 import EventPreview from '../../components/EventPreview';
 import { Event, Page } from '../../lib/types';
@@ -40,7 +40,7 @@ const EnglishPage: React.FC<EnglishPageProps> = ({ upcomingEvents, page }) => {
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const settings = await getSettings(preview);
-  const page = await getPageByHero(preview, 'Inglés');
+  const page = await getPageByName(preview, 'Inglés');
   const upcomingEvents = await getEventsByCategory(
     preview,
     'Práctica de inglés',

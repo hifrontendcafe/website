@@ -40,7 +40,7 @@ import {
   profilesQuery,
   profileQuery,
   personQuery,
-  pageQueryByHero,
+  pageQueryByName,
   pagesPathsQuery,
 } from './queries';
 
@@ -236,11 +236,11 @@ export async function getPerson(
   return await getClient(preview).fetch(personQuery, { id });
 }
 
-export async function getPageByHero(
+export async function getPageByName(
   preview = false,
-  hero: string,
+  name: string,
 ): Promise<Page> {
-  return await getClient(preview).fetch(pageQueryByHero, { hero });
+  return await getClient(preview).fetch(pageQueryByName, { name });
 }
 
 export async function getPagesPaths(preview = false): Promise<string[]> {

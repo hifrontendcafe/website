@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { GetStaticProps } from 'next';
 
-import { getApprovedReactGroups, getPageByHero, getSettings } from '@/lib/api';
+import { getApprovedReactGroups, getPageByName, getSettings } from '@/lib/api';
 import { ReactGroup, Settings, Page } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { reactGroupQuery } from '../../lib/queries';
@@ -144,7 +144,7 @@ export const getStaticProps: GetStaticProps<ReactGroupPageProps> = async ({
   const initialReactGroups = await getApprovedReactGroups(preview);
   const settings = await getSettings(preview);
   const isEnabled = process.env.REACTIVISTAS_ENABLED === 'true';
-  const page = await getPageByHero(preview, 'Reactivistas');
+  const page = await getPageByName(preview, 'Reactivistas');
 
   return {
     props: {

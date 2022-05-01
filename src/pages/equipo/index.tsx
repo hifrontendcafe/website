@@ -1,7 +1,7 @@
 import Layout from '../../components/Layout';
 import { GetStaticProps } from 'next';
 
-import { getFecTeam, getSettings, getPageByHero } from '../../lib/api';
+import { getFecTeam, getSettings, getPageByName } from '../../lib/api';
 import { Person, Page } from '../../lib/types';
 import StaffCard from '@/components/StaffCard';
 import SectionHero from '@/components/SectionHero';
@@ -35,7 +35,7 @@ const StaffPage: React.FC<PostsPageProps> = ({ profiles, preview, page }) => {
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const profiles = await getFecTeam(preview);
   const settings = await getSettings(preview);
-  const page = await getPageByHero(preview, 'Equipo');
+  const page = await getPageByName(preview, 'Equipo');
 
   return {
     props: { preview, profiles, settings, page },

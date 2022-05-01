@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 import EventList from '../components/EventList';
 
 import { Event, Page } from '../lib/types';
-import { getAllEvents, getSettings, getPageByHero } from '../lib/api';
+import { getAllEvents, getSettings, getPageByName } from '../lib/api';
 import { usePreviewSubscription } from '../lib/sanity';
 import { eventsQuery } from '../lib/queries';
 import SectionHero from '@/components/SectionHero';
@@ -37,7 +37,7 @@ const EventsPage: React.FC<EventsPageProps> = ({ data, preview, page }) => {
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllEvents(preview);
   const settings = await getSettings(preview);
-  const page = await getPageByHero(preview, 'Eventos');
+  const page = await getPageByName(preview, 'Eventos');
   console.log(page);
 
   return {
