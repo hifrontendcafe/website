@@ -253,6 +253,7 @@ export const profilesProjections = `
      "discord": discordID.current,
      email,
      firstName,
+     lastName,
      github,
      linkedin,
      "photo": photo.asset->url,
