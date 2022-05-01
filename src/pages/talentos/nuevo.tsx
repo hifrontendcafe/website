@@ -6,7 +6,7 @@ import {
   getAllRoles,
   getAllSeniorities,
   getAllTechnologies,
-  getPageByHero,
+  getPageByName,
   getSettings,
 } from '@/lib/api';
 import { useForm } from 'react-hook-form';
@@ -43,6 +43,37 @@ const resizeFile = (newFile: File) =>
       'base64',
     );
   });
+
+interface LabelProps {
+  children: React.ReactNode;
+}
+
+const Label: React.FC<LabelProps> = ({ children }) => {
+  return (
+    <label className="block mb-2 text-sm font-bold text-secondary">
+      {children}
+    </label>
+  );
+};
+
+interface DescriptionProps {
+  children: React.ReactNode;
+}
+
+const Description: React.FC<DescriptionProps> = ({ children }) => {
+  return <p className="my-2 text-xs text-tertiary">{children}</p>;
+};
+
+interface InputContainerProps {
+  children: React.ReactNode;
+}
+const InputContainer: React.FC<InputContainerProps> = ({ children }) => {
+  return <div className="mb-4">{children}</div>;
+};
+
+const Required = () => {
+  return <span className="text-red-500 font-light">*</span>;
+};
 
 const NewProfilePage: React.FC<NewProfileProps> = ({
   preview,
@@ -204,74 +235,64 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                 noValidate
               >
                 <div className="flex flex-col grid-cols-2 gap-5 md:grid">
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Usuario de Discord*
-                    </label>
-                    <div className="relative z-10">
-                      <input
-                        className={`input ${
-                          errors.discord && 'border-red-400'
-                        }`}
-                        type="text"
-                        required
-                        placeholder="Ingresa tu usuario de Discord"
-                        value={session.user.name}
-                        readOnly
-                        {...register('discord', { required: true })}
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Email*
-                    </label>
-                    <div className="relative">
-                      <input
-                        className={`input ${errors.email && 'border-red-400'}`}
-                        type="email"
-                        required
-                        placeholder="Ingresa tu email"
-                        value={session.user.email}
-                        readOnly
-                        {...register('email', { required: true })}
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Nombre y Apellido*
-                    </label>
+                  <InputContainer>
+                    <Label>
+                      Usuario de Discord <Required />
+                    </Label>
+                    <input
+                      className={`input ${errors.discord && 'border-red-400'}`}
+                      type="text"
+                      required
+                      placeholder="Ingresa tu usuario de Discord"
+                      value={session.user.name}
+                      readOnly
+                      {...register('discord', { required: true })}
+                    />
+                  </InputContainer>
+                  <InputContainer>
+                    <Label>
+                      Email <Required />
+                    </Label>
+                    <input
+                      className={`input ${errors.email && 'border-red-400'}`}
+                      type="email"
+                      required
+                      placeholder="Ingresa tu email"
+                      value={session.user.email}
+                      readOnly
+                      {...register('email', { required: true })}
+                    />
+                  </InputContainer>
+                  <InputContainer>
+                    <Label>
+                      Nombre y Apellido <Required />
+                    </Label>
                     <input
                       className={`input ${errors.name && 'border-red-400'}`}
                       type="text"
                       placeholder="Ingresa nombre completo"
                       {...register('name', { required: true })}
                     />
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Lugar de residencia*
-                    </label>
-                    <div className="relative">
-                      <input
-                        className={`input focus:outline-none focus:ring ${
-                          errors.location && 'border-red-400'
-                        }`}
-                        type="text"
-                        required
-                        placeholder="Tu ubicación actual"
-                        {...register('location', { required: true })}
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Twitter
-                    </label>
-                    <p className="my-2 text-xs text-tertiary">
+                  </InputContainer>
+                  <InputContainer>
+                    <Label>
+                      Lugar de residencia <Required />
+                    </Label>
+                    <input
+                      className={`input focus:outline-none focus:ring ${
+                        errors.location && 'border-red-400'
+                      }`}
+                      type="text"
+                      required
+                      placeholder="Tu ubicación actual"
+                      {...register('location', { required: true })}
+                    />
+                  </InputContainer>
+                  <InputContainer>
+                    <Label>Twitter</Label>
+                    <Description>
                       Incluye enlace completo de tu perfil.
-                    </p>
+                    </Description>
                     <div className="relative">
                       <input
                         className={`input ${
@@ -282,50 +303,37 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                         {...register('twitter')}
                       />
                     </div>
-                  </div>
+                  </InputContainer>
 
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Linkedin
-                    </label>
-                    <p className="my-2 text-xs text-tertiary">
+                  <InputContainer>
+                    <Label>Linkedin</Label>
+                    <Description>
                       Incluye enlace completo de tu perfil.
-                    </p>
-                    <div className="relative">
-                      <input
-                        className={`input ${
-                          errors.linkedin && 'border-red-400'
-                        }`}
-                        type="url"
-                        placeholder="https://linkedin.com/in/usuario"
-                        {...register('linkedin')}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Github
-                    </label>
-                    <p className="my-2 text-xs text-tertiary">
+                    </Description>
+                    <input
+                      className={`input ${errors.linkedin && 'border-red-400'}`}
+                      type="url"
+                      placeholder="https://linkedin.com/in/usuario"
+                      {...register('linkedin')}
+                    />
+                  </InputContainer>
+                  <InputContainer>
+                    <Label>Github</Label>
+                    <Description>
                       Incluye enlace completo de tu perfil.
-                    </p>
-                    <div className="relative">
-                      <input
-                        className={`input ${errors.github && 'border-red-400'}`}
-                        type="url"
-                        placeholder="https://github.com/usuario"
-                        {...register('github')}
-                      />
-                    </div>
-                  </div>
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Portfolio
-                    </label>
-                    <p className="my-2 text-xs text-tertiary">
+                    </Description>
+                    <input
+                      className={`input ${errors.github && 'border-red-400'}`}
+                      type="url"
+                      placeholder="https://github.com/usuario"
+                      {...register('github')}
+                    />
+                  </InputContainer>
+                  <InputContainer>
+                    <Label>Portfolio</Label>
+                    <Description>
                       Incluye enlace completo de tu web personal.
-                    </p>
+                    </Description>
                     <div className="relative">
                       <input
                         className={`input ${
@@ -336,30 +344,28 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                         {...register('portfolio')}
                       />
                     </div>
-                  </div>
+                  </InputContainer>
 
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Rol actual o con el que te defines*
-                    </label>
-                    <div className="relative">
-                      <select
-                        className={`input ${errors.roleId && 'border-red-400'}`}
-                        {...register('roleId', { required: true })}
-                      >
-                        {roles.map((role) => (
-                          <option key={role._id} value={role._id}>
-                            {role.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
+                  <InputContainer>
+                    <Label>
+                      Rol actual o con el que te defines <Required />
+                    </Label>
+                    <select
+                      className={`input ${errors.roleId && 'border-red-400'}`}
+                      {...register('roleId', { required: true })}
+                    >
+                      {roles.map((role) => (
+                        <option key={role._id} value={role._id}>
+                          {role.name}
+                        </option>
+                      ))}
+                    </select>
+                  </InputContainer>
 
-                  <div className="mb-4">
-                    <label className="block mb-2 text-sm font-bold text-secondary">
-                      Seniority*
-                    </label>
+                  <InputContainer>
+                    <Label>
+                      Seniority <Required />
+                    </Label>
                     <div className="relative">
                       <select
                         className={`input ${
@@ -374,12 +380,12 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                         ))}
                       </select>
                     </div>
-                  </div>
+                  </InputContainer>
                 </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-secondary">
-                    Foto de perfil
-                  </label>
+                <InputContainer>
+                  <Label>
+                    Foto de perfil <Required />
+                  </Label>
                   <div className="flex items-center justify-start w-full space-x-4">
                     <label className="flex items-center justify-center w-32 h-32 overflow-hidden border-4 border-dashed rounded-md cursor-pointer hover:bg-zinc-100 hover:border-primary group hover:opacity-75">
                       {photo ? (
@@ -412,41 +418,37 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                       />
                     </label>
                   </div>
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-secondary">
-                    Tecnologías
-                    <p className="text-sm font-medium text-quaternary">
-                      Selecciona un máximo de 5 tecnologías.
-                    </p>
-                  </label>
-                  <div className="relative">
-                    <Select
-                      classNamePrefix="react-select"
-                      className="w-full bg-transparent form-user"
-                      instanceId="technologies-selector"
-                      isMulti
-                      placeholder=""
-                      value={selectedTechnologies}
-                      onChange={handleTechnologies}
-                      isValidNewOption={isValidNewOption}
-                      getOptionLabel={(option) => option.name}
-                      getOptionValue={(option) => option._id}
-                      options={
-                        selectedTechnologies.length === 5 ? [] : technologies
-                      }
-                      noOptionsMessage={() => {
-                        return selectedTechnologies.length === 5
-                          ? 'Has alcanzado el máximo de opciones'
-                          : 'No opciones disponibles';
-                      }}
-                    />
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-2 text-sm font-bold text-secondary">
-                    BIO*
-                  </label>
+                </InputContainer>
+                <InputContainer>
+                  <Label>Tecnologías</Label>
+                  <Description>
+                    Selecciona un máximo de 5 tecnologías.
+                  </Description>
+                  <Select
+                    classNamePrefix="react-select"
+                    className="w-full bg-transparent form-user"
+                    instanceId="technologies-selector"
+                    isMulti
+                    placeholder=""
+                    value={selectedTechnologies}
+                    onChange={handleTechnologies}
+                    isValidNewOption={isValidNewOption}
+                    getOptionLabel={(option) => option.name}
+                    getOptionValue={(option) => option._id}
+                    options={
+                      selectedTechnologies.length === 5 ? [] : technologies
+                    }
+                    noOptionsMessage={() => {
+                      return selectedTechnologies.length === 5
+                        ? 'Has alcanzado el máximo de opciones'
+                        : 'No opciones disponibles';
+                    }}
+                  />
+                </InputContainer>
+                <InputContainer>
+                  <Label>
+                    Biografía <Required />
+                  </Label>
                   <textarea
                     rows={5}
                     required
@@ -457,31 +459,31 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     placeholder="Cuentanos un poco de tí"
                     maxLength={500}
                   ></textarea>
-                </div>
-                <div className="flex items-center mb-4">
+                </InputContainer>
+                <InputContainer>
                   <input
-                    className="mr-2 text-sm leading-tight border rounded text-secondary focus:outline-none focus:ring"
+                    className="inline mr-2 text-sm leading-tight border rounded text-secondary focus:outline-none focus:ring"
                     {...register('available')}
                     type="checkbox"
                   />
-                  <label className="block text-sm font-bold text-secondary">
+                  <label className="inline text-sm font-bold text-secondary">
                     ¿Te encuentras en búsqueda de trabajo activa?
                   </label>
-                </div>
-                <div className="flex items-center mb-4">
+                </InputContainer>
+                <InputContainer>
                   <input
-                    className={`mr-2 text-sm leading-tight text-secondary border rounded focus:outline-none focus:ring ${
+                    className={`inline mr-2 text-sm leading-tight text-secondary border rounded focus:outline-none focus:ring ${
                       errors.consent && 'border-red-400'
                     }`}
                     type="checkbox"
                     required
                     {...register('consent', { required: true })}
                   />
-                  <label className="block text-sm font-bold text-secondary">
+                  <label className="inline text-sm font-bold text-secondary">
                     ¿Aceptas que tu información sea compartida en la web de
-                    FrontendCafé?*
+                    FrontendCafé? <Required />
                   </label>
-                </div>
+                </InputContainer>
                 <div className="pt-8">
                   <div className="flex justify-end">
                     <button type="submit" className="btn btn-primary">
