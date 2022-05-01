@@ -1,4 +1,5 @@
 import { getProfile } from '@/lib/api';
+import { Profile } from '@/lib/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -7,7 +8,7 @@ export default async function handler(
 ): Promise<void> {
   const { uid } = req.query;
 
-  let profile;
+  let profile: Profile;
   try {
     profile = await getProfile(uid as string, req.preview);
   } catch (error) {
