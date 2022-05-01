@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import logo_vercel from '../../../public/img/powered-by-vercel.svg';
-import logo_square from '../../../public/logo-square.png';
 
 import {
   faTwitter,
@@ -25,16 +24,6 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
     <footer className={` ${mainClasses} mt-40 border-t border-zinc-500 w-full`}>
       <div className="container flex justify-center w-full py-16 mx-auto text-primary md:justify-between">
         <div className="flex flex-col justify-center w-full text-center">
-          {/* <div className="self-center hidden bg-purple-500 md:block md:h-12 md:w-12 md:self-start">
-            <Image
-              layout="fixed"
-              src={logo_square}
-              height={48}
-              width={48}
-              placeholder="blur"
-              className="rounded-full"
-            />
-          </div> */}
           <div className="flex flex-col justify-between w-full md:flex-row">
             <div className="flex flex-col gap-1 pb-8 font-medium md:pb-3">
               {footerNavItems?.map(({ link, title }) => (
