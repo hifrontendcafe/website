@@ -528,7 +528,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   }));
 
   const seniorities = await getAllSeniorities(preview);
-  const page = await getPageByHero(preview, 'Talentos');
+  const page = await getPageByName(preview, 'Talentos');
 
   return {
     props: {
