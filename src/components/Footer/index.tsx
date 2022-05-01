@@ -108,7 +108,9 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
 
           <div className="flex flex-col items-center mt-16 md:flex-row">
             <div>
-              <p className="font-light md:mr-4">© FrontendCafé {currentYear}</p>
+              <p className="mb-2 font-light md:mr-4">
+                © FrontendCafé {currentYear}
+              </p>
             </div>
             <div>
               <Link href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">
