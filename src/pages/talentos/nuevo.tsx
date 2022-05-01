@@ -179,7 +179,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
       'talentos_ingreso',
       {
         user: session.user.name,
-        id: session.user.id,
+        id: userId,
       },
       process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
     );
