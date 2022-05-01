@@ -71,10 +71,10 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     const fetchUser = async (uId) => {
       setLoadingProfile(true);
       const response = await fetch(`/api/profiles/${uId}`);
-      const user = (await response.json()) as
-        | (Profile & { error: false })
-        | { error: true };
-      if (user.error === false) {
+
+      if (response.status === 200) {
+        const user: Profile = await response.json();
+
         setSelectedTechnologies(user.technologies);
         setPhoto(user.person.photo);
         setUserId(user._id);
@@ -90,6 +90,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         setValue('description', user.description);
         setValue('available', user.isAvailable);
       }
+
       setLoadingProfile(false);
     };
     if (session && !loading) {
