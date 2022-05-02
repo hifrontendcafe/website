@@ -6,7 +6,6 @@ import {
   Event,
   Mentor,
   Topic,
-  ReactGroup,
   Person,
   FeaturedCards,
   CMYKParticipant,
@@ -16,8 +15,6 @@ import {
   Technology,
   Profile,
 } from './types';
-
-import { createSlug } from './helpers';
 
 import {
   postQuery,
@@ -29,7 +26,6 @@ import {
   docQuery,
   eventsQuery,
   eventsQueryByType,
-  reactGroupQuery,
   settingsQuery,
   staffQuery,
   featuredCardsQuery,
@@ -138,14 +134,6 @@ export async function createCMYKParticipant(
   });
 }
 
-export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
-  return await postClient.create({
-    ...data,
-    _type: 'reactGroup',
-    slug: { current: `${createSlug(data.name)}` },
-  });
-}
-
 export async function addParticipantToReactGroup(
   reactGroupId: string,
   userId: string,
@@ -160,12 +148,6 @@ export async function addParticipantToReactGroup(
       },
     ])
     .commit();
-}
-
-export async function getApprovedReactGroups(
-  preview = false,
-): Promise<ReactGroup[]> {
-  return await getClient(preview).fetch(reactGroupQuery);
 }
 
 export async function createPerson(data: any): Promise<Person> {
