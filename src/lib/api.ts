@@ -16,8 +16,6 @@ import {
   Profile,
 } from './types';
 
-import { createSlug } from './helpers';
-
 import {
   postQuery,
   cmykQuery,
