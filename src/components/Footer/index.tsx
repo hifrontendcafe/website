@@ -4,7 +4,7 @@ import logo_vercel from '../../../public/img/powered-by-vercel.svg';
 
 import {
   faTwitter,
-  faGithubAlt,
+  faGithub,
   faLinkedin,
   faTwitch,
   faYoutube,
@@ -65,7 +65,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
                       target="_blank"
                       className="grid w-6 h-6 rounded-full place-items-center"
                     >
-                      <FontAwesomeIcon icon={faGithubAlt} size="lg" />
+                      <FontAwesomeIcon icon={faGithub} size="lg" />
                     </a>
                   </Link>
                 )}
