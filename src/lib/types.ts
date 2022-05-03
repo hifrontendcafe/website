@@ -188,6 +188,8 @@ export interface FeaturedCards {
   btnText: string;
   link?: string;
 }
+
+// TODO: Update this interface. It's used in the 'onSubmit' of the 'Profile' component.
 export interface ReactGroup {
   _id: string;
   _type: string;

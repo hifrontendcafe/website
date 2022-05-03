@@ -207,21 +207,6 @@ export const staffQuery = groq`
   }
 `;
 
-export const reactGroupQuery = groq`
-*[_type == 'reactGroup' && status == 'approved']{
-    _id,
-    name,
-    'teamCaptain': teamCaptain->username,
-    participants,
-    topic,
-    studyMaterial,
-    meetings,
-    plan,
-    startDate,
-    slug
-  }
-`;
-
 export const featuredCardsQuery = groq`
   *[_type == 'featuredCards'] {
     _id,

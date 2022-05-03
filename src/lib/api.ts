@@ -6,7 +6,6 @@ import {
   Event,
   Mentor,
   Topic,
-  ReactGroup,
   Person,
   FeaturedCards,
   CMYKParticipant,
@@ -17,8 +16,6 @@ import {
   Profile,
   SanityEvent,
 } from './types';
-
-import { createSlug } from './helpers';
 
 import {
   postQuery,
@@ -32,7 +29,6 @@ import {
   eventsQueryByType,
   eventChannelsQuery,
   futureEventsDiscordIdQuery,
-  reactGroupQuery,
   settingsQuery,
   staffQuery,
   featuredCardsQuery,
@@ -55,6 +51,7 @@ import markdownToHtml from './markdownToHtml';
 import Schema from '@sanity/schema';
 import blockTools from '@sanity/block-tools';
 import jsdom from 'jsdom';
+import { createSlug } from './helpers';
 const { JSDOM } = jsdom;
 
 const eventFields = `
@@ -233,14 +230,6 @@ export async function createCMYKParticipant(
   });
 }
 
-export async function createReactGroup(data: ReactGroup): Promise<ReactGroup> {
-  return await postClient.create({
-    ...data,
-    _type: 'reactGroup',
-    slug: { current: `${createSlug(data.name)}` },
-  });
-}
-
 export async function addParticipantToReactGroup(
   reactGroupId: string,
   userId: string,
@@ -255,12 +244,6 @@ export async function addParticipantToReactGroup(
       },
     ])
     .commit();
-}
-
-export async function getApprovedReactGroups(
-  preview = false,
-): Promise<ReactGroup[]> {
-  return await getClient(preview).fetch(reactGroupQuery);
 }
 
 export async function createPerson(data: any): Promise<Person> {
