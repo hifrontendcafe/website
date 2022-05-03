@@ -59,6 +59,28 @@ export interface Event {
   endDate?: string;
   description: string;
   recording?: string;
+  discordId?: string;
+}
+
+export interface SanityEvent {
+  discordId: string;
+  title: string;
+  slug: {
+    _type: 'slug';
+    current: string;
+  };
+  category: { _ref: string; _type: 'reference' };
+  cover: {
+    _type: 'image';
+    alt: string;
+    asset: {
+      _type: 'reference';
+      _ref: string;
+    };
+  };
+  date: string;
+  description: [];
+  tags: [];
 }
 
 export interface Mentor {
@@ -392,4 +414,30 @@ export interface Metadata {
   _key: string;
   property: string;
   content: string;
+}
+
+export interface DiscordEvent {
+  id: string;
+  guild_id: string;
+  channel_id: string;
+  creator_id?: string;
+  name: string;
+  description?: string;
+  scheduled_start_time: string;
+  scheduled_end_time: string;
+  privacy_level: string;
+  status: string;
+  entity_type: string;
+  entity_id: string;
+  entity_metadata: string;
+  creator: string;
+  user_count?: number;
+  image?: string;
+}
+
+export interface EventChannel {
+  id: string;
+  name: string;
+  category: { _ref: string; _type: 'reference' };
+  defaultImage: { _type: 'image'; asset: { _ref: string; _type: 'reference' } };
 }
