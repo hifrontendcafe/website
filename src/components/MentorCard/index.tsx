@@ -1,5 +1,5 @@
 import { Mentor, Topic } from '../../lib/types';
-import { faGithubAlt, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -101,7 +101,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                     target="_blank"
                     className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
                   >
-                    <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
+                    <FontAwesomeIcon className="w-4 h-4" icon={faGithub} />
                   </a>
                 </Link>
               )}

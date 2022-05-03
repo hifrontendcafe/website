@@ -1,5 +1,5 @@
 import {
-  faGithubAlt,
+  faGithub,
   faLinkedinIn,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
@@ -54,7 +54,7 @@ const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
             target="_blank"
             className="flex items-center justify-center w-8 h-8 rounded-full text-primary bg-zinc-700"
           >
-            <FontAwesomeIcon className="w-4 h-4" icon={faGithubAlt} />
+            <FontAwesomeIcon className="w-4 h-4" icon={faGithub} />
           </a>
         </Link>
       )}
