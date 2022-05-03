@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useLayoutEffect, useState } from 'react';
 
 import { Profile, Role, Seniority, Technology } from '@/lib/types';
 import { useProfiles } from './useProfiles';
@@ -31,12 +31,21 @@ const Profiles: React.FC<PostsPageProps> = ({
     pageProfiles,
     totalProfiles,
   } = useProfiles(profiles);
+  const [hasToScroll, setHasToScroll] = useState(false);
 
   const profileListRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    profileListRef.current.scrollIntoView({ behavior: 'smooth' });
-  }, [page]);
+  useLayoutEffect(() => {
+    if (hasToScroll) {
+      profileListRef.current.scrollIntoView({ behavior: 'smooth' });
+      setHasToScroll(false);
+    }
+  }, [hasToScroll]);
+
+  const moveToPage = (page: number) => {
+    setHasToScroll(true);
+    setPage(page);
+  };
 
   return (
     <div className="min-h-screen mx-auto">
@@ -57,7 +66,7 @@ const Profiles: React.FC<PostsPageProps> = ({
       <PaginationBar
         page={page}
         pagesCount={pagesCount}
-        setPage={setPage}
+        setPage={moveToPage}
         totalProfiles={totalProfiles}
       />
     </div>
