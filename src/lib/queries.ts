@@ -37,8 +37,8 @@ export const settingsQuery = groq`
   }
 `;
 
-export const pageQueryByHero = groq`
-  *[_type == "page" && hero == $hero][0]{
+export const pageQueryByName = groq`
+  *[_type == "page" && name == $name][0]{
     hero,
     title,
     'shortDescription': coalesce(shortDescription, ''),
@@ -238,6 +238,7 @@ export const profilesProjections = `
      "discord": discordID.current,
      email,
      firstName,
+     lastName,
      github,
      linkedin,
      "photo": photo.asset->url,

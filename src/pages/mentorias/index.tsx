@@ -8,7 +8,7 @@ import {
   getAllMentors,
   getMentoringTopics,
   getSettings,
-  getPageByHero,
+  getPageByName,
 } from '../../lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const mentors = await getAllMentors(preview);
   const topics = await getMentoringTopics(preview);
   const settings = await getSettings(preview);
-  const page = await getPageByHero(preview, 'Mentorías');
+  const page = await getPageByName(preview, 'Mentorías');
 
   return {
     props: { mentors, topics, preview, settings, page },

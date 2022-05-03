@@ -101,7 +101,7 @@ html {
   }
 
   .input {
-    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-coolGrayDark text-secondary border-zinc-600;
+    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-zinc-900 text-secondary border-zinc-600;
   }
 }
 
@@ -145,11 +145,11 @@ html {
 }
 
 .form-user .react-select__menu {
-  @apply border bg-coolGrayDark border-zinc-700 text-primary;
+  @apply border bg-zinc-900 border-zinc-700 text-primary;
 }
 
 .form-user .react-select__control {
-  @apply bg-coolGrayDark border-zinc-700 text-tertiary;
+  @apply bg-zinc-900 border-zinc-700 text-tertiary;
 }
 
 .form-user .react-select__option--is-focused {

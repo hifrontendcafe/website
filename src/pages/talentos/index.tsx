@@ -7,7 +7,7 @@ import {
   getAllTechnologies,
   getAllProfiles,
   getSettings,
-  getPageByHero,
+  getPageByName,
 } from '@/lib/api';
 import { Profile, Role, Seniority, Technology } from '@/lib/types';
 import { shuffle } from '@/lib/shuffle';
@@ -82,7 +82,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const seniorities = sortResponse(senioritiesResponse);
 
   const profiles = await getAllProfiles(preview);
-  const page = await getPageByHero(preview, 'Talentos FEC');
+  const page = await getPageByName(preview, 'Talentos');
   // randomizes profiles in place
   shuffle(profiles);
 

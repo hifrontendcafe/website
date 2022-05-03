@@ -355,6 +355,7 @@ export interface Profile {
     discord: string;
     email: string;
     firstName: string;
+    lastName: string;
     github: string;
     linkedin: string;
     photo: string;
