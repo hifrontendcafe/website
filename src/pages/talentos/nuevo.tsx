@@ -72,7 +72,7 @@ const InputContainer: React.FC<InputContainerProps> = ({ children }) => {
 };
 
 const Required = () => {
-  return <span className="text-red-500 font-light">*</span>;
+  return <span className="font-light text-red-500">*</span>;
 };
 
 const NewProfilePage: React.FC<NewProfileProps> = ({
@@ -530,7 +530,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   }));
 
   const seniorities = await getAllSeniorities(preview);
-  const page = await getPageByName(preview, 'Talentos');
+  const page = await getPageByName(preview, 'Tu perfil');
 
   return {
     props: {
