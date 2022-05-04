@@ -88,6 +88,21 @@ export const eventsQueryByType = groq`
   }
 `;
 
+export const futureEventsDiscordIdQuery = groq`
+  *[_type == "event" && dateTime(now()) <= dateTime(date) && discordId != null] {
+    discordId,
+  }
+`;
+
+export const eventChannelsQuery = groq`
+  *[_type == "eventChannel"] {
+    id,
+    name,
+    category,
+    defaultImage
+  }
+`;
+
 export const postQuery = groq`
   *[_type == "post" && slug.current == $slug][0]{
     name,

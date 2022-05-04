@@ -14,6 +14,7 @@ import {
   Role,
   Technology,
   Profile,
+  SanityEvent,
 } from './types';
 
 import {
@@ -26,6 +27,8 @@ import {
   docQuery,
   eventsQuery,
   eventsQueryByType,
+  eventChannelsQuery,
+  futureEventsDiscordIdQuery,
   settingsQuery,
   staffQuery,
   featuredCardsQuery,
@@ -41,8 +44,15 @@ import {
 } from './queries';
 
 import { createClient } from 'next-sanity';
-import { Page } from './types';
 import { pageByPathQuery } from './queries';
+import { Page, DiscordEvent, EventChannel } from './types';
+import { getAllDiscordEvents } from './discord';
+import markdownToHtml from './markdownToHtml';
+import Schema from '@sanity/schema';
+import blockTools from '@sanity/block-tools';
+import jsdom from 'jsdom';
+import { createSlug } from './helpers';
+const { JSDOM } = jsdom;
 
 const eventFields = `
   title,
@@ -59,8 +69,94 @@ const eventFields = `
   recording
 `;
 
+const defaultSchema = Schema.compile({
+  name: 'Event',
+  types: [
+    {
+      type: 'object',
+      name: 'event',
+      fields: [
+        {
+          title: 'Description',
+          name: 'description',
+          type: 'array',
+          of: [{ type: 'block' }],
+        },
+      ],
+    },
+  ],
+});
+
+const blockContentType = defaultSchema
+  .get('event')
+  .fields.find((field) => field.name === 'description').type;
+
 export function getClient(preview = false): ReturnType<typeof createClient> {
   return preview ? previewClient : client;
+}
+
+export async function createEvent(data: any): Promise<Event> {
+  return postClient.create({
+    _type: 'event',
+    ...data,
+  });
+}
+
+async function discordEventToSanityEvent(
+  discordEvent: DiscordEvent,
+  eventChannel: EventChannel,
+): Promise<SanityEvent> {
+  const description = await markdownToHtml(discordEvent.description);
+  const blocks = blockTools.htmlToBlocks(description, blockContentType, {
+    parseHtml: (html) => new JSDOM(html).window.document,
+  });
+  return {
+    discordId: discordEvent.id,
+    title: discordEvent.name,
+    slug: {
+      _type: 'slug',
+      current: createSlug(discordEvent.name),
+    },
+    category: eventChannel.category,
+    cover: {
+      _type: 'image',
+      alt: discordEvent.name,
+      asset: {
+        _type: 'reference',
+        _ref: eventChannel.defaultImage.asset._ref,
+      },
+    },
+    date: discordEvent.scheduled_start_time,
+    description: blocks,
+    tags: [],
+  };
+}
+
+export async function importEvents(preview = false): Promise<void> {
+  const eventChannels = await getClient(preview).fetch(eventChannelsQuery);
+  const importedEventsId = await getClient(preview).fetch(
+    futureEventsDiscordIdQuery,
+  );
+  try {
+    const response = await getAllDiscordEvents();
+    const discordEventsAllValues: DiscordEvent[] = await response.json();
+    discordEventsAllValues.forEach(async (discordEvent) => {
+      const importedIndex = importedEventsId?.find(
+        (event) => event.discordId === discordEvent.id,
+      );
+      if (importedIndex) return;
+      const eventChannel = eventChannels.find(
+        (channel) => channel.id === discordEvent.channel_id,
+      );
+      if (eventChannel) {
+        createEvent(
+          await discordEventToSanityEvent(discordEvent, eventChannel),
+        );
+      }
+    });
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export async function getAllEvents(preview = false): Promise<Event[]> {
