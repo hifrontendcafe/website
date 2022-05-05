@@ -193,7 +193,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
   if (loading && loadingProfile) {
     return (
       <Layout
-        title="Talentos"
+        title={page.title}
         description={page.shortDescription}
         metadata={page.metadata}
         preview={preview}
@@ -207,7 +207,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 
   return (
     <Layout
-      title="Talentos"
+      title={page.title}
       description={page.shortDescription}
       metadata={page.metadata}
       preview={preview}
