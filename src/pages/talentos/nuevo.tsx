@@ -10,7 +10,7 @@ import {
   getSettings,
 } from '@/lib/api';
 import { useForm } from 'react-hook-form';
-import { Page, Profile, ReactGroup } from '@/lib/types';
+import { Page, Profile } from '@/lib/types';
 import type { Technology, Role, Seniority } from '@/lib/types';
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
@@ -144,7 +144,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
   const isValidNewOption = (inputValue, selectValue) =>
     inputValue.length > 0 && selectValue.length < 5;
 
-  const onSubmit = async (data: ReactGroup) => {
+  const onSubmit = async (data: Record<string, unknown>) => {
     setLoadingForm(true);
     try {
       const body = {
