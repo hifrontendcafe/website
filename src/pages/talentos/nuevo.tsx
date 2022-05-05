@@ -304,7 +304,6 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                       />
                     </div>
                   </InputContainer>
-
                   <InputContainer>
                     <Label>Linkedin</Label>
                     <Description>
@@ -334,18 +333,15 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                     <Description>
                       Incluye enlace completo de tu web personal.
                     </Description>
-                    <div className="relative">
-                      <input
-                        className={`input ${
-                          errors.portfolio && 'border-red-400'
-                        }`}
-                        type="url"
-                        placeholder="https://www.portfolio.com"
-                        {...register('portfolio')}
-                      />
-                    </div>
+                    <input
+                      className={`input ${
+                        errors.portfolio && 'border-red-400'
+                      }`}
+                      type="url"
+                      placeholder="https://www.portfolio.com"
+                      {...register('portfolio')}
+                    />
                   </InputContainer>
-
                   <InputContainer>
                     <Label>
                       Rol actual o con el que te defines <Required />
@@ -361,25 +357,22 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
                       ))}
                     </select>
                   </InputContainer>
-
                   <InputContainer>
                     <Label>
                       Seniority <Required />
                     </Label>
-                    <div className="relative">
-                      <select
-                        className={`input ${
-                          errors.seniorityId && 'border-red-400'
-                        }`}
-                        {...register('seniorityId', { required: true })}
-                      >
-                        {seniorities.map((seniority) => (
-                          <option key={seniority._id} value={seniority._id}>
-                            {seniority.name}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
+                    <select
+                      className={`input ${
+                        errors.seniorityId && 'border-red-400'
+                      }`}
+                      {...register('seniorityId', { required: true })}
+                    >
+                      {seniorities.map((seniority) => (
+                        <option key={seniority._id} value={seniority._id}>
+                          {seniority.name}
+                        </option>
+                      ))}
+                    </select>
                   </InputContainer>
                 </div>
                 <InputContainer>
