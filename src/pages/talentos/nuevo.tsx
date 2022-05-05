@@ -75,6 +75,8 @@ const Required = () => {
   return <span className="font-light text-red-500">*</span>;
 };
 
+type FormState = 'LOADING' | 'SUBMITTING' | 'LOADED';
+
 const NewProfilePage: React.FC<NewProfileProps> = ({
   preview,
   technologies,
@@ -94,9 +96,8 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     useState<Technologies>([]);
   const [photo, setPhoto] = useState('');
   const [userId, setUserId] = useState('');
-  const [loadingProfile, setLoadingProfile] = useState(true);
   const [message, setMessage] = useState({ error: false, text: '' });
-  const [loadingForm, setLoadingForm] = useState(false);
+  const [formState, setFormState] = useState<FormState>('LOADING');
 
   const handleTechnologies = (techSelected: Technologies) => {
     setSelectedTechnologies(techSelected);
@@ -104,7 +105,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
 
   useEffect(() => {
     const fetchUser = async (uId) => {
-      setLoadingProfile(true);
+      setFormState('LOADING');
       const response = await fetch(`/api/profiles/${uId}`);
 
       if (response.status === 200) {
@@ -126,7 +127,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         setValue('available', user.isAvailable);
       }
 
-      setLoadingProfile(false);
+      setFormState('LOADED');
     };
     if (session && !loading) {
       fetchUser(session.user.id);
@@ -145,7 +146,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
     inputValue.length > 0 && selectValue.length < 5;
 
   const onSubmit = async (data: Record<string, unknown>) => {
-    setLoadingForm(true);
+    setFormState('SUBMITTING');
     try {
       const body = {
         ...data,
@@ -184,13 +185,13 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
       process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
     );
 
-    setLoadingForm(false);
+    setFormState('LOADED');
     setTimeout(() => setMessage({ error: false, text: '' }), 5000);
   };
 
   const onError = (errorsLog, e) => console.log(errorsLog, e);
 
-  if (loading && loadingProfile) {
+  if (formState === 'LOADING') {
     return (
       <Layout
         title={page.title}
@@ -198,8 +199,25 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         metadata={page.metadata}
         preview={preview}
       >
-        <div className="py-32 my-20 text-2xl text-center rounded-lg shadow bg-zinc-800 text-zinc-100">
+        <SectionHero title={page.title} paragraph={page.description} />
+        <div className="py-32 my-20 text-2xl text-center rounded-lg shadow text-zinc-100">
           Cargando sesión...
+        </div>
+      </Layout>
+    );
+  }
+
+  if (formState === 'SUBMITTING') {
+    return (
+      <Layout
+        title={page.title}
+        description={page.shortDescription}
+        metadata={page.metadata}
+        preview={preview}
+      >
+        <SectionHero title={page.title} paragraph={page.description} />
+        <div className="overflow-hidden border-2 rounded-lg shadow bg-zinc-900 border-zinc-600">
+          <div className="p-4 text-zinc-100">Enviando formulario...</div>
         </div>
       </Layout>
     );
@@ -226,266 +244,257 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
         )}
         {session ? (
           <div>
-            {loadingForm ? (
-              <div className="p-4 text-zinc-100">Enviando formulario...</div>
-            ) : (
-              <form
-                onSubmit={handleSubmit(onSubmit, onError)}
-                className="w-full p-6 rounded bg-zinc-900 sm:px-8 sm:pt-6 sm:pb-8"
-                noValidate
-              >
-                <div className="flex flex-col grid-cols-2 gap-5 md:grid">
-                  <InputContainer>
-                    <Label>
-                      Usuario de Discord <Required />
-                    </Label>
-                    <input
-                      className={`input ${errors.discord && 'border-red-400'}`}
-                      type="text"
-                      required
-                      placeholder="Ingresa tu usuario de Discord"
-                      value={session.user.name}
-                      readOnly
-                      {...register('discord', { required: true })}
-                    />
-                  </InputContainer>
-                  <InputContainer>
-                    <Label>
-                      Email <Required />
-                    </Label>
-                    <input
-                      className={`input ${errors.email && 'border-red-400'}`}
-                      type="email"
-                      required
-                      placeholder="Ingresa tu email"
-                      value={session.user.email}
-                      readOnly
-                      {...register('email', { required: true })}
-                    />
-                  </InputContainer>
-                  <InputContainer>
-                    <Label>
-                      Nombre y Apellido <Required />
-                    </Label>
-                    <input
-                      className={`input ${errors.name && 'border-red-400'}`}
-                      type="text"
-                      placeholder="Ingresa nombre completo"
-                      {...register('name', { required: true })}
-                    />
-                  </InputContainer>
-                  <InputContainer>
-                    <Label>
-                      Lugar de residencia <Required />
-                    </Label>
-                    <input
-                      className={`input focus:outline-none focus:ring ${
-                        errors.location && 'border-red-400'
-                      }`}
-                      type="text"
-                      required
-                      placeholder="Tu ubicación actual"
-                      {...register('location', { required: true })}
-                    />
-                  </InputContainer>
-                  <InputContainer>
-                    <Label>Twitter</Label>
-                    <Description>
-                      Incluye enlace completo de tu perfil.
-                    </Description>
-                    <div className="relative">
-                      <input
-                        className={`input ${
-                          errors.twitter && 'border-red-400'
-                        }`}
-                        type="url"
-                        placeholder="https://twitter.com/usuario"
-                        {...register('twitter')}
-                      />
-                    </div>
-                  </InputContainer>
-                  <InputContainer>
-                    <Label>Linkedin</Label>
-                    <Description>
-                      Incluye enlace completo de tu perfil.
-                    </Description>
-                    <input
-                      className={`input ${errors.linkedin && 'border-red-400'}`}
-                      type="url"
-                      placeholder="https://linkedin.com/in/usuario"
-                      {...register('linkedin')}
-                    />
-                  </InputContainer>
-                  <InputContainer>
-                    <Label>Github</Label>
-                    <Description>
-                      Incluye enlace completo de tu perfil.
-                    </Description>
-                    <input
-                      className={`input ${errors.github && 'border-red-400'}`}
-                      type="url"
-                      placeholder="https://github.com/usuario"
-                      {...register('github')}
-                    />
-                  </InputContainer>
-                  <InputContainer>
-                    <Label>Portfolio</Label>
-                    <Description>
-                      Incluye enlace completo de tu web personal.
-                    </Description>
-                    <input
-                      className={`input ${
-                        errors.portfolio && 'border-red-400'
-                      }`}
-                      type="url"
-                      placeholder="https://www.portfolio.com"
-                      {...register('portfolio')}
-                    />
-                  </InputContainer>
-                  <InputContainer>
-                    <Label>
-                      Rol actual o con el que te defines <Required />
-                    </Label>
-                    <select
-                      className={`input ${errors.roleId && 'border-red-400'}`}
-                      {...register('roleId', { required: true })}
-                    >
-                      {roles.map((role) => (
-                        <option key={role._id} value={role._id}>
-                          {role.name}
-                        </option>
-                      ))}
-                    </select>
-                  </InputContainer>
-                  <InputContainer>
-                    <Label>
-                      Seniority <Required />
-                    </Label>
-                    <select
-                      className={`input ${
-                        errors.seniorityId && 'border-red-400'
-                      }`}
-                      {...register('seniorityId', { required: true })}
-                    >
-                      {seniorities.map((seniority) => (
-                        <option key={seniority._id} value={seniority._id}>
-                          {seniority.name}
-                        </option>
-                      ))}
-                    </select>
-                  </InputContainer>
-                </div>
+            <div className="p-4 text-zinc-100">Enviando formulario...</div>
+            <form
+              onSubmit={handleSubmit(onSubmit, onError)}
+              className="w-full p-6 rounded bg-zinc-900 sm:px-8 sm:pt-6 sm:pb-8"
+              noValidate
+            >
+              <div className="flex flex-col grid-cols-2 gap-5 md:grid">
                 <InputContainer>
                   <Label>
-                    Foto de perfil <Required />
+                    Usuario de Discord <Required />
                   </Label>
-                  <div className="flex items-center justify-start w-full space-x-4">
-                    <label className="flex items-center justify-center w-32 h-32 overflow-hidden border-4 border-dashed rounded-md cursor-pointer hover:bg-zinc-100 hover:border-primary group hover:opacity-75">
-                      {photo ? (
-                        <img
-                          src={photo}
-                          alt=""
-                          className="object-cover w-full h-full rounded-md"
-                        />
-                      ) : (
-                        <svg
-                          className="w-10 h-10 text-primary group-hover:text-primarydark"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                          ></path>
-                        </svg>
-                      )}
-                      <input
-                        type="file"
-                        className="hidden"
-                        accept="image/*"
-                        onChange={handleFile}
-                      />
-                    </label>
-                  </div>
+                  <input
+                    className={`input ${errors.discord && 'border-red-400'}`}
+                    type="text"
+                    required
+                    placeholder="Ingresa tu usuario de Discord"
+                    value={session.user.name}
+                    readOnly
+                    {...register('discord', { required: true })}
+                  />
                 </InputContainer>
                 <InputContainer>
-                  <Label>Tecnologías</Label>
+                  <Label>
+                    Email <Required />
+                  </Label>
+                  <input
+                    className={`input ${errors.email && 'border-red-400'}`}
+                    type="email"
+                    required
+                    placeholder="Ingresa tu email"
+                    value={session.user.email}
+                    readOnly
+                    {...register('email', { required: true })}
+                  />
+                </InputContainer>
+                <InputContainer>
+                  <Label>
+                    Nombre y Apellido <Required />
+                  </Label>
+                  <input
+                    className={`input ${errors.name && 'border-red-400'}`}
+                    type="text"
+                    placeholder="Ingresa nombre completo"
+                    {...register('name', { required: true })}
+                  />
+                </InputContainer>
+                <InputContainer>
+                  <Label>
+                    Lugar de residencia <Required />
+                  </Label>
+                  <input
+                    className={`input focus:outline-none focus:ring ${
+                      errors.location && 'border-red-400'
+                    }`}
+                    type="text"
+                    required
+                    placeholder="Tu ubicación actual"
+                    {...register('location', { required: true })}
+                  />
+                </InputContainer>
+                <InputContainer>
+                  <Label>Twitter</Label>
                   <Description>
-                    Selecciona un máximo de 5 tecnologías.
+                    Incluye enlace completo de tu perfil.
                   </Description>
-                  <Select
-                    classNamePrefix="react-select"
-                    className="w-full bg-transparent form-user"
-                    instanceId="technologies-selector"
-                    isMulti
-                    placeholder=""
-                    value={selectedTechnologies}
-                    onChange={handleTechnologies}
-                    isValidNewOption={isValidNewOption}
-                    getOptionLabel={(option) => option.name}
-                    getOptionValue={(option) => option._id}
-                    options={
-                      selectedTechnologies.length === 5 ? [] : technologies
-                    }
-                    noOptionsMessage={() => {
-                      return selectedTechnologies.length === 5
-                        ? 'Has alcanzado el máximo de opciones'
-                        : 'No opciones disponibles';
-                    }}
+                  <div className="relative">
+                    <input
+                      className={`input ${errors.twitter && 'border-red-400'}`}
+                      type="url"
+                      placeholder="https://twitter.com/usuario"
+                      {...register('twitter')}
+                    />
+                  </div>
+                </InputContainer>
+                <InputContainer>
+                  <Label>Linkedin</Label>
+                  <Description>
+                    Incluye enlace completo de tu perfil.
+                  </Description>
+                  <input
+                    className={`input ${errors.linkedin && 'border-red-400'}`}
+                    type="url"
+                    placeholder="https://linkedin.com/in/usuario"
+                    {...register('linkedin')}
+                  />
+                </InputContainer>
+                <InputContainer>
+                  <Label>Github</Label>
+                  <Description>
+                    Incluye enlace completo de tu perfil.
+                  </Description>
+                  <input
+                    className={`input ${errors.github && 'border-red-400'}`}
+                    type="url"
+                    placeholder="https://github.com/usuario"
+                    {...register('github')}
+                  />
+                </InputContainer>
+                <InputContainer>
+                  <Label>Portfolio</Label>
+                  <Description>
+                    Incluye enlace completo de tu web personal.
+                  </Description>
+                  <input
+                    className={`input ${errors.portfolio && 'border-red-400'}`}
+                    type="url"
+                    placeholder="https://www.portfolio.com"
+                    {...register('portfolio')}
                   />
                 </InputContainer>
                 <InputContainer>
                   <Label>
-                    Biografía <Required />
+                    Rol actual o con el que te defines <Required />
                   </Label>
-                  <textarea
-                    rows={5}
-                    required
+                  <select
+                    className={`input ${errors.roleId && 'border-red-400'}`}
+                    {...register('roleId', { required: true })}
+                  >
+                    {roles.map((role) => (
+                      <option key={role._id} value={role._id}>
+                        {role.name}
+                      </option>
+                    ))}
+                  </select>
+                </InputContainer>
+                <InputContainer>
+                  <Label>
+                    Seniority <Required />
+                  </Label>
+                  <select
                     className={`input ${
-                      errors.description && 'border-red-400'
+                      errors.seniorityId && 'border-red-400'
                     }`}
-                    {...register('description', { required: true })}
-                    placeholder="Cuentanos un poco de tí"
-                    maxLength={500}
-                  ></textarea>
+                    {...register('seniorityId', { required: true })}
+                  >
+                    {seniorities.map((seniority) => (
+                      <option key={seniority._id} value={seniority._id}>
+                        {seniority.name}
+                      </option>
+                    ))}
+                  </select>
                 </InputContainer>
-                <InputContainer>
-                  <input
-                    className="inline mr-2 text-sm leading-tight border rounded text-secondary focus:outline-none focus:ring"
-                    {...register('available')}
-                    type="checkbox"
-                  />
-                  <label className="inline text-sm font-bold text-secondary">
-                    ¿Te encuentras en búsqueda de trabajo activa?
+              </div>
+              <InputContainer>
+                <Label>
+                  Foto de perfil <Required />
+                </Label>
+                <div className="flex items-center justify-start w-full space-x-4">
+                  <label className="flex items-center justify-center w-32 h-32 overflow-hidden border-4 border-dashed rounded-md cursor-pointer hover:bg-zinc-100 hover:border-primary group hover:opacity-75">
+                    {photo ? (
+                      <img
+                        src={photo}
+                        alt=""
+                        className="object-cover w-full h-full rounded-md"
+                      />
+                    ) : (
+                      <svg
+                        className="w-10 h-10 text-primary group-hover:text-primarydark"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                        ></path>
+                      </svg>
+                    )}
+                    <input
+                      type="file"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handleFile}
+                    />
                   </label>
-                </InputContainer>
-                <InputContainer>
-                  <input
-                    className={`inline mr-2 text-sm leading-tight text-secondary border rounded focus:outline-none focus:ring ${
-                      errors.consent && 'border-red-400'
-                    }`}
-                    type="checkbox"
-                    required
-                    {...register('consent', { required: true })}
-                  />
-                  <label className="inline text-sm font-bold text-secondary">
-                    ¿Aceptas que tu información sea compartida en la web de
-                    FrontendCafé? <Required />
-                  </label>
-                </InputContainer>
-                <div className="pt-8">
-                  <div className="flex justify-end">
-                    <button type="submit" className="btn btn-primary">
-                      Enviar
-                    </button>
-                  </div>
                 </div>
-              </form>
-            )}
+              </InputContainer>
+              <InputContainer>
+                <Label>Tecnologías</Label>
+                <Description>
+                  Selecciona un máximo de 5 tecnologías.
+                </Description>
+                <Select
+                  classNamePrefix="react-select"
+                  className="w-full bg-transparent form-user"
+                  instanceId="technologies-selector"
+                  isMulti
+                  placeholder=""
+                  value={selectedTechnologies}
+                  onChange={handleTechnologies}
+                  isValidNewOption={isValidNewOption}
+                  getOptionLabel={(option) => option.name}
+                  getOptionValue={(option) => option._id}
+                  options={
+                    selectedTechnologies.length === 5 ? [] : technologies
+                  }
+                  noOptionsMessage={() => {
+                    return selectedTechnologies.length === 5
+                      ? 'Has alcanzado el máximo de opciones'
+                      : 'No opciones disponibles';
+                  }}
+                />
+              </InputContainer>
+              <InputContainer>
+                <Label>
+                  Biografía <Required />
+                </Label>
+                <textarea
+                  rows={5}
+                  required
+                  className={`input ${errors.description && 'border-red-400'}`}
+                  {...register('description', { required: true })}
+                  placeholder="Cuentanos un poco de tí"
+                  maxLength={500}
+                ></textarea>
+              </InputContainer>
+              <InputContainer>
+                <input
+                  className="inline mr-2 text-sm leading-tight border rounded text-secondary focus:outline-none focus:ring"
+                  {...register('available')}
+                  type="checkbox"
+                />
+                <label className="inline text-sm font-bold text-secondary">
+                  ¿Te encuentras en búsqueda de trabajo activa?
+                </label>
+              </InputContainer>
+              <InputContainer>
+                <input
+                  className={`inline mr-2 text-sm leading-tight text-secondary border rounded focus:outline-none focus:ring ${
+                    errors.consent && 'border-red-400'
+                  }`}
+                  type="checkbox"
+                  required
+                  {...register('consent', { required: true })}
+                />
+                <label className="inline text-sm font-bold text-secondary">
+                  ¿Aceptas que tu información sea compartida en la web de
+                  FrontendCafé? <Required />
+                </label>
+              </InputContainer>
+              <div className="pt-8">
+                <div className="flex justify-end">
+                  <button type="submit" className="btn btn-primary">
+                    Enviar
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         ) : (
           <div className="p-4 text-zinc-100 bg-zinc-900">
