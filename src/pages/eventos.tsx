@@ -38,7 +38,6 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
   const data = await getAllEvents(preview);
   const settings = await getSettings(preview);
   const page = await getPageByName(preview, 'Eventos');
-  console.log(page);
 
   return {
     props: { data, preview, settings, page },

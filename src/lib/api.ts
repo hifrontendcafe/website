@@ -95,11 +95,21 @@ export function getClient(preview = false): ReturnType<typeof createClient> {
   return preview ? previewClient : client;
 }
 
-export async function createEvent(data: any): Promise<Event> {
-  return postClient.create({
-    _type: 'event',
-    ...data,
-  });
+export async function createEvent(
+  data: SanityEvent,
+  draft = false,
+): Promise<SanityEvent> {
+  if (draft)
+    return postClient.create({
+      _type: 'event',
+      _id: 'drafts.',
+      ...data,
+    });
+  else
+    return postClient.create({
+      _type: 'event',
+      ...data,
+    });
 }
 
 async function discordEventToSanityEvent(
@@ -115,7 +125,7 @@ async function discordEventToSanityEvent(
     title: discordEvent.name,
     slug: {
       _type: 'slug',
-      current: createSlug(discordEvent.name),
+      current: createSlug(discordEvent.name) + '-' + discordEvent.id,
     },
     category: eventChannel.category,
     cover: {
@@ -134,7 +144,7 @@ async function discordEventToSanityEvent(
 
 export async function importEvents(preview = false): Promise<void> {
   const eventChannels = await getClient(preview).fetch(eventChannelsQuery);
-  const importedEventsId = await getClient(preview).fetch(
+  const importedEventsId = await getClient(true).fetch(
     futureEventsDiscordIdQuery,
   );
   try {
@@ -151,6 +161,7 @@ export async function importEvents(preview = false): Promise<void> {
       if (eventChannel) {
         createEvent(
           await discordEventToSanityEvent(discordEvent, eventChannel),
+          true,
         );
       }
     });
