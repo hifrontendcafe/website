@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { importEvents } from '../../lib/api';
+import { importDiscordEventsAutomatic } from '../../lib/api';
 
 export default async function importEvent(
   req: NextApiRequest,
@@ -7,8 +7,12 @@ export default async function importEvent(
 ): Promise<void> {
   if (req.method === 'POST') {
     try {
-      await importEvents();
-      res.status(200).json({ message: 'Ok' });
+      const resultImport = await importDiscordEventsAutomatic();
+      if (resultImport) {
+        res.status(200).json({ message: 'Ok' });
+      } else {
+        res.status(500).json({ message: 'Automatic migration is disabled' });
+      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: 'Could not import discord events' });

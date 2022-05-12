@@ -28,6 +28,7 @@ import {
   eventsQuery,
   eventsQueryByType,
   eventChannelsQuery,
+  eventsSettingsQuery,
   futureEventsDiscordIdQuery,
   settingsQuery,
   staffQuery,
@@ -45,13 +46,15 @@ import {
 
 import { createClient } from 'next-sanity';
 import { pageByPathQuery } from './queries';
-import { Page, DiscordEvent, EventChannel } from './types';
+import { Page, DiscordEvent, EventChannel, EventsSettings } from './types';
 import { getAllDiscordEvents } from './discord';
 import markdownToHtml from './markdownToHtml';
 import Schema from '@sanity/schema';
 import blockTools from '@sanity/block-tools';
 import jsdom from 'jsdom';
 import { createSlug } from './helpers';
+import sendEmailJS from './sendEmail';
+import { DataEmailJs } from './sendEmail';
 const { JSDOM } = jsdom;
 
 const eventFields = `
@@ -142,11 +145,34 @@ async function discordEventToSanityEvent(
   };
 }
 
-export async function importEvents(preview = false): Promise<void> {
+export async function importDiscordEventsAutomatic(
+  preview = false,
+): Promise<boolean> {
+  const eventsSettings: EventsSettings = await getClient(true).fetch(
+    eventsSettingsQuery,
+  );
+  if (!eventsSettings.automaticaticMigrationEnabled) {
+    return false;
+  }
+  const newEvents = await importEvents(preview);
+  if (newEvents > 0 && eventsSettings.sendEmailsOnMigration) {
+    const data: DataEmailJs<Record<string, never>> = {
+      service_id: 'fec_gmail',
+      template_id: 'events_migration',
+      user_id: process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
+      accessToken: process.env.NEXT_PUBLIC_EMAILJS_ACCESS_TOKEN,
+    };
+    await sendEmailJS<Record<string, never>>(data);
+  }
+  return true;
+}
+
+export async function importEvents(preview = false): Promise<number> {
   const eventChannels = await getClient(preview).fetch(eventChannelsQuery);
   const importedEventsId = await getClient(true).fetch(
     futureEventsDiscordIdQuery,
   );
+  let countNewEvents = 0;
   try {
     const response = await getAllDiscordEvents();
     const discordEventsAllValues: DiscordEvent[] = await response.json();
@@ -159,6 +185,7 @@ export async function importEvents(preview = false): Promise<void> {
         (channel) => channel.id === discordEvent.channel_id,
       );
       if (eventChannel) {
+        countNewEvents++;
         createEvent(
           await discordEventToSanityEvent(discordEvent, eventChannel),
           true,
@@ -168,6 +195,7 @@ export async function importEvents(preview = false): Promise<void> {
   } catch (error) {
     console.error(error);
   }
+  return countNewEvents;
 }
 
 export async function getAllEvents(preview = false): Promise<Event[]> {

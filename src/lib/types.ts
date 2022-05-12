@@ -63,6 +63,7 @@ export interface Event {
 }
 
 export interface SanityEvent {
+  _id?: string;
   discordId: string;
   title: string;
   slug: {
@@ -81,6 +82,11 @@ export interface SanityEvent {
   date: string;
   description: [];
   tags: [];
+}
+
+export interface EventsSettings {
+  automaticaticMigrationEnabled: boolean;
+  sendEmailsOnMigration: boolean;
 }
 
 export interface Mentor {
