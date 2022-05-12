@@ -104,7 +104,7 @@ export const eventChannelsQuery = groq`
 `;
 
 export const eventsSettingsQuery = groq`
-  *[_type == "eventsSettings"]{
+  *[_type == "eventsSettings"][0]{
     automaticaticMigrationEnabled,
     sendEmailsOnMigration
   }
