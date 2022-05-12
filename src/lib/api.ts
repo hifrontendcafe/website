@@ -174,7 +174,18 @@ export async function importEvents(preview = false): Promise<number> {
   );
   let countNewEvents = 0;
   try {
-    const response = await getAllDiscordEvents();
+    let response: Response;
+    try {
+      response = await getAllDiscordEvents();
+    } catch (e: unknown) {
+      console.error(e);
+    }
+
+    if (!response.ok) {
+      const error: unknown = await response.json();
+      throw new Error(`HTTP Error: ${JSON.stringify(error)}`);
+    }
+
     const discordEventsAllValues: DiscordEvent[] = await response.json();
     discordEventsAllValues.forEach(async (discordEvent) => {
       const importedIndex = importedEventsId?.find(
