@@ -1,4 +1,4 @@
-import type { Story } from '@ladle/react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { EmbeddedTweet } from '@/lib/types';
 import MediaFeedComponent from './index';
 
@@ -431,15 +431,26 @@ const tweets = [
   },
 ];
 
-interface StoryProps {
-  tweets: EmbeddedTweet[];
-}
+export default {
+  title: 'Components/MediaFeed',
+  component: MediaFeedComponent,
+  parameters: {
+    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'fullscreen',
+  },
+} as ComponentMeta<typeof MediaFeedComponent>;
 
-export const MediaFeed: Story<StoryProps> = ({ tweets }) => (
+const Template: ComponentStory<typeof MediaFeedComponent> = (args) => (
   <>
-    <MediaFeedComponent tweets={tweets} />
+    <div className="w-full min-h-screen bg-zinc-900">
+      <div id="container" className="container relative pt-12 mx-auto">
+        <MediaFeedComponent {...args} />
+      </div>
+    </div>
   </>
 );
+
+export const MediaFeed = Template.bind({});
 
 MediaFeed.args = {
   tweets,
