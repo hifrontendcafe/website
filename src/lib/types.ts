@@ -449,4 +449,5 @@ export interface EventChannel {
   name: string;
   category: { _ref: string; _type: 'reference' };
   defaultImage: { _type: 'image'; asset: { _ref: string; _type: 'reference' } };
+  tags: [];
 }

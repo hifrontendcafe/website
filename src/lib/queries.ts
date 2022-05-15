@@ -99,7 +99,8 @@ export const eventChannelsQuery = groq`
     id,
     name,
     category,
-    defaultImage
+    defaultImage,
+    tags
   }
 `;
 

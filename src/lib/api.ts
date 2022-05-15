@@ -141,7 +141,7 @@ async function discordEventToSanityEvent(
     },
     date: discordEvent.scheduled_start_time,
     description: blocks,
-    tags: [],
+    tags: eventChannel.tags,
   };
 }
 
