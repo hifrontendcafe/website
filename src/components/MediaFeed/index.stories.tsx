@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { EmbeddedTweet } from '@/lib/types';
 import MediaFeedComponent from './index';
 
 const tweets = [
@@ -441,19 +440,77 @@ export default {
 } as ComponentMeta<typeof MediaFeedComponent>;
 
 const Template: ComponentStory<typeof MediaFeedComponent> = (args) => (
-  <>
-    <div className="w-full min-h-screen bg-zinc-900">
-      <div id="container" className="container relative pt-12 mx-auto">
-        <MediaFeedComponent {...args} />
-      </div>
+  <div className="w-full min-h-screen bg-zinc-900">
+    <div id="container" className="container">
+      <MediaFeedComponent {...args} />
     </div>
-  </>
+  </div>
 );
 
-export const MediaFeed = Template.bind({});
+export const ManyTweets = Template.bind({});
 
-MediaFeed.args = {
+ManyTweets.args = {
   tweets,
 };
 
-MediaFeed.argTypes = {};
+ManyTweets.argTypes = {};
+
+const oneTweet = [
+  {
+    referenced_tweets: [
+      {
+        type: 'retweeted',
+        author: {
+          profile_image_url:
+            'https://pbs.twimg.com/profile_images/1444988463216922631/IDffhy4i_normal.jpg',
+          name: 'Kent C. Dodds 💿',
+          url: 'https://t.co/2Zzqk7yHjs',
+          protected: false,
+          verified: false,
+          username: 'kentcdodds',
+          id: '389681470',
+        },
+        referenced_tweets: [{ type: 'quoted', id: '1525142738382950400' }],
+        id: '1525157665319505921',
+        public_metrics: {
+          retweet_count: 6,
+          reply_count: 12,
+          like_count: 136,
+          quote_count: 3,
+        },
+        text: 'Remix was open sourced only 6 months ago folks, and recruiters are already asking for it 🤯 https://t.co/Cv6XnEVfXI',
+        author_id: '389681470',
+        created_at: '2022-05-13T16:54:58.000Z',
+      },
+    ],
+    id: '1525158831524876288',
+    public_metrics: {
+      retweet_count: 6,
+      reply_count: 0,
+      like_count: 0,
+      quote_count: 0,
+    },
+    text: 'RT @kentcdodds: Remix was open sourced only 6 months ago folks, and recruiters are already asking for it 🤯',
+    author_id: '1196333675958460416',
+    created_at: '2022-05-13T16:59:36.000Z',
+    media: [],
+    author: {
+      profile_image_url:
+        'https://pbs.twimg.com/profile_images/1455647573876805633/Qet3auj0_normal.jpg',
+      name: 'FrontendCafé',
+      url: 'https://t.co/7l8AmoKSoR',
+      protected: false,
+      verified: false,
+      username: 'FrontendCafe',
+      id: '1196333675958460416',
+    },
+  },
+];
+
+export const OneTweet = Template.bind({});
+
+OneTweet.args = {
+  tweets: oneTweet,
+};
+
+OneTweet.argTypes = {};

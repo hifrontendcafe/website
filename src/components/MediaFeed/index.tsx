@@ -1,6 +1,5 @@
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { EmbeddedTweet } from '@/lib/types';
@@ -13,7 +12,7 @@ interface TwitterCardProps {
   media?: EmbeddedTweet['media'];
   created_at: string;
   referenced_tweets?: EmbeddedTweet['referenced_tweets'];
-  with_border?: boolean;
+  is_quote?: boolean;
 }
 
 interface MediaFeedProps {
@@ -95,7 +94,7 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
   author,
   media,
   referenced_tweets,
-  with_border = false,
+  is_quote = false,
 }) => {
   const tweetUrl = `https://twitter.com/${author.username}/status/${id}`;
   const authorUrl = `https://twitter.com/${author.username}`;
@@ -118,7 +117,18 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
     );
   }
 
-  const border = with_border ? 'border border-zinc-500' : '';
+  const border = is_quote ? 'border border-zinc-500' : '';
+  const tweetIcon = (
+    <div className="flex mb-auto">
+      <a href={tweetUrl}>
+        <FontAwesomeIcon
+          icon={faTwitter}
+          width="18px"
+          className="fill-current text-lightBlue"
+        />
+      </a>
+    </div>
+  );
 
   return (
     <div>
@@ -135,24 +145,11 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
               className="w-12 rounded-full"
             />
             <div className="ml-2">
-              <h2 className="font-semibold font-title">{author.name}</h2>
+              <h2 className="font-semibold">{author.name}</h2>
               <h3 className="text-primary0">@{author.username}</h3>
             </div>
           </a>
-          <div className="flex mb-auto">
-            <FontAwesomeIcon
-              icon={faTwitter}
-              width="18px"
-              className="fill-current text-lightBlue "
-            />
-            <a href={tweetUrl}>
-              <FontAwesomeIcon
-                icon={faExternalLinkAlt}
-                width="18px"
-                className="ml-3"
-              />
-            </a>
-          </div>
+          {!is_quote ? tweetIcon : null}
         </div>
         <div className="my-2">{text}</div>
         <div>
@@ -175,7 +172,7 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
             author={quoteTweet.author}
             created_at={quoteTweet.created_at}
             media={quoteTweet.media}
-            with_border={true}
+            is_quote={true}
           />
         ) : null}
       </div>
