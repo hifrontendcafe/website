@@ -1,5 +1,4 @@
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { EmbeddedTweet } from '@/lib/types';
 import MediaFeedComponent from './index';
 
 const tweets = [
