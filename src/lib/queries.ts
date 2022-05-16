@@ -32,6 +32,10 @@ export const settingsQuery = groq`
     logo,
     heroBackground,
     heroWords,
+    heroSubtitle,
+    heroDescription,
+    discordButtonLabel,
+    iniciativasButtonText,
     socialnetworks,
     cmykInscription
   }

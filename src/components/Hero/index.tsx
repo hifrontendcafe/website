@@ -7,10 +7,21 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface HeroProps {
   title?: string;
+  subtitle: string;
+  description?: string;
+  discordButtonLabel: string;
+  iniciativasButtonText: string;
   handleIniciativasClick?: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
+const Hero: React.FC<HeroProps> = ({
+  title,
+  subtitle,
+  description,
+  discordButtonLabel,
+  iniciativasButtonText,
+  handleIniciativasClick,
+}) => {
   return (
     <div className="relative py-32 mx-auto bg-white/0">
       <div className="flex items-center justify-center h-full bg-center bg-cover text-primary md:justify-around">
@@ -36,11 +47,10 @@ const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
                 style={{ width: 'min-content' }}
                 className="text-5xl font-black md:font-extrabold sm:text-5xl md:text-7xl xl:text-8xl font-title"
               >
-                en comunidad
+                {subtitle}
               </span>
               <p className="max-w-xl mx-auto mt-4 text-xl font-medium text-tertiary md:text-2xl">
-                El lugar de encuentro para conectar con otras personas y
-                potenciar tus ideas.
+                {description}
               </p>
             </div>
             <a
@@ -49,7 +59,7 @@ const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
               rel="noreferrer"
             >
               <button className="flex items-center m-auto mb-20 text-md md:px-8 md:py-3 btn btn-primary">
-                Súmate a Discord
+                {discordButtonLabel}
                 <FontAwesomeIcon
                   icon={faExternalLinkAlt}
                   width="16px"
@@ -61,7 +71,7 @@ const Hero: React.FC<HeroProps> = ({ title, handleIniciativasClick }) => {
               onClick={handleIniciativasClick}
               className="flex items-center self-center justify-center font-semibold text-primary"
             >
-              Conoce las iniciativas
+              {iniciativasButtonText}
               <FontAwesomeIcon
                 icon={faChevronDown}
                 width="16px"
