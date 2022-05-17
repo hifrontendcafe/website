@@ -9,34 +9,35 @@ import Hero from '../../components/Hero';
 
 import { getPost, getAllPostsSlugs, getSettings } from '../../lib/api';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { Post } from '../../lib/types';
+import { Post, Settings } from '../../lib/types';
 import { postQuery } from '../../lib/queries';
-import { useSettings } from '@/lib/settings';
 
 type PostPageProps = {
   data: Post;
   preview?: boolean;
+  settings: Settings;
 };
 
-const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
+const PostPage: React.FC<PostPageProps> = ({ data, preview, settings }) => {
   const router = useRouter();
   const { data: post, loading } = usePreviewSubscription(postQuery, {
     params: { slug: data?.slug.current },
     initialData: data,
     enabled: preview,
   });
-  const {
-    heroSubtitle,
-    heroDescription,
-    discordButtonLabel,
-    iniciativasButtonText,
-  } = useSettings();
 
   if (!router.isFallback && !data?.slug) {
     return <ErrorPage statusCode={404} />;
   }
 
   if (router.isFallback || loading) return <div>Cargando...</div>;
+
+  const {
+    heroSubtitle,
+    heroDescription,
+    discordButtonLabel,
+    iniciativasButtonText,
+  } = settings;
 
   return (
     <Layout title={post.title} preview={preview}>
