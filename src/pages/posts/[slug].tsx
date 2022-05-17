@@ -11,6 +11,7 @@ import { getPost, getAllPostsSlugs, getSettings } from '../../lib/api';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { Post } from '../../lib/types';
 import { postQuery } from '../../lib/queries';
+import { useSettings } from '@/lib/settings';
 
 type PostPageProps = {
   data: Post;
@@ -24,6 +25,12 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
     initialData: data,
     enabled: preview,
   });
+  const {
+    heroSubtitle,
+    heroDescription,
+    discordButtonLabel,
+    iniciativasButtonText,
+  } = useSettings();
 
   if (!router.isFallback && !data?.slug) {
     return <ErrorPage statusCode={404} />;
@@ -33,7 +40,13 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
 
   return (
     <Layout title={post.title} preview={preview}>
-      <Hero title="Posts" />
+      <Hero
+        title="Posts"
+        subtitle={heroSubtitle}
+        description={heroDescription}
+        discordButtonLabel={discordButtonLabel}
+        iniciativasButtonText={iniciativasButtonText}
+      />
       <div className="pb-24 bg-zinc-900 sm:pt-10">
         <div className="min-h-screen overflow-hidden bg-white rounded-lg shadow ">
           <div className="px-4 py-5 border-b border-zinc-500 sm:px-6">
