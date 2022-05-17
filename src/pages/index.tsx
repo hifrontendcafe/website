@@ -43,7 +43,14 @@ const ForwardedFeaturedSection = forwardRef(FeaturedSection);
 
 const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
   const [counter, setCounter] = useState(0);
-  const { heroWords = ['Creamos'], description } = useSettings();
+  const {
+    heroWords = ['Creamos'],
+    description,
+    heroSubtitle,
+    heroDescription,
+    discordButtonLabel,
+    iniciativasButtonText,
+  } = useSettings();
 
   const featuredRef = useRef<HTMLElement>(null);
 
@@ -68,6 +75,10 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero
         title={heroWords[counter]}
+        subtitle={heroSubtitle}
+        description={heroDescription}
+        discordButtonLabel={discordButtonLabel}
+        iniciativasButtonText={iniciativasButtonText}
         handleIniciativasClick={goToFeaturedSection}
       />
       <ForwardedFeaturedSection ref={featuredRef} cards={cards} />

@@ -9,15 +9,16 @@ import Hero from '../../components/Hero';
 
 import { getPost, getAllPostsSlugs, getSettings } from '../../lib/api';
 import { usePreviewSubscription } from '../../lib/sanity';
-import { Post } from '../../lib/types';
+import { Post, Settings } from '../../lib/types';
 import { postQuery } from '../../lib/queries';
 
 type PostPageProps = {
   data: Post;
   preview?: boolean;
+  settings: Settings;
 };
 
-const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
+const PostPage: React.FC<PostPageProps> = ({ data, preview, settings }) => {
   const router = useRouter();
   const { data: post, loading } = usePreviewSubscription(postQuery, {
     params: { slug: data?.slug.current },
@@ -31,9 +32,22 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview }) => {
 
   if (router.isFallback || loading) return <div>Cargando...</div>;
 
+  const {
+    heroSubtitle,
+    heroDescription,
+    discordButtonLabel,
+    iniciativasButtonText,
+  } = settings;
+
   return (
     <Layout title={post.title} preview={preview}>
-      <Hero title="Posts" />
+      <Hero
+        title="Posts"
+        subtitle={heroSubtitle}
+        description={heroDescription}
+        discordButtonLabel={discordButtonLabel}
+        iniciativasButtonText={iniciativasButtonText}
+      />
       <div className="pb-24 bg-zinc-900 sm:pt-10">
         <div className="min-h-screen overflow-hidden bg-white rounded-lg shadow ">
           <div className="px-4 py-5 border-b border-zinc-500 sm:px-6">

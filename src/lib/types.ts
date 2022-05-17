@@ -4,6 +4,10 @@ export interface Settings {
   description: string;
   heroBackground: Image;
   heroWords: string[];
+  heroSubtitle: string;
+  heroDescription?: string;
+  discordButtonLabel: string;
+  iniciativasButtonText: string;
   logo: Image;
   navItems: NavItemData[];
   socialnetworks: SocialNetworks;

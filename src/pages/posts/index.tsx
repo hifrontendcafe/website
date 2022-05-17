@@ -8,6 +8,7 @@ import { getAllPosts, getSettings } from '@/lib/api';
 import { Post } from '../../lib/types';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { postsQuery } from '../../lib/queries';
+import { useSettings } from '@/lib/settings';
 
 type PostsPageProps = {
   data: Post[];
@@ -20,9 +21,22 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
     enabled: preview,
   });
 
+  const {
+    heroSubtitle,
+    heroDescription,
+    discordButtonLabel,
+    iniciativasButtonText,
+  } = useSettings();
+
   return (
     <Layout title="Entradas" description="Blog" preview={preview}>
-      <Hero title="Entradas" />
+      <Hero
+        title="Entradas"
+        subtitle={heroSubtitle}
+        description={heroDescription}
+        discordButtonLabel={discordButtonLabel}
+        iniciativasButtonText={iniciativasButtonText}
+      />
       <div className="pb-24 bg-zinc-900 sm:pt-10">
         <div className="min-h-screen overflow-hidden bg-white rounded-lg shadow ">
           <div className="px-4 py-5 border-b border-zinc-500 sm:px-6">
