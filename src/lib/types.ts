@@ -182,7 +182,7 @@ export type ExtendedProfile = Profile & {
 export interface Doc {
   title: string;
   slug: string;
-  body: string;
+  body: any[];
   content?: string;
 }
 
