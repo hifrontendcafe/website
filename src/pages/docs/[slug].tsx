@@ -43,8 +43,6 @@ const DocPage: React.FC<DocPageProps> = ({ data, preview }) => {
 
   if (router.isFallback) return <div>Cargando...</div>;
 
-  console.log(doc.body);
-
   return (
     <Layout title={doc.title} preview={preview}>
       <div style={{ margin: 'auto', maxWidth: '675px', marginBottom: '100px' }}>
