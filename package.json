@@ -6,9 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "//": "generate types for prisma models",
-    "prisma:studio": "prisma studio",
-    "prisma:generate": "prisma generate",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -22,7 +19,6 @@
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
     "@fortawesome/react-fontawesome": "^0.1.15",
     "@portabletext/react": "^1.0.6",
-    "@prisma/client": "^2.27.0",
     "@sanity/asset-utils": "^1.2.3",
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/block-tools": "^2.29.3",
