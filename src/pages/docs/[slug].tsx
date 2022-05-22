@@ -1,39 +1,37 @@
 import { useRouter } from 'next/router';
 import Error from 'next/error';
 
-import type { GetStaticProps, GetStaticPaths } from 'next';
-import type { MDXRemoteSerializeResult } from 'next-mdx-remote';
-
-import { MDXRemote } from 'next-mdx-remote';
-import { serialize } from 'next-mdx-remote/serialize';
+import type {
+  GetStaticProps,
+  GetStaticPaths,
+  InferGetStaticPropsType,
+} from 'next';
 
 import Layout from '@/components/Layout';
 
 import { getAllDocs, getDocBySlug, getSettings } from '@/lib/api';
 import { usePreviewSubscription } from '@/lib/sanity';
 import { docQuery } from '@/lib/queries';
+import RichText from '@/components/RichText';
+import { PortableTextReactComponents } from '@portabletext/react';
+import { OrderedList, UnorderedList } from '@/components/MDX';
 
-import {
-  Heading1,
-  Heading2,
-  Heading3,
-  Link,
-  ListItem,
-  OrderedList,
-  Paragraph,
-  Strong,
-  UnorderedList,
-} from '@/components/MDX';
+type DocPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-import type { Doc } from '@/lib/types';
+const components: Partial<PortableTextReactComponents> = {
+  list: {
+    // eslint-disable-next-line react/display-name
+    number: ({ children }) => (
+      <OrderedList className="pl-9">{children}</OrderedList>
+    ),
+    // eslint-disable-next-line react/display-name
+    bullet: ({ children }) => (
+      <UnorderedList className="pl-9">{children}</UnorderedList>
+    ),
+  },
+};
 
-interface DocProps {
-  data: Doc;
-  mdx: MDXRemoteSerializeResult<Record<string, unknown>>;
-  preview?: boolean;
-}
-
-const DocPage: React.FC<DocProps> = ({ mdx, data, preview }) => {
+const DocPage: React.FC<DocPageProps> = ({ data, preview }) => {
   const router = useRouter();
   const { data: doc } = usePreviewSubscription(docQuery, {
     params: { slug: data?.slug },
@@ -48,20 +46,7 @@ const DocPage: React.FC<DocProps> = ({ mdx, data, preview }) => {
   return (
     <Layout title={doc.title} preview={preview}>
       <div style={{ margin: 'auto', maxWidth: '675px', marginBottom: '100px' }}>
-        <MDXRemote
-          {...mdx}
-          components={{
-            h1: Heading1,
-            h2: Heading2,
-            h3: Heading3,
-            p: Paragraph,
-            strong: Strong,
-            a: Link,
-            ul: UnorderedList,
-            ol: OrderedList,
-            li: ListItem,
-          }}
-        />
+        <RichText components={components} value={data.body} />
       </div>
     </Layout>
   );
@@ -84,11 +69,8 @@ export const getStaticProps: GetStaticProps = async ({
   const settings = await getSettings(preview);
   const data = await getDocBySlug(params.slug as string, preview);
 
-  const source = data.content;
-  const mdx = await serialize(source);
-
   return {
-    props: { mdx, data, preview, settings },
+    props: { data, preview, settings },
     revalidate: 1,
   };
 };

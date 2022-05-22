@@ -2,34 +2,19 @@ import { useMemo } from 'react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-import PortableText from '@sanity/block-content-to-react';
 import { Event } from '../../lib/types';
 import { imageBuilder } from '../../lib/sanity';
 import Timezones from '@/lib/completeTimezones.json';
 import Image from 'next/image';
+import RichText from '@/components/RichText';
 
 import { Card } from '../Card';
+import type { PortableTextReactComponents } from '@portabletext/react';
 
-const serializers = {
-  marks: {
+const components: Partial<PortableTextReactComponents> = {
+  block: {
     // eslint-disable-next-line react/display-name
-    link: ({ mark, children }) => {
-      const { blank, href } = mark;
-      return blank ? (
-        <a
-          href={href}
-          className="text-informational"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          {children}
-        </a>
-      ) : (
-        <a className="text-informational" href={href}>
-          {children}
-        </a>
-      );
-    },
+    normal: ({ children }) => <p className="my-2 text-base">{children}</p>,
   },
 };
 interface EventPreviewProps {
@@ -150,7 +135,12 @@ const EventPreview: React.FC<EventPreviewProps> = ({
           </div>
         )}
         <div className="py-2 text-secondary">
-          <PortableText blocks={event.description} serializers={serializers} />
+          <div className="!text-base">
+            <RichText
+              components={components}
+              value={event.description as any}
+            />
+          </div>
         </div>
       </Card.Body>
 
