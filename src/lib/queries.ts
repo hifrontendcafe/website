@@ -150,14 +150,14 @@ export const mentorsTopicsQuery = groq`
 `;
 
 export const mentorsQuery = groq`
-  *[_type == "mentor"] | order(date desc) {
+  *[_type == "mentor" && status in ["ACTIVE", "NOT_AVAILABLE"]] | order(date desc) {
     name,
     description,
     'photo': {
       'alt': photo.alt,
       'src': photo.asset->url
     },
-    isActive,
+    status,
     web,
     calendly,
     github,
