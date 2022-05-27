@@ -20,6 +20,9 @@ const MentorCard: React.FC<MentorCardProps> = ({
   isLogged,
   openModal,
 }) => {
+  const isActive = mentor.status === 'ACTIVE';
+  const isUnavailable = mentor.status === 'NOT_AVAILABLE';
+
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e._id == id);
     return topic.title;
@@ -28,7 +31,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
   return (
     <motion.div
       initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: mentor.isActive ? 1 : 0.66 }}
+      animate={{ y: 0, opacity: isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
       className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between "
     >
@@ -48,14 +51,14 @@ const MentorCard: React.FC<MentorCardProps> = ({
 
           <div>
             <div className="mb-4">
-              {!mentor.isActive ? (
+              {isUnavailable ? (
                 <button
                   type="button"
                   className="capitalize cursor-not-allowed text-md btn btn-secondary"
                 >
                   No disponible
                 </button>
-              ) : mentor.isActive && mentor.calendly && isLogged ? (
+              ) : isActive && mentor.calendly && isLogged ? (
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"

@@ -33,15 +33,18 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   };
 
   /**
-   * sort modifies the original orray, so make a copy to be safe
+   * sort modifies the original array, so make a copy to be safe
    */
   const sortedTopics = useMemo(
     () => [...topics].sort((a, b) => a.title.localeCompare(b.title)),
     [topics],
   );
 
+  /**
+   * All active mentors should be first
+   */
   const sortedMentors = useMemo(
-    () => [...mentors].sort((a) => (a.isActive ? -1 : 1)),
+    () => [...mentors].sort((mentor) => (mentor.status === 'ACTIVE' ? -1 : 1)),
     [mentors],
   );
 
