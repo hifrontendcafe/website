@@ -100,7 +100,7 @@ export interface Mentor {
     src: string;
     alt?: string;
   };
-  isActive: boolean;
+  status: 'ACTIVE' | 'NOT_AVAILABLE' | 'INACTIVE' | 'OUT';
   web: string;
   calendly: string;
   linkedin: string;
