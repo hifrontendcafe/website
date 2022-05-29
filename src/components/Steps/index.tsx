@@ -10,7 +10,7 @@ const Steps: React.FC<StepsProps> = ({ steps }) => {
       <div className="px-5 py-32 lg:px-0">
         <div className="flex flex-wrap -mx-4 -mt-4 -mb-10 sm:-m-4">
           {steps
-            .sort((a, b) => (a > b ? -1 : 1))
+            .sort((a, b) => a.step - b.step)
             .map((step) => (
               <div
                 key={step._key}
