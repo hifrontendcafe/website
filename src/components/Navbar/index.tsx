@@ -20,6 +20,7 @@ const Navbar: React.FC<NavbarProps> = ({
   loading,
   user,
   pathname,
+  logoImg,
   isOpen,
   toggle,
 }) => {
@@ -28,26 +29,16 @@ const Navbar: React.FC<NavbarProps> = ({
       id="site-menu"
       className="container flex flex-col items-center justify-between w-full mx-auto lg:flex-row"
     >
-      <div className="flex flex-row flex-nowrap items-center justify-between w-full lg:w-auto lg:self-center lg:flex-none">
-        {/* ATENCION esta hardcodeado el logo, antes de salir a prod. eliminar codigo debajo de este codigo y dejar el que esta comentado. */}
+      <div className="flex flex-row items-center justify-between w-full flex-nowrap lg:w-auto lg:self-center lg:flex-none">
         <Link href="/">
-          <a>
+          <a className="flex items-center text-zinc-900 title-font">
             <img
-              src="/logotype-fec.svg"
+              src={logoImg}
               className="rounded-full text-primary"
               alt="Logo FrontendCafe"
             />
           </a>
         </Link>
-        {/* <Link href="/">
-            <a className="flex items-center text-zinc-900 title-font">
-              <img
-                src={logoIMG}
-                className="rounded-full text-primary"
-                alt="Logo FrontendCafe"
-              />
-            </a>
-          </Link> */}
         <MenuBtn onClick={() => toggle()} isOpen={isOpen} />
       </div>
       <div
