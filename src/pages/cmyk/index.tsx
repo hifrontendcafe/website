@@ -47,9 +47,9 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const lastVersionIndex = cmykVersions.length - 1;
   const [currentCMYK, setCurrentCMYK] = useState(
-    router.query.edition ?? cmykVersions.at(-1).version,
+    router.query.edition ?? cmykVersions[lastVersionIndex].version,
   );
   const currentProjects = projects.filter(
     (project) => project.cmykVersion === currentCMYK,
@@ -65,7 +65,9 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
       (cmyk) => cmyk.edition === +(router.query.edition as string),
     );
 
-    setCurrentCMYK(currentVersion?.version ?? cmykVersions.at(-1).version);
+    setCurrentCMYK(
+      currentVersion?.version ?? cmykVersions[cmykVersions.length - 1].version,
+    );
   }, [router.query.edition]);
 
   return (
