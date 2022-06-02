@@ -55,7 +55,7 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
 
     if (!router.query.edition) return lastVersion;
 
-    const currentVersion = cmykVersions.find(
+    const currentVersion = filteredVersions.find(
       (cmyk) => cmyk.edition === +(router.query.edition as string),
     )?.version;
 
