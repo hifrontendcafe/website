@@ -6,7 +6,7 @@ import Layout from '@/components/Layout';
 
 import { cmykQuery } from '@/lib/queries';
 import { usePreviewSubscription } from '@/lib/sanity';
-import { useState, useEffect } from 'react';
+import { useState, useMemo } from 'react';
 import Modal from '@/components/Modal';
 
 import SectionHero from '@/components/SectionHero';
@@ -38,37 +38,36 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
 
   const router = useRouter();
 
-  const projectVersions = new Set(
-    projects.map((project) => project.cmykVersion),
-  );
+  const filteredVersions = useMemo(() => {
+    const projectVersions = new Set(
+      projects.map((project) => project.cmykVersion),
+    );
 
-  const filteredVersions = cmykVersions.filter((cmykVersion) =>
-    projectVersions.has(cmykVersion.version),
-  );
+    return cmykVersions.filter((cmykVersion) =>
+      projectVersions.has(cmykVersion.version),
+    );
+  }, [projects]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const lastVersionIndex = cmykVersions.length - 1;
-  const [currentCMYK, setCurrentCMYK] = useState(
-    router.query.edition ?? cmykVersions[lastVersionIndex].version,
-  );
+
+  const currentCMYK = useMemo(() => {
+    const lastVersion = filteredVersions[filteredVersions.length - 1].version;
+
+    if (!router.query.edition) return lastVersion;
+
+    const currentVersion = cmykVersions.find(
+      (cmyk) => cmyk.edition === +(router.query.edition as string),
+    )?.version;
+
+    return currentVersion ?? lastVersion;
+  }, [router.query.edition, filteredVersions]);
+
   const currentProjects = projects.filter(
     (project) => project.cmykVersion === currentCMYK,
   );
 
   const tabStyle = `py-2 cursor-pointer text-tertiary w-1/3 flex justify-center border-b`;
   const tabStyleActive = `py-2 font-semibold cursor-pointer text-zinc-100 w-1/3 flex justify-center border-b-4 border-zinc-100`;
-
-  useEffect(() => {
-    if (!router.query.edition) return;
-
-    const currentVersion = cmykVersions.find(
-      (cmyk) => cmyk.edition === +(router.query.edition as string),
-    );
-
-    setCurrentCMYK(
-      currentVersion?.version ?? cmykVersions[cmykVersions.length - 1].version,
-    );
-  }, [router.query.edition]);
 
   return (
     <Layout
