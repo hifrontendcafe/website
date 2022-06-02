@@ -6,10 +6,12 @@ import Layout from '@/components/Layout';
 
 import { cmykQuery } from '@/lib/queries';
 import { usePreviewSubscription } from '@/lib/sanity';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Modal from '@/components/Modal';
 
 import SectionHero from '@/components/SectionHero';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 type CMYKProjectsProps = {
   preview?: boolean;
@@ -18,10 +20,10 @@ type CMYKProjectsProps = {
 };
 
 const cmykVersions = [
-  { version: 'cmyk-1', name: 'CMYK 1' },
-  { version: 'cmyk-2', name: 'CMYK 2' },
-  { version: 'cmyk-3', name: 'CMYK 3' },
-  { version: 'cmyk-4', name: 'CMYK 4' },
+  { version: 'cmyk-1', name: 'CMYK 1', edition: 1 },
+  { version: 'cmyk-2', name: 'CMYK 2', edition: 2 },
+  { version: 'cmyk-3', name: 'CMYK 3', edition: 3 },
+  { version: 'cmyk-4', name: 'CMYK 4', edition: 4 },
 ];
 
 const CMYKProjects: React.FC<CMYKProjectsProps> = ({
@@ -34,6 +36,8 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
     enabled: preview,
   });
 
+  const router = useRouter();
+
   const projectVersions = new Set(
     projects.map((project) => project.cmykVersion),
   );
@@ -43,9 +47,9 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
   );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const lastVersionIndex = cmykVersions.length - 1;
+
   const [currentCMYK, setCurrentCMYK] = useState(
-    cmykVersions[lastVersionIndex].version,
+    router.query.edition ?? cmykVersions.at(-1).version,
   );
   const currentProjects = projects.filter(
     (project) => project.cmykVersion === currentCMYK,
@@ -53,6 +57,16 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
 
   const tabStyle = `py-2 cursor-pointer text-tertiary w-1/3 flex justify-center border-b`;
   const tabStyleActive = `py-2 font-semibold cursor-pointer text-zinc-100 w-1/3 flex justify-center border-b-4 border-zinc-100`;
+
+  useEffect(() => {
+    if (!router.query.edition) return;
+
+    const currentVersion = cmykVersions.find(
+      (cmyk) => cmyk.edition === +(router.query.edition as string),
+    );
+
+    setCurrentCMYK(currentVersion?.version ?? cmykVersions.at(-1).version);
+  }, [router.query.edition]);
 
   return (
     <Layout
@@ -73,7 +87,6 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
             <ul className="flex w-full mt-6 mb-16 md:w-8/12">
               {filteredVersions.map((cmykVersion) => (
                 <li
-                  onClick={() => setCurrentCMYK(cmykVersion.version)}
                   className={
                     cmykVersion.version === currentCMYK
                       ? tabStyleActive
@@ -81,7 +94,14 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
                   }
                   key={cmykVersion.version}
                 >
-                  {cmykVersion.name}
+                  <Link
+                    replace
+                    shallow
+                    scroll={false}
+                    href={`/cmyk/?edition=${cmykVersion.edition}`}
+                  >
+                    <a className="w-full h-full">{cmykVersion.name}</a>
+                  </Link>
                 </li>
               ))}
             </ul>
