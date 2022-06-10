@@ -1,37 +1,44 @@
 import { useState, useEffect } from 'react';
 import { getWarningsById } from '../../lib/calomentor';
 
+export enum requestWarningsStates {
+  INITIAL = 'INITIAL',
+  LOADING = 'LOADING',
+  SUCCESS = 'SUCCESS',
+  ERROR = 'ERROR',
+}
+
 export function useWarnings(id: string) {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
+  const [status, setStatus] = useState<requestWarningsStates>(
+    requestWarningsStates.INITIAL,
+  );
   const [warnings, setWarnings] = useState<number>(0);
   const [mentorships, setMentorships] = useState<number>(0);
 
-  const getWarnings = async () => {
-    let response: Response;
-    try {
-      response = await getWarningsById(id);
-    } catch (error) {
-      setIsError(true);
-      setIsLoading(false);
-    }
-
-    if (!response?.ok) {
-      setIsError(true);
-      setIsLoading(false);
-    }
-
-    const { data } = await response.json();
-
-    setWarnings(data?.active_warnings);
-    setMentorships(data?.mentorships);
-    setIsLoading(false);
-  };
-
   useEffect(() => {
-    getWarnings();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!id) {
+      setStatus(requestWarningsStates.ERROR);
+    } else {
+      const getWarnings = async () => {
+        let response: Response;
+        try {
+          response = await getWarningsById(id);
+          const { data } = await response.json();
+
+          if (!response?.ok) {
+            setStatus(requestWarningsStates.ERROR);
+          }
+
+          setWarnings(data?.active_warnings);
+          setMentorships(data?.mentorships);
+          setStatus(requestWarningsStates.SUCCESS);
+        } catch (error) {
+          setStatus(requestWarningsStates.ERROR);
+        }
+      };
+      getWarnings();
+    }
   }, [id]);
 
-  return { isLoading, isError, warnings, mentorships };
+  return { status, warnings, mentorships };
 }

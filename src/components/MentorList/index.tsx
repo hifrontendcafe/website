@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
-import { useWarnings } from './useWarnings';
+import { requestWarningsStates, useWarnings } from './useWarnings';
 
 interface MentorListProps {
   mentors: Mentor[];
@@ -19,7 +19,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [session, loading] = useSession();
-  const { isLoading, warnings, mentorships } = useWarnings(session?.user?.id);
+  const { status, warnings, mentorships } = useWarnings(session?.user?.id);
 
   const router = useRouter();
   const { query } = router;
@@ -114,7 +114,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
               canBookAMentorship={
                 session &&
                 !loading &&
-                !isLoading &&
+                status === requestWarningsStates.SUCCESS &&
                 warnings === 0 &&
                 mentorships <= 3
               }
