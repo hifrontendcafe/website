@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
+import { useWarnings } from './useWarnings';
 
 interface MentorListProps {
   mentors: Mentor[];
@@ -18,6 +19,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [session, loading] = useSession();
+  const { isLoading, warnings, mentorships } = useWarnings(session?.user?.id);
 
   const router = useRouter();
   const { query } = router;
@@ -109,7 +111,13 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
               key={index}
               mentor={mentor}
               topics={topics}
-              isLogged={session && !loading}
+              canBookAMentorship={
+                session &&
+                !loading &&
+                !isLoading &&
+                warnings === 0 &&
+                mentorships <= 3
+              }
               openModal={() => setIsModalOpen(true)}
             />
           ))}
@@ -135,7 +143,39 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         }
       >
         <div className="px-2 overflow-auto text-lg text-zinc-100">
-          <p>Para poder solicitar una mentoría primero debes iniciar sesión.</p>
+          {!session && (
+            <p>
+              Para poder solicitar una mentoría primero debes iniciar sesión.
+            </p>
+          )}
+          {session && warnings > 0 && (
+            <p>
+              Tienes penalizaciones en mentorias anteriores, si crees que es un
+              error{' '}
+              <a
+                target="_blank"
+                href="https://discord.com/channels/594363964499165194/897161654377271346"
+                rel="noreferrer"
+                className="hover:text-greenFec underline"
+              >
+                contactanos.
+              </a>
+            </p>
+          )}
+          {session && warnings === 0 && mentorships > 3 && (
+            <p>
+              Has llegado al límite de mentorías por mes, si crees que es un
+              error{' '}
+              <a
+                target="_blank"
+                href="https://discord.com/channels/594363964499165194/897161654377271346"
+                rel="noreferrer"
+                className="hover:text-greenFec underline"
+              >
+                contactanos.
+              </a>
+            </p>
+          )}
         </div>
       </SimpleModal>
     </div>

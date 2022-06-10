@@ -10,14 +10,14 @@ import { motion } from 'framer-motion';
 interface MentorCardProps {
   mentor: Mentor;
   topics: Topic[];
-  isLogged: boolean;
+  canBookAMentorship: boolean;
   openModal: () => void;
 }
 
 const MentorCard: React.FC<MentorCardProps> = ({
   mentor,
   topics,
-  isLogged,
+  canBookAMentorship,
   openModal,
 }) => {
   const isActive = mentor.status === 'ACTIVE';
@@ -58,7 +58,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                 >
                   No disponible
                 </button>
-              ) : isActive && mentor.calendly && isLogged ? (
+              ) : isActive && mentor.calendly && canBookAMentorship ? (
                 <Link href={mentor.calendly}>
                   <a
                     target="_blank"
