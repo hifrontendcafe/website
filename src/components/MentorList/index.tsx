@@ -152,7 +152,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
           )}
           {session && warnings > 0 && (
             <p>
-              Tienes penalizaciones en mentorias anteriores, si crees que es un
+              Tienes penalizaciones en mentorías anteriores, si crees que es un
               error{' '}
               <a
                 target="_blank"
@@ -160,7 +160,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
                 rel="noreferrer"
                 className="hover:text-greenFec underline"
               >
-                contactanos.
+                contáctanos.
               </a>
             </p>
           )}
@@ -174,7 +174,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
                 rel="noreferrer"
                 className="hover:text-greenFec underline"
               >
-                contactanos.
+                contáctanos.
               </a>
             </p>
           )}
