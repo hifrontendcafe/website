@@ -116,7 +116,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
                 !loading &&
                 status === requestWarningsStates.SUCCESS &&
                 warnings === 0 &&
-                mentorships <= 3
+                mentorships <= 4
               }
               openModal={() => setIsModalOpen(true)}
             />
