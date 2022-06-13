@@ -164,7 +164,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
               </a>
             </p>
           )}
-          {session && warnings === 0 && mentorships > 3 && (
+          {session && warnings === 0 && mentorships > 4 && (
             <p>
               Has llegado al límite de mentorías por mes, si crees que es un
               error{' '}
