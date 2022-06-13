@@ -131,15 +131,17 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         buttonLabel="Entiendo"
         buttonClasses="text-primary"
         footer={
-          <button
-            type="button"
-            className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
-            style={{ transition: 'all .15s ease' }}
-            onClick={() => signIn('discord')}
-          >
-            Iniciar sesión
-            <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
-          </button>
+          !session && (
+            <button
+              type="button"
+              className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
+              style={{ transition: 'all .15s ease' }}
+              onClick={() => signIn('discord')}
+            >
+              Iniciar sesión
+              <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
+            </button>
+          )
         }
       >
         <div className="px-2 overflow-auto text-lg text-zinc-100">
