@@ -116,7 +116,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
                 !loading &&
                 status === requestWarningsStates.SUCCESS &&
                 warnings === 0 &&
-                mentorships <= 3
+                mentorships <= 4
               }
               openModal={() => setIsModalOpen(true)}
             />
@@ -131,15 +131,17 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         buttonLabel="Entiendo"
         buttonClasses="text-primary"
         footer={
-          <button
-            type="button"
-            className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
-            style={{ transition: 'all .15s ease' }}
-            onClick={() => signIn('discord')}
-          >
-            Iniciar sesión
-            <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
-          </button>
+          !session && (
+            <button
+              type="button"
+              className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
+              style={{ transition: 'all .15s ease' }}
+              onClick={() => signIn('discord')}
+            >
+              Iniciar sesión
+              <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
+            </button>
+          )
         }
       >
         <div className="px-2 overflow-auto text-lg text-zinc-100">
@@ -150,7 +152,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
           )}
           {session && warnings > 0 && (
             <p>
-              Tienes penalizaciones en mentorias anteriores, si crees que es un
+              Tienes penalizaciones en mentorías anteriores, si crees que es un
               error{' '}
               <a
                 target="_blank"
@@ -158,11 +160,11 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
                 rel="noreferrer"
                 className="hover:text-greenFec underline"
               >
-                contactanos.
+                contáctanos.
               </a>
             </p>
           )}
-          {session && warnings === 0 && mentorships > 3 && (
+          {session && warnings === 0 && mentorships > 4 && (
             <p>
               Has llegado al límite de mentorías por mes, si crees que es un
               error{' '}
@@ -172,7 +174,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
                 rel="noreferrer"
                 className="hover:text-greenFec underline"
               >
-                contactanos.
+                contáctanos.
               </a>
             </p>
           )}
