@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import TopicBadge from '../TopicBadge';
 import { motion } from 'framer-motion';
+import { getNameForId } from '../../lib/mentors';
 
 interface MentorCardProps {
   mentor: Mentor;
@@ -28,12 +29,24 @@ const MentorCard: React.FC<MentorCardProps> = ({
     return topic.title;
   };
 
+  const mentorNameForId = getNameForId(mentor.name);
+
+  const onCopyUrl = async () => {
+    const mentorUrl = `${location?.href}#${mentorNameForId}`;
+    if ('clipboard' in navigator) {
+      return await navigator.clipboard.writeText(mentorUrl);
+    } else {
+      return document.execCommand('copy', true, mentorUrl);
+    }
+  };
+
   return (
     <motion.div
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between "
+      className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between scroll-m-16 snap-y"
+      id={mentorNameForId}
     >
       <div>
         <div className="flex justify-between w-full">
@@ -113,7 +126,12 @@ const MentorCard: React.FC<MentorCardProps> = ({
         </div>
       </div>
       <div>
-        <h2 className="mb-2 text-xl font-bold text-primary">{mentor.name}</h2>
+        <h2
+          className="mb-2 text-xl font-bold text-primary cursor-pointer"
+          onClick={onCopyUrl}
+        >
+          {mentor.name}
+        </h2>
       </div>
       <div className="flex flex-col justify-between h-full">
         <div className="flex">
