@@ -7,7 +7,8 @@ export type TypeToastNotification = 'success' | 'error' | 'info' | 'warning';
 type ToastNotificationProps = {
   children: ReactNode;
   type: TypeToastNotification;
-  onDidDismiss: () => void;
+  onDidDismiss?: () => void;
+  showToast?: boolean;
 };
 
 const showTime = 3500;
@@ -31,8 +32,9 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
   children,
   type,
   onDidDismiss,
+  showToast = false,
 }) => {
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState(showToast);
   const [didDismiss, setDidDismiss] = useState(false);
   const backgroundColorClass = getBackgroundColorClass(type);
   useEffect(() => {
@@ -46,7 +48,7 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
       if (!didDismiss)
         timeoutDismiss = setTimeout(() => {
           setDidDismiss(true);
-          onDidDismiss();
+          onDidDismiss?.();
         }, delayByAnimation);
     }
     return () => {
@@ -55,6 +57,10 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
     };
   }, [show, onDidDismiss, didDismiss]);
 
+  useEffect(() => {
+    setShow(showToast);
+  }, [showToast]);
+
   return (
     <AnimatePresence>
       {show && (
@@ -62,8 +68,8 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className={`fixed top-12 max-w-md w-11/12 rounded-lg overflow-hidden mx-auto inset-x-0 flex justify-center items-center 
-                     ${backgroundColorClass} text-primary text-sm font-bold px-4 py-3 mt-2`}
+          className={`fixed bottom-8 max-w-xs w-11/12 rounded-lg overflow-hidden ml-auto mr-6 inset-x-0 flex justify-center items-center 
+                     ${backgroundColorClass} text-primary text-sm font-bold px-4 py-3 mt-2 z-50`}
           role="alert"
           onClick={() => setShow(false)}
         >

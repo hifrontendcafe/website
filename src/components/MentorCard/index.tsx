@@ -7,6 +7,8 @@ import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import TopicBadge from '../TopicBadge';
 import { motion } from 'framer-motion';
 import { getNameForId } from '../../lib/mentors';
+import ToastNotification from '../../components/ToastNotification/ToastNotification';
+import { useState } from 'react';
 
 interface MentorCardProps {
   mentor: Mentor;
@@ -24,6 +26,8 @@ const MentorCard: React.FC<MentorCardProps> = ({
   const isActive = mentor.status === 'ACTIVE';
   const isUnavailable = mentor.status === 'NOT_AVAILABLE';
 
+  const [showToast, setShowToast] = useState(false);
+
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e._id == id);
     return topic.title;
@@ -34,10 +38,11 @@ const MentorCard: React.FC<MentorCardProps> = ({
   const onCopyUrl = async () => {
     const mentorUrl = `${location?.href}#${mentorNameForId}`;
     if ('clipboard' in navigator) {
-      return await navigator.clipboard.writeText(mentorUrl);
+      await navigator.clipboard.writeText(mentorUrl);
     } else {
-      return document.execCommand('copy', true, mentorUrl);
+      document.execCommand('copy', true, mentorUrl);
     }
+    setShowToast(true);
   };
 
   return (
@@ -148,6 +153,13 @@ const MentorCard: React.FC<MentorCardProps> = ({
             ))}
         </div>
       </div>
+      <ToastNotification
+        type="success"
+        showToast={showToast}
+        onDidDismiss={() => setShowToast(false)}
+      >
+        <span>Se copió la url</span>
+      </ToastNotification>
     </motion.div>
   );
 };
