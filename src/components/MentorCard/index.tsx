@@ -6,6 +6,9 @@ import Image from 'next/image';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import TopicBadge from '../TopicBadge';
 import { motion } from 'framer-motion';
+import { getNameForId } from '../../lib/mentors';
+import ToastNotification from '../../components/ToastNotification/ToastNotification';
+import { useState } from 'react';
 
 interface MentorCardProps {
   mentor: Mentor;
@@ -23,9 +26,23 @@ const MentorCard: React.FC<MentorCardProps> = ({
   const isActive = mentor.status === 'ACTIVE';
   const isUnavailable = mentor.status === 'NOT_AVAILABLE';
 
+  const [showToast, setShowToast] = useState(false);
+
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e._id == id);
     return topic.title;
+  };
+
+  const mentorNameForId = getNameForId(mentor.name);
+
+  const onCopyUrl = async () => {
+    const mentorUrl = `${location?.href}#${mentorNameForId}`;
+    if ('clipboard' in navigator) {
+      await navigator.clipboard.writeText(mentorUrl);
+    } else {
+      document.execCommand('copy', true, mentorUrl);
+    }
+    setShowToast(true);
   };
 
   return (
@@ -33,7 +50,8 @@ const MentorCard: React.FC<MentorCardProps> = ({
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between "
+      className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between scroll-m-16 snap-y"
+      id={mentorNameForId}
     >
       <div>
         <div className="flex justify-between w-full">
@@ -113,7 +131,12 @@ const MentorCard: React.FC<MentorCardProps> = ({
         </div>
       </div>
       <div>
-        <h2 className="mb-2 text-xl font-bold text-primary">{mentor.name}</h2>
+        <h2
+          className="mb-2 text-xl font-bold text-primary cursor-pointer"
+          onClick={onCopyUrl}
+        >
+          {mentor.name}
+        </h2>
       </div>
       <div className="flex flex-col justify-between h-full">
         <div className="flex">
@@ -130,6 +153,13 @@ const MentorCard: React.FC<MentorCardProps> = ({
             ))}
         </div>
       </div>
+      <ToastNotification
+        type="success"
+        showToast={showToast}
+        onDidDismiss={() => setShowToast(false)}
+      >
+        <span>Copiado</span>
+      </ToastNotification>
     </motion.div>
   );
 };
