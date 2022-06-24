@@ -158,7 +158,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
         showToast={showToast}
         onDidDismiss={() => setShowToast(false)}
       >
-        <span>Se copió la url</span>
+        <span>Copiado</span>
       </ToastNotification>
     </motion.div>
   );
