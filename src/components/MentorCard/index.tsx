@@ -36,7 +36,8 @@ const MentorCard: React.FC<MentorCardProps> = ({
   const mentorNameForId = getNameForId(mentor.name);
 
   const onCopyUrl = async () => {
-    const mentorUrl = `${location?.href}#${mentorNameForId}`;
+    const baseUrl = location?.href?.split('#')?.[0];
+    const mentorUrl = `${baseUrl}#${mentorNameForId}`;
     if ('clipboard' in navigator) {
       await navigator.clipboard.writeText(mentorUrl);
     } else {
