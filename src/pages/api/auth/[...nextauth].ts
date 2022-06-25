@@ -1,5 +1,6 @@
 import NextAuth, { Profile } from 'next-auth';
 import Providers from 'next-auth/providers';
+import { FrontendCafeId } from '@/lib/constants';
 
 export default NextAuth({
   providers: [
@@ -41,9 +42,7 @@ export default NextAuth({
         },
       );
       const guilds = await guildResp.json();
-      const isFecMember = guilds.find(
-        (guild) => guild.id === '594363964499165194',
-      );
+      const isFecMember = guilds.find((guild) => guild.id === FrontendCafeId);
       if (isFecMember) {
         return true;
       } else {
@@ -52,6 +51,16 @@ export default NextAuth({
     },
     session: async (session, user) => {
       session.user.id = user.sub as string;
+      const response = await fetch(
+        `https://discord.com/api/guilds/${FrontendCafeId}/members/${session.user.id}`,
+        {
+          headers: {
+            Authorization: `Bot ${process.env.DISCORD_TOKEN}`,
+          },
+        },
+      );
+      const fecMember = await response.json();
+      session.user.roles = fecMember.roles;
       return session;
     },
   },
