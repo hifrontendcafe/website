@@ -132,11 +132,16 @@ export interface CMYKParticipant {
     _type: string;
     _ref: string;
   };
-  participationLevel: string;
+  participationLevel?: string;
+  participationType?: string;
   aboutParticipant: string;
   previousKnowledge: string;
-  experience: string;
+  isChix: boolean;
+  workExperience: string;
+  stackWanted: string;
   timeAvailability: string;
+  projects: string;
+  experience: string;
   otherQuestions: string;
   cmykVersion: string;
   status: string;

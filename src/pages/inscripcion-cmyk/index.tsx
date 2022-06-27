@@ -146,6 +146,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
             <CMYKParticipantForm
               type={currentForm.type}
               title={currentForm.title}
+              isChix={isChix(session?.user?.roles)}
             />
           )}
         </div>

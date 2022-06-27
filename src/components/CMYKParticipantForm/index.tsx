@@ -21,12 +21,16 @@ type FormInputs = {
   previousKnowledge: string;
   aboutParticipant: string;
   otherQuestions: string;
-  stackWant: string;
+  stackWanted: string;
   projects: string;
   formType: string;
+  isChix: boolean;
 };
 
-const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
+const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
+  type,
+  isChix,
+}) => {
   const { cmykInscription } = useSettings();
 
   const {
@@ -44,6 +48,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
   const onSubmit = async (data: FormInputs) => {
     setIsLoading(true);
     if (cmykInscription) {
+      data.isChix = isChix;
       try {
         const res = await fetch('/api/add-cmyk-participant', {
           method: 'POST',
@@ -139,6 +144,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             />
           </div>
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Email*</label>
           <input
@@ -153,6 +159,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             <p className="pl-1 text-sm text-red-600">Email es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Nombre*</label>
           <input
@@ -166,6 +173,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             <p className="pl-1 text-sm text-red-600">Nombre es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Apellido*</label>
           <input
@@ -179,6 +187,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             <p className="pl-1 text-sm text-red-600">Apellido es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Zona horaria</label>
           <select
@@ -199,6 +208,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             </p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Github*</label>
           <input
@@ -212,6 +222,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             <p className="pl-1 text-sm text-red-600">GitHub es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">Twitter</label>
           <input
@@ -222,6 +233,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             {...register('twitter', { required: false })}
           />
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">LinkedIn*</label>
           <input
@@ -232,6 +244,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             {...register('linkedIn', { required: true })}
           />
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
             {type === 'lider'
@@ -251,6 +264,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
             Experiencia laboral*
@@ -260,11 +274,12 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             {...register('workExperience', { required: true })}
             className="input focus:outline-none focus:ring"
           >
+            <option value="">Por favor elige una opción</option>
             {type === 'lider' ? (
               <>
-                <option value="level4">Hasta 1 año</option>
-                <option value="level5">Entre 1 año y 3 años</option>
-                <option value="level6">Más de 3 años</option>
+                <option value="level3">Hasta 1 año</option>
+                <option value="level4">Entre 1 año y 3 años</option>
+                <option value="level5">Más de 3 años</option>
               </>
             ) : (
               <>
@@ -278,23 +293,26 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
             ¿Te interesa front (React) o back (Node/Express)?*
           </label>
           <select
-            id="stackWant"
-            {...register('stackWant', { required: true })}
+            id="stackWanted"
+            {...register('stackWanted', { required: true })}
             className="input focus:outline-none focus:ring"
           >
-            <option value="">Frontend (React)</option>
-            <option value="level1">Backend (Node/Express)</option>
-            <option value="level1">Ambos</option>
+            <option value="">Por favor elige una opción</option>
+            <option value="front">Frontend (React)</option>
+            <option value="back">Backend (Node/Express)</option>
+            <option value="both">Ambos</option>
           </select>
-          {errors.stackWant && (
+          {errors.stackWanted && (
             <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
             Disponibilidad horaria*
@@ -313,23 +331,28 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
-            Que proyecto te interesa más?*
+            ¿Que proyecto te interesa más?*
           </label>
           <select
             id="projects"
             {...register('projects', { required: true })}
             className="input focus:outline-none focus:ring"
           >
-            <option value="">App Flashcards</option>
-            <option value=">=6hours">App Administrador call for papars</option>
-            <option value=">4<6hours">No tengo preferencias</option>
+            <option value="">Por favor elige una opción</option>
+            <option value="flashcards">App Flashcards</option>
+            <option value="callForPapers">
+              App Administrador call for papars
+            </option>
+            <option value="both">No tengo preferencias</option>
           </select>
           {errors.projects && (
             <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
             Conocimientos previos*
@@ -344,6 +367,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
             {type === 'lider'
@@ -360,6 +384,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
           )}
         </div>
+
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
             ¿Tenés alguna duda que quieras comunicarnos?
@@ -370,6 +395,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK> = ({ type }) => {
             {...register('otherQuestions', { required: false })}
           ></textarea>
         </div>
+
         <div className="col-span-2">
           <div className="flex justify-end">
             <button
