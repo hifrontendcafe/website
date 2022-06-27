@@ -51,6 +51,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
     setIsLoading(true);
     if (cmykInscription) {
       data.isChix = isChix;
+      data.formType === type;
       try {
         const res = await fetch('/api/add-cmyk-participant', {
           method: 'POST',
@@ -118,14 +119,6 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
           readOnly
           hidden
           {...register('discordID', { required: true })}
-        />
-
-        <input
-          type="text"
-          defaultValue={type || ''}
-          readOnly
-          hidden
-          {...register('formType', { required: true })}
         />
 
         <div className="mb-4">
@@ -325,9 +318,9 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
             className="input focus:outline-none focus:ring"
           >
             <option value="">Por favor elige una opción</option>
-            <option value=">=6hours">6 o más horas semanales</option>
-            <option value=">4<6hours">Entre 4 y 6 horas semanales</option>
             <option value=">2<4hours">Entre 2 y 4 horas semanales</option>
+            <option value=">4<6hours">Entre 4 y 6 horas semanales</option>
+            <option value=">=6hours">6 o más horas semanales</option>
           </select>
           {errors.timeAvailability && (
             <p className="pl-1 text-sm text-red-600">Este campo es requerido</p>
@@ -373,8 +366,8 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
             {type === 'lider'
-              ? 'Contanos algo sobre vos y por qué te interesa liderar un equipo*'
-              : 'Contanos algo sobre vos y por qué te interesa participar*'}
+              ? 'Cuéntanos algo sobre ti y por qué te interesa liderar un equipo*'
+              : 'Cuéntanos algo sobre ti y por qué te interesa participar*'}
           </label>
           <textarea
             rows={4}
@@ -389,7 +382,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
 
         <div className="mb-4">
           <label className="block mb-2 text-sm font-bold">
-            ¿Tenés alguna duda que quieras comunicarnos?
+            ¿Tienes alguna duda que quieras comunicarnos?
           </label>
           <textarea
             rows={4}
@@ -403,6 +396,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
             <button
               type="submit"
               className="inline-flex justify-center btn btn-primary"
+              disabled={isSuccess}
             >
               {isLoading ? 'Enviando...' : 'Enviar registro'}
             </button>
