@@ -122,10 +122,8 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
               <>
                 <div className="flex flex-col justify-center items-left">
                   <h2 className="text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
-                    ¡Es la hora!
-                  </h2>
-                  <h2 className="py-1 text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
-                    ¡Participa de los proyectos CMYK! &#x1F396;&#xFE0F;
+                    ¡Es la hora, participá de los proyectos CMYK!
+                    &#x1F396;&#xFE0F;
                   </h2>
                 </div>
                 <ul className="flex flex-row justify-center mt-6 mb-10 w-full">
