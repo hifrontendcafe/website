@@ -119,14 +119,35 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
         <div className="overflow-hidden  rounded-lg">
           <div className="pt-10 md:pt-15 lg:pt-20 md:py-5">
             {session && !loading ? (
-              <div className="flex flex-col justify-center items-left">
-                <h2 className="text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
-                  ¡Es la hora!
-                </h2>
-                <h2 className="py-1 text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
-                  ¡Participa de los proyectos CMYK! &#x1F396;&#xFE0F;
-                </h2>
-              </div>
+              <>
+                <div className="flex flex-col justify-center items-left">
+                  <h2 className="text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                    ¡Es la hora!
+                  </h2>
+                  <h2 className="py-1 text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                    ¡Participa de los proyectos CMYK! &#x1F396;&#xFE0F;
+                  </h2>
+                </div>
+                <ul className="flex flex-row justify-center mt-6 mb-10 w-full">
+                  {formsTypes.map((form, index) => (
+                    <li
+                      className={
+                        form.type === typeSelected ? tabStyleActive : tabStyle
+                      }
+                      key={String(index)}
+                    >
+                      <Link
+                        replace
+                        shallow
+                        scroll={false}
+                        href={`/inscripcion-cmyk/?type=${form.type}`}
+                      >
+                        <a className="w-full h-full">{form.title}</a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
             ) : (
               <div className="flex flex-col items-center justify-center">
                 <h2 className="text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
@@ -146,25 +167,6 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
                 </button>
               </div>
             )}
-            <ul className="flex flex-row justify-center mt-6 mb-10 w-full">
-              {formsTypes.map((form, index) => (
-                <li
-                  className={
-                    form.type === typeSelected ? tabStyleActive : tabStyle
-                  }
-                  key={String(index)}
-                >
-                  <Link
-                    replace
-                    shallow
-                    scroll={false}
-                    href={`/inscripcion-cmyk/?type=${form.type}`}
-                  >
-                    <a className="w-full h-full">{form.title}</a>
-                  </Link>
-                </li>
-              ))}
-            </ul>
           </div>
           {session && !loading && (
             <CMYKParticipantForm
@@ -180,7 +182,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
                    bg-blue-500 text-primary text-sm font-bold px-4 py-3 my-6"
         >
           <p className="mx-auto text-lg font-bold text-center text-secondary sm:leading-9 sm:truncate">
-            Las inscripciones a CMYK 5 se encuentran cerradas
+            Las inscripciones a CMYK 5.0 se encuentran cerradas
           </p>
         </div>
       )}
