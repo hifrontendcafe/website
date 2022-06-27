@@ -73,12 +73,36 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
               colaborativos realizados por miembros de la comunidad con el
               objetivo de ganar experiencia en un entorno profesional.
             </p>
+            <p className="mb-4 text-lg leading-relaxed">
+              En CMYK 5 tendremos la colaboración de{' '}
+              <Link href={'https://servicedesignclub.com/'}>
+                <a className="hover:text-[#FFEE94]">
+                  <b>Service Design Club</b>
+                </a>
+              </Link>
+              , quienes llevarán a cabo toda la etapa de diseño con esto
+              llevaremos al siguiente nivel los proyectos.
+            </p>
+            <p className="mb-4 text-lg leading-relaxed">
+              En esta versión habrá 6 grupos de 4 participantes más líder
+              divididos en 2 proyectos, de esta manera sumaremos la posibilidad
+              de trabajar no solo en equipo sino con otros equipos. Cada
+              proyecto se dividirá en modulos asignados a los equipos.
+            </p>
             <Link href="https://www.notion.so/hifrontendcafe/Cronograma-CMYK-5-a07d7a873d884b5daa0299f948612e1c?v=ce6031afdfbf475c90081d78b347d1f7">
               <a
                 className="inline-flex justify-center btn btn-primary"
                 target={'_blank'}
               >
                 Conocé el cronograma
+              </a>
+            </Link>
+            <Link href="https://hifrontendcafe.notion.site/Proyectos-CMYK-5-de27daf7ea334cd4be4e564745c2e93c">
+              <a
+                className="ml-4 inline-flex justify-center btn btn-secondary"
+                target={'_blank'}
+              >
+                Conocé más los proyectos
               </a>
             </Link>
           </div>
@@ -91,7 +115,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
           />
         </div>
       </div>
-      {cmykInscription && isChix(session?.user?.roles) ? (
+      {cmykInscription ? (
         <div className="overflow-hidden  rounded-lg">
           <div className="pt-10 md:pt-15 lg:pt-20 md:py-5">
             {session && !loading ? (
