@@ -36,7 +36,9 @@ const formsTypes: FormsCMYK[] = [
 const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
   preview = false,
 }) => {
-  const { cmykInscription } = useSettings();
+  const {
+    cmykSettings: { cmykInscription, cmykInscriptionChix },
+  } = useSettings();
   const [session, loading] = useSession();
 
   const router = useRouter();
@@ -57,6 +59,12 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
 
   const tabStyle = `py-2 cursor-pointer text-tertiary w-1/3 flex justify-center border-b text-center`;
   const tabStyleActive = `py-2 font-semibold cursor-pointer text-zinc-100 w-1/3 flex justify-center border-b-4 border-zinc-100 text-center`;
+
+  let shouldShowForm = cmykInscription;
+
+  if (cmykInscriptionChix) {
+    shouldShowForm = isChix(session?.user?.roles);
+  }
 
   return (
     <Layout title="CMYK" preview={preview}>
@@ -99,7 +107,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
             </Link>
             <Link href="https://hifrontendcafe.notion.site/Proyectos-CMYK-5-de27daf7ea334cd4be4e564745c2e93c">
               <a
-                className="ml-4 inline-flex justify-center btn btn-secondary"
+                className="mt-4 xl:mt-0 xl:ml-4 inline-flex justify-center btn btn-secondary"
                 target={'_blank'}
               >
                 Conocé más los proyectos
@@ -115,7 +123,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
           />
         </div>
       </div>
-      {cmykInscription ? (
+      {shouldShowForm ? (
         <div className="overflow-hidden  rounded-lg">
           <div className="pt-10 md:pt-15 lg:pt-20 md:py-5">
             {session && !loading ? (

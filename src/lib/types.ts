@@ -12,7 +12,7 @@ export interface Settings {
   navItems: NavItemData[];
   socialnetworks: SocialNetworks;
   title: string;
-  cmykInscription: boolean;
+  cmykSettings: CMYKSettings;
   footerNavItems: LinkItemData[];
 }
 
@@ -37,6 +37,11 @@ export interface SocialNetworks {
   twitter: string;
   youtube: string;
   instagram: string;
+}
+
+export interface CMYKSettings {
+  cmykInscription: boolean;
+  cmykInscriptionChix: boolean;
 }
 
 export interface Image {
