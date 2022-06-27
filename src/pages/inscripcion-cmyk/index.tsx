@@ -44,7 +44,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
   const router = useRouter();
 
   const typeSelected = useMemo(() => {
-    const lastType = formsTypes[formsTypes.length - 1].type;
+    const lastType = formsTypes[0].type;
 
     if (!router.query.type) return lastType;
 
@@ -88,31 +88,35 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
                   <b>Service Design Club</b>
                 </a>
               </Link>
-              , quienes llevarán a cabo toda la etapa de diseño con esto
+              , quienes llevarán a cabo toda la etapa de diseño, con esto
               llevaremos al siguiente nivel los proyectos.
             </p>
-            <p className="mb-4 text-lg leading-relaxed">
-              En esta versión habrá 6 grupos de 4 participantes más líder
-              divididos en 2 proyectos, de esta manera sumaremos la posibilidad
-              de trabajar no solo en equipo sino con otros equipos. Cada
-              proyecto se dividirá en modulos asignados a los equipos.
-            </p>
-            <Link href="https://www.notion.so/hifrontendcafe/Cronograma-CMYK-5-a07d7a873d884b5daa0299f948612e1c?v=ce6031afdfbf475c90081d78b347d1f7">
-              <a
-                className="inline-flex justify-center btn btn-primary"
-                target={'_blank'}
-              >
-                Conocé el cronograma
-              </a>
-            </Link>
-            <Link href="https://hifrontendcafe.notion.site/Proyectos-CMYK-5-de27daf7ea334cd4be4e564745c2e93c">
-              <a
-                className="mt-4 xl:mt-0 xl:ml-4 inline-flex justify-center btn btn-secondary"
-                target={'_blank'}
-              >
-                Conocé más los proyectos
-              </a>
-            </Link>
+            <div className="flex flex-col md:flex-row gap-4 flex-wrap">
+              <Link href="https://www.notion.so/hifrontendcafe/Cronograma-CMYK-5-a07d7a873d884b5daa0299f948612e1c?v=ce6031afdfbf475c90081d78b347d1f7">
+                <a
+                  className="inline-flex justify-center btn btn-primary"
+                  target={'_blank'}
+                >
+                  Conocé el cronograma
+                </a>
+              </Link>
+              <Link href="https://hifrontendcafe.notion.site/Proyectos-CMYK-5-de27daf7ea334cd4be4e564745c2e93c">
+                <a
+                  className="inline-flex justify-center btn btn-secondary"
+                  target={'_blank'}
+                >
+                  Conocé más los proyectos
+                </a>
+              </Link>
+              <Link href="https://discord.com/channels/594363964499165194/769232248724652033">
+                <a
+                  className="inline-flex justify-center btn btn-secondary"
+                  target={'_blank'}
+                >
+                  Hace tu consulta aquí
+                </a>
+              </Link>
+            </div>
           </div>
         </div>
         <div className="md:w-1/2 lg:w-full md:max-w-lg lg:max-w-xl md:mb-0 md:pl-10">
