@@ -49,13 +49,17 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
           _ref:
             !user || user.cmykParticipant.length === 0 ? newUser._id : user._id,
         },
-        participationLevel: body.participationLevel,
-        aboutParticipant: body.aboutParticipant,
+        participationType: body.participationType,
+        isChix: body.isChix,
         experience: body.experience,
-        otherQuestions: body.otherQuestions,
-        previousKnowledge: body.previousKnowledge,
+        workExperience: body.workExperience,
+        stackWanted: body.stackWanted,
         timeAvailability: body.timeAvailability,
-        cmykVersion: '4',
+        projects: body.projects,
+        previousKnowledge: body.previousKnowledge,
+        aboutParticipant: body.aboutParticipant,
+        otherQuestions: body.otherQuestions,
+        cmykVersion: '5',
         status: 'revision',
       });
       // If user is already registered

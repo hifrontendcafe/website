@@ -37,7 +37,7 @@ export const settingsQuery = groq`
     discordButtonLabel,
     iniciativasButtonText,
     socialnetworks,
-    cmykInscription
+    cmykSettings
   }
 `;
 

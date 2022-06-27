@@ -1,32 +1,76 @@
 import Layout from '../../components/Layout';
-import { useState } from 'react';
-import Modal from '../../components/Modal';
+import { useMemo } from 'react';
 import { GetStaticProps } from 'next';
 import { getSettings } from '@/lib/api';
 
 import CMYKParticipantForm from '../../components/CMYKParticipantForm';
 import { useSettings } from '@/lib/settings';
+import { isChix } from '@/lib/haveRole';
 import { signIn, useSession } from 'next-auth/client';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import SectionHero from '@/components/SectionHero';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 type CMYKRegisterPageProps = {
   preview?: boolean;
 };
 
+export type FormsCMYK = {
+  type: 'lider' | 'participant';
+  title: string;
+};
+
+const formsTypes: FormsCMYK[] = [
+  {
+    type: 'participant',
+    title: 'Participantes',
+  },
+  {
+    type: 'lider',
+    title: 'Líderes',
+  },
+];
+
 const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
   preview = false,
 }) => {
-  const { cmykInscription } = useSettings();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const {
+    cmykSettings: { cmykInscription, cmykInscriptionChix },
+  } = useSettings();
   const [session, loading] = useSession();
+
+  const router = useRouter();
+
+  const typeSelected = useMemo(() => {
+    const lastType = formsTypes[formsTypes.length - 1].type;
+
+    if (!router.query.type) return lastType;
+
+    const currentTypeSelected = formsTypes.find(
+      (form) => form.type === (router.query.type as string),
+    )?.type;
+
+    return currentTypeSelected ?? lastType;
+  }, [router.query.type]);
+
+  const currentForm = formsTypes.find((form) => form.type === typeSelected);
+
+  const tabStyle = `py-2 cursor-pointer text-tertiary w-1/3 flex justify-center border-b text-center`;
+  const tabStyleActive = `py-2 font-semibold cursor-pointer text-zinc-100 w-1/3 flex justify-center border-b-4 border-zinc-100 text-center`;
+
+  let shouldShowForm = cmykInscription;
+
+  if (cmykInscriptionChix) {
+    shouldShowForm = isChix(session?.user?.roles);
+  }
 
   return (
     <Layout title="CMYK" preview={preview}>
       <SectionHero
-        title="CMYK 4.0"
-        paragraph="Agosto 2021"
+        title="CMYK 5.0"
+        paragraph="Agosto 2022"
         cta="https://frontend.cafe/docs/guia-cmyk"
       />
       <div className="flex flex-col-reverse items-center md:flex-row">
@@ -37,18 +81,38 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
               colaborativos realizados por miembros de la comunidad con el
               objetivo de ganar experiencia en un entorno profesional.
             </p>
-            <p className="mb-8 text-lg leading-relaxed">
-              Al participar tendrás acceso a un workshop de Github y
-              acompañamiento de nuestro staff quienes estarán disponibles para
-              contestar tus dudas y ayudarte para cumplir los objetivos. La
-              actividad se llevará a cabo en agosto 2021 y es <b>gratuita</b>.
+            <p className="mb-4 text-lg leading-relaxed">
+              En CMYK 5 tendremos la colaboración de{' '}
+              <Link href={'https://servicedesignclub.com/'}>
+                <a className="hover:text-[#FFEE94]">
+                  <b>Service Design Club</b>
+                </a>
+              </Link>
+              , quienes llevarán a cabo toda la etapa de diseño con esto
+              llevaremos al siguiente nivel los proyectos.
             </p>
-            <button
-              className="inline-flex justify-center btn btn-primary"
-              onClick={() => setIsModalOpen(true)}
-            >
-              Conocé el cronograma
-            </button>
+            <p className="mb-4 text-lg leading-relaxed">
+              En esta versión habrá 6 grupos de 4 participantes más líder
+              divididos en 2 proyectos, de esta manera sumaremos la posibilidad
+              de trabajar no solo en equipo sino con otros equipos. Cada
+              proyecto se dividirá en modulos asignados a los equipos.
+            </p>
+            <Link href="https://www.notion.so/hifrontendcafe/Cronograma-CMYK-5-a07d7a873d884b5daa0299f948612e1c?v=ce6031afdfbf475c90081d78b347d1f7">
+              <a
+                className="inline-flex justify-center btn btn-primary"
+                target={'_blank'}
+              >
+                Conocé el cronograma
+              </a>
+            </Link>
+            <Link href="https://hifrontendcafe.notion.site/Proyectos-CMYK-5-de27daf7ea334cd4be4e564745c2e93c">
+              <a
+                className="mt-4 xl:mt-0 xl:ml-4 inline-flex justify-center btn btn-secondary"
+                target={'_blank'}
+              >
+                Conocé más los proyectos
+              </a>
+            </Link>
           </div>
         </div>
         <div className="md:w-1/2 lg:w-full md:max-w-lg lg:max-w-xl md:mb-0 md:pl-10">
@@ -59,18 +123,37 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
           />
         </div>
       </div>
-      {cmykInscription ? (
+      {shouldShowForm ? (
         <div className="overflow-hidden  rounded-lg">
           <div className="pt-10 md:pt-15 lg:pt-20 md:py-5">
             {session && !loading ? (
-              <div className="flex flex-col justify-center items-left">
-                <h2 className="text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
-                  ¡Es la hora!
-                </h2>
-                <h2 className="py-1 text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
-                  ¡Participa de los proyectos CMYK! &#x1F396;&#xFE0F;
-                </h2>
-              </div>
+              <>
+                <div className="flex flex-col justify-center items-left">
+                  <h2 className="text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
+                    ¡Es la hora, participá de los proyectos CMYK!
+                    &#x1F396;&#xFE0F;
+                  </h2>
+                </div>
+                <ul className="flex flex-row justify-center mt-6 mb-10 w-full">
+                  {formsTypes.map((form, index) => (
+                    <li
+                      className={
+                        form.type === typeSelected ? tabStyleActive : tabStyle
+                      }
+                      key={String(index)}
+                    >
+                      <Link
+                        replace
+                        shallow
+                        scroll={false}
+                        href={`/inscripcion-cmyk/?type=${form.type}`}
+                      >
+                        <a className="w-full h-full">{form.title}</a>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </>
             ) : (
               <div className="flex flex-col items-center justify-center">
                 <h2 className="text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
@@ -91,7 +174,13 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
               </div>
             )}
           </div>
-          {session && !loading && <CMYKParticipantForm />}
+          {session && !loading && (
+            <CMYKParticipantForm
+              type={currentForm.type}
+              title={currentForm.title}
+              isChix={isChix(session?.user?.roles)}
+            />
+          )}
         </div>
       ) : (
         <div
@@ -99,50 +188,10 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
                    bg-blue-500 text-primary text-sm font-bold px-4 py-3 my-6"
         >
           <p className="mx-auto text-lg font-bold text-center text-secondary sm:leading-9 sm:truncate">
-            Las inscripciones a CMYK 4.0 se encuentran cerradas
+            Las inscripciones a CMYK 5.0 se encuentran cerradas
           </p>
         </div>
       )}
-      <Modal
-        isOpen={isModalOpen}
-        close={() => setIsModalOpen(false)}
-        title="Cronograma CMYK 4"
-        titleClasses="text-primary"
-        buttonLabel="Entiendo"
-        buttonClasses="text-primary"
-      >
-        <div className="px-2 overflow-auto text-sm text-tertiary">
-          <p className="my-3">
-            <span className="font-semibold">19 / 08 / 21</span>&nbsp;&nbsp;
-            Apertura de formulario para participantes (Hasta llenar cupo de 25
-            personas).
-          </p>
-          <p className="my-3">
-            <span className="font-semibold">23 / 08 / 21</span>&nbsp;&nbsp;
-            Reunión de información, selección de grupos y asignación de
-            proyectos con coordinadores.
-          </p>
-          <p className="my-3">
-            <span className="font-semibold">27 / 08 / 21</span>&nbsp;&nbsp;
-            Reunión de información con participantes y workshop git.
-          </p>
-          <p className="my-3">
-            <span className="font-semibold">30 / 08 / 21</span>&nbsp;&nbsp;
-            Inicio oficial de CMYK 4
-          </p>
-          <p className="my-3">
-            <span className="font-semibold">24 / 09 / 21</span>&nbsp;&nbsp;
-            Presentación de Proyectos.
-          </p>
-          <h2 className="my-2 text-base font-semibold">Observaciones</h2>
-          <p>
-            Los horarios son flexibles, pero el proyecto requiere que tengas
-            tiempo disponible para dedicarle al mismo. Te pedimos que te
-            inscribas solamente si consideras que tenes el tiempo para asumir el
-            compromiso durante las tres semanas que dura el proyecto.
-          </p>
-        </div>
-      </Modal>
     </Layout>
   );
 };
