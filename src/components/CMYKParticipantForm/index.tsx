@@ -31,7 +31,9 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
   type,
   isChix,
 }) => {
-  const { cmykInscription } = useSettings();
+  const {
+    cmykSettings: { cmykInscription },
+  } = useSettings();
 
   const {
     register,
