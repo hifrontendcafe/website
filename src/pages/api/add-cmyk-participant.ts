@@ -49,7 +49,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
           _ref:
             !user || user.cmykParticipant.length === 0 ? newUser._id : user._id,
         },
-        formType: body.formType,
+        participationType: body.participationType,
         isChix: body.isChix,
         experience: body.experience,
         workExperience: body.workExperience,
