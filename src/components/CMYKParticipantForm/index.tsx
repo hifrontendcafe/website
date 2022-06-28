@@ -23,7 +23,7 @@ type FormInputs = {
   otherQuestions: string;
   stackWanted: string;
   projects: string;
-  formType: string;
+  participationType: string;
   isChix: boolean;
 };
 
@@ -51,7 +51,7 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
     setIsLoading(true);
     if (cmykInscription) {
       data.isChix = isChix;
-      data.formType === type;
+      data.participationType = type;
       try {
         const res = await fetch('/api/add-cmyk-participant', {
           method: 'POST',
