@@ -138,7 +138,7 @@ export interface CMYKParticipant {
     _ref: string;
   };
   participationLevel?: string;
-  participationType?: string;
+  formType?: string;
   aboutParticipant: string;
   previousKnowledge: string;
   isChix: boolean;
