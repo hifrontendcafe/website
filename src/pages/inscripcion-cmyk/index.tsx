@@ -69,7 +69,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
   return (
     <Layout title="CMYK" preview={preview}>
       <SectionHero
-        title="CMYK 5.0"
+        title="CMYK 5"
         paragraph="Agosto 2022"
         cta="https://frontend.cafe/docs/guia-cmyk"
       />
@@ -192,7 +192,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
                    bg-blue-500 text-primary text-sm font-bold px-4 py-3 my-6"
         >
           <p className="mx-auto text-lg font-bold text-center text-secondary sm:leading-9 sm:truncate">
-            Las inscripciones a CMYK 5.0 se encuentran cerradas
+            Las inscripciones a CMYK 5 se encuentran cerradas
           </p>
         </div>
       )}
