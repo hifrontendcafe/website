@@ -4,6 +4,7 @@ import { useSettings } from '@/lib/settings';
 import { timezones } from '@/lib/timezones';
 import { useSession } from 'next-auth/client';
 import { FormsCMYK } from '@/pages/inscripcion-cmyk';
+import Link from 'next/link';
 
 type FormInputs = {
   discordID: string;
@@ -30,6 +31,7 @@ type FormInputs = {
 const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
   type,
   isChix,
+  isDisabled,
 }) => {
   const {
     cmykSettings: { cmykInscription },
@@ -79,7 +81,21 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
     }
   };
 
-  return (
+  return isDisabled ? (
+    <h4 className="px-4 font-medium text-white">
+      Las inscripciones para participar como desarrollador en CMYK han
+      finalizado. Pero todavía te puedes inscribir para participar como{' '}
+      <Link
+        replace
+        shallow
+        scroll={false}
+        href={`/inscripcion-cmyk/?type=lider`}
+      >
+        <a className="text-informational hover:underline">Líder</a>
+      </Link>{' '}
+      de un equipo.
+    </h4>
+  ) : (
     <div className="flex flex-col w-full">
       <h4 className="mb-6 px-4 font-medium text-white">
         {type === 'lider'
