@@ -20,16 +20,19 @@ type CMYKRegisterPageProps = {
 export type FormsCMYK = {
   type: 'lider' | 'participant';
   title: string;
+  isDisabled: boolean;
 };
 
 const formsTypes: FormsCMYK[] = [
   {
     type: 'participant',
     title: 'Participantes',
+    isDisabled: true,
   },
   {
     type: 'lider',
     title: 'Líderes',
+    isDisabled: false,
   },
 ];
 
@@ -183,12 +186,13 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
               type={currentForm.type}
               title={currentForm.title}
               isChix={isChix(session?.user?.roles)}
+              isDisabled={currentForm.isDisabled}
             />
           )}
         </div>
       ) : (
         <div
-          className="rounded-lg overflow-hidden mx-auto inset-x-0 flex justify-center items-center 
+          className="rounded-lg overflow-hidden mx-auto inset-x-0 flex justify-center items-center
                    bg-blue-500 text-primary text-sm font-bold px-4 py-3 my-6"
         >
           <p className="mx-auto text-lg font-bold text-center text-secondary sm:leading-9 sm:truncate">
