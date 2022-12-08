@@ -27,10 +27,11 @@ const Unauthorized: React.FC<IUnauthorized> = ({ preview }) => {
               acceder a esta sección.
             </div>
             <div className="flex items-center justify-end p-2 rounded-b">
-              <Link href="/">
-                <a className="inline-flex items-center px-4 py-2 text-sm font-medium bg-white border border-zinc-300 rounded-md shadow-sm text-zinc-700 hover:text-primary hover:bg-zinc-50 ">
-                  Volver al inicio
-                </a>
+              <Link
+                href="/"
+                className="inline-flex items-center px-4 py-2 text-sm font-medium bg-white border border-zinc-300 rounded-md shadow-sm text-zinc-700 hover:text-primary hover:bg-zinc-50 "
+              >
+                Volver al inicio
               </Link>
               <a
                 target="_blank"

@@ -1,5 +1,5 @@
-import { Person } from '@/lib/types';
 import { imageBuilder } from '@/lib/sanity';
+import { Person } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -33,11 +33,9 @@ const StaffCard: React.FC<ProfileProp> = ({ profile }) => {
   return (
     <div className="p-2 text-center transition duration-500 ease-in-out scale-100 hover:scale-110">
       {profile.linkedin ? (
-        <Link href={profile.linkedin ?? ''}>
-          <a target="_blank" rel="noreferrer">
-            {profile.photo && <ProfileImage profile={profile} />}
-            <ProfileText profile={profile} />
-          </a>
+        <Link href={profile.linkedin ?? ''} target="_blank" rel="noreferrer">
+          {profile.photo && <ProfileImage profile={profile} />}
+          <ProfileText profile={profile} />
         </Link>
       ) : (
         <>

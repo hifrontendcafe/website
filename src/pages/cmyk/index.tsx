@@ -100,8 +100,8 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
                     shallow
                     scroll={false}
                     href={`/cmyk/?edition=${cmykVersion.edition}`}
-                  >
-                    <a className="w-full h-full">{cmykVersion.name}</a>
+                    className="w-full h-full">
+                    {cmykVersion.name}
                   </Link>
                 </li>
               ))}

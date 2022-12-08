@@ -54,9 +54,9 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
               {posts?.map(({ title, slug, excerpt }) => (
                 <li className="list-none hover:text-teal-400" key={title}>
                   <Link href={`/posts/${slug.current}`}>
-                    <a>
-                      {title}: {excerpt}
-                    </a>
+
+                    {title}:{excerpt}
+
                   </Link>
                 </li>
               ))}

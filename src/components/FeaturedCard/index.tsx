@@ -57,7 +57,7 @@ const ForwardedCard = forwardRef(Card);
 const FeaturedCard: React.FC<FeaturedCardsItemProps> = ({ card }) => {
   if (card.link) {
     return (
-      <Link href={card.link} passHref>
+      <Link href={card.link} passHref legacyBehavior>
         <ForwardedCard card={card} />
       </Link>
     );

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, forwardRef, useRef } from 'react';
+import React, { forwardRef, useEffect, useRef, useState } from 'react';
 
 import { GetStaticProps } from 'next';
 
@@ -12,7 +12,7 @@ import FeaturedCardList from '../components/FeaturedCardList';
 
 //import CMYKBanner from '../components/CMYKBanner';
 import { getEmbeddedTweets } from '@/lib/twitter';
-import { FeaturedCards, EmbeddedTweet } from '@/lib/types';
+import { EmbeddedTweet, FeaturedCards } from '@/lib/types';
 
 import { useSettings } from '@/lib/settings';
 

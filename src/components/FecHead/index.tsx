@@ -36,17 +36,6 @@ const FecHead: React.FC<FecHeadProps> = ({
       {metadata.map((meta: Metadata) => (
         <meta key={meta._key} property={meta.property} content={meta.content} />
       ))}
-      {/* Fonts */}
-      <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossOrigin="anonymous"
-      />
-      <link
-        href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
-        rel="stylesheet"
-      />
     </Head>
   );
 };
