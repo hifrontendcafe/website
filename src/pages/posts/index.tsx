@@ -5,10 +5,10 @@ import Hero from '../../components/Hero';
 import Layout from '../../components/Layout';
 
 import { getAllPosts, getSettings } from '@/lib/api';
-import { Post } from '../../lib/types';
-import { usePreviewSubscription } from '../../lib/sanity';
-import { postsQuery } from '../../lib/queries';
 import { useSettings } from '@/lib/settings';
+import { postsQuery } from '../../lib/queries';
+import { usePreviewSubscription } from '../../lib/sanity';
+import { Post } from '../../lib/types';
 
 type PostsPageProps = {
   data: Post[];
@@ -54,9 +54,7 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
               {posts?.map(({ title, slug, excerpt }) => (
                 <li className="list-none hover:text-teal-400" key={title}>
                   <Link href={`/posts/${slug.current}`}>
-
                     {title}:{excerpt}
-
                   </Link>
                 </li>
               ))}

@@ -73,16 +73,15 @@ const CardAction: React.FC<CardActionProps> = ({
   className,
   ...props
 }) => (
-  (<Link
+  <Link
     href={href}
     className={`text-center btn w-full ${className}`}
     target="_blank"
     rel="noopener noreferrer"
-    {...props}>
-
+    {...props}
+  >
     {children}
-
-  </Link>)
+  </Link>
 );
 
 const CardPrimaryAction: React.FC<CardActionProps> = ({
