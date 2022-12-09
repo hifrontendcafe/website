@@ -132,6 +132,13 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
     </div>
   );
 
+  // split text into paragraphs
+  const paragraphs = text.split('\n').map((p, i) => (
+    <p key={i} className="my-2">
+      {p}
+    </p>
+  ));
+
   return (
     <div>
       <div
@@ -153,13 +160,13 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
           </a>
           {!is_quote ? tweetIcon : null}
         </div>
-        <div className="my-2">{text}</div>
+        <div className="my-2 select-none">{paragraphs}</div>
         <div>
           {media
             ? media.map((img) => (
                 <Image
                   key={img.url}
-                  className="object-cover rounded-md"
+                  className="object-cover rounded-md pointer-events-none"
                   src={img.url}
                   alt={img.alt_text}
                   width={img.width}
