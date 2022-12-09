@@ -5,6 +5,21 @@ import Image from 'next/image';
 import Carousel, { ResponsiveType } from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
+const responsive: ResponsiveType = {
+  large: {
+    breakpoint: { max: 3000, min: 1080 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1080, min: 800 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 800, min: 0 },
+    items: 1,
+  },
+};
+
 interface TwitterCardProps {
   id: string;
   text: string;
@@ -20,21 +35,6 @@ interface MediaFeedProps {
 }
 
 const MediaFeed: React.FC<MediaFeedProps> = ({ tweets }) => {
-  const responsive: ResponsiveType = {
-    large: {
-      breakpoint: { max: 3000, min: 1080 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1080, min: 800 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 800, min: 0 },
-      items: 1,
-    },
-  };
-
   return (
     <section id="media-feed" className="relative w-full">
       <div className="px-5 py-12 mx-auto">
