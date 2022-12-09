@@ -1,11 +1,11 @@
-import { AppProps } from 'next/app';
 import { Provider } from 'next-auth/client';
+import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
 import CookieConsent, { getCookieConsentValue } from 'react-cookie-consent';
 
-import { useEffect } from 'react';
 import gaService from '@/lib/gtag';
+import { useEffect } from 'react';
 import { hotjar } from 'react-hotjar';
 
 import '@/styles/index.css';
@@ -13,6 +13,18 @@ import '@/styles/menu.css';
 import '@/styles/scrollbar.css';
 
 import { SettingsProvider } from '@/lib/settings';
+
+import { Lexend_Deca, Rubik } from '@next/font/google';
+
+const lexend = Lexend_Deca({
+  subsets: ['latin'],
+  variable: '--font-lexend',
+});
+
+const rubik = Rubik({
+  subsets: ['latin'],
+  variable: '--font-rubik',
+});
 
 function handleAcceptCookie() {
   gaService.initGA();
@@ -47,7 +59,11 @@ const MyApp: React.FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Provider session={pageProps.session}>
       <SettingsProvider settings={pageProps.settings}>
-        <Component {...pageProps} />
+        <div
+          className={`${rubik.variable} font-sans ${lexend.variable} font-title`}
+        >
+          <Component {...pageProps} />
+        </div>
         <CookieConsent
           disableStyles
           containerClasses="fixed mb-4 left-0 right-0 bottom-4 flex text-primary justify-between px-4 py-2 items-center bg-zinc-700 z-20 container mx-auto rounded-md"
