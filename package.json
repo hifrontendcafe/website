@@ -28,7 +28,6 @@
     "@sanity/schema": "^2.35.0",
     "@types/react-select": "^4.0.18",
     "bufferutil": "^4.0.7",
-    "canvas": "^2.10.2",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
     "framer-motion": "^2.9.5",
