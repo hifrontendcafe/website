@@ -31,7 +31,7 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
   return (
     <Layout title="Entradas" description="Blog" preview={preview}>
       <Hero
-        title="Entradas"
+        heroWords="Entradas"
         subtitle={heroSubtitle}
         description={heroDescription}
         discordButtonLabel={discordButtonLabel}
@@ -67,8 +67,21 @@ const PostsPage: React.FC<PostsPageProps> = ({ data, preview }) => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const data = await getAllPosts(preview);
-  const settings = await getSettings(preview);
+  // disable posts in production, possible future feature
+  if (process.env.NODE_ENV === 'production') {
+    return { notFound: true, revalidate: 500 };
+  }
+
+  const [data, settings] = await Promise.all([
+    getAllPosts(preview).catch((err) => {
+      console.error(err);
+      return null;
+    }),
+    getSettings(preview).catch((err) => {
+      console.error(err);
+      return null;
+    }),
+  ]);
 
   return {
     props: { data, preview, settings },

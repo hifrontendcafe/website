@@ -1,16 +1,16 @@
+import BlockContent from '@sanity/block-content-to-react';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
 import ErrorPage from 'next/error';
 import Link from 'next/link';
-import BlockContent from '@sanity/block-content-to-react';
+import { useRouter } from 'next/router';
 
-import Layout from '../../components/Layout';
 import Hero from '../../components/Hero';
+import Layout from '../../components/Layout';
 
-import { getPost, getAllPostsSlugs, getSettings } from '../../lib/api';
+import { getAllPostsSlugs, getPost, getSettings } from '../../lib/api';
+import { postQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
 import { Post, Settings } from '../../lib/types';
-import { postQuery } from '../../lib/queries';
 
 type PostPageProps = {
   data: Post;
@@ -42,7 +42,7 @@ const PostPage: React.FC<PostPageProps> = ({ data, preview, settings }) => {
   return (
     <Layout title={post.title} preview={preview}>
       <Hero
-        title="Posts"
+        heroWords="Posts"
         subtitle={heroSubtitle}
         description={heroDescription}
         discordButtonLabel={discordButtonLabel}

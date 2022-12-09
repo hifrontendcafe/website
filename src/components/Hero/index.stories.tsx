@@ -1,8 +1,8 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta, ComponentStory } from '@storybook/react';
 import HeroComponent from './index';
 
 export default {
-  title: 'Components/Hero',
+  heroWords: 'Components/Hero',
   component: HeroComponent,
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout

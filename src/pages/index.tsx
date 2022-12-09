@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect, useRef, useState } from 'react';
+import React, { forwardRef, useRef } from 'react';
 
 import { GetStaticProps } from 'next';
 
@@ -42,7 +42,6 @@ function FeaturedSection({ cards }, ref) {
 const ForwardedFeaturedSection = forwardRef(FeaturedSection);
 
 const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
-  const [counter, setCounter] = useState(0);
   const {
     heroWords = ['Creamos'],
     description,
@@ -58,23 +57,11 @@ const Index: React.FC<IndexProps> = ({ preview = false, cards, tweets }) => {
     featuredRef.current.scrollIntoView({ behavior: 'smooth' });
   };
 
-  if (counter >= heroWords?.length) {
-    setCounter(0);
-  }
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCounter((counter) => counter + 1);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <Layout title="Home" description={description} preview={preview}>
       {/* <CMYKBanner>Es hoy!</CMYKBanner> */}
       <Hero
-        title={heroWords[counter]}
+        heroWords={heroWords}
         subtitle={heroSubtitle}
         description={heroDescription}
         discordButtonLabel={discordButtonLabel}
