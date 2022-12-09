@@ -33,6 +33,7 @@
     "date-fns": "^2.29.3",
     "framer-motion": "^2.9.5",
     "gray-matter": "4.0.2",
+    "jsdom": "^20.0.3",
     "next": "^13.0.6",
     "next-auth": "^3.29.10",
     "next-mdx-remote": "^3.0.8",
