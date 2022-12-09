@@ -1,11 +1,11 @@
-import { AppProps } from 'next/app';
 import { Provider } from 'next-auth/client';
+import { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 
 import CookieConsent, { getCookieConsentValue } from 'react-cookie-consent';
 
-import { useEffect } from 'react';
 import gaService from '@/lib/gtag';
+import { useEffect } from 'react';
 import { hotjar } from 'react-hotjar';
 
 import '@/styles/index.css';
@@ -13,6 +13,18 @@ import '@/styles/menu.css';
 import '@/styles/scrollbar.css';
 
 import { SettingsProvider } from '@/lib/settings';
+
+import { Lexend_Deca, Rubik } from '@next/font/google';
+
+export const lexend = Lexend_Deca({
+  subsets: ['latin'],
+  variable: '--font-lexend',
+});
+
+export const rubik = Rubik({
+  subsets: ['latin'],
+  variable: '--font-rubik',
+});
 
 function handleAcceptCookie() {
   gaService.initGA();
