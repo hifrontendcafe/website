@@ -19,11 +19,13 @@ import { Lexend_Deca, Rubik } from '@next/font/google';
 export const lexend = Lexend_Deca({
   subsets: ['latin'],
   variable: '--font-lexend',
+  display: 'swap',
 });
 
 export const rubik = Rubik({
   subsets: ['latin'],
   variable: '--font-rubik',
+  display: 'swap',
 });
 
 function handleAcceptCookie() {
