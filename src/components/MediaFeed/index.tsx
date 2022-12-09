@@ -1,9 +1,9 @@
-import Carousel, { ResponsiveType } from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import { EmbeddedTweet } from '@/lib/types';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { EmbeddedTweet } from '@/lib/types';
 import Image from 'next/image';
+import Carousel, { ResponsiveType } from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 interface TwitterCardProps {
   id: string;
