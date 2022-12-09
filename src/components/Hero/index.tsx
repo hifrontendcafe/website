@@ -37,7 +37,7 @@ function useCounter(initialValue: number, max: number, seconds: number) {
 }
 
 interface HeroProps {
-  heroWords: string[];
+  heroWords: string[] | string;
   subtitle: string;
   description?: string;
   discordButtonLabel: string;
@@ -54,7 +54,7 @@ const Hero: React.FC<HeroProps> = ({
   handleIniciativasClick,
 }) => {
   const counter = useCounter(0, heroWords.length, 3);
-  const title = heroWords[counter];
+  const title = typeof heroWords === 'string' ? heroWords : heroWords[counter];
 
   return (
     <div className="relative py-32 mx-auto bg-white/0">
