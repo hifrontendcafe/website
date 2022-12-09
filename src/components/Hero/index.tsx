@@ -1,12 +1,43 @@
-import { motion } from 'framer-motion';
 import {
-  faExternalLinkAlt,
   faChevronDown,
+  faExternalLinkAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
+/**
+ * Hook that returns a counter that increments every `seconds` seconds,
+ * and resets to 0 when it reaches `max`.
+ */
+function useCounter(initialValue: number, max: number, seconds: number) {
+  const [counter, setCounter] = useState(initialValue);
+
+  useEffect(() => {
+    if (max === 0) {
+      return;
+    }
+
+    const interval = setInterval(() => {
+      setCounter((counter) => {
+        const nextCounter = counter + 1;
+
+        if (nextCounter === max) {
+          return 0;
+        }
+
+        return nextCounter;
+      });
+    }, seconds * 1000);
+
+    return () => clearInterval(interval);
+  }, [max, seconds]);
+
+  return counter;
+}
 
 interface HeroProps {
-  title?: string;
+  heroWords: string[];
   subtitle: string;
   description?: string;
   discordButtonLabel: string;
@@ -15,13 +46,16 @@ interface HeroProps {
 }
 
 const Hero: React.FC<HeroProps> = ({
-  title,
+  heroWords,
   subtitle,
   description,
   discordButtonLabel,
   iniciativasButtonText,
   handleIniciativasClick,
 }) => {
+  const counter = useCounter(0, heroWords.length, 3);
+  const title = heroWords[counter];
+
   return (
     <div className="relative py-32 mx-auto bg-white/0">
       <div className="flex items-center justify-center h-full bg-center bg-cover text-primary md:justify-around">
