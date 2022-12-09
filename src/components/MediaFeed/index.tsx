@@ -1,9 +1,24 @@
-import Carousel, { ResponsiveType } from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
+import { EmbeddedTweet } from '@/lib/types';
 import { faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { EmbeddedTweet } from '@/lib/types';
 import Image from 'next/image';
+import Carousel, { ResponsiveType } from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
+
+const responsive: ResponsiveType = {
+  large: {
+    breakpoint: { max: 3000, min: 1080 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1080, min: 800 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 800, min: 0 },
+    items: 1,
+  },
+};
 
 interface TwitterCardProps {
   id: string;
@@ -20,21 +35,6 @@ interface MediaFeedProps {
 }
 
 const MediaFeed: React.FC<MediaFeedProps> = ({ tweets }) => {
-  const responsive: ResponsiveType = {
-    large: {
-      breakpoint: { max: 3000, min: 1080 },
-      items: 3,
-    },
-    tablet: {
-      breakpoint: { max: 1080, min: 800 },
-      items: 2,
-    },
-    mobile: {
-      breakpoint: { max: 800, min: 0 },
-      items: 1,
-    },
-  };
-
   return (
     <section id="media-feed" className="relative w-full">
       <div className="px-5 py-12 mx-auto">
@@ -42,10 +42,12 @@ const MediaFeed: React.FC<MediaFeedProps> = ({ tweets }) => {
           href="https://twitter.com/FrontEndCafe/"
           className="flex items-center pb-12 md:pl-2"
         >
-          <img
+          <Image
             className="w-6 h-6"
             src="/icons/twitter.svg"
             alt="twitter-logo"
+            width="24"
+            height="24"
           />
           <h1 className="pl-2 text-xl font-medium twitter-blue subtitle">
             @frontendcafe
@@ -130,6 +132,13 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
     </div>
   );
 
+  // split text into paragraphs
+  const paragraphs = text.split('\n').map((p, i) => (
+    <p key={i} className="my-2">
+      {p}
+    </p>
+  ));
+
   return (
     <div>
       <div
@@ -151,15 +160,17 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
           </a>
           {!is_quote ? tweetIcon : null}
         </div>
-        <div className="my-2">{text}</div>
+        <div className="my-2 select-none">{paragraphs}</div>
         <div>
           {media
             ? media.map((img) => (
-                <img
+                <Image
                   key={img.url}
-                  className="object-cover rounded-md"
+                  className="object-cover rounded-md pointer-events-none"
                   src={img.url}
                   alt={img.alt_text}
+                  width={img.width}
+                  height={img.height}
                 />
               ))
             : null}
