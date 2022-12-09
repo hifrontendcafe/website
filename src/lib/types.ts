@@ -12,7 +12,7 @@ export interface Settings {
   navItems: NavItemData[];
   socialnetworks: SocialNetworks;
   title: string;
-  cmykInscription: boolean;
+  cmykSettings: CMYKSettings;
   footerNavItems: LinkItemData[];
 }
 
@@ -37,6 +37,11 @@ export interface SocialNetworks {
   twitter: string;
   youtube: string;
   instagram: string;
+}
+
+export interface CMYKSettings {
+  cmykInscription: boolean;
+  cmykInscriptionChix: boolean;
 }
 
 export interface Image {
@@ -132,11 +137,16 @@ export interface CMYKParticipant {
     _type: string;
     _ref: string;
   };
-  participationLevel: string;
+  participationLevel?: string;
+  participationType?: string;
   aboutParticipant: string;
   previousKnowledge: string;
-  experience: string;
+  isChix: boolean;
+  workExperience: string;
+  stackWanted: string;
   timeAvailability: string;
+  projects: string;
+  experience: string;
   otherQuestions: string;
   cmykVersion: string;
   status: string;
