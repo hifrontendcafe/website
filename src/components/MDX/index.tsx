@@ -1,8 +1,8 @@
-import clsx from 'clsx';
-import NextLink from 'next/link';
-import NextImage from 'next/image';
-import { getImageDimensions } from '@sanity/asset-utils';
 import { imageBuilder } from '@/lib/sanity';
+import { getImageDimensions } from '@sanity/asset-utils';
+import clsx from 'clsx';
+import NextImage from 'next/image';
+import NextLink from 'next/link';
 
 interface LinkProps {
   value?: { href: string };
@@ -39,13 +39,11 @@ export const Link: React.FC<LinkProps> = ({ value, children }) => {
   }
 
   return (
-    <NextLink href={value?.href}>
-      <a
-        className="my-0 font-medium transition duration-100 ease-in text-informational color hover:text-darkBlue hover:underline"
-        href={value?.href}
-      >
-        {children}
-      </a>
+    <NextLink
+      href={value?.href}
+      className="my-0 font-medium transition duration-100 ease-in text-informational color hover:text-darkBlue hover:underline"
+    >
+      {children}
     </NextLink>
   );
 };

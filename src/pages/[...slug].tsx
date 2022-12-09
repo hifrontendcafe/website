@@ -1,11 +1,11 @@
-import type {
-  GetStaticPropsContext,
-  GetStaticPaths,
-  InferGetStaticPropsType,
-} from 'next';
-import { getSettings, getPageByPath } from '@/lib/api';
 import Layout from '@/components/Layout';
 import { PageComponents } from '@/components/Page/Matcher';
+import { getPageByPath, getSettings } from '@/lib/api';
+import type {
+  GetStaticPaths,
+  GetStaticPropsContext,
+  InferGetStaticPropsType,
+} from 'next';
 import { useRouter } from 'next/router';
 
 type CustomPageProps = InferGetStaticPropsType<typeof getStaticProps>;

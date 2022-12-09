@@ -1,14 +1,14 @@
-import { Mentor, Topic } from '../../lib/types';
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
-import Image from 'next/image';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-import TopicBadge from '../TopicBadge';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
-import { getNameForId } from '../../lib/mentors';
-import ToastNotification from '../../components/ToastNotification/ToastNotification';
+import Image from 'next/image';
+import Link from 'next/link';
 import { useState } from 'react';
+import ToastNotification from '../../components/ToastNotification/ToastNotification';
+import { getNameForId } from '../../lib/mentors';
+import { Mentor, Topic } from '../../lib/types';
+import TopicBadge from '../TopicBadge';
 
 interface MentorCardProps {
   mentor: Mentor;
@@ -78,13 +78,12 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   No disponible
                 </button>
               ) : isActive && mentor.calendly && canBookAMentorship ? (
-                <Link href={mentor.calendly}>
-                  <a
-                    target="_blank"
-                    className="capitalize border text-md text-primary border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
-                  >
-                    <span>Solicitar mentoría</span>
-                  </a>
+                <Link
+                  href={mentor.calendly}
+                  target="_blank"
+                  className="capitalize border text-md text-primary border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
+                >
+                  <span>Solicitar mentoría</span>
                 </Link>
               ) : (
                 <button
@@ -98,33 +97,30 @@ const MentorCard: React.FC<MentorCardProps> = ({
             </div>
             <div className="flex mt-2 place-content-end">
               {mentor.web && (
-                <Link href={mentor.web}>
-                  <a
-                    target="_blank"
-                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
-                  >
-                    <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
-                  </a>
+                <Link
+                  href={mentor.web}
+                  target="_blank"
+                  className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
+                >
+                  <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
                 </Link>
               )}
               {mentor.linkedin && (
-                <Link href={mentor.linkedin}>
-                  <a
-                    target="_blank"
-                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
-                  >
-                    <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
-                  </a>
+                <Link
+                  href={mentor.linkedin}
+                  target="_blank"
+                  className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
+                >
+                  <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
                 </Link>
               )}
               {mentor.github && (
-                <Link href={mentor.github}>
-                  <a
-                    target="_blank"
-                    className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
-                  >
-                    <FontAwesomeIcon className="w-4 h-4" icon={faGithub} />
-                  </a>
+                <Link
+                  href={mentor.github}
+                  target="_blank"
+                  className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
+                >
+                  <FontAwesomeIcon className="w-4 h-4" icon={faGithub} />
                 </Link>
               )}
             </div>

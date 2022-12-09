@@ -499,7 +499,7 @@ const NewProfilePage: React.FC<NewProfileProps> = ({
             Para poder registrar tu perfil es necesario que inicies sesión con
             Discord. <br />
             <br />
-            <Link href="/talentos/nuevo">
+            <Link href="/talentos/nuevo" legacyBehavior>
               <button
                 onClick={() =>
                   signIn('discord', {

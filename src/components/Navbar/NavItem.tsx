@@ -61,7 +61,7 @@ const NavItem: React.FC<NavItemProps> = ({ title, link, pathname }) => {
   const isActive = pathname === `/${link}`;
 
   return (
-    <Link href={link} passHref>
+    <Link href={link} passHref legacyBehavior>
       <ForwardedAnchor type="a" isActive={isActive}>
         {title}
       </ForwardedAnchor>

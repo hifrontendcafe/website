@@ -1,17 +1,17 @@
 import CMYKItemCard from '@/components/CMYKItemCard';
-import { GetStaticProps } from 'next';
-import { getAllCMYKProjects, getSettings, getPageByName } from '@/lib/api';
-import { CMYK, Page } from '@/lib/types';
 import Layout from '@/components/Layout';
+import { getAllCMYKProjects, getPageByName, getSettings } from '@/lib/api';
+import { CMYK, Page } from '@/lib/types';
+import { GetStaticProps } from 'next';
 
+import Modal from '@/components/Modal';
 import { cmykQuery } from '@/lib/queries';
 import { usePreviewSubscription } from '@/lib/sanity';
-import { useState, useMemo } from 'react';
-import Modal from '@/components/Modal';
+import { useMemo, useState } from 'react';
 
 import SectionHero from '@/components/SectionHero';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 type CMYKProjectsProps = {
   preview?: boolean;
@@ -100,8 +100,9 @@ const CMYKProjects: React.FC<CMYKProjectsProps> = ({
                     shallow
                     scroll={false}
                     href={`/cmyk/?edition=${cmykVersion.edition}`}
+                    className="w-full h-full"
                   >
-                    <a className="w-full h-full">{cmykVersion.name}</a>
+                    {cmykVersion.name}
                   </Link>
                 </li>
               ))}

@@ -42,7 +42,7 @@ const DocsPage: React.FC<DocsPageProps> = ({ data, preview }) => {
               {docs?.map(({ title, slug }) => (
                 <li className="hover:text-informational" key={slug}>
                   <Link href="/docs/[slug]" as={`/docs/${slug}`}>
-                    <a>{title}</a>
+                    {title}
                   </Link>
                 </li>
               ))}

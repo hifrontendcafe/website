@@ -1,7 +1,7 @@
-import { Session } from 'next-auth';
-import { signIn, signOut } from 'next-auth/client';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Session } from 'next-auth';
+import { signIn, signOut } from 'next-auth/client';
 import Image from 'next/image';
 
 interface UserSettingsProps {
@@ -57,8 +57,8 @@ const UserSettings: React.FC<UserSettingsProps> = ({
             className="inline-block rounded-full"
             src={user.image}
             alt="Profile image"
-            width="36px"
-            height="36px"
+            width="36"
+            height="36"
           />
         </div>
         <div className="my-auto ml-3">

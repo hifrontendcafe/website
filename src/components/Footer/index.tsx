@@ -1,17 +1,17 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import logo_vercel from '../../../public/img/powered-by-vercel.svg';
 
+import { useSettings } from '@/lib/settings';
 import {
-  faTwitter,
   faGithub,
+  faInstagram,
   faLinkedin,
   faTwitch,
+  faTwitter,
   faYoutube,
-  faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useSettings } from '@/lib/settings';
 
 type FooterProps = {
   mainClasses?: string;
@@ -27,8 +27,12 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
           <div className="flex flex-col justify-between w-full md:flex-row">
             <div className="flex flex-col gap-1 pb-8 font-medium md:pb-3">
               {footerNavItems?.map(({ link, title }) => (
-                <Link href={link.value} key={link.value}>
-                  <a className="md:mr-10 md:text-left">{title}</a>
+                <Link
+                  href={link.value}
+                  key={link.value}
+                  className="md:mr-10 md:text-left"
+                >
+                  {title}
                 </Link>
               ))}
             </div>
@@ -38,68 +42,62 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
               </p>
               <div className="flex justify-center gap-3 md:justify-start">
                 {socialnetworks?.twitter && (
-                  <Link href={socialnetworks?.twitter}>
-                    <a
-                      target="_blank"
-                      className="grid w-6 h-6 rounded-full place-items-center"
-                    >
-                      <FontAwesomeIcon icon={faTwitter} size="lg" />
-                    </a>
+                  <Link
+                    href={socialnetworks?.twitter}
+                    target="_blank"
+                    className="grid w-6 h-6 rounded-full place-items-center"
+                  >
+                    <FontAwesomeIcon icon={faTwitter} size="lg" />
                   </Link>
                 )}
 
                 {socialnetworks?.instagram && (
-                  <Link href={socialnetworks?.instagram}>
-                    <a
-                      target="_blank"
-                      className="grid w-6 h-6 rounded-full place-items-center"
-                    >
-                      <FontAwesomeIcon icon={faInstagram} size="lg" />
-                    </a>
+                  <Link
+                    href={socialnetworks?.instagram}
+                    target="_blank"
+                    className="grid w-6 h-6 rounded-full place-items-center"
+                  >
+                    <FontAwesomeIcon icon={faInstagram} size="lg" />
                   </Link>
                 )}
 
                 {socialnetworks?.github && (
-                  <Link href={socialnetworks?.github}>
-                    <a
-                      target="_blank"
-                      className="grid w-6 h-6 rounded-full place-items-center"
-                    >
-                      <FontAwesomeIcon icon={faGithub} size="lg" />
-                    </a>
+                  <Link
+                    href={socialnetworks?.github}
+                    target="_blank"
+                    className="grid w-6 h-6 rounded-full place-items-center"
+                  >
+                    <FontAwesomeIcon icon={faGithub} size="lg" />
                   </Link>
                 )}
 
                 {socialnetworks?.youtube && (
-                  <Link href={socialnetworks?.youtube}>
-                    <a
-                      target="_blank"
-                      className="grid w-6 h-6 rounded-full place-items-center"
-                    >
-                      <FontAwesomeIcon icon={faYoutube} size="lg" />
-                    </a>
+                  <Link
+                    href={socialnetworks?.youtube}
+                    target="_blank"
+                    className="grid w-6 h-6 rounded-full place-items-center"
+                  >
+                    <FontAwesomeIcon icon={faYoutube} size="lg" />
                   </Link>
                 )}
 
                 {socialnetworks?.linkedin && (
-                  <Link href={socialnetworks?.linkedin}>
-                    <a
-                      target="_blank"
-                      className="grid w-6 h-6 rounded-full place-items-center "
-                    >
-                      <FontAwesomeIcon icon={faLinkedin} size="lg" />
-                    </a>
+                  <Link
+                    href={socialnetworks?.linkedin}
+                    target="_blank"
+                    className="grid w-6 h-6 rounded-full place-items-center "
+                  >
+                    <FontAwesomeIcon icon={faLinkedin} size="lg" />
                   </Link>
                 )}
 
                 {socialnetworks?.twitch && (
-                  <Link href={socialnetworks?.twitch}>
-                    <a
-                      target="_blank"
-                      className="grid w-6 h-6 rounded-full place-items-center"
-                    >
-                      <FontAwesomeIcon icon={faTwitch} size="lg" />
-                    </a>
+                  <Link
+                    href={socialnetworks?.twitch}
+                    target="_blank"
+                    className="grid w-6 h-6 rounded-full place-items-center"
+                  >
+                    <FontAwesomeIcon icon={faTwitch} size="lg" />
                   </Link>
                 )}
               </div>
@@ -113,15 +111,12 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
               </p>
             </div>
             <div>
-              <Link href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss">
-                <a target="_blank" rel="noopener noreferrer">
-                  <Image
-                    src={logo_vercel}
-                    alt="Powered by Vercel"
-                    placeholder="blur"
-                    blurDataURL={logo_vercel}
-                  />
-                </a>
+              <Link
+                href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Image src={logo_vercel} alt="Powered by Vercel" />
               </Link>
             </div>
           </div>

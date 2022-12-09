@@ -1,9 +1,9 @@
-import Link from 'next/link';
 import { Session } from 'next-auth';
+import Link from 'next/link';
+import { NavItemData } from '../../lib/types';
 import MenuBtn from './MenuBtn';
 import NavItem from './NavItem';
 import UserSettings from './UserSettings';
-import { NavItemData } from '../../lib/types';
 
 interface NavbarProps {
   loading: boolean;
@@ -30,14 +30,12 @@ const Navbar: React.FC<NavbarProps> = ({
       className="container flex flex-col items-center justify-between w-full mx-auto lg:flex-row"
     >
       <div className="flex flex-row items-center justify-between w-full flex-nowrap lg:w-auto lg:self-center lg:flex-none">
-        <Link href="/">
-          <a className="flex items-center text-zinc-900 title-font">
-            <img
-              src={logoImg}
-              className="rounded-full text-primary"
-              alt="Logo FrontendCafe"
-            />
-          </a>
+        <Link href="/" className="flex items-center text-zinc-900 title-font">
+          <img
+            src={logoImg}
+            className="rounded-full text-primary"
+            alt="Logo FrontendCafe"
+          />
         </Link>
         <MenuBtn onClick={() => toggle()} isOpen={isOpen} />
       </div>

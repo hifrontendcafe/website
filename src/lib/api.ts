@@ -1,60 +1,59 @@
 import client, { postClient, previewClient } from './sanity';
 import {
   CMYK,
-  Post,
+  CMYKParticipant,
   Doc,
   Event,
-  Mentor,
-  Topic,
-  Person,
   FeaturedCards,
-  CMYKParticipant,
-  Settings,
-  Seniority,
-  Role,
-  Technology,
+  Mentor,
+  Person,
+  Post,
   Profile,
+  Role,
   SanityEvent,
+  Seniority,
+  Settings,
+  Technology,
+  Topic,
 } from './types';
 
 import {
-  postQuery,
   cmykQuery,
-  postsQuery,
-  mentorsQuery,
-  mentorsTopicsQuery,
-  docsQuery,
   docQuery,
+  docsQuery,
+  eventChannelsQuery,
   eventsQuery,
   eventsQueryByType,
-  eventChannelsQuery,
   eventsSettingsQuery,
-  futureEventsDiscordIdQuery,
-  settingsQuery,
-  staffQuery,
   featuredCardsQuery,
-  personQueryByDiscordID,
-  technologiesQuery,
-  senioritiesQuery,
-  rolesQuery,
-  profilesQuery,
-  profileQuery,
-  personQuery,
+  futureEventsDiscordIdQuery,
+  mentorsQuery,
+  mentorsTopicsQuery,
   pageQueryByName,
   pagesPathsQuery,
+  personQuery,
+  personQueryByDiscordID,
+  postQuery,
+  postsQuery,
+  profileQuery,
+  profilesQuery,
+  rolesQuery,
+  senioritiesQuery,
+  settingsQuery,
+  staffQuery,
+  technologiesQuery,
 } from './queries';
 
-import { createClient } from 'next-sanity';
-import { pageByPathQuery } from './queries';
-import { Page, DiscordEvent, EventChannel, EventsSettings } from './types';
-import { getAllDiscordEvents } from './discord';
-import markdownToHtml from './markdownToHtml';
-import Schema from '@sanity/schema';
 import blockTools from '@sanity/block-tools';
+import Schema from '@sanity/schema';
 import jsdom from 'jsdom';
+import { createClient } from 'next-sanity';
+import { getAllDiscordEvents } from './discord';
 import { createSlug } from './helpers';
-import sendEmailJS from './sendEmail';
-import { DataEmailJs } from './sendEmail';
+import markdownToHtml from './markdownToHtml';
+import { pageByPathQuery } from './queries';
+import sendEmailJS, { DataEmailJs } from './sendEmail';
+import { DiscordEvent, EventChannel, EventsSettings, Page } from './types';
 const { JSDOM } = jsdom;
 
 const eventFields = `

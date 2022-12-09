@@ -30,12 +30,6 @@ vercel link
 2. Make sure you choose the `frontendcafe` organization.
 3. Found project “hifrontendcafe/website”: `y`.
 
-- Generate the DB schemas:
-
-```bash
-npm run prisma:generate / yarn prisma:generate
-```
-
 - Run the development server:
 
 ```bash
