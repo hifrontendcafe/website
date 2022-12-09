@@ -42,10 +42,12 @@ const MediaFeed: React.FC<MediaFeedProps> = ({ tweets }) => {
           href="https://twitter.com/FrontEndCafe/"
           className="flex items-center pb-12 md:pl-2"
         >
-          <img
+          <Image
             className="w-6 h-6"
             src="/icons/twitter.svg"
             alt="twitter-logo"
+            width="24"
+            height="24"
           />
           <h1 className="pl-2 text-xl font-medium twitter-blue subtitle">
             @frontendcafe
@@ -155,11 +157,13 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
         <div>
           {media
             ? media.map((img) => (
-                <img
+                <Image
                   key={img.url}
                   className="object-cover rounded-md"
                   src={img.url}
                   alt={img.alt_text}
+                  width={img.width}
+                  height={img.height}
                 />
               ))
             : null}
