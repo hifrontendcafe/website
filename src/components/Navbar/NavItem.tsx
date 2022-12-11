@@ -1,55 +1,4 @@
 import Link from 'next/link';
-import { MouseEventHandler, forwardRef, ReactNode } from 'react';
-
-export interface AnchorProps {
-  isActive: boolean;
-  onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
-  href?: string;
-  children: ReactNode;
-  type: 'button' | 'a';
-}
-
-const Anchor = (
-  { isActive, onClick, children, href, type }: AnchorProps,
-  ref,
-) => {
-  if (type === 'button') {
-    return (
-      <button
-        className={
-          (isActive
-            ? 'text-primary lg:border-b-2 pb-2 border-greenFec'
-            : 'text-secondary') +
-          ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-primary'
-        }
-        onClick={onClick}
-      >
-        {children}
-      </button>
-    );
-  }
-
-  return (
-    <a
-      className={
-        (isActive
-          ? 'text-primary lg:border-b-2 pb-2 border-greenFec'
-          : 'text-secondary') +
-        ' w-full mx-2 py-4 font-medium  md:w-auto hover:text-primary'
-      }
-      onClick={onClick}
-      href={href}
-      ref={ref}
-    >
-      {children}
-    </a>
-  );
-};
-
-const ForwardedAnchor = forwardRef<
-  HTMLButtonElement | HTMLAnchorElement,
-  AnchorProps
->(Anchor);
 
 export interface NavItemProps {
   title: string;
@@ -58,13 +7,16 @@ export interface NavItemProps {
 }
 
 const NavItem: React.FC<NavItemProps> = ({ title, link, pathname }) => {
-  const isActive = pathname === `/${link}`;
+  const isActive = pathname === `${link}`;
+
+  const linkClasses = isActive ? 'text-primary lg:border-b-4' : 'text-tertiary';
 
   return (
-    <Link href={link} passHref legacyBehavior>
-      <ForwardedAnchor type="a" isActive={isActive}>
-        {title}
-      </ForwardedAnchor>
+    <Link
+      href={link}
+      className={`${linkClasses} pb-4 border-greenFec w-full mx-2 py-4 font-medium  md:w-auto hover:text-primary`}
+    >
+      {title}
     </Link>
   );
 };
