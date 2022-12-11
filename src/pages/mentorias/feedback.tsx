@@ -1,6 +1,6 @@
+import { getSettings } from '@/lib/api';
 import { GetStaticProps } from 'next';
 import Layout from '../../components/Layout';
-import { getSettings } from '@/lib/api';
 
 const MentorshipsFeedback: React.FC = () => {
   return (
@@ -30,7 +30,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
 
   return {
     props: { preview, settings },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

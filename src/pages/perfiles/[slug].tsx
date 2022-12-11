@@ -1,10 +1,10 @@
-import React from 'react';
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { useRouter } from 'next/router';
-import Custom404 from '@/pages/404';
 import Layout from '@/components/Layout';
 import { getAllProfiles, getProfile, getSettings } from '@/lib/api';
 import { PageProfile } from '@/lib/types';
+import Custom404 from '@/pages/404';
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { useRouter } from 'next/router';
+import React from 'react';
 
 const ProfilePage: React.FC<PageProfile> = ({ preview, profile }) => {
   const router = useRouter();
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps = async ({
       profile,
       settings,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

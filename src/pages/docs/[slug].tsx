@@ -1,20 +1,20 @@
-import { useRouter } from 'next/router';
 import Error from 'next/error';
+import { useRouter } from 'next/router';
 
 import type {
-  GetStaticProps,
   GetStaticPaths,
+  GetStaticProps,
   InferGetStaticPropsType,
 } from 'next';
 
 import Layout from '@/components/Layout';
 
-import { getAllDocs, getDocBySlug, getSettings } from '@/lib/api';
-import { usePreviewSubscription } from '@/lib/sanity';
-import { docQuery } from '@/lib/queries';
-import RichText from '@/components/RichText';
-import { PortableTextReactComponents } from '@portabletext/react';
 import { OrderedList, UnorderedList } from '@/components/MDX';
+import RichText from '@/components/RichText';
+import { getAllDocs, getDocBySlug, getSettings } from '@/lib/api';
+import { docQuery } from '@/lib/queries';
+import { usePreviewSubscription } from '@/lib/sanity';
+import { PortableTextReactComponents } from '@portabletext/react';
 
 type DocPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -71,7 +71,7 @@ export const getStaticProps: GetStaticProps = async ({
 
   return {
     props: { data, preview, settings },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

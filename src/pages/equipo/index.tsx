@@ -1,10 +1,10 @@
-import Layout from '../../components/Layout';
 import { GetStaticProps } from 'next';
+import Layout from '../../components/Layout';
 
-import { getFecTeam, getSettings, getPageByName } from '../../lib/api';
-import { Person, Page } from '../../lib/types';
-import StaffCard from '@/components/StaffCard';
 import SectionHero from '@/components/SectionHero';
+import StaffCard from '@/components/StaffCard';
+import { getFecTeam, getPageByName, getSettings } from '../../lib/api';
+import { Page, Person } from '../../lib/types';
 
 type PostsPageProps = {
   profiles: Person[];
@@ -39,7 +39,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
 
   return {
     props: { preview, profiles, settings, page },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

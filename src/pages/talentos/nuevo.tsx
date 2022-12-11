@@ -1,7 +1,4 @@
-import { GetStaticProps } from 'next';
-import Link from 'next/link';
-import { signIn, useSession } from 'next-auth/client';
-import Layout from '../../components/Layout';
+import SectionHero from '@/components/SectionHero';
 import {
   getAllRoles,
   getAllSeniorities,
@@ -9,14 +6,17 @@ import {
   getPageByName,
   getSettings,
 } from '@/lib/api';
-import { useForm } from 'react-hook-form';
+import type { Role, Seniority, Technology } from '@/lib/types';
 import { Page, Profile, ReactGroup } from '@/lib/types';
-import type { Technology, Role, Seniority } from '@/lib/types';
-import React, { useState, useEffect } from 'react';
-import Select from 'react-select';
-import Resizer from 'react-image-file-resizer';
-import SectionHero from '@/components/SectionHero';
 import emailjs from '@emailjs/browser';
+import { GetStaticProps } from 'next';
+import { signIn, useSession } from 'next-auth/client';
+import Link from 'next/link';
+import React, { useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
+import Resizer from 'react-image-file-resizer';
+import Select from 'react-select';
+import Layout from '../../components/Layout';
 
 type Technologies = Technology[];
 
@@ -541,7 +541,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       seniorities,
       page,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

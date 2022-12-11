@@ -1,18 +1,18 @@
-import React from 'react';
-import { GetStaticProps } from 'next';
 import Layout from '@/components/Layout';
+import Profiles from '@/components/Profiles';
+import SectionHero from '@/components/SectionHero';
 import {
+  getAllProfiles,
   getAllRoles,
   getAllSeniorities,
   getAllTechnologies,
-  getAllProfiles,
-  getSettings,
   getPageByName,
+  getSettings,
 } from '@/lib/api';
-import { Profile, Role, Seniority, Technology } from '@/lib/types';
 import { shuffle } from '@/lib/shuffle';
-import SectionHero from '@/components/SectionHero';
-import Profiles from '@/components/Profiles';
+import { Profile, Role, Seniority, Technology } from '@/lib/types';
+import { GetStaticProps } from 'next';
+import React from 'react';
 import { Page } from '../../lib/types';
 
 interface PostsPageProps {
@@ -96,7 +96,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
       seniorities,
       page,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 
