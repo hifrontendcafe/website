@@ -1,19 +1,19 @@
 import { GetStaticProps } from 'next';
 
-import MentorList from '../../components/MentorList';
 import Layout from '../../components/Layout';
+import MentorList from '../../components/MentorList';
 
-import { Mentor, Topic, Page } from '@/lib/types';
+import { PageComponents } from '@/components/Page/Matcher';
+import SectionHero from '@/components/SectionHero';
+import { Mentor, Page, Topic } from '@/lib/types';
 import {
   getAllMentors,
   getMentoringTopics,
-  getSettings,
   getPageByName,
+  getSettings,
 } from '../../lib/api';
 import { mentorsQuery, mentorsTopicsQuery } from '../../lib/queries';
 import { usePreviewSubscription } from '../../lib/sanity';
-import SectionHero from '@/components/SectionHero';
-import { PageComponents } from '@/components/Page/Matcher';
 
 type MentorshipsPageProps = {
   mentors: Mentor[];
@@ -64,7 +64,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
 
   return {
     props: { mentors, topics, preview, settings, page },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

@@ -87,7 +87,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
 
   return {
     props: { tweets, preview, cards, settings },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 

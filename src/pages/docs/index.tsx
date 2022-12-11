@@ -4,9 +4,9 @@ import Link from 'next/link';
 import Layout from '../../components/Layout';
 
 import { getAllDocs, getSettings } from '@/lib/api';
-import { Doc } from '../../lib/types';
-import { usePreviewSubscription } from '../../lib/sanity';
 import { docsQuery } from '../../lib/queries';
+import { usePreviewSubscription } from '../../lib/sanity';
+import { Doc } from '../../lib/types';
 
 type DocsPageProps = {
   data: Doc[];
@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
 
   return {
     props: { data, preview, settings },
-    revalidate: 1,
+    revalidate: 60,
   };
 };
 
