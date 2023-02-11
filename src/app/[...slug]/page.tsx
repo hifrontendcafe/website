@@ -5,8 +5,6 @@ import type { AppPage } from '@/lib/types';
 import { getPageByPath } from '@/lib/api.server';
 import { PageComponents } from '@/components/Page/Matcher';
 
-export const revalidate = 10;
-
 export const generateStaticParams = () => {
   return [];
 };
@@ -16,9 +14,11 @@ export const dynamicParams = true;
 const CustomPage: AppPage<{ slug: string[] }> = ({ params }) => {
   const [base, ...rest] = params.slug;
 
-  const path = `/${base}/${rest.join('/')}`;
+  const path = [`/${base}`].concat(rest).join('/');
 
   const page = use(getPageByPath(path));
+
+  if (process.env.NODE_ENV === 'production') return notFound();
 
   if (typeof page.title === 'undefined') return notFound();
 
