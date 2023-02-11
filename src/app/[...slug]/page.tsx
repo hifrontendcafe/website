@@ -16,7 +16,7 @@ export const dynamicParams = true;
 const CustomPage: AppPage<{ slug: string[] }> = ({ params }) => {
   const [base, ...rest] = params.slug;
 
-  const path = [`/${base}`].concat(rest).join('/');
+  const path = `/${base}/${rest.join('/')}`;
 
   const page = use(getPageByPath(path));
 
