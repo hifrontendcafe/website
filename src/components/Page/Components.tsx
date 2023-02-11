@@ -1,3 +1,5 @@
+'use client';
+
 import { Card } from '../Card';
 import { Component, FeaturedCards, Step } from '@/lib/types';
 import Matcher from './Matcher';

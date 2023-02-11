@@ -1,3 +1,6 @@
+/**
+ * @type {import('next').NextConfig}
+ */
 module.exports = {
   images: {
     domains: [
@@ -6,6 +9,9 @@ module.exports = {
       'cdn.sanity.io',
       'flagcdn.com',
     ],
+  },
+  experimental: {
+    appDir: true,
   },
   swcMinify: true,
 };

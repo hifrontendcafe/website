@@ -1,7 +1,7 @@
 import { forwardRef, MouseEventHandler, useCallback } from 'react';
 import { FeaturedCards } from '../../lib/types';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

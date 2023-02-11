@@ -23,14 +23,20 @@
         "*"
       ]
     },
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
     "src/lib/context.jts",
-    "src/pages/docs/[slug].jz"
+    "src/pages/docs/[slug].jz",
+    ".next/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"

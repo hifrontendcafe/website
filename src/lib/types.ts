@@ -465,3 +465,10 @@ export interface EventChannel {
   defaultImage: { _type: 'image'; asset: { _ref: string; _type: 'reference' } };
   tags: [];
 }
+
+export type AppPage<T extends Record<string, unknown>> = React.FC<{
+  params: T;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}>;
+
+export type Layout = React.FC<{ children: React.ReactNode }>;
