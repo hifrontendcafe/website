@@ -28,6 +28,7 @@
     "@sanity/image-url": "^0.140.22",
     "@sanity/schema": "^2.35.0",
     "@types/react-select": "^4.0.18",
+    "@vercel/analytics": "^0.1.8",
     "bufferutil": "^4.0.7",
     "clsx": "^1.2.1",
     "date-fns": "^2.29.3",
