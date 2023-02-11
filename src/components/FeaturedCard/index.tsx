@@ -1,3 +1,5 @@
+'use client';
+
 import { forwardRef, MouseEventHandler, useCallback } from 'react';
 import { FeaturedCards } from '../../lib/types';
 import Link from 'next/link';

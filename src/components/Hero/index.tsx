@@ -44,7 +44,6 @@ interface HeroProps {
   description?: string;
   discordButtonLabel: string;
   iniciativasButtonText: string;
-  handleIniciativasClick?: () => void;
 }
 
 const Hero: React.FC<HeroProps> = ({
@@ -53,7 +52,6 @@ const Hero: React.FC<HeroProps> = ({
   description,
   discordButtonLabel,
   iniciativasButtonText,
-  handleIniciativasClick,
 }) => {
   const counter = useCounter(0, heroWords.length, 3);
   const title = typeof heroWords === 'string' ? heroWords : heroWords[counter];
@@ -103,8 +101,8 @@ const Hero: React.FC<HeroProps> = ({
                 />
               </button>
             </a>
-            <button
-              onClick={handleIniciativasClick}
+            <a
+              href="#iniciativas"
               className="flex items-center self-center justify-center font-semibold text-primary"
             >
               {iniciativasButtonText}
@@ -113,7 +111,7 @@ const Hero: React.FC<HeroProps> = ({
                 width="16px"
                 className="ml-3 animate-bounce"
               />
-            </button>
+            </a>
           </div>
         </div>
       </div>

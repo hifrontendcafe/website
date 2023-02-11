@@ -1,9 +1,10 @@
+import SEO from '@/components/SEO';
+
 export default function Head() {
   return (
     <>
-      <title>FrontendCafe</title>
-      <meta content="width=device-width, initial-scale=1" name="viewport" />
-      <link rel="icon" href="/favicon.ico" />
+      <SEO />
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </>
   );
 }
