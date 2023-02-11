@@ -1,13 +1,15 @@
+'use client';
+
 import { imageBuilder } from '../../lib/sanity';
 import { useSettings } from '@/lib/settings';
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import { useSession } from 'next-auth/client';
 import Navbar from '@/components/Navbar';
 import { useZeroScrollY } from './useScroll';
 import { useMenuToggle } from './useMenuToggle';
 
 type HeaderProps = {
-  preview: boolean;
+  preview?: boolean;
 };
 
 const Header: React.FC<HeaderProps> = ({ preview }) => {
@@ -18,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
   const isClosed = !isOpen;
 
   const logoImg = imageBuilder.image(logo).url();
-  const router = useRouter();
+  const pathname = usePathname();
   const [session, loading] = useSession();
 
   return (
@@ -30,7 +32,7 @@ const Header: React.FC<HeaderProps> = ({ preview }) => {
       <Navbar
         logoImg={logoImg}
         user={session?.user}
-        pathname={router.pathname}
+        pathname={pathname}
         navItems={navItems}
         loading={loading}
         isOpen={isOpen}

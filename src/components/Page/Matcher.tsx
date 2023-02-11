@@ -1,3 +1,5 @@
+'use client';
+
 import { Component } from '@/lib/types';
 import { useMemo } from 'react';
 import {
