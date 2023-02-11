@@ -18,8 +18,6 @@ const CustomPage: AppPage<{ slug: string[] }> = ({ params }) => {
 
   const page = use(getPageByPath(path));
 
-  if (process.env.NODE_ENV === 'production') return notFound();
-
   if (typeof page.title === 'undefined') return notFound();
 
   return (
