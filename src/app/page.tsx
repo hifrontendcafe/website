@@ -2,8 +2,11 @@ import { use } from 'react';
 import FeaturedCardList from '@/components/FeaturedCardList';
 import Hero from '@/components/Hero';
 import { getSettings, getAllFeaturedCards } from '@/lib/api.server';
+import { getMetadata } from '@/lib/seo';
 
 export const revalidate = 60;
+
+export const generateMetadata = () => getMetadata({ title: 'Home' });
 
 function FeaturedSection() {
   const cards = use(getAllFeaturedCards());

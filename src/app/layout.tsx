@@ -12,6 +12,7 @@ import { previewData } from 'next/headers';
 import PreviewBanner from '@/components/PreviewBanner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { getMetadata } from '@/lib/seo';
 
 const lexend = Lexend_Deca({
   subsets: ['latin'],
@@ -26,6 +27,14 @@ const rubik = Rubik({
 });
 
 export const revalidate = 10;
+
+export const generateMetadata = () =>
+  getMetadata({
+    title: {
+      default: 'FrontendCafé',
+      template: '%s - FrontendCafé',
+    },
+  });
 
 export default function RootLayout({
   children,
