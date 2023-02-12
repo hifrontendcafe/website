@@ -1,11 +1,14 @@
 import { getAllPosts } from '@/lib/api.server';
 import Link from 'next/link';
+import { notFound } from 'next/navigation';
 import { use } from 'react';
 
 export const revalidate = 10;
 
 export default function PostsPage() {
   const posts = use(getAllPosts());
+
+  if (process.env.NODE_ENV === 'production') return notFound();
 
   return (
     <div className="pb-24 bg-zinc-900 sm:pt-10">

@@ -1,14 +1,11 @@
+import { use } from 'react';
 import Hero from '@/components/Hero';
 import { getSettings } from '@/lib/api.server';
-import { use } from 'react';
+import type { Layout } from '@/lib/types';
 
 export const revalidate = 10;
 
-export default function PostsLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const PostsLayout: Layout = ({ children }) => {
   const {
     heroSubtitle,
     heroDescription,
@@ -19,7 +16,7 @@ export default function PostsLayout({
   return (
     <div>
       <Hero
-        heroWords="Entradas"
+        heroWords="Posts"
         subtitle={heroSubtitle}
         description={heroDescription}
         discordButtonLabel={discordButtonLabel}
@@ -29,4 +26,6 @@ export default function PostsLayout({
       {children}
     </div>
   );
-}
+};
+
+export default PostsLayout;

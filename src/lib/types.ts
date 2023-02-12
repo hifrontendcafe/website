@@ -466,9 +466,13 @@ export interface EventChannel {
   tags: [];
 }
 
-export type AppPage<T extends Record<string, unknown>> = React.FC<{
+export type AppPage<
+  T extends Record<string, unknown> = Record<string, unknown>,
+> = React.FC<{
   params: T;
   searchParams?: { [key: string]: string | string[] | undefined };
 }>;
 
-export type Layout = React.FC<{ children: React.ReactNode }>;
+export type Layout<
+  T extends Record<string, unknown> = Record<string, unknown | undefined>,
+> = React.FC<{ children: React.ReactNode; params: T }>;

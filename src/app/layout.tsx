@@ -34,7 +34,7 @@ export default function RootLayout({
 }) {
   const settings = use(getSettings());
 
-  const preview = previewData();
+  const preview = !!previewData();
 
   return (
     <html className={clsx(rubik.variable, lexend.variable)}>

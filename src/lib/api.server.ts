@@ -2,6 +2,7 @@ import { cache } from 'react';
 import {
   featuredCardsQuery,
   pageByPathQuery,
+  postQuery,
   postsQuery,
   settingsQuery,
 } from './queries';
@@ -24,4 +25,14 @@ export async function getPageByPath(path: string): Promise<Page> {
 
 export async function getAllFeaturedCards(): Promise<FeaturedCards[]> {
   return await clientFetch(featuredCardsQuery);
+}
+
+export async function getPost(slug: string): Promise<Post> {
+  return await clientFetch(postQuery, { slug });
+}
+
+export async function getAllPostsSlugs(): Promise<string[]> {
+  return await clientFetch(
+    `*[_type == "post" && defined(slug.current)][].slug.current `,
+  );
 }
