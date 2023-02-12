@@ -5,6 +5,15 @@ import { getAllDocs } from '@/lib/api.server';
 
 export const revalidate = 60;
 
+export const metadata = {
+  title: 'Docs',
+  description:
+    'Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología.',
+  openGraph: {
+    title: 'Docs',
+  },
+};
+
 export default function DocsPage() {
   const docs = use(getAllDocs());
 

@@ -7,6 +7,21 @@ import { getAllDocs, getDocBySlug } from '@/lib/api.server';
 
 export const revalidate = 60;
 
+export const generateMetadata = async ({
+  params,
+}: {
+  params: { slug: string };
+}) => {
+  const doc = await getDocBySlug(params.slug);
+
+  return {
+    title: doc.title,
+    openGraph: {
+      title: doc.title,
+    },
+  };
+};
+
 export const generateStaticParams = async () => {
   const docs = await getAllDocs();
 
@@ -14,8 +29,6 @@ export const generateStaticParams = async () => {
     slug: doc.slug,
   }));
 };
-
-export const dynamicParams = true;
 
 const DocPage: AppPage<{ slug: string }> = ({ params }) => {
   const doc = use(getDocBySlug(params.slug));

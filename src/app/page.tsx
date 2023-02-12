@@ -5,6 +5,10 @@ import { getSettings, getAllFeaturedCards } from '@/lib/api.server';
 
 export const revalidate = 60;
 
+export const metadata = {
+  title: 'Home',
+};
+
 function FeaturedSection() {
   const cards = use(getAllFeaturedCards());
 
