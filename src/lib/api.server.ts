@@ -1,5 +1,7 @@
 import { cache } from 'react';
 import {
+  docQuery,
+  docsQuery,
   featuredCardsQuery,
   pageByPathQuery,
   postQuery,
@@ -7,7 +9,7 @@ import {
   settingsQuery,
 } from './queries';
 import client from './sanity';
-import { FeaturedCards, Page, Post, Settings } from './types';
+import { Doc, FeaturedCards, Page, Post, Settings } from './types';
 
 const clientFetch = cache(client.fetch.bind(client));
 
@@ -35,4 +37,12 @@ export async function getAllPostsSlugs(): Promise<string[]> {
   return await clientFetch(
     `*[_type == "post" && defined(slug.current)][].slug.current `,
   );
+}
+
+export async function getAllDocs(): Promise<Doc[]> {
+  return await clientFetch(docsQuery);
+}
+
+export async function getDocBySlug(slug: string): Promise<Doc> {
+  return await clientFetch(docQuery, { slug });
 }

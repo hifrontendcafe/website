@@ -1,3 +1,5 @@
+'use client';
+
 import { PortableText, PortableTextReactComponents } from '@portabletext/react';
 import {
   Heading1,
