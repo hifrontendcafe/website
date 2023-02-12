@@ -12,6 +12,7 @@ import { previewData } from 'next/headers';
 import PreviewBanner from '@/components/PreviewBanner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import { getMetadata } from '@/lib/seo';
 
 const lexend = Lexend_Deca({
   subsets: ['latin'],
@@ -27,34 +28,13 @@ const rubik = Rubik({
 
 export const revalidate = 10;
 
-export const generateMetadata = async () => {
-  const settings = await getSettings();
-
-  const defaultDescription =
-    'Somos una comunidad de personas interesadas en tecnología y ciencias informáticas en donde charlamos sobre lenguajes de programación, diseño web, infraestructura, compartimos dudas, preguntamos y respondemos.';
-
-  const description = settings.description ?? defaultDescription;
-
-  return {
+export const generateMetadata = () =>
+  getMetadata({
     title: {
       default: 'FrontendCafé',
       template: '%s - FrontendCafé',
     },
-    description,
-    openGraph: {
-      title: {
-        default: 'FrontendCafé',
-        template: '%s - FrontendCafé',
-      },
-      description,
-      images: [
-        {
-          url: 'https://frontend.cafe/logo-square.png',
-        },
-      ],
-    },
-  };
-};
+  });
 
 export default function RootLayout({
   children,

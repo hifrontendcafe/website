@@ -2,17 +2,16 @@ import { use } from 'react';
 import Link from 'next/link';
 
 import { getAllDocs } from '@/lib/api.server';
+import { getMetadata } from '@/lib/seo';
 
 export const revalidate = 60;
 
-export const metadata = {
-  title: 'Docs',
-  description:
-    'Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología.',
-  openGraph: {
+export const generateMetadata = () =>
+  getMetadata({
     title: 'Docs',
-  },
-};
+    description:
+      'Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología.',
+  });
 
 export default function DocsPage() {
   const docs = use(getAllDocs());

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import DocsRichText from '@/components/DocsRichText';
 import { AppPage } from '@/lib/types';
 import { getAllDocs, getDocBySlug } from '@/lib/api.server';
+import { getMetadata } from '@/lib/seo';
 
 export const revalidate = 60;
 
@@ -14,12 +15,7 @@ export const generateMetadata = async ({
 }) => {
   const doc = await getDocBySlug(params.slug);
 
-  return {
-    title: doc.title,
-    openGraph: {
-      title: doc.title,
-    },
-  };
+  return getMetadata({ title: doc.title });
 };
 
 export const generateStaticParams = async () => {
