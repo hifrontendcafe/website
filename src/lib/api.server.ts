@@ -1,12 +1,13 @@
 import { cache } from 'react';
 import {
+  featuredCardsQuery,
   pageByPathQuery,
   postQuery,
   postsQuery,
   settingsQuery,
 } from './queries';
 import client from './sanity';
-import type { Page, Post, Settings } from './types';
+import { FeaturedCards, Page, Post, Settings } from './types';
 
 const clientFetch = cache(client.fetch.bind(client));
 
@@ -20,6 +21,10 @@ export async function getAllPosts(): Promise<Post[]> {
 
 export async function getPageByPath(path: string): Promise<Page> {
   return await clientFetch(pageByPathQuery, { path });
+}
+
+export async function getAllFeaturedCards(): Promise<FeaturedCards[]> {
+  return await clientFetch(featuredCardsQuery);
 }
 
 export async function getPost(slug: string): Promise<Post> {
