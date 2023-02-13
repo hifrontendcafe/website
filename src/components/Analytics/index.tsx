@@ -1,48 +1,26 @@
-'use client';
+// import { useEffect } from 'react';
+// import { usePathname } from 'next/navigation';
+import Script from 'next/script';
 
-import { useEffect } from 'react';
-import { usePathname } from 'next/navigation';
-import CookieConsent, { getCookieConsentValue } from 'react-cookie-consent';
-
-import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
-import gaService from '@/lib/gtag';
-import { hotjar } from 'react-hotjar';
+import CookieConsent from './CookieConsent';
+import VercelAnalytics from './Vercel';
 
 export default function Analytics() {
-  const pathname = usePathname();
-
-  const handleAcceptCookie = () => gaService.initGA();
-
-  useEffect(() => {
-    const isConsent = getCookieConsentValue();
-
-    if (isConsent === 'true') {
-      handleAcceptCookie();
-    }
-
-    hotjar.initialize(
-      parseInt(process.env.NEXT_PUBLIC_HOTJAR_HJID, 10),
-      parseInt(process.env.NEXT_PUBLIC_HOTJAR_HJSV, 10),
-    );
-  }, []);
-
-  useEffect(() => {
-    if (pathname) {
-      gaService.pageView(pathname);
-    }
-  }, [pathname]);
-
   return (
     <>
-      <CookieConsent
-        disableStyles
-        containerClasses="fixed mb-4 left-0 right-0 bottom-4 flex text-primary justify-between px-4 py-2 items-center bg-zinc-700 z-20 container mx-auto rounded-md"
-        buttonText="Aceptar"
-        buttonClasses="btn btn-primary rounded-lg"
-        onAccept={handleAcceptCookie}
-      >
-        Este sitio usa cookies para mejorar la experiencia de usuario.
-      </CookieConsent>
+      <CookieConsent />
+
+      <Script strategy="afterInteractive">
+        {`<!-- Hotjar Tracking Code for https://frontend.cafe -->
+        (function(h,o,t,j,a,r){
+            h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+            h._hjSettings={hjid:${process.env.NEXT_PUBLIC_HOTJAR_HJID},hjsv:${process.env.NEXT_PUBLIC_HOTJAR_HJSV}};
+            a=o.getElementsByTagName('head')[0];
+            r=o.createElement('script');r.async=1;
+            r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            a.appendChild(r);
+        })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');`}
+      </Script>
 
       <VercelAnalytics />
     </>
