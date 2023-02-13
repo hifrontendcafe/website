@@ -1,8 +1,11 @@
+'use client';
+
 import { useState, useEffect } from 'react';
 import { isPast } from 'date-fns';
-import { Event } from '../../lib/types';
+import type { Event } from '@/lib/types';
 import EventPreview from '../EventPreview';
 import { getUserCountry } from '@/lib/country';
+
 interface EventListProps {
   events: Event[];
 }
