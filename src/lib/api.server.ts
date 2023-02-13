@@ -9,9 +9,18 @@ import {
   postQuery,
   postsQuery,
   settingsQuery,
+  staffQuery,
 } from './queries';
 import client from './sanity';
-import type { Doc, FeaturedCards, Page, Post, Settings, Event } from './types';
+import type {
+  Doc,
+  FeaturedCards,
+  Page,
+  Post,
+  Settings,
+  Event,
+  Person,
+} from './types';
 
 const clientFetch = cache<typeof client['fetch']>(client.fetch.bind(client));
 
@@ -55,4 +64,9 @@ export async function getPageByName(name: string): Promise<Page> {
 
 export async function getAllEvents(): Promise<Event[]> {
   return await clientFetch(eventsQuery);
+}
+
+export async function getFecTeam(): Promise<Person[]> {
+  const result = await clientFetch(staffQuery);
+  return result.length > 0 && result;
 }
