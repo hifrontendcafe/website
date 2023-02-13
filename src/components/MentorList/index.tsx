@@ -1,7 +1,9 @@
+'use client';
+
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/client';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
@@ -22,7 +24,9 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   const { status, warnings, mentorships } = useWarnings(session?.user?.id);
 
   const router = useRouter();
-  const { query } = router;
+  const searchParams = useSearchParams();
+
+  const speciality = searchParams.get('especialidad');
 
   const queryTopic = (topic: string) => {
     const url = new URL(window.location.href);
@@ -31,7 +35,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     params.set('especialidad', topic);
     url.search = `?${params}`;
 
-    router.push(url, null, { scroll: false });
+    router.replace(url.toString());
   };
 
   /**
@@ -55,8 +59,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
       const filtered = [];
       sortedMentors.forEach((mentor) => {
         const find =
-          mentor.topics?.filter((topic) => topic._ref == query.especialidad) ??
-          [];
+          mentor.topics?.filter((topic) => topic._ref == speciality) ?? [];
         if (find.length > 0) filtered.push(mentor);
       });
       setFilteredMentors(filtered);
@@ -64,7 +67,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
     filterTopics();
     return () => filterTopics();
-  }, [query.especialidad, sortedMentors]);
+  }, [speciality, sortedMentors]);
 
   return (
     <div>
@@ -84,7 +87,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
             <option
               value={topic._id}
               key={index}
-              selected={topic._id === query.especialidad}
+              selected={topic._id === speciality}
             >
               {topic.title}
             </option>
@@ -103,7 +106,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
       <div className="flex flex-col min-h-screen align-center">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
-          {(filteredMentors && query.especialidad
+          {(filteredMentors && speciality
             ? filteredMentors
             : sortedMentors
           )?.map((mentor, index) => (

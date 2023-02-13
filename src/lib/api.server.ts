@@ -5,6 +5,8 @@ import {
   docsQuery,
   eventsQuery,
   featuredCardsQuery,
+  mentorsQuery,
+  mentorsTopicsQuery,
   pageByPathQuery,
   pageQueryByName,
   postQuery,
@@ -24,6 +26,8 @@ import type {
   Person,
   CMYK,
   Profile,
+  Topic,
+  Mentor,
 } from './types';
 
 const clientFetch = cache<typeof client['fetch']>(client.fetch.bind(client));
@@ -81,4 +85,12 @@ export async function getAllCMYKProjects(): Promise<CMYK[]> {
 
 export async function getProfile(id: string): Promise<Profile> {
   return await clientFetch(profileQuery, { id });
+}
+
+export async function getMentoringTopics(): Promise<Topic[]> {
+  return await clientFetch(mentorsTopicsQuery);
+}
+
+export async function getAllMentors(): Promise<Mentor[]> {
+  return await clientFetch(mentorsQuery);
 }
