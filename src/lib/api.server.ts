@@ -1,5 +1,6 @@
 import { cache } from 'react';
 import {
+  cmykQuery,
   docQuery,
   docsQuery,
   eventsQuery,
@@ -20,6 +21,7 @@ import type {
   Settings,
   Event,
   Person,
+  CMYK,
 } from './types';
 
 const clientFetch = cache<typeof client['fetch']>(client.fetch.bind(client));
@@ -69,4 +71,8 @@ export async function getAllEvents(): Promise<Event[]> {
 export async function getFecTeam(): Promise<Person[]> {
   const result = await clientFetch(staffQuery);
   return result.length > 0 && result;
+}
+
+export async function getAllCMYKProjects(): Promise<CMYK[]> {
+  return await clientFetch(cmykQuery);
 }
