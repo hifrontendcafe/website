@@ -1,4 +1,5 @@
 import { getSettings } from './api.server';
+import { getPageByName } from '@/lib/api.server';
 
 export const DEFAULT_DESCRIPTION =
   'Somos una comunidad de personas interesadas en tecnología y ciencias informáticas en donde charlamos sobre lenguajes de programación, diseño web, infraestructura, compartimos dudas, preguntamos y respondemos.';
@@ -30,4 +31,13 @@ export const getMetadata = async (params: GetMetadataParams) => {
       ],
     },
   };
+};
+
+export const getPageMetadata = async (name: string) => {
+  const page = await getPageByName(name);
+
+  return await getMetadata({
+    title: page.title,
+    description: page.shortDescription,
+  });
 };
