@@ -14,7 +14,6 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getMetadata } from '@/lib/seo';
 import Analytics from '@/components/Analytics';
-import Motion from '@/components/Motion';
 
 const lexend = Lexend_Deca({
   subsets: ['latin'],
@@ -51,24 +50,22 @@ export default function RootLayout({
     <html lang="es" className={clsx(rubik.variable, lexend.variable)}>
       <head />
       <body>
-        <Motion>
-          <SettingsProvider settings={settings}>
-            <div className="w-full min-h-screen bg-zinc-900">
-              <div className="absolute w-7/12 -translate-x-1/2 -translate-y-1/3 bg-gradient-to-b from-ellipseGreen via-ellipseGreen to-transparent left-1/2 h-3/5 ellipse blur-4xl opacity-70"></div>
-              <div className="z-10">
-                {preview && <PreviewBanner />}
-                <Header preview={preview} />
-                <div
-                  id="container"
-                  className="container relative z-20 pt-12 mx-auto"
-                >
-                  {children}
-                </div>
-                <Footer />
+        <SettingsProvider settings={settings}>
+          <div className="w-full min-h-screen bg-zinc-900">
+            <div className="absolute w-7/12 -translate-x-1/2 -translate-y-1/3 bg-gradient-to-b from-ellipseGreen via-ellipseGreen to-transparent left-1/2 h-3/5 ellipse blur-4xl opacity-70"></div>
+            <div className="z-10">
+              {preview && <PreviewBanner />}
+              <Header preview={preview} />
+              <div
+                id="container"
+                className="container relative z-20 pt-12 mx-auto"
+              >
+                {children}
               </div>
+              <Footer />
             </div>
-          </SettingsProvider>
-        </Motion>
+          </div>
+        </SettingsProvider>
 
         <Analytics />
       </body>

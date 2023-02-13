@@ -1,6 +1,7 @@
 import React, { useState, useEffect, ReactNode } from 'react';
 import ToastNotificationIcon from './ToastNotificationIcon';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
+import Motion from '../Motion';
 
 export type TypeToastNotification = 'success' | 'error' | 'info' | 'warning';
 
@@ -62,22 +63,24 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
   }, [showToast]);
 
   return (
-    <AnimatePresence>
-      {show && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className={`fixed bottom-8 max-w-xs w-11/12 rounded-lg overflow-hidden ml-auto mr-6 inset-x-0 flex justify-center items-center 
+    <Motion>
+      <AnimatePresence>
+        {show && (
+          <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className={`fixed bottom-8 max-w-xs w-11/12 rounded-lg overflow-hidden ml-auto mr-6 inset-x-0 flex justify-center items-center
                      ${backgroundColorClass} text-primary text-sm font-bold px-4 py-3 mt-2 z-50`}
-          role="alert"
-          onClick={() => setShow(false)}
-        >
-          <ToastNotificationIcon type={type} />
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
+            role="alert"
+            onClick={() => setShow(false)}
+          >
+            <ToastNotificationIcon type={type} />
+            {children}
+          </m.div>
+        )}
+      </AnimatePresence>
+    </Motion>
   );
 };
 

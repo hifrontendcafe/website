@@ -1,16 +1,17 @@
 'use client';
 
-import { lazy, useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import type { Mentor } from '@/lib/types';
 import Link from 'next/link';
 import { useSession } from 'next-auth/client';
 import { requestWarningsStates, useWarnings } from '../MentorList/useWarnings';
+import dynamic from 'next/dynamic';
 
 type BookButtonProps = {
   mentor: Mentor;
 };
 
-const MentorModal = lazy(() => import('../MentorModal'));
+const MentorModal = dynamic(() => import('../MentorModal'));
 
 const BookButton: React.FC<BookButtonProps> = ({ mentor }) => {
   const [isOpen, setIsOpen] = useState(false);

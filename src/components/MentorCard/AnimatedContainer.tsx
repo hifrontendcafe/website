@@ -2,7 +2,8 @@
 
 import { getNameForId } from '@/lib/mentors';
 import { Mentor } from '@/lib/types';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
+import Motion from '../Motion';
 
 type AnimatedContainerProps = {
   children: React.ReactNode;
@@ -18,15 +19,17 @@ const AnimatedContainer: React.FC<AnimatedContainerProps> = ({
   const isActive = mentor.status === 'ACTIVE';
 
   return (
-    <motion.div
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: isActive ? 1 : 0.66 }}
-      exit={{ y: -100, opacity: 0 }}
-      className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between scroll-m-16 snap-y"
-      id={mentorNameForId}
-    >
-      {children}
-    </motion.div>
+    <Motion>
+      <m.div
+        initial={{ y: 100, opacity: 0 }}
+        animate={{ y: 0, opacity: isActive ? 1 : 0.66 }}
+        exit={{ y: -100, opacity: 0 }}
+        className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between scroll-m-16 snap-y"
+        id={mentorNameForId}
+      >
+        {children}
+      </m.div>
+    </Motion>
   );
 };
 

@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import { ReactNode } from 'react';
 
 type ModalProps = {
@@ -32,7 +32,7 @@ const SimpleModal: React.FC<ModalProps> = ({
             onClick={close}
             style={{ zIndex: 999 }}
           >
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0 }}
@@ -69,13 +69,13 @@ const SimpleModal: React.FC<ModalProps> = ({
                   {footer}
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
-          <motion.div
+          <m.div
             exit={{ opacity: 0 }}
             style={{ zIndex: 500 }}
             className="fixed inset-0 w-screen h-screen bg-black opacity-25"
-          ></motion.div>
+          />
         </>
       )}
     </AnimatePresence>
