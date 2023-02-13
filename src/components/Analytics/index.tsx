@@ -10,7 +10,7 @@ export default function Analytics() {
     <>
       <CookieConsent />
 
-      <Script id="hotjar" strategy="lazyOnload">
+      <Script id="hotjar" strategy="worker">
         {`<!-- Hotjar Tracking Code for https://frontend.cafe -->
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};

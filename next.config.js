@@ -12,6 +12,7 @@ module.exports = {
   },
   experimental: {
     appDir: true,
+    nextScriptWorkers: true,
   },
   swcMinify: true,
 };
