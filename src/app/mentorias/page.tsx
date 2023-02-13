@@ -1,4 +1,4 @@
-import { use } from 'react';
+import { use, useMemo } from 'react';
 import SectionHero from '@/components/SectionHero';
 import {
   getAllMentors,
@@ -8,15 +8,37 @@ import {
 import { PageComponents } from '@/components/Page/Matcher';
 import MentorList from '@/components/MentorList';
 import { getPageMetadata } from '@/lib/seo';
+import MentorCard from '@/components/MentorCard';
+import { AppPage } from '@/lib/types';
 
 export const revalidate = 60;
 
+export const dynamic = 'force-dynamic';
+
 export const generateMetadata = () => getPageMetadata('Mentorías');
 
-export default function MentorshipsPage() {
+const MentorshipsPage: AppPage = ({ searchParams }) => {
   const page = use(getPageByName('Mentorías'));
   const topics = use(getMentoringTopics());
   const mentors = use(getAllMentors());
+
+  const speciality = searchParams.especialidad;
+
+  /**
+   * All active mentors should be first
+   */
+  const sortedMentors = useMemo(
+    () => [...mentors].sort((mentor) => (mentor.status === 'ACTIVE' ? -1 : 1)),
+    [mentors],
+  );
+
+  const filteredMentors = useMemo(() => {
+    if (!speciality) return sortedMentors;
+
+    return sortedMentors.filter((mentor) =>
+      mentor.topics?.some((topic) => topic._ref === speciality),
+    );
+  }, [sortedMentors, speciality]);
 
   return (
     <>
@@ -28,7 +50,13 @@ export default function MentorshipsPage() {
 
       <PageComponents components={page.components} />
 
-      <MentorList topics={topics} mentors={mentors} />
+      <MentorList topics={topics}>
+        {filteredMentors.map((mentor, index) => (
+          <MentorCard key={index} mentor={mentor} topics={topics} />
+        ))}
+      </MentorList>
     </>
   );
-}
+};
+
+export default MentorshipsPage;

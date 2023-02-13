@@ -1,59 +1,32 @@
 import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useState } from 'react';
-import ToastNotification from '../../components/ToastNotification/ToastNotification';
-import { getNameForId } from '../../lib/mentors';
 import { Mentor, Topic } from '../../lib/types';
 import TopicBadge from '../TopicBadge';
+import AnimatedContainer from './AnimatedContainer';
+import BookButton from './BookButton';
+import CopyName from './CopyName';
 
 interface MentorCardProps {
   mentor: Mentor;
   topics: Topic[];
-  canBookAMentorship: boolean;
-  openModal: () => void;
+  // canBookAMentorship: boolean;
 }
 
 const MentorCard: React.FC<MentorCardProps> = ({
   mentor,
   topics,
-  canBookAMentorship,
-  openModal,
+  // canBookAMentorship,
 }) => {
-  const isActive = mentor.status === 'ACTIVE';
-  const isUnavailable = mentor.status === 'NOT_AVAILABLE';
-
-  const [showToast, setShowToast] = useState(false);
-
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e._id == id);
     return topic.title;
   };
 
-  const mentorNameForId = getNameForId(mentor.name);
-
-  const onCopyUrl = async () => {
-    const baseUrl = location?.href?.split('#')?.[0];
-    const mentorUrl = `${baseUrl}#${mentorNameForId}`;
-    if ('clipboard' in navigator) {
-      await navigator.clipboard.writeText(mentorUrl);
-    } else {
-      document.execCommand('copy', true, mentorUrl);
-    }
-    setShowToast(true);
-  };
-
   return (
-    <motion.div
-      initial={{ y: 100, opacity: 0 }}
-      animate={{ y: 0, opacity: isActive ? 1 : 0.66 }}
-      exit={{ y: -100, opacity: 0 }}
-      className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between scroll-m-16 snap-y"
-      id={mentorNameForId}
-    >
+    <AnimatedContainer mentor={mentor}>
       <div>
         <div className="flex justify-between w-full">
           <div>
@@ -70,30 +43,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
 
           <div>
             <div className="mb-4">
-              {isUnavailable ? (
-                <button
-                  type="button"
-                  className="capitalize cursor-not-allowed text-md btn btn-secondary"
-                >
-                  No disponible
-                </button>
-              ) : isActive && mentor.calendly && canBookAMentorship ? (
-                <Link
-                  href={mentor.calendly}
-                  target="_blank"
-                  className="capitalize border text-md text-primary border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
-                >
-                  <span>Solicitar mentoría</span>
-                </Link>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => openModal()}
-                  className=" border text-md text-primary border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
-                >
-                  Solicitar mentoría
-                </button>
-              )}
+              <BookButton mentor={mentor} />
             </div>
             <div className="flex mt-2 place-content-end">
               {mentor.web && (
@@ -128,12 +78,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
         </div>
       </div>
       <div>
-        <h2
-          className="mb-2 text-xl font-bold text-primary cursor-pointer"
-          onClick={onCopyUrl}
-        >
-          {mentor.name}
-        </h2>
+        <CopyName mentor={mentor} />
       </div>
       <div className="flex flex-col justify-between h-full">
         <div className="flex">
@@ -150,14 +95,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
             ))}
         </div>
       </div>
-      <ToastNotification
-        type="success"
-        showToast={showToast}
-        onDidDismiss={() => setShowToast(false)}
-      >
-        <span>Copiado</span>
-      </ToastNotification>
-    </motion.div>
+    </AnimatedContainer>
   );
 };
 

@@ -1,28 +1,15 @@
 'use client';
 
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { signIn, useSession } from 'next-auth/client';
+import { useMemo } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
-import { Mentor, Topic } from '../../lib/types';
-import MentorCard from '../MentorCard';
-import SimpleModal from '../SimpleModal';
-import { requestWarningsStates, useWarnings } from './useWarnings';
+import type { Topic } from '@/lib/types';
 
 interface MentorListProps {
-  mentors: Mentor[];
   topics: Topic[];
+  children: React.ReactNode;
 }
 
-const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
-  const [filteredMentors, setFilteredMentors] = useState<Mentor[] | undefined>(
-    undefined,
-  );
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [session, loading] = useSession();
-  const { status, warnings, mentorships } = useWarnings(session?.user?.id);
-
+const MentorList: React.FC<MentorListProps> = ({ topics, children }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -45,29 +32,6 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     () => [...topics].sort((a, b) => a.title.localeCompare(b.title)),
     [topics],
   );
-
-  /**
-   * All active mentors should be first
-   */
-  const sortedMentors = useMemo(
-    () => [...mentors].sort((mentor) => (mentor.status === 'ACTIVE' ? -1 : 1)),
-    [mentors],
-  );
-
-  useEffect(() => {
-    const filterTopics = () => {
-      const filtered = [];
-      sortedMentors.forEach((mentor) => {
-        const find =
-          mentor.topics?.filter((topic) => topic._ref == speciality) ?? [];
-        if (find.length > 0) filtered.push(mentor);
-      });
-      setFilteredMentors(filtered);
-    };
-
-    filterTopics();
-    return () => filterTopics();
-  }, [speciality, sortedMentors]);
 
   return (
     <div>
@@ -106,83 +70,9 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
       <div className="flex flex-col min-h-screen align-center">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
-          {(filteredMentors && speciality
-            ? filteredMentors
-            : sortedMentors
-          )?.map((mentor, index) => (
-            <MentorCard
-              key={index}
-              mentor={mentor}
-              topics={topics}
-              canBookAMentorship={
-                session &&
-                !loading &&
-                status === requestWarningsStates.SUCCESS &&
-                warnings === 0 &&
-                mentorships <= 4
-              }
-              openModal={() => setIsModalOpen(true)}
-            />
-          ))}
+          {children}
         </div>
       </div>
-      <SimpleModal
-        isOpen={isModalOpen}
-        close={() => setIsModalOpen(false)}
-        title="¡Oh no!"
-        titleClasses="text-red-600 mt-2 ml-2"
-        buttonLabel="Entiendo"
-        buttonClasses="text-primary"
-        footer={
-          !session && (
-            <button
-              type="button"
-              className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
-              style={{ transition: 'all .15s ease' }}
-              onClick={() => signIn('discord')}
-            >
-              Iniciar sesión
-              <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
-            </button>
-          )
-        }
-      >
-        <div className="px-2 overflow-auto text-lg text-zinc-100">
-          {!session && (
-            <p>
-              Para poder solicitar una mentoría primero debes iniciar sesión.
-            </p>
-          )}
-          {session && warnings > 0 && (
-            <p>
-              Tienes penalizaciones en mentorías anteriores, si crees que es un
-              error{' '}
-              <a
-                target="_blank"
-                href="https://discord.com/channels/594363964499165194/897161654377271346"
-                rel="noreferrer"
-                className="hover:text-greenFec underline"
-              >
-                contáctanos.
-              </a>
-            </p>
-          )}
-          {session && warnings === 0 && mentorships > 4 && (
-            <p>
-              Has llegado al límite de mentorías por mes, si crees que es un
-              error{' '}
-              <a
-                target="_blank"
-                href="https://discord.com/channels/594363964499165194/897161654377271346"
-                rel="noreferrer"
-                className="hover:text-greenFec underline"
-              >
-                contáctanos.
-              </a>
-            </p>
-          )}
-        </div>
-      </SimpleModal>
     </div>
   );
 };
