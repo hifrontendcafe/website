@@ -9,6 +9,7 @@ import {
   pageQueryByName,
   postQuery,
   postsQuery,
+  profileQuery,
   settingsQuery,
   staffQuery,
 } from './queries';
@@ -22,6 +23,7 @@ import type {
   Event,
   Person,
   CMYK,
+  Profile,
 } from './types';
 
 const clientFetch = cache<typeof client['fetch']>(client.fetch.bind(client));
@@ -75,4 +77,8 @@ export async function getFecTeam(): Promise<Person[]> {
 
 export async function getAllCMYKProjects(): Promise<CMYK[]> {
   return await clientFetch(cmykQuery);
+}
+
+export async function getProfile(id: string): Promise<Profile> {
+  return await clientFetch(profileQuery, { id });
 }
