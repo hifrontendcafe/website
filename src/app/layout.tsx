@@ -13,6 +13,7 @@ import PreviewBanner from '@/components/PreviewBanner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { getMetadata } from '@/lib/seo';
+import Analytics from '@/components/Analytics';
 
 const lexend = Lexend_Deca({
   subsets: ['latin'],
@@ -65,6 +66,8 @@ export default function RootLayout({
             </div>
           </div>
         </SettingsProvider>
+
+        <Analytics />
       </body>
     </html>
   );

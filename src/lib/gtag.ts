@@ -10,7 +10,7 @@ export class GaService {
     this.initialized = true;
   };
 
-  pageView = (url: URL): void => {
+  pageView = (url: URL | string): void => {
     this.initialized && ReactGA.pageview(url.toString());
   };
 }
