@@ -46,7 +46,7 @@ export default function RootLayout({
   const preview = !!previewData();
 
   return (
-    <html className={clsx(rubik.variable, lexend.variable)}>
+    <html lang="es" className={clsx(rubik.variable, lexend.variable)}>
       <head />
       <body>
         <SettingsProvider settings={settings}>

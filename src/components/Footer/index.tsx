@@ -47,6 +47,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
                   <Link
                     href={socialnetworks?.twitter}
                     target="_blank"
+                    aria-label="Twitter"
                     className="grid w-6 h-6 rounded-full place-items-center"
                   >
                     <FontAwesomeIcon icon={faTwitter} size="lg" />
@@ -57,6 +58,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
                   <Link
                     href={socialnetworks?.instagram}
                     target="_blank"
+                    aria-label="Instagram"
                     className="grid w-6 h-6 rounded-full place-items-center"
                   >
                     <FontAwesomeIcon icon={faInstagram} size="lg" />
@@ -67,6 +69,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
                   <Link
                     href={socialnetworks?.github}
                     target="_blank"
+                    aria-label="Github"
                     className="grid w-6 h-6 rounded-full place-items-center"
                   >
                     <FontAwesomeIcon icon={faGithub} size="lg" />
@@ -77,6 +80,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
                   <Link
                     href={socialnetworks?.youtube}
                     target="_blank"
+                    aria-label="Youtube"
                     className="grid w-6 h-6 rounded-full place-items-center"
                   >
                     <FontAwesomeIcon icon={faYoutube} size="lg" />
@@ -87,6 +91,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
                   <Link
                     href={socialnetworks?.linkedin}
                     target="_blank"
+                    aria-label="Linkedin"
                     className="grid w-6 h-6 rounded-full place-items-center "
                   >
                     <FontAwesomeIcon icon={faLinkedin} size="lg" />
@@ -97,6 +102,7 @@ const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
                   <Link
                     href={socialnetworks?.twitch}
                     target="_blank"
+                    aria-label="Twitch"
                     className="grid w-6 h-6 rounded-full place-items-center"
                   >
                     <FontAwesomeIcon icon={faTwitch} size="lg" />

@@ -11,6 +11,7 @@ const MenuBtn: React.FC<MenuBtnProps> = ({ isOpen, onClick }) => {
       className={`block hamburger lg:hidden focus:outline-none ${
         isOpen ? 'open' : ''
       }`}
+      aria-label="Menu"
       type="button"
       onClick={onClick}
     >
