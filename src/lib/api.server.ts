@@ -2,16 +2,18 @@ import { cache } from 'react';
 import {
   docQuery,
   docsQuery,
+  eventsQuery,
   featuredCardsQuery,
   pageByPathQuery,
+  pageQueryByName,
   postQuery,
   postsQuery,
   settingsQuery,
 } from './queries';
 import client from './sanity';
-import { Doc, FeaturedCards, Page, Post, Settings } from './types';
+import type { Doc, FeaturedCards, Page, Post, Settings, Event } from './types';
 
-const clientFetch = cache(client.fetch.bind(client));
+const clientFetch = cache<typeof client['fetch']>(client.fetch.bind(client));
 
 export async function getSettings(): Promise<Settings> {
   return await clientFetch(settingsQuery);
@@ -45,4 +47,12 @@ export async function getAllDocs(): Promise<Doc[]> {
 
 export async function getDocBySlug(slug: string): Promise<Doc> {
   return await clientFetch(docQuery, { slug });
+}
+
+export async function getPageByName(name: string): Promise<Page> {
+  return await clientFetch(pageQueryByName, { name });
+}
+
+export async function getAllEvents(): Promise<Event[]> {
+  return await clientFetch(eventsQuery);
 }
