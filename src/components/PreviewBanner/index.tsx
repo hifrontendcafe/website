@@ -1,4 +1,8 @@
+import { previewData } from 'next/headers';
+
 const PreviewBanner: React.FC = () => {
+  if (!previewData()) return null;
+
   return (
     <div
       style={{ zIndex: 51 }}
