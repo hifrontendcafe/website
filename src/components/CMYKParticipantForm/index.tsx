@@ -1,9 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { useSettings } from '@/lib/settings';
 import { timezones } from '@/lib/timezones';
 import { useSession } from 'next-auth/client';
-import { FormsCMYK } from '@/pages/inscripcion-cmyk';
+import { FormsCMYK } from '../CMYKForm';
 import Link from 'next/link';
 
 type FormInputs = {
@@ -28,15 +27,9 @@ type FormInputs = {
   isChix: boolean;
 };
 
-const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
-  type,
-  isChix,
-  isDisabled,
-}) => {
-  const {
-    cmykSettings: { cmykInscription },
-  } = useSettings();
-
+const CMYKParticipantForm: React.FC<
+  FormsCMYK & { isChix: boolean; cmykInscription: boolean }
+> = ({ type, isChix, isDisabled, cmykInscription }) => {
   const {
     register,
     formState: { errors },
@@ -88,10 +81,11 @@ const CMYKParticipantForm: React.FC<FormsCMYK & { isChix: boolean }> = ({
       <Link
         replace
         shallow
+        className="text-informational hover:underline"
         scroll={false}
         href={`/inscripcion-cmyk/?type=lider`}
       >
-        <a className="text-informational hover:underline">Líder</a>
+        Líder
       </Link>{' '}
       de un equipo.
     </h4>

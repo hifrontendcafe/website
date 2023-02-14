@@ -1,10 +1,8 @@
-'use client';
-
+import { use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo_vercel from '../../../public/img/powered-by-vercel.svg';
 
-import { useSettings } from '@/lib/settings';
 import {
   faGithub,
   faInstagram,
@@ -13,17 +11,16 @@ import {
   faTwitter,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-type FooterProps = {
-  mainClasses?: string;
-};
-const Footer: React.FC<FooterProps> = ({ mainClasses }) => {
-  const { socialnetworks, footerNavItems } = useSettings();
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { getSettings } from '@/lib/api.server';
+
+const Footer: React.FC = () => {
+  const { socialnetworks, footerNavItems } = use(getSettings());
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className={` ${mainClasses} mt-40 border-t border-zinc-500 w-full`}>
+    <footer className="mt-40 border-t border-zinc-500 w-full">
       <div className="container flex justify-center w-full py-16 mx-auto text-primary md:justify-between">
         <div className="flex flex-col justify-center w-full text-center">
           <div className="flex flex-col justify-between w-full md:flex-row">

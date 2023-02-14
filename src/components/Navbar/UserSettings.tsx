@@ -1,20 +1,17 @@
+'use client';
+
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Session } from 'next-auth';
-import { signIn, signOut } from 'next-auth/client';
+import { signIn, signOut, useSession } from 'next-auth/client';
 import Image from 'next/image';
 
 interface UserSettingsProps {
-  user?: Session['user'];
   navIsOpen: boolean;
-  loading: boolean;
 }
 
-const UserSettings: React.FC<UserSettingsProps> = ({
-  user,
-  navIsOpen,
-  loading,
-}) => {
+const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
+  const [session, loading] = useSession();
+
   if (loading) {
     return (
       <button
@@ -30,7 +27,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({
     );
   }
 
-  if (!user) {
+  if (!session?.user) {
     return (
       <button
         className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${
@@ -45,7 +42,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({
     );
   }
 
-  if (user) {
+  if (session?.user) {
     return (
       <div
         className={`lg:flex items-center mt-2 mb-0 lg:mt-0 lg:ml-4 ${
@@ -55,14 +52,16 @@ const UserSettings: React.FC<UserSettingsProps> = ({
         <div>
           <Image
             className="inline-block rounded-full"
-            src={user.image}
+            src={session.user.image}
             alt="Profile image"
             width="36"
             height="36"
           />
         </div>
         <div className="my-auto ml-3">
-          <p className="text-xs font-medium text-zinc-100">{user.name}</p>
+          <p className="text-xs font-medium text-zinc-100">
+            {session.user.name}
+          </p>
           <button
             className="text-xs font-medium text-quaternary hover:text-primary"
             onClick={() => signOut()}

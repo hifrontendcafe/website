@@ -1,12 +1,15 @@
+'use client';
+
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 export interface NavItemProps {
   title: string;
   link: string;
-  pathname: string;
 }
 
-const NavItem: React.FC<NavItemProps> = ({ title, link, pathname }) => {
+const NavItem: React.FC<NavItemProps> = ({ title, link }) => {
+  const pathname = usePathname();
   const isActive = pathname === `${link}`;
 
   const linkClasses = isActive ? 'text-primary lg:border-b-4' : 'text-tertiary';
