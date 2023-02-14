@@ -10,6 +10,17 @@ module.exports = {
       'flagcdn.com',
     ],
   },
+  async rewrites() {
+    return {
+      beforeFiles: [
+        {
+          source: '/mentorias',
+          has: [{ type: 'query', key: 'especialidad' }],
+          destination: '/mentorias/:especialidad',
+        },
+      ],
+    };
+  },
   experimental: {
     appDir: true,
   },

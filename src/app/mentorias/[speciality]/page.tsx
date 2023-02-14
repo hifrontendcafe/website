@@ -5,13 +5,25 @@ import { PageComponents } from '@/components/Page/Matcher';
 import MentorList from '@/components/MentorList';
 import { getPageMetadata } from '@/lib/seo';
 import { AppPage } from '@/lib/types';
-import { getPageByName } from '@/lib/api.server';
+import { getMentoringTopics, getPageByName } from '@/lib/api.server';
 
 export const revalidate = 60;
 
 export const generateMetadata = () => getPageMetadata('Mentorías');
 
-const MentorshipsPage: AppPage = () => {
+export const generateStaticParams = async () => {
+  const topics = await getMentoringTopics();
+
+  return topics.map((topic) => ({
+    speciality: topic._id,
+  }));
+};
+
+export const dynamicParams = true;
+
+const MentorshipsSpecialityPage: AppPage<{ speciality: string }> = ({
+  params,
+}) => {
   const page = use(getPageByName('Mentorías'));
 
   return (
@@ -24,9 +36,9 @@ const MentorshipsPage: AppPage = () => {
 
       <PageComponents components={page.components} />
 
-      <MentorList />
+      <MentorList speciality={params.speciality} />
     </>
   );
 };
 
-export default MentorshipsPage;
+export default MentorshipsSpecialityPage;
