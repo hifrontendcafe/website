@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useRef, useLayoutEffect, useState } from 'react';
 
 import { Profile, Role, Seniority, Technology } from '@/lib/types';

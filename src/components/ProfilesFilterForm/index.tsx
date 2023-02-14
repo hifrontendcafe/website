@@ -2,7 +2,7 @@ import React, { Dispatch } from 'react';
 import Select from 'react-select';
 import { ProfileFilters, Role, Seniority, Technology } from '@/lib/types';
 import { FilterProfileAction } from '@/components/Profiles/filterReducer';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface FormProps {
   filters: ProfileFilters;
@@ -25,10 +25,9 @@ const FilterForm: React.FC<FormProps> = ({
   seniorities,
 }) => {
   const router = useRouter();
-  const activesQuery = Object.prototype.hasOwnProperty.call(
-    router.query,
-    'activos',
-  );
+
+  const searchParams = useSearchParams();
+  const activesQuery = searchParams.get('activos');
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
