@@ -27,6 +27,10 @@ const rubik = Rubik({
   display: 'swap',
 });
 
+export const runtime = 'experimental-edge';
+
+export const preferredRegion = 'edge';
+
 export const revalidate = 10;
 
 export const generateMetadata = () =>
