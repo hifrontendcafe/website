@@ -60,7 +60,7 @@ export default function RootLayout({
               <Header
                 logo={settings.logo}
                 navItems={settings.navItems}
-                // preview={preview}
+                preview={preview}
               />
 
               <div
