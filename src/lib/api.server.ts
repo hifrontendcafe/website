@@ -12,8 +12,12 @@ import {
   postQuery,
   postsQuery,
   profileQuery,
+  profilesQuery,
+  rolesQuery,
+  senioritiesQuery,
   settingsQuery,
   staffQuery,
+  technologiesQuery,
 } from './queries';
 import client from './sanity';
 import type {
@@ -28,6 +32,9 @@ import type {
   Profile,
   Topic,
   Mentor,
+  Seniority,
+  Technology,
+  Role,
 } from './types';
 
 const clientFetch = cache<typeof client['fetch']>(client.fetch.bind(client));
@@ -93,4 +100,20 @@ export async function getMentoringTopics(): Promise<Topic[]> {
 
 export async function getAllMentors(): Promise<Mentor[]> {
   return await clientFetch(mentorsQuery);
+}
+
+export async function getAllProfiles(): Promise<Profile[]> {
+  return await clientFetch(profilesQuery);
+}
+
+export async function getAllSeniorities(): Promise<Seniority[]> {
+  return await clientFetch(senioritiesQuery);
+}
+
+export async function getAllTechnologies(): Promise<Technology[]> {
+  return await clientFetch(technologiesQuery);
+}
+
+export async function getAllRoles(): Promise<Role[]> {
+  return await clientFetch(rolesQuery);
 }
