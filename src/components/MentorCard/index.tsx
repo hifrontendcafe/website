@@ -1,4 +1,8 @@
-import { faGithub, faLinkedinIn } from '@fortawesome/free-brands-svg-icons';
+import {
+  faGithub,
+  faLinkedinIn,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
@@ -105,6 +109,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
                 </Link>
               )}
+
               {mentor.linkedin && (
                 <Link
                   href={mentor.linkedin}
@@ -121,6 +126,16 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
                 >
                   <FontAwesomeIcon className="w-4 h-4" icon={faGithub} />
+                </Link>
+              )}
+
+              {mentor.twitter && (
+                <Link
+                  href={mentor.twitter}
+                  target="_blank"
+                  className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
+                >
+                  <FontAwesomeIcon className="w-4 h-4 " icon={faTwitter} />
                 </Link>
               )}
             </div>

@@ -161,6 +161,7 @@ export const mentorsQuery = groq`
     web,
     calendly,
     github,
+    twitter,
     linkedin,
     topics
   }
