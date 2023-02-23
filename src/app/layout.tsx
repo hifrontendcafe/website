@@ -1,10 +1,9 @@
-import { Lexend_Deca, Rubik } from '@next/font/google';
+import { Lexend_Deca, Rubik } from 'next/font/google';
 
 import '@/styles/index.css';
 import '@/styles/menu.css';
 import '@/styles/scrollbar.css';
 
-import { use } from 'react';
 import { getSettings } from '@/lib/api.server';
 import clsx from 'clsx';
 import { previewData } from 'next/headers';
@@ -37,12 +36,12 @@ export const generateMetadata = () =>
     },
   });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const settings = use(getSettings());
+  const settings = await getSettings();
 
   const preview = !!previewData();
 

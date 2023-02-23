@@ -468,11 +468,14 @@ export interface EventChannel {
 
 export type AppPage<
   T extends Record<string, unknown> = Record<string, unknown>,
-> = React.FC<{
+> = (props: {
   params: T;
   searchParams?: { [key: string]: string | string[] | undefined };
-}>;
+}) => JSX.Element | Promise<JSX.Element>;
 
 export type Layout<
   T extends Record<string, unknown> = Record<string, unknown | undefined>,
-> = React.FC<{ children: React.ReactNode; params: T }>;
+> = (props: {
+  children: React.ReactNode;
+  params: T;
+}) => JSX.Element | Promise<JSX.Element>;
