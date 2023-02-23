@@ -3,6 +3,10 @@ import { profilesProjections } from '@/lib/queries';
 import { Profile, ProfileFilters } from '@/lib/types';
 import { NextApiRequest, NextApiResponse } from 'next';
 
+export const config = {
+  runtime: 'edge',
+};
+
 const sanityKeys: Record<
   keyof ProfileFilters,
   { type: string; value: string }

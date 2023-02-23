@@ -5,6 +5,8 @@ import { getMetadata } from '@/lib/seo';
 
 export const revalidate = 60;
 
+export const runtime = 'edge';
+
 export const generateMetadata = () => getMetadata({ title: 'Home' });
 
 export default async function HomePage() {
