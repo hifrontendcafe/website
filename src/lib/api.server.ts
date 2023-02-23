@@ -37,7 +37,7 @@ import type {
   Role,
 } from './types';
 
-const client = new PicoSanity({
+export const client = new PicoSanity({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   useCdn: process.env.NODE_ENV === 'production',

@@ -1,7 +1,7 @@
-import { getClient } from '@/lib/api';
+import { client } from '@/lib/api.server';
 import { profilesProjections } from '@/lib/queries';
 import { Profile, ProfileFilters } from '@/lib/types';
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest } from 'next/server';
 
 export const config = {
   runtime: 'edge',
@@ -87,8 +87,6 @@ function makeQuery(filters: ProfileFilters): string {
     }, [])
     .join(' && ');
 
-  console.log(queryFilters);
-
   return `*[_type =='profile' && isActive == true ${
     queryFilters.length > 0 ? '&&' : ''
   } ${queryFilters}] {
@@ -96,19 +94,14 @@ function makeQuery(filters: ProfileFilters): string {
   }`;
 }
 
-type Handle = (
-  req: NextApiRequest & { body: { filters: ProfileFilters } },
-  res: NextApiResponse,
-) => Promise<void>;
+const handle = async (req: NextRequest) => {
+  const body = await req.json();
 
-const handle: Handle = async ({ body, preview }, res) => {
-  console.log(body.filters);
+  const response = (await client.fetch(makeQuery(body.filters))) as Profile[];
 
-  const response = (await getClient(preview).fetch(
-    makeQuery(body.filters),
-  )) as Profile[];
-
-  res.json(response);
+  return new Response(JSON.stringify(response), {
+    headers: { 'Content-Type': 'application/json' },
+  });
 };
 
 export default handle;
