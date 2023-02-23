@@ -110,6 +110,7 @@ export interface Mentor {
   calendly: string;
   linkedin: string;
   github: string;
+  twitter?: string;
   topics: [
     {
       _key: string;
