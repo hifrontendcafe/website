@@ -7,8 +7,6 @@ import CMYKEditions from '@/components/CMYKEditions';
 
 export const revalidate = 60;
 
-export const runtime = 'edge';
-
 export const generateMetadata = () => getPageMetadata('CMYK');
 
 const CMYKPage: AppPage = () => {
