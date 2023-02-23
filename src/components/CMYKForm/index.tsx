@@ -1,21 +1,13 @@
-import Layout from '../../components/Layout';
+'use client';
+
 import { useMemo } from 'react';
-import { GetStaticProps } from 'next';
-import { getSettings } from '@/lib/api';
-
-import CMYKParticipantForm from '../../components/CMYKParticipantForm';
-import { useSettings } from '@/lib/settings';
-import { isChix } from '@/lib/haveRole';
-import { signIn, useSession } from 'next-auth/client';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
-import SectionHero from '@/components/SectionHero';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
-
-type CMYKRegisterPageProps = {
-  preview?: boolean;
-};
+import { useSearchParams } from 'next/navigation';
+import { isChix } from '@/lib/haveRole';
+import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { signIn, useSession } from 'next-auth/client';
+import CMYKParticipantForm from '../CMYKParticipantForm';
 
 export type FormsCMYK = {
   type: 'lider' | 'participant';
@@ -36,27 +28,34 @@ const formsTypes: FormsCMYK[] = [
   },
 ];
 
-const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
-  preview = false,
-}) => {
-  const {
-    cmykSettings: { cmykInscription, cmykInscriptionChix },
-  } = useSettings();
+type CMYKFormProps = {
+  cmykInscription: boolean;
+  cmykInscriptionChix: boolean;
+};
+
+export const revalidate = 1;
+
+export default function CMYKForm({
+  cmykInscription,
+  cmykInscriptionChix,
+}: CMYKFormProps) {
   const [session, loading] = useSession();
 
-  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const type = searchParams.get('type');
 
   const typeSelected = useMemo(() => {
     const lastType = formsTypes[0].type;
 
-    if (!router.query.type) return lastType;
+    if (!type) return lastType;
 
     const currentTypeSelected = formsTypes.find(
-      (form) => form.type === (router.query.type as string),
+      (form) => form.type === (type as string),
     )?.type;
 
     return currentTypeSelected ?? lastType;
-  }, [router.query.type]);
+  }, [type]);
 
   const currentForm = formsTypes.find((form) => form.type === typeSelected);
 
@@ -70,66 +69,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
   }
 
   return (
-    <Layout title="CMYK" preview={preview}>
-      <SectionHero
-        title="CMYK 5"
-        paragraph="Agosto 2022"
-        cta="https://frontend.cafe/docs/guia-cmyk"
-      />
-      <div className="flex flex-col-reverse items-center md:flex-row">
-        <div className="flex text-center lg:grow md:w-1/2  md:text-left">
-          <div className="mt-8 text-secondary">
-            <p className="mb-4 text-lg leading-relaxed">
-              Desde <b>FrontendCafé </b> impulsamos el desarrollo de proyectos
-              colaborativos realizados por miembros de la comunidad con el
-              objetivo de ganar experiencia en un entorno profesional.
-            </p>
-            <p className="mb-4 text-lg leading-relaxed">
-              En CMYK 5 tendremos la colaboración de{' '}
-              <Link href={'https://servicedesignclub.com/'}>
-                <a className="hover:text-[#FFEE94]">
-                  <b>Service Design Club</b>
-                </a>
-              </Link>
-              , quienes llevarán a cabo toda la etapa de diseño, con esto
-              llevaremos al siguiente nivel los proyectos.
-            </p>
-            <div className="flex flex-col md:flex-row gap-4 flex-wrap">
-              <Link href="https://www.notion.so/hifrontendcafe/Cronograma-CMYK-5-a07d7a873d884b5daa0299f948612e1c?v=ce6031afdfbf475c90081d78b347d1f7">
-                <a
-                  className="inline-flex justify-center btn btn-primary"
-                  target={'_blank'}
-                >
-                  Conocé el cronograma
-                </a>
-              </Link>
-              <Link href="https://hifrontendcafe.notion.site/Proyectos-CMYK-5-de27daf7ea334cd4be4e564745c2e93c">
-                <a
-                  className="inline-flex justify-center btn btn-secondary"
-                  target={'_blank'}
-                >
-                  Conocé más los proyectos
-                </a>
-              </Link>
-              <Link href="https://discord.com/channels/594363964499165194/769232248724652033">
-                <a
-                  className="inline-flex justify-center btn btn-secondary"
-                  target={'_blank'}
-                >
-                  Hace tu consulta aquí
-                </a>
-              </Link>
-            </div>
-          </div>
-        </div>
-        <div className="md:w-1/2 lg:w-full md:max-w-lg lg:max-w-xl md:mb-0 md:pl-10">
-          <img
-            className={`object-cover object-center rounded `}
-            alt="hero"
-            src="/img/cmyk-girl.min.svg"
-          />
-        </div>
-      </div>
+    <div>
       {shouldShowForm ? (
         <div className="overflow-hidden  rounded-lg">
           <div className="pt-10 md:pt-15 lg:pt-20 md:py-5">
@@ -153,9 +93,10 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
                         replace
                         shallow
                         scroll={false}
+                        className="w-full h-full"
                         href={`/inscripcion-cmyk/?type=${form.type}`}
                       >
-                        <a className="w-full h-full">{form.title}</a>
+                        {form.title}
                       </Link>
                     </li>
                   ))}
@@ -185,6 +126,7 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
             <CMYKParticipantForm
               type={currentForm.type}
               title={currentForm.title}
+              cmykInscription={cmykInscription}
               isChix={isChix(session?.user?.roles)}
               isDisabled={currentForm.isDisabled}
             />
@@ -200,13 +142,6 @@ const CMYKRegisterPage: React.FC<CMYKRegisterPageProps> = ({
           </p>
         </div>
       )}
-    </Layout>
+    </div>
   );
-};
-
-export const getStaticProps: GetStaticProps = async ({ preview = false }) => {
-  const settings = await getSettings(preview);
-  return { props: { preview, settings }, revalidate: 1 };
-};
-
-export default CMYKRegisterPage;
+}

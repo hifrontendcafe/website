@@ -1,4 +1,3 @@
-import { Session } from 'next-auth';
 import Link from 'next/link';
 import { NavItemData } from '../../lib/types';
 import MenuBtn from './MenuBtn';
@@ -6,10 +5,7 @@ import NavItem from './NavItem';
 import UserSettings from './UserSettings';
 
 interface NavbarProps {
-  loading: boolean;
   navItems: NavItemData[];
-  user?: Session['user'];
-  pathname: string;
   logoImg: string;
   isOpen: boolean;
   toggle: () => void;
@@ -17,9 +13,6 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({
   navItems,
-  loading,
-  user,
-  pathname,
   logoImg,
   isOpen,
   toggle,
@@ -29,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({
       id="site-menu"
       className="container flex flex-col items-center justify-between w-full mx-auto lg:flex-row"
     >
-      <div className="flex flex-row items-center justify-between w-full flex-nowrap lg:w-auto lg:self-center lg:flex-none">
+      <div className="flex flex-row  items-center justify-between w-full flex-nowrap lg:w-auto lg:self-center lg:flex-none">
         <Link href="/" className="flex items-center text-zinc-900 title-font">
           <img
             src={logoImg}
@@ -37,7 +30,7 @@ const Navbar: React.FC<NavbarProps> = ({
             alt="Logo FrontendCafe"
           />
         </Link>
-        <MenuBtn onClick={() => toggle()} isOpen={isOpen} />
+        <MenuBtn onClick={toggle} isOpen={isOpen} />
       </div>
       <div
         className={`lg:flex lg:flex-row lg:self-center lg:pb-0 lg:py-0 lg:w-auto text-md md:text-sm ${
@@ -45,10 +38,11 @@ const Navbar: React.FC<NavbarProps> = ({
         }`}
       >
         {navItems?.map(({ link, title }) => (
-          <NavItem link={link} title={title} pathname={pathname} key={link} />
+          <NavItem link={link} title={title} key={link} />
         ))}
       </div>
-      {<UserSettings loading={loading} user={user} navIsOpen={isOpen} />}
+
+      <UserSettings navIsOpen={isOpen} />
     </nav>
   );
 };
