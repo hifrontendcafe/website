@@ -12,6 +12,7 @@ const CMYKItemCard: React.FC<CMYKItemProps> = ({ project }) => {
     <Card>
       <Card.Header>
         <Card.Image
+          key={project.image.src}
           src={project.image.src + '?w=400&h=160'}
           alt={`Imagen del proyecto ${project.name}`}
           blurDataURL={project.image.src + '?w=20'}

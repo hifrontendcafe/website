@@ -1,14 +1,19 @@
 import SectionHero from '@/components/SectionHero';
-import { getPageByName, getAllCMYKProjects } from '@/lib/api.server';
+import { getPageByName } from '@/lib/api.server';
 import type { AppPage } from '@/lib/types';
 import { getPageMetadata } from '@/lib/seo';
 import CMYKEditions from '@/components/CMYKEditions';
+import { getAllCMYKProjects } from '@/lib/api';
 
 export const revalidate = 60;
 
 export const generateMetadata = () => getPageMetadata('CMYK');
 
-const CMYKPage: AppPage = async () => {
+export const dynamic = 'force-dynamic';
+
+export const dynamicParams = true;
+
+const CMYKPage: AppPage = async ({ searchParams }) => {
   const [page, projects] = await Promise.all([
     getPageByName('CMYK'),
     getAllCMYKProjects(),
@@ -21,7 +26,8 @@ const CMYKPage: AppPage = async () => {
         paragraph={page.description}
         cta={page.doc}
       />
-      <CMYKEditions projects={projects} />
+      {/* @ts-expect-error Server Component */}
+      <CMYKEditions projects={projects} edition={+searchParams.edition} />
     </>
   );
 };
