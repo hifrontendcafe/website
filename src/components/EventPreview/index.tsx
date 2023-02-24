@@ -80,20 +80,16 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
     );
   };
 
-  const coverUrl = imageBuilder
-    .image(event.cover.src)
-    .width(400)
-    .height(160)
-    .url();
+  const cover = imageBuilder.image(event.cover.src);
 
   return (
     <Card>
       <Card.Header>
         <Card.Image
-          src={coverUrl}
+          src={cover.width(400).height(160).url()}
           alt={event.cover.alt || event.title}
           className="w-full max-w-full object-cover"
-          blurDataURL={coverUrl + '?w=20'}
+          blurDataURL={cover.width(20).url()}
         />
 
         <Card.Headline>{event.category.name}</Card.Headline>
