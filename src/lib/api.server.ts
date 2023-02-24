@@ -1,4 +1,5 @@
 import { cache } from 'react';
+import PicoSanity from 'picosanity';
 import {
   cmykQuery,
   docQuery,
@@ -19,7 +20,6 @@ import {
   staffQuery,
   technologiesQuery,
 } from './queries';
-import client from './sanity';
 import type {
   Doc,
   FeaturedCards,
@@ -36,6 +36,12 @@ import type {
   Technology,
   Role,
 } from './types';
+
+export const client = new PicoSanity({
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  useCdn: process.env.NODE_ENV === 'production',
+});
 
 const clientFetch = cache<typeof client['fetch']>(client.fetch.bind(client));
 

@@ -1,4 +1,4 @@
-import { getProfile } from '@/lib/api';
+import { getProfile } from '@/lib/api.server';
 import { Profile } from '@/lib/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
@@ -10,7 +10,7 @@ export default async function handler(
 
   let profile: Profile;
   try {
-    profile = await getProfile(uid as string, req.preview);
+    profile = await getProfile(uid as string);
   } catch (error) {
     res.status(500).send({
       statusCode: 500,

@@ -1,4 +1,3 @@
-import { use } from 'react';
 import { notFound } from 'next/navigation';
 
 import type { AppPage } from '@/lib/types';
@@ -11,12 +10,12 @@ export const generateStaticParams = () => {
 
 export const dynamicParams = true;
 
-const CustomPage: AppPage<{ slug: string[] }> = ({ params }) => {
+const CustomPage: AppPage<{ slug: string[] }> = async ({ params }) => {
   const [base, ...rest] = params.slug;
 
   const path = [`/${base}`].concat(rest).join('/');
 
-  const page = use(getPageByPath(path));
+  const page = await getPageByPath(path);
 
   if (typeof page.title === 'undefined') return notFound();
 

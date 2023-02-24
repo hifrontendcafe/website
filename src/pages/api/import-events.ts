@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { importDiscordEventsAutomatic } from '../../lib/api';
+import { importDiscordEventsAutomatic } from '../../lib/events';
 
 export default async function importEvent(
   req: NextApiRequest,

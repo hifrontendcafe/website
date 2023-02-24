@@ -33,7 +33,7 @@ const CMYKEditions: React.FC<CMYKEditionsProps> = ({ projects }) => {
   const currentCMYK = useMemo(() => {
     const lastVersion = filteredVersions[filteredVersions.length - 1].version;
 
-    const edition = searchParams.get('edition');
+    const edition = searchParams?.get('edition');
 
     if (!edition) return lastVersion;
 
