@@ -68,6 +68,7 @@ export default async function RootLayout({
               >
                 {children}
               </div>
+              {/* @ts-expect-error Server Component */}
               <Footer />
             </div>
           </div>

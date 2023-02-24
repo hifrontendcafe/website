@@ -1,4 +1,3 @@
-import { use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo_vercel from '../../../public/img/powered-by-vercel.svg';
@@ -15,8 +14,8 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getSettings } from '@/lib/api.server';
 
-const Footer: React.FC = () => {
-  const { socialnetworks, footerNavItems } = use(getSettings());
+const Footer = async () => {
+  const { socialnetworks, footerNavItems } = await getSettings();
   const currentYear = new Date().getFullYear();
 
   return (
