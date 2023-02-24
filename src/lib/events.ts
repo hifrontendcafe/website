@@ -11,7 +11,6 @@ import {
   SanityEvent,
 } from './types';
 import { getAllDiscordEvents } from './discord';
-import { createClient } from 'next-sanity';
 import client, { previewClient } from './sanity';
 import {
   eventChannelsQuery,
@@ -20,7 +19,7 @@ import {
 } from './queries';
 import { createEvent } from './api';
 
-export function getClient(preview = false): ReturnType<typeof createClient> {
+export function getClient(preview = false) {
   return preview ? previewClient : client;
 }
 

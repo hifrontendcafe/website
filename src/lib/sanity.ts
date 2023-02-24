@@ -1,23 +1,18 @@
-import sanityClient from '@sanity/client';
+import createClient from '@sanity/client';
 import sanityImage from '@sanity/image-url';
-import {
-  createClient,
-  createPreviewSubscriptionHook,
-  ClientConfig,
-} from 'next-sanity';
 
-const config: ClientConfig = {
+const config = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  apiVersion: '2022-04-30',
   useCdn: process.env.NODE_ENV === 'production',
 };
 
 const client = createClient(config);
 
-export const postClient = sanityClient({
+export const postClient = createClient({
   ...config,
   useCdn: false,
-  apiVersion: '2022-04-30',
   token: process.env.SANITY_TOKEN,
 });
 
@@ -26,10 +21,7 @@ export const imageBuilder = sanityImage(client);
 export const previewClient = createClient({
   ...config,
   useCdn: false,
-  apiVersion: '2022-04-30',
   token: process.env.SANITY_TOKEN,
 });
-
-export const usePreviewSubscription = createPreviewSubscriptionHook(config);
 
 export default client;

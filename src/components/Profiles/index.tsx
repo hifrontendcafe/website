@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useLayoutEffect, useState } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 import { Profile, Role, Seniority, Technology } from '@/lib/types';
 import { useProfiles } from './useProfiles';
@@ -37,7 +37,7 @@ const Profiles: React.FC<PostsPageProps> = ({
 
   const profileListRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (hasToScroll) {
       profileListRef.current.scrollIntoView({ behavior: 'smooth' });
       setHasToScroll(false);

@@ -41,8 +41,6 @@ import {
   technologiesQuery,
 } from './queries';
 
-import { createClient } from 'next-sanity';
-
 import { pageByPathQuery } from './queries';
 import { Page } from './types';
 
@@ -61,7 +59,7 @@ const eventFields = `
   recording
 `;
 
-export function getClient(preview = false): ReturnType<typeof createClient> {
+export function getClient(preview = false) {
   return preview ? previewClient : client;
 }
 
