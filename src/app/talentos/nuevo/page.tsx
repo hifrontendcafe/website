@@ -1,4 +1,3 @@
-import { use } from 'react';
 import {
   getAllRoles,
   getAllSeniorities,
@@ -13,11 +12,13 @@ export const revalidate = 60;
 
 export const generateMetadata = () => getPageMetadata('Tu perfil');
 
-export default function NewTalentPage() {
-  const page = use(getPageByName('Tu perfil'));
-  const technologies = use(getAllTechnologies());
-  const roles = use(getAllRoles());
-  const seniorities = use(getAllSeniorities());
+export default async function NewTalentPage() {
+  const [page, technologies, roles, seniorities] = await Promise.all([
+    getPageByName('Tu perfil'),
+    getAllTechnologies(),
+    getAllRoles(),
+    getAllSeniorities(),
+  ]);
 
   const formattedTechnologies = technologies.map((tech) => ({
     ...tech,
@@ -27,7 +28,7 @@ export default function NewTalentPage() {
 
   return (
     <>
-      <SectionHero title={page.title} paragraph={page.description} />
+      <SectionHero title={page?.title} paragraph={page?.description} />
 
       <NewTalentForm
         roles={roles}

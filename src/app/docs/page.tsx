@@ -1,4 +1,3 @@
-import { use } from 'react';
 import Link from 'next/link';
 
 import { getAllDocs } from '@/lib/api.server';
@@ -13,8 +12,8 @@ export const generateMetadata = () =>
       'Workshops, conferencias, afters, entrevistas, english practices para personas interesadas en la tecnología.',
   });
 
-export default function DocsPage() {
-  const docs = use(getAllDocs());
+export default async function DocsPage() {
+  const docs = await getAllDocs();
 
   return (
     <div className="pb-40 sm:pt-10">

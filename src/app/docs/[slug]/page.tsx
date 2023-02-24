@@ -1,4 +1,3 @@
-import { use } from 'react';
 import { notFound } from 'next/navigation';
 
 import DocsRichText from '@/components/DocsRichText';
@@ -26,8 +25,8 @@ export const generateStaticParams = async () => {
   }));
 };
 
-const DocPage: AppPage<{ slug: string }> = ({ params }) => {
-  const doc = use(getDocBySlug(params.slug));
+const DocPage: AppPage<{ slug: string }> = async ({ params }) => {
+  const doc = await getDocBySlug(params.slug);
 
   if (!doc.slug) return notFound();
 

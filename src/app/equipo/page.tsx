@@ -1,4 +1,3 @@
-import { use } from 'react';
 import { getPageByName, getFecTeam } from '@/lib/api.server';
 import SectionHero from '@/components/SectionHero';
 import StaffCard from '@/components/StaffCard';
@@ -8,9 +7,11 @@ export const revalidate = 60;
 
 export const generateMetadata = () => getPageMetadata('Equipo');
 
-export default function TeamPage() {
-  const page = use(getPageByName('Equipo'));
-  const profiles = use(getFecTeam());
+export default async function TeamPage() {
+  const [page, profiles] = await Promise.all([
+    getPageByName('Equipo'),
+    getFecTeam(),
+  ]);
 
   return (
     <>

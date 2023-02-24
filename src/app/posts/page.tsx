@@ -1,12 +1,11 @@
 import { getAllPosts } from '@/lib/api.server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { use } from 'react';
 
 export const revalidate = 10;
 
-export default function PostsPage() {
-  const posts = use(getAllPosts());
+export default async function PostsPage() {
+  const posts = await getAllPosts();
 
   if (process.env.NODE_ENV === 'production') return notFound();
 

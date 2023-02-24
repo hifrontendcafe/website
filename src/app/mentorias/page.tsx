@@ -1,4 +1,3 @@
-import { use } from 'react';
 import SectionHero from '@/components/SectionHero';
 import {
   getAllMentors,
@@ -13,10 +12,12 @@ export const revalidate = 60;
 
 export const generateMetadata = () => getPageMetadata('Mentorías');
 
-export default function MentorshipsPage() {
-  const page = use(getPageByName('Mentorías'));
-  const topics = use(getMentoringTopics());
-  const mentors = use(getAllMentors());
+export default async function MentorshipsPage() {
+  const [page, topics, mentors] = await Promise.all([
+    getPageByName('Mentorías'),
+    getMentoringTopics(),
+    getAllMentors(),
+  ]);
 
   return (
     <>

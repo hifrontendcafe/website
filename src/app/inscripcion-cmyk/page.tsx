@@ -1,4 +1,3 @@
-import { use } from 'react';
 import Link from 'next/link';
 import CMYKForm from '@/components/CMYKForm';
 import SectionHero from '@/components/SectionHero';
@@ -7,10 +6,10 @@ import { getMetadata } from '@/lib/seo';
 
 export const generateMetadata = () => getMetadata({ title: 'CMYK' });
 
-export default function CMYKInscriptionPage() {
+export default async function CMYKInscriptionPage() {
   const {
     cmykSettings: { cmykInscription, cmykInscriptionChix },
-  } = use(getSettings());
+  } = await getSettings();
 
   return (
     <>

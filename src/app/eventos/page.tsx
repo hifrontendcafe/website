@@ -1,6 +1,5 @@
 import EventList from '@/components/EventList';
 import SectionHero from '@/components/SectionHero';
-import { use } from 'react';
 import { getAllEvents, getPageByName } from '@/lib/api.server';
 import { getPageMetadata } from '@/lib/seo';
 
@@ -8,9 +7,11 @@ export const revalidate = 1;
 
 export const generateMetadata = () => getPageMetadata('Eventos');
 
-export default function EventsPage() {
-  const page = use(getPageByName('Eventos'));
-  const events = use(getAllEvents());
+export default async function EventsPage() {
+  const [page, events] = await Promise.all([
+    getPageByName('Eventos'),
+    getAllEvents(),
+  ]);
 
   return (
     <>
