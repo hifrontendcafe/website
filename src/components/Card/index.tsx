@@ -29,7 +29,7 @@ const CardHeader: React.FC = ({ children }) => (
 );
 
 const CardImage: React.FC<ImageProps> = ({ className, src, ...props }) => (
-  <div className="mb-2">
+  <div className="mb-2 relative h-40 w-full">
     <Image
       className={`object-cover w-full h-40 rounded-sm ${className}`}
       placeholder="blur"
@@ -37,8 +37,8 @@ const CardImage: React.FC<ImageProps> = ({ className, src, ...props }) => (
         /* Would rather use FEC's logo form Sanity */ '/logotype-fec.svg'
       }
       src={src}
-      width={340}
-      height={160}
+      width={!props.fill ? 340 : undefined}
+      height={!props.fill ? 160 : undefined}
       {...props}
     />
   </div>
