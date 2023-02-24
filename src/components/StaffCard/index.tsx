@@ -11,7 +11,7 @@ const ProfileImage = ({ profile }: ProfileProp) => {
   return (
     <Image
       className="object-cover mx-auto rounded-full h-36 w-36 md:h-32 md:w-32"
-      src={imageBuilder.image(profile.photo).url()}
+      src={imageBuilder.image(profile.photo).width(200).height(200).url()}
       alt={`Foto de ${profile.firstName}`}
       width={128}
       height={128}
