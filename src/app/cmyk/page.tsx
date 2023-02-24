@@ -13,6 +13,8 @@ export const dynamic = 'force-dynamic';
 
 export const dynamicParams = true;
 
+export const fetchCache = 'force-cache';
+
 const CMYKPage: AppPage = async ({ searchParams }) => {
   const [page, projects] = await Promise.all([
     getPageByName('CMYK'),
