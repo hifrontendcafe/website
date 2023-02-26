@@ -5,16 +5,14 @@ import { AppPage } from '@/lib/types';
 import { getAllDocs, getDocBySlug } from '@/lib/api.server';
 import { getMetadata } from '@/lib/seo';
 
-export const revalidate = 60;
-
 export const generateMetadata = async ({
   params,
 }: {
   params: { slug: string };
 }) => {
-  const doc = await getDocBySlug(params.slug);
+  const doc = await getDocBySlug({ slug: params.slug });
 
-  return getMetadata({ title: doc.title });
+  return getMetadata({ title: doc?.title });
 };
 
 export const generateStaticParams = async () => {
@@ -26,9 +24,12 @@ export const generateStaticParams = async () => {
 };
 
 const DocPage: AppPage<{ slug: string }> = async ({ params }) => {
-  const doc = await getDocBySlug(params.slug);
+  const doc = await getDocBySlug({
+    slug: params.slug,
+    next: { revalidate: 60 },
+  });
 
-  if (!doc.slug) return notFound();
+  if (!doc) return notFound();
 
   return (
     <div style={{ margin: 'auto', maxWidth: '675px', marginBottom: '100px' }}>

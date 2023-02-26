@@ -12,7 +12,9 @@ const pastEvents = (events: Event[]) =>
   events.filter((event) => isPast(new Date(event.date)));
 
 export default async function EventList() {
-  const events = await getAllEvents();
+  const events = await getAllEvents({
+    next: { revalidate: 60 },
+  });
 
   return (
     <section id="events" className="relative body-font">

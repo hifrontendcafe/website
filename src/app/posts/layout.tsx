@@ -2,8 +2,6 @@ import Hero from '@/components/Hero';
 import { getSettings } from '@/lib/api.server';
 import type { Layout } from '@/lib/types';
 
-export const revalidate = 10;
-
 const PostsLayout: Layout = async ({ children }) => {
   const {
     heroSubtitle,

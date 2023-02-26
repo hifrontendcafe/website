@@ -12,7 +12,7 @@ export const generateMetadata = async ({
 }: {
   params: { id: string };
 }) => {
-  const profile = await getProfile(params.id);
+  const profile = await getProfile({ id: params.id });
 
   return await getMetadata({
     title: `Perfil: ${profile?.person?.firstName}`,
@@ -21,7 +21,7 @@ export const generateMetadata = async ({
 };
 
 const ProfilePage: AppPage<{ id: string }> = async ({ params }) => {
-  const profile = await getProfile(params.id);
+  const profile = await getProfile({ id: params.id });
 
   if (!profile?.person?.discord) return notFound();
 

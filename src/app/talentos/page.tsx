@@ -26,14 +26,12 @@ function sortResponse<T extends { name: string }>(array: T[]) {
 
 export const generateMetadata = () => getPageMetadata('Talentos');
 
-export const revalidate = 60;
-
 export default async function TalentsPage() {
   const [page, technologies, seniorities, profiles, roles] = await Promise.all([
-    getPageByName('Talentos'),
+    getPageByName({ name: 'Talentos' }),
     getAllTechnologies(),
     getAllSeniorities(),
-    getAllProfiles(),
+    getAllProfiles({ next: { revalidate: 120 } }),
     getAllRoles(),
   ]);
 

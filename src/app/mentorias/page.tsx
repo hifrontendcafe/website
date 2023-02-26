@@ -8,15 +8,13 @@ import { PageComponents } from '@/components/Page/Matcher';
 import MentorList from '@/components/MentorList';
 import { getPageMetadata } from '@/lib/seo';
 
-export const revalidate = 60;
-
 export const generateMetadata = () => getPageMetadata('Mentorías');
 
 export default async function MentorshipsPage() {
   const [page, topics, mentors] = await Promise.all([
-    getPageByName('Mentorías'),
-    getMentoringTopics(),
-    getAllMentors(),
+    getPageByName({ name: 'Mentorías' }),
+    getMentoringTopics({ next: { revalidate: 180 } }),
+    getAllMentors({ next: { revalidate: 60 } }),
   ]);
 
   return (

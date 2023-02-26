@@ -3,14 +3,12 @@ import SectionHero from '@/components/SectionHero';
 import StaffCard from '@/components/StaffCard';
 import { getPageMetadata } from '@/lib/seo';
 
-export const revalidate = 60;
-
 export const generateMetadata = () => getPageMetadata('Equipo');
 
 export default async function TeamPage() {
   const [page, profiles] = await Promise.all([
-    getPageByName('Equipo'),
-    getFecTeam(),
+    getPageByName({ name: 'Equipo' }),
+    getFecTeam({ next: { revalidate: 60 } }),
   ]);
 
   return (

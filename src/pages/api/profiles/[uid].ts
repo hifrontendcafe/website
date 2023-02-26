@@ -10,7 +10,7 @@ export default async function handler(
 
   let profile: Profile;
   try {
-    profile = await getProfile(uid as string);
+    profile = await getProfile({ id: uid as string });
   } catch (error) {
     res.status(500).send({
       statusCode: 500,

@@ -2,8 +2,6 @@ import { getAllPosts } from '@/lib/api.server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
-export const revalidate = 10;
-
 export default async function PostsPage() {
   const posts = await getAllPosts();
 

@@ -6,8 +6,6 @@ import CMYKEditions from '@/components/CMYKEditions';
 import { Suspense } from 'react';
 import CMYKEditionsSkeleton from '@/components/CMYKEditions/Skeleton';
 
-export const revalidate = 60;
-
 export const generateMetadata = () => getPageMetadata('CMYK');
 
 export const dynamic = 'force-dynamic';
@@ -17,7 +15,12 @@ export const dynamicParams = true;
 export const fetchCache = 'force-cache';
 
 const CMYKPage: AppPage = async ({ searchParams }) => {
-  const page = await getPageByName('CMYK');
+  const page = await getPageByName({
+    name: 'CMYK',
+    next: {
+      revalidate: 60,
+    },
+  });
 
   return (
     <>

@@ -8,13 +8,11 @@ import SectionHero from '@/components/SectionHero';
 import NewTalentForm from '@/components/NewTalentForm';
 import { getPageMetadata } from '@/lib/seo';
 
-export const revalidate = 60;
-
 export const generateMetadata = () => getPageMetadata('Tu perfil');
 
 export default async function NewTalentPage() {
   const [page, technologies, roles, seniorities] = await Promise.all([
-    getPageByName('Tu perfil'),
+    getPageByName({ name: 'Tu perfil', next: { revalidate: 60 } }),
     getAllTechnologies(),
     getAllRoles(),
     getAllSeniorities(),

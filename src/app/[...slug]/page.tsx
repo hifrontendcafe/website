@@ -15,7 +15,7 @@ const CustomPage: AppPage<{ slug: string[] }> = async ({ params }) => {
 
   const path = [`/${base}`].concat(rest).join('/');
 
-  const page = await getPageByPath(path);
+  const page = await getPageByPath({ path, next: { revalidate: 120 } });
 
   if (typeof page.title === 'undefined') return notFound();
 

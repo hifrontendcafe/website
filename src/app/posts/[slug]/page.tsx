@@ -13,10 +13,8 @@ export const generateStaticParams = async () => {
   }));
 };
 
-export const revalidate = 60;
-
 const PostPage: AppPage<{ slug: string }> = async ({ params }) => {
-  const post = await getPost(params.slug);
+  const post = await getPost({ slug: params.slug, next: { revalidate: 120 } });
 
   if (!post.slug) return notFound();
 

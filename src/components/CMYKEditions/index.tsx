@@ -17,7 +17,10 @@ const cmykVersions = [
 ];
 
 export default async function CMYKEditions({ edition }: { edition?: string }) {
-  const projects = await getAllCMYKProjects();
+  const projects = await getAllCMYKProjects({
+    cache: 'force-cache',
+    next: { revalidate: 60 },
+  });
 
   return <Editions projects={projects} edition={edition} />;
 }

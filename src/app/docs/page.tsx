@@ -3,8 +3,6 @@ import Link from 'next/link';
 import { getAllDocs } from '@/lib/api.server';
 import { getMetadata } from '@/lib/seo';
 
-export const revalidate = 60;
-
 export const generateMetadata = () =>
   getMetadata({
     title: 'Docs',
@@ -13,13 +11,15 @@ export const generateMetadata = () =>
   });
 
 export default async function DocsPage() {
-  const docs = await getAllDocs();
+  const docs = await getAllDocs({
+    cache: 'force-cache',
+    next: { revalidate: 60 },
+  });
 
   return (
     <div className="pb-40 sm:pt-10">
       <div className="mt-10 overflow-hidden border-2 border-zinc-500 rounded-lg shadow bg-zinc-800">
         <div className="px-4 py-5 border-b border-zinc-500 sm:px-6">
-          <div></div>
           <div className="mt-2 md:flex md:items-center md:justify-between">
             <div className="flex-1 min-w-0">
               <h2 className="text-xl font-bold leading-7 text-primary sm:text-2xl sm:leading-9 sm:tr uncate">

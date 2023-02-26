@@ -15,7 +15,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getSettings } from '@/lib/api.server';
 
 const Footer = async () => {
-  const { socialnetworks, footerNavItems } = await getSettings();
+  const { socialnetworks, footerNavItems } = await getSettings({
+    next: { revalidate: 120 },
+  });
   const currentYear = new Date().getFullYear();
 
   return (

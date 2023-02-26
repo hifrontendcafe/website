@@ -26,8 +26,6 @@ const rubik = Rubik({
   display: 'swap',
 });
 
-export const revalidate = 10;
-
 export const generateMetadata = () =>
   getMetadata({
     title: {
@@ -41,7 +39,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const settings = await getSettings();
+  const settings = await getSettings({ next: { revalidate: 120 } });
 
   const preview = !!previewData();
 
