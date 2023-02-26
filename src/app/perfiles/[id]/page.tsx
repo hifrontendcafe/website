@@ -1,4 +1,3 @@
-import { use } from 'react';
 import { notFound } from 'next/navigation';
 import { getProfile } from '@/lib/api.server';
 import type { AppPage } from '@/lib/types';
@@ -13,7 +12,7 @@ export const generateMetadata = async ({
 }: {
   params: { id: string };
 }) => {
-  const profile = await getProfile(params.id);
+  const profile = await getProfile({ id: params.id });
 
   return await getMetadata({
     title: `Perfil: ${profile?.person?.firstName}`,
@@ -21,8 +20,8 @@ export const generateMetadata = async ({
   });
 };
 
-const ProfilePage: AppPage<{ id: string }> = ({ params }) => {
-  const profile = use(getProfile(params.id));
+const ProfilePage: AppPage<{ id: string }> = async ({ params }) => {
+  const profile = await getProfile({ id: params.id });
 
   if (!profile?.person?.discord) return notFound();
 

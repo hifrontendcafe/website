@@ -21,7 +21,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
         style={{ transition: 'all .15s ease' }}
         onClick={() => signIn('discord')}
       >
-        <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-3" />
+        <FontAwesomeIcon icon={faDiscord} className="mr-3" />
         Loading&hellip;
       </button>
     );
@@ -36,7 +36,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
         style={{ transition: 'all .15s ease' }}
         onClick={() => signIn('discord')}
       >
-        <FontAwesomeIcon icon={faDiscord} width="18px" className="mr-3" />
+        <FontAwesomeIcon icon={faDiscord} className="mr-3" />
         Iniciar sesión
       </button>
     );

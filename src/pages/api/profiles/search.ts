@@ -1,4 +1,4 @@
-import { client } from '@/lib/api.server';
+import client from '@/lib/sanity';
 import { profilesProjections } from '@/lib/queries';
 import { Profile, ProfileFilters } from '@/lib/types';
 import { NextRequest } from 'next/server';

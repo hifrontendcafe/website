@@ -3,14 +3,12 @@ import Hero from '@/components/Hero';
 import { getSettings, getAllFeaturedCards } from '@/lib/api.server';
 import { getMetadata } from '@/lib/seo';
 
-export const revalidate = 60;
-
 export const generateMetadata = () => getMetadata({ title: 'Home' });
 
 export default async function HomePage() {
   const [settings, cards] = await Promise.all([
-    getSettings(),
-    getAllFeaturedCards(),
+    getSettings({ next: { revalidate: 120 } }),
+    getAllFeaturedCards({ next: { revalidate: 360 } }),
   ]);
 
   const {

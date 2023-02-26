@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { NavItemData } from '../../lib/types';
 import MenuBtn from './MenuBtn';
+import Image from 'next/image';
 import NavItem from './NavItem';
 import UserSettings from './UserSettings';
 
@@ -24,8 +25,12 @@ const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="flex flex-row  items-center justify-between w-full flex-nowrap lg:w-auto lg:self-center lg:flex-none">
         <Link href="/" className="flex items-center text-zinc-900 title-font">
-          <img
+          <Image
             src={logoImg}
+            width={190}
+            height={36}
+            priority
+            blurDataURL={logoImg}
             className="rounded-full text-primary"
             alt="Logo FrontendCafe"
           />

@@ -1,4 +1,3 @@
-import { use } from 'react';
 import SectionHero from '@/components/SectionHero';
 import {
   getAllMentors,
@@ -9,14 +8,14 @@ import { PageComponents } from '@/components/Page/Matcher';
 import MentorList from '@/components/MentorList';
 import { getPageMetadata } from '@/lib/seo';
 
-export const revalidate = 60;
-
 export const generateMetadata = () => getPageMetadata('Mentorías');
 
-export default function MentorshipsPage() {
-  const page = use(getPageByName('Mentorías'));
-  const topics = use(getMentoringTopics());
-  const mentors = use(getAllMentors());
+export default async function MentorshipsPage() {
+  const [page, topics, mentors] = await Promise.all([
+    getPageByName({ name: 'Mentorías' }),
+    getMentoringTopics({ next: { revalidate: 180 } }),
+    getAllMentors({ next: { revalidate: 60 } }),
+  ]);
 
   return (
     <>

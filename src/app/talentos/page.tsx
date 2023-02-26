@@ -1,4 +1,3 @@
-import { use } from 'react';
 import Profiles from '@/components/Profiles';
 import SectionHero from '@/components/SectionHero';
 import {
@@ -27,14 +26,14 @@ function sortResponse<T extends { name: string }>(array: T[]) {
 
 export const generateMetadata = () => getPageMetadata('Talentos');
 
-export const revalidate = 60;
-
-export default function TalentsPage() {
-  const page = use(getPageByName('Talentos'));
-  const technologies = use(getAllTechnologies());
-  const seniorities = use(getAllSeniorities());
-  const profiles = use(getAllProfiles());
-  const roles = use(getAllRoles());
+export default async function TalentsPage() {
+  const [page, technologies, seniorities, profiles, roles] = await Promise.all([
+    getPageByName({ name: 'Talentos' }),
+    getAllTechnologies(),
+    getAllSeniorities(),
+    getAllProfiles({ next: { revalidate: 120 } }),
+    getAllRoles(),
+  ]);
 
   const formattedTechnologies = technologies.map((tech) => ({
     ...tech,
@@ -50,7 +49,7 @@ export default function TalentsPage() {
 
   return (
     <>
-      <SectionHero title={page.title} paragraph={page.description} />
+      <SectionHero title={page?.title} paragraph={page?.description} />
       <Profiles
         profiles={profiles}
         technologies={formattedTechnologies}

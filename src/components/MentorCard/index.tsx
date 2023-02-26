@@ -63,7 +63,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
           <div>
             <Image
               className="object-cover w-24 h-24 mr-4 rounded-full bg-zinc-300"
-              src={`${mentor.photo.src}?h=200`}
+              src={`${mentor.photo.src}?h=96`}
               alt={`Foto de ${mentor.name} `}
               height={96}
               width={96}

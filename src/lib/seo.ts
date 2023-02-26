@@ -34,10 +34,10 @@ export const getMetadata = async (params: GetMetadataParams) => {
 };
 
 export const getPageMetadata = async (name: string) => {
-  const page = await getPageByName(name);
+  const page = await getPageByName({ name });
 
   return await getMetadata({
-    title: page.title,
-    description: page.shortDescription,
+    title: page?.title,
+    description: page?.shortDescription,
   });
 };

@@ -1,4 +1,3 @@
-import { use } from 'react';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 
@@ -14,10 +13,8 @@ export const generateStaticParams = async () => {
   }));
 };
 
-export const revalidate = 60;
-
-const PostPage: AppPage<{ slug: string }> = ({ params }) => {
-  const post = use(getPost(params.slug));
+const PostPage: AppPage<{ slug: string }> = async ({ params }) => {
+  const post = await getPost({ slug: params.slug, next: { revalidate: 120 } });
 
   if (!post.slug) return notFound();
 

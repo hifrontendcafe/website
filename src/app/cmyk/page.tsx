@@ -1,17 +1,26 @@
-import { use } from 'react';
 import SectionHero from '@/components/SectionHero';
-import { getPageByName, getAllCMYKProjects } from '@/lib/api.server';
+import { getPageByName } from '@/lib/api.server';
 import type { AppPage } from '@/lib/types';
 import { getPageMetadata } from '@/lib/seo';
 import CMYKEditions from '@/components/CMYKEditions';
-
-export const revalidate = 60;
+import { Suspense } from 'react';
+import CMYKEditionsSkeleton from '@/components/CMYKEditions/Skeleton';
 
 export const generateMetadata = () => getPageMetadata('CMYK');
 
-const CMYKPage: AppPage = () => {
-  const page = use(getPageByName('CMYK'));
-  const projects = use(getAllCMYKProjects());
+export const dynamic = 'force-dynamic';
+
+export const dynamicParams = true;
+
+export const fetchCache = 'force-cache';
+
+const CMYKPage: AppPage = async ({ searchParams }) => {
+  const page = await getPageByName({
+    name: 'CMYK',
+    next: {
+      revalidate: 60,
+    },
+  });
 
   return (
     <>
@@ -20,7 +29,11 @@ const CMYKPage: AppPage = () => {
         paragraph={page.description}
         cta={page.doc}
       />
-      <CMYKEditions projects={projects} />
+
+      <Suspense fallback={<CMYKEditionsSkeleton />}>
+        {/* @ts-expect-error Server Component */}
+        <CMYKEditions edition={searchParams.edition} />
+      </Suspense>
     </>
   );
 };

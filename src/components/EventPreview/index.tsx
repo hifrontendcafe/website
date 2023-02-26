@@ -2,21 +2,13 @@ import { useMemo } from 'react';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 
-import { Event } from '../../lib/types';
-import { imageBuilder } from '../../lib/sanity';
+import type { Event } from '@/lib/types';
+import { imageBuilder } from '@/lib/sanity';
 import Timezones from '@/lib/completeTimezones.json';
-import Image from 'next/image';
-import RichText from '@/components/RichText';
 
 import { Card } from '../Card';
-import type { PortableTextReactComponents } from '@portabletext/react';
+import { FlagImage, TimeText, RichTextBody } from './Client';
 
-const components: Partial<PortableTextReactComponents> = {
-  block: {
-    // eslint-disable-next-line react/display-name
-    normal: ({ children }) => <p className="my-2 text-base">{children}</p>,
-  },
-};
 interface EventPreviewProps {
   event: Event;
   past?: boolean;
@@ -38,11 +30,7 @@ function toPlainText(blocks) {
     .join('\n\n');
 }
 
-const EventPreview: React.FC<EventPreviewProps> = ({
-  event,
-  past = false,
-  flag,
-}) => {
+const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
   const endDate = useMemo(() => {
     const date = event.endDate ? new Date(event.endDate) : new Date(event.date);
 
@@ -92,15 +80,16 @@ const EventPreview: React.FC<EventPreviewProps> = ({
     );
   };
 
+  const cover = imageBuilder.image(event.cover.src);
+
   return (
     <Card>
       <Card.Header>
         <Card.Image
-          src={imageBuilder.image(event.cover.src).url()}
+          src={cover.width(400).height(160).url()}
           alt={event.cover.alt || event.title}
-          width={400}
-          height={200}
-          blurDataURL={`${imageBuilder.image(event.cover.src).url()}`}
+          className="w-full max-w-full object-cover"
+          blurDataURL={cover.width(20).url()}
         />
 
         <Card.Headline>{event.category.name}</Card.Headline>
@@ -116,30 +105,14 @@ const EventPreview: React.FC<EventPreviewProps> = ({
                 {event.endDate && ` / ${formatEventDate(endDate)}hrs`}
               </Card.Paragraph>
 
-              {flag && (
-                <div className="flex items-center justify-center">
-                  <Image
-                    className="rounded-full"
-                    src={flag}
-                    height="15"
-                    objectFit="cover"
-                    width="15"
-                    alt={flag}
-                  />
-                </div>
-              )}
+              <FlagImage />
             </div>
-            <Card.Paragraph className="p-0 text-xs font-light text-quaternary">
-              {!flag && 'Horario en tu ubicación actual'}
-            </Card.Paragraph>
+            <TimeText />
           </div>
         )}
         <div className="py-2 text-secondary">
           <div className="!text-base">
-            <RichText
-              components={components}
-              value={event.description as any}
-            />
+            <RichTextBody value={event.description as any} />
           </div>
         </div>
       </Card.Body>

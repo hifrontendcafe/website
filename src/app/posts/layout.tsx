@@ -1,17 +1,14 @@
-import { use } from 'react';
 import Hero from '@/components/Hero';
 import { getSettings } from '@/lib/api.server';
 import type { Layout } from '@/lib/types';
 
-export const revalidate = 10;
-
-const PostsLayout: Layout = ({ children }) => {
+const PostsLayout: Layout = async ({ children }) => {
   const {
     heroSubtitle,
     heroDescription,
     discordButtonLabel,
     iniciativasButtonText,
-  } = use(getSettings());
+  } = await getSettings();
 
   return (
     <div>

@@ -1,13 +1,12 @@
-'use client';
-
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { CMYK } from '@/lib/types';
-import { useSearchParams } from 'next/navigation';
 import CMYKItemCard from '../CMYKItemCard';
+import { getAllCMYKProjects } from '@/lib/api.server';
 
 type CMYKEditionsProps = {
   projects: CMYK[];
+  edition?: string;
 };
 
 const cmykVersions = [
@@ -17,7 +16,16 @@ const cmykVersions = [
   { version: 'cmyk-4', name: 'CMYK 4', edition: 4 },
 ];
 
-const CMYKEditions: React.FC<CMYKEditionsProps> = ({ projects }) => {
+export default async function CMYKEditions({ edition }: { edition?: string }) {
+  const projects = await getAllCMYKProjects({
+    cache: 'force-cache',
+    next: { revalidate: 60 },
+  });
+
+  return <Editions projects={projects} edition={edition} />;
+}
+
+const Editions: React.FC<CMYKEditionsProps> = ({ edition, projects }) => {
   const filteredVersions = useMemo(() => {
     const projectVersions = new Set(
       projects.map((project) => project.cmykVersion),
@@ -28,21 +36,17 @@ const CMYKEditions: React.FC<CMYKEditionsProps> = ({ projects }) => {
     );
   }, [projects]);
 
-  const searchParams = useSearchParams();
-
   const currentCMYK = useMemo(() => {
     const lastVersion = filteredVersions[filteredVersions.length - 1].version;
-
-    const edition = searchParams?.get('edition');
 
     if (!edition) return lastVersion;
 
     const currentVersion = filteredVersions.find(
-      (cmyk) => cmyk.edition === +(edition as string),
+      (cmyk) => cmyk.edition === +edition,
     )?.version;
 
     return currentVersion ?? lastVersion;
-  }, [filteredVersions, searchParams]);
+  }, [filteredVersions, edition]);
 
   const currentProjects = projects.filter(
     (project) => project.cmykVersion === currentCMYK,
@@ -91,5 +95,3 @@ const CMYKEditions: React.FC<CMYKEditionsProps> = ({ projects }) => {
     </div>
   );
 };
-
-export default CMYKEditions;
