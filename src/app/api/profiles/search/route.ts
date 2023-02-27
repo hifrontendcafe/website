@@ -1,11 +1,9 @@
-import client from '@/lib/sanity';
-import { profilesProjections } from '@/lib/queries';
-import { Profile, ProfileFilters } from '@/lib/types';
 import { NextRequest } from 'next/server';
+import { profilesProjections } from '@/lib/queries';
+import { client } from '@/lib/api.server';
+import type { Profile, ProfileFilters } from '@/lib/types';
 
-export const config = {
-  runtime: 'edge',
-};
+export const runtime = 'edge';
 
 const sanityKeys: Record<
   keyof ProfileFilters,
@@ -94,14 +92,18 @@ function makeQuery(filters: ProfileFilters): string {
   }`;
 }
 
-const handle = async (req: NextRequest) => {
+export async function POST(req: NextRequest) {
   const body = await req.json();
 
-  const response = (await client.fetch(makeQuery(body.filters))) as Profile[];
+  const profiles = await client.fetch<Profile[]>({
+    query: makeQuery(body.filters),
+    config: {
+      cache: 'force-cache',
+      next: { revalidate: 60 },
+    },
+  });
 
-  return new Response(JSON.stringify(response), {
+  return new Response(JSON.stringify(profiles), {
     headers: { 'Content-Type': 'application/json' },
   });
-};
-
-export default handle;
+}

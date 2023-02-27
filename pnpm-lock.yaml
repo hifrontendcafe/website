@@ -48,7 +48,7 @@ specifiers:
   next: 13.2.0
   next-auth: ^3.29.10
   next-mdx-remote: ^3.0.8
-  next-sanity-client: 1.0.3
+  next-sanity-client: 1.0.5
   postcss: ^8.4.19
   postcss-preset-env: ^7.8.3
   prettier: ^2.8.1
@@ -95,7 +95,7 @@ dependencies:
   next: 13.2.0_672uxklweod7ene3nqtsh262ca
   next-auth: 3.29.10_biqbaboplfbrettd7655fr4n2y
   next-mdx-remote: 3.0.8_biqbaboplfbrettd7655fr4n2y
-  next-sanity-client: 1.0.3_next@13.2.0
+  next-sanity-client: 1.0.5_next@13.2.0
   react: 18.2.0
   react-cookie-consent: 6.4.1_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -12422,8 +12422,8 @@ packages:
       - supports-color
     dev: false
 
-  /next-sanity-client/1.0.3_next@13.2.0:
-    resolution: {integrity: sha512-sqeoBxpGks8BAS1Hh8/GWh1juQbVZj9tK5bPsk69NlB3V6zgG2NcXYNzpnutyPzG+2iBhvLANMo0Qgfdp8I6Zw==}
+  /next-sanity-client/1.0.5_next@13.2.0:
+    resolution: {integrity: sha512-e2WD4+NtDVcGrIFKTctstu/ugyaZoA6rBHw04cozpFvEljKERw7jv75MMalnZBzme8bisVz1zzn9K0kMnKNmwg==}
     peerDependencies:
       next: latest
     dependencies:
