@@ -17,7 +17,7 @@ const CustomPage: AppPage<{ slug: string[] }> = async ({ params }) => {
 
   const page = await getPageByPath({ path, next: { revalidate: 120 } });
 
-  if (typeof page.title === 'undefined') return notFound();
+  if (!page) return notFound();
 
   return (
     <div className="mt-4">
