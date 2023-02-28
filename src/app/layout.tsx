@@ -26,8 +26,6 @@ const rubik = Rubik({
   display: 'swap',
 });
 
-export const runtime = 'edge';
-
 export const generateMetadata = () =>
   getMetadata({
     title: {
