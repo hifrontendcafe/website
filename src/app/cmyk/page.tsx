@@ -8,11 +8,7 @@ import CMYKEditionsSkeleton from '@/components/CMYKEditions/Skeleton';
 
 export const generateMetadata = () => getPageMetadata('CMYK');
 
-export const dynamic = 'force-dynamic';
-
-export const dynamicParams = true;
-
-export const fetchCache = 'force-cache';
+export const dynamic = 'auto';
 
 const CMYKPage: AppPage = async ({ searchParams }) => {
   const page = await getPageByName({
