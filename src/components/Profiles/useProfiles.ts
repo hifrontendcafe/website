@@ -10,18 +10,15 @@ import { Profile, ProfileFilters } from '@/lib/types';
 import { filterReducer, FilterProfileAction } from './filterReducer';
 import { useDebounce } from '@/lib/useDebounce';
 import { shuffle } from '@/lib/shuffle';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function post(url: string, body: Record<string, any>) {
-  return fetch(url, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-}
+import queryString from 'query-string';
 
 function searchProfiles(filters: ProfileFilters) {
-  return post('/api/profiles/search', { filters });
+  const query = queryString.stringify({
+    ...filters,
+    technologies: filters.technologies.map((t) => t._id),
+  });
+
+  return fetch(`/api/profiles/search?${query}`);
 }
 
 interface FilteredProfilesState {

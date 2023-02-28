@@ -52,6 +52,7 @@ specifiers:
   postcss: ^8.4.19
   postcss-preset-env: ^7.8.3
   prettier: ^2.8.1
+  query-string: ^8.1.0
   react: ^18.2.0
   react-cookie-consent: ^6.4.1
   react-dom: ^18.2.0
@@ -96,6 +97,7 @@ dependencies:
   next-auth: 3.29.10_biqbaboplfbrettd7655fr4n2y
   next-mdx-remote: 3.0.8_biqbaboplfbrettd7655fr4n2y
   next-sanity-client: 1.0.5_next@13.2.0
+  query-string: 8.1.0
   react: 18.2.0
   react-cookie-consent: 6.4.1_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
@@ -7541,6 +7543,11 @@ packages:
     resolution: {integrity: sha512-FqUYQ+8o158GyGTrMFJms9qh3CqTKvAqgqsTnkLI8sKu0028orqBhxNMFkFen0zGyg6epACD32pjVk58ngIErQ==}
     engines: {node: '>=0.10'}
 
+  /decode-uri-component/0.4.1:
+    resolution: {integrity: sha512-+8VxcR21HhTy8nOt6jf20w0c9CADrw1O8d+VZ/YzzCt4bJ3uBjw+D1q2osAB8RnpwwaeYBxy0HyKQxD5JBMuuQ==}
+    engines: {node: '>=14.16'}
+    dev: false
+
   /decompress-response/6.0.0:
     resolution: {integrity: sha512-aW35yZM6Bb/4oJlZncMH2LCoZtJXTRxES17vE3hoRiowU2kWHaJKFkSBDnDR+cm9J+9QhXmREyIfv0pji9ejCQ==}
     engines: {node: '>=10'}
@@ -8936,6 +8943,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       to-regex-range: 5.0.1
+
+  /filter-obj/5.1.0:
+    resolution: {integrity: sha512-qWeTREPoT7I0bifpPUXtxkZJ1XJzxWtfoWWkdVGqa+eCr3SHW/Ocp89o8vLvbUuQnadybJpjOKu4V+RwO6sGng==}
+    engines: {node: '>=14.16'}
+    dev: false
 
   /finalhandler/1.2.0:
     resolution: {integrity: sha512-5uXcUVftlQMFnWC9qu/svkWv3GTd2PfUhK/3PLkYNAe7FbqJMt3515HaxE6eRL74GdsriiwujiawdaB1BpEISg==}
@@ -14635,6 +14647,15 @@ packages:
       strict-uri-encode: 1.1.0
     dev: false
 
+  /query-string/8.1.0:
+    resolution: {integrity: sha512-BFQeWxJOZxZGix7y+SByG3F36dA0AbTy9o6pSmKFcFz7DAj0re9Frkty3saBn3nHo3D0oZJ/+rx3r8H8r8Jbpw==}
+    engines: {node: '>=14.16'}
+    dependencies:
+      decode-uri-component: 0.4.1
+      filter-obj: 5.1.0
+      split-on-first: 3.0.0
+    dev: false
+
   /querystring-es3/0.2.1:
     resolution: {integrity: sha512-773xhDQnZBMFobEiztv8LIl70ch5MSF/jUQVlhwFyBILqq96anmoctVIYz+ZRp0qbCKATTn6ev02M3r7Ga5vqA==}
     engines: {node: '>=0.4.x'}
@@ -16185,6 +16206,11 @@ packages:
 
   /speedometer/1.0.0:
     resolution: {integrity: sha512-lgxErLl/7A5+vgIIXsh9MbeukOaCb2axgQ+bKCdIE+ibNT4XNYGNCR1qFEGq6F+YDASXK3Fh/c5FgtZchFolxw==}
+    dev: false
+
+  /split-on-first/3.0.0:
+    resolution: {integrity: sha512-qxQJTx2ryR0Dw0ITYyekNQWpz6f8dGd7vffGNflQQ3Iqj9NJ6qiZ7ELpZsJ/QBhIVAiDfXdag3+Gp8RvWa62AA==}
+    engines: {node: '>=12'}
     dev: false
 
   /split-string/3.1.0:

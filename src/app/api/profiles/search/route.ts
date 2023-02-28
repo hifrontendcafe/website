@@ -3,6 +3,8 @@ import type { Profile, ProfileFilters } from '@/lib/types';
 import { profilesProjections } from '@/lib/queries';
 import { client } from '@/lib/api.server';
 
+export const runtime = 'edge';
+
 const sanityKeys: Record<
   keyof ProfileFilters,
   { type: string; value: string }
@@ -74,10 +76,7 @@ function makeQuery(filters: ProfileFilters): string {
 
       const sKey = sanityKeys[key].value;
 
-      const newValue = getParsedValue(
-        sanityKeys[key],
-        Array.isArray(value) ? value.map((v) => v._id) : value,
-      );
+      const newValue = getParsedValue(sanityKeys[key], value);
 
       return [...result, `${sKey} ${type} ${newValue}`];
     }, [])
@@ -90,11 +89,19 @@ function makeQuery(filters: ProfileFilters): string {
   }`;
 }
 
-export async function POST(req: NextRequest) {
-  const body = await req.json();
+export async function GET(req: NextRequest) {
+  const url = new URL(req.url);
+
+  const filters = Object.fromEntries(url.searchParams.entries());
+
+  const technologies = url.searchParams.getAll('technologies') as any;
 
   const profiles = await client.fetch<Profile[]>({
-    query: makeQuery(body.filters),
+    query: makeQuery({
+      ...filters,
+      technologies,
+      available: Boolean(filters.available),
+    }),
     config: {
       cache: 'force-cache',
       next: { revalidate: 60 },
