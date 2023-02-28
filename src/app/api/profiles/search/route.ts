@@ -1,4 +1,4 @@
-import type { NextRequest } from 'next/server';
+import { type NextRequest, NextResponse } from 'next/server';
 import type { Profile, ProfileFilters } from '@/lib/types';
 import { profilesProjections } from '@/lib/queries';
 import { client } from '@/lib/api.server';
@@ -101,7 +101,5 @@ export async function POST(req: NextRequest) {
     },
   });
 
-  return new Response(JSON.stringify(profiles), {
-    headers: { 'Content-Type': 'application/json' },
-  });
+  return NextResponse.json(profiles);
 }
