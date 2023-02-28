@@ -9,7 +9,7 @@ const sanityKeys: Record<
 > = {
   roleId: {
     type: 'string',
-    value: 'role->_id',
+    value: 'role._ref',
   },
   active: {
     type: 'string',
@@ -29,11 +29,11 @@ const sanityKeys: Record<
   },
   seniorityId: {
     type: 'string',
-    value: 'seniority->_id',
+    value: 'seniority._ref',
   },
   technologies: {
     type: 'match',
-    value: 'technologies[]->name',
+    value: 'technologies[]._ref',
   },
 };
 
@@ -76,7 +76,7 @@ function makeQuery(filters: ProfileFilters): string {
 
       const newValue = getParsedValue(
         sanityKeys[key],
-        Array.isArray(value) ? value.map((v) => v.name) : value,
+        Array.isArray(value) ? value.map((v) => v._id) : value,
       );
 
       return [...result, `${sKey} ${type} ${newValue}`];
