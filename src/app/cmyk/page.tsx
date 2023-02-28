@@ -8,9 +8,7 @@ import CMYKEditionsSkeleton from '@/components/CMYKEditions/Skeleton';
 
 export const generateMetadata = () => getPageMetadata('CMYK');
 
-export const dynamic = 'force-dynamic';
-
-export const dynamicParams = true;
+export const dynamic = 'auto';
 
 export const fetchCache = 'force-cache';
 
