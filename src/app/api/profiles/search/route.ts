@@ -104,7 +104,7 @@ export async function GET(req: NextRequest) {
     }),
     config: {
       cache: 'force-cache',
-      next: { revalidate: 60 },
+      next: { revalidate: 120 },
     },
   });
 
