@@ -1,9 +1,7 @@
-import { NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
+import type { Profile, ProfileFilters } from '@/lib/types';
 import { profilesProjections } from '@/lib/queries';
 import { client } from '@/lib/api.server';
-import type { Profile, ProfileFilters } from '@/lib/types';
-
-export const runtime = 'edge';
 
 const sanityKeys: Record<
   keyof ProfileFilters,
