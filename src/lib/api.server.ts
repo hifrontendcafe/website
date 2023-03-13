@@ -21,7 +21,9 @@ import { config } from './sanity';
 import SanityClient from 'next-sanity-client';
 
 export const client = new SanityClient({
-  ...config,
+  projectId: config.projectId,
+  dataset: config.dataset,
+  useCdn: false,
   queries,
 });
 
