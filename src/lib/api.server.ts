@@ -21,7 +21,10 @@ import { config } from './sanity';
 import SanityClient from 'next-sanity-client';
 
 const client = new SanityClient({
-  ...config,
+  projectId: config.projectId,
+  dataset: config.dataset,
+  useCdn: false,
+  apiVersion: '2023-03-12',
   queries,
 });
 
