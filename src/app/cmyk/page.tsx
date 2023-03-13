@@ -10,8 +10,6 @@ export const generateMetadata = () => getPageMetadata('CMYK');
 
 export const dynamic = 'auto';
 
-export const dynamicParams = true;
-
 export const fetchCache = 'force-cache';
 
 export const runtime = 'edge';
