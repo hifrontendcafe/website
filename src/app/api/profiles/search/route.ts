@@ -1,11 +1,9 @@
-import client from '@/lib/sanity';
+import { type NextRequest, NextResponse } from 'next/server';
+import type { Profile, ProfileFilters } from '@/lib/types';
 import { profilesProjections } from '@/lib/queries';
-import { Profile, ProfileFilters } from '@/lib/types';
-import { NextRequest } from 'next/server';
+import { client } from '@/lib/api.server';
 
-export const config = {
-  runtime: 'edge',
-};
+export const runtime = 'edge';
 
 const sanityKeys: Record<
   keyof ProfileFilters,
@@ -13,7 +11,7 @@ const sanityKeys: Record<
 > = {
   roleId: {
     type: 'string',
-    value: 'role->_id',
+    value: 'role._ref',
   },
   active: {
     type: 'string',
@@ -33,11 +31,11 @@ const sanityKeys: Record<
   },
   seniorityId: {
     type: 'string',
-    value: 'seniority->_id',
+    value: 'seniority._ref',
   },
   technologies: {
     type: 'match',
-    value: 'technologies[]->name',
+    value: 'technologies[]._ref',
   },
 };
 
@@ -78,10 +76,7 @@ function makeQuery(filters: ProfileFilters): string {
 
       const sKey = sanityKeys[key].value;
 
-      const newValue = getParsedValue(
-        sanityKeys[key],
-        Array.isArray(value) ? value.map((v) => v.name) : value,
-      );
+      const newValue = getParsedValue(sanityKeys[key], value);
 
       return [...result, `${sKey} ${type} ${newValue}`];
     }, [])
@@ -94,14 +89,24 @@ function makeQuery(filters: ProfileFilters): string {
   }`;
 }
 
-const handle = async (req: NextRequest) => {
-  const body = await req.json();
+export async function GET(req: NextRequest) {
+  const url = new URL(req.url);
 
-  const response = (await client.fetch(makeQuery(body.filters))) as Profile[];
+  const filters = Object.fromEntries(url.searchParams.entries());
 
-  return new Response(JSON.stringify(response), {
-    headers: { 'Content-Type': 'application/json' },
+  const technologies = url.searchParams.getAll('technologies') as any;
+
+  const profiles = await client.fetch<Profile[]>({
+    query: makeQuery({
+      ...filters,
+      technologies,
+      available: Boolean(filters.available),
+    }),
+    config: {
+      cache: 'force-cache',
+      next: { revalidate: 120 },
+    },
   });
-};
 
-export default handle;
+  return NextResponse.json(profiles);
+}

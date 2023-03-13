@@ -20,7 +20,7 @@ import type {
 import { config } from './sanity';
 import SanityClient from 'next-sanity-client';
 
-const client = new SanityClient({
+export const client = new SanityClient({
   ...config,
   queries,
 });
