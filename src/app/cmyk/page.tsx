@@ -10,10 +10,6 @@ export const generateMetadata = () => getPageMetadata('CMYK');
 
 export const dynamic = 'auto';
 
-export const fetchCache = 'force-cache';
-
-export const runtime = 'edge';
-
 const CMYKPage: AppPage = async ({ searchParams }) => {
   const page = await getPageByName({
     name: 'CMYK',
