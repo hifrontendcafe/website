@@ -7,8 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "browser": {
     "fs": false
@@ -57,13 +57,13 @@
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@babel/preset-react": "^7.18.6",
-    "@storybook/addon-actions": "^6.5.14",
-    "@storybook/addon-essentials": "^6.5.14",
-    "@storybook/addon-links": "^6.5.14",
-    "@storybook/builder-webpack5": "^6.5.14",
-    "@storybook/manager-webpack5": "^6.5.14",
-    "@storybook/react": "^6.5.14",
-    "@storybook/testing-library": "^0.0.11",
+    "@storybook/addon-essentials": "^7.0.0-rc.7",
+    "@storybook/addon-interactions": "^7.0.0-rc.7",
+    "@storybook/addon-links": "^7.0.0-rc.7",
+    "@storybook/blocks": "^7.0.0-rc.7",
+    "@storybook/nextjs": "^7.0.0-rc.7",
+    "@storybook/react": "^7.0.0-rc.7",
+    "@storybook/testing-library": "^0.0.14-next.1",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.8",
     "@types/gtag.js": "^0.0.7",
@@ -81,7 +81,7 @@
     "postcss": "^8.4.19",
     "postcss-preset-env": "^7.8.3",
     "prettier": "^2.8.1",
-    "storybook-addon-next": "^1.7.1",
+    "storybook": "^7.0.0-rc.7",
     "tailwindcss": "^3.2.4",
     "typescript": "^4.9.4"
   }
