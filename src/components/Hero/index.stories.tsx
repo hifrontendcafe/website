@@ -1,29 +1,24 @@
-import { ComponentMeta, ComponentStory } from '@storybook/react';
+import { Meta, StoryObj } from '@storybook/react';
 import HeroComponent from './index';
 
-export default {
-  heroWords: 'Components/Hero',
+const meta: Meta<typeof HeroComponent> = {
   component: HeroComponent,
   parameters: {
-    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
+    // More on Story layout: https://storybook.js.org/docs/7.0/react/configure/story-layout
     layout: 'fullscreen',
   },
-} as ComponentMeta<typeof HeroComponent>;
-
-const Template: ComponentStory<typeof HeroComponent> = (args) => (
-  <>
-    <div className="w-full min-h-screen bg-zinc-900">
-      <div id="container" className="container relative pt-12 mx-auto">
-        <HeroComponent {...args} />
-      </div>
-    </div>
-  </>
-);
-
-export const Hero = Template.bind({});
-
-Hero.args = {
-  title: 'Prueba',
 };
 
-Hero.argTypes = {};
+export default meta;
+type Story = StoryObj<typeof HeroComponent>;
+
+export const Default: Story = {
+  args: {
+    heroWords: ['Hero', 'Title', 'Example'],
+    subtitle: 'subtitle example',
+    description:
+      'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ratione est ducimus quos cum maxime saepe.',
+    discordButtonLabel: 'Súmate a Discord',
+    iniciativasButtonText: 'Do NOT click. Unless..?',
+  },
+};

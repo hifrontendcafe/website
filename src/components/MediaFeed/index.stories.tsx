@@ -1,7 +1,20 @@
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { EmbeddedTweet } from '@/lib/types';
+import { Meta, StoryObj } from '@storybook/react';
 import MediaFeedComponent from './index';
 
-const tweets = [
+const meta: Meta<typeof MediaFeedComponent> = {
+  title: 'Components/MediaFeed',
+  component: MediaFeedComponent,
+  parameters: {
+    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
+    layout: 'centered',
+  },
+};
+
+export default meta;
+type Story = StoryObj<typeof MediaFeedComponent>;
+
+const tweets: EmbeddedTweet[] = [
   {
     referenced_tweets: [
       {
@@ -430,32 +443,13 @@ const tweets = [
   },
 ];
 
-export default {
-  title: 'Components/MediaFeed',
-  component: MediaFeedComponent,
-  parameters: {
-    // More on Story layout: https://storybook.js.org/docs/react/configure/story-layout
-    layout: 'fullscreen',
+export const ManyTweets: Story = {
+  args: {
+    tweets,
   },
-} as ComponentMeta<typeof MediaFeedComponent>;
-
-const Template: ComponentStory<typeof MediaFeedComponent> = (args) => (
-  <div className="w-full min-h-screen bg-zinc-900">
-    <div id="container" className="container">
-      <MediaFeedComponent {...args} />
-    </div>
-  </div>
-);
-
-export const ManyTweets = Template.bind({});
-
-ManyTweets.args = {
-  tweets,
 };
 
-ManyTweets.argTypes = {};
-
-const oneTweet = [
+const oneTweet: EmbeddedTweet[] = [
   {
     referenced_tweets: [
       {
@@ -507,10 +501,8 @@ const oneTweet = [
   },
 ];
 
-export const OneTweet = Template.bind({});
-
-OneTweet.args = {
-  tweets: oneTweet,
+export const OneTweet: Story = {
+  args: {
+    tweets: oneTweet,
+  },
 };
-
-OneTweet.argTypes = {};
