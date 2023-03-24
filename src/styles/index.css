@@ -23,6 +23,12 @@ html {
   height: auto;
 }
 
+@layer base {
+  * {
+    @apply font-sans;
+  }
+}
+
 @layer utilities {
   .text-gradient {
     background-clip: text;
