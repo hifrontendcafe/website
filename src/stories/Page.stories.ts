@@ -9,6 +9,10 @@ const meta: Meta<typeof Page> = {
   parameters: {
     // More on how to position stories at: https://storybook.js.org/docs/7.0/react/configure/story-layout
     layout: 'fullscreen',
+    // More on Backgrounds: https://storybook.js.org/docs/7.0/react/essentials/backgrounds
+    backgrounds: {
+      default: null,
+    },
   },
 };
 

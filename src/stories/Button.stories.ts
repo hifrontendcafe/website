@@ -6,6 +6,12 @@ import { Button } from './Button';
 const meta = {
   title: 'Example/Button',
   component: Button,
+  parameters: {
+    // More on Backgrounds: https://storybook.js.org/docs/7.0/react/essentials/backgrounds
+    backgrounds: {
+      default: null,
+    },
+  },
   args: {
     label: 'Button',
   },
