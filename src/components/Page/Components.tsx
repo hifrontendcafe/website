@@ -103,7 +103,7 @@ export const Steps: React.FC<{ steps: Step[] }> = ({ steps }) => (
 );
 
 export const FeatureCard: React.FC<FeaturedCards> = (props) => (
-  <FeaturedCard card={props} />
+  <FeaturedCard {...props} />
 );
 
 export const Spacing: React.FC<{ width?: number; height: number }> = ({
