@@ -1,4 +1,4 @@
-import { Lexend_Deca, Rubik } from 'next/font/google';
+import fontVariables from '@/lib/font-variables';
 
 import '@/styles/index.css';
 import '@/styles/menu.css';
@@ -13,18 +13,6 @@ import Footer from '@/components/Footer';
 import { getMetadata } from '@/lib/seo';
 import Analytics from '@/components/Analytics';
 import Providers from '@/components/Providers';
-
-const lexend = Lexend_Deca({
-  subsets: ['latin'],
-  variable: '--font-lexend',
-  display: 'swap',
-});
-
-const rubik = Rubik({
-  subsets: ['latin'],
-  variable: '--font-rubik',
-  display: 'swap',
-});
 
 export const generateMetadata = () =>
   getMetadata({
@@ -44,7 +32,7 @@ export default async function RootLayout({
   const preview = !!previewData();
 
   return (
-    <html lang="es" className={clsx(rubik.variable, lexend.variable)}>
+    <html lang="es" className={clsx(fontVariables)}>
       <head />
       <body>
         <Providers>
