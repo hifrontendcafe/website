@@ -34,7 +34,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
 
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e._id == id);
-    return topic.title;
+    return topic?.title;
   };
 
   const mentorNameForId = getNameForId(mentor.name);
