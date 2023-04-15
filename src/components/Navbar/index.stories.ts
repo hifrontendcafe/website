@@ -12,7 +12,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    // TODO: Check props
     isOpen: true,
     logoImg,
     navItems: [

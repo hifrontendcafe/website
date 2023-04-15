@@ -8,7 +8,7 @@ const meta = {
 
 export default meta;
 type Story = StoryObj<typeof meta>;
-// TODO: check props
+
 export const Default: Story = {
   args: {
     profile: {

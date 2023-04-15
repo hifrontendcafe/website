@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react';
 import ProfilesFilterForm from '.';
-// TODO: Come back
+
 const meta = {
   component: ProfilesFilterForm,
   args: {},
