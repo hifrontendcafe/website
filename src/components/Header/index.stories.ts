@@ -14,9 +14,16 @@ export const Default: Story = {
   args: {
     logo: {
       _type: 'image',
-      asset: { _ref: 'image-Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000-jpg', _type: 'img' },
+      asset: {
+        _ref: 'image-5fb09ec79f21b59d1fa4ab5b7666405ea7958571-197x36-svg',
+        _type: 'reference',
+      },
     },
-    navItems: [{ link: '#', title: 'Title' }],
+    navItems: [
+      { link: '#', title: 'Home' },
+      { link: '#', title: 'About' },
+      { link: '#', title: 'Contact' },
+    ],
     preview: true,
   },
 };

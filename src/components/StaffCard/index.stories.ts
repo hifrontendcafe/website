@@ -15,7 +15,7 @@ export const Default: Story = {
     profile: {
       _id: '0',
       discordID: 'discordID',
-      photo: '', // TODO: Add fallback placeholder? 
+      photo: '', // TODO: Add fallback placeholder?
       username: { current: 'Username' },
       cmykParticipant: [
         {

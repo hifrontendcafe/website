@@ -25,10 +25,7 @@ export const Default: Story = {
   render: (args) => (
     <Card {...args}>
       <Card.Header>
-        <Card.Image
-          src="https://placehold.co/600x400"
-          alt="Storybook logo"
-        />
+        <Card.Image src="https://placehold.co/600x400" alt="Storybook logo" />
         <Card.Title>title</Card.Title>
         <Card.Headline>Headline</Card.Headline>
       </Card.Header>
