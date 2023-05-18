@@ -36,7 +36,7 @@
     "groq": "^3.5.0",
     "jsdom": "^20.0.3",
     "next": "13.2.1",
-    "next-auth": "^3.29.10",
+    "next-auth": "^4.22.1",
     "next-mdx-remote": "^3.0.8",
     "next-sanity-client": "1.0.5",
     "query-string": "^8.1.0",
