@@ -3,7 +3,7 @@
 import type { Role, Seniority, Technology } from '@/lib/types';
 import { Profile, ReactGroup } from '@/lib/types';
 import emailjs from '@emailjs/browser';
-import { signIn, useSession } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -70,7 +70,8 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
   roles,
   seniorities,
 }) => {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
   const {
     register,

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { timezones } from '@/lib/timezones';
-import { useSession } from 'next-auth/client';
+import { useSession } from 'next-auth/react';
 import { FormsCMYK } from '../CMYKForm';
 import Link from 'next/link';
 
@@ -40,7 +40,7 @@ const CMYKParticipantForm: React.FC<
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
   const [isInfo, setIsInfo] = useState<boolean>(false);
-  const [session] = useSession();
+  const { data: session } = useSession();
 
   const onSubmit = async (data: FormInputs) => {
     setIsLoading(true);
