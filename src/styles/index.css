@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-  scroll-behavior: smooth;
-}
-
 @layer base {
   * {
     @apply font-sans;
@@ -39,14 +35,6 @@ html {
   }
 
   .btn-secondary:hover {
-    @apply border shadow text-greenFec border-greenFec;
-  }
-
-  .btn-border {
-    @apply border text-primary;
-  }
-
-  .btn-border:hover {
     @apply border shadow text-greenFec border-greenFec;
   }
 

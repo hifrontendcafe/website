@@ -32,7 +32,7 @@ export default async function RootLayout({
   const preview = !!previewData();
 
   return (
-    <html lang="es" className={clsx(fontVariables)}>
+    <html lang="es" className={clsx(fontVariables, 'scroll-smooth')}>
       <head />
       <body>
         <Providers>

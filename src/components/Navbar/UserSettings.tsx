@@ -15,7 +15,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
   if (loading) {
     return (
       <button
-        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${
+        className={`lg:flex items-center mt-2 ml-0 btn btn-secondary lg:mt-0 ${
           navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
         }`}
         style={{ transition: 'all .15s ease' }}
@@ -30,7 +30,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
   if (!session?.user) {
     return (
       <button
-        className={`lg:flex items-center mt-2 ml-0 btn btn-border lg:mt-0 ${
+        className={`lg:flex items-center mt-2 ml-0 btn btn-secondary lg:mt-0 ${
           navIsOpen ? 'flex place-self-start mb-4 ml-2' : 'hidden'
         }`}
         style={{ transition: 'all .15s ease' }}
