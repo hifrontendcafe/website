@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 
 type ModalProps = {
   isOpen: boolean;
@@ -7,6 +8,7 @@ type ModalProps = {
   titleClasses?: string;
   buttonLabel?: string;
   buttonClasses?: string;
+  children?: React.ReactNode;
 };
 
 const Modal: React.FC<ModalProps> = ({
@@ -23,6 +25,8 @@ const Modal: React.FC<ModalProps> = ({
   };
 
   return (
+    // FIXME:
+    //@ts-expect-error "Type '{ children: Element; }' has no properties in common with type 'IntrinsicAttributes & AnimatePresenceProps'"
     <AnimatePresence>
       {isOpen && (
         <>

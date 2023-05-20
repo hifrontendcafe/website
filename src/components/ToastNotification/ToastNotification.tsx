@@ -62,6 +62,8 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
   }, [showToast]);
 
   return (
+    // FIXME:
+    // @ts-expect-error "Type '{ children: Element; }' has no properties in common with type 'IntrinsicAttributes & AnimatePresenceProps'"
     <AnimatePresence>
       {show && (
         <motion.div

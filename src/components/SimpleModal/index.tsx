@@ -9,6 +9,7 @@ type ModalProps = {
   titleClasses?: string;
   buttonLabel?: string;
   buttonClasses?: string;
+  children?: ReactNode;
 };
 
 const SimpleModal: React.FC<ModalProps> = ({
@@ -24,6 +25,8 @@ const SimpleModal: React.FC<ModalProps> = ({
   };
 
   return (
+    // FIXME:
+    //@ts-expect-error "Type '{ children: Element; }' has no properties in common with type 'IntrinsicAttributes & AnimatePresenceProps'"
     <AnimatePresence>
       {isOpen && (
         <>
