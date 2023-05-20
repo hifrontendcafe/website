@@ -6,6 +6,9 @@
   * {
     @apply font-sans;
   }
+  :is(h1, h2, h3, h4, h5, h6) {
+    @apply font-title;
+  }
 }
 
 @layer utilities {
@@ -39,11 +42,11 @@
   }
 
   .title {
-    @apply text-4xl font-extrabold leading-normal text-primary md:text-5xl lg:text-6xl font-title;
+    @apply text-4xl font-extrabold leading-normal text-primary md:text-5xl lg:text-6xl;
   }
 
   .subtitle {
-    @apply text-2xl font-extrabold leading-normal text-primary md:text-3xl lg:text-4xl font-title;
+    @apply text-2xl font-extrabold leading-normal text-primary md:text-3xl lg:text-4xl;
   }
 
   .paragraph {
@@ -51,7 +54,7 @@
   }
 
   .cards-title {
-    @apply text-lg font-medium text-primary md:text-xl lg:text-2xl font-title;
+    @apply text-lg font-medium text-primary md:text-xl lg:text-2xl;
   }
 
   .cards-paragraph {
