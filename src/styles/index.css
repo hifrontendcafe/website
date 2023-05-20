@@ -20,19 +20,11 @@
   }
 
   .btn-primary {
-    @apply text-zinc-800 bg-zinc-50;
-  }
-
-  .btn-primary:hover {
-    @apply text-zinc-800 bg-greenFec;
+    @apply text-zinc-800 bg-zinc-50 hover:bg-greenFec;
   }
 
   .btn-secondary {
-    @apply border text-primary;
-  }
-
-  .btn-secondary:hover {
-    @apply border shadow text-greenFec border-greenFec;
+    @apply border text-primary hover:shadow hover:text-greenFec hover:border-greenFec;
   }
 
   .title {
