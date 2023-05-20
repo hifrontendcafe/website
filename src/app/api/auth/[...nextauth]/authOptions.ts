@@ -8,7 +8,7 @@ export const authOptions: AuthOptions = {
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
       authorization:
-        'https://discord.com/api/oauth2/authorize?scope=identify+email',
+        'https://discord.com/api/oauth2/authorize?scope=identify+email+guilds',
       profile: (profile: Profile) => {
         if (profile.avatar === null) {
           const defaultAvatarNumber = parseInt(profile.discriminator) % 5;
