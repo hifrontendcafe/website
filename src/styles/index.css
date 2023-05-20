@@ -2,25 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@utilities {
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  }
-
-  .text-shadow-none {
-    text-shadow: none;
-  }
-}
-
 html {
   scroll-behavior: smooth;
-}
-
-.divider {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: auto;
 }
 
 @layer base {
@@ -30,10 +13,6 @@ html {
 }
 
 @layer utilities {
-  .text-gradient {
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
   .ellipse {
     border-radius: 50%;
   }
@@ -71,10 +50,6 @@ html {
     @apply border shadow text-greenFec border-greenFec;
   }
 
-  .social-circle {
-    @apply grid w-8 h-8 rounded-full place-items-center;
-  }
-
   .title {
     @apply text-4xl font-extrabold leading-normal text-primary md:text-5xl lg:text-6xl font-title;
   }
@@ -93,10 +68,6 @@ html {
 
   .cards-paragraph {
     @apply text-sm font-light text-secondary md:text-base lg:text-lg;
-  }
-
-  .title-colorful {
-    @apply text-gradient bg-gradient-to-r from-emerald-400 to-blue-500;
   }
 
   .nav-scroll {
