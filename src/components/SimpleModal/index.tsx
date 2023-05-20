@@ -25,8 +25,6 @@ const SimpleModal: React.FC<ModalProps> = ({
   };
 
   return (
-    // FIXME:
-    //@ts-expect-error "Type '{ children: Element; }' has no properties in common with type 'IntrinsicAttributes & AnimatePresenceProps'"
     <AnimatePresence>
       {isOpen && (
         <>
