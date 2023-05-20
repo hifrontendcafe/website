@@ -24,7 +24,11 @@ const Header: React.FC<HeaderProps> = ({ preview, logo, navItems }) => {
     <header
       className={`w-full flex flex-col fixed top-0 z-50 transition duration-300 ${
         preview ? 'pt-10' : ''
-      } ${isAtTop && isClosed ? '' : 'nav-scroll'}`}
+      } ${
+        isAtTop && isClosed
+          ? ''
+          : 'items-center bg-zinc-900 shadow-[0px_1px_0px_#434345]'
+      }`}
     >
       <Navbar
         logoImg={logoImg}

@@ -12,12 +12,6 @@
 }
 
 @layer utilities {
-  .ellipse {
-    border-radius: 50%;
-  }
-  .nav-shadow {
-    box-shadow: 0px 1px 0px #434345;
-  }
 }
 
 @layer components {
@@ -49,20 +43,8 @@
     @apply text-2xl font-extrabold leading-normal text-primary md:text-3xl lg:text-4xl;
   }
 
-  .paragraph {
-    @apply text-lg leading-normal text-secondary md:text-2xl;
-  }
-
   .cards-title {
     @apply text-lg font-medium text-primary md:text-xl lg:text-2xl;
-  }
-
-  .cards-paragraph {
-    @apply text-sm font-light text-secondary md:text-base lg:text-lg;
-  }
-
-  .nav-scroll {
-    @apply items-center bg-zinc-900 nav-shadow;
   }
 
   .input {
@@ -129,7 +111,3 @@
   /* @apply text-sm bg-zinc-500; */
 }
 /* end react-select styles */
-
-.twitter-blue {
-  color: #55acee;
-}

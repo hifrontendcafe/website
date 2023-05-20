@@ -59,7 +59,13 @@ const CardBody: React.FC = ({ children }) => <div>{children}</div>;
 const CardParagraph: React.FC<ParagraphProps> = ({
   children,
   className = '',
-}) => <p className={`cards-paragraph ${className}`}>{children}</p>;
+}) => (
+  <p
+    className={`text-sm font-light text-secondary md:text-base lg:text-lg ${className}`}
+  >
+    {children}
+  </p>
+);
 
 const CardActions: React.FC = ({ children }) => (
   <div className="flex items-end flex-grow w-full mt-5">
