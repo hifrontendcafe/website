@@ -1,13 +1,14 @@
-import NextAuth, { Profile } from 'next-auth';
-import Providers from 'next-auth/providers';
 import { FrontendCafeId } from '@/lib/constants';
+import type { AuthOptions, Profile } from 'next-auth';
+import Discord from 'next-auth/providers/discord';
 
-export default NextAuth({
+export const authOptions: AuthOptions = {
   providers: [
-    Providers.Discord({
+    Discord({
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
-      scope: 'identify email guilds',
+      authorization:
+        'https://discord.com/api/oauth2/authorize?scope=identify+email+guilds',
       profile: (profile: Profile) => {
         if (profile.avatar === null) {
           const defaultAvatarNumber = parseInt(profile.discriminator) % 5;
@@ -25,22 +26,20 @@ export default NextAuth({
     }),
   ],
   secret: process.env.SECRET,
-  jwt: {
-    signingKey: process.env.JWT_SIGNING_PRIVATE_KEY,
-  },
   session: {
-    jwt: true,
+    strategy: 'jwt',
   },
   callbacks: {
-    async signIn(user, account) {
+    async signIn({ account }) {
       const guildResp = await fetch(
         'https://discord.com/api/users/@me/guilds',
         {
           headers: {
-            Authorization: `Bearer ${account.accessToken}`,
+            Authorization: `Bearer ${account?.access_token}`,
           },
         },
       );
+      // TODO: Catch possible errors, this can be an array or an error object.
       const guilds = await guildResp.json();
       const isFecMember = guilds.find((guild) => guild.id === FrontendCafeId);
       if (isFecMember) {
@@ -49,8 +48,8 @@ export default NextAuth({
         return '/unauthorized';
       }
     },
-    session: async (session, user) => {
-      session.user.id = user.sub as string;
+    session: async ({ session, token }) => {
+      session.user.id = token.sub as string;
       const response = await fetch(
         `https://discord.com/api/guilds/${FrontendCafeId}/members/${session.user.id}`,
         {
@@ -64,4 +63,4 @@ export default NextAuth({
       return session;
     },
   },
-});
+};

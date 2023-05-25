@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { isChix } from '@/lib/haveRole';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { signIn, useSession } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/react';
 import CMYKParticipantForm from '../CMYKParticipantForm';
 
 export type FormsCMYK = {
@@ -39,7 +39,8 @@ export default function CMYKForm({
   cmykInscription,
   cmykInscriptionChix,
 }: CMYKFormProps) {
-  const [session, loading] = useSession();
+  const { data: session, status } = useSession();
+  const loading = status === 'loading';
 
   const searchParams = useSearchParams();
 
