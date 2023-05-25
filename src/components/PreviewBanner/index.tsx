@@ -1,7 +1,8 @@
-import { previewData } from 'next/headers';
+import { draftMode } from 'next/headers';
 
 const PreviewBanner: React.FC = () => {
-  if (!previewData()) return null;
+  const { isEnabled } = draftMode();
+  if (!isEnabled) return null;
 
   return (
     <div

@@ -5,26 +5,26 @@ import React from 'react';
 
 type CardActionProps = { href: string; className?: string };
 type ParagraphProps = { className?: string };
-
+type Props = { children?: React.ReactNode };
 type CardSubcomponents = {
-  Header: React.FC;
+  Header: React.FC<Props>;
   Image: React.FC<ImageProps>;
-  Headline: React.FC;
-  Title: React.FC;
-  Paragraph: React.FC<ParagraphProps>;
-  Body: React.FC;
-  Actions: React.FC;
-  PrimaryAction: React.FC<CardActionProps>;
-  SecondaryAction: React.FC<CardActionProps>;
+  Headline: React.FC<Props>;
+  Title: React.FC<Props>;
+  Paragraph: React.FC<Props & ParagraphProps>;
+  Body: React.FC<Props>;
+  Actions: React.FC<Props>;
+  PrimaryAction: React.FC<Props & CardActionProps>;
+  SecondaryAction: React.FC<Props & CardActionProps>;
 };
 
-const Card: React.FC & CardSubcomponents = ({ children }) => (
+const Card: React.FC<Props> & CardSubcomponents = ({ children }) => (
   <div className="flex flex-col justify-between h-full p-4 bg-zinc-800 rounded-md shadow-lg">
     {children}
   </div>
 );
 
-const CardHeader: React.FC = ({ children }) => (
+const CardHeader: React.FC<Props> = ({ children }) => (
   <div className="flex flex-col w-full mb-1">{children}</div>
 );
 
@@ -44,30 +44,30 @@ const CardImage: React.FC<ImageProps> = ({ className, src, ...props }) => (
   </div>
 );
 
-const CardHeadline: React.FC = ({ children }) => (
+const CardHeadline: React.FC<Props> = ({ children }) => (
   <p className="text-sm font-medium tracking-widest text-primary title-font">
     {children}
   </p>
 );
 
-const CardTitle: React.FC = ({ children }) => (
+const CardTitle: React.FC<Props> = ({ children }) => (
   <h2 className="cards-title">{children}</h2>
 );
 
-const CardBody: React.FC = ({ children }) => <div>{children}</div>;
+const CardBody: React.FC<Props> = ({ children }) => <div>{children}</div>;
 
-const CardParagraph: React.FC<ParagraphProps> = ({
+const CardParagraph: React.FC<Props & ParagraphProps> = ({
   children,
   className = '',
 }) => <p className={`cards-paragraph ${className}`}>{children}</p>;
 
-const CardActions: React.FC = ({ children }) => (
+const CardActions: React.FC<Props> = ({ children }) => (
   <div className="flex items-end flex-grow w-full mt-5">
     <div className="flex justify-between w-full gap-4">{children}</div>
   </div>
 );
 
-const CardAction: React.FC<CardActionProps> = ({
+const CardAction: React.FC<Props & CardActionProps> = ({
   children,
   href,
   className,
@@ -84,7 +84,7 @@ const CardAction: React.FC<CardActionProps> = ({
   </Link>
 );
 
-const CardPrimaryAction: React.FC<CardActionProps> = ({
+const CardPrimaryAction: React.FC<Props & CardActionProps> = ({
   children,
   ...props
 }) => (
@@ -93,7 +93,7 @@ const CardPrimaryAction: React.FC<CardActionProps> = ({
   </CardAction>
 );
 
-const CardSecondaryAction: React.FC<CardActionProps> = ({
+const CardSecondaryAction: React.FC<Props & CardActionProps> = ({
   children,
   ...props
 }) => (

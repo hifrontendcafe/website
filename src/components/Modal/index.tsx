@@ -1,4 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
+import React from 'react';
 
 type ModalProps = {
   isOpen: boolean;
@@ -7,6 +8,7 @@ type ModalProps = {
   titleClasses?: string;
   buttonLabel?: string;
   buttonClasses?: string;
+  children?: React.ReactNode;
 };
 
 const Modal: React.FC<ModalProps> = ({
