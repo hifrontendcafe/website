@@ -1,15 +1,16 @@
 import { FrontendCafeId } from '@/lib/constants';
-import type { AuthOptions, Profile } from 'next-auth';
-import Discord from 'next-auth/providers/discord';
+import type { DiscordGuildObject } from '@/lib/types';
+import type { AuthOptions } from 'next-auth';
+import Discord, { type DiscordProfile } from 'next-auth/providers/discord';
 
 export const authOptions: AuthOptions = {
   providers: [
     Discord({
-      clientId: process.env.DISCORD_CLIENT_ID,
-      clientSecret: process.env.DISCORD_CLIENT_SECRET,
+      clientId: process.env.DISCORD_CLIENT_ID!,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET!,
       authorization:
         'https://discord.com/api/oauth2/authorize?scope=identify+email+guilds',
-      profile: (profile: Profile) => {
+      profile: (profile: DiscordProfile) => {
         if (profile.avatar === null) {
           const defaultAvatarNumber = parseInt(profile.discriminator) % 5;
           profile.image = `https://cdn.discordapp.com/embed/avatars/${defaultAvatarNumber}.png`;
@@ -31,16 +32,20 @@ export const authOptions: AuthOptions = {
   },
   callbacks: {
     async signIn({ account }) {
-      const guildResp = await fetch(
-        'https://discord.com/api/users/@me/guilds',
-        {
-          headers: {
-            Authorization: `Bearer ${account?.access_token}`,
-          },
+      const response = await fetch('https://discord.com/api/users/@me/guilds', {
+        headers: {
+          Authorization: `Bearer ${account?.access_token}`,
         },
-      );
-      // TODO: Catch possible errors, this can be an array or an error object.
-      const guilds = await guildResp.json();
+      });
+      interface FetchError {
+        message: string;
+        code: number;
+      }
+      const guilds: DiscordGuildObject[] | FetchError = await response.json();
+      if (!(guilds instanceof Array)) {
+        return false;
+      }
+
       const isFecMember = guilds.find((guild) => guild.id === FrontendCafeId);
       if (isFecMember) {
         return true;
