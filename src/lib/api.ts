@@ -124,20 +124,6 @@ export async function getMentoringTopics(preview = false): Promise<Topic[]> {
   return await getClient(preview).fetch(mentorsTopicsQuery);
 }
 
-export async function getAllPosts(preview = false): Promise<Post[]> {
-  return await getClient(preview).fetch(postsQuery);
-}
-
-export async function getPost(slug: string, preview = false): Promise<Post> {
-  return await getClient(preview).fetch(postQuery, { slug });
-}
-
-export async function getAllPostsSlugs(preview = false): Promise<string[]> {
-  return await getClient(preview).fetch(
-    `*[_type == "post" && defined(slug.current)][].slug.current `,
-  );
-}
-
 export async function getAllCMYKProjects(preview = false): Promise<CMYK[]> {
   return await getClient(preview).fetch(cmykQuery);
 }
