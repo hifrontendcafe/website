@@ -29,8 +29,8 @@ dependencies:
     specifier: ^3.4.1
     version: 3.4.1
   '@sanity/image-url':
-    specifier: ^0.140.22
-    version: 0.140.22
+    specifier: ^1.0.2
+    version: 1.0.2
   '@sanity/schema':
     specifier: ^2.35.0
     version: 2.35.0
@@ -2832,8 +2832,8 @@ packages:
     resolution: {integrity: sha512-wtMYcV5GIDIhVyF/jjmdwq1GdlK07dRL40XMns73VbrFI7FteRltxv48bhYVZPcLkRXb0SHjpDS/icj9/yzbVA==}
     dev: false
 
-  /@sanity/image-url@0.140.22:
-    resolution: {integrity: sha512-CAmQZnj+KM7FSEYiWlIGDit072syicYuAw0w7R2ctMzHiZ4p9mE/g6dBnYqrqFUrw2J+GpJgPt+RVspKP8vdqA==}
+  /@sanity/image-url@1.0.2:
+    resolution: {integrity: sha512-C4+jb2ny3ZbMgEkLd7Z3C75DsxcTEoE+axXQJsQ75ou0AKWGdVsP351hqK6mJUUxn5HCSlu3vznoh7Yljye4cQ==}
     engines: {node: '>=10.0.0'}
     dev: false
 
