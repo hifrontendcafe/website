@@ -27,7 +27,7 @@ export const CardComponent: React.FC<CardComponentProps> = ({
         {image && (
           <Card.Image
             src={imageBuilder.image(image).url()}
-            alt={title}
+            alt={title!}
             width={400}
             height={200}
             blurDataURL={`${imageBuilder.image(image).url()}`}
@@ -84,7 +84,7 @@ export const Text: React.FC<TextProps> = ({ text, type, center }) => {
   const className = clsx('my-4', {
     ['text-tertiary lg:text-xl lg:w-2/3']: type === 'paragraph',
     ['text-center m-auto']: center,
-    [type]: type !== 'paragraph',
+    [type!]: type !== 'paragraph',
   });
 
   if (type === 'title') {

@@ -42,7 +42,7 @@ export default function CMYKForm({
   const { data: session, status } = useSession();
   const loading = status === 'loading';
 
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()!;
 
   const type = searchParams.get('type');
 
@@ -66,7 +66,7 @@ export default function CMYKForm({
   let shouldShowForm = cmykInscription;
 
   if (cmykInscriptionChix) {
-    shouldShowForm = isChix(session?.user?.roles);
+    shouldShowForm = !!session && isChix(session.user.roles);
   }
 
   return (
@@ -123,7 +123,7 @@ export default function CMYKForm({
               </div>
             )}
           </div>
-          {session && !loading && (
+          {session && !loading && currentForm && (
             <CMYKParticipantForm
               type={currentForm.type}
               title={currentForm.title}

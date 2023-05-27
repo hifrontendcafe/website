@@ -12,7 +12,7 @@ import {
 } from './Components';
 import SectionHero from '../SectionHero';
 
-const components: Record<string, React.FC> = {
+const components: Record<string, React.FC<any>> = {
   card: CardComponent,
   sectionHero: SectionHero,
   grid: Grid,

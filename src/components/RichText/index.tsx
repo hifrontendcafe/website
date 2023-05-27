@@ -14,6 +14,7 @@ import {
 } from '@/components/MDX';
 
 type RichTextProps = {
+  // TODO: Add correct types from Sanity (when install).
   value: Array<{ _key: string; _type: string }>;
   components?: Partial<PortableTextReactComponents>;
 };

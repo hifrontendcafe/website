@@ -22,10 +22,10 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: session, status: sessionStatus } = useSession();
   const loading = sessionStatus === 'loading';
-  const { status, warnings, mentorships } = useWarnings(session?.user?.id);
+  const { status, warnings, mentorships } = useWarnings(session?.user.id);
 
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()!;
 
   const speciality = searchParams.get('especialidad');
 
@@ -57,10 +57,11 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
 
   useEffect(() => {
     const filterTopics = () => {
-      const filtered = [];
+      const filtered: Mentor[] = [];
       sortedMentors.forEach((mentor) => {
         const find =
           mentor.topics?.filter((topic) => topic._ref == speciality) ?? [];
+
         if (find.length > 0) filtered.push(mentor);
       });
       setFilteredMentors(filtered);
@@ -116,7 +117,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
               mentor={mentor}
               topics={topics}
               canBookAMentorship={
-                session &&
+                !!session &&
                 !loading &&
                 status === requestWarningsStates.SUCCESS &&
                 warnings === 0 &&

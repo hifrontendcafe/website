@@ -45,15 +45,16 @@ const defaultSchema = Schema.compile({
 
 const blockContentType = defaultSchema
   .get('event')
-  .fields.find((field) => field.name === 'description').type;
+  .fields.find((field: any) => field.name === 'description').type;
 
 export async function discordEventToSanityEvent(
   discordEvent: DiscordEvent,
   eventChannel: EventChannel,
 ): Promise<SanityEvent> {
-  const description = await markdownToHtml(discordEvent.description);
+  const description = await markdownToHtml(discordEvent.description!);
   const blocks = blockTools.htmlToBlocks(description, blockContentType, {
-    parseHtml: (html) => new JSDOM(html).window.document,
+    parseHtml: (html: string | Buffer | jsdom.BinaryData | undefined) =>
+      new JSDOM(html).window.document,
   });
   return {
     discordId: discordEvent.id,
@@ -91,7 +92,7 @@ export async function importDiscordEventsAutomatic(
     const data: DataEmailJs<Record<string, never>> = {
       service_id: 'fec_gmail',
       template_id: 'events_migration',
-      user_id: process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
+      user_id: process.env.NEXT_PUBLIC_EMAILJS_USER_ID!,
       accessToken: process.env.NEXT_PUBLIC_EMAILJS_ACCESS_TOKEN,
     };
     await sendEmailJS<Record<string, never>>(data);
@@ -100,18 +101,15 @@ export async function importDiscordEventsAutomatic(
 }
 
 export async function importEvents(preview = false): Promise<number> {
-  const eventChannels = await getClient(preview).fetch(eventChannelsQuery);
-  const importedEventsId = await getClient(true).fetch(
+  const eventChannels: EventChannel[] = await getClient(preview).fetch(
+    eventChannelsQuery,
+  );
+  const importedEventsId: SanityEvent[] = await getClient(true).fetch(
     futureEventsDiscordIdQuery,
   );
   let countNewEvents = 0;
   try {
-    let response: Response;
-    try {
-      response = await getAllDiscordEvents();
-    } catch (e: unknown) {
-      console.error(e);
-    }
+    const response = await getAllDiscordEvents();
 
     if (!response.ok) {
       const error: unknown = await response.json();
@@ -120,6 +118,7 @@ export async function importEvents(preview = false): Promise<number> {
 
     const discordEventsAllValues: DiscordEvent[] = await response.json();
     discordEventsAllValues.forEach(async (discordEvent) => {
+      //
       const importedIndex = importedEventsId?.find(
         (event) => event.discordId === discordEvent.id,
       );

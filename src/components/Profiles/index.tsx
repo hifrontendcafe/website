@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useEffect, useState, SetStateAction } from 'react';
 
 import { Profile, Role, Seniority, Technology } from '@/lib/types';
 import { useProfiles } from './useProfiles';
@@ -39,12 +39,12 @@ const Profiles: React.FC<PostsPageProps> = ({
 
   useEffect(() => {
     if (hasToScroll) {
-      profileListRef.current.scrollIntoView({ behavior: 'smooth' });
+      profileListRef.current?.scrollIntoView({ behavior: 'smooth' });
       setHasToScroll(false);
     }
   }, [hasToScroll]);
 
-  const moveToPage = (page: number) => {
+  const moveToPage = (page: SetStateAction<number>) => {
     setHasToScroll(true);
     setPage(page);
   };

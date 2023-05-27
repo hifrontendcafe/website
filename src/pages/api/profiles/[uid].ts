@@ -1,5 +1,4 @@
 import { getProfile } from '@/lib/api.server';
-import { Profile } from '@/lib/types';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -8,7 +7,7 @@ export default async function handler(
 ): Promise<void> {
   const { uid } = req.query;
 
-  let profile: Profile;
+  let profile;
   try {
     profile = await getProfile({ id: uid as string });
   } catch (error) {
@@ -18,7 +17,7 @@ export default async function handler(
     });
   }
 
-  if (!profile._id) {
+  if (!profile?._id) {
     res.status(404).send({ statusCode: 404, message: 'Profile not found' });
   }
 

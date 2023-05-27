@@ -1,11 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-
 import { postClient } from '@/lib/sanity';
 import { getPerson } from '@/lib/api';
 import { profileQuery } from '@/lib/queries';
 import { Profile } from '@/lib/types';
 
-function isValidHttpUrl(string) {
+function isValidHttpUrl(string: string) {
   let url: URL;
 
   try {
@@ -55,7 +54,7 @@ export default async function handle(
       _key: tech._id,
     }));
 
-    let photoObj = {};
+    let photoObj;
 
     if (photo && !isValidHttpUrl(photo)) {
       const photoBlob = Buffer.from(photo.split(';base64,')[1], 'base64');
