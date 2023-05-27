@@ -4,7 +4,6 @@ import type {
   Doc,
   FeaturedCards,
   Page,
-  Post,
   Settings,
   Event,
   Person,

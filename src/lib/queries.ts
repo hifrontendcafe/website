@@ -115,32 +115,6 @@ export const eventsSettingsQuery = groq`
   }
 `;
 
-export const postQuery = groq`
-  *[_type == "post" && slug.current == $slug][0]{
-    name,
-    title,
-    date,
-    excerpt,
-    slug,
-    'coverImage': coverImage.asset->url,
-    'author': author->{name, 'picture': picture.asset->url},
-    content
-  }
-`;
-
-export const postsQuery = groq`
-  *[_type == "post" ] | order(date desc) {
-    name,
-    title,
-    date,
-    excerpt,
-    slug,
-    'coverImage': coverImage.asset->url,
-    'author': author->{name, 'picture': picture.asset->url},
-    content
-  }
-`;
-
 export const mentorsTopicsQuery = groq`
   *[_type == "topic"] | order(date desc) {
     topics,

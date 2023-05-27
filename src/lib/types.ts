@@ -164,19 +164,6 @@ export interface Author {
   picture: string;
 }
 
-export interface Post {
-  _id: string;
-  title: string;
-  author: Author;
-  slug: {
-    current: string;
-  };
-  coverImage: string;
-  date: string;
-  excerpt: string;
-  content: any;
-}
-
 export interface PageProfile {
   preview?: boolean;
   profile: Profile;
@@ -480,3 +467,16 @@ export type Layout<
   children: React.ReactNode;
   params: T;
 }) => JSX.Element | Promise<JSX.Element>;
+
+/** Discord
+ * {@link https://discord.com/developers/docs/resources/user#get-current-user-guilds | _Partial_ }
+ * {@link https://discord.com/developers/docs/resources/guild#guild-object | Guild Object }
+ */
+export interface DiscordGuildObject {
+  id: string;
+  name: string;
+  icon: string | null;
+  owner?: boolean;
+  permissions?: string;
+  features: string[];
+}
