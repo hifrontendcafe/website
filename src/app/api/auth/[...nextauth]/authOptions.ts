@@ -1,5 +1,5 @@
-import { FrontendCafeId } from '@/lib/constants';
-import type { DiscordGuildObject } from '@/lib/types';
+import { FrontendCafeId, roles } from '@/lib/constants';
+import type { DiscordFECMember, DiscordGuild } from '@/lib/types';
 import type { AuthOptions } from 'next-auth';
 import Discord, { type DiscordProfile } from 'next-auth/providers/discord';
 
@@ -41,7 +41,7 @@ export const authOptions: AuthOptions = {
         message: string;
         code: number;
       }
-      const guilds: DiscordGuildObject[] | FetchError = await response.json();
+      const guilds: DiscordGuild[] | FetchError = await response.json();
       if (!(guilds instanceof Array)) {
         return false;
       }
@@ -63,9 +63,14 @@ export const authOptions: AuthOptions = {
           },
         },
       );
-      const fecMember = await response.json();
-      session.user.roles = fecMember.roles;
-      return session;
+      const fecMember: DiscordFECMember = await response.json();
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          roles: fecMember.roles.map((role) => roles.get(role as any)),
+        },
+      };
     },
   },
 };

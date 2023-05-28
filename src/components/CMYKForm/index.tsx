@@ -3,7 +3,6 @@
 import { useMemo } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
-import { isChix } from '@/lib/haveRole';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/react';
@@ -64,9 +63,10 @@ export default function CMYKForm({
   const tabStyleActive = `py-2 font-semibold cursor-pointer text-zinc-100 w-1/3 flex justify-center border-b-4 border-zinc-100 text-center`;
 
   let shouldShowForm = cmykInscription;
+  const isChix = !!session && session.user.roles.includes('Chix');
 
   if (cmykInscriptionChix) {
-    shouldShowForm = !!session && isChix(session.user.roles);
+    shouldShowForm = isChix;
   }
 
   return (
@@ -128,7 +128,7 @@ export default function CMYKForm({
               type={currentForm.type}
               title={currentForm.title}
               cmykInscription={cmykInscription}
-              isChix={isChix(session?.user?.roles)}
+              isChix={isChix}
               isDisabled={currentForm.isDisabled}
             />
           )}

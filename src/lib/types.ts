@@ -468,15 +468,54 @@ export type Layout<
   params: T;
 }) => JSX.Element | Promise<JSX.Element>;
 
-/** Discord
+/**
+ * Discord
  * {@link https://discord.com/developers/docs/resources/user#get-current-user-guilds | _Partial_ }
  * {@link https://discord.com/developers/docs/resources/guild#guild-object | Guild Object }
  */
-export interface DiscordGuildObject {
+export interface DiscordGuild {
   id: string;
   name: string;
   icon: string | null;
   owner?: boolean;
   permissions?: string;
   features: string[];
+}
+
+/**
+ * Discord
+ * {@link https://discord.com/developers/docs/resources/guild#get-guild-member | Guild Member Object}.
+ */
+export interface DiscordFECMember {
+  user?: DiscordUser;
+  nick?: string | null;
+  avatar?: string | null;
+  roles: string[];
+  joined_at: Date;
+  premium_since?: Date | null;
+  deaf: boolean;
+  mute: boolean;
+  flags: number;
+  pending?: boolean;
+  permissions?: string;
+  communication_disabled_until?: Date | null;
+}
+
+/**
+ * Discord
+ * {@link https://discord.com/developers/docs/resources/user#user-object | User Object}.
+ */
+interface DiscordUser {
+  id: string;
+  username: string;
+  discriminator: string;
+  avatar: string | null;
+  banner?: string | null;
+  accent_color: number;
+  global_name: string | null;
+  avatar_decoration: string | null;
+  display_name: string | null;
+  banner_color: string;
+  flags: number;
+  public_flags?: number;
 }
