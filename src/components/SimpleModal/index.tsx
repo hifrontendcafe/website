@@ -9,6 +9,7 @@ type ModalProps = {
   titleClasses?: string;
   buttonLabel?: string;
   buttonClasses?: string;
+  children?: ReactNode;
 };
 
 const SimpleModal: React.FC<ModalProps> = ({

@@ -6,7 +6,7 @@ import '@/styles/scrollbar.css';
 
 import { getSettings } from '@/lib/api.server';
 import clsx from 'clsx';
-import { previewData } from 'next/headers';
+import { draftMode } from 'next/headers';
 import PreviewBanner from '@/components/PreviewBanner';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -29,7 +29,7 @@ export default async function RootLayout({
 }) {
   const settings = await getSettings({ next: { revalidate: 120 } });
 
-  const preview = !!previewData();
+  const { isEnabled } = draftMode();
 
   return (
     <html lang="es" className={clsx(fontVariables, 'scroll-smooth')}>
@@ -45,7 +45,7 @@ export default async function RootLayout({
               <Header
                 logo={settings.logo}
                 navItems={settings.navItems}
-                preview={preview}
+                preview={isEnabled}
               />
 
               <div

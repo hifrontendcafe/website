@@ -3,22 +3,25 @@ import { getImageDimensions } from '@sanity/asset-utils';
 import clsx from 'clsx';
 import NextImage from 'next/image';
 import NextLink from 'next/link';
+import React from 'react';
 
+type Props = { children?: React.ReactNode };
 interface LinkProps {
   value?: { href: string };
+  children?: React.ReactNode;
 }
 
-export const Heading1: React.FC = ({ children }) => (
+export const Heading1: React.FC<Props> = ({ children }) => (
   <h1 className="my-10 text-4xl font-bold text-left lg:text-5xl lg:text-center lg:my-24 text-primary">
     {children}
   </h1>
 );
 
-export const Heading2: React.FC = ({ children }) => (
+export const Heading2: React.FC<Props> = ({ children }) => (
   <h2 className="mt-10 mb-4 text-2xl font-medium text-primary">{children}</h2>
 );
 
-export const Heading3: React.FC = ({ children }) => (
+export const Heading3: React.FC<Props> = ({ children }) => (
   <h3 className="mt-10 mb-4 text-lg font-medium text-primary">{children}</h3>
 );
 
@@ -48,31 +51,31 @@ export const Link: React.FC<LinkProps> = ({ value, children }) => {
   );
 };
 
-export const UnorderedList: React.FC<{ className?: string }> = ({
-  children,
-  className,
-}) => (
+export const UnorderedList: React.FC<{
+  className?: string;
+  children?: React.ReactNode;
+}> = ({ children, className }) => (
   <ul className={clsx('px-4 leading-7 list-disc text-secondary', className)}>
     {children}
   </ul>
 );
 
-export const OrderedList: React.FC<{ className?: string }> = ({
-  children,
-  className,
-}) => (
+export const OrderedList: React.FC<{
+  className?: string;
+  children?: React.ReactNode;
+}> = ({ children, className }) => (
   <ol className={clsx('px-4 leading-7 list-decimal text-secondary', className)}>
     {children}
   </ol>
 );
 
-export const ListItem: React.FC = ({ children }) => <li>{children}</li>;
+export const ListItem: React.FC<Props> = ({ children }) => <li>{children}</li>;
 
-export const Paragraph: React.FC = ({ children }) => (
+export const Paragraph: React.FC<Props> = ({ children }) => (
   <p className="mx-0 my-5 text-lg leading-7 text-secondary">{children}</p>
 );
 
-export const Strong: React.FC = ({ children }) => (
+export const Strong: React.FC<Props> = ({ children }) => (
   <strong className="font-semibold">{children}</strong>
 );
 

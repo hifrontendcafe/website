@@ -23,7 +23,10 @@ const components: Record<string, React.FC> = {
 };
 
 const Matcher: React.FC<Component> = ({ _type, ...props }) => {
-  const Component = useMemo(() => components[_type], [_type]);
+  const Component: React.FC<typeof props> = useMemo(
+    () => components[_type],
+    [_type],
+  );
 
   if (!Component) return null;
 

@@ -2,7 +2,7 @@
 
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { signIn, useSession } from 'next-auth/client';
+import { signIn, useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
 import { Mentor, Topic } from '../../lib/types';
@@ -20,7 +20,8 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     undefined,
   );
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [session, loading] = useSession();
+  const { data: session, status: sessionStatus } = useSession();
+  const loading = sessionStatus === 'loading';
   const { status, warnings, mentorships } = useWarnings(session?.user?.id);
 
   const router = useRouter();
