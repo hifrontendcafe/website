@@ -7,6 +7,7 @@ const meta: Meta<typeof HeroComponent> = {
     // More on Story layout: https://storybook.js.org/docs/7.0/react/configure/story-layout
     layout: 'fullscreen',
   },
+  tags: ['autodocs'],
 };
 
 export default meta;
