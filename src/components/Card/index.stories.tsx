@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import { Card } from '.';
 
 const meta = {
+  title: 'Components/Cards/Card',
   component: Card,
   subcomponents: {
     Header: Card.Header,
@@ -26,12 +27,17 @@ export const Default: Story = {
     <Card {...args}>
       <Card.Header>
         <Card.Image src="https://placehold.co/600x400" alt="Storybook logo" />
-        <Card.Title>title</Card.Title>
+        <Card.Title>Title</Card.Title>
         <Card.Headline>Headline</Card.Headline>
       </Card.Header>
 
       <Card.Body>
-        <Card.Paragraph>Paragraph</Card.Paragraph>
+        <Card.Paragraph>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Error vitae
+          repellat dolores iste, maxime neque delectus, debitis ipsa omnis
+          architecto a earum eaque, reprehenderit sequi atque eius voluptate
+          expedita laboriosam!
+        </Card.Paragraph>
       </Card.Body>
       <Card.Actions>
         <Card.PrimaryAction href="/">Button 1</Card.PrimaryAction>

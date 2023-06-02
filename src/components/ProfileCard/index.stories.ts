@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import ProfileCard from '.';
 
 const meta = {
+  title: 'Components/Cards/Profile Card',
   component: ProfileCard,
   tags: ['autodocs'],
 } satisfies Meta<typeof ProfileCard>;
@@ -13,7 +14,8 @@ export const Default: Story = {
   args: {
     profile: {
       _id: '0',
-      description: '0',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error vitae repellat dolores iste, maxime neque delectus, debitis ipsa omnis architecto a earum eaque, reprehenderit sequi atque eius voluptate expedita laboriosam!',
       isAvailable: false,
       location: 'location',
       person: {
@@ -24,7 +26,7 @@ export const Default: Story = {
         github: 'github',
         lastName: 'lastName',
         linkedin: 'linkedin',
-        photo: 'photo',
+        photo: 'https://placehold.co/112x112',
         portfolio: 'portfolio',
         twitter: 'twitter',
         username: 'username',
