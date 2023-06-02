@@ -16,15 +16,15 @@
 
 @layer components {
   .btn {
-    @apply px-6 py-2 text-sm font-semibold rounded-md;
+    @apply flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold transition duration-100 ease-out active:scale-95;
   }
 
   .btn-primary {
-    @apply text-zinc-800 bg-zinc-50 hover:bg-greenFec;
+    @apply bg-zinc-50 text-zinc-800 hover:bg-greenFec;
   }
 
   .btn-secondary {
-    @apply border text-primary hover:shadow hover:text-greenFec hover:border-greenFec;
+    @apply text-primary ring-1 ring-inset ring-zinc-100 hover:text-greenFec hover:ring-greenFec disabled:text-tertiary;
   }
 
   .title {
