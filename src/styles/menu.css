@@ -4,7 +4,6 @@
   cursor: pointer;
   width: 48px;
   height: 48px;
-  transition: all 0.25s;
   position: relative;
 }
 
@@ -16,7 +15,7 @@
   height: 2px;
   background: #f9f9fa;
   transform: rotate(0);
-  transition: all 0.5s;
+  transition: transform 0.25s ease-out;
   left: 12px;
 }
 
