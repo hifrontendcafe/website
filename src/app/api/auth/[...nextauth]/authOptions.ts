@@ -43,7 +43,8 @@ export const authOptions: AuthOptions = {
       }
       const guilds: DiscordGuild[] | FetchError = await response.json();
       if (!(guilds instanceof Array)) {
-        return false;
+        // TODO: Redirect to an error page, otherwise it can confuse the user.
+        return process.env.NODE_ENV === 'production' && '/unauthorized';
       }
 
       const isFecMember = guilds.find((guild) => guild.id === FrontendCafeId);
