@@ -1,7 +1,4 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import logo_vercel from '../../../public/img/powered-by-vercel.svg';
-
+import { getSettings } from '@/lib/api.server';
 import {
   faGithub,
   faInstagram,
@@ -10,9 +7,10 @@ import {
   faTwitter,
   faYoutube,
 } from '@fortawesome/free-brands-svg-icons';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { getSettings } from '@/lib/api.server';
+import Image from 'next/image';
+import Link from 'next/link';
+import logo_vercel from '../../../public/img/powered-by-vercel.svg';
 
 const Footer = async () => {
   const { socialnetworks, footerNavItems } = await getSettings({
@@ -21,111 +19,106 @@ const Footer = async () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="mt-40 border-t border-zinc-500 w-full">
-      <div className="container flex justify-center w-full py-16 mx-auto text-primary md:justify-between">
-        <div className="flex flex-col justify-center w-full text-center">
-          <div className="flex flex-col justify-between w-full md:flex-row">
-            <div className="flex flex-col gap-1 pb-8 font-medium md:pb-3">
-              {footerNavItems?.map(({ link, title }) => (
-                <Link
-                  href={link.value}
-                  key={link.value}
-                  className="md:mr-10 md:text-left"
-                >
-                  {title}
-                </Link>
-              ))}
-            </div>
-            <div className="flex flex-col gap-3">
-              <p className="font-medium text-center md:text-left">
-                Encuéntranos en
-              </p>
-              <div className="flex justify-center gap-3 md:justify-start">
-                {socialnetworks?.twitter && (
+    <footer className="mt-40 border-t border-zinc-500">
+      <div className="container mx-auto py-16 text-center">
+        <div className="flex flex-col justify-between md:flex-row">
+          <ul className="space-y-1 pb-8 font-medium md:pb-3 md:text-left">
+            {footerNavItems?.map(({ link, title }) => (
+              <li key={link.value}>
+                {/* FIX: Docs link points to prod site. */}
+                <Link href={link.value}>{title}</Link>
+              </li>
+            ))}
+          </ul>
+          <div className="space-y-3">
+            <p className="font-medium md:text-left">Encuéntranos en</p>
+            {/* TODO: Maybe create an icon component */}
+            <ul className="flex justify-center gap-3 md:justify-start">
+              {socialnetworks.twitter && (
+                <li>
                   <Link
                     href={socialnetworks?.twitter}
                     target="_blank"
                     aria-label="Twitter"
-                    className="grid w-6 h-6 rounded-full place-items-center"
+                    className="inline-block h-6 w-6 rounded-full"
                   >
                     <FontAwesomeIcon icon={faTwitter} size="lg" />
                   </Link>
-                )}
-
-                {socialnetworks?.instagram && (
+                </li>
+              )}
+              {socialnetworks?.instagram && (
+                <li>
                   <Link
                     href={socialnetworks?.instagram}
                     target="_blank"
                     aria-label="Instagram"
-                    className="grid w-6 h-6 rounded-full place-items-center"
+                    className="inline-block h-6 w-6 rounded-full"
                   >
                     <FontAwesomeIcon icon={faInstagram} size="lg" />
                   </Link>
-                )}
-
-                {socialnetworks?.github && (
+                </li>
+              )}
+              {socialnetworks?.github && (
+                <li>
                   <Link
                     href={socialnetworks?.github}
                     target="_blank"
                     aria-label="Github"
-                    className="grid w-6 h-6 rounded-full place-items-center"
+                    className="inline-block h-6 w-6 rounded-full"
                   >
                     <FontAwesomeIcon icon={faGithub} size="lg" />
                   </Link>
-                )}
-
-                {socialnetworks?.youtube && (
+                </li>
+              )}
+              {socialnetworks?.youtube && (
+                <li>
                   <Link
                     href={socialnetworks?.youtube}
                     target="_blank"
                     aria-label="Youtube"
-                    className="grid w-6 h-6 rounded-full place-items-center"
+                    className="inline-block h-6 w-6 rounded-full"
                   >
                     <FontAwesomeIcon icon={faYoutube} size="lg" />
                   </Link>
-                )}
-
-                {socialnetworks?.linkedin && (
+                </li>
+              )}
+              {socialnetworks?.linkedin && (
+                <li>
                   <Link
                     href={socialnetworks?.linkedin}
                     target="_blank"
                     aria-label="Linkedin"
-                    className="grid w-6 h-6 rounded-full place-items-center "
+                    className="inline-block h-6 w-6 rounded-full "
                   >
                     <FontAwesomeIcon icon={faLinkedin} size="lg" />
                   </Link>
-                )}
-
-                {socialnetworks?.twitch && (
+                </li>
+              )}
+              {socialnetworks?.twitch && (
+                <li>
                   <Link
                     href={socialnetworks?.twitch}
                     target="_blank"
                     aria-label="Twitch"
-                    className="grid w-6 h-6 rounded-full place-items-center"
+                    className="inline-block h-6 w-6 rounded-full"
                   >
                     <FontAwesomeIcon icon={faTwitch} size="lg" />
                   </Link>
-                )}
-              </div>
-            </div>
+                </li>
+              )}
+            </ul>
           </div>
+        </div>
 
-          <div className="flex flex-col items-center mt-16 md:flex-row">
-            <div>
-              <p className="mb-2 font-light md:mr-4">
-                © FrontendCafé {currentYear}
-              </p>
-            </div>
-            <div>
-              <Link
-                href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image src={logo_vercel} alt="Powered by Vercel" />
-              </Link>
-            </div>
-          </div>
+        <div className="mt-16 flex flex-col items-center gap-y-2 gap-x-4 md:flex-row">
+          <p className="font-light">© FrontendCafé {currentYear}</p>
+          <Link
+            href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <Image src={logo_vercel} alt="Powered by Vercel" />
+          </Link>
         </div>
       </div>
     </footer>

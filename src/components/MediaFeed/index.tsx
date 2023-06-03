@@ -49,7 +49,7 @@ const MediaFeed: React.FC<MediaFeedProps> = ({ tweets }) => {
             width="24"
             height="24"
           />
-          <h1 className="pl-2 text-xl font-medium twitter-blue subtitle">
+          <h1 className="pl-2 text-xl font-medium text-[#55acee] subtitle">
             @frontendcafe
           </h1>
         </a>

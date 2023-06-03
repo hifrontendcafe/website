@@ -1,7 +1,7 @@
-import { isPast } from 'date-fns';
-import type { Event } from '@/lib/types';
-import EventPreview from '../EventPreview';
 import { getAllEvents } from '@/lib/api.server';
+import type { Event } from '@/lib/types';
+import { isPast } from 'date-fns';
+import EventPreview from '../EventPreview';
 
 const futureEvents = (events: Event[]) =>
   events
@@ -17,26 +17,28 @@ export default async function EventList() {
   });
 
   return (
-    <section id="events" className="relative body-font">
+    <div id="events" className="space-y-20">
       {futureEvents(events).length > 0 && (
-        <>
-          <h1 className="mb-10 subtitle">Próximos eventos</h1>
-          <div className="grid gap-8 mb-16 md:grid-cols-2 lg:grid-cols-3">
+        <section className="space-y-10">
+          <h2 className="subtitle">Próximos eventos</h2>
+          <ul className="mb-16 grid gap-8 md:grid-cols-2 xl:grid-cols-3">
             {futureEvents(events)?.map((event) => (
               <EventPreview key={event.slug} event={event} />
             ))}
-          </div>
-        </>
+          </ul>
+        </section>
       )}
-      <h1 className="mb-10 subtitle">Revive nuestros eventos</h1>
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        {pastEvents(events)?.map(
-          (event) =>
-            event.recording && (
-              <EventPreview key={event.slug} event={event} past={true} />
-            ),
-        )}
-      </div>
-    </section>
+      <section className="space-y-10">
+        <h2 className="subtitle">Revive nuestros eventos</h2>
+        <ul className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+          {pastEvents(events)?.map(
+            (event) =>
+              event.recording && (
+                <EventPreview key={event.slug} event={event} past={true} />
+              ),
+          )}
+        </ul>
+      </section>
+    </div>
   );
 }

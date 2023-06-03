@@ -1,4 +1,5 @@
 import { Profile } from '@/lib/types';
+import Image from 'next/image';
 import ProfileSocialMedia from '../ProfileSocialMedia';
 
 type Props = {
@@ -15,67 +16,53 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
   };
 
   return (
-    <div className="flex flex-col justify-between w-full pb-4 rounded-lg shadow-lg bg-zinc-800">
-      <div className="px-3 pt-3 md:pt-6 md:px-6">
-        <div className="space-x-3 items-top">
-          <img
-            src={profile.person.photo || '/img/user.svg'}
-            className={`object-cover object-top w-28 h-28  ${
-              profile.isAvailable ? ' ring ring-profileRing' : ''
-            } rounded-full shadow-lg`}
-            alt={profile.person.firstName}
-          />
-        </div>
-        <div className="flex flex-col justify-between grow text-primary">
-          <div className="grow">
-            <h2 className="mt-2 text-xl font-bold">
-              {profile.person.firstName}
-            </h2>
-            <div className="flex">
-              <h2 className="mr-2 font-semibold text-md">
-                {profile.role.name}
-              </h2>
-              <h2 className="text-md">|&nbsp;{profile.seniority.name}</h2>
-            </div>
-
-            {profile.location && (
-              <div className="flex items-center">
-                <h2 className="text-base capitalize ">{profile.location}</h2>
-              </div>
-            )}
-          </div>
-          <div className="mt-2 flex-end">
-            <ProfileSocialMedia socialMedia={socialMediaList} />
-          </div>
-        </div>
-        <div className="flex flex-col">
-          <div className="mt-4 mb-2 text-sm leading-tight whitespace-pre-line text-zinc-100">
-            {profile.description}
-          </div>
-        </div>
+    <li className="relative flex max-w-3xl flex-col justify-between gap-4 rounded-lg bg-zinc-800 py-3 shadow-lg md:py-6">
+      <div className="px-3 md:px-6 ">
+        <Image
+          src={profile.person.photo || '/img/user.svg'}
+          width={112}
+          height={112}
+          className={`m-1 h-28 w-28 rounded-full object-cover object-top shadow-lg ${
+            profile.isAvailable ? 'ring ring-profileRing' : ''
+          }`}
+          alt={profile.person.firstName}
+        />
       </div>
-      <div>
-        <div className="px-3 md:px-6">
-          {profile.technologies?.length > 0 && (
-            <div className="flex flex-wrap items-center justify-start">
-              {profile.technologies?.map((tech) => (
-                <span
-                  key={tech._id}
-                  className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all rounded-md bg-zinc-900 text-primary"
-                >
-                  {tech.name}
-                </span>
-              ))}
-            </div>
-          )}
-        </div>
-        {profile.isAvailable && (
-          <div className="w-full py-1 mt-4 text-sm font-semibold text-center text-zinc-900 bg-greenFec">
-            En búsqueda activa
-          </div>
+      <div className="px-3 md:px-6">
+        <h3 className="text-xl font-bold">{profile.person.firstName}</h3>
+        <p className="flex gap-2">
+          <span className="text-md font-semibold">{profile.role.name}</span>
+          <span className="text-md">|&nbsp;{profile.seniority.name}</span>
+        </p>
+
+        {profile.location && (
+          <p className="text-base capitalize ">{profile.location}</p>
         )}
       </div>
-    </div>
+      <div className="px-3 md:px-6">
+        <ProfileSocialMedia socialMedia={socialMediaList} />
+      </div>
+      <p className="flex-grow whitespace-pre-line px-3 text-sm leading-tight text-zinc-100 md:px-6">
+        {profile.description}
+      </p>
+      {profile.technologies?.length > 0 && (
+        <ul className="flex flex-wrap gap-2 px-3 md:px-6">
+          {profile.technologies?.map((tech) => (
+            <li
+              key={tech._id}
+              className="break-all rounded-md bg-zinc-900 px-3 py-1 text-xs uppercase"
+            >
+              {tech.name}
+            </li>
+          ))}
+        </ul>
+      )}
+      {profile.isAvailable && (
+        <div className="bottom-4 bg-greenFec py-1 text-center text-sm font-semibold text-zinc-900">
+          En búsqueda activa
+        </div>
+      )}
+    </li>
   );
 };
 

@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import HeroComponent from './index';
+import HeroComponent from '.';
 
 const meta: Meta<typeof HeroComponent> = {
   component: HeroComponent,
@@ -7,6 +7,7 @@ const meta: Meta<typeof HeroComponent> = {
     // More on Story layout: https://storybook.js.org/docs/7.0/react/configure/story-layout
     layout: 'fullscreen',
   },
+  tags: ['autodocs'],
 };
 
 export default meta;

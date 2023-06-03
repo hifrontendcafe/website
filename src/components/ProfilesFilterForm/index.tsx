@@ -1,8 +1,8 @@
+import { FilterProfileAction } from '@/components/Profiles/filterReducer';
+import { ProfileFilters, Role, Seniority, Technology } from '@/lib/types';
+import { useRouter, useSearchParams } from 'next/navigation';
 import React, { Dispatch } from 'react';
 import Select from 'react-select';
-import { ProfileFilters, Role, Seniority, Technology } from '@/lib/types';
-import { FilterProfileAction } from '@/components/Profiles/filterReducer';
-import { useRouter, useSearchParams } from 'next/navigation';
 
 interface FormProps {
   filters: ProfileFilters;
@@ -45,83 +45,75 @@ const FilterForm: React.FC<FormProps> = ({
   }, [activesQuery, dispatch]);
 
   return (
-    <form onSubmit={onSubmit}>
-      <div className="justify-around md:flex md:items-center md:space-x-4 text-zinc-100">
-        <div className="w-full mt-3 md:mt-0">
-          <select
-            name="role"
-            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-500 rounded form-select ${
-              isRoleSelected ? 'text-primary' : 'text-tertiary'
-            }`}
-            onChange={(event) =>
-              dispatch({ type: 'ADD_ROLE', payload: event.target.value })
-            }
-          >
-            {roles.map((role) => (
-              <option value={role._id} key={role._id}>
-                {role.name}
-              </option>
-            ))}
-            <option value="" key="all">
-              Todos
+    <form onSubmit={onSubmit} className="space-y-4">
+      <div className="flex flex-col justify-around gap-4 text-zinc-100 md:flex-row md:items-center">
+        <select
+          name="role"
+          className={`form-select w-full rounded border border-zinc-500 bg-zinc-900 py-2 text-sm leading-tight ${
+            isRoleSelected ? 'text-primary' : 'text-tertiary'
+          }`}
+          onChange={(event) =>
+            dispatch({ type: 'ADD_ROLE', payload: event.target.value })
+          }
+        >
+          {roles.map((role) => (
+            <option value={role._id} key={role._id}>
+              {role.name}
             </option>
-            <option value="" key="placeholder" selected disabled hidden>
-              Rol
+          ))}
+          <option value="" key="all">
+            Todos
+          </option>
+          <option value="" key="placeholder" selected disabled hidden>
+            Rol
+          </option>
+        </select>
+        <select
+          name="seniority"
+          className={`form-select w-full rounded border border-zinc-500 bg-zinc-900 py-2 text-sm leading-tight ${
+            isSenioritySelected ? 'text-primary' : 'text-tertiary'
+          }`}
+          onChange={(event) =>
+            dispatch({ type: 'ADD_SENIORITY', payload: event.target.value })
+          }
+        >
+          {seniorities.map((seniority) => (
+            <option value={seniority._id} key={seniority._id}>
+              {seniority.name}
             </option>
-          </select>
-        </div>
-        <div className="w-full mt-3 md:mt-0">
-          <select
-            name="seniority"
-            className={`w-full py-2 text-sm leading-tight bg-zinc-900 border border-zinc-500 rounded form-select ${
-              isSenioritySelected ? 'text-primary' : 'text-tertiary'
-            }`}
-            onChange={(event) =>
-              dispatch({ type: 'ADD_SENIORITY', payload: event.target.value })
-            }
-          >
-            {seniorities.map((seniority) => (
-              <option value={seniority._id} key={seniority._id}>
-                {seniority.name}
-              </option>
-            ))}
-            <option value="" key="placeholder" selected disabled hidden>
-              Seniority
-            </option>
-            <option value="" key="all">
-              Todas
-            </option>
-          </select>
-        </div>
-        <div className="w-full mt-3 md:mt-0">
-          <input
-            name="location"
-            type="text"
-            placeholder="Ubicación"
-            className="w-full py-2 text-sm leading-tight border rounded placeholder-zinc-300 bg-zinc-900 border-zinc-500 form-input"
-            onChange={(event) =>
-              dispatch({ type: 'ADD_LOCATION', payload: event.target.value })
-            }
-          />
-        </div>
-        <div className="w-full mt-3 md:mt-0">
-          <input
-            name="description"
-            type="text"
-            placeholder="Explora las biografías"
-            className="w-full py-2 text-sm leading-tight border rounded placeholder-zinc-300 bg-zinc-900 border-zinc-500 form-input"
-            onChange={(event) =>
-              dispatch({ type: 'ADD_DESCRIPTION', payload: event.target.value })
-            }
-          />
-        </div>
+          ))}
+          <option value="" key="placeholder" selected disabled hidden>
+            Seniority
+          </option>
+          <option value="" key="all">
+            Todas
+          </option>
+        </select>
+        <input
+          name="location"
+          type="text"
+          placeholder="Ubicación"
+          className="form-input w-full rounded border border-zinc-500 bg-zinc-900 py-2 text-sm leading-tight placeholder-zinc-300"
+          onChange={(event) =>
+            dispatch({ type: 'ADD_LOCATION', payload: event.target.value })
+          }
+        />
+        <input
+          name="description"
+          type="text"
+          placeholder="Explora las biografías"
+          className="form-input w-full rounded border border-zinc-500 bg-zinc-900 py-2 text-sm leading-tight placeholder-zinc-300"
+          onChange={(event) =>
+            dispatch({ type: 'ADD_DESCRIPTION', payload: event.target.value })
+          }
+        />
       </div>
-      <div className="items-center w-full mt-4 md:flex md:space-x-4">
+      <div className="flex flex-col gap-4 md:flex-row">
         <Select
           instanceId="technologies-selector"
           isMulti
           classNamePrefix="react-select"
-          className="w-full bg-transparent bg-zinc-900 filter-selector bg"
+          className="filter-selector bg w-full bg-transparent bg-zinc-900"
           placeholder="Selecciona tecnologías"
           onChange={(techs) =>
             dispatch({ type: 'ADD_TECHNOLOGIES', payload: techs })
@@ -136,14 +128,14 @@ const FilterForm: React.FC<FormProps> = ({
               : 'No opciones disponibles';
           }}
         />
-        <div className="flex items-center mt-4 space-x-2 shrink-0 md:mt-0">
+        <div className="flex shrink-0 items-center justify-end gap-2">
           <label
             htmlFor="available"
-            className="w-24 text-sm leading-4 shrink text-secondary"
+            className="text-sm leading-4 text-secondary"
           >
             En búsqueda activa
           </label>
-          <div className="relative inline-block w-10 mr-2 align-middle transition duration-200 ease-in select-none">
+          <div className="relative w-10 select-none transition duration-200 ease-in">
             <input
               id="available"
               name="available"
@@ -156,7 +148,7 @@ const FilterForm: React.FC<FormProps> = ({
                 });
                 activesQuery && router.push('/talentos');
               }}
-              className={`form-checkbox absolute transition-transform border-zinc focus:ring-offset-0 ring-0 outline-none focus:ring-0 focus:outline-none block w-6 h-6 rounded-full border-4 cursor-pointer ${
+              className={`border-zinc form-checkbox absolute block h-6 w-6 cursor-pointer rounded-full border-4 outline-none ring-0 transition-transform focus:outline-none focus:ring-0 focus:ring-offset-0 ${
                 filters.available
                   ? ' translate-x-4 text-green-400'
                   : 'border-zinc-500'
@@ -166,7 +158,7 @@ const FilterForm: React.FC<FormProps> = ({
               htmlFor="available"
               className={`${
                 filters.available ? 'bg-white-400' : 'bg-zinc-300'
-              } block overflow-hidden border bg-zinc-300 border-zinc-500 h-6 rounded-full cursor-pointer`}
+              } block h-6 cursor-pointer overflow-hidden rounded-full border border-zinc-500 bg-zinc-300`}
             ></label>
           </div>
         </div>

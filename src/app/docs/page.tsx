@@ -17,27 +17,19 @@ export default async function DocsPage() {
   });
 
   return (
-    <div className="pb-40 sm:pt-10">
-      <div className="mt-10 overflow-hidden border-2 border-zinc-500 rounded-lg shadow bg-zinc-800">
-        <div className="px-4 py-5 border-b border-zinc-500 sm:px-6">
-          <div className="mt-2 md:flex md:items-center md:justify-between">
-            <div className="flex-1 min-w-0">
-              <h2 className="text-xl font-bold leading-7 text-primary sm:text-2xl sm:leading-9 sm:tr uncate">
-                Documentos Útiles
-              </h2>
-            </div>
-          </div>
-        </div>
-        <div className="py-5 px-7 text-tertiary">
-          <ul className="text-lg">
-            {docs?.map(({ title, slug }) => (
-              <li className="hover:text-informational" key={slug}>
-                <Link href={`/docs/${slug}`}>{title}</Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+    <section className="mt-20 pb-40">
+      <div className="divide-y divide-zinc-500 rounded-lg border-2 border-zinc-500 bg-zinc-800 shadow">
+        <h2 className="p-5 text-xl font-bold">Documentos Útiles</h2>
+        <ul className="space-y-3 p-5 text-lg text-tertiary">
+          {docs?.map(({ title, slug }) => (
+            <li key={slug}>
+              <Link href={`/docs/${slug}`} className="hover:text-informational">
+                {title}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </div>
-    </div>
+    </section>
   );
 }

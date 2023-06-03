@@ -1,7 +1,7 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { NavItemData } from '../../lib/types';
 import MenuBtn from './MenuBtn';
-import Image from 'next/image';
 import NavItem from './NavItem';
 import UserSettings from './UserSettings';
 
@@ -21,31 +21,33 @@ const Navbar: React.FC<NavbarProps> = ({
   return (
     <nav
       id="site-menu"
-      className="container flex flex-col items-center justify-between w-full mx-auto lg:flex-row"
+      className="container mx-auto grid auto-cols-fr items-center justify-items-center lg:grid-flow-col"
     >
-      <div className="flex flex-row  items-center justify-between w-full flex-nowrap lg:w-auto lg:self-center lg:flex-none">
-        <Link href="/" className="flex items-center text-zinc-900 title-font">
+      <div className="flex w-full flex-row flex-nowrap items-center justify-between justify-self-start lg:w-auto lg:flex-none lg:self-center">
+        <Link href="/">
           <Image
             src={logoImg}
-            width={190}
+            width={197}
             height={36}
             priority
             blurDataURL={logoImg}
-            className="rounded-full text-primary"
             alt="Logo FrontendCafe"
           />
         </Link>
         <MenuBtn onClick={toggle} isOpen={isOpen} />
       </div>
-      <div
-        className={`lg:flex lg:flex-row lg:self-center lg:pb-0 lg:py-0 lg:w-auto text-md md:text-sm ${
-          isOpen ? 'py-1 pb-4 flex flex-col w-full' : 'hidden'
+
+      <ul
+        className={`w-full md:text-sm lg:flex lg:justify-center lg:self-center lg:py-0 ${
+          isOpen ? 'py-4' : 'hidden'
         }`}
       >
         {navItems?.map(({ link, title }) => (
-          <NavItem link={link} title={title} key={link} />
+          <li key={link} className="lg:flex-1 lg:text-center">
+            <NavItem link={link} title={title} />
+          </li>
         ))}
-      </div>
+      </ul>
 
       <UserSettings navIsOpen={isOpen} />
     </nav>

@@ -2,109 +2,42 @@
 @tailwind components;
 @tailwind utilities;
 
-@utilities {
-  .text-shadow {
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
-  }
-
-  .text-shadow-none {
-    text-shadow: none;
-  }
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-.divider {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-}
-
 @layer base {
-  * {
-    @apply font-sans;
+  :is(h1, h2, h3, h4, h5, h6) {
+    @apply font-title;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  .ellipse {
-    border-radius: 50%;
-  }
-  .nav-shadow {
-    box-shadow: 0px 1px 0px #434345;
-  }
 }
 
 @layer components {
   .btn {
-    @apply px-6 py-2 text-sm font-semibold rounded-md;
+    @apply flex items-center justify-center gap-2 rounded-md px-5 py-2.5 text-sm font-semibold transition duration-100 ease-out active:scale-95;
   }
 
   .btn-primary {
-    @apply text-zinc-800 bg-zinc-50;
-  }
-
-  .btn-primary:hover {
-    @apply text-zinc-800 bg-greenFec;
+    @apply bg-zinc-50 text-zinc-800 hover:bg-greenFec;
   }
 
   .btn-secondary {
-    @apply border text-primary;
-  }
-
-  .btn-secondary:hover {
-    @apply border shadow text-greenFec border-greenFec;
-  }
-
-  .btn-border {
-    @apply border text-primary;
-  }
-
-  .btn-border:hover {
-    @apply border shadow text-greenFec border-greenFec;
-  }
-
-  .social-circle {
-    @apply grid w-8 h-8 rounded-full place-items-center;
+    @apply text-primary ring-1 ring-inset ring-zinc-100 hover:text-greenFec hover:ring-greenFec disabled:text-tertiary;
   }
 
   .title {
-    @apply text-4xl font-extrabold leading-normal text-primary md:text-5xl lg:text-6xl font-title;
+    @apply text-4xl font-extrabold leading-normal text-primary md:text-5xl lg:text-6xl;
   }
 
   .subtitle {
-    @apply text-2xl font-extrabold leading-normal text-primary md:text-3xl lg:text-4xl font-title;
-  }
-
-  .paragraph {
-    @apply text-lg leading-normal text-secondary md:text-2xl;
+    @apply text-2xl font-extrabold leading-normal text-primary md:text-3xl lg:text-4xl;
   }
 
   .cards-title {
-    @apply text-lg font-medium text-primary md:text-xl lg:text-2xl font-title;
-  }
-
-  .cards-paragraph {
-    @apply text-sm font-light text-secondary md:text-base lg:text-lg;
-  }
-
-  .title-colorful {
-    @apply text-gradient bg-gradient-to-r from-emerald-400 to-blue-500;
-  }
-
-  .nav-scroll {
-    @apply items-center bg-zinc-900 nav-shadow;
+    @apply text-lg font-medium text-primary md:text-xl lg:text-2xl;
   }
 
   .input {
-    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-zinc-900 text-secondary border-zinc-600;
+    @apply w-full appearance-none rounded border border-zinc-600 bg-zinc-900 px-3 py-2 text-sm leading-tight text-secondary;
   }
 }
 
@@ -118,11 +51,11 @@ html {
 }
 
 .filter-selector .react-select__menu {
-  @apply border bg-zinc-900 border-zinc-500 text-primary;
+  @apply border border-zinc-500 bg-zinc-900 text-primary;
 }
 
 .filter-selector .react-select__control {
-  @apply bg-zinc-900 border-zinc-500 text-tertiary;
+  @apply border-zinc-500 bg-zinc-900 text-tertiary;
 }
 
 .filter-selector .react-select__option--is-focused {
@@ -148,11 +81,11 @@ html {
 }
 
 .form-user .react-select__menu {
-  @apply border bg-zinc-900 border-zinc-700 text-primary;
+  @apply border border-zinc-700 bg-zinc-900 text-primary;
 }
 
 .form-user .react-select__control {
-  @apply bg-zinc-900 border-zinc-700 text-tertiary;
+  @apply border-zinc-700 bg-zinc-900 text-tertiary;
 }
 
 .form-user .react-select__option--is-focused {
@@ -167,7 +100,3 @@ html {
   /* @apply text-sm bg-zinc-500; */
 }
 /* end react-select styles */
-
-.twitter-blue {
-  color: #55acee;
-}

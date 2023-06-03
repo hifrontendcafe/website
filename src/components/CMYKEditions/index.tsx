@@ -1,8 +1,8 @@
-import { useMemo } from 'react';
-import Link from 'next/link';
-import { CMYK } from '@/lib/types';
-import CMYKItemCard from '../CMYKItemCard';
 import { getAllCMYKProjects } from '@/lib/api.server';
+import { CMYK } from '@/lib/types';
+import Link from 'next/link';
+import { useMemo } from 'react';
+import CMYKItemCard from '../CMYKItemCard';
 
 type CMYKEditionsProps = {
   projects: CMYK[];
@@ -52,46 +52,40 @@ const Editions: React.FC<CMYKEditionsProps> = ({ edition, projects }) => {
     (project) => project.cmykVersion === currentCMYK,
   );
 
-  const tabStyle = `py-2 cursor-pointer text-tertiary w-1/3 flex justify-center border-b`;
-  const tabStyleActive = `py-2 font-semibold cursor-pointer text-zinc-100 w-1/3 flex justify-center border-b-4 border-zinc-100`;
-
   return (
-    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-      <div className="flex flex-col items-center text-center">
-        <h3 className="font-medium subtitle">Ediciones</h3>
-        <ul className="flex w-full mt-6 mb-16 md:w-8/12">
-          {filteredVersions.map((cmykVersion) => (
-            <li
-              className={
-                cmykVersion.version === currentCMYK ? tabStyleActive : tabStyle
-              }
-              key={cmykVersion.version}
+    <section className="mt-20">
+      <h2 className="subtitle text-center font-medium">Ediciones</h2>
+      <ul className="mx-auto mt-6 mb-16 flex w-full md:w-8/12">
+        {filteredVersions.map((cmykVersion) => (
+          <li
+            className={`flex-1 cursor-pointer py-2 px-4 text-center ${
+              cmykVersion.version === currentCMYK
+                ? 'border-b-4 border-zinc-100 font-semibold'
+                : 'border-b text-tertiary'
+            }`}
+            key={cmykVersion.version}
+          >
+            <Link
+              replace
+              shallow
+              scroll={false}
+              href={{
+                pathname: '/cmyk',
+                query: {
+                  edition: cmykVersion.edition,
+                },
+              }}
             >
-              <Link
-                replace
-                shallow
-                scroll={false}
-                href={{
-                  pathname: '/cmyk',
-                  query: {
-                    edition: cmykVersion.edition,
-                  },
-                }}
-                className="w-full h-full"
-              >
-                {cmykVersion.name}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <div className="w-full h-full">
-        <div className="relative z-10 grid max-w-4xl grid-cols-1 gap-6 p-6 mx-auto sm:px-6 lg:px-12 md:grid-cols-2 justify-items-center md:gap-10">
-          {currentProjects.map((project, index) => (
-            <CMYKItemCard key={project._id} project={project} index={index} />
-          ))}
-        </div>
-      </div>
-    </div>
+              {cmykVersion.name}
+            </Link>
+          </li>
+        ))}
+      </ul>
+      <ul className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        {currentProjects.map((project, index) => (
+          <CMYKItemCard key={project._id} project={project} index={index} />
+        ))}
+      </ul>
+    </section>
   );
 };

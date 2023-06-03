@@ -1,6 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const tailwindColors = require('tailwindcss/colors');
 
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx}',
@@ -45,17 +46,7 @@ module.exports = {
         sans: ['var(--font-rubik)', 'sans-serif'],
         title: ['var(--font-lexend)', 'sans-serif'],
       },
-      fontSize: {
-        xs: '.75rem',
-        sm: '.875rem',
-        tiny: '.875rem',
-        base: '1rem',
-        lg: '1.125rem',
-        xl: '1.25rem',
-        highlighted: '100px',
-      },
       colors: {
-        current: 'currentColor',
         coolGrayDark: '#050C1A',
         ellipseGreen: '#134547',
         profileRing: '#00C39D',

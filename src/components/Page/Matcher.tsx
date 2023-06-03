@@ -2,15 +2,15 @@
 
 import { Component } from '@/lib/types';
 import { useMemo } from 'react';
+import SectionHero from '../SectionHero';
 import {
   CardComponent,
-  Grid,
-  Text,
-  Steps,
   FeatureCard,
+  Grid,
   Spacing,
+  Steps,
+  Text,
 } from './Components';
-import SectionHero from '../SectionHero';
 
 const components: Record<string, React.FC<any>> = {
   card: CardComponent,
@@ -37,11 +37,11 @@ export const PageComponents: React.FC<{ components?: Component[] }> = ({
   components,
 }) => {
   return (
-    <div>
+    <>
       {components?.map((component) => (
         <Matcher key={component._key} {...component} />
       ))}
-    </div>
+    </>
   );
 };
 

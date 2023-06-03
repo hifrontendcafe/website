@@ -1,6 +1,6 @@
 import { EmbeddedTweet } from '@/lib/types';
 import { Meta, StoryObj } from '@storybook/react';
-import MediaFeedComponent from './index';
+import MediaFeedComponent from '.';
 
 const meta: Meta<typeof MediaFeedComponent> = {
   title: 'Components/MediaFeed',

@@ -3,7 +3,7 @@ import {
   faLinkedinIn,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
-import { faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faChain, faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -34,6 +34,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
 
   const findTopicsName = (id: string) => {
     const topic = topics.find((e) => e._id == id)!;
+
     return topic?.title;
   };
 
@@ -51,120 +52,123 @@ const MentorCard: React.FC<MentorCardProps> = ({
   };
 
   return (
-    <motion.div
+    <motion.li
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="flex flex-col w-full p-6 rounded-lg bg-zinc-800 space-between scroll-m-16 snap-y"
+      className="flex max-w-3xl snap-y scroll-m-16 flex-col gap-4 rounded-lg bg-zinc-800 p-6"
       id={mentorNameForId}
     >
-      <div>
-        <div className="flex justify-between w-full">
-          <div>
-            <Image
-              className="object-cover w-24 h-24 mr-4 rounded-full bg-zinc-300"
-              src={`${mentor.photo.src}?h=96`}
-              alt={`Foto de ${mentor.name} `}
-              height={96}
-              width={96}
-              placeholder="blur"
-              blurDataURL={`${mentor.photo.src}?h=50`}
-            />
-          </div>
+      <div className="flex justify-between gap-4">
+        <Image
+          className="h-24 w-24 rounded-full bg-zinc-300 object-cover"
+          src={`${mentor.photo.src}?h=96`}
+          alt={`Foto de ${mentor.name}`}
+          height={96}
+          width={96}
+          placeholder="blur"
+          blurDataURL={`${mentor.photo.src}?h=50`}
+        />
 
-          <div>
-            <div className="mb-4">
-              {isUnavailable ? (
-                <button
-                  type="button"
-                  className="capitalize cursor-not-allowed text-md btn btn-secondary"
-                >
-                  No disponible
-                </button>
-              ) : isActive && mentor.calendly && canBookAMentorship ? (
-                <Link
-                  href={mentor.calendly}
-                  target="_blank"
-                  className="capitalize border text-md text-primary border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
-                >
-                  <span>Solicitar mentoría</span>
-                </Link>
-              ) : (
-                <button
-                  type="button"
-                  onClick={() => openModal()}
-                  className=" border text-md text-primary border-zinc-50 btn hover:text-zinc-800 hover:bg-zinc-50 hover:border-zinc-50"
-                >
-                  Solicitar mentoría
-                </button>
-              )}
-            </div>
-            <div className="flex mt-2 place-content-end">
-              {mentor.web && (
+        <div className="flex flex-col justify-between gap-4">
+          {isUnavailable ? (
+            <button
+              type="button"
+              disabled
+              className="text-md btn btn-secondary cursor-not-allowed capitalize"
+            >
+              No disponible
+            </button>
+          ) : isActive && mentor.calendly && canBookAMentorship ? (
+            <Link
+              href={mentor.calendly}
+              target="_blank"
+              className="text-md btn border border-zinc-50 capitalize hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+            >
+              Solicitar mentoría
+            </Link>
+          ) : (
+            <button
+              type="button"
+              onClick={() => openModal()}
+              className="text-md btn border border-zinc-50 capitalize hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+            >
+              Solicitar mentoría
+            </button>
+          )}
+
+          <ul className="flex place-content-end gap-2">
+            {/* TODO: Maybe create an icon component */}
+            {mentor.web && (
+              <li>
                 <Link
                   href={mentor.web}
                   target="_blank"
-                  className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
                 >
-                  <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
+                  <FontAwesomeIcon className="h-4 w-4" icon={faGlobe} />
                 </Link>
-              )}
+              </li>
+            )}
 
-              {mentor.linkedin && (
+            {mentor.linkedin && (
+              <li>
                 <Link
                   href={mentor.linkedin}
                   target="_blank"
-                  className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
                 >
-                  <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
+                  <FontAwesomeIcon className="h-4 w-4" icon={faLinkedinIn} />
                 </Link>
-              )}
-              {mentor.github && (
+              </li>
+            )}
+            {mentor.github && (
+              <li>
                 <Link
                   href={mentor.github}
                   target="_blank"
-                  className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
                 >
-                  <FontAwesomeIcon className="w-4 h-4" icon={faGithub} />
+                  <FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
                 </Link>
-              )}
+              </li>
+            )}
 
-              {mentor.twitter && (
+            {mentor.twitter && (
+              <li>
                 <Link
                   href={mentor.twitter}
                   target="_blank"
-                  className="flex items-center justify-center w-8 h-8 ml-2 rounded-full text-primary bg-zinc-700"
+                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
                 >
-                  <FontAwesomeIcon className="w-4 h-4 " icon={faTwitter} />
+                  <FontAwesomeIcon className="h-4 w-4" icon={faTwitter} />
                 </Link>
-              )}
-            </div>
-          </div>
+              </li>
+            )}
+          </ul>
         </div>
       </div>
-      <div>
-        <h2
-          className="mb-2 text-xl font-bold text-primary cursor-pointer"
-          onClick={onCopyUrl}
-        >
-          {mentor.name}
-        </h2>
-      </div>
-      <div className="flex flex-col justify-between h-full">
-        <div className="flex">
-          <div>
-            <p className="leading-relaxed text-md text-tertiary md:min-h-64">
-              {mentor.description ? mentor.description : '---'}
-            </p>
-          </div>
-        </div>
-        <div className="flex flex-wrap mt-4 md:justify-start">
-          {mentor.topics &&
-            mentor.topics?.map((topic) => (
-              <TopicBadge key={topic._key} topic={findTopicsName(topic._ref)} />
-            ))}
-        </div>
-      </div>
+      <h3
+        className="group cursor-pointer text-xl font-bold"
+        onClick={onCopyUrl}
+      >
+        {mentor.name}{' '}
+        <FontAwesomeIcon
+          aria-hidden
+          className="h-5 w-5 opacity-10 transition-opacity group-hover:opacity-40"
+          icon={faChain}
+        />
+      </h3>
+      <p className="flex-grow leading-relaxed text-tertiary md:min-h-64">
+        {mentor.description ? mentor.description : '---'}
+      </p>
+      <ul className="flex flex-wrap gap-2">
+        {mentor.topics &&
+          mentor.topics?.map((topic) => (
+            <TopicBadge key={topic._key} topic={findTopicsName(topic._ref)} />
+          ))}
+      </ul>
+
       <ToastNotification
         type="success"
         showToast={showToast}
@@ -172,7 +176,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       >
         <span>Copiado</span>
       </ToastNotification>
-    </motion.div>
+    </motion.li>
   );
 };
 
