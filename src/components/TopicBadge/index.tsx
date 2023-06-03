@@ -4,9 +4,9 @@ interface TopicBadgeProps {
 
 const TopicBadge: React.FC<TopicBadgeProps> = ({ topic }) => {
   return (
-    <span className="px-3 py-1 mt-2 mr-2 text-xs uppercase break-all rounded-md bg-zinc-900 text-primary">
+    <li className="max-w-fit break-all rounded-md bg-zinc-900 px-3 py-1 text-xs uppercase">
       {topic}
-    </span>
+    </li>
   );
 };
 

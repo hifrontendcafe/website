@@ -71,46 +71,40 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
   }, [speciality, sortedMentors]);
 
   return (
-    <div>
-      <div className="flex justify-between">
-        <h1 className="mb-4 text-2xl font-medium text-primary">
+    <section>
+      <div className="mb-10 flex flex-col justify-between lg:flex-row lg:items-center">
+        <h2 className="mb-4 text-2xl font-medium lg:m-0">
           Solicita una mentoría según especialidad
-        </h1>
-      </div>
-      <div className="relative inline-block w-full mb-6 md:w-1/2 lg:w-1/3">
-        <select
+        </h2>
+        <label
           aria-label="Buscar"
-          onChange={(event) => queryTopic(event.target.value)}
-          className="block w-full px-4 py-2 pr-8 leading-tight bg-zinc-900 border border-zinc-400 rounded shadow appearance-none text-primary hover:border-zinc-500 focus:outline-none focus:ring"
+          className="relative inline-block w-full md:w-1/2 lg:w-1/3"
         >
-          <option value="">Buscar</option>
-          {sortedTopics?.map((topic, index) => (
-            <option
-              value={topic._id}
-              key={index}
-              selected={topic._id === speciality}
-            >
-              {topic.title}
-            </option>
-          ))}
-        </select>
-        <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none text-primary">
-          <svg
-            className="w-4 h-4 fill-current"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 20 20"
+          <select
+            onChange={(event) => queryTopic(event.target.value)}
+            className="w-full appearance-none rounded border border-zinc-400 bg-zinc-900 px-4 py-2 pr-8  leading-tight hover:border-zinc-500 focus:outline-none focus:ring"
           >
-            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
-          </svg>
-        </div>
+            <option value="">Buscar...</option>
+            {sortedTopics?.map((topic) => (
+              <option value={topic._id} key={topic._id}>
+                {topic.title}
+              </option>
+            ))}
+          </select>
+          <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
+            <svg
+              className="h-4 w-4 fill-current"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 20 20"
+            >
+              <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+            </svg>
+          </div>
+        </label>
       </div>
-
-      <div className="flex flex-col min-h-screen align-center">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 auto-rows-min">
-          {(filteredMentors && speciality
-            ? filteredMentors
-            : sortedMentors
-          )?.map((mentor, index) => (
+      <ul className="grid gap-12 lg:grid-cols-2">
+        {(filteredMentors && speciality ? filteredMentors : sortedMentors)?.map(
+          (mentor, index) => (
             <MentorCard
               key={index}
               mentor={mentor}
@@ -124,67 +118,63 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
               }
               openModal={() => setIsModalOpen(true)}
             />
-          ))}
-        </div>
-      </div>
+          ),
+        )}
+      </ul>
+
       <SimpleModal
         isOpen={isModalOpen}
         close={() => setIsModalOpen(false)}
         title="¡Oh no!"
-        titleClasses="text-red-600 mt-2 ml-2"
+        titleClasses="text-red-600"
         buttonLabel="Entiendo"
-        buttonClasses="text-primary"
+        buttonClasses=""
         footer={
           !session && (
             <button
               type="button"
-              className="flex items-center mt-2 btn btn-secondary lg:mt-0 lg:ml-10 "
+              className="btn btn-secondary flex items-center gap-2"
               style={{ transition: 'all .15s ease' }}
               onClick={() => signIn('discord')}
             >
               Iniciar sesión
-              <FontAwesomeIcon icon={faDiscord} width="15px" className="ml-2" />
+              <FontAwesomeIcon icon={faDiscord} width="15px" />
             </button>
           )
         }
       >
-        <div className="px-2 overflow-auto text-lg text-zinc-100">
-          {!session && (
-            <p>
-              Para poder solicitar una mentoría primero debes iniciar sesión.
-            </p>
-          )}
-          {session && warnings > 0 && (
-            <p>
-              Tienes penalizaciones en mentorías anteriores, si crees que es un
-              error{' '}
-              <a
-                target="_blank"
-                href="https://discord.com/channels/594363964499165194/897161654377271346"
-                rel="noreferrer"
-                className="hover:text-greenFec underline"
-              >
-                contáctanos.
-              </a>
-            </p>
-          )}
-          {session && warnings === 0 && mentorships > 4 && (
-            <p>
-              Has llegado al límite de mentorías por mes, si crees que es un
-              error{' '}
-              <a
-                target="_blank"
-                href="https://discord.com/channels/594363964499165194/897161654377271346"
-                rel="noreferrer"
-                className="hover:text-greenFec underline"
-              >
-                contáctanos.
-              </a>
-            </p>
-          )}
-        </div>
+        {!session && (
+          <p>Para poder solicitar una mentoría primero debes iniciar sesión.</p>
+        )}
+        {session && warnings > 0 && (
+          <p>
+            Tienes penalizaciones en mentorías anteriores, si crees que es un
+            error{' '}
+            <a
+              target="_blank"
+              href="https://discord.com/channels/594363964499165194/897161654377271346"
+              rel="noreferrer"
+              className="underline hover:text-greenFec"
+            >
+              contáctanos.
+            </a>
+          </p>
+        )}
+        {session && warnings === 0 && mentorships > 4 && (
+          <p>
+            Has llegado al límite de mentorías por mes, si crees que es un error
+            <a
+              target="_blank"
+              href="https://discord.com/channels/594363964499165194/897161654377271346"
+              rel="noreferrer"
+              className="underline hover:text-greenFec"
+            >
+              contáctanos.
+            </a>
+          </p>
+        )}
       </SimpleModal>
-    </div>
+    </section>
   );
 };
 

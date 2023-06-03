@@ -40,7 +40,7 @@
   }
 
   .input {
-    @apply w-full px-3 py-2 text-sm leading-tight border rounded appearance-none bg-zinc-900 text-secondary border-zinc-600;
+    @apply w-full appearance-none rounded border border-zinc-600 bg-zinc-900 px-3 py-2 text-sm leading-tight text-secondary;
   }
 }
 
@@ -54,11 +54,11 @@
 }
 
 .filter-selector .react-select__menu {
-  @apply border bg-zinc-900 border-zinc-500 text-primary;
+  @apply border border-zinc-500 bg-zinc-900 text-primary;
 }
 
 .filter-selector .react-select__control {
-  @apply bg-zinc-900 border-zinc-500 text-tertiary;
+  @apply border-zinc-500 bg-zinc-900 text-tertiary;
 }
 
 .filter-selector .react-select__option--is-focused {
@@ -84,11 +84,11 @@
 }
 
 .form-user .react-select__menu {
-  @apply border bg-zinc-900 border-zinc-700 text-primary;
+  @apply border border-zinc-700 bg-zinc-900 text-primary;
 }
 
 .form-user .react-select__control {
-  @apply bg-zinc-900 border-zinc-700 text-tertiary;
+  @apply border-zinc-700 bg-zinc-900 text-tertiary;
 }
 
 .form-user .react-select__option--is-focused {

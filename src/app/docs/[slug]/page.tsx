@@ -1,9 +1,8 @@
-import { notFound } from 'next/navigation';
-
 import DocsRichText from '@/components/DocsRichText';
-import { AppPage } from '@/lib/types';
 import { getAllDocs, getDocBySlug } from '@/lib/api.server';
 import { getMetadata } from '@/lib/seo';
+import { AppPage } from '@/lib/types';
+import { notFound } from 'next/navigation';
 
 export const generateMetadata = async ({
   params,
@@ -32,9 +31,9 @@ const DocPage: AppPage<{ slug: string }> = async ({ params }) => {
   if (!doc) return notFound();
 
   return (
-    <div style={{ margin: 'auto', maxWidth: '675px', marginBottom: '100px' }}>
+    <section className="mx-auto max-w-prose">
       <DocsRichText body={doc.body} />
-    </div>
+    </section>
   );
 };
 

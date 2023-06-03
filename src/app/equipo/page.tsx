@@ -1,6 +1,6 @@
-import { getPageByName, getFecTeam } from '@/lib/api.server';
 import SectionHero from '@/components/SectionHero';
 import StaffCard from '@/components/StaffCard';
+import { getFecTeam, getPageByName } from '@/lib/api.server';
 import { getPageMetadata } from '@/lib/seo';
 
 export const generateMetadata = () => getPageMetadata('Equipo');
@@ -12,15 +12,12 @@ export default async function TeamPage() {
   ]);
 
   return (
-    <>
-      <SectionHero title={page.title} />
-      <div className="mb-20">
-        <div className="grid grid-cols-1 gap-8 px-6 py-5 text-secondary lg:pt-20 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 place-content-stretch">
-          {profiles?.map((profile, i) => (
-            <StaffCard index={i} profile={profile} key={profile._id} />
-          ))}
-        </div>
-      </div>
-    </>
+    <SectionHero title={page.title}>
+      <ul className="grid grid-cols-2 gap-x-8 gap-y-16 text-secondary md:grid-cols-3 lg:grid-cols-5 lg:pt-20">
+        {profiles?.map((profile, i) => (
+          <StaffCard index={i} profile={profile} key={profile._id} />
+        ))}
+      </ul>
+    </SectionHero>
   );
 }
