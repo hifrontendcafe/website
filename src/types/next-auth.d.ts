@@ -1,3 +1,4 @@
+import { roles } from '@/lib/constants';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import NextAuth from 'next-auth';
 
@@ -8,7 +9,7 @@ declare module 'next-auth' {
       name: string;
       email: string;
       image: string;
-      roles: string[];
+      roles: ReturnType<(typeof roles)['get']>[];
     };
   }
   interface Profile {

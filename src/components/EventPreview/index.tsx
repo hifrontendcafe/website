@@ -16,16 +16,21 @@ interface EventPreviewProps {
 const formatEventDate = (date: string | Date) => {
   return format(new Date(date), 'd  MMMM HH:mm ', { locale: es });
 };
-
+// TODO: Add correct types from Sanity (when install).
+// @ts-expect-error Incorrect Type
 function toPlainText(blocks) {
-  return blocks
-    ?.map((block) => {
-      if (block._type !== 'block' || !block.children) {
-        return '';
-      }
-      return block.children?.map((child) => child.text).join('');
-    })
-    .join('\n\n');
+  return (
+    blocks
+      // @ts-expect-error Incorrect Type
+      ?.map((block) => {
+        if (block._type !== 'block' || !block.children) {
+          return '';
+        }
+        // @ts-expect-error Incorrect Type
+        return block.children?.map((child) => child.text).join('');
+      })
+      .join('\n\n')
+  );
 }
 
 const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
@@ -45,7 +50,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
     endTime: endDate,
   };
 
-  const AddToCalendar = ({ event }) => {
+  const AddToCalendar = ({ event }: { event: typeof calendar }) => {
     const getTimezone = () => {
       const timezone = Intl.DateTimeFormat()
         .resolvedOptions()

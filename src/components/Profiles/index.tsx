@@ -3,7 +3,7 @@
 import ProfileList from '@/components/ProfileList';
 import FilterForm from '@/components/ProfilesFilterForm';
 import { Profile, Role, Seniority, Technology } from '@/lib/types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { SetStateAction, useEffect, useRef, useState } from 'react';
 import PaginationBar from './PaginationBar';
 import { useProfiles } from './useProfiles';
 
@@ -37,12 +37,12 @@ const Profiles: React.FC<PostsPageProps> = ({
 
   useEffect(() => {
     if (hasToScroll) {
-      profileListRef.current.scrollIntoView({ behavior: 'smooth' });
+      profileListRef.current?.scrollIntoView({ behavior: 'smooth' });
       setHasToScroll(false);
     }
   }, [hasToScroll]);
 
-  const moveToPage = (page: number) => {
+  const moveToPage = (page: SetStateAction<number>) => {
     setHasToScroll(true);
     setPage(page);
   };

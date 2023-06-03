@@ -62,24 +62,27 @@ const getType = (type: string) =>
 
 function makeQuery(filters: ProfileFilters): string {
   const queryFilters = Object.entries(filters)
-    .reduce((result, entry) => {
-      const [key, value] = entry;
+    .reduce(
+      (result, entry) => {
+        const [key, value] = entry as [keyof ProfileFilters, any];
 
-      if (
-        !value ||
-        (Array.isArray(value) && value.length === 0) ||
-        !sanityKeys[key]
-      )
-        return result;
+        if (
+          !value ||
+          (Array.isArray(value) && value.length === 0) ||
+          !sanityKeys[key]
+        )
+          return result;
 
-      const type = getType(sanityKeys[key].type);
+        const type = getType(sanityKeys[key].type);
 
-      const sKey = sanityKeys[key].value;
+        const sKey = sanityKeys[key].value;
 
-      const newValue = getParsedValue(sanityKeys[key], value);
+        const newValue = getParsedValue(sanityKeys[key], value);
 
-      return [...result, `${sKey} ${type} ${newValue}`];
-    }, [])
+        return [...result, `${sKey} ${type} ${newValue}`];
+      },
+      [''],
+    )
     .join(' && ');
 
   return `*[_type =='profile' && isActive == true ${

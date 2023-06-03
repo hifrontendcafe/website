@@ -33,7 +33,8 @@ const MentorCard: React.FC<MentorCardProps> = ({
   const [showToast, setShowToast] = useState(false);
 
   const findTopicsName = (id: string) => {
-    const topic = topics.find((e) => e._id == id);
+    const topic = topics.find((e) => e._id == id)!;
+
     return topic?.title;
   };
 

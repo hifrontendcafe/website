@@ -83,6 +83,7 @@ function getReferencedTweets(tweet: Tweets['data'][number], tweets: Tweets) {
 
       return {
         type: referencedTweet.type,
+        // @ts-expect-error Fix the return type if necessary
         author: getAuthorInfo(fullReferencedTweet.author_id, tweets),
         ...(fullReferencedTweet?.attachments?.media_keys && {
           media: getMediaInfo(
@@ -103,7 +104,7 @@ export const getEmbeddedTweets = async (): Promise<EmbeddedTweet[]> => {
   const tweetsWithoutReplies = tweets.data.filter(
     (tweet) => !tweet.in_reply_to_user_id,
   );
-
+  // @ts-expect-error Fix the return type if necessary
   return tweetsWithoutReplies.map((tweet) => {
     return {
       ...tweet,

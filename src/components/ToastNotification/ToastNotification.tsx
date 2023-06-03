@@ -38,8 +38,9 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
   const [didDismiss, setDidDismiss] = useState(false);
   const backgroundColorClass = getBackgroundColorClass(type);
   useEffect(() => {
-    let timeoutDismiss = null;
-    let timeoutHide = null;
+    let timeoutDismiss: NodeJS.Timeout;
+    let timeoutHide: NodeJS.Timeout;
+
     if (show) {
       timeoutHide = setTimeout(() => {
         setShow(false);
@@ -51,6 +52,7 @@ const ToastNotification: React.FC<ToastNotificationProps> = ({
           onDidDismiss?.();
         }, delayByAnimation);
     }
+
     return () => {
       clearTimeout(timeoutHide);
       clearTimeout(timeoutDismiss);

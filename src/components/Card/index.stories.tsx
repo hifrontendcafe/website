@@ -4,17 +4,6 @@ import { Card } from '.';
 const meta = {
   title: 'Components/Cards/Card',
   component: Card,
-  subcomponents: {
-    Header: Card.Header,
-    Image: Card.Image,
-    Headline: Card.Headline,
-    Title: Card.Title,
-    Body: Card.Body,
-    Paragraph: Card.Paragraph,
-    Actions: Card.Actions,
-    PrimaryAction: Card.PrimaryAction,
-    SecondaryAction: Card.SecondaryAction,
-  },
   tags: ['autodocs'],
 } satisfies Meta<typeof Card>;
 

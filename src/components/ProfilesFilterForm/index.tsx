@@ -14,7 +14,7 @@ interface FormProps {
 
 const maxTechnologies = 5;
 
-const isValidNewOption = (inputValue, selectValue) =>
+const isValidNewOption = (inputValue: string[], selectValue: string[]) =>
   inputValue.length > 0 && selectValue.length < maxTechnologies;
 
 const FilterForm: React.FC<FormProps> = ({
@@ -26,7 +26,7 @@ const FilterForm: React.FC<FormProps> = ({
 }) => {
   const router = useRouter();
 
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()!;
   const activesQuery = searchParams.get('activos');
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
@@ -123,7 +123,7 @@ const FilterForm: React.FC<FormProps> = ({
             filters.technologies?.length === maxTechnologies ? [] : technologies
           }
           noOptionsMessage={() => {
-            return filters.technologies.length === maxTechnologies
+            return filters.technologies?.length === maxTechnologies
               ? 'Has alcanzado el máximo de opciones'
               : 'No opciones disponibles';
           }}

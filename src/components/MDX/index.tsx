@@ -43,7 +43,7 @@ export const Link: React.FC<LinkProps> = ({ value, children }) => {
 
   return (
     <NextLink
-      href={value?.href}
+      href={value?.href ?? ''}
       className="my-0 font-medium transition duration-100 ease-in text-informational color hover:text-darkBlue hover:underline"
     >
       {children}

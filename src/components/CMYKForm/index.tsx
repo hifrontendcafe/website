@@ -1,6 +1,5 @@
 'use client';
 
-import { isChix } from '@/lib/haveRole';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/react';
@@ -42,7 +41,7 @@ export default function CMYKForm({
   const { data: session, status } = useSession();
   const loading = status === 'loading';
 
-  const searchParams = useSearchParams();
+  const searchParams = useSearchParams()!;
 
   const type = searchParams.get('type');
 
@@ -58,15 +57,16 @@ export default function CMYKForm({
     return currentTypeSelected ?? lastType;
   }, [type]);
 
-  const currentForm = formsTypes.find((form) => form.type === typeSelected);
+  const currentForm = formsTypes.find((form) => form.type === typeSelected)!;
 
   const tabStyle = `py-2 cursor-pointer text-tertiary w-1/3 flex justify-center border-b text-center`;
   const tabStyleActive = `py-2 font-semibold cursor-pointer text-zinc-100 w-1/3 flex justify-center border-b-4 border-zinc-100 text-center`;
 
   let shouldShowForm = cmykInscription;
+  const isChix = !!session && session.user.roles.includes('Chix');
 
   if (cmykInscriptionChix) {
-    shouldShowForm = isChix(session?.user?.roles);
+    shouldShowForm = isChix;
   }
 
   if (!shouldShowForm) {
@@ -104,7 +104,7 @@ export default function CMYKForm({
           type={currentForm.type}
           title={currentForm.title}
           cmykInscription={cmykInscription}
-          isChix={isChix(session?.user?.roles)}
+          isChix={isChix}
           isDisabled={currentForm.isDisabled}
         />
       </section>

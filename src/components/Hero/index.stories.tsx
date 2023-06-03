@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/react';
-import HeroComponent from './index';
+import HeroComponent from '.';
 
 const meta: Meta<typeof HeroComponent> = {
   component: HeroComponent,

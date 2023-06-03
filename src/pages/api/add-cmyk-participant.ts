@@ -29,7 +29,7 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
         linkedin: body.linkedIn,
       });
       // if User exists and is not registered as cmykParticipant, update it
-    } else if (user && user.cmykParticipant.length === 0) {
+    } else if (user && user.cmykParticipant?.length === 0) {
       newUser = await updatePerson(user._id, {
         username: body.discordUser,
         email: body.email,
@@ -42,12 +42,16 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
       });
     }
     // If user is not registered as cmykParticipant, register it
-    if (!user || user.cmykParticipant.length === 0) {
+    if (!user || user.cmykParticipant?.length === 0) {
       const newCMYKParticipant = await createCMYKParticipant({
         discordUser: {
           _type: 'reference',
           _ref:
-            !user || user.cmykParticipant.length === 0 ? newUser._id : user._id,
+            !user || user.cmykParticipant?.length === 0
+              ? // FIXME: This related types or refactor
+                // @ts-expect-error 'newUser' is possibly 'undefined'
+                newUser._id
+              : user._id,
         },
         participationType: body.participationType,
         isChix: body.isChix,
@@ -69,6 +73,8 @@ export default async function post(req: NextApiRequest, res: NextApiResponse) {
       status: 'already registered',
     });
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    if (error instanceof Error) {
+      return res.status(500).json({ message: error.message });
+    }
   }
 }

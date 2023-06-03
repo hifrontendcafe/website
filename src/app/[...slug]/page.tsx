@@ -8,7 +8,9 @@ export const generateStaticParams = () => {
   return [];
 };
 
-export const dynamicParams = true;
+// FIXME: https://github.com/vercel/next.js/issues/49489
+const dynamicParams = true;
+export { dynamicParams };
 
 const CustomPage: AppPage<{ slug: string[] }> = async ({ params }) => {
   const [base, ...rest] = params.slug;

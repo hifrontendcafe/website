@@ -1,9 +1,10 @@
 import createClient from '@sanity/client';
 import sanityImage from '@sanity/image-url';
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 export const config = {
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
+  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
   apiVersion: '2022-04-30',
   useCdn: process.env.NODE_ENV === 'production',
 };
@@ -17,6 +18,9 @@ export const postClient = createClient({
 });
 
 export const imageBuilder = sanityImage(client);
+const builder = sanityImage(client);
+
+export const urlFor = (source: SanityImageSource) => builder.image(source);
 
 export const previewClient = createClient({
   ...config,

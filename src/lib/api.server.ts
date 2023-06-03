@@ -4,7 +4,6 @@ import type {
   Doc,
   FeaturedCards,
   Page,
-  Post,
   Settings,
   Event,
   Person,
@@ -27,22 +26,12 @@ export const client = new SanityClient({
 
 export const getSettings = client.createApiUtil<Settings>('settingsQuery');
 
-export const getAllPosts = client.createApiUtil<Post[]>('postsQuery');
-
 export const getPageByPath = client.createApiUtil<Page, { path: string }>(
   'pageByPathQuery',
 );
 
 export const getAllFeaturedCards =
   client.createApiUtil<FeaturedCards[]>('featuredCardsQuery');
-
-export const getPost = client.createApiUtil<Post, { slug: string }>(
-  'postQuery',
-);
-
-export const getAllPostsSlugs = client.createApiUtil<string[]>(
-  `*[_type == "post" && defined(slug.current)][].slug.current`,
-);
 
 export const getAllDocs = client.createApiUtil<Doc[]>('docsQuery');
 

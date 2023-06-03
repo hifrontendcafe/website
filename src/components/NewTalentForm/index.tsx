@@ -1,14 +1,18 @@
 'use client';
 
-import type { Role, Seniority, Technology } from '@/lib/types';
-import { Profile, ReactGroup } from '@/lib/types';
+import type { Profile, Role, Seniority, Technology } from '@/lib/types';
 import emailjs from '@emailjs/browser';
 import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import {
+  useForm,
+  type FieldValues,
+  type SubmitErrorHandler,
+  type SubmitHandler,
+} from 'react-hook-form';
 import Resizer from 'react-image-file-resizer';
-import Select from 'react-select';
+import Select, { OptionsType } from 'react-select';
 
 type Technologies = Technology[];
 
@@ -80,7 +84,7 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
     formState: { errors },
   } = useForm();
   const [selectedTechnologies, setSelectedTechnologies] = useState<
-    Technology[]
+    OptionsType<Technology>
   >([]);
   const [photo, setPhoto] = useState('');
   const [userId, setUserId] = useState('');
@@ -88,12 +92,12 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
   const [message, setMessage] = useState({ error: false, text: '' });
   const [loadingForm, setLoadingForm] = useState(false);
 
-  const handleTechnologies = (techSelected: Technologies) => {
+  const handleTechnologies = (techSelected: OptionsType<Technology>) => {
     setSelectedTechnologies(techSelected);
   };
 
   useEffect(() => {
-    const fetchUser = async (uId) => {
+    const fetchUser = async (uId: string) => {
       setLoadingProfile(true);
       const response = await fetch(`/api/profiles/${uId}`);
 
@@ -123,25 +127,27 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
     }
   }, [session, setValue, loading]);
 
-  const handleFile = async (event) => {
-    const file = event.target.files[0];
+  const handleFile = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = event.target;
+    if (!files || files.length <= 0) return;
+    const file = files[0];
     if (file) {
       const image = await resizeFile(file);
       setPhoto(image as string);
     }
   };
 
-  const isValidNewOption = (inputValue, selectValue) =>
+  const isValidNewOption = (inputValue: string, selectValue: string) =>
     inputValue.length > 0 && selectValue.length < 5;
 
-  const onSubmit = async (data: ReactGroup) => {
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setLoadingForm(true);
     try {
       const body = {
         ...data,
         technologies: selectedTechnologies,
         photo,
-        discordId: session.user.id,
+        discordId: session?.user.id,
         id: userId,
       };
       await fetch('/api/profiles', {
@@ -168,7 +174,7 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
       'fec_gmail',
       'talentos_ingreso',
       {
-        user: session.user.name,
+        user: session?.user.name,
         id: userId,
       },
       process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
@@ -178,7 +184,8 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
     setTimeout(() => setMessage({ error: false, text: '' }), 5000);
   };
 
-  const onError = (errorsLog, e) => console.log(errorsLog, e);
+  const onError: SubmitErrorHandler<FieldValues> | undefined = (errorsLog, e) =>
+    console.log(errorsLog, e);
 
   if (loading && loadingProfile) {
     return (

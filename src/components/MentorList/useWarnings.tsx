@@ -8,7 +8,7 @@ export enum requestWarningsStates {
   ERROR = 'ERROR',
 }
 
-export function useWarnings(id: string) {
+export function useWarnings(id: string | undefined) {
   const [status, setStatus] = useState<requestWarningsStates>(
     requestWarningsStates.INITIAL,
   );

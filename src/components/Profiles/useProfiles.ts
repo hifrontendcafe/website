@@ -15,7 +15,7 @@ import queryString from 'query-string';
 function searchProfiles(filters: ProfileFilters) {
   const query = queryString.stringify({
     ...filters,
-    technologies: filters.technologies.map((t) => t._id),
+    technologies: filters.technologies?.map((t) => t._id),
   });
 
   return fetch(`/api/profiles/search?${query}`);
@@ -117,10 +117,8 @@ export function useProfiles(profiles: Profile[]): UseProfilesResult {
   }, [debouncedFilters]);
 
   const offset = (page - 1) * ITEMS_PER_PAGE;
-  const pageProfiles = filteredProfiles.profiles.slice(
-    offset,
-    offset + ITEMS_PER_PAGE,
-  );
+  const pageProfiles =
+    filteredProfiles.profiles?.slice(offset, offset + ITEMS_PER_PAGE) ?? [];
 
   return {
     filters,
