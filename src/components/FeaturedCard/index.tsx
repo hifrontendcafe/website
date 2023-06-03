@@ -5,7 +5,7 @@ import { FeaturedCards } from '../../lib/types';
 
 const FeaturedCard = ({ btnText, description, title, link }: FeaturedCards) => {
   return (
-    <div className="relative flex flex-col justify-between p-6 transition duration-300 ease-out border-2 border-zinc-500 shadow-lg hover:border-zinc-50 md:hover:scale-105 rounded-xl">
+    <div className="relative flex max-w-3xl flex-col justify-between rounded-xl border-2 border-zinc-500 p-6 shadow-lg transition duration-300 ease-out hover:border-zinc-50 md:hover:scale-105">
       <div>
         <h3 className="cards-title">{title}</h3>
         <p className="pt-5 pb-8 text-secondary lg:text-lg">{description}</p>
@@ -13,7 +13,7 @@ const FeaturedCard = ({ btnText, description, title, link }: FeaturedCards) => {
       {link && (
         <Link
           href={link}
-          className="after:absolute after:inset-0 after:content-[''] flex gap-2 items-center text-sm font-normal normal-case lg:text-lg text-informational hover:underline"
+          className="flex items-center gap-2 text-sm font-normal normal-case text-informational after:absolute after:inset-0 after:content-[''] hover:underline lg:text-lg"
         >
           {btnText}
           <span>

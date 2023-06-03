@@ -1,12 +1,12 @@
 'use client';
 
-import { useMemo } from 'react';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import { isChix } from '@/lib/haveRole';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
+import { useMemo } from 'react';
 import CMYKParticipantForm from '../CMYKParticipantForm';
 
 export type FormsCMYK = {
@@ -69,80 +69,60 @@ export default function CMYKForm({
     shouldShowForm = isChix(session?.user?.roles);
   }
 
+  if (!shouldShowForm) {
+    return (
+      <p className="mt-6 rounded-lg bg-blue-500 p-3 text-center text-lg font-bold text-secondary sm:leading-9">
+        Las inscripciones a CMYK 5 se encuentran cerradas
+      </p>
+    );
+  }
+
+  if (session && !loading) {
+    return (
+      <section className="mt-24 space-y-6">
+        <h2 className="text-center text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl">
+          ¡Es la hora, participá de los proyectos CMYK! &#x1F396;&#xFE0F;
+        </h2>
+        <ul className="mb-10 flex justify-center">
+          {formsTypes.map((form, index) => (
+            <li
+              className={form.type === typeSelected ? tabStyleActive : tabStyle}
+              key={String(index)}
+            >
+              <Link
+                replace
+                shallow
+                scroll={false}
+                href={`/inscripcion-cmyk/?type=${form.type}`}
+              >
+                {form.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+        <CMYKParticipantForm
+          type={currentForm.type}
+          title={currentForm.title}
+          cmykInscription={cmykInscription}
+          isChix={isChix(session?.user?.roles)}
+          isDisabled={currentForm.isDisabled}
+        />
+      </section>
+    );
+  }
+
   return (
-    <div>
-      {shouldShowForm ? (
-        <div className="overflow-hidden  rounded-lg">
-          <div className="pt-10 md:pt-15 lg:pt-20 md:py-5">
-            {session && !loading ? (
-              <>
-                <div className="flex flex-col justify-center items-left">
-                  <h2 className="text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
-                    ¡Es la hora, participá de los proyectos CMYK!
-                    &#x1F396;&#xFE0F;
-                  </h2>
-                </div>
-                <ul className="flex flex-row justify-center mt-6 mb-10 w-full">
-                  {formsTypes.map((form, index) => (
-                    <li
-                      className={
-                        form.type === typeSelected ? tabStyleActive : tabStyle
-                      }
-                      key={String(index)}
-                    >
-                      <Link
-                        replace
-                        shallow
-                        scroll={false}
-                        className="w-full h-full"
-                        href={`/inscripcion-cmyk/?type=${form.type}`}
-                      >
-                        {form.title}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </>
-            ) : (
-              <div className="flex flex-col items-center justify-center">
-                <h2 className="text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl sm:leading-9 sm:truncate">
-                  ¡Es la hora, inicia sesión para poder inscribirte!
-                </h2>
-                <button
-                  className="flex self-center my-6 btn btn-secondary "
-                  style={{ transition: 'all .15s ease' }}
-                  onClick={() => signIn('discord')}
-                >
-                  Iniciar sesión
-                  <FontAwesomeIcon
-                    icon={faDiscord}
-                    width="15px"
-                    className="ml-2"
-                  />
-                </button>
-              </div>
-            )}
-          </div>
-          {session && !loading && (
-            <CMYKParticipantForm
-              type={currentForm.type}
-              title={currentForm.title}
-              cmykInscription={cmykInscription}
-              isChix={isChix(session?.user?.roles)}
-              isDisabled={currentForm.isDisabled}
-            />
-          )}
-        </div>
-      ) : (
-        <div
-          className="rounded-lg overflow-hidden mx-auto inset-x-0 flex justify-center items-center
-                   bg-blue-500 text-primary text-sm font-bold px-4 py-3 my-6"
-        >
-          <p className="mx-auto text-lg font-bold text-center text-secondary sm:leading-9 sm:truncate">
-            Las inscripciones a CMYK 5 se encuentran cerradas
-          </p>
-        </div>
-      )}
-    </div>
+    <section className="mt-24 space-y-6">
+      <h2 className="text-center text-2xl font-bold leading-7 text-secondary md:text-3xl lg:text-4xl">
+        ¡Es la hora, inicia sesión para poder inscribirte!
+      </h2>
+      <button
+        className="btn btn-secondary mx-auto"
+        onClick={() => signIn('discord')}
+      >
+        Iniciar sesión
+        <FontAwesomeIcon icon={faDiscord} />
+      </button>
+    </section>
   );
 }

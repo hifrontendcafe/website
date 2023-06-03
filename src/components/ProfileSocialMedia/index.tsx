@@ -14,47 +14,55 @@ type Props = {
 type SocialMedia = {
   [name: string]: string;
 };
-
+// TODO: Refactor and re-use
 const ProfileSocialMedia: React.FC<Props> = ({ socialMedia }) => {
   return (
-    <div className="flex items-center space-x-2">
+    <ul className="flex items-center gap-2">
       {socialMedia.twitter && (
-        <Link
-          href={socialMedia.twitter}
-          target="_blank"
-          className="flex items-center justify-center w-8 h-8 rounded-full text-primary bg-zinc-700"
-        >
-          <FontAwesomeIcon className="w-4 h-4" icon={faTwitter} />
-        </Link>
+        <li>
+          <Link
+            href={socialMedia.twitter}
+            target="_blank"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700 text-primary"
+          >
+            <FontAwesomeIcon className="h-4 w-4" icon={faTwitter} />
+          </Link>
+        </li>
       )}
       {socialMedia.web && (
-        <Link
-          href={socialMedia.web}
-          target="_blank"
-          className="flex items-center justify-center w-8 h-8 rounded-full text-primary bg-zinc-700"
-        >
-          <FontAwesomeIcon className="w-4 h-4 " icon={faGlobe} />
-        </Link>
+        <li>
+          <Link
+            href={socialMedia.web}
+            target="_blank"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700 text-primary"
+          >
+            <FontAwesomeIcon className="h-4 w-4 " icon={faGlobe} />
+          </Link>
+        </li>
       )}
       {socialMedia.linkedin && (
-        <Link
-          href={socialMedia.linkedin}
-          target="_blank"
-          className="flex items-center justify-center w-8 h-8 rounded-full text-primary bg-zinc-700"
-        >
-          <FontAwesomeIcon className="w-4 h-4" icon={faLinkedinIn} />
-        </Link>
+        <li>
+          <Link
+            href={socialMedia.linkedin}
+            target="_blank"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700 text-primary"
+          >
+            <FontAwesomeIcon className="h-4 w-4" icon={faLinkedinIn} />
+          </Link>
+        </li>
       )}
       {socialMedia.github && (
-        <Link
-          href={socialMedia.github}
-          target="_blank"
-          className="flex items-center justify-center w-8 h-8 rounded-full text-primary bg-zinc-700"
-        >
-          <FontAwesomeIcon className="w-4 h-4" icon={faGithub} />
-        </Link>
+        <li>
+          <Link
+            href={socialMedia.github}
+            target="_blank"
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700 text-primary"
+          >
+            <FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
+          </Link>
+        </li>
       )}
-    </div>
+    </ul>
   );
 };
 

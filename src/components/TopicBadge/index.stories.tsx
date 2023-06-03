@@ -25,7 +25,7 @@ export const MultipleBadge: Story = {
   decorators: [
     (Story) => {
       return (
-        <ul>
+        <ul className="flex flex-wrap gap-2">
           {['Frontend', 'UI/UX', 'Storybook', 'Sanity'].map((tag) => (
             <Story key={tag} args={{ topic: tag }} />
           ))}

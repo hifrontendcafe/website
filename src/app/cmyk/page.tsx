@@ -1,10 +1,10 @@
+import CMYKEditions from '@/components/CMYKEditions';
+import CMYKEditionsSkeleton from '@/components/CMYKEditions/Skeleton';
 import SectionHero from '@/components/SectionHero';
 import { getPageByName } from '@/lib/api.server';
-import type { AppPage } from '@/lib/types';
 import { getPageMetadata } from '@/lib/seo';
-import CMYKEditions from '@/components/CMYKEditions';
+import type { AppPage } from '@/lib/types';
 import { Suspense } from 'react';
-import CMYKEditionsSkeleton from '@/components/CMYKEditions/Skeleton';
 
 export const generateMetadata = () => getPageMetadata('CMYK');
 

@@ -12,12 +12,14 @@ const NavItem: React.FC<NavItemProps> = ({ title, link }) => {
   const pathname = usePathname();
   const isActive = pathname === `${link}`;
 
-  const linkClasses = isActive ? 'text-primary lg:border-b-4' : 'text-tertiary';
-
   return (
     <Link
       href={link}
-      className={`${linkClasses} pb-4 border-greenFec w-full mx-2 py-4 font-medium  md:w-auto hover:text-primary`}
+      className={`${
+        isActive
+          ? 'border-l-greenFec lg:border-t-greenFec lg:border-l-transparent'
+          : 'text-tertiary'
+      } block border-[6px] border-transparent px-2 py-4 font-medium transition-colors ease-out hover:bg-greenFec/5 hover:text-primary lg:rounded-b-xl lg:pb-2 lg:pt-3`}
     >
       {title}
     </Link>

@@ -19,19 +19,19 @@ type CardSubcomponents = {
 };
 
 const Card: React.FC<Props> & CardSubcomponents = ({ children }) => (
-  <div className="flex flex-col justify-between h-full p-4 bg-zinc-800 rounded-md shadow-lg">
+  <div className="flex h-full max-w-3xl flex-col justify-between rounded-md bg-zinc-800 p-4 shadow-lg">
     {children}
   </div>
 );
 
 const CardHeader: React.FC<Props> = ({ children }) => (
-  <div className="flex flex-col w-full mb-1">{children}</div>
+  <div className="mb-1 flex w-full flex-col">{children}</div>
 );
 
 const CardImage: React.FC<ImageProps> = ({ className, src, ...props }) => (
-  <div className="mb-2 relative h-40 w-full">
+  <div className="relative mb-2 h-40 w-full">
     <Image
-      className={`object-cover w-full h-40 rounded-sm ${className}`}
+      className={`h-40 w-full rounded-sm object-cover ${className}`}
       placeholder="blur"
       blurDataURL={
         /* Would rather use FEC's logo form Sanity */ '/logotype-fec.svg'
@@ -45,9 +45,7 @@ const CardImage: React.FC<ImageProps> = ({ className, src, ...props }) => (
 );
 
 const CardHeadline: React.FC<Props> = ({ children }) => (
-  <p className="text-sm font-medium tracking-widest text-primary title-font">
-    {children}
-  </p>
+  <p className="tracking-widest title-font text-sm font-medium">{children}</p>
 );
 
 const CardTitle: React.FC<Props> = ({ children }) => (
@@ -59,11 +57,17 @@ const CardBody: React.FC<Props> = ({ children }) => <div>{children}</div>;
 const CardParagraph: React.FC<Props & ParagraphProps> = ({
   children,
   className = '',
-}) => <p className={`cards-paragraph ${className}`}>{children}</p>;
+}) => (
+  <p
+    className={`text-sm font-light text-secondary md:text-base lg:text-lg ${className}`}
+  >
+    {children}
+  </p>
+);
 
 const CardActions: React.FC<Props> = ({ children }) => (
-  <div className="flex items-end flex-grow w-full mt-5">
-    <div className="flex justify-between w-full gap-4">{children}</div>
+  <div className="mt-5 flex w-full flex-grow items-end">
+    <div className="flex w-full justify-between gap-4">{children}</div>
   </div>
 );
 
@@ -75,7 +79,7 @@ const CardAction: React.FC<Props & CardActionProps> = ({
 }) => (
   <Link
     href={href}
-    className={`text-center btn w-full ${className}`}
+    className={`btn w-full text-center ${className}`}
     target="_blank"
     rel="noopener noreferrer"
     {...props}

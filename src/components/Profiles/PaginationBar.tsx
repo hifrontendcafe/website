@@ -1,7 +1,6 @@
-import React, { Dispatch, SetStateAction } from 'react';
-
 import { faArrowLeft, faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React, { Dispatch, SetStateAction } from 'react';
 
 interface PaginationBarProps {
   page: number;
@@ -17,10 +16,10 @@ const PaginationBar: React.FC<PaginationBarProps> = ({
   totalProfiles,
 }) => {
   return (
-    <div className="flex items-center justify-between my-4 text-primary">
+    <div className="flex items-center justify-between">
       <div className="flex items-center">
         <button
-          className="disabled:opacity-50 hover:text-greenFec"
+          className="hover:text-greenFec disabled:opacity-50"
           disabled={page === 1}
           onClick={() => setPage((page) => page - 1)}
         >
@@ -30,7 +29,7 @@ const PaginationBar: React.FC<PaginationBarProps> = ({
           Página {page} de {pagesCount}
         </span>
         <button
-          className="disabled:opacity-50 hover:text-greenFec"
+          className="hover:text-greenFec disabled:opacity-50"
           disabled={page === pagesCount}
           onClick={() => setPage((page) => page + 1)}
         >

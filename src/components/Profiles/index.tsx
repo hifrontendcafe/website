@@ -1,13 +1,11 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
-
-import { Profile, Role, Seniority, Technology } from '@/lib/types';
-import { useProfiles } from './useProfiles';
-
-import FilterForm from '@/components/ProfilesFilterForm';
 import ProfileList from '@/components/ProfileList';
+import FilterForm from '@/components/ProfilesFilterForm';
+import { Profile, Role, Seniority, Technology } from '@/lib/types';
+import React, { useEffect, useRef, useState } from 'react';
 import PaginationBar from './PaginationBar';
+import { useProfiles } from './useProfiles';
 
 interface PostsPageProps {
   profiles: Profile[];
@@ -50,8 +48,8 @@ const Profiles: React.FC<PostsPageProps> = ({
   };
 
   return (
-    <div className="min-h-screen mx-auto">
-      <div ref={profileListRef} className="mb-24 max-w">
+    <section className="space-y-24">
+      <div ref={profileListRef}>
         <FilterForm
           filters={filters}
           dispatch={dispatchFilter}
@@ -71,7 +69,7 @@ const Profiles: React.FC<PostsPageProps> = ({
         setPage={moveToPage}
         totalProfiles={totalProfiles}
       />
-    </div>
+    </section>
   );
 };
 

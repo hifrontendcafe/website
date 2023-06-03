@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import FeaturedCard from '.';
 
 const meta = {
+  title: 'Components/Cards/Featured Card',
   component: FeaturedCard,
   args: {
     btnText: 'Visit page',

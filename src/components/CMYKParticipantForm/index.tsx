@@ -75,7 +75,7 @@ const CMYKParticipantForm: React.FC<
   };
 
   return isDisabled ? (
-    <h4 className="px-4 font-medium text-white">
+    <p className="mx-auto max-w-prose font-medium">
       Las inscripciones para participar como desarrollador en CMYK han
       finalizado. Pero todavía te puedes inscribir para participar como{' '}
       <Link
@@ -88,15 +88,15 @@ const CMYKParticipantForm: React.FC<
         Líder
       </Link>{' '}
       de un equipo.
-    </h4>
+    </p>
   ) : (
-    <div className="flex flex-col w-full">
-      <h4 className="mb-6 px-4 font-medium text-white">
+    <section className="space-y-6">
+      <p className="font-medium">
         {type === 'lider'
           ? 'Si querés sumar experiencia liderando y coordinando un equipo, tener contacto directo con mentors especializados y con el equipo de diseño. Este es tu formulario. Solo necesitas:'
           : 'Si necesitas participar de un proyecto simulando lo más cercano el día a día laboral, sumar experiencia de trabajo en equipo. Este es tu formulario. Solo necesitas:'}
-      </h4>
-      <ul className="mb-6 px-4 text-white">
+      </p>
+      <ul className="px-4">
         <li>- Perfil de Linkedin.</li>
         {type === 'lider' ? (
           <>
@@ -121,7 +121,7 @@ const CMYKParticipantForm: React.FC<
       </ul>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex flex-col w-full grid-cols-2 gap-5 p-4 border-2 rounded border-zinc-600 text-tertiary sm:px-8 sm:pt-6 sm:pb-8 md:grid bg-zinc-900"
+        className="flex w-full grid-cols-2 flex-col gap-5 rounded border-2 border-zinc-600 bg-zinc-900 p-4 text-tertiary sm:px-8 sm:pt-6 sm:pb-8 md:grid"
       >
         <input
           type="text"
@@ -132,7 +132,7 @@ const CMYKParticipantForm: React.FC<
         />
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
+          <label className="mb-2 block text-sm font-bold">
             Usuario de Discord
           </label>
           <div className="relative">
@@ -151,7 +151,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Email*</label>
+          <label className="mb-2 block text-sm font-bold">Email*</label>
           <input
             className="input focus:outline-none focus:ring"
             type="email"
@@ -166,7 +166,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Nombre*</label>
+          <label className="mb-2 block text-sm font-bold">Nombre*</label>
           <input
             className="input focus:outline-none focus:ring"
             type="text"
@@ -180,7 +180,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Apellido*</label>
+          <label className="mb-2 block text-sm font-bold">Apellido*</label>
           <input
             className="input focus:outline-none focus:ring"
             type="text"
@@ -194,7 +194,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Zona horaria</label>
+          <label className="mb-2 block text-sm font-bold">Zona horaria</label>
           <select
             id="timezone"
             {...register('timezone', { required: true })}
@@ -215,7 +215,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Github*</label>
+          <label className="mb-2 block text-sm font-bold">Github*</label>
           <input
             className="input focus:outline-none focus:ring"
             type="url"
@@ -229,7 +229,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">Twitter</label>
+          <label className="mb-2 block text-sm font-bold">Twitter</label>
           <input
             className="input focus:outline-none focus:ring"
             type="url"
@@ -240,7 +240,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">LinkedIn*</label>
+          <label className="mb-2 block text-sm font-bold">LinkedIn*</label>
           <input
             className="input focus:outline-none focus:ring"
             type="url"
@@ -251,7 +251,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
+          <label className="mb-2 block text-sm font-bold">
             {type === 'lider'
               ? '¿Ya tienes experiencia liderando un equipo?*'
               : '¿Ya tienes experiencia laboral en IT?*'}
@@ -271,7 +271,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
+          <label className="mb-2 block text-sm font-bold">
             Experiencia laboral*
           </label>
           <select
@@ -300,7 +300,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
+          <label className="mb-2 block text-sm font-bold">
             ¿Te interesa front (React) o back (Node/Express)?*
           </label>
           <select
@@ -319,7 +319,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
+          <label className="mb-2 block text-sm font-bold">
             Disponibilidad horaria*
           </label>
           <select
@@ -338,7 +338,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
+          <label className="mb-2 block text-sm font-bold">
             ¿Que proyecto te interesa más?*
           </label>
           <select
@@ -359,7 +359,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
+          <label className="mb-2 block text-sm font-bold">
             Conocimientos previos*
           </label>
           <textarea
@@ -374,7 +374,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
+          <label className="mb-2 block text-sm font-bold">
             {type === 'lider'
               ? 'Cuéntanos algo sobre ti y por qué te interesa liderar un equipo*'
               : 'Cuéntanos algo sobre ti y por qué te interesa participar*'}
@@ -391,7 +391,7 @@ const CMYKParticipantForm: React.FC<
         </div>
 
         <div className="mb-4">
-          <label className="block mb-2 text-sm font-bold">
+          <label className="mb-2 block text-sm font-bold">
             ¿Tienes alguna duda que quieras comunicarnos?
           </label>
           <textarea
@@ -405,7 +405,7 @@ const CMYKParticipantForm: React.FC<
           <div className="flex justify-end">
             <button
               type="submit"
-              className="inline-flex justify-center btn btn-primary"
+              className="btn btn-primary inline-flex justify-center"
               disabled={isSuccess}
             >
               {isLoading ? 'Enviando...' : 'Enviar registro'}
@@ -419,13 +419,13 @@ const CMYKParticipantForm: React.FC<
                   : isInfo
                   ? 'bg-amber-500'
                   : 'bg-emerald-500'
-              } text-primary rounded text-sm font-bold px-4 py-3 mt-5 transition-all duration-500 ease-in-out ${
+              } mt-5 rounded px-4 py-3 text-sm font-bold transition-all duration-500 ease-in-out ${
                 isSuccess || isError || isInfo ? 'opacity-100' : 'opacity-0'
               }`}
               role="alert"
             >
               <svg
-                className="w-4 h-4 mr-2 fill-current"
+                className="mr-2 h-4 w-4 fill-current"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
               >
@@ -440,7 +440,7 @@ const CMYKParticipantForm: React.FC<
           )}
         </div>
       </form>
-    </div>
+    </section>
   );
 };
 

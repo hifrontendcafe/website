@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import CMYKItemCard from '.';
 
 const meta = {
+  title: 'Components/Cards/CMYK Item Card',
   component: CMYKItemCard,
   args: {},
   tags: ['autodocs'],
@@ -18,7 +19,8 @@ export const Default: Story = {
       cmykVersion: '0',
       color: '',
       demo: '#url',
-      description: 'Project description',
+      description:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error vitae repellat dolores iste, maxime neque delectus, debitis ipsa omnis architecto a earum eaque, reprehenderit sequi atque eius voluptate expedita laboriosam!',
       github: '#repository',
       image: {
         src: 'https://placehold.co/400x200',

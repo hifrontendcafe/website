@@ -1,13 +1,11 @@
-import { useMemo } from 'react';
+import Timezones from '@/lib/completeTimezones.json';
+import { imageBuilder } from '@/lib/sanity';
+import type { Event } from '@/lib/types';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
-
-import type { Event } from '@/lib/types';
-import { imageBuilder } from '@/lib/sanity';
-import Timezones from '@/lib/completeTimezones.json';
-
+import { useMemo } from 'react';
 import { Card } from '../Card';
-import { FlagImage, TimeText, RichTextBody } from './Client';
+import { FlagImage, RichTextBody, TimeText } from './Client';
 
 interface EventPreviewProps {
   event: Event;
@@ -86,9 +84,10 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
     <Card>
       <Card.Header>
         <Card.Image
-          src={cover.width(400).height(160).url()}
+          src={cover.width(400).height(225).url()}
           alt={event.cover.alt || event.title}
-          className="w-full max-w-full object-cover"
+          width={400}
+          height={225}
           blurDataURL={cover.width(20).url()}
         />
 

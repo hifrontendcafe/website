@@ -8,10 +8,8 @@ interface MenuBtnProps {
 const MenuBtn: React.FC<MenuBtnProps> = ({ isOpen, onClick }) => {
   return (
     <button
-      className={`block hamburger lg:hidden focus:outline-none ${
-        isOpen ? 'open' : ''
-      }`}
-      aria-label="Menu"
+      className={`hamburger lg:hidden ${isOpen ? 'open' : ''}`}
+      aria-label={`${isOpen ? 'Cerrar' : 'Abrir'} menú de navegación`}
       type="button"
       onClick={onClick}
     >
