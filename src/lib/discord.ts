@@ -1,3 +1,5 @@
+import { FrontendCafeId } from './constants';
+
 const urlBaseAPIDiscord = 'https://discord.com/api';
 const urlBaseCDNDiscord = 'https://cdn.discordapp.com/';
 const urlversionAPIDiscord = '/v9';
@@ -5,7 +7,7 @@ const urlversionAPIDiscord = '/v9';
 export const urlAPIDiscordEvents =
   urlBaseAPIDiscord +
   urlversionAPIDiscord +
-  '/guilds/594363964499165194/scheduled-events';
+  `/guilds/${FrontendCafeId}/scheduled-events`;
 
 function get(url: string) {
   const token = process.env.DISCORD_TOKEN;

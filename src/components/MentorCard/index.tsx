@@ -1,3 +1,5 @@
+import { FrontendCafeId } from '@/lib/constants';
+import type { DiscordEvent, Mentor, Topic } from '@/lib/types';
 import {
   faGithub,
   faLinkedinIn,
@@ -11,7 +13,6 @@ import Link from 'next/link';
 import { useState } from 'react';
 import ToastNotification from '../../components/ToastNotification/ToastNotification';
 import { getNameForId } from '../../lib/mentors';
-import { Mentor, Topic } from '../../lib/types';
 import TopicBadge from '../TopicBadge';
 
 interface MentorCardProps {
@@ -19,6 +20,7 @@ interface MentorCardProps {
   topics: Topic[];
   canBookAMentorship: boolean;
   openModal: () => void;
+  event: DiscordEvent | undefined;
 }
 
 const MentorCard: React.FC<MentorCardProps> = ({
@@ -26,6 +28,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
   topics,
   canBookAMentorship,
   openModal,
+  event,
 }) => {
   const isActive = mentor.status === 'ACTIVE';
   const isUnavailable = mentor.status === 'NOT_AVAILABLE';
@@ -79,13 +82,17 @@ const MentorCard: React.FC<MentorCardProps> = ({
             >
               No disponible
             </button>
-          ) : isActive && mentor.calendly && canBookAMentorship ? (
+          ) : isActive && (event || (mentor.calendly && canBookAMentorship)) ? (
             <Link
-              href={mentor.calendly}
+              href={
+                event
+                  ? `https://discord.com/events/${FrontendCafeId}/${event.id}`
+                  : mentor.calendly
+              }
               target="_blank"
               className="text-md btn border border-zinc-50 capitalize hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
             >
-              Solicitar mentoría
+              {event ? 'Asistir a mentoría' : 'Solicitar mentoría'}
             </Link>
           ) : (
             <button
