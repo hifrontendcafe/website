@@ -78,7 +78,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
             <button
               type="button"
               disabled
-              className="text-md btn btn-secondary cursor-not-allowed capitalize"
+              className="btn btn-secondary cursor-not-allowed"
             >
               No disponible
             </button>
@@ -90,7 +90,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   : mentor.calendly
               }
               target="_blank"
-              className="text-md btn border border-zinc-50 capitalize hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+              className="btn border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
             >
               {event ? 'Asistir a mentoría' : 'Solicitar mentoría'}
             </Link>
@@ -98,7 +98,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
             <button
               type="button"
               onClick={() => openModal()}
-              className="text-md btn border border-zinc-50 capitalize hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+              className="btn border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
             >
               Solicitar mentoría
             </button>
