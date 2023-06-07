@@ -112,7 +112,13 @@ export interface Mentor {
   linkedin: string;
   github: string;
   twitter?: string;
-  topics: Topic[];
+  // FIXME: Topics are not allways like this
+  topics: [
+    {
+      _key: string;
+      _ref: string;
+    },
+  ];
 }
 
 export interface CMYK {

@@ -1,4 +1,4 @@
-import { Topic } from '@/app/mentorias/[id]/perfil/page';
+import { Topic } from '@/lib/types';
 import { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/testing-library';
 import Combobox from '.';

@@ -58,8 +58,9 @@ export const getAllCMYKProjects = client.createApiUtil<CMYK[]>('cmykQuery');
 export const getProfile = client.createApiUtil<Profile, { id: string }>(
   'profileQuery',
 );
-
-export const getMentor = client.createApiUtil<Mentor | null, { id: string }>(
+// FIXME: Mentor>topics type
+type TMentor = Omit<Mentor, 'topics'> & { topics: Topic[] };
+export const getMentor = client.createApiUtil<TMentor | null, { id: string }>(
   'mentorQuery',
 );
 
