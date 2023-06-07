@@ -12,7 +12,7 @@ import {
   type SubmitHandler,
 } from 'react-hook-form';
 import Resizer from 'react-image-file-resizer';
-import Select, { OptionsType } from 'react-select';
+import Select, { type MultiValue } from 'react-select';
 
 type Technologies = Technology[];
 
@@ -84,7 +84,7 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
     formState: { errors },
   } = useForm();
   const [selectedTechnologies, setSelectedTechnologies] = useState<
-    OptionsType<Technology>
+    MultiValue<Technology>
   >([]);
   const [photo, setPhoto] = useState('');
   const [userId, setUserId] = useState('');
@@ -92,7 +92,7 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
   const [message, setMessage] = useState({ error: false, text: '' });
   const [loadingForm, setLoadingForm] = useState(false);
 
-  const handleTechnologies = (techSelected: OptionsType<Technology>) => {
+  const handleTechnologies = (techSelected: MultiValue<Technology>) => {
     setSelectedTechnologies(techSelected);
   };
 
@@ -136,9 +136,6 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
       setPhoto(image as string);
     }
   };
-
-  const isValidNewOption = (inputValue: string, selectValue: string) =>
-    inputValue.length > 0 && selectValue.length < 5;
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     setLoadingForm(true);
@@ -401,7 +398,6 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
                 placeholder=""
                 value={selectedTechnologies}
                 onChange={handleTechnologies}
-                isValidNewOption={isValidNewOption}
                 getOptionLabel={(option) => option.name}
                 getOptionValue={(option) => option._id}
                 options={selectedTechnologies.length === 5 ? [] : technologies}
