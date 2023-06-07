@@ -59,6 +59,10 @@ export const getProfile = client.createApiUtil<Profile, { id: string }>(
   'profileQuery',
 );
 
+export const getMentor = client.createApiUtil<Mentor | null, { id: string }>(
+  'mentorQuery',
+);
+
 export const getMentoringTopics =
   client.createApiUtil<Topic[]>('mentorsTopicsQuery');
 

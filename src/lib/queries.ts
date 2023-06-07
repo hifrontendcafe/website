@@ -115,6 +115,22 @@ export const eventsSettingsQuery = groq`
   }
 `;
 
+export const mentorQuery = groq`
+  *[_type == 'mentor' && persona-> discordID.current == $id][0] {
+    _id,
+    name,
+    description,
+    photo,
+    status,
+    web,
+    calendly,
+    github,
+    twitter,
+    linkedin,
+    topics[]->
+  }
+`;
+
 export const mentorsTopicsQuery = groq`
   *[_type == "topic"] | order(date desc) {
     topics,
