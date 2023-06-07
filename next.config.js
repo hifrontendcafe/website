@@ -12,6 +12,7 @@ module.exports = {
   },
   experimental: {
     appDir: true,
+    serverActions: true,
   },
   swcMinify: true,
 };
