@@ -99,6 +99,7 @@ export interface EventsSettings {
 }
 
 export interface Mentor {
+  _id: string;
   name: string;
   description: string;
   photo: {
@@ -111,12 +112,7 @@ export interface Mentor {
   linkedin: string;
   github: string;
   twitter?: string;
-  topics: [
-    {
-      _key: string;
-      _ref: string;
-    },
-  ];
+  topics: Topic[];
 }
 
 export interface CMYK {
