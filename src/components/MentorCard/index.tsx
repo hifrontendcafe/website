@@ -5,7 +5,11 @@ import {
   faLinkedinIn,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons';
-import { faChain, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import {
+  faChain,
+  faGlobe,
+  faCalendarDay,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -59,7 +63,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       initial={{ y: 100, opacity: 0 }}
       animate={{ y: 0, opacity: isActive ? 1 : 0.66 }}
       exit={{ y: -100, opacity: 0 }}
-      className="flex max-w-3xl snap-y scroll-m-16 flex-col gap-4 rounded-lg bg-zinc-800 p-6"
+      className="flex max-w-3xl snap-y scroll-m-16 flex-col gap-4 rounded-lg bg-zinc-800 p-3 md:p-6"
       id={mentorNameForId}
     >
       <div className="flex justify-between gap-4">
@@ -73,12 +77,35 @@ const MentorCard: React.FC<MentorCardProps> = ({
           blurDataURL={`${mentor.photo.src}?h=50`}
         />
 
-        <div className="flex flex-col justify-between gap-4">
+        <div className="flex flex-col items-center">
+          {event && (
+            <p className="text-sm text-greenFec text-center">
+              <span className="line-clamp-1">
+                Mentoría grupal el próximo...
+              </span>
+              <FontAwesomeIcon icon={faCalendarDay} />{' '}
+              <span className="font-medium">
+                {new Date(event.scheduled_start_time).toLocaleDateString('es', {
+                  weekday: 'short',
+                  day: 'numeric',
+                  month: 'short',
+                })}
+              </span>{' '}
+              a las{' '}
+              <span className="font-medium">
+                {new Date(event.scheduled_start_time).toLocaleTimeString('es', {
+                  minute: 'numeric',
+                  hour: 'numeric',
+                  hour12: true,
+                })}
+              </span>
+            </p>
+          )}
           {isUnavailable ? (
             <button
               type="button"
               disabled
-              className="btn btn-secondary cursor-not-allowed"
+              className="btn self-end mt-auto btn-secondary cursor-not-allowed"
             >
               No disponible
             </button>
@@ -90,7 +117,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   : mentor.calendly
               }
               target="_blank"
-              className="btn border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+              className="btn self-end mt-auto border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
             >
               {event ? 'Asistir a mentoría' : 'Solicitar mentoría'}
             </Link>
@@ -98,74 +125,75 @@ const MentorCard: React.FC<MentorCardProps> = ({
             <button
               type="button"
               onClick={() => openModal()}
-              className="btn border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+              className="btn self-end mt-auto border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
             >
               Solicitar mentoría
             </button>
           )}
-
-          <ul className="flex place-content-end gap-2">
-            {/* TODO: Maybe create an icon component */}
-            {mentor.web && (
-              <li>
-                <Link
-                  href={mentor.web}
-                  target="_blank"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-                >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faGlobe} />
-                </Link>
-              </li>
-            )}
-
-            {mentor.linkedin && (
-              <li>
-                <Link
-                  href={mentor.linkedin}
-                  target="_blank"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-                >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faLinkedinIn} />
-                </Link>
-              </li>
-            )}
-            {mentor.github && (
-              <li>
-                <Link
-                  href={mentor.github}
-                  target="_blank"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-                >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
-                </Link>
-              </li>
-            )}
-
-            {mentor.twitter && (
-              <li>
-                <Link
-                  href={mentor.twitter}
-                  target="_blank"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-                >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faTwitter} />
-                </Link>
-              </li>
-            )}
-          </ul>
         </div>
       </div>
-      <h3
-        className="group cursor-pointer text-xl font-bold"
-        onClick={onCopyUrl}
-      >
-        {mentor.name}{' '}
-        <FontAwesomeIcon
-          aria-hidden
-          className="h-5 w-5 opacity-10 transition-opacity group-hover:opacity-40"
-          icon={faChain}
-        />
-      </h3>
+      <div className="flex items-center justify-between gap-4">
+        <h3
+          className="group cursor-pointer text-lg md:text-xl font-bold"
+          onClick={onCopyUrl}
+        >
+          {mentor.name}{' '}
+          <FontAwesomeIcon
+            aria-hidden
+            className="h-5 w-5 opacity-10 transition-opacity group-hover:opacity-40"
+            icon={faChain}
+          />
+        </h3>
+        <ul className="flex place-content-end gap-2">
+          {/* TODO: Maybe create an icon component */}
+          {mentor.web && (
+            <li>
+              <Link
+                href={mentor.web}
+                target="_blank"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
+              >
+                <FontAwesomeIcon className="h-4 w-4" icon={faGlobe} />
+              </Link>
+            </li>
+          )}
+
+          {mentor.linkedin && (
+            <li>
+              <Link
+                href={mentor.linkedin}
+                target="_blank"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
+              >
+                <FontAwesomeIcon className="h-4 w-4" icon={faLinkedinIn} />
+              </Link>
+            </li>
+          )}
+          {mentor.github && (
+            <li>
+              <Link
+                href={mentor.github}
+                target="_blank"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
+              >
+                <FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
+              </Link>
+            </li>
+          )}
+
+          {mentor.twitter && (
+            <li>
+              <Link
+                href={mentor.twitter}
+                target="_blank"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
+              >
+                <FontAwesomeIcon className="h-4 w-4" icon={faTwitter} />
+              </Link>
+            </li>
+          )}
+        </ul>
+      </div>
       <p className="flex-grow leading-relaxed text-tertiary md:min-h-64">
         {mentor.description ? mentor.description : '---'}
       </p>
