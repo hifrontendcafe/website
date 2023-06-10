@@ -45,7 +45,7 @@ function PhotoUpload({ photo, name, _id }: Props) {
         const formData = new FormData();
         formData.set('photo', image);
 
-        const document = await photoUploadAction(_id, formData);
+        const document = await photoUploadAction(_id, formData, photoRef);
 
         setPhotoRef(document?.photo);
       } catch (error) {

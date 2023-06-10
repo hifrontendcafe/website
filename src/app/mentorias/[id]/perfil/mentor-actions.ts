@@ -3,18 +3,19 @@
 import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
 import { getMentor } from '@/lib/api.server';
 import { postClient } from '@/lib/sanity';
+import type { Mentor } from '@/lib/types';
 import { getServerSession } from 'next-auth';
 import { revalidatePath } from 'next/cache';
 
 export async function photoUploadAction(
   documentId: string,
   formData: FormData,
+  prevPhoto?: Mentor['photo'],
 ) {
   try {
     const photo = formData.get('photo') as File;
     const photoBuffer = Buffer.from(await photo.arrayBuffer());
 
-    // TODO: Delete the previous photo and then upload the new one.
     const uploadedAsset = await postClient.assets.upload('image', photoBuffer);
     const document = await postClient
       .patch(documentId, {
@@ -29,6 +30,9 @@ export async function photoUploadAction(
         },
       })
       .commit();
+    // TODO: Add Sanity 'image' type
+    // @ts-expect-error Wrong photo type (Sanity 'image').
+    if (prevPhoto?.asset._ref) postClient.delete(prevPhoto.asset._ref);
 
     return document;
   } catch (error) {
