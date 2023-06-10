@@ -6,28 +6,34 @@ import { postClient } from '@/lib/sanity';
 import { getServerSession } from 'next-auth';
 import { revalidatePath } from 'next/cache';
 
-export async function photoUploadAction(_id: string, photo: string) {
-  const photoBlob = Buffer.from(photo.split(';base64,')[1], 'base64');
-  // TODO: Delete the previous photo and then upload the new one.
-  const asset = await postClient.assets.upload('image', photoBlob);
+export async function photoUploadAction(
+  documentId: string,
+  formData: FormData,
+) {
+  try {
+    const photo = formData.get('photo') as File;
+    const photoBuffer = Buffer.from(await photo.arrayBuffer());
 
-  postClient
-    .patch(_id, {
-      set: {
-        photo: {
-          _type: 'image',
-          asset: {
-            _type: 'reference',
-            _ref: asset._id,
+    // TODO: Delete the previous photo and then upload the new one.
+    const uploadedAsset = await postClient.assets.upload('image', photoBuffer);
+    const document = await postClient
+      .patch(documentId, {
+        set: {
+          photo: {
+            _type: 'image',
+            asset: {
+              _type: 'reference',
+              _ref: uploadedAsset._id,
+            },
           },
         },
-      },
-    })
-    .commit()
-    .then(() => {
-      console.log('Done!');
-    })
-    .catch((error) => console.log({ error }));
+      })
+      .commit();
+
+    return document;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export async function mentorFormAction(id: string, formData: FormData) {

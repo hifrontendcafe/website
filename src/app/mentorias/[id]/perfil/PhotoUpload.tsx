@@ -1,6 +1,6 @@
 'use client';
 
-import { urlFor } from '@/lib/sanity';
+import { imgUrlFrom } from '@/lib/sanity';
 import type { Mentor } from '@/lib/types';
 import Image from 'next/image';
 import { useState, useTransition } from 'react';
@@ -19,20 +19,20 @@ const resizeFile = (newFile: File) =>
       (uri) => {
         resolve(uri);
       },
-      'base64',
+      'file',
     );
   });
 
-function PhotoUpload({
-  photo,
-  name,
-  _id,
-}: Pick<Mentor, 'name' | 'photo' | '_id'>) {
-  const [state, setState] = useState<string | null>(null);
+interface Props {
+  photo: Mentor['photo'];
+  name: string;
+  _id: string;
+}
+
+function PhotoUpload({ photo, name, _id }: Props) {
+  const [photoRef, setPhotoRef] = useState<Mentor['photo'] | undefined>(photo);
   const [isPending, startTransition] = useTransition();
-  const currentPhoto =
-    state ??
-    (photo ? urlFor(photo).width(256).height(256).url() : '/img/user.svg');
+  const currentPhoto = imgUrlFrom(photoRef, { size: 256 }) || '/img/user.svg';
 
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -41,12 +41,13 @@ function PhotoUpload({
 
     startTransition(async () => {
       try {
-        const image = await resizeFile(file);
-        if (typeof image === 'string') {
-          setState(image);
+        const image = (await resizeFile(file)) as File;
+        const formData = new FormData();
+        formData.set('photo', image);
 
-          photoUploadAction(_id, image);
-        }
+        const document = await photoUploadAction(_id, formData);
+
+        setPhotoRef(document?.photo);
       } catch (error) {
         console.log(error);
       }
