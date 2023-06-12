@@ -1,9 +1,4 @@
-import {
-  faGithub,
-  faLinkedinIn,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
-import { faChain, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import { faChain } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -12,6 +7,7 @@ import { useState } from 'react';
 import ToastNotification from '../../components/ToastNotification/ToastNotification';
 import { getNameForId } from '../../lib/mentors';
 import { Mentor, Topic } from '../../lib/types';
+import SocialMediaLinks from '../SocialMediaLinks';
 import TopicBadge from '../TopicBadge';
 
 interface MentorCardProps {
@@ -97,55 +93,10 @@ const MentorCard: React.FC<MentorCardProps> = ({
             </button>
           )}
 
-          <ul className="flex place-content-end gap-2">
-            {/* TODO: Maybe create an icon component */}
-            {mentor.web && (
-              <li>
-                <Link
-                  href={mentor.web}
-                  target="_blank"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-                >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faGlobe} />
-                </Link>
-              </li>
-            )}
-
-            {mentor.linkedin && (
-              <li>
-                <Link
-                  href={mentor.linkedin}
-                  target="_blank"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-                >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faLinkedinIn} />
-                </Link>
-              </li>
-            )}
-            {mentor.github && (
-              <li>
-                <Link
-                  href={mentor.github}
-                  target="_blank"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-                >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
-                </Link>
-              </li>
-            )}
-
-            {mentor.twitter && (
-              <li>
-                <Link
-                  href={mentor.twitter}
-                  target="_blank"
-                  className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-                >
-                  <FontAwesomeIcon className="h-4 w-4" icon={faTwitter} />
-                </Link>
-              </li>
-            )}
-          </ul>
+          <SocialMediaLinks
+            className="place-content-end"
+            socialMedia={mentor}
+          />
         </div>
       </div>
       <h3
