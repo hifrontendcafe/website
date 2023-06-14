@@ -1,16 +1,8 @@
 import { getSettings } from '@/lib/api.server';
-import {
-  faGithub,
-  faInstagram,
-  faLinkedin,
-  faTwitch,
-  faTwitter,
-  faYoutube,
-} from '@fortawesome/free-brands-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo_vercel from '../../../public/img/powered-by-vercel.svg';
+import SocialMediaLinks from '../SocialMediaLinks';
 
 const Footer = async () => {
   const { socialnetworks, footerNavItems } = await getSettings({
@@ -32,81 +24,11 @@ const Footer = async () => {
           </ul>
           <div className="space-y-3">
             <p className="font-medium md:text-left">Encuéntranos en</p>
-            {/* TODO: Maybe create an icon component */}
-            <ul className="flex justify-center gap-3 md:justify-start">
-              {socialnetworks.twitter && (
-                <li>
-                  <Link
-                    href={socialnetworks?.twitter}
-                    target="_blank"
-                    aria-label="Twitter"
-                    className="inline-block h-6 w-6 rounded-full"
-                  >
-                    <FontAwesomeIcon icon={faTwitter} size="lg" />
-                  </Link>
-                </li>
-              )}
-              {socialnetworks?.instagram && (
-                <li>
-                  <Link
-                    href={socialnetworks?.instagram}
-                    target="_blank"
-                    aria-label="Instagram"
-                    className="inline-block h-6 w-6 rounded-full"
-                  >
-                    <FontAwesomeIcon icon={faInstagram} size="lg" />
-                  </Link>
-                </li>
-              )}
-              {socialnetworks?.github && (
-                <li>
-                  <Link
-                    href={socialnetworks?.github}
-                    target="_blank"
-                    aria-label="Github"
-                    className="inline-block h-6 w-6 rounded-full"
-                  >
-                    <FontAwesomeIcon icon={faGithub} size="lg" />
-                  </Link>
-                </li>
-              )}
-              {socialnetworks?.youtube && (
-                <li>
-                  <Link
-                    href={socialnetworks?.youtube}
-                    target="_blank"
-                    aria-label="Youtube"
-                    className="inline-block h-6 w-6 rounded-full"
-                  >
-                    <FontAwesomeIcon icon={faYoutube} size="lg" />
-                  </Link>
-                </li>
-              )}
-              {socialnetworks?.linkedin && (
-                <li>
-                  <Link
-                    href={socialnetworks?.linkedin}
-                    target="_blank"
-                    aria-label="Linkedin"
-                    className="inline-block h-6 w-6 rounded-full "
-                  >
-                    <FontAwesomeIcon icon={faLinkedin} size="lg" />
-                  </Link>
-                </li>
-              )}
-              {socialnetworks?.twitch && (
-                <li>
-                  <Link
-                    href={socialnetworks?.twitch}
-                    target="_blank"
-                    aria-label="Twitch"
-                    className="inline-block h-6 w-6 rounded-full"
-                  >
-                    <FontAwesomeIcon icon={faTwitch} size="lg" />
-                  </Link>
-                </li>
-              )}
-            </ul>
+            <SocialMediaLinks
+              className="justify-center md:justify-start"
+              socialMedia={socialnetworks}
+              background="transparent"
+            />
           </div>
         </div>
 
