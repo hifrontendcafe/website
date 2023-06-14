@@ -1,15 +1,6 @@
 import { FrontendCafeId } from '@/lib/constants';
 import type { DiscordEvent, Mentor, Topic } from '@/lib/types';
-import {
-  faGithub,
-  faLinkedinIn,
-  faTwitter,
-} from '@fortawesome/free-brands-svg-icons';
-import {
-  faChain,
-  faGlobe,
-  faCalendarDay,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDay, faChain } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -17,6 +8,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import ToastNotification from '../../components/ToastNotification/ToastNotification';
 import { getNameForId } from '../../lib/mentors';
+import SocialMediaLinks from '../SocialMediaLinks';
 import TopicBadge from '../TopicBadge';
 
 interface MentorCardProps {
@@ -79,10 +71,11 @@ const MentorCard: React.FC<MentorCardProps> = ({
 
         <div className="flex flex-col items-center">
           {event && (
-            <p className="text-sm text-greenFec text-center">
+            <p className="text-center text-sm text-greenFec">
               <span className="line-clamp-1">
                 Mentoría grupal el próximo...
               </span>
+              <br />
               <FontAwesomeIcon icon={faCalendarDay} />{' '}
               <span className="font-medium">
                 {new Date(event.scheduled_start_time).toLocaleDateString('es', {
@@ -105,7 +98,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
             <button
               type="button"
               disabled
-              className="btn self-end mt-auto btn-secondary cursor-not-allowed"
+              className="btn btn-secondary mt-auto cursor-not-allowed self-end"
             >
               No disponible
             </button>
@@ -117,7 +110,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   : mentor.calendly
               }
               target="_blank"
-              className="btn self-end mt-auto border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+              className="btn mt-auto self-end border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
             >
               {event ? 'Asistir a mentoría' : 'Solicitar mentoría'}
             </Link>
@@ -125,7 +118,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
             <button
               type="button"
               onClick={() => openModal()}
-              className="btn self-end mt-auto border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+              className="btn mt-auto self-end border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
             >
               Solicitar mentoría
             </button>
@@ -134,7 +127,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       </div>
       <div className="flex items-center justify-between gap-4">
         <h3
-          className="group cursor-pointer text-lg md:text-xl font-bold"
+          className="group cursor-pointer text-lg font-bold md:text-xl"
           onClick={onCopyUrl}
         >
           {mentor.name}{' '}
@@ -144,55 +137,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
             icon={faChain}
           />
         </h3>
-        <ul className="flex place-content-end gap-2">
-          {/* TODO: Maybe create an icon component */}
-          {mentor.web && (
-            <li>
-              <Link
-                href={mentor.web}
-                target="_blank"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-              >
-                <FontAwesomeIcon className="h-4 w-4" icon={faGlobe} />
-              </Link>
-            </li>
-          )}
-
-          {mentor.linkedin && (
-            <li>
-              <Link
-                href={mentor.linkedin}
-                target="_blank"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-              >
-                <FontAwesomeIcon className="h-4 w-4" icon={faLinkedinIn} />
-              </Link>
-            </li>
-          )}
-          {mentor.github && (
-            <li>
-              <Link
-                href={mentor.github}
-                target="_blank"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-              >
-                <FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
-              </Link>
-            </li>
-          )}
-
-          {mentor.twitter && (
-            <li>
-              <Link
-                href={mentor.twitter}
-                target="_blank"
-                className="flex h-8 w-8 items-center justify-center rounded-full bg-zinc-700"
-              >
-                <FontAwesomeIcon className="h-4 w-4" icon={faTwitter} />
-              </Link>
-            </li>
-          )}
-        </ul>
+        <SocialMediaLinks className="place-content-end" socialMedia={mentor} />
       </div>
       <p className="flex-grow leading-relaxed text-tertiary md:min-h-64">
         {mentor.description ? mentor.description : '---'}

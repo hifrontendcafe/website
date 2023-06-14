@@ -107,7 +107,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics, events }) => {
       <ul className="grid gap-12 lg:grid-cols-2">
         {(filteredMentors && speciality ? filteredMentors : sortedMentors)?.map(
           (mentor, index) => {
-            const discordEvent = events.find(
+            const discordEvent = events?.find(
               ({ creator_id }) => creator_id === mentor.id,
             );
 
