@@ -1,4 +1,4 @@
-import ProfileSocialMedia from '../ProfileSocialMedia';
+import SocialMediaLinks from '../SocialMediaLinks';
 
 interface ProfileHeaderProps {
   name: string;
@@ -19,18 +19,18 @@ const ProfileHeader: React.FC<ProfileHeaderProps> = ({
     <div className="items-center md:flex">
       <img
         src={coverImage}
-        className="object-cover w-32 h-32 mr-4 border-2 border-white rounded-full shadow-lg"
+        className="mr-4 h-32 w-32 rounded-full border-2 border-white object-cover shadow-lg"
         alt={name}
       />
       <div>
-        <h1 className="mb-0 text-4xl font-bold leading-tight tracking-tighter md:text-5xl md:leading-none">
+        <h1 className="tracking-tighter mb-0 text-4xl font-bold leading-tight md:text-5xl md:leading-none">
           {name}
         </h1>
-        <h2 className="text-2xl font-bold leading-none tracking-wide text-zinc-700 md:text-3xl">
+        <h2 className="tracking-wide text-2xl font-bold leading-none text-zinc-700 md:text-3xl">
           {role}
         </h2>
 
-        <ProfileSocialMedia socialMedia={socialMedia} />
+        <SocialMediaLinks socialMedia={socialMedia} />
       </div>
     </div>
   );

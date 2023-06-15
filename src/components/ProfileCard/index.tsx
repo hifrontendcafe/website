@@ -1,19 +1,20 @@
 import { Profile } from '@/lib/types';
 import Image from 'next/image';
-import ProfileSocialMedia from '../ProfileSocialMedia';
+import SocialMediaLinks from '../SocialMediaLinks';
 
 type Props = {
   profile: Profile;
 };
 
 const ProfileCard: React.FC<Props> = ({ profile }) => {
-  const socialMediaList = {
-    ...(profile.person.email && { email: 'mailto:' + profile.person.email }),
-    ...(profile.person.linkedin && { linkedin: profile.person.linkedin }),
-    ...(profile.person.github && { github: profile.person.github }),
-    ...(profile.person.twitter && { twitter: profile.person.twitter }),
-    ...(profile.person.portfolio && { portfolio: profile.person.portfolio }),
-  };
+  // TODO: Check why "email", "portfolio" aren't rendering
+  // const socialMediaList = {
+  //   ...(profile.person.email && { email: 'mailto:' + profile.person.email }),
+  //   ...(profile.person.linkedin && { linkedin: profile.person.linkedin }),
+  //   ...(profile.person.github && { github: profile.person.github }),
+  //   ...(profile.person.twitter && { twitter: profile.person.twitter }),
+  //   ...(profile.person.portfolio && { portfolio: profile.person.portfolio }),
+  // };
 
   return (
     <li className="relative flex max-w-3xl flex-col justify-between gap-4 rounded-lg bg-zinc-800 py-3 shadow-lg md:py-6">
@@ -39,9 +40,7 @@ const ProfileCard: React.FC<Props> = ({ profile }) => {
           <p className="text-base capitalize ">{profile.location}</p>
         )}
       </div>
-      <div className="px-3 md:px-6">
-        <ProfileSocialMedia socialMedia={socialMediaList} />
-      </div>
+      <SocialMediaLinks className="px-3 md:px-6" socialMedia={profile.person} />
       <p className="flex-grow whitespace-pre-line px-3 text-sm leading-tight text-zinc-100 md:px-6">
         {profile.description}
       </p>
