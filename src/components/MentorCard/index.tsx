@@ -1,4 +1,5 @@
 import { FrontendCafeId } from '@/lib/constants';
+import { formatDateTime } from '@/lib/formatDateTime';
 import type { DiscordEvent, Mentor, Topic } from '@/lib/types';
 import { faCalendarDay, faChain } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -75,23 +76,20 @@ const MentorCard: React.FC<MentorCardProps> = ({
               <span className="line-clamp-1">
                 Mentoría grupal el próximo...
               </span>
-              <br />
               <FontAwesomeIcon icon={faCalendarDay} />{' '}
-              <span className="font-medium">
-                {new Date(event.scheduled_start_time).toLocaleDateString('es', {
-                  weekday: 'short',
-                  day: 'numeric',
-                  month: 'short',
-                })}
-              </span>{' '}
+              <time
+                className="font-medium"
+                dateTime={event.scheduled_start_time.toString()}
+              >
+                {formatDateTime(event.scheduled_start_time).date}
+              </time>{' '}
               a las{' '}
-              <span className="font-medium">
-                {new Date(event.scheduled_start_time).toLocaleTimeString('es', {
-                  minute: 'numeric',
-                  hour: 'numeric',
-                  hour12: true,
-                })}
-              </span>
+              <time
+                className="font-medium"
+                dateTime={event.scheduled_start_time.toString()}
+              >
+                {formatDateTime(event.scheduled_start_time).time}
+              </time>
             </p>
           )}
           {isUnavailable ? (
