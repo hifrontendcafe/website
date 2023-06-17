@@ -108,7 +108,13 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics, events }) => {
         {(filteredMentors && speciality ? filteredMentors : sortedMentors)?.map(
           (mentor, index) => {
             const discordEvent = events?.find(
-              ({ creator_id }) => creator_id === mentor.id,
+              ({ creator_id, channel_id }) =>
+                creator_id === mentor.id &&
+                [
+                  '756023543304814664',
+                  '756023931433123900',
+                  '761337525654126592',
+                ].includes(channel_id!),
             );
 
             return (
