@@ -1,4 +1,4 @@
-export function formatDateTime(dateString: Date) {
+export function formatDateTime(dateString: string) {
   return {
     day: new Date(dateString).toLocaleDateString('es', {
       day: '2-digit',

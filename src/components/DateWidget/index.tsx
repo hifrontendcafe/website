@@ -2,7 +2,7 @@ import { formatDateTime } from '@/lib/formatDateTime';
 import { type ComponentProps } from 'react';
 
 interface Props extends ComponentProps<'p'> {
-  dateString: Date;
+  dateString: string;
 }
 
 function DateWidget({ dateString, ...props }: Props) {
