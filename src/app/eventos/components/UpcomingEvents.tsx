@@ -38,18 +38,16 @@ function UpcomingEvents({ events }: Props) {
 
         <div className="flex flex-col gap-2">
           <p className="hidden lg:block text-sm text-tertiary">
-            {isToday ? 'Hoy' : 'El'}{' '}
+            {isToday ? 'Hoy' : 'El'}
             <time className="font-medium" dateTime={nextEventDate.toString()}>
-              {date}{' '}
+              {date}
             </time>
-            a las{' '}
+            a las
             <time className="font-medium" dateTime={nextEventDate.toString()}>
-              {time}{' '}
+              {time}
             </time>
           </p>
-          <h3 className="truncate text-2xl font-semibold ">
-            {nextEvent.name}{' '}
-          </h3>
+          <h3 className="truncate text-2xl font-semibold ">{nextEvent.name}</h3>
           <p className=" line-clamp-6 text-zinc-400 whitespace-pre-line">
             {nextEvent.description}
           </p>
@@ -63,7 +61,7 @@ function UpcomingEvents({ events }: Props) {
           </Link>
         </div>
       </div>
-      {/* !mt-16  */}
+
       {sortedEvents.length > 1 && (
         <ul className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
           {sortedEvents.slice(1, 4).map((event) => (
