@@ -1,22 +1,18 @@
-export function formatDateTime(dateString: string) {
-  return {
-    day: new Date(dateString).toLocaleDateString('es', {
-      day: '2-digit',
-    }),
-    month: new Date(dateString).toLocaleDateString('es', {
-      month: 'short',
-    }),
-    date: new Date(dateString).toLocaleDateString('es', {
-      weekday: 'short',
-      day: 'numeric',
-      month: 'short',
-    }),
-    time: new Date(dateString).toLocaleTimeString('es', {
-      minute: '2-digit',
-      hour: 'numeric',
-      hour12: true,
-    }),
+import format from 'date-fns/format';
+import isToday from 'date-fns/isToday';
+import esLocale from 'date-fns/locale/es';
 
-    isToday: new Date(dateString).toDateString() === new Date().toDateString(),
+export function formatDateTime(dateString: string) {
+  const date = new Date(dateString);
+  const options = {
+    locale: esLocale,
+  };
+
+  return {
+    day: format(date, ' d ', options),
+    month: format(date, ' MMM ', options),
+    date: format(date, ' E, d MMM ', options),
+    time: format(date, ' h:mm aaaa ', options),
+    isToday: isToday(date),
   };
 }
