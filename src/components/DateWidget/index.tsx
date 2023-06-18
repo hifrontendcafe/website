@@ -1,3 +1,5 @@
+'use client';
+
 import { formatDateTime } from '@/lib/formatDateTime';
 import { type ComponentProps } from 'react';
 
