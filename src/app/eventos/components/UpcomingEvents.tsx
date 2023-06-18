@@ -1,5 +1,5 @@
+import DateAndTime from '@/components/DateAndTime';
 import DateWidget from '@/components/DateWidget';
-import { formatDateTime } from '@/lib/formatDateTime';
 import { type DiscordEvent } from '@/lib/types';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -17,7 +17,6 @@ function UpcomingEvents({ events }: Props) {
 
   const nextEvent = sortedEvents[0];
   const nextEventDate = nextEvent.scheduled_start_time;
-  const { isToday, date, time } = formatDateTime(nextEventDate);
 
   return (
     <>
@@ -37,16 +36,7 @@ function UpcomingEvents({ events }: Props) {
         </div>
 
         <div className="flex flex-col gap-2">
-          <p className="hidden lg:block text-sm text-tertiary">
-            {isToday ? 'Hoy' : 'El'}
-            <time className="font-medium" dateTime={nextEventDate.toString()}>
-              {date}
-            </time>
-            a las
-            <time className="font-medium" dateTime={nextEventDate.toString()}>
-              {time}
-            </time>
-          </p>
+          <DateAndTime dateString={nextEventDate} />
           <h3 className="truncate text-2xl font-semibold ">{nextEvent.name}</h3>
           <p className=" line-clamp-6 text-zinc-400 whitespace-pre-line">
             {nextEvent.description}
