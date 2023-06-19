@@ -1,11 +1,10 @@
-import SectionHero from '@/components/SectionHero';
+import MentorList from '@/components/MentorList';
+import { PageComponents } from '@/components/Page/Matcher';
 import {
   getAllMentors,
   getMentoringTopics,
   getPageByName,
 } from '@/lib/api.server';
-import { PageComponents } from '@/components/Page/Matcher';
-import MentorList from '@/components/MentorList';
 import { getPageMetadata } from '@/lib/seo';
 
 export const generateMetadata = () => getPageMetadata('Mentorías');
@@ -19,12 +18,6 @@ export default async function MentorshipsPage() {
 
   return (
     <>
-      <SectionHero
-        title={page.title}
-        paragraph={page.description}
-        cta={page.doc}
-      />
-
       <PageComponents components={page.components} />
 
       <MentorList topics={topics} mentors={mentors} />
