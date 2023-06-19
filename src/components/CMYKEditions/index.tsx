@@ -1,20 +1,12 @@
-import { getAllCMYKProjects } from '@/lib/api.server';
+'use client';
+
+import type { CMYK } from '@/lib/types';
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import CMYKItemCard from '../CMYKItemCard';
+import { cmykVersions } from './cmykVersions';
 
-export const cmykVersions = [
-  { version: 'cmyk-1', name: 'CMYK 1', edition: 1 },
-  { version: 'cmyk-2', name: 'CMYK 2', edition: 2 },
-  { version: 'cmyk-3', name: 'CMYK 3', edition: 3 },
-  { version: 'cmyk-4', name: 'CMYK 4', edition: 4 },
-] as const;
-type CMYKEdition = (typeof cmykVersions)[number]['edition'];
-
-async function CMYKEditions({ edition }: { edition?: CMYKEdition }) {
-  const projects = await getAllCMYKProjects({
-    next: { revalidate: 60 },
-  });
-
+function CMYKEditions({ projects }: { projects: CMYK[] }) {
   const projectVersions = new Set(
     projects.map((project) => project.cmykVersion),
   );
@@ -22,6 +14,9 @@ async function CMYKEditions({ edition }: { edition?: CMYKEdition }) {
   const filteredVersions = cmykVersions.filter((cmykVersion) =>
     projectVersions.has(cmykVersion.version),
   );
+
+  const searchParams = useSearchParams()!;
+  const edition = searchParams.get('edition');
 
   const lastVersion = filteredVersions[filteredVersions.length - 1];
   const currentVersion = filteredVersions.find(

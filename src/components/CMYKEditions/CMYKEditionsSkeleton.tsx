@@ -1,4 +1,4 @@
-import { cmykVersions } from '.';
+import { cmykVersions } from './cmykVersions';
 
 const Card = () => {
   return (
