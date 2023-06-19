@@ -1,4 +1,5 @@
 import MentorList from '@/components/MentorList';
+import MentorListSkeleton from '@/components/MentorList/MentorListSkeleton';
 import { PageComponents } from '@/components/Page/Matcher';
 import {
   getAllMentors,
@@ -6,6 +7,7 @@ import {
   getPageByName,
 } from '@/lib/api.server';
 import { getPageMetadata } from '@/lib/seo';
+import { Suspense } from 'react';
 
 export const generateMetadata = () => getPageMetadata('Mentorías');
 
@@ -20,7 +22,9 @@ export default async function MentorshipsPage() {
     <>
       <PageComponents components={page.components} />
 
-      <MentorList topics={topics} mentors={mentors} />
+      <Suspense fallback={<MentorListSkeleton />}>
+        <MentorList topics={topics} mentors={mentors} />
+      </Suspense>
     </>
   );
 }
