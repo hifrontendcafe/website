@@ -1,25 +1,20 @@
-const cmykVersions = [
-  { version: 'cmyk-1', name: 'CMYK 1', edition: 1 },
-  { version: 'cmyk-2', name: 'CMYK 2', edition: 2 },
-  { version: 'cmyk-3', name: 'CMYK 3', edition: 3 },
-  { version: 'cmyk-4', name: 'CMYK 4', edition: 4 },
-];
+import { cmykVersions } from '.';
 
 const Card = () => {
   return (
-    <div className="h-[400px] flex flex-col justify-between rounded-md p-4 shadow-lg w-full bg-zinc-800 animate-pulse">
+    <div className="flex h-[400px] w-full animate-pulse flex-col justify-between rounded-md bg-zinc-800 p-4 shadow-lg">
       <div className="flex flex-col gap-3">
-        <div className="h-40 w-full rounded-md bg-zinc-700 animate-pulse" />
+        <div className="h-40 w-full animate-pulse rounded-md bg-zinc-700" />
 
-        <div className="w-40 h-8 bg-zinc-700 rounded-md animate-pulse" />
+        <div className="h-8 w-40 animate-pulse rounded-md bg-zinc-700" />
 
-        <div className="w-full h-16 bg-zinc-700 rounded-md animate-pulse" />
+        <div className="h-16 w-full animate-pulse rounded-md bg-zinc-700" />
       </div>
 
       <div className="flex justify-between gap-6">
-        <div className="rounded-md h-10 w-full bg-zinc-700 animate-pulse" />
+        <div className="h-10 w-full animate-pulse rounded-md bg-zinc-700" />
 
-        <div className="rounded-md h-10 w-full bg-zinc-700 animate-pulse" />
+        <div className="h-10 w-full animate-pulse rounded-md bg-zinc-700" />
       </div>
     </div>
   );
@@ -27,21 +22,21 @@ const Card = () => {
 
 export default function CMYKEditionsSkeleton() {
   return (
-    <>
+    <section className="md:mt-10">
       <div className="flex flex-col items-center text-center">
-        <h3 className="font-medium subtitle">Ediciones</h3>
-        <ul className="flex gap-2 w-full mt-6 mb-16 md:w-8/12">
+        <h3 className="subtitle font-medium">Ediciones</h3>
+        <ul className="mt-6 mb-10 flex w-full gap-2 md:w-8/12">
           {cmykVersions.map((cmykVersion) => (
             <li
               key={cmykVersion.version}
-              className="py-2 cursor-pointer animate-pulse text-tertiary w-1/3 flex justify-center border-b"
+              className="flex flex-1 animate-pulse justify-center border-b py-2 text-tertiary"
             >
-              <div className="w-16 h-6 bg-zinc-700 rounded-md animate-pulse" />
+              <div className="h-7 w-16 animate-pulse rounded-md bg-zinc-700" />
             </li>
           ))}
         </ul>
       </div>
-      <div className="relative z-10 grid max-w-4xl grid-cols-1 gap-6 p-6 mx-auto sm:px-6 lg:px-12 md:grid-cols-2 justify-items-center md:gap-10">
+      <div className="mx-auto grid max-w-4xl grid-cols-1 justify-items-center gap-6 p-6 sm:px-6 md:grid-cols-2 md:gap-10 lg:px-12">
         <Card />
 
         <Card />
@@ -54,6 +49,6 @@ export default function CMYKEditionsSkeleton() {
 
         <Card />
       </div>
-    </>
+    </section>
   );
 }
