@@ -156,7 +156,7 @@ export interface CMYKParticipant {
 export interface Topic {
   _id: string;
   title: string;
-  description: string;
+  description?: string;
 }
 
 export interface Author {

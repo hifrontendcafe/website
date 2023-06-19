@@ -1,11 +1,11 @@
 'use client';
 
+import type { Mentor, Topic } from '@/lib/types';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect, useMemo, useState } from 'react';
-import { Mentor, Topic } from '../../lib/types';
+import { useState } from 'react';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 import { requestWarningsStates, useWarnings } from './useWarnings';
@@ -16,22 +16,16 @@ interface MentorListProps {
 }
 
 const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
-  const [filteredMentors, setFilteredMentors] = useState<Mentor[] | undefined>(
-    undefined,
-  );
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: session, status: sessionStatus } = useSession();
   const loading = sessionStatus === 'loading';
   const { status, warnings, mentorships } = useWarnings(session?.user.id);
-
   const router = useRouter();
-  const searchParams = useSearchParams()!;
-
-  const speciality = searchParams.get('especialidad');
 
   const queryTopic = (topic: string) => {
-    const url = new URL(window.location.href);
+    if (!topic) return router.replace('/mentorias');
 
+    const url = new URL(window.location.href);
     const params = new URLSearchParams(url.search);
     params.set('especialidad', topic);
     url.search = `?${params}`;
@@ -39,40 +33,15 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
     router.replace(url.toString());
   };
 
-  /**
-   * sort modifies the original array, so make a copy to be safe
-   */
-  const sortedTopics = useMemo(
-    () => [...topics].sort((a, b) => a.title.localeCompare(b.title)),
-    [topics],
+  const searchParams = useSearchParams()!;
+  const speciality = searchParams.get('especialidad') ?? '';
+  const filteredByTopic: Mentor[] = mentors.filter((mentor) =>
+    mentor.topics.some((topic) => topic._ref === speciality),
   );
-
-  /**
-   * All active mentors should be first
-   */
-  const sortedMentors = useMemo(
-    () => [...mentors].sort((mentor) => (mentor.status === 'ACTIVE' ? -1 : 1)),
-    [mentors],
-  );
-
-  useEffect(() => {
-    const filterTopics = () => {
-      const filtered: Mentor[] = [];
-      sortedMentors.forEach((mentor) => {
-        const find =
-          mentor.topics?.filter((topic) => topic._ref == speciality) ?? [];
-
-        if (find.length > 0) filtered.push(mentor);
-      });
-      setFilteredMentors(filtered);
-    };
-
-    filterTopics();
-    return () => filterTopics();
-  }, [speciality, sortedMentors]);
+  const filteredMentors = speciality ? filteredByTopic : mentors;
 
   return (
-    <section>
+    <section className="mt-20">
       <div className="mb-10 flex flex-col justify-between lg:flex-row lg:items-center">
         <h2 className="mb-4 text-2xl font-medium lg:m-0">
           Solicita una mentoría según especialidad
@@ -83,10 +52,11 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         >
           <select
             onChange={(event) => queryTopic(event.target.value)}
+            value={speciality}
             className="w-full appearance-none rounded border border-zinc-400 bg-zinc-900 px-4 py-2 pr-8  leading-tight hover:border-zinc-500 focus:outline-none focus:ring"
           >
             <option value="">Buscar...</option>
-            {sortedTopics?.map((topic) => (
+            {topics?.map((topic) => (
               <option value={topic._id} key={topic._id}>
                 {topic.title}
               </option>
@@ -104,23 +74,21 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         </label>
       </div>
       <ul className="grid gap-12 lg:grid-cols-2">
-        {(filteredMentors && speciality ? filteredMentors : sortedMentors)?.map(
-          (mentor, index) => (
-            <MentorCard
-              key={index}
-              mentor={mentor}
-              topics={topics}
-              canBookAMentorship={
-                !!session &&
-                !loading &&
-                status === requestWarningsStates.SUCCESS &&
-                warnings === 0 &&
-                mentorships <= 4
-              }
-              openModal={() => setIsModalOpen(true)}
-            />
-          ),
-        )}
+        {filteredMentors.map((mentor, index) => (
+          <MentorCard
+            key={index}
+            mentor={mentor}
+            topics={topics}
+            canBookAMentorship={
+              !!session &&
+              !loading &&
+              status === requestWarningsStates.SUCCESS &&
+              warnings === 0 &&
+              mentorships <= 4
+            }
+            openModal={() => setIsModalOpen(true)}
+          />
+        ))}
       </ul>
 
       <SimpleModal
