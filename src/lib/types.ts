@@ -99,6 +99,7 @@ export interface EventsSettings {
 }
 
 export interface Mentor {
+  id: string;
   name: string;
   description: string;
   photo: {
@@ -427,23 +428,28 @@ export interface Metadata {
   content: string;
 }
 
+/**
+ * Discord
+ * {@link https://discord.com/developers/docs/resources/guild-scheduled-event | Guild Scheduled Event Object}.
+ */
 export interface DiscordEvent {
   id: string;
   guild_id: string;
-  channel_id: string;
-  creator_id?: string;
+  channel_id: string | null;
+  creator_id?: string | null;
   name: string;
-  description?: string;
-  scheduled_start_time: string;
-  scheduled_end_time: string;
-  privacy_level: string;
-  status: string;
-  entity_type: string;
-  entity_id: string;
-  entity_metadata: string;
-  creator: string;
+  description?: string | null;
+  scheduled_start_time: Date;
+  scheduled_end_time: Date | null;
+  privacy_level: number;
+  status: 1 | 2 | 3 | 4;
+  entity_type: 1 | 2 | 3;
+  entity_id: string | null;
+  entity_metadata: null;
+  creator: DiscordUser;
   user_count?: number;
-  image?: string;
+  image?: string | null;
+  sku_ids: any[];
 }
 
 export interface EventChannel {

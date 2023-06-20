@@ -1,6 +1,6 @@
 'use client';
 
-import type { Mentor, Topic } from '@/lib/types';
+import type { DiscordEvent, Mentor, Topic } from '@/lib/types';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/react';
@@ -13,9 +13,10 @@ import { requestWarningsStates, useWarnings } from './useWarnings';
 interface MentorListProps {
   mentors: Mentor[];
   topics: Topic[];
+  events: DiscordEvent[];
 }
 
-const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
+const MentorList: React.FC<MentorListProps> = ({ mentors, topics, events }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { data: session, status: sessionStatus } = useSession();
   const loading = sessionStatus === 'loading';
@@ -74,21 +75,34 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
         </label>
       </div>
       <ul className="grid gap-12 lg:grid-cols-2">
-        {filteredMentors.map((mentor, index) => (
-          <MentorCard
-            key={index}
-            mentor={mentor}
-            topics={topics}
-            canBookAMentorship={
-              !!session &&
-              !loading &&
-              status === requestWarningsStates.SUCCESS &&
-              warnings === 0 &&
-              mentorships <= 4
-            }
-            openModal={() => setIsModalOpen(true)}
-          />
-        ))}
+        {filteredMentors?.map((mentor, index) => {
+          const discordEvent = events?.find(
+            ({ creator_id, channel_id }) =>
+              creator_id === mentor.id &&
+              [
+                '756023543304814664',
+                '756023931433123900',
+                '761337525654126592',
+              ].includes(channel_id!),
+          );
+
+          return (
+            <MentorCard
+              key={index}
+              mentor={mentor}
+              topics={topics}
+              canBookAMentorship={
+                !!session &&
+                !loading &&
+                status === requestWarningsStates.SUCCESS &&
+                warnings === 0 &&
+                mentorships <= 4
+              }
+              openModal={() => setIsModalOpen(true)}
+              event={discordEvent}
+            />
+          );
+        })}
       </ul>
 
       <SimpleModal

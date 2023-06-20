@@ -125,6 +125,7 @@ export const mentorsTopicsQuery = groq`
 
 export const mentorsQuery = groq`
   *[_type == "mentor" && status in ["ACTIVE", "NOT_AVAILABLE"]] | order(status asc) {
+    'id': persona-> discordID.current,
     name,
     description,
     'photo': {

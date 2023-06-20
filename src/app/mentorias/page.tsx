@@ -6,6 +6,7 @@ import {
   getMentoringTopics,
   getPageByName,
 } from '@/lib/api.server';
+import { getAllDiscordEvents } from '@/lib/discord';
 import { getPageMetadata } from '@/lib/seo';
 import { Suspense } from 'react';
 
@@ -18,12 +19,15 @@ export default async function MentorshipsPage() {
     getAllMentors({ next: { revalidate: 60 } }),
   ]);
 
+  const response = await getAllDiscordEvents();
+  const events = await response.json();
+
   return (
     <>
       <PageComponents components={page.components} />
 
       <Suspense fallback={<MentorListSkeleton />}>
-        <MentorList topics={topics} mentors={mentors} />
+        <MentorList topics={topics} mentors={mentors} events={events} />
       </Suspense>
     </>
   );
