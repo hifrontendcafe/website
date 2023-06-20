@@ -36,7 +36,10 @@ function UpcomingEvents({ events }: Props) {
         </div>
 
         <div className="flex flex-col gap-2">
-          <DateAndTime dateString={nextEventDate} />
+          <DateAndTime
+            className="hidden lg:block text-sm text-tertiary"
+            dateString={nextEventDate}
+          />
           <h3 className="truncate text-2xl font-semibold ">{nextEvent.name}</h3>
           <p className=" line-clamp-6 text-zinc-400 whitespace-pre-line">
             {nextEvent.description}

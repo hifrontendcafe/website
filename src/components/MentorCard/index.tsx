@@ -1,7 +1,6 @@
 import { FrontendCafeId } from '@/lib/constants';
-import { formatDateTime } from '@/lib/formatDateTime';
 import type { DiscordEvent, Mentor, Topic } from '@/lib/types';
-import { faCalendarDay, faChain } from '@fortawesome/free-solid-svg-icons';
+import { faChain } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -9,6 +8,7 @@ import Link from 'next/link';
 import { useState } from 'react';
 import ToastNotification from '../../components/ToastNotification/ToastNotification';
 import { getNameForId } from '../../lib/mentors';
+import DateAndTime from '../DateAndTime';
 import SocialMediaLinks from '../SocialMediaLinks';
 import TopicBadge from '../TopicBadge';
 
@@ -59,7 +59,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
       className="flex max-w-3xl snap-y scroll-m-16 flex-col gap-4 rounded-lg bg-zinc-800 p-3 md:p-6"
       id={mentorNameForId}
     >
-      <div className="flex justify-between gap-4">
+      <div className="flex justify-between gap-8">
         <Image
           className="h-24 w-24 rounded-full bg-zinc-300 object-cover"
           src={`${mentor.photo.src}?h=96`}
@@ -70,33 +70,21 @@ const MentorCard: React.FC<MentorCardProps> = ({
           blurDataURL={`${mentor.photo.src}?h=50`}
         />
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center sm:max-w-min">
           {event && (
-            <p className="text-center text-sm text-greenFec">
-              <span className="line-clamp-1">
-                Mentoría grupal el próximo...
-              </span>
-              <FontAwesomeIcon icon={faCalendarDay} />{' '}
-              <time
-                className="font-medium"
-                dateTime={event.scheduled_start_time.toString()}
-              >
-                {formatDateTime(event.scheduled_start_time).date}
-              </time>{' '}
-              a las{' '}
-              <time
-                className="font-medium"
-                dateTime={event.scheduled_start_time.toString()}
-              >
-                {formatDateTime(event.scheduled_start_time).time}
-              </time>
-            </p>
+            <div className="text-sm text-greenFec">
+              <p className="line-clamp-1">{event.name}</p>
+              <DateAndTime
+                className="sm:whitespace-nowrap"
+                dateString={event.scheduled_start_time}
+              />
+            </div>
           )}
           {isUnavailable ? (
             <button
               type="button"
               disabled
-              className="btn btn-secondary mt-auto cursor-not-allowed self-end"
+              className="btn btn-secondary mt-auto cursor-not-allowed self-end whitespace-nowrap"
             >
               No disponible
             </button>
@@ -108,7 +96,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
                   : mentor.calendly
               }
               target="_blank"
-              className="btn mt-auto self-end border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+              className="btn mt-auto self-end whitespace-nowrap border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
             >
               {event ? 'Asistir a mentoría' : 'Solicitar mentoría'}
             </Link>
@@ -116,7 +104,7 @@ const MentorCard: React.FC<MentorCardProps> = ({
             <button
               type="button"
               onClick={() => openModal()}
-              className="btn mt-auto self-end border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+              className="btn mt-auto self-end whitespace-nowrap border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
             >
               Solicitar mentoría
             </button>
