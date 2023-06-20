@@ -1,6 +1,6 @@
 import MentorList from '@/components/MentorList';
+import MentorListSkeleton from '@/components/MentorList/MentorListSkeleton';
 import { PageComponents } from '@/components/Page/Matcher';
-import SectionHero from '@/components/SectionHero';
 import {
   getAllMentors,
   getMentoringTopics,
@@ -8,6 +8,7 @@ import {
 } from '@/lib/api.server';
 import { getAllDiscordEvents } from '@/lib/discord';
 import { getPageMetadata } from '@/lib/seo';
+import { Suspense } from 'react';
 
 export const generateMetadata = () => getPageMetadata('Mentorías');
 
@@ -23,15 +24,11 @@ export default async function MentorshipsPage() {
 
   return (
     <>
-      <SectionHero
-        title={page.title}
-        paragraph={page.description}
-        cta={page.doc}
-      />
-
       <PageComponents components={page.components} />
 
-      <MentorList topics={topics} mentors={mentors} events={events} />
+      <Suspense fallback={<MentorListSkeleton />}>
+        <MentorList topics={topics} mentors={mentors} events={events} />
+      </Suspense>
     </>
   );
 }

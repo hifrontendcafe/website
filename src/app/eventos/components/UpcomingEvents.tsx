@@ -21,7 +21,7 @@ function UpcomingEvents({ events }: Props) {
   return (
     <>
       <div className="grid items-center gap-x-6 gap-y-2 lg:grid-cols-2">
-        <div className="flex items-center justify-between gap-4">
+        <div className="flex min-w-0 items-center justify-between gap-4">
           <Image
             className="rounded"
             src={`https://cdn.discordapp.com/guild-events/${nextEvent.id}/${nextEvent.image}.png?size=512`}
@@ -35,7 +35,7 @@ function UpcomingEvents({ events }: Props) {
           />
         </div>
 
-        <div className="flex flex-col gap-2">
+        <div className="flex min-w-0 flex-col gap-2">
           <DateAndTime
             className="hidden text-sm text-tertiary lg:block"
             dateString={nextEventDate}
@@ -56,20 +56,20 @@ function UpcomingEvents({ events }: Props) {
       </div>
 
       {sortedEvents.length > 1 && (
-        <ul className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+        <ul className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           {sortedEvents.slice(1, 4).map((event) => (
             <li
-              className="flex items-start gap-3 md:[&:nth-child(3)]:hidden xl:[&:nth-child(3)]:flex"
+              className="flex min-w-0 gap-3 md:[&:nth-child(3)]:hidden xl:[&:nth-child(3)]:flex"
               key={event.id}
             >
               <DateWidget dateString={event.scheduled_start_time} />
-              <div className="flex flex-col gap-2">
+              <div className="flex min-w-0 flex-1 flex-col justify-between gap-2">
                 <h3 className="truncate">{event.name}</h3>
                 <p className="line-clamp-4 whitespace-pre-line text-sm text-zinc-400">
                   {event.description}
                 </p>
                 <Image
-                  className="rounded"
+                  className="mt-auto rounded"
                   src={`https://cdn.discordapp.com/guild-events/${event.id}/${event.image}.png?size=512`}
                   width={512}
                   height={204}

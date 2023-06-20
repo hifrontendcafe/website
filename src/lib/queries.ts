@@ -116,15 +116,15 @@ export const eventsSettingsQuery = groq`
 `;
 
 export const mentorsTopicsQuery = groq`
-  *[_type == "topic"] | order(date desc) {
-    topics,
+  *[_type == "topic"] | order(title asc) {
+    description,
     _id,
     title
   }
 `;
 
 export const mentorsQuery = groq`
-  *[_type == "mentor" && status in ["ACTIVE", "NOT_AVAILABLE"]] | order(date desc) {
+  *[_type == "mentor" && status in ["ACTIVE", "NOT_AVAILABLE"]] | order(status asc) {
     'id': persona-> discordID.current,
     name,
     description,

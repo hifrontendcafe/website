@@ -1,91 +1,64 @@
-import { getAllCMYKProjects } from '@/lib/api.server';
-import { CMYK } from '@/lib/types';
+'use client';
+
+import type { CMYK } from '@/lib/types';
 import Link from 'next/link';
-import { useMemo } from 'react';
+import { useSearchParams } from 'next/navigation';
 import CMYKItemCard from '../CMYKItemCard';
+import { cmykVersions } from './cmykVersions';
 
-type CMYKEditionsProps = {
-  projects: CMYK[];
-  edition?: string;
-};
+function CMYKEditions({ projects }: { projects: CMYK[] }) {
+  const projectVersions = new Set(
+    projects.map((project) => project.cmykVersion),
+  );
 
-const cmykVersions = [
-  { version: 'cmyk-1', name: 'CMYK 1', edition: 1 },
-  { version: 'cmyk-2', name: 'CMYK 2', edition: 2 },
-  { version: 'cmyk-3', name: 'CMYK 3', edition: 3 },
-  { version: 'cmyk-4', name: 'CMYK 4', edition: 4 },
-];
+  const filteredVersions = cmykVersions.filter((cmykVersion) =>
+    projectVersions.has(cmykVersion.version),
+  );
 
-export default async function CMYKEditions({ edition }: { edition?: string }) {
-  const projects = await getAllCMYKProjects({
-    cache: 'force-cache',
-    next: { revalidate: 60 },
-  });
+  const searchParams = useSearchParams()!;
+  const edition = searchParams.get('edition');
 
-  return <Editions projects={projects} edition={edition} />;
-}
+  const lastVersion = filteredVersions[filteredVersions.length - 1];
+  const currentVersion = filteredVersions.find(
+    (cmyk) => cmyk.edition === Number(edition || lastVersion.edition),
+  )?.version;
 
-const Editions: React.FC<CMYKEditionsProps> = ({ edition, projects }) => {
-  const filteredVersions = useMemo(() => {
-    const projectVersions = new Set(
-      projects.map((project) => project.cmykVersion),
-    );
-
-    return cmykVersions.filter((cmykVersion) =>
-      projectVersions.has(cmykVersion.version),
-    );
-  }, [projects]);
-
-  const currentCMYK = useMemo(() => {
-    const lastVersion = filteredVersions[filteredVersions.length - 1].version;
-
-    if (!edition) return lastVersion;
-
-    const currentVersion = filteredVersions.find(
-      (cmyk) => cmyk.edition === +edition,
-    )?.version;
-
-    return currentVersion ?? lastVersion;
-  }, [filteredVersions, edition]);
+  const currentCMYK = currentVersion ?? lastVersion.version;
 
   const currentProjects = projects.filter(
     (project) => project.cmykVersion === currentCMYK,
   );
 
   return (
-    <section className="mt-20">
+    <section className="md:mt-10">
       <h2 className="subtitle text-center font-medium">Ediciones</h2>
-      <ul className="mx-auto mt-6 mb-16 flex w-full md:w-8/12">
-        {filteredVersions.map((cmykVersion) => (
+      <ul className="mx-auto mt-6 mb-10 flex w-full gap-2 md:w-8/12 ">
+        {cmykVersions.map(({ edition, version, name }) => (
           <li
-            className={`flex-1 cursor-pointer py-2 px-4 text-center ${
-              cmykVersion.version === currentCMYK
+            className={`flex-1 from-zinc-300/25 via-transparent text-center focus-within:bg-gradient-to-t hover:bg-gradient-to-t ${
+              version === currentCMYK
                 ? 'border-b-4 border-zinc-100 font-semibold'
                 : 'border-b text-tertiary'
             }`}
-            key={cmykVersion.version}
+            key={version}
           >
             <Link
+              className="block py-2"
+              href={`/cmyk?edition=${edition}`}
               replace
-              shallow
-              scroll={false}
-              href={{
-                pathname: '/cmyk',
-                query: {
-                  edition: cmykVersion.edition,
-                },
-              }}
             >
-              {cmykVersion.name}
+              {name}
             </Link>
           </li>
         ))}
       </ul>
-      <ul className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
+      <ul className="mx-auto grid max-w-4xl grid-cols-1 justify-items-center gap-6 p-6 sm:px-6 md:grid-cols-2 md:gap-10 lg:px-12">
         {currentProjects.map((project, index) => (
           <CMYKItemCard key={project._id} project={project} index={index} />
         ))}
       </ul>
     </section>
   );
-};
+}
+
+export default CMYKEditions;
