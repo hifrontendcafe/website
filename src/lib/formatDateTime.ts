@@ -2,7 +2,7 @@ import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
 import esLocale from 'date-fns/locale/es';
 
-export function formatDateTime(dateString: string) {
+export function formatDateTime(dateString: Date) {
   const date = new Date(dateString);
   const options = {
     locale: esLocale,

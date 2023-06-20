@@ -7,6 +7,7 @@ const meta = {
   args: {
     canBookAMentorship: false,
     mentor: {
+      id: '123',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error vitae repellat dolores iste, maxime neque delectus, debitis ipsa omnis architecto a earum eaque, reprehenderit sequi atque eius voluptate expedita laboriosam!',
       github: '/#',
@@ -28,6 +29,7 @@ const meta = {
         title: 'topic title',
       },
     ],
+    event: undefined,
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof MentorCard>;

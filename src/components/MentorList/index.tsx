@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useMemo, useState } from 'react';
-import { Mentor, Topic } from '../../lib/types';
+import { DiscordEvent, Mentor, Topic } from '../../lib/types';
 import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 import { requestWarningsStates, useWarnings } from './useWarnings';
@@ -13,9 +13,10 @@ import { requestWarningsStates, useWarnings } from './useWarnings';
 interface MentorListProps {
   mentors: Mentor[];
   topics: Topic[];
+  events: DiscordEvent[];
 }
 
-const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
+const MentorList: React.FC<MentorListProps> = ({ mentors, topics, events }) => {
   const [filteredMentors, setFilteredMentors] = useState<Mentor[] | undefined>(
     undefined,
   );
@@ -105,21 +106,34 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics }) => {
       </div>
       <ul className="grid gap-12 lg:grid-cols-2">
         {(filteredMentors && speciality ? filteredMentors : sortedMentors)?.map(
-          (mentor, index) => (
-            <MentorCard
-              key={index}
-              mentor={mentor}
-              topics={topics}
-              canBookAMentorship={
-                !!session &&
-                !loading &&
-                status === requestWarningsStates.SUCCESS &&
-                warnings === 0 &&
-                mentorships <= 4
-              }
-              openModal={() => setIsModalOpen(true)}
-            />
-          ),
+          (mentor, index) => {
+            const discordEvent = events?.find(
+              ({ creator_id, channel_id }) =>
+                creator_id === mentor.id &&
+                [
+                  '756023543304814664',
+                  '756023931433123900',
+                  '761337525654126592',
+                ].includes(channel_id!),
+            );
+
+            return (
+              <MentorCard
+                key={index}
+                mentor={mentor}
+                topics={topics}
+                canBookAMentorship={
+                  !!session &&
+                  !loading &&
+                  status === requestWarningsStates.SUCCESS &&
+                  warnings === 0 &&
+                  mentorships <= 4
+                }
+                openModal={() => setIsModalOpen(true)}
+                event={discordEvent}
+              />
+            );
+          },
         )}
       </ul>
 

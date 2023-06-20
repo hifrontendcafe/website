@@ -1,16 +1,17 @@
 'use client';
 
 import { formatDateTime } from '@/lib/formatDateTime';
-interface Props {
-  dateString: string;
+import { type ComponentProps } from 'react';
+interface Props extends ComponentProps<'p'> {
+  dateString: Date;
 }
 
-function DateAndTime({ dateString }: Props) {
+function DateAndTime({ dateString, ...props }: Props) {
   const { isToday, date, time } = formatDateTime(dateString);
 
   return (
-    <p className="hidden lg:block text-sm text-tertiary">
-      {isToday ? 'Hoy' : 'El'}
+    <p {...props}>
+      {isToday ? 'Hoy' : 'El próximo'}
       <time className="font-medium" dateTime={dateString.toString()}>
         {date}
       </time>

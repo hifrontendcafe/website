@@ -11,6 +11,6 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    dateString: new Date().toString(),
+    dateString: new Date(),
   },
 };

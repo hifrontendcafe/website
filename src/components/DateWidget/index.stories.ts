@@ -14,12 +14,12 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    dateString: new Date().toDateString() + 3,
+    dateString: new Date(new Date().toDateString() + 3),
   },
 };
 
 export const Today: Story = {
   args: {
-    dateString: new Date().toString(),
+    dateString: new Date(),
   },
 };

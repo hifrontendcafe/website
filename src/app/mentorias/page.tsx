@@ -1,11 +1,12 @@
+import MentorList from '@/components/MentorList';
+import { PageComponents } from '@/components/Page/Matcher';
 import SectionHero from '@/components/SectionHero';
 import {
   getAllMentors,
   getMentoringTopics,
   getPageByName,
 } from '@/lib/api.server';
-import { PageComponents } from '@/components/Page/Matcher';
-import MentorList from '@/components/MentorList';
+import { getAllDiscordEvents } from '@/lib/discord';
 import { getPageMetadata } from '@/lib/seo';
 
 export const generateMetadata = () => getPageMetadata('Mentorías');
@@ -17,6 +18,9 @@ export default async function MentorshipsPage() {
     getAllMentors({ next: { revalidate: 60 } }),
   ]);
 
+  const response = await getAllDiscordEvents();
+  const events = await response.json();
+
   return (
     <>
       <SectionHero
@@ -27,7 +31,7 @@ export default async function MentorshipsPage() {
 
       <PageComponents components={page.components} />
 
-      <MentorList topics={topics} mentors={mentors} />
+      <MentorList topics={topics} mentors={mentors} events={events} />
     </>
   );
 }

@@ -20,7 +20,7 @@ function UpcomingEvents({ events }: Props) {
 
   return (
     <>
-      <div className="grid items-center lg:grid-cols-2 gap-x-6 gap-y-2">
+      <div className="grid items-center gap-x-6 gap-y-2 lg:grid-cols-2">
         <div className="flex items-center justify-between gap-4">
           <Image
             className="rounded"
@@ -30,15 +30,18 @@ function UpcomingEvents({ events }: Props) {
             alt={nextEvent.name}
           />
           <DateWidget
-            className="lg:hidden mx-auto"
+            className="mx-auto lg:hidden"
             dateString={nextEventDate}
           />
         </div>
 
         <div className="flex flex-col gap-2">
-          <DateAndTime dateString={nextEventDate} />
+          <DateAndTime
+            className="hidden text-sm text-tertiary lg:block"
+            dateString={nextEventDate}
+          />
           <h3 className="truncate text-2xl font-semibold ">{nextEvent.name}</h3>
-          <p className=" line-clamp-6 text-zinc-400 whitespace-pre-line">
+          <p className=" line-clamp-6 whitespace-pre-line text-zinc-400">
             {nextEvent.description}
           </p>
           <Link
@@ -62,7 +65,7 @@ function UpcomingEvents({ events }: Props) {
               <DateWidget dateString={event.scheduled_start_time} />
               <div className="flex flex-col gap-2">
                 <h3 className="truncate">{event.name}</h3>
-                <p className="text-sm line-clamp-4 text-zinc-400 whitespace-pre-line">
+                <p className="line-clamp-4 whitespace-pre-line text-sm text-zinc-400">
                   {event.description}
                 </p>
                 <Image
