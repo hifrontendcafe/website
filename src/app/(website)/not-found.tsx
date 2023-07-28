@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import heart from '../../public/corazon-1.png';
+import heart from '../../../public/corazon-1.png';
 
 export default function NotFound() {
   return (
