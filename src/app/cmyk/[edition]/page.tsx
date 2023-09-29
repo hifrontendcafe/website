@@ -1,7 +1,6 @@
 import CMYKEdition from '@/components/CMYKEditions';
 import CMYKEditionsSkeleton from '@/components/CMYKEditions/CMYKEditionsSkeleton';
 import { cmykVersions } from '@/components/CMYKEditions/cmykVersions';
-import { getAllCMYKVersionsOrderedFromLatest } from '@/lib/api.server';
 import { getPageMetadata } from '@/lib/seo';
 import type { AppPage } from '@/lib/types';
 import { notFound } from 'next/navigation';
@@ -11,23 +10,30 @@ export const generateMetadata = () => {
   return getPageMetadata('CMYK');
 };
 
-const CMYKPage: AppPage = async () => {
-  const versions = await getAllCMYKVersionsOrderedFromLatest({
-    next: { revalidate: 3600 },
-  });
+export async function generateStaticParams() {
+  return cmykVersions.map(({ edition }) => ({
+    params: { edition },
+  }));
+}
 
-  const current = cmykVersions.find(
-    (cmykVersion) => cmykVersion.version === versions[0],
-  );
+const cmykEditions = new Set(cmykVersions.map((cmyk) => cmyk.edition));
 
-  if (!current) {
-    console.warn(`No current CMYK version found for ${versions[0]}`);
+function isValidEdition(
+  edition: string,
+): edition is (typeof cmykVersions)[number]['edition'] {
+  return cmykEditions.has(edition as (typeof cmykVersions)[number]['edition']);
+}
+
+const CMYKPage: AppPage<{ edition: string }> = async ({ params }) => {
+  const edition = params.edition;
+
+  if (!isValidEdition(edition)) {
     notFound();
   }
 
   return (
     <Suspense fallback={<CMYKEditionsSkeleton />}>
-      <CMYKEdition edition={current.edition} />
+      <CMYKEdition edition={edition} />
     </Suspense>
   );
 };

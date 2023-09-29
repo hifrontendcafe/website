@@ -1,53 +1,49 @@
-'use client';
-
-import type { CMYK } from '@/lib/types';
+import { getAllCMYKProjects } from '@/lib/api.server';
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
+import { notFound } from 'next/navigation';
 import CMYKItemCard from '../CMYKItemCard';
-import { cmykVersions } from './cmykVersions';
+import { CMYKEdition, cmykVersions } from './cmykVersions';
 
-function CMYKEditions({ projects }: { projects: CMYK[] }) {
+async function CMYKEdition({ edition }: { edition: CMYKEdition }) {
+  const projects = await getAllCMYKProjects({
+    next: { revalidate: 60 },
+  });
+
+  // Get all the editions of the projects
   const projectVersions = new Set(
     projects.map((project) => project.cmykVersion),
   );
 
-  const filteredVersions = cmykVersions.filter((cmykVersion) =>
+  // Show only the versions that have projects
+  const validCmykEditions = cmykVersions.filter((cmykVersion) =>
     projectVersions.has(cmykVersion.version),
   );
 
-  const searchParams = useSearchParams()!;
-  const edition = searchParams.get('edition');
+  const current = validCmykEditions.find((cmyk) => cmyk.edition === edition);
 
-  const lastVersion = filteredVersions[filteredVersions.length - 1];
-  const currentVersion = filteredVersions.find(
-    (cmyk) => cmyk.edition === Number(edition || lastVersion.edition),
-  )?.version;
-
-  const currentCMYK = currentVersion ?? lastVersion.version;
+  if (!current) {
+    notFound();
+  }
 
   const currentProjects = projects.filter(
-    (project) => project.cmykVersion === currentCMYK,
+    (project) => project.cmykVersion === current.version,
   );
 
   return (
     <section className="md:mt-10">
       <h2 className="subtitle text-center font-medium">Ediciones</h2>
-      <ul className="mx-auto mt-6 mb-10 flex w-full gap-2 md:w-8/12 ">
-        {cmykVersions.map(({ edition, version, name }) => (
+      <ul className="mx-auto mb-10 mt-6 flex w-full gap-2 md:w-8/12 ">
+        {validCmykEditions.map((cmyk) => (
           <li
             className={`flex-1 from-zinc-300/25 via-transparent text-center focus-within:bg-gradient-to-t hover:bg-gradient-to-t ${
-              version === currentCMYK
+              cmyk.edition === edition
                 ? 'border-b-4 border-zinc-100 font-semibold'
                 : 'border-b text-tertiary'
             }`}
-            key={version}
+            key={cmyk.version}
           >
-            <Link
-              className="block py-2"
-              href={`/cmyk?edition=${edition}`}
-              replace
-            >
-              {name}
+            <Link className="block py-2" href={`/cmyk/${cmyk.edition}`} replace>
+              {cmyk.name}
             </Link>
           </li>
         ))}
@@ -61,4 +57,4 @@ function CMYKEditions({ projects }: { projects: CMYK[] }) {
   );
 }
 
-export default CMYKEditions;
+export default CMYKEdition;
