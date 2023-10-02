@@ -1,23 +1,23 @@
 import * as queries from './queries';
 
 import type {
-  Doc,
-  FeaturedCards,
-  Page,
-  Settings,
-  Event,
-  Person,
   CMYK,
-  Profile,
-  Topic,
+  Doc,
+  Event,
+  FeaturedCards,
   Mentor,
-  Seniority,
-  Technology,
+  Page,
+  Person,
+  Profile,
   Role,
+  Seniority,
+  Settings,
+  Technology,
+  Topic,
 } from './types';
 
-import { config } from './sanity';
 import SanityClient from 'next-sanity-client';
+import { config } from './sanity';
 
 export const client = new SanityClient({
   ...config,
@@ -54,6 +54,10 @@ export const getAllEvents = client.createApiUtil<Event[]>('eventsQuery');
 export const getFecTeam = client.createApiUtil<Person[]>('staffQuery');
 
 export const getAllCMYKProjects = client.createApiUtil<CMYK[]>('cmykQuery');
+
+export const getAllCMYKVersionsOrderedFromLatest = client.createApiUtil<string>(
+  'cmykVersionsOrderedFromLatestQuery',
+);
 
 export const getProfile = client.createApiUtil<Profile, { id: string }>(
   'profileQuery',

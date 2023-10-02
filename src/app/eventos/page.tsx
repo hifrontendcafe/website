@@ -12,7 +12,6 @@ export default async function EventsPage() {
     <>
       <SectionHero title={page.title} />
 
-      {/* @ts-expect-error Server Component */}
       <EventList />
     </>
   );
