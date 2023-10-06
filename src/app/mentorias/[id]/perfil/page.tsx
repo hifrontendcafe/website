@@ -19,7 +19,7 @@ export const metadata = {
 
 async function Page({ params: { id } }: { params: { id: string } }) {
   const session = await getServerSession(authOptions);
-  const isMentor = session?.user.roles.includes('Ambassador');
+  const isMentor = session?.user.roles.includes('Mentor');
   if (!session || !isMentor || session.user.id !== id) {
     return notFound();
   }

@@ -15,7 +15,7 @@ interface UserSettingsProps {
 const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
   const { data: session, status } = useSession();
   const loading = status === 'loading';
-  const isMentor = session?.user.roles.includes('Ambassador');
+  const isMentor = session?.user.roles.includes('Mentor');
 
   return (
     <div
