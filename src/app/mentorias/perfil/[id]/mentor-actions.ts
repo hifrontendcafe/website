@@ -93,7 +93,7 @@ export async function mentorFormAction(id: string, formData: FormData) {
         autoGenerateArrayKeys: true,
       });
 
-    revalidatePath(`/mentorias/${id}/perfil`);
+    revalidatePath(`/mentorias/perfil/${id}`);
   } catch (error) {
     console.log('Transaction failed: ', error);
   }

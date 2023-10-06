@@ -48,7 +48,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
               className="whitespace-nowrap rounded-2xl bg-gradient-to-r from-greenFec to-slate-500 text-xs font-semibold shadow-xl transition hover:!scale-100 hover:from-greenFec/90 hover:to-slate-500/90 active:!scale-95"
             >
               <Link
-                href={`/mentorias/${session.user.id}/perfil`}
+                href={`/mentorias/perfil/${session.user.id}`}
                 className="inline-block px-3 py-1"
               >
                 Perfil de mentorias
