@@ -7,7 +7,7 @@ const meta = {
   args: {
     canBookAMentorship: false,
     mentor: {
-      id: '123',
+      _id: '123',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error vitae repellat dolores iste, maxime neque delectus, debitis ipsa omnis architecto a earum eaque, reprehenderit sequi atque eius voluptate expedita laboriosam!',
       github: '/#',
