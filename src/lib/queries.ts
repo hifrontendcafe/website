@@ -175,6 +175,10 @@ export const cmykQuery = groq`
   }
 `;
 
+export const cmykVersionsOrderedFromLatestQuery = groq`
+  *[_type == "cmyk"] | order(cmykVersion desc) .cmykVersion
+`;
+
 export const personQueryByDiscordID = groq`
   *[_type == "person" &&  discordID.current == $id]{
     _id,

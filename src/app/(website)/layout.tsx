@@ -45,7 +45,6 @@ export default async function RootLayout({
           <div className="container mx-auto pt-12" id="container">
             {children}
           </div>
-          {/* @ts-expect-error Server Component */}
           <Footer />
           <Analytics />
         </Providers>
