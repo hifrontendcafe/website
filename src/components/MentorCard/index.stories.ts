@@ -5,7 +5,6 @@ const meta = {
   title: 'Components/Cards/Mentor Card',
   component: MentorCard,
   args: {
-    canBookAMentorship: false,
     mentor: {
       id: '123',
       description:
