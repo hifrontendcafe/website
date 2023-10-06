@@ -6,7 +6,7 @@ type StepsProps = {
 
 const Steps: React.FC<StepsProps> = ({ steps }) => {
   return (
-    <section className="space-y-16 py-32">
+    <section className="mt-20">
       <ol className="grid gap-5 md:grid-cols-3">
         {steps
           .sort((a, b) => a.step - b.step)

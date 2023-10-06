@@ -1,12 +1,15 @@
-import SectionHero from '@/components/SectionHero';
+import MentorList from '@/components/MentorList';
+import MentorListSkeleton from '@/components/MentorList/MentorListSkeleton';
+import { PageComponents } from '@/components/Page/Matcher';
 import {
   getAllMentors,
   getMentoringTopics,
   getPageByName,
 } from '@/lib/api.server';
-import { PageComponents } from '@/components/Page/Matcher';
-import MentorList from '@/components/MentorList';
+import { getAllDiscordEvents } from '@/lib/discord';
 import { getPageMetadata } from '@/lib/seo';
+import { shuffle } from '@/lib/shuffle';
+import { Suspense } from 'react';
 
 export const generateMetadata = () => getPageMetadata('Mentorías');
 
@@ -17,17 +20,32 @@ export default async function MentorshipsPage() {
     getAllMentors({ next: { revalidate: 60 } }),
   ]);
 
+  const response = await getAllDiscordEvents();
+  const events = await response.json();
+
+  const availableMentors = mentors.filter(
+    (mentor) => mentor.status === 'ACTIVE',
+  );
+
+  const notAvailableMentors = mentors.filter(
+    (mentor) => mentor.status !== 'ACTIVE',
+  );
+
+  // randomize mentors order
+  shuffle(availableMentors);
+  shuffle(notAvailableMentors);
+
   return (
     <>
-      <SectionHero
-        title={page.title}
-        paragraph={page.description}
-        cta={page.doc}
-      />
-
       <PageComponents components={page.components} />
 
-      <MentorList topics={topics} mentors={mentors} />
+      <Suspense fallback={<MentorListSkeleton />}>
+        <MentorList
+          topics={topics}
+          mentors={[...availableMentors, ...notAvailableMentors]}
+          events={events}
+        />
+      </Suspense>
     </>
   );
 }

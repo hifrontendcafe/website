@@ -25,11 +25,7 @@ const resizeFile = (newFile: File) =>
     );
   });
 
-interface Props {
-  photo: Mentor['photo'];
-  name: string;
-  _id: string;
-}
+type Props = Pick<Mentor, 'photo' | 'name' | '_id'>;
 
 function PhotoUpload({ photo, name, _id }: Props) {
   const [photoRef, setPhotoRef] = useState<Mentor['photo'] | undefined>(photo);
@@ -59,14 +55,14 @@ function PhotoUpload({ photo, name, _id }: Props) {
   return (
     <fieldset className="group relative" disabled={isPending}>
       <Image
-        className={`h-64 w-64 rounded-full object-cover shadow-lg group-disabled:animate-pulse group-disabled:opacity-25 duration-1000 group-disabled:blur-sm`}
+        className={`h-64 w-64 rounded-full object-cover shadow-lg duration-1000 group-disabled:animate-pulse group-disabled:opacity-25 group-disabled:blur-sm`}
         src={currentPhoto}
         width={256}
         height={256}
         alt={`Foto de ${name}`}
       />
-      <label className="cursor-pointer group-disabled:cursor-wait after:absolute after:overflow-hidden after:inset-0 after:rounded-full after:transition-colors focus-within:after:bg-black/10 group-hover:after:bg-black/10">
-        <span className="absolute inset-x-0 -bottom-5 mx-auto max-w-fit rounded bg-zinc-700 py-1 px-2 opacity-75 ring-greenFec transition-opacity group-focus-within:opacity-100 group-focus-within:ring-2 group-hover:opacity-100">
+      <label className="cursor-pointer after:absolute after:inset-0 after:overflow-hidden after:rounded-full after:transition-colors focus-within:after:bg-black/10 group-hover:after:bg-black/10 group-disabled:cursor-wait">
+        <span className="absolute inset-x-0 -bottom-5 mx-auto max-w-fit rounded bg-zinc-700 px-2 py-1 opacity-75 ring-greenFec transition-opacity group-focus-within:opacity-100 group-focus-within:ring-2 group-hover:opacity-100">
           <FontAwesomeIcon icon={faEdit} className="h-4 w-4" /> Actualizar foto
           de perfil
         </span>

@@ -72,7 +72,7 @@ export async function discordEventToSanityEvent(
         _ref: eventChannel.defaultImage.asset._ref,
       },
     },
-    date: discordEvent.scheduled_start_time,
+    date: discordEvent.scheduled_start_time as unknown as string,
     description: blocks,
     tags: eventChannel.tags,
   };

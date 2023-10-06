@@ -21,7 +21,7 @@
   }
 
   .btn-secondary {
-    @apply text-primary ring-1 ring-inset ring-zinc-100 hover:text-greenFec hover:ring-greenFec disabled:text-tertiary;
+    @apply text-primary ring-1 ring-inset ring-zinc-400 hover:text-greenFec hover:ring-greenFec disabled:text-tertiary;
   }
 
   .title {

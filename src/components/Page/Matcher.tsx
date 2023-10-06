@@ -1,7 +1,4 @@
-'use client';
-
-import { Component } from '@/lib/types';
-import { useMemo } from 'react';
+import type { Component } from '@/lib/types';
 import SectionHero from '../SectionHero';
 import {
   CardComponent,
@@ -23,10 +20,7 @@ const components: Record<string, React.FC<any>> = {
 };
 
 const Matcher: React.FC<Component> = ({ _type, ...props }) => {
-  const Component: React.FC<typeof props> = useMemo(
-    () => components[_type],
-    [_type],
-  );
+  const Component: React.FC<typeof props> = components[_type];
 
   if (!Component) return null;
 
