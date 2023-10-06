@@ -1,6 +1,7 @@
 // import { GoProject } from 'react-icons/go';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   name: 'cmyk',
   type: 'document',
   title: 'CMYK',
@@ -62,4 +63,4 @@ export default {
       },
     },
   ],
-};
+});

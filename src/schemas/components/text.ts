@@ -1,6 +1,7 @@
 // import { IoText } from 'react-icons/io5';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Texto',
   name: 'textComponent',
   type: 'object',
@@ -42,8 +43,8 @@ export default {
       };
 
       return {
-        title: `${types[type]}: ${title}`,
+        title: `${types[type as keyof typeof types]}: ${title}`,
       };
     },
   },
-};
+});

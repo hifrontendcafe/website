@@ -1,6 +1,7 @@
 // import { BsFillPeopleFill } from 'react-icons/bs';
+import { defineType } from 'sanity';
 
-const profile = {
+const profile = defineType({
   title: 'Profile',
   name: 'profile',
   type: 'document',
@@ -72,6 +73,6 @@ const profile = {
   initialValue: {
     isActive: false,
   },
-};
+});
 
 export default profile;

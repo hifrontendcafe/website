@@ -1,6 +1,7 @@
 // import { AiFillFolderOpen } from 'react-icons/ai';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Categoria',
   name: 'category',
   type: 'document',
@@ -18,4 +19,4 @@ export default {
       of: [{ type: 'block' }],
     },
   ],
-};
+});

@@ -1,4 +1,5 @@
 // import { RiPagesLine } from 'react-icons/ri';
+import { defineType } from 'sanity';
 import componentsTypes from './components';
 
 const seo = [
@@ -25,7 +26,7 @@ const seo = [
   },
 ];
 
-export default {
+export default defineType({
   title: 'Page',
   name: 'page',
   type: 'document',
@@ -85,4 +86,4 @@ export default {
       of: componentsTypes.map((component) => ({ type: component.name })),
     },
   ],
-};
+});

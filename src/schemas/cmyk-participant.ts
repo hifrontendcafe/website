@@ -1,6 +1,7 @@
 // import { FaUsers } from 'react-icons/fa';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   name: 'cmykParticipant',
   type: 'document',
   title: 'CMYK Participant',
@@ -172,4 +173,4 @@ export default {
       title: 'discordUser.username',
     },
   },
-};
+});

@@ -2,7 +2,7 @@ import { StructureBuilder } from 'sanity/desk';
 
 // https://www.sanity.io/schemas/how-to-list-and-group-image-asset-documents-540ba73a
 
-const AssetPreview = ({ document }) => {
+const AssetPreview = ({ document }: any) => {
   const { displayed } = document;
   return (
     displayed.url && (

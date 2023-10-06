@@ -1,4 +1,6 @@
-export default {
+import { defineType } from 'sanity';
+
+export default defineType({
   title: 'Feature Card',
   name: 'featureCard',
   type: 'object',
@@ -33,4 +35,4 @@ export default {
       title: `Feature Card - ${title}`,
     }),
   },
-};
+});

@@ -1,6 +1,7 @@
 // import { BsPencil } from 'react-icons/bs';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   name: 'post',
   type: 'document',
   title: 'Post',
@@ -47,4 +48,4 @@ export default {
       of: [{ type: 'block' }, { type: 'image' }],
     },
   ],
-};
+});

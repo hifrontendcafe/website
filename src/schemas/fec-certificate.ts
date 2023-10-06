@@ -1,6 +1,7 @@
 // import { GrCertificate } from 'react-icons/gr';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Certificado',
   name: 'fec-certificate',
   type: 'document',
@@ -34,4 +35,4 @@ export default {
       type: 'image',
     },
   ],
-};
+});

@@ -1,6 +1,7 @@
 // import { AiFillTag } from 'react-icons/ai';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Tag',
   name: 'tag',
   type: 'document',
@@ -12,4 +13,4 @@ export default {
       type: 'string',
     },
   ],
-};
+});

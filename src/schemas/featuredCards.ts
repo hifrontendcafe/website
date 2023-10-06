@@ -1,6 +1,7 @@
 // import { AiFillHome } from 'react-icons/ai';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Featured Cards',
   name: 'featuredCards',
   type: 'document',
@@ -30,4 +31,4 @@ export default {
       type: 'string',
     },
   ],
-};
+});

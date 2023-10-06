@@ -1,6 +1,7 @@
 // import { MdEventNote } from 'react-icons/md';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Canales con eventos',
   name: 'eventChannel',
   type: 'document',
@@ -67,4 +68,4 @@ export default {
       by: [{ field: 'name', direction: 'asc' }],
     },
   ],
-};
+});

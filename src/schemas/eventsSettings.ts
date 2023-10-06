@@ -1,7 +1,11 @@
-export default {
+import { defineType } from 'sanity';
+
+export default defineType({
   name: 'eventsSettings',
   title: 'Events Settings',
   type: 'document',
+  // TODO: Add these options
+  // @ts-expect-error Fix this
   __experimental_actions: ['update', 'publish'],
   fields: [
     {
@@ -22,4 +26,4 @@ export default {
       validation: (Rule) => Rule.required(),
     },
   ],
-};
+});

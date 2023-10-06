@@ -1,6 +1,7 @@
 // import { GiAtom } from 'react-icons/gi';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Grupo Reactivista',
   name: 'reactGroup',
   type: 'document',
@@ -91,4 +92,4 @@ export default {
       };
     },
   },
-};
+});

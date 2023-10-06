@@ -1,6 +1,7 @@
 // import { MdSchool } from 'react-icons/md';
+import { defineType } from 'sanity';
 
-const mentor = {
+const mentor = defineType({
   title: 'Mentor',
   name: 'mentor',
   type: 'document',
@@ -104,6 +105,6 @@ const mentor = {
   initialValue: {
     isActive: true,
   },
-};
+});
 
 export default mentor;

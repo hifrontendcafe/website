@@ -59,7 +59,7 @@ export function peopleTree(S: StructureBuilder) {
 
                     const personIds =
                       reactGroup.participants?.map(
-                        (participant) => participant._ref,
+                        (participant: any) => participant._ref,
                       ) || [];
 
                     personIds.push(reactGroup.teamCaptain._ref);

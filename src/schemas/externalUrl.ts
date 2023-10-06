@@ -1,6 +1,7 @@
 // import { BsLink } from 'react-icons/bs';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'URLs Externas',
   name: 'externalUrl',
   type: 'document',
@@ -9,4 +10,4 @@ export default {
     { title: 'Nombre', name: 'name', type: 'string' },
     { title: 'Url', name: 'url', type: 'url' },
   ],
-};
+});

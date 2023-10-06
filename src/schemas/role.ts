@@ -1,6 +1,7 @@
 // import { MdList } from 'react-icons/md';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Roles',
   name: 'role',
   type: 'document',
@@ -13,4 +14,4 @@ export default {
       validation: (Rule) => Rule.required(),
     },
   ],
-};
+});

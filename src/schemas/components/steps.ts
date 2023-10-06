@@ -1,6 +1,7 @@
 // import { IoFootsteps } from 'react-icons/io5';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Pasos',
   name: 'steps',
   type: 'object',
@@ -42,4 +43,4 @@ export default {
       title: 'Pasos',
     }),
   },
-};
+});

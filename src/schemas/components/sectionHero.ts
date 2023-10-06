@@ -1,4 +1,6 @@
-export default {
+import { defineType } from 'sanity';
+
+export default defineType({
   title: 'Section Hero',
   name: 'sectionHero',
   type: 'object',
@@ -22,4 +24,4 @@ export default {
       title: `Section Hero - ${title}`,
     }),
   },
-};
+});

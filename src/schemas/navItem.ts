@@ -1,6 +1,7 @@
 // import { BsLink } from 'react-icons/bs';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Nav Item',
   name: 'navItem',
   type: 'document',
@@ -14,4 +15,4 @@ export default {
       to: [{ type: 'page' }, { type: 'externalUrl' }],
     },
   ],
-};
+});

@@ -1,7 +1,8 @@
 // import { MdEventSeat } from 'react-icons/md';
 import { format } from 'date-fns';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Evento',
   name: 'event',
   type: 'document',
@@ -120,4 +121,4 @@ export default {
       by: [{ field: 'title', direction: 'asc' }],
     },
   ],
-};
+});

@@ -1,6 +1,7 @@
 // import { MdList } from 'react-icons/md';
+import { defineType } from 'sanity';
 
-export default {
+export default defineType({
   title: 'Tema',
   name: 'topic',
   type: 'document',
@@ -19,4 +20,4 @@ export default {
       of: [{ type: 'block' }],
     },
   ],
-};
+});

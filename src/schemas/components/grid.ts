@@ -1,4 +1,6 @@
-export default {
+import { defineType } from 'sanity';
+
+export default defineType({
   title: 'Grilla',
   name: 'grid',
   type: 'object',
@@ -34,4 +36,4 @@ export default {
       title: `Grilla: ${columns} Columnas`,
     }),
   },
-};
+});

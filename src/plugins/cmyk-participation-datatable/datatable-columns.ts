@@ -77,7 +77,8 @@ export const columns: MUIDataTableProps['columns'] = [
     options: {
       filter: true,
       sort: true,
-      customBodyRender: (value) => workExperienceLabels[value],
+      customBodyRender: (value: keyof typeof workExperienceLabels) =>
+        workExperienceLabels[value],
     },
   },
   {
@@ -86,7 +87,8 @@ export const columns: MUIDataTableProps['columns'] = [
     options: {
       filter: true,
       sort: true,
-      customBodyRender: (value) => stackWantedLabels[value],
+      customBodyRender: (value: keyof typeof stackWantedLabels) =>
+        stackWantedLabels[value],
     },
   },
   {
@@ -95,7 +97,8 @@ export const columns: MUIDataTableProps['columns'] = [
     options: {
       filter: true,
       sort: true,
-      customBodyRender: (value) => projectsLabels[value],
+      customBodyRender: (value: keyof typeof projectsLabels) =>
+        projectsLabels[value],
     },
   },
   {
