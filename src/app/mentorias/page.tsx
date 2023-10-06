@@ -20,8 +20,7 @@ export default async function MentorshipsPage() {
     getAllMentors({ next: { revalidate: 60 } }),
   ]);
 
-  const response = await getAllDiscordEvents();
-  const events = await response.json();
+  const events = await getAllDiscordEvents();
 
   const availableMentors = mentors.filter(
     (mentor) => mentor.status === 'ACTIVE',
