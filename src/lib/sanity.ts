@@ -1,10 +1,11 @@
-import createClient from '@sanity/client';
+import { createClient } from '@sanity/client';
 import sanityImage from '@sanity/image-url';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { dataset, projectId } from '../../sanity.env';
 
 export const config = {
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET!,
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID!,
+  dataset,
+  projectId,
   apiVersion: '2022-04-30',
   useCdn: process.env.NODE_ENV === 'production',
 };
