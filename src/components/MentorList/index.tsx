@@ -41,7 +41,7 @@ export default function MentorList({
 
     return events?.find(
       (event) =>
-        event.creator_id === mentor.id &&
+        event.creator_id === mentor._id &&
         mentorshipChannels.includes(
           event.channel_id as (typeof mentorshipChannels)[number],
         ),
