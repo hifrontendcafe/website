@@ -2,8 +2,10 @@
 
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { motion } from 'framer-motion';
 import { signIn, signOut, useSession } from 'next-auth/react';
 import Image from 'next/image';
+import Link from 'next/link';
 import Spinner from '../Spinner';
 
 interface UserSettingsProps {
@@ -13,6 +15,7 @@ interface UserSettingsProps {
 const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
   const { data: session, status } = useSession();
   const loading = status === 'loading';
+  const isMentor = session?.user.roles.includes('Mentor');
 
   return (
     <div
@@ -20,8 +23,38 @@ const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
         navIsOpen ? 'm-2 flex place-self-start lg:m-0' : 'hidden'
       }`}
     >
-      {session?.user ? (
+      {!session ? (
+        <button
+          className="btn btn-secondary lg:ring-0"
+          disabled={loading}
+          onClick={() => signIn('discord')}
+        >
+          {loading ? (
+            <>
+              <Spinner /> Cargando&hellip;
+            </>
+          ) : (
+            <>
+              <FontAwesomeIcon icon={faDiscord} /> Iniciar sesión
+            </>
+          )}
+        </button>
+      ) : (
         <>
+          {isMentor && (
+            <motion.div
+              initial={{ scale: 0 }}
+              animate={{ scale: 0.95 }}
+              className="whitespace-nowrap rounded-2xl bg-gradient-to-r from-greenFec to-slate-500 text-xs font-semibold shadow-xl transition hover:!scale-100 hover:from-greenFec/90 hover:to-slate-500/90 active:!scale-95"
+            >
+              <Link
+                href={`/mentorias/perfil/${session.user.id}`}
+                className="inline-block px-3 py-1"
+              >
+                Perfil de mentorias
+              </Link>
+            </motion.div>
+          )}
           <Image
             className="rounded-full"
             src={session.user.image}
@@ -39,22 +72,6 @@ const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
             </button>
           </div>
         </>
-      ) : (
-        <button
-          className="btn btn-secondary lg:ring-0"
-          disabled={loading}
-          onClick={() => signIn('discord')}
-        >
-          {loading ? (
-            <>
-              <Spinner /> Cargando&hellip;
-            </>
-          ) : (
-            <>
-              <FontAwesomeIcon icon={faDiscord} /> Iniciar sesión
-            </>
-          )}
-        </button>
       )}
     </div>
   );

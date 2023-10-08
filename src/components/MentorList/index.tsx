@@ -78,7 +78,7 @@ const MentorList: React.FC<MentorListProps> = ({ mentors, topics, events }) => {
         {filteredMentors?.map((mentor, index) => {
           const discordEvent = events?.find(
             ({ creator_id, channel_id }) =>
-              creator_id === mentor.id &&
+              creator_id === mentor._id &&
               [
                 '756023543304814664',
                 '756023931433123900',

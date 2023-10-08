@@ -62,6 +62,11 @@ export const getAllCMYKVersionsOrderedFromLatest = client.createApiUtil<string>(
 export const getProfile = client.createApiUtil<Profile, { id: string }>(
   'profileQuery',
 );
+// FIXME: Mentor>topics type
+type TMentor = Omit<Mentor, 'topics'> & { topics: Topic[] };
+export const getMentor = client.createApiUtil<TMentor | null, { id: string }>(
+  'mentorQuery',
+);
 
 export const getMentoringTopics =
   client.createApiUtil<Topic[]>('mentorsTopicsQuery');
