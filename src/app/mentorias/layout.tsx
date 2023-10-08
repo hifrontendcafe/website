@@ -1,3 +1,4 @@
+import { PageComponents } from '@/components/Page/Matcher';
 import SectionHero from '@/components/SectionHero';
 import { getPageByName } from '@/lib/api.server';
 
@@ -11,6 +12,7 @@ async function MentorshipsLayout({ children }: { children: React.ReactNode }) {
         paragraph={page.description}
         cta={page.doc}
       />
+      <PageComponents components={page.components} />
       {children}
     </main>
   );

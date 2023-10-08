@@ -3,32 +3,31 @@ import type { DiscordEvent, Mentor, Topic } from '@/lib/types';
 import { faChain } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';
+import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import ToastNotification from '../../components/ToastNotification/ToastNotification';
 import { getNameForId } from '../../lib/mentors';
 import DateAndTime from '../DateAndTime';
+import { requestWarningsStates, useWarnings } from '../MentorList/useWarnings';
 import SocialMediaLinks from '../SocialMediaLinks';
 import TopicBadge from '../TopicBadge';
 
 interface MentorCardProps {
   mentor: Mentor;
   topics: Topic[];
-  canBookAMentorship: boolean;
   openModal: () => void;
   event: DiscordEvent | undefined;
 }
 
-const MentorCard: React.FC<MentorCardProps> = ({
+export default function MentorCard({
   mentor,
   topics,
-  canBookAMentorship,
   openModal,
   event,
-}) => {
+}: MentorCardProps) {
   const isActive = mentor.status === 'ACTIVE';
-  const isUnavailable = mentor.status === 'NOT_AVAILABLE';
 
   const [showToast, setShowToast] = useState(false);
 
@@ -80,35 +79,12 @@ const MentorCard: React.FC<MentorCardProps> = ({
               />
             </div>
           )}
-          {isUnavailable ? (
-            <button
-              type="button"
-              disabled
-              className="btn btn-secondary mt-auto cursor-not-allowed self-end whitespace-nowrap"
-            >
-              No disponible
-            </button>
-          ) : isActive && (event || (mentor.calendly && canBookAMentorship)) ? (
-            <Link
-              href={
-                event
-                  ? `https://discord.com/events/${FrontendCafeId}/${event.id}`
-                  : mentor.calendly
-              }
-              target="_blank"
-              className="btn mt-auto self-end whitespace-nowrap border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
-            >
-              {event ? 'Asistir a mentoría' : 'Solicitar mentoría'}
-            </Link>
-          ) : (
-            <button
-              type="button"
-              onClick={() => openModal()}
-              className="btn mt-auto self-end whitespace-nowrap border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
-            >
-              Solicitar mentoría
-            </button>
-          )}
+          <BookMentorshipButton
+            event={event}
+            isActive={isActive}
+            mentor={mentor}
+            openModal={openModal}
+          />
         </div>
       </div>
       <div className="flex items-center justify-between gap-4">
@@ -144,6 +120,62 @@ const MentorCard: React.FC<MentorCardProps> = ({
       </ToastNotification>
     </motion.li>
   );
-};
+}
 
-export default MentorCard;
+function BookMentorshipButton({
+  event,
+  isActive,
+  mentor,
+  openModal,
+}: Omit<MentorCardProps, 'topics'> & {
+  isActive: boolean;
+}) {
+  const { data: session, status: sessionStatus } = useSession();
+  const { status, warnings, mentorships } = useWarnings(session?.user.id);
+  const loading = sessionStatus === 'loading';
+
+  const canBookAMentorship =
+    !!session &&
+    !loading &&
+    status === requestWarningsStates.SUCCESS &&
+    warnings === 0 &&
+    mentorships <= 4;
+
+  if (mentor.status === 'NOT_AVAILABLE') {
+    return (
+      <button
+        type="button"
+        disabled
+        className="btn btn-secondary mt-auto cursor-not-allowed self-end whitespace-nowrap"
+      >
+        No disponible
+      </button>
+    );
+  }
+
+  if (isActive && (event || (mentor.calendly && canBookAMentorship))) {
+    const url = event
+      ? `https://discord.com/events/${FrontendCafeId}/${event.id}`
+      : mentor.calendly;
+
+    return (
+      <Link
+        href={url}
+        target="_blank"
+        className="btn mt-auto self-end whitespace-nowrap border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+      >
+        {event ? 'Asistir a mentoría' : 'Solicitar mentoría'}
+      </Link>
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={openModal}
+      className="btn mt-auto self-end whitespace-nowrap border border-zinc-50 hover:border-zinc-50 hover:bg-zinc-50 hover:text-zinc-800"
+    >
+      Solicitar mentoría
+    </button>
+  );
+}
