@@ -1,7 +1,7 @@
 import UpcomingEvents from '@/app/(website)/eventos/components/UpcomingEvents';
 import { getAllEvents } from '@/lib/api.server';
 import { getAllDiscordEvents } from '@/lib/discord';
-import type { DiscordEvent, Event } from '@/lib/types';
+import type { Event } from '@/lib/types';
 import { isPast } from 'date-fns';
 import EventPreview from '../EventPreview';
 
@@ -13,8 +13,7 @@ export default async function EventList() {
     next: { revalidate: 60 },
   });
 
-  const response = await getAllDiscordEvents();
-  const upcomingEvents: DiscordEvent[] = await response.json();
+  const upcomingEvents = await getAllDiscordEvents();
 
   return (
     <div id="events" className="space-y-20">
