@@ -1,4 +1,4 @@
-import UpcomingEvents from '@/app/eventos/components/UpcomingEvents';
+import UpcomingEvents from '@/app/(website)/eventos/components/UpcomingEvents';
 import { getAllEvents } from '@/lib/api.server';
 import { getAllDiscordEvents } from '@/lib/discord';
 import type { Event } from '@/lib/types';

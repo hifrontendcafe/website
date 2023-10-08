@@ -1,6 +1,6 @@
 'use server';
 
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
+import { authOptions } from '@/app/(website)/api/auth/[...nextauth]/authOptions';
 import { getMentor } from '@/lib/api.server';
 import { postClient } from '@/lib/sanity';
 import type { Mentor } from '@/lib/types';

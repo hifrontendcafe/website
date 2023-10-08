@@ -1,4 +1,4 @@
-import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
+import { authOptions } from '@/app/(website)/api/auth/[...nextauth]/authOptions';
 import Combobox from '@/components/Combobox';
 import Input from '@/components/Input';
 import SectionHero from '@/components/SectionHero';
@@ -61,7 +61,7 @@ async function Page({ params: { id } }: { params: { id: string } }) {
                 name="name"
                 disabled
               />
-              <p className="mt-auto mb-2 whitespace-nowrap text-right md:w-full">
+              <p className="mb-2 mt-auto whitespace-nowrap text-right md:w-full">
                 Estado: {mentor.status}
               </p>
             </div>
