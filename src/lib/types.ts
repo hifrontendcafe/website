@@ -99,7 +99,7 @@ export interface EventsSettings {
 }
 
 export interface Mentor {
-  id: string;
+  _id: string;
   name: string;
   description: string;
   photo: {
@@ -112,6 +112,7 @@ export interface Mentor {
   linkedin: string;
   github: string;
   twitter?: string;
+  // FIXME: Topics are not allways like this
   topics: [
     {
       _key: string;
