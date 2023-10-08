@@ -59,7 +59,7 @@ export default function MentorList({
       <ul className="grid gap-12 lg:grid-cols-2">
         {filteredMentors?.map((mentor) => (
           <MentorCard
-            key={mentor.id}
+            key={mentor._id}
             mentor={mentor}
             topics={topics}
             openModal={() => setIsModalOpen(true)}
