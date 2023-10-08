@@ -12,6 +12,8 @@ module.exports = {
   },
   experimental: {
     appDir: true,
+    serverActions: true,
   },
   swcMinify: true,
+  transpilePackages: ['next-sanity-client'],
 };

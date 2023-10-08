@@ -14,9 +14,6 @@ interface FormProps {
 
 const maxTechnologies = 5;
 
-const isValidNewOption = (inputValue: string[], selectValue: string[]) =>
-  inputValue.length > 0 && selectValue.length < maxTechnologies;
-
 const FilterForm: React.FC<FormProps> = ({
   filters,
   dispatch,
@@ -118,7 +115,6 @@ const FilterForm: React.FC<FormProps> = ({
           onChange={(techs) =>
             dispatch({ type: 'ADD_TECHNOLOGIES', payload: techs })
           }
-          isValidNewOption={isValidNewOption}
           options={
             filters.technologies?.length === maxTechnologies ? [] : technologies
           }
