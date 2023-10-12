@@ -5,7 +5,7 @@ A community of people interested in technology and computing where we talk about
 ## Project Links
 
 - Website: [https://frontend.cafe/](https://frontend.cafe/)
-- CSM Dashboard: [https://frontend.cafe/studio](https://frontend.cafe/studio)
+- CMS Dashboard: [https://frontend.cafe/studio](https://frontend.cafe/studio)
 <!-- - Storybook:  -->
 
 ## Languages and Tools
