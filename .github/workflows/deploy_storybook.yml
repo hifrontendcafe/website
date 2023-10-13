@@ -9,6 +9,7 @@ on:
 jobs:
   Deploy-Production:
     runs-on: ubuntu-latest
+    environment: Preview – website
     steps:
       - uses: actions/checkout@v4
       - name: Install Vercel CLI
