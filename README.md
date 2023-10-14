@@ -6,7 +6,7 @@ A community of people interested in technology and computing where we talk about
 
 - Website: [https://frontend.cafe/](https://frontend.cafe/)
 - CMS Dashboard: [https://frontend.cafe/studio](https://frontend.cafe/studio)
-<!-- - Storybook:  -->
+- Storybook: [https://fec-storybook.vercel.app/](https://fec-storybook.vercel.app/)
 
 ## Languages and Tools
 
