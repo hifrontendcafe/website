@@ -13,8 +13,8 @@ const resizeFile = (newFile: File) =>
   new Promise((resolve) => {
     FileResizer.imageFileResizer(
       newFile,
-      256,
-      256,
+      1280,
+      1280,
       'WEBP',
       100,
       0,
@@ -30,7 +30,7 @@ type Props = Pick<Mentor, 'photo' | 'name' | '_id'>;
 function PhotoUpload({ photo, name, _id }: Props) {
   const [photoRef, setPhotoRef] = useState<Mentor['photo'] | undefined>(photo);
   const [isPending, startTransition] = useTransition();
-  const currentPhoto = imgUrlFrom(photoRef, { size: 256 }) || '/img/user.svg';
+  const currentPhoto = imgUrlFrom(photoRef, { size: 768 }) || '/img/user.svg';
 
   const handleSubmit = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
@@ -57,8 +57,8 @@ function PhotoUpload({ photo, name, _id }: Props) {
       <Image
         className={`h-64 w-64 rounded-full object-cover shadow-lg duration-1000 group-disabled:animate-pulse group-disabled:opacity-25 group-disabled:blur-sm`}
         src={currentPhoto}
-        width={256}
-        height={256}
+        width={768}
+        height={768}
         alt={`Foto de ${name}`}
       />
       <label className="cursor-pointer after:absolute after:inset-0 after:overflow-hidden after:rounded-full after:transition-colors focus-within:after:bg-black/10 group-hover:after:bg-black/10 group-disabled:cursor-wait">
