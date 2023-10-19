@@ -62,7 +62,33 @@ const person = defineType({
         list: timezones.map((tz) => ({ title: tz.text, value: tz.text })),
       },
     },
-
+    /* Social Media */
+    {
+      title: 'Web / Portfolio',
+      name: 'portfolio',
+      type: 'url',
+    },
+    {
+      title: 'LinkedIn',
+      name: 'linkedin',
+      type: 'url',
+    },
+    {
+      title: 'GitHub',
+      name: 'github',
+      type: 'url',
+    },
+    {
+      title: 'Twitter',
+      name: 'twitter',
+      type: 'url',
+    },
+    {
+      title: 'Instagram',
+      name: 'instagram',
+      type: 'url',
+    },
+    /* Certification */
     {
       title: 'Certificaciones',
       name: 'certifications',
