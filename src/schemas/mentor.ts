@@ -79,6 +79,33 @@ const mentor = defineType({
         'The id of the mentor page on the notion database https://www.notion.so/hifrontendcafe/Datos-de-mentors-38f10db7e5084b339fd2fbde123d420e',
       type: 'string',
     },
+    {
+      title: 'Calendly',
+      name: 'calendly',
+      type: 'url',
+      validation: (Rule) => Rule.required(),
+    },
+    /* Social Media */
+    {
+      title: 'Web / Portfolio',
+      name: 'web',
+      type: 'url',
+    },
+    {
+      title: 'LinkedIn',
+      name: 'linkedin',
+      type: 'url',
+    },
+    {
+      title: 'Github',
+      name: 'github',
+      type: 'url',
+    },
+    {
+      title: 'Twitter',
+      name: 'twitter',
+      type: 'url',
+    },
   ],
   preview: {
     select: {
