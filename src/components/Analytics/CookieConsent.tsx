@@ -3,16 +3,6 @@
 import ReactCookieConsent from 'react-cookie-consent';
 
 export default function CookieConsent() {
-  // const handleAcceptCookie = () => gaService.initGA();
-
-  // useEffect(() => {
-  //   const isConsent = getCookieConsentValue();
-
-  //   if (isConsent === 'true') {
-  //     handleAcceptCookie();
-  //   }
-  // }, []);
-
   return (
     <ReactCookieConsent
       disableStyles
