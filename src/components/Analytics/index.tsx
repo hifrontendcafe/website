@@ -1,5 +1,6 @@
 import Script from 'next/script';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import CookieConsent from './CookieConsent';
 import VercelAnalytics from './Vercel';
 
@@ -32,6 +33,7 @@ export default function Analytics() {
       <CookieConsent />
       <Clarity />
       <VercelAnalytics />
+      <SpeedInsights />
     </>
   );
 }
