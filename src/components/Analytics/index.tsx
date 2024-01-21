@@ -15,7 +15,7 @@ function Clarity() {
 
   return (
     <Script
-      id="clarity"
+      id="microsoft-clarity"
       dangerouslySetInnerHTML={{
         __html: `(function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
