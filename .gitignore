@@ -42,3 +42,6 @@ package-lock.json
 
 # WebStorm
 .idea
+
+# asdf
+/.tool-versions

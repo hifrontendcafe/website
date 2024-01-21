@@ -1,12 +1,13 @@
 import Script from 'next/script';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import CookieConsent from './CookieConsent';
 import VercelAnalytics from './Vercel';
 
 function Clarity() {
-  // if (process.env.NODE_ENV !== 'production') {
-  //   return null;
-  // }
+  if (process.env.NODE_ENV !== 'production') {
+    return null;
+  }
 
   if (!process.env.CLARITY_PROJECT_ID) {
     return null;
@@ -32,6 +33,7 @@ export default function Analytics() {
       <CookieConsent />
       <Clarity />
       <VercelAnalytics />
+      <SpeedInsights />
     </>
   );
 }

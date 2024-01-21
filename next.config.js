@@ -3,17 +3,26 @@
  */
 module.exports = {
   images: {
-    domains: [
-      'cdn.discordapp.com',
-      'pbs.twimg.com',
-      'cdn.sanity.io',
-      'flagcdn.com',
+    remotePatterns: [
+      {
+        hostname: 'cdn.discordapp.com',
+        protocol: 'https',
+      },
+      {
+        hostname: 'pbs.twimg.com',
+        protocol: 'https',
+      },
+      {
+        hostname: 'cdn.sanity.io',
+        protocol: 'https',
+      },
+      {
+        hostname: 'flagcdn.com',
+        protocol: 'https',
+      },
     ],
   },
-  experimental: {
-    appDir: true,
-    serverActions: true,
-  },
+  experimental: {},
   swcMinify: true,
   transpilePackages: ['next-sanity-client'],
 };

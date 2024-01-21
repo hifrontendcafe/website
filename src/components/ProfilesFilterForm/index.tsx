@@ -23,8 +23,8 @@ const FilterForm: React.FC<FormProps> = ({
 }) => {
   const router = useRouter();
 
-  const searchParams = useSearchParams()!;
-  const activesQuery = searchParams.get('activos');
+  const searchParams = useSearchParams();
+  const activesQuery = searchParams?.get('activos');
 
   const onSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();

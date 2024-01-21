@@ -4,6 +4,7 @@ import { getSettings } from '@/lib/api.server';
 import { getMetadata } from '@/lib/seo';
 import Image from 'next/image';
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 export const generateMetadata = () => getMetadata({ title: 'CMYK' });
 
@@ -73,10 +74,12 @@ export default async function CMYKInscriptionPage() {
         </div>
       </section>
 
-      <CMYKForm
-        cmykInscription={cmykInscription}
-        cmykInscriptionChix={cmykInscriptionChix}
-      />
+      <Suspense>
+        <CMYKForm
+          cmykInscription={cmykInscription}
+          cmykInscriptionChix={cmykInscriptionChix}
+        />
+      </Suspense>
     </>
   );
 }

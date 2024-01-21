@@ -1,5 +1,5 @@
-import { getSettings } from './api.server';
 import { getPageByName } from '@/lib/api.server';
+import { getSettings } from './api.server';
 
 export const DEFAULT_DESCRIPTION =
   'Somos una comunidad de personas interesadas en tecnología y ciencias informáticas en donde charlamos sobre lenguajes de programación, diseño web, infraestructura, compartimos dudas, preguntamos y respondemos.';
@@ -18,6 +18,7 @@ export const getMetadata = async (params: GetMetadataParams) => {
     params.description || settings.description || DEFAULT_DESCRIPTION;
 
   return {
+    metadataBase: new URL('https://frontend.cafe'),
     title,
     description,
     openGraph: {
