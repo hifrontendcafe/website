@@ -4,9 +4,9 @@ import CookieConsent from './CookieConsent';
 import VercelAnalytics from './Vercel';
 
 function Clarity() {
-  // if (process.env.NODE_ENV !== 'production') {
-  //   return null;
-  // }
+  if (process.env.NODE_ENV !== 'production') {
+    return null;
+  }
 
   if (!process.env.CLARITY_PROJECT_ID) {
     return null;
