@@ -10,6 +10,12 @@ import MentorCard from '../MentorCard';
 import SimpleModal from '../SimpleModal';
 import { useWarnings } from './useWarnings';
 
+const mentorshipChannels = [
+  '756023543304814664',
+  '756023931433123900',
+  '761337525654126592',
+] as const;
+
 interface MentorListProps {
   mentors: Mentor[];
   topics: Topic[];
@@ -25,20 +31,16 @@ export default function MentorList({
   const { data: session } = useSession();
   const { warnings, mentorships } = useWarnings(session?.user.id);
 
-  const searchParams = useSearchParams()!;
-  const speciality = searchParams.get('especialidad') ?? '';
+  const searchParams = useSearchParams();
+  const speciality = searchParams?.get('especialidad') ?? '';
+
   const filteredByTopic: Mentor[] = mentors.filter((mentor) =>
     mentor.topics.some((topic) => topic._ref === speciality),
   );
+
   const filteredMentors = speciality ? filteredByTopic : mentors;
 
   const mentorHasEvents = (mentor: Mentor) => {
-    const mentorshipChannels = [
-      '756023543304814664',
-      '756023931433123900',
-      '761337525654126592',
-    ] as const;
-
     return events?.find(
       (event) =>
         event.creator_id === mentor._id &&

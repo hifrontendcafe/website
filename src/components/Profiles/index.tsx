@@ -3,7 +3,13 @@
 import ProfileList from '@/components/ProfileList';
 import FilterForm from '@/components/ProfilesFilterForm';
 import { Profile, Role, Seniority, Technology } from '@/lib/types';
-import React, { SetStateAction, useEffect, useRef, useState } from 'react';
+import React, {
+  SetStateAction,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import PaginationBar from './PaginationBar';
 import { useProfiles } from './useProfiles';
 
@@ -50,13 +56,15 @@ const Profiles: React.FC<PostsPageProps> = ({
   return (
     <section className="space-y-24">
       <div ref={profileListRef}>
-        <FilterForm
-          filters={filters}
-          dispatch={dispatchFilter}
-          roles={roles}
-          seniorities={seniorities}
-          technologies={technologies}
-        />
+        <Suspense>
+          <FilterForm
+            filters={filters}
+            dispatch={dispatchFilter}
+            roles={roles}
+            seniorities={seniorities}
+            technologies={technologies}
+          />
+        </Suspense>
       </div>
       <ProfileList
         profiles={pageProfiles}

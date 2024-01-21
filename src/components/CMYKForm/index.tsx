@@ -41,9 +41,9 @@ export default function CMYKForm({
   const { data: session, status } = useSession();
   const loading = status === 'loading';
 
-  const searchParams = useSearchParams()!;
+  const searchParams = useSearchParams();
 
-  const type = searchParams.get('type');
+  const type = searchParams?.get('type');
 
   const typeSelected = useMemo(() => {
     const lastType = formsTypes[0].type;
