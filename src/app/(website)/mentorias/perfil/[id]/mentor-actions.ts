@@ -47,7 +47,7 @@ export async function mentorFormAction(id: string, formData: FormData) {
 
   const topicsRefs = formData
     .getAll('topics')
-    .filter((topic) => topic.length && !!topic)
+    .filter((topic) => typeof topic === 'string' && topic.length && !!topic)
     .map((topic) => ({
       _ref: topic as string,
       _type: 'reference',
@@ -66,17 +66,16 @@ export async function mentorFormAction(id: string, formData: FormData) {
   ];
 
   const oldMentorData = [...formData]
-    .filter(
-      (entry) => validFields.includes(entry.at(0) as string) && !entry.at(1),
-    )
-    .map((entry) => entry.at(0) as string);
+    .filter(([key, value]) => validFields.includes(key) && !value)
+    .map(([key]) => key);
 
   const newMentorData = Object.fromEntries(
     [...formData].filter(
-      (entry) =>
-        validFields.includes(entry.at(0) as string) &&
-        entry[1].length &&
-        !!entry[1],
+      ([key, value]) =>
+        validFields.includes(key) &&
+        typeof value === 'string' &&
+        value.length &&
+        !!value,
     ),
   );
 
