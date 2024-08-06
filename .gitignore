@@ -45,3 +45,6 @@ package-lock.json
 
 # asdf
 /.tool-versions
+
+# tsbuildinfo
+*.tsbuildinfo
