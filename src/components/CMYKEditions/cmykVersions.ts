@@ -5,5 +5,4 @@ export const cmykVersions = [
   { version: 'cmyk-4', name: 'CMYK 4', edition: '4' },
 ] as const;
 
-export type CMYKVersions = (typeof cmykVersions)[number][];
 export type CMYKEdition = (typeof cmykVersions)[number]['edition'];
