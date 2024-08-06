@@ -1,25 +1,25 @@
 import blockTools from '@sanity/block-tools';
-import sendEmailJS, { DataEmailJs } from './sendEmail';
 import Schema from '@sanity/schema';
 import jsdom from 'jsdom';
+import { createEvent } from './api';
+import { getAllDiscordEvents } from './discord';
 import { createSlug } from './helpers';
 import markdownToHtml from './markdownToHtml';
+import {
+  eventChannelsQuery,
+  eventsSettingsQuery,
+  futureEventsDiscordIdQuery,
+} from './queries';
+import client, { previewClient } from './sanity';
+import sendEmailJS, { DataEmailJs } from './sendEmail';
 import {
   DiscordEvent,
   EventChannel,
   EventsSettings,
   SanityEvent,
 } from './types';
-import { getAllDiscordEvents } from './discord';
-import client, { previewClient } from './sanity';
-import {
-  eventChannelsQuery,
-  eventsSettingsQuery,
-  futureEventsDiscordIdQuery,
-} from './queries';
-import { createEvent } from './api';
 
-export function getClient(preview = false) {
+function getClient(preview = false) {
   return preview ? previewClient : client;
 }
 
@@ -47,7 +47,7 @@ const blockContentType = defaultSchema
   .get('event')
   .fields.find((field: any) => field.name === 'description').type;
 
-export async function discordEventToSanityEvent(
+async function discordEventToSanityEvent(
   discordEvent: DiscordEvent,
   eventChannel: EventChannel,
 ): Promise<SanityEvent> {
@@ -100,7 +100,7 @@ export async function importDiscordEventsAutomatic(
   return true;
 }
 
-export async function importEvents(preview = false): Promise<number> {
+async function importEvents(preview = false): Promise<number> {
   const eventChannels: EventChannel[] = await getClient(preview).fetch(
     eventChannelsQuery,
   );

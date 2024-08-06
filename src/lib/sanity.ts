@@ -19,7 +19,7 @@ export const postClient = createClient({
 });
 
 export const imageBuilder = sanityImage(client);
-export const urlFor = (source: SanityImageSource) => imageBuilder.image(source);
+const urlFor = (source: SanityImageSource) => imageBuilder.image(source);
 export const imgUrlFrom = (
   image: SanityImageSource | null | undefined,
   {
