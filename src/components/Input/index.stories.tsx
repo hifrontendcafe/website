@@ -1,10 +1,11 @@
 import { Meta, StoryObj } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/test';
 import InputCompomponent from '.';
 
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
 const meta = {
+  title: 'Input',
   component: InputCompomponent,
   args: {},
 } satisfies Meta<typeof InputCompomponent>;

@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import HeroComponent from '.';
 
 const meta: Meta<typeof HeroComponent> = {
+  title: 'Hero',
   component: HeroComponent,
   parameters: {
     // More on Story layout: https://storybook.js.org/docs/7.0/react/configure/story-layout

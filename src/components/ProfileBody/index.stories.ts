@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import ProfileBody from '.';
 
 const meta = {
+  title: 'ProfileBody',
   component: ProfileBody,
   args: {
     content:

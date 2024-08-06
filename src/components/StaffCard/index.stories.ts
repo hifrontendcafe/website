@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import StaffCard from '.';
 
 const meta = {
+  title: 'StaffCard',
   component: StaffCard,
   tags: ['autodocs'],
 } satisfies Meta<typeof StaffCard>;

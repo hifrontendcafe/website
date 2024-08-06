@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import FeaturedCardList from '.';
 
 const meta = {
+  title: 'FeaturedCardList',
   component: FeaturedCardList,
   args: {
     featuredCards: Array(3).fill({

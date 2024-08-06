@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import MentorList from '.';
 
 const meta = {
+  title: 'MentorList',
   component: MentorList,
   args: {},
   tags: ['autodocs'],

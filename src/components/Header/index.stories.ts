@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Header from '.';
 
 const meta = {
+  title: 'Header',
   component: Header,
   args: {},
   tags: ['autodocs'],

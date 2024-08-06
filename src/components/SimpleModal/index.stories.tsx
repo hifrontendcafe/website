@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import SimpleModal from '.';
 
 const meta = {
+  title: 'SimpleModal',
   component: SimpleModal,
   args: {
     title: 'Lorem, ipsum.',

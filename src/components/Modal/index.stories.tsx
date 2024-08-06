@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Modal from '.';
 
 const meta = {
+  title: 'Modal',
   component: Modal,
   args: {
     isOpen: true,

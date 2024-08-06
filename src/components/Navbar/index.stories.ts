@@ -3,6 +3,7 @@ import Navbar from '.';
 import logoImg from '../../../public/nav-logo.svg';
 
 const meta = {
+  title: 'Navbar',
   component: Navbar,
   tags: ['autodocs'],
 } satisfies Meta<typeof Navbar>;
