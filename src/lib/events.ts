@@ -1,5 +1,5 @@
 import blockTools from '@sanity/block-tools';
-import Schema from '@sanity/schema';
+import { Schema } from '@sanity/schema';
 import jsdom from 'jsdom';
 import { createEvent } from './api';
 import { getAllDiscordEvents } from './discord';
@@ -51,11 +51,15 @@ async function discordEventToSanityEvent(
   discordEvent: DiscordEvent,
   eventChannel: EventChannel,
 ): Promise<SanityEvent> {
-  const description = await markdownToHtml(discordEvent.description!);
+  const description = discordEvent.description
+    ? await markdownToHtml(discordEvent.description)
+    : '';
+
   const blocks = blockTools.htmlToBlocks(description, blockContentType, {
     parseHtml: (html: string | Buffer | jsdom.BinaryData | undefined) =>
       new JSDOM(html).window.document,
   });
+
   return {
     discordId: discordEvent.id,
     title: discordEvent.name,
@@ -88,11 +92,16 @@ export async function importDiscordEventsAutomatic(
     return false;
   }
   const newEvents = await importEvents(preview);
+
+  if (!process.env.NEXT_PUBLIC_EMAILJS_USER_ID) {
+    throw new Error('NEXT_PUBLIC_EMAILJS_USER_ID is not set');
+  }
+
   if (newEvents > 0 && eventsSettings.sendEmailsOnMigration) {
     const data: DataEmailJs<Record<string, never>> = {
       service_id: 'fec_gmail',
       template_id: 'events_migration',
-      user_id: process.env.NEXT_PUBLIC_EMAILJS_USER_ID!,
+      user_id: process.env.NEXT_PUBLIC_EMAILJS_USER_ID,
       accessToken: process.env.NEXT_PUBLIC_EMAILJS_ACCESS_TOKEN,
     };
     await sendEmailJS<Record<string, never>>(data);

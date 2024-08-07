@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/react';
+import { Meta } from '@storybook/react';
 import MentorCard from '.';
 
 const meta = {
@@ -34,6 +34,3 @@ const meta = {
 } satisfies Meta<typeof MentorCard>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
-
-export const Default: Story = {};

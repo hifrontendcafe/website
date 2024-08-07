@@ -1,4 +1,6 @@
+import { TypedObject } from '@sanity/block-tools';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { PortableTextTextBlock } from 'sanity';
 
 export interface Settings {
   description: string;
@@ -89,7 +91,7 @@ export interface SanityEvent {
     };
   };
   date: string;
-  description: [];
+  description: (TypedObject | PortableTextTextBlock)[];
   tags: [];
 }
 
