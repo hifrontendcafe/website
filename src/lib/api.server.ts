@@ -23,10 +23,6 @@ export const client = new SanityClient({
   queries,
 });
 
-export const getPageByPath = client.createApiUtil<Page, { path: string }>(
-  'pageByPathQuery',
-);
-
 export const getAllFeaturedCards =
   client.createApiUtil<FeaturedCards[]>('featuredCardsQuery');
 

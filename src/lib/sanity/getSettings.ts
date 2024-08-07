@@ -38,16 +38,6 @@ export interface Settings {
   }[];
 }
 
-interface GetSettingsProps {
-  next?: RequestInit['next'];
-}
-
-export async function getSettings(params?: GetSettingsProps) {
-  return client.fetch<Settings>(
-    settingsQuery,
-    {},
-    {
-      next: params?.next,
-    },
-  );
+export async function getSettings(next?: RequestInit['next']) {
+  return client.fetch<Settings>(settingsQuery, {}, { next });
 }
