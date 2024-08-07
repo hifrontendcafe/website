@@ -2,14 +2,15 @@
 
 import Navbar from '@/components/Navbar';
 import { imageBuilder } from '@/lib/sanity';
-import { Image, NavItemData } from '@/lib/types';
+import { Settings } from '@/lib/sanity/getSettings';
+import { Image } from '@/lib/types';
 import { useMenuToggle } from './useMenuToggle';
 import { useZeroScrollY } from './useScroll';
 
 type HeaderProps = {
   preview?: boolean;
   logo: Image;
-  navItems: NavItemData[];
+  navItems: Settings['navItems'];
 };
 
 const Header: React.FC<HeaderProps> = ({ preview, logo, navItems }) => {

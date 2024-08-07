@@ -2,50 +2,6 @@ import { TypedObject } from '@sanity/block-tools';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { PortableTextTextBlock } from 'sanity';
 
-export interface Settings {
-  description: string;
-  heroBackground: Image;
-  heroWords: string[];
-  heroSubtitle: string;
-  heroDescription?: string;
-  discordButtonLabel: string;
-  iniciativasButtonText: string;
-  logo: Image;
-  navItems: NavItemData[];
-  socialnetworks: SocialNetworks;
-  title: string;
-  cmykSettings: CMYKSettings;
-  footerNavItems: LinkItemData[];
-}
-
-export interface NavItemData {
-  title: string;
-  link: string;
-}
-
-interface LinkData {
-  value: string;
-}
-
-interface LinkItemData {
-  title: string;
-  link: LinkData;
-}
-
-export interface SocialNetworks {
-  github: string;
-  linkedin: string;
-  twitch: string;
-  twitter: string;
-  youtube: string;
-  instagram: string;
-}
-
-interface CMYKSettings {
-  cmykInscription: boolean;
-  cmykInscriptionChix: boolean;
-}
-
 export interface Image {
   _type: string;
   asset: Asset;

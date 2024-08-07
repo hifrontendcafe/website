@@ -1,4 +1,4 @@
-import { getSettings } from '@/lib/api.server';
+import { getSettings } from '@/lib/sanity/getSettings';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo_vercel from '../../../public/img/powered-by-vercel.svg';
@@ -32,7 +32,7 @@ const Footer = async () => {
           </div>
         </div>
 
-        <div className="mt-16 flex flex-col items-center gap-y-2 gap-x-4 md:flex-row">
+        <div className="mt-16 flex flex-col items-center gap-x-4 gap-y-2 md:flex-row">
           <p className="font-light">© FrontendCafé {currentYear}</p>
           <Link
             href="https://vercel.com/?utm_source=hifrontendcafe&utm_campaign=oss"

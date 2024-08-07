@@ -1,6 +1,6 @@
 import CMYKForm from '@/components/CMYKForm';
 import SectionHero from '@/components/SectionHero';
-import { getSettings } from '@/lib/api.server';
+import { getSettings } from '@/lib/sanity/getSettings';
 import { getMetadata } from '@/lib/seo';
 import Image from 'next/image';
 import Link from 'next/link';

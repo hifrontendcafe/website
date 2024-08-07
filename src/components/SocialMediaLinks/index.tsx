@@ -1,4 +1,5 @@
-import type { Mentor, Profile, SocialNetworks } from '@/lib/types';
+import { SocialNetworks } from '@/lib/sanity/getSettings';
+import type { Mentor, Profile } from '@/lib/types';
 import {
   faGithub,
   faInstagram,

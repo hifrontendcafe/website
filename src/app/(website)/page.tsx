@@ -1,6 +1,7 @@
 import FeaturedCardList from '@/components/FeaturedCardList';
 import Hero from '@/components/Hero';
-import { getAllFeaturedCards, getSettings } from '@/lib/api.server';
+import { getAllFeaturedCards } from '@/lib/api.server';
+import { getSettings } from '@/lib/sanity/getSettings';
 import { getMetadata } from '@/lib/seo';
 
 export const generateMetadata = () => getMetadata({ title: 'Home' });

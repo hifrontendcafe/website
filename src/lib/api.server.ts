@@ -11,7 +11,6 @@ import type {
   Profile,
   Role,
   Seniority,
-  Settings,
   Technology,
   Topic,
 } from './types';
@@ -23,8 +22,6 @@ export const client = new SanityClient({
   ...config,
   queries,
 });
-
-export const getSettings = client.createApiUtil<Settings>('settingsQuery');
 
 export const getPageByPath = client.createApiUtil<Page, { path: string }>(
   'pageByPathQuery',

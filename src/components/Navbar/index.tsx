@@ -1,12 +1,12 @@
+import { Settings } from '@/lib/sanity/getSettings';
 import Image from 'next/image';
 import Link from 'next/link';
-import { NavItemData } from '../../lib/types';
 import MenuBtn from './MenuBtn';
 import NavItem from './NavItem';
 import UserSettings from './UserSettings';
 
 interface NavbarProps {
-  navItems: NavItemData[];
+  navItems: Settings['navItems'];
   logoImg: string;
   isOpen: boolean;
   toggle: () => void;
