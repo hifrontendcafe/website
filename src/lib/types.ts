@@ -1,4 +1,6 @@
+import { TypedObject } from '@sanity/block-tools';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { PortableTextTextBlock } from 'sanity';
 
 export interface Settings {
   description: string;
@@ -25,7 +27,7 @@ interface LinkData {
   value: string;
 }
 
-export interface LinkItemData {
+interface LinkItemData {
   title: string;
   link: LinkData;
 }
@@ -39,7 +41,7 @@ export interface SocialNetworks {
   instagram: string;
 }
 
-export interface CMYKSettings {
+interface CMYKSettings {
   cmykInscription: boolean;
   cmykInscriptionChix: boolean;
 }
@@ -49,7 +51,7 @@ export interface Image {
   asset: Asset;
 }
 
-export interface Asset {
+interface Asset {
   _ref: string;
   _type: string;
 }
@@ -89,7 +91,7 @@ export interface SanityEvent {
     };
   };
   date: string;
-  description: [];
+  description: (TypedObject | PortableTextTextBlock)[];
   tags: [];
 }
 
@@ -161,28 +163,6 @@ export interface Topic {
   description?: string;
 }
 
-export interface Author {
-  name: string;
-  picture: string;
-}
-
-export interface PageProfile {
-  preview?: boolean;
-  profile: Profile;
-}
-
-export type ExtendedProfile = Profile & {
-  seniority: {
-    id: string;
-    name: string;
-  };
-  role: {
-    id: string;
-    name: string;
-  };
-  technologies: { name: string }[];
-};
-
 export interface Doc {
   title: string;
   slug: string;
@@ -199,26 +179,6 @@ export interface FeaturedCards {
   link?: string;
 }
 
-// TODO: Update this interface. It's used in the 'onSubmit' of the 'Profile' component.
-export interface ReactGroup {
-  _id: string;
-  _type: string;
-  name: string;
-  slug: {
-    current: string;
-  };
-  topic: string;
-  studyMaterial: string;
-  teamCaptain: {
-    _type: string;
-    _ref: string;
-  };
-  participants?: string;
-  meetings: string;
-  plan: string;
-  startDate: string;
-  status: string;
-}
 export interface Person {
   _id: string;
   username: {
@@ -241,51 +201,6 @@ export interface Person {
   fecTeam?: boolean;
   timezone?: string;
   cmykParticipant?: CMYKParticipant[];
-}
-
-export interface Tweets {
-  data: {
-    id: string;
-    text: string;
-    in_reply_to_user_id: string;
-    created_at: string;
-    author_id: string;
-    attachments: { media_keys: string[] };
-    referenced_tweets: { type: 'quoted' | 'retweeted'; id: string }[];
-    public_metrics: {
-      retweet_count: number;
-      reply_count: number;
-      like_count: number;
-      quote_count: number;
-    };
-  }[];
-  includes: {
-    users: {
-      id: string;
-      name: string;
-      username: string;
-      profile_image_url: string;
-      protected: string;
-      url: string;
-      verified: boolean;
-    }[];
-    tweets: {
-      id: string;
-      attachments: { media_keys: string[] };
-      text: string;
-      in_reply_to_user_id: string;
-      created_at: string;
-      author_id: string;
-    }[];
-    media: {
-      height: number;
-      type: string;
-      width: number;
-      media_key: string;
-      url: string;
-      alt_text: string;
-    }[];
-  };
 }
 
 export interface EmbeddedTweet {
@@ -361,11 +276,6 @@ export interface Technology {
   name: string;
 }
 
-export interface Technologies {
-  id: string;
-  name: string;
-}
-
 export interface ProfileFilters {
   roleId?: string;
   location?: string;
@@ -423,7 +333,7 @@ export interface Step {
   title: string;
 }
 
-export interface Metadata {
+interface Metadata {
   _key: string;
   property: string;
   content: string;
@@ -466,13 +376,6 @@ export type AppPage<
 > = (props: {
   params: T;
   searchParams?: { [key: string]: string | string[] | undefined };
-}) => JSX.Element | Promise<JSX.Element>;
-
-export type Layout<
-  T extends Record<string, unknown> = Record<string, unknown | undefined>,
-> = (props: {
-  children: React.ReactNode;
-  params: T;
 }) => JSX.Element | Promise<JSX.Element>;
 
 /**

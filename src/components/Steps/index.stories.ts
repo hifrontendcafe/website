@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Steps from '.';
 
 const meta = {
+  title: 'Steps',
   component: Steps,
   tags: ['autodocs'],
 } satisfies Meta<typeof Steps>;

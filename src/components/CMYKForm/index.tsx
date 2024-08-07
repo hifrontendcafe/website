@@ -32,8 +32,6 @@ type CMYKFormProps = {
   cmykInscriptionChix: boolean;
 };
 
-export const revalidate = 1;
-
 export default function CMYKForm({
   cmykInscription,
   cmykInscriptionChix,

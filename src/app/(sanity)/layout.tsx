@@ -1,6 +1,6 @@
 import '@/styles/index.css';
 import type { Metadata } from 'next';
-import { metadata as studioMetadata } from 'next-sanity/studio/metadata';
+import { metadata as studioMetadata } from 'next-sanity/studio';
 
 export const metadata: Metadata = {
   ...studioMetadata,

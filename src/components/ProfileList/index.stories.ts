@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import ProfileList from '.';
 
 const meta = {
+  title: 'ProfileList',
   component: ProfileList,
   args: {},
   tags: ['autodocs'],

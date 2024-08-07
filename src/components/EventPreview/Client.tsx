@@ -1,13 +1,13 @@
 'use client';
 
-import Image from 'next/image';
-import useSWR from 'swr';
-import RichText from '../RichText';
 import { getUserCountry } from '@/lib/country';
 import { PortableTextReactComponents } from '@portabletext/react';
+import Image from 'next/image';
+import useSWR from 'swr';
 import { Card } from '../Card';
+import RichText from '../RichText';
 
-export const useFlag = () => {
+const useFlag = () => {
   return useSWR('flag', () =>
     getUserCountry().then((country) => country.flags.svg),
   );

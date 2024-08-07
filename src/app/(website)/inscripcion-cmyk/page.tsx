@@ -6,6 +6,8 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Suspense } from 'react';
 
+export const revalidate = 600;
+
 export const generateMetadata = () => getMetadata({ title: 'CMYK' });
 
 export default async function CMYKInscriptionPage() {

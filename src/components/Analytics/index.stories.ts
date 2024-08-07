@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import Analytics from '.';
 
 const meta = {
+  title: 'Analytics',
   component: Analytics,
   tags: ['autodocs'],
 } satisfies Meta<typeof Analytics>;

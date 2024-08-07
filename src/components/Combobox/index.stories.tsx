@@ -1,6 +1,6 @@
 import { Topic } from '@/lib/types';
 import { Meta, StoryObj } from '@storybook/react';
-import { userEvent, within } from '@storybook/testing-library';
+import { userEvent, within } from '@storybook/test';
 import Combobox from '.';
 
 type TopicProp = Pick<Topic, '_id' | 'title'>;
@@ -38,6 +38,7 @@ const defaultValue: TopicProp[] = [
   },
 ];
 const meta = {
+  title: 'Combobox',
   args: {
     isMulti: true,
     getOptionLabel: (option) => option.title,

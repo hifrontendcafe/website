@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import DateWidget from '.';
 
 const meta = {
+  title: 'DateWidget',
   component: DateWidget,
   args: {},
   parameters: {

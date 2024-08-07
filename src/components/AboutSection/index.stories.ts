@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import AboutSection from '.';
 
 const meta = {
+  title: 'AboutSection',
   component: AboutSection,
   args: {
     description:

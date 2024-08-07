@@ -1,4 +1,4 @@
-export interface Country {
+interface Country {
   flags: {
     svg: string;
     png: string;

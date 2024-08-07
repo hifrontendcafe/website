@@ -2,10 +2,9 @@ import { FrontendCafeId } from './constants';
 import type { DiscordEvent } from './types';
 
 const urlBaseAPIDiscord = 'https://discord.com/api';
-const urlBaseCDNDiscord = 'https://cdn.discordapp.com/';
 const urlversionAPIDiscord = '/v9';
 
-export const urlAPIDiscordEvents =
+const urlAPIDiscordEvents =
   urlBaseAPIDiscord +
   urlversionAPIDiscord +
   `/guilds/${FrontendCafeId}/scheduled-events`;
@@ -25,12 +24,4 @@ export function getAllDiscordEvents(): Promise<DiscordEvent[]> {
   return get(urlAPIDiscordEvents).then((events) =>
     events.ok ? events.json() : [],
   );
-}
-
-export function getDiscordEventImageUrl(
-  eventId: string,
-  image: string,
-  size = 512,
-): string {
-  return `${urlBaseCDNDiscord}guild-events/${eventId}/${image}.png?size=${size}`;
 }

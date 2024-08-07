@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import SocialMediaLinks from '.';
 
 const meta = {
+  title: 'SocialMediaLinks',
   component: SocialMediaLinks,
   args: {
     background: 'solid',

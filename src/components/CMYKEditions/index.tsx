@@ -2,9 +2,9 @@ import { getAllCMYKProjects } from '@/lib/api.server';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CMYKItemCard from '../CMYKItemCard';
-import { CMYKEdition, cmykVersions } from './cmykVersions';
+import { CMYKEdition as CMYKEditionType, cmykVersions } from './cmykVersions';
 
-async function CMYKEdition({ edition }: { edition: CMYKEdition }) {
+async function CMYKEdition({ edition }: { edition: CMYKEditionType }) {
   const projects = await getAllCMYKProjects({
     next: { revalidate: 60 },
   });

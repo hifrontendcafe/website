@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/react';
 import TopicBadge from '.';
 
 const meta = {
+  title: 'TopicBadge',
   component: TopicBadge,
   args: {
     topic: 'Frontend',

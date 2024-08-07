@@ -1,6 +1,6 @@
 import { createTheme } from '@material-ui/core';
 
-export const datatableTheme = createTheme({
+const datatableTheme = createTheme({
   overrides: {
     MuiPaper: {
       root: {

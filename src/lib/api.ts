@@ -1,14 +1,7 @@
 import client, { postClient, previewClient } from './sanity';
 import { CMYKParticipant, Event, Person, Profile, SanityEvent } from './types';
 
-import {
-  pagesPathsQuery,
-  personQuery,
-  personQueryByDiscordID,
-} from './queries';
-
-import { pageByPathQuery } from './queries';
-import { Page } from './types';
+import { personQuery, personQueryByDiscordID } from './queries';
 
 const eventFields = `
   title,
@@ -25,7 +18,7 @@ const eventFields = `
   recording
 `;
 
-export function getClient(preview = false) {
+function getClient(preview = false) {
   return preview ? previewClient : client;
 }
 
@@ -95,15 +88,4 @@ export async function getPerson(
   preview = false,
 ): Promise<Profile['person']> {
   return await getClient(preview).fetch(personQuery, { id });
-}
-
-export async function getPagesPaths(preview = false): Promise<string[]> {
-  return await getClient(preview).fetch(pagesPathsQuery);
-}
-
-export async function getPageByPath(
-  path: string,
-  preview = false,
-): Promise<Page> {
-  return await getClient(preview).fetch(pageByPathQuery, { path });
 }
