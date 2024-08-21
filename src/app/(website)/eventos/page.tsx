@@ -1,6 +1,6 @@
 import EventList from '@/components/EventList';
 import SectionHero from '@/components/SectionHero';
-import { getPageByName } from '@/lib/api.server';
+import { getPageByName } from '@/lib/sanity/page/getPageByName';
 import { getPageMetadata } from '@/lib/seo';
 
 export const generateMetadata = () => getPageMetadata('Eventos');

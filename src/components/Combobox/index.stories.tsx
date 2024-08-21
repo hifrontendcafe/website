@@ -1,4 +1,4 @@
-import { Topic } from '@/lib/types';
+import { Topic } from '@/lib/sanity/topics/getMentoringTopics';
 import { Meta, StoryObj } from '@storybook/react';
 import { userEvent, within } from '@storybook/test';
 import Combobox from '.';

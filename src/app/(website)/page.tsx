@@ -1,14 +1,23 @@
 import FeaturedCardList from '@/components/FeaturedCardList';
 import Hero from '@/components/Hero';
-import { getAllFeaturedCards, getSettings } from '@/lib/api.server';
+import { getAllFeaturedCards } from '@/lib/sanity/featuredCards/getAllFeaturedCards';
+import { getSettings } from '@/lib/sanity/settings/getSettings';
 import { getMetadata } from '@/lib/seo';
 
 export const generateMetadata = () => getMetadata({ title: 'Home' });
 
 export default async function HomePage() {
   const [settings, cards] = await Promise.all([
-    getSettings({ next: { revalidate: 120 } }),
-    getAllFeaturedCards({ next: { revalidate: 360 } }),
+    getSettings({
+      next: {
+        revalidate: 120,
+      },
+    }),
+    getAllFeaturedCards({
+      next: {
+        revalidate: 360,
+      },
+    }),
   ]);
 
   const {

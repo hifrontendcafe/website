@@ -1,8 +1,8 @@
+import { type FeaturedCard as FeaturedCardType } from '@/lib/sanity/featuredCards/getAllFeaturedCards';
 import FeaturedCard from '../FeaturedCard';
-import { FeaturedCards } from '../../lib/types';
 
 type FeaturedCardListProps = {
-  featuredCards: FeaturedCards[];
+  featuredCards: FeaturedCardType[];
 };
 
 const FeaturedCardList: React.FC<FeaturedCardListProps> = ({

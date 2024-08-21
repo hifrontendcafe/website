@@ -2,9 +2,9 @@ import { authOptions } from '@/app/(website)/api/auth/[...nextauth]/authOptions'
 import Combobox from '@/components/Combobox';
 import Input from '@/components/Input';
 import SectionHero from '@/components/SectionHero';
-import { getMentor } from '@/lib/api.server';
 import client from '@/lib/sanity';
-import type { Topic } from '@/lib/types';
+import { getMentor } from '@/lib/sanity/mentor/getMentor';
+import { Topic } from '@/lib/sanity/topics/getMentoringTopics';
 import { faUserEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import groq from 'groq';
@@ -25,7 +25,7 @@ async function Page({ params: { id } }: { params: { id: string } }) {
   }
 
   const [mentor, allTopics] = await Promise.all([
-    getMentor({ id }),
+    getMentor(id),
     client.fetch<Topic[] | null>(
       groq`*[_type == 'topic'] { _id, title, description }`,
     ),

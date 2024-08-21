@@ -1,7 +1,8 @@
 import MentorList from '@/components/MentorList';
 import MentorListSkeleton from '@/components/MentorList/MentorListSkeleton';
-import { getAllMentors, getMentoringTopics } from '@/lib/api.server';
 import { getAllDiscordEvents } from '@/lib/discord';
+import { getAllMentors } from '@/lib/sanity/mentor/getAllMentors';
+import { getMentoringTopics } from '@/lib/sanity/topics/getMentoringTopics';
 import { getPageMetadata } from '@/lib/seo';
 import { shuffle } from '@/lib/shuffle';
 import { Suspense } from 'react';

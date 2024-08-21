@@ -1,4 +1,5 @@
-import type { Mentor, Profile, SocialNetworks } from '@/lib/types';
+import { Mentor } from '@/lib/sanity/mentor/getMentor';
+import { SocialNetworks } from '@/lib/sanity/settings/getSettings';
 import {
   faGithub,
   faInstagram,
@@ -24,7 +25,7 @@ const iconCollection = {
 
 interface Props extends React.ComponentProps<'ul'> {
   background?: 'solid' | 'transparent';
-  socialMedia: SocialMedia | Profile | Mentor | SocialNetworks;
+  socialMedia: SocialMedia | Mentor | SocialNetworks;
 }
 type IconCollection = typeof iconCollection;
 type SocialMedia = {

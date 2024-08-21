@@ -1,6 +1,5 @@
+import { CMYK } from '@/lib/sanity/cmyk/getAllCMYKProjects';
 import { Card } from '../Card';
-
-import { CMYK } from '../../lib/types';
 
 type CMYKItemProps = {
   project: CMYK;

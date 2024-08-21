@@ -1,17 +1,15 @@
 import SectionHero from '@/components/SectionHero';
-import { getPageByName } from '@/lib/api.server';
+import { getPageByName } from '@/lib/sanity/page/getPageByName';
 
 export default async function CMYKLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const page = await getPageByName({
-    name: 'CMYK',
-    next: {
-      revalidate: 60,
-    },
-  });
+  const page = await getPageByName(
+    { name: 'CMYK' },
+    { next: { revalidate: 60 } },
+  );
 
   return (
     <main>

@@ -1,6 +1,6 @@
 import Timezones from '@/lib/completeTimezones.json';
 import { imageBuilder } from '@/lib/sanity';
-import type { Event } from '@/lib/types';
+import { Event } from '@/lib/sanity/event/getAllEvents';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { useMemo } from 'react';
