@@ -24,5 +24,4 @@ module.exports = {
   },
   experimental: {},
   swcMinify: true,
-  transpilePackages: ['next-sanity-client'],
 };

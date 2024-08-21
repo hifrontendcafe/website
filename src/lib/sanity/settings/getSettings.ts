@@ -1,6 +1,7 @@
-import client from '.';
-import { settingsQuery } from '../queries';
-import { Image } from '../types';
+import { FilteredResponseQueryOptions } from 'next-sanity';
+import client from '..';
+import { settingsQuery } from '../../queries';
+import { Image } from '../../types';
 
 export interface SocialNetworks {
   github: string;
@@ -38,6 +39,6 @@ export interface Settings {
   }[];
 }
 
-export async function getSettings(next?: RequestInit['next']) {
-  return client.fetch<Settings>(settingsQuery, {}, { next });
+export async function getSettings(options?: FilteredResponseQueryOptions) {
+  return client.fetch<Settings>(settingsQuery, {}, options);
 }

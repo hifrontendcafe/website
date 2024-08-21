@@ -1,5 +1,6 @@
 import DocsRichText from '@/components/DocsRichText';
-import { getAllDocs, getDocBySlug } from '@/lib/api.server';
+import { getAllDocs } from '@/lib/sanity/docs/getAllDocs';
+import { getDocBySlug } from '@/lib/sanity/docs/getDocBySlug';
 import { getMetadata } from '@/lib/seo';
 import { AppPage } from '@/lib/types';
 import { notFound } from 'next/navigation';
@@ -23,10 +24,12 @@ export const generateStaticParams = async () => {
 };
 
 const DocPage: AppPage<{ slug: string }> = async ({ params }) => {
-  const doc = await getDocBySlug({
-    slug: params.slug,
-    next: { revalidate: 60 },
-  });
+  const doc = await getDocBySlug(
+    { slug: params.slug },
+    {
+      next: { revalidate: 60 },
+    },
+  );
 
   if (!doc) return notFound();
 

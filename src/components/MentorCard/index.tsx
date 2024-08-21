@@ -1,5 +1,7 @@
 import { FrontendCafeId } from '@/lib/constants';
-import type { DiscordEvent, Mentor, Topic } from '@/lib/types';
+import { Mentor } from '@/lib/sanity/mentor/getMentor';
+import { Topic } from '@/lib/sanity/topics/getMentoringTopics';
+import type { DiscordEvent } from '@/lib/types';
 import { faChain } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { motion } from 'framer-motion';

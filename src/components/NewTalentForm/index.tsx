@@ -1,6 +1,9 @@
 'use client';
 
-import type { Profile, Role, Seniority, Technology } from '@/lib/types';
+import { Profile } from '@/lib/sanity/profile/getProfile';
+import { Role } from '@/lib/sanity/roles/getAllRoles';
+import { Seniority } from '@/lib/sanity/seniority/getAllSeniorities';
+import { Technology } from '@/lib/sanity/technology/getAllTechnologies';
 import emailjs from '@emailjs/browser';
 import { signIn, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -209,7 +212,7 @@ const NewTalentForm: React.FC<NewTalentFormProps> = ({
         ) : (
           <form
             onSubmit={handleSubmit(onSubmit, onError)}
-            className="w-full rounded bg-zinc-900 p-6 sm:px-8 sm:pt-6 sm:pb-8"
+            className="w-full rounded bg-zinc-900 p-6 sm:px-8 sm:pb-8 sm:pt-6"
             noValidate
           >
             <div className="flex grid-cols-2 flex-col gap-5 md:grid">

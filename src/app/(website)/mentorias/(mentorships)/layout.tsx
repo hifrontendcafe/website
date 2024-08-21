@@ -1,6 +1,6 @@
 import { PageComponents } from '@/components/Page/Matcher';
 import SectionHero from '@/components/SectionHero';
-import { getPageByName } from '@/lib/api.server';
+import { getPageByName } from '@/lib/sanity/page/getPageByName';
 
 async function MentorshipsLayout({ children }: { children: React.ReactNode }) {
   const page = await getPageByName({ name: 'Mentorías' });

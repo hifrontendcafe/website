@@ -1,6 +1,8 @@
 'use client';
 
-import type { DiscordEvent, Mentor, Topic } from '@/lib/types';
+import { Mentor } from '@/lib/sanity/mentor/getMentor';
+import { Topic } from '@/lib/sanity/topics/getMentoringTopics';
+import type { DiscordEvent } from '@/lib/types';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { signIn, useSession } from 'next-auth/react';

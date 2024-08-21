@@ -1,5 +1,5 @@
 import ProfileCard from '@/components/ProfileCard';
-import { Profile } from '@/lib/types';
+import { Profile } from '@/lib/sanity/profile/getProfile';
 
 interface ProfilesProps {
   isLoading: boolean;

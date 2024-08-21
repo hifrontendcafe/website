@@ -1,4 +1,4 @@
-import { getAllCMYKProjects } from '@/lib/api.server';
+import { getAllCMYKProjects } from '@/lib/sanity/cmyk/getAllCMYKProjects';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import CMYKItemCard from '../CMYKItemCard';

@@ -1,4 +1,4 @@
-import { getProfile } from '@/lib/api.server';
+import { getProfile } from '@/lib/sanity/profile/getProfile';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(
@@ -7,9 +7,15 @@ export default async function handler(
 ): Promise<void> {
   const { uid } = req.query;
 
+  if (!uid || typeof uid !== 'string') {
+    return res
+      .status(404)
+      .send({ statusCode: 404, message: 'Profile not found' });
+  }
+
   let profile;
   try {
-    profile = await getProfile({ id: uid as string });
+    profile = await getProfile(uid);
   } catch (error) {
     res.status(500).send({
       statusCode: 500,

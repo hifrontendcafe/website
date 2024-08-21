@@ -1,5 +1,4 @@
 import { TypedObject } from '@sanity/block-tools';
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { PortableTextTextBlock } from 'sanity';
 
 export interface Image {
@@ -10,23 +9,6 @@ export interface Image {
 interface Asset {
   _ref: string;
   _type: string;
-}
-
-export interface Event {
-  title: string;
-  slug: string;
-  category: {
-    name: string;
-  };
-  cover: {
-    src: string;
-    alt?: string;
-  };
-  date: string;
-  endDate?: string;
-  description: string;
-  recording?: string;
-  discordId?: string;
 }
 
 export interface SanityEvent {
@@ -54,109 +36,6 @@ export interface SanityEvent {
 export interface EventsSettings {
   automaticaticMigrationEnabled: boolean;
   sendEmailsOnMigration: boolean;
-}
-
-export interface Mentor {
-  _id: string;
-  name: string;
-  description: string;
-  photo: {
-    src: string;
-    alt?: string;
-  };
-  status: 'ACTIVE' | 'NOT_AVAILABLE' | 'INACTIVE' | 'OUT';
-  web: string;
-  calendly: string;
-  linkedin: string;
-  github: string;
-  twitter?: string;
-  // FIXME: Topics are not allways like this
-  topics: [
-    {
-      _key: string;
-      _ref: string;
-    },
-  ];
-}
-
-export interface CMYK {
-  _id: string;
-  name: string;
-  description: string;
-  color: string;
-  image: {
-    src: string;
-  };
-  github: string;
-  demo: string;
-  cmykVersion: string;
-}
-
-export interface CMYKParticipant {
-  _id?: string;
-  discordUser: {
-    _type: string;
-    _ref: string;
-  };
-  participationLevel?: string;
-  participationType?: string;
-  aboutParticipant: string;
-  previousKnowledge: string;
-  isChix: boolean;
-  workExperience: string;
-  stackWanted: string;
-  timeAvailability: string;
-  projects: string;
-  experience: string;
-  otherQuestions: string;
-  cmykVersion: string;
-  status: string;
-}
-
-export interface Topic {
-  _id: string;
-  title: string;
-  description?: string;
-}
-
-export interface Doc {
-  title: string;
-  slug: string;
-  body: any[];
-  content?: string;
-}
-
-export interface FeaturedCards {
-  icon: string;
-  title: string;
-  description: string;
-  color: string;
-  btnText: string;
-  link?: string;
-}
-
-export interface Person {
-  _id: string;
-  username: {
-    current: string;
-  };
-  discordID: string;
-  photo:
-    | {
-        src: string;
-        alt?: string;
-      }
-    | SanityImageSource;
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  linkedin?: string;
-  twitter?: string;
-  portfolio?: string;
-  github?: string;
-  fecTeam?: boolean;
-  timezone?: string;
-  cmykParticipant?: CMYKParticipant[];
 }
 
 export interface EmbeddedTweet {
@@ -215,54 +94,6 @@ export interface EmbeddedTweet {
     like_count: number;
     quote_count: number;
   };
-}
-
-export interface Role {
-  _id: string;
-  name: string;
-}
-
-export interface Seniority {
-  _id: string;
-  name: string;
-}
-
-export interface Technology {
-  _id: string;
-  name: string;
-}
-
-export interface ProfileFilters {
-  roleId?: string;
-  location?: string;
-  seniorityId?: string;
-  description?: string;
-  technologies?: Technology[];
-  available?: boolean;
-  active?: boolean;
-}
-
-export interface Profile {
-  _id: string;
-  description: string;
-  isAvailable: boolean;
-  location: string;
-  technologies: Technology[];
-  person: {
-    _id: string;
-    discord: string;
-    email: string;
-    firstName: string;
-    lastName: string;
-    github: string;
-    linkedin: string;
-    photo: string;
-    portfolio: string;
-    twitter: string;
-    username: string;
-  };
-  role: Role;
-  seniority: Role;
 }
 
 export type Component = {

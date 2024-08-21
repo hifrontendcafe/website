@@ -1,4 +1,4 @@
-import { Settings } from '@/lib/sanity/getSettings';
+import { Settings } from '@/lib/sanity/settings/getSettings';
 import Image from 'next/image';
 import Link from 'next/link';
 import MenuBtn from './MenuBtn';

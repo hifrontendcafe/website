@@ -2,7 +2,7 @@
 
 import Navbar from '@/components/Navbar';
 import { imageBuilder } from '@/lib/sanity';
-import { Settings } from '@/lib/sanity/getSettings';
+import { Settings } from '@/lib/sanity/settings/getSettings';
 import { Image } from '@/lib/types';
 import { useMenuToggle } from './useMenuToggle';
 import { useZeroScrollY } from './useScroll';

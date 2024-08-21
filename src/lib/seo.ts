@@ -1,5 +1,5 @@
-import { getPageByName } from '@/lib/api.server';
-import { getSettings } from '@/lib/sanity/getSettings';
+import { getPageByName } from './sanity/page/getPageByName';
+import { getSettings } from './sanity/settings/getSettings';
 
 const DEFAULT_DESCRIPTION =
   'Somos una comunidad de personas interesadas en tecnología y ciencias informáticas en donde charlamos sobre lenguajes de programación, diseño web, infraestructura, compartimos dudas, preguntamos y respondemos.';

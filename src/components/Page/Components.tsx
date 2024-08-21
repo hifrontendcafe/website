@@ -1,10 +1,10 @@
-import { Card } from '../Card';
-import type { Component, FeaturedCards, Step } from '@/lib/types';
-import Matcher from './Matcher';
-import clsx from 'clsx';
-import StepsComponent from '../Steps';
 import { imageBuilder } from '@/lib/sanity';
+import type { Component, Step } from '@/lib/types';
+import clsx from 'clsx';
+import { Card } from '../Card';
 import FeaturedCard from '../FeaturedCard';
+import StepsComponent from '../Steps';
+import Matcher from './Matcher';
 
 type CardComponentProps = {
   title?: string;
@@ -58,7 +58,7 @@ export const Grid: React.FC<GridProps> = ({
   <div
     style={{ gap }}
     // style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}
-    className={clsx('grid my-4', {
+    className={clsx('my-4 grid', {
       'grid-cols-2': columns === 2,
       'grid-cols-3': columns === 3,
       'grid-cols-4': columns === 4,
@@ -100,9 +100,7 @@ export const Steps: React.FC<{ steps: Step[] }> = ({ steps }) => (
   <StepsComponent steps={steps} />
 );
 
-export const FeatureCard: React.FC<FeaturedCards> = (props) => (
-  <FeaturedCard {...props} />
-);
+export const FeatureCard = FeaturedCard;
 
 export const Spacing: React.FC<{ width?: number; height: number }> = ({
   width,

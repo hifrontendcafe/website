@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import { getAllDocs } from '@/lib/api.server';
+import { getAllDocs } from '@/lib/sanity/docs/getAllDocs';
 import { getMetadata } from '@/lib/seo';
 
 export const generateMetadata = () =>
@@ -13,7 +13,9 @@ export const generateMetadata = () =>
 export default async function DocsPage() {
   const docs = await getAllDocs({
     cache: 'force-cache',
-    next: { revalidate: 60 },
+    next: {
+      revalidate: 60,
+    },
   });
 
   return (

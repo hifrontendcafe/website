@@ -8,7 +8,7 @@ import Header from '@/components/Header';
 import PreviewBanner from '@/components/PreviewBanner';
 import Providers from '@/components/Providers';
 import fontVariables from '@/lib/font-variables';
-import { getSettings } from '@/lib/sanity/getSettings';
+import { getSettings } from '@/lib/sanity/settings/getSettings';
 import { getMetadata } from '@/lib/seo';
 import clsx from 'clsx';
 import { draftMode } from 'next/headers';
@@ -26,7 +26,11 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const settings = await getSettings({ next: { revalidate: 120 } });
+  const settings = await getSettings({
+    next: {
+      revalidate: 120,
+    },
+  });
 
   const { isEnabled } = draftMode();
 

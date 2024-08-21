@@ -1,4 +1,5 @@
-import { ProfileFilters, Technology } from '@/lib/types';
+import { ProfileFilters } from '@/lib/sanity/profile/filterProfiles';
+import { Technology } from '@/lib/sanity/technology/getAllTechnologies';
 
 interface FilterStringAction {
   type: 'ADD_ROLE' | 'ADD_LOCATION' | 'ADD_SENIORITY' | 'ADD_DESCRIPTION';

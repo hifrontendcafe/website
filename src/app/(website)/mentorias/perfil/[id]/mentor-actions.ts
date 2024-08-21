@@ -1,9 +1,8 @@
 'use server';
 
 import { authOptions } from '@/app/(website)/api/auth/[...nextauth]/authOptions';
-import { getMentor } from '@/lib/api.server';
 import { postClient } from '@/lib/sanity';
-import type { Mentor } from '@/lib/types';
+import { getMentor, Mentor } from '@/lib/sanity/mentor/getMentor';
 import { getServerSession } from 'next-auth';
 import { revalidatePath } from 'next/cache';
 
@@ -42,7 +41,7 @@ export async function photoUploadAction(
 
 export async function mentorFormAction(id: string, formData: FormData) {
   const session = getServerSession(authOptions);
-  const mentor = await getMentor({ id });
+  const mentor = await getMentor(id);
   if (!session || !mentor) return;
 
   const topicsRefs = formData

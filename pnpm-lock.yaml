@@ -195,9 +195,6 @@ importers:
       next-sanity:
         specifier: ^9.4.4
         version: 9.4.4(@sanity/client@6.21.1)(@sanity/icons@3.3.1(react@18.3.1))(@sanity/types@3.53.0)(@sanity/ui@2.8.8(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(next@14.2.5(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sanity@3.53.0(@types/node@20.14.14)(@types/react@18.3.3)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.27.0)(utf-8-validate@5.0.10))(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(svelte@4.2.9)
-      next-sanity-client:
-        specifier: 1.0.8
-        version: 1.0.8(next@14.2.5(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))
       postcss:
         specifier: ^8.4.41
         version: 8.4.41
@@ -5982,11 +5979,6 @@ packages:
     peerDependenciesMeta:
       nodemailer:
         optional: true
-
-  next-sanity-client@1.0.8:
-    resolution: {integrity: sha512-vpJMIsEN9WTuciLWjaGfSfEZChivMf2522sS+tjl6GtbNI8reU+5R29Zi5FGP0/pfieGlaiS3kPF6hIrFCrhCQ==}
-    peerDependencies:
-      next: latest
 
   next-sanity@9.4.4:
     resolution: {integrity: sha512-3AkFx+gi5cumZ0KzW+WlRL156qzCkyRBTWpWinPv2SHdbf2i+hssnoHmL3T/gMFoNICIYwO6TaILPf3LCnjXBg==}
@@ -15316,10 +15308,6 @@ snapshots:
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       uuid: 8.3.2
-
-  next-sanity-client@1.0.8(next@14.2.5(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)):
-    dependencies:
-      next: 14.2.5(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
 
   next-sanity@9.4.4(@sanity/client@6.21.1)(@sanity/icons@3.3.1(react@18.3.1))(@sanity/types@3.53.0)(@sanity/ui@2.8.8(react-dom@18.3.1(react@18.3.1))(react-is@18.3.1)(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1)))(next@14.2.5(@babel/core@7.25.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(sanity@3.53.0(@types/node@20.14.14)(@types/react@18.3.3)(bufferutil@4.0.8)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(terser@5.27.0)(utf-8-validate@5.0.10))(styled-components@6.1.12(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(svelte@4.2.9):
     dependencies:

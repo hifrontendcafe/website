@@ -1,14 +1,12 @@
 import Profiles from '@/components/Profiles';
 import SectionHero from '@/components/SectionHero';
-import {
-  getAllProfiles,
-  getAllRoles,
-  getAllSeniorities,
-  getAllTechnologies,
-  getPageByName,
-} from '@/lib/api.server';
-import { shuffle } from '@/lib/shuffle';
+import { getPageByName } from '@/lib/sanity/page/getPageByName';
+import { getAllProfiles } from '@/lib/sanity/profile/getAllProfiles';
+import { getAllRoles } from '@/lib/sanity/roles/getAllRoles';
+import { getAllSeniorities } from '@/lib/sanity/seniority/getAllSeniorities';
+import { getAllTechnologies } from '@/lib/sanity/technology/getAllTechnologies';
 import { getPageMetadata } from '@/lib/seo';
+import { shuffle } from '@/lib/shuffle';
 
 function sortResponse<T extends { name: string }>(array: T[]) {
   return [

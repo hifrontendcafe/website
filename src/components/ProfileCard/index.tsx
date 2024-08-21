@@ -1,4 +1,4 @@
-import { Profile } from '@/lib/types';
+import { Profile } from '@/lib/sanity/profile/getProfile';
 import Image from 'next/image';
 import SocialMediaLinks from '../SocialMediaLinks';
 

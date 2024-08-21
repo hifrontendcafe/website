@@ -1,4 +1,4 @@
-import { getSettings } from '@/lib/sanity/getSettings';
+import { getSettings } from '@/lib/sanity/settings/getSettings';
 import Image from 'next/image';
 import Link from 'next/link';
 import logo_vercel from '../../../public/img/powered-by-vercel.svg';
@@ -6,8 +6,11 @@ import SocialMediaLinks from '../SocialMediaLinks';
 
 const Footer = async () => {
   const { socialnetworks, footerNavItems } = await getSettings({
-    next: { revalidate: 120 },
+    next: {
+      revalidate: 120,
+    },
   });
+
   const currentYear = new Date().getFullYear();
 
   return (

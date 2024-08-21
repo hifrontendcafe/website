@@ -1,16 +1,17 @@
+import { ProfileFilters } from '@/lib/sanity/profile/filterProfiles';
+import { Profile } from '@/lib/sanity/profile/getProfile';
+import { shuffle } from '@/lib/shuffle';
+import { useDebounce } from '@/lib/useDebounce';
+import queryString from 'query-string';
 import {
-  useState,
-  useEffect,
-  useReducer,
   Dispatch,
   SetStateAction,
+  useEffect,
+  useReducer,
   useRef,
+  useState,
 } from 'react';
-import { Profile, ProfileFilters } from '@/lib/types';
-import { filterReducer, FilterProfileAction } from './filterReducer';
-import { useDebounce } from '@/lib/useDebounce';
-import { shuffle } from '@/lib/shuffle';
-import queryString from 'query-string';
+import { FilterProfileAction, filterReducer } from './filterReducer';
 
 function searchProfiles(filters: ProfileFilters) {
   const query = queryString.stringify({

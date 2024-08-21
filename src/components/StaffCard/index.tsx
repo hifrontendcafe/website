@@ -1,5 +1,5 @@
 import { imageBuilder } from '@/lib/sanity';
-import { Person } from '@/lib/types';
+import { Person } from '@/lib/sanity/person/getFecTeam';
 import Image from 'next/image';
 import Link from 'next/link';
 

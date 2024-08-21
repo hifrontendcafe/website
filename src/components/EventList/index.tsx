@@ -1,7 +1,6 @@
 import UpcomingEvents from '@/app/(website)/eventos/components/UpcomingEvents';
-import { getAllEvents } from '@/lib/api.server';
 import { getAllDiscordEvents } from '@/lib/discord';
-import type { Event } from '@/lib/types';
+import { Event, getAllEvents } from '@/lib/sanity/event/getAllEvents';
 import { isPast } from 'date-fns';
 import EventPreview from '../EventPreview';
 
@@ -10,7 +9,9 @@ const pastEvents = (events: Event[]) =>
 
 export default async function EventList() {
   const events = await getAllEvents({
-    next: { revalidate: 60 },
+    next: {
+      revalidate: 60,
+    },
   });
 
   const upcomingEvents = await getAllDiscordEvents();

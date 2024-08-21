@@ -1,7 +1,7 @@
 'use client';
 
 import { imgUrlFrom } from '@/lib/sanity';
-import type { Mentor } from '@/lib/types';
+import { Mentor } from '@/lib/sanity/mentor/getMentor';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Image from 'next/image';

@@ -3,7 +3,7 @@ import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { ClientConfig, createClient } from 'next-sanity';
 import { dataset, projectId } from '../../../sanity.env';
 
-export const config = {
+const config = {
   dataset,
   projectId,
   apiVersion: '2022-04-30',

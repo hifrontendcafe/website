@@ -1,6 +1,7 @@
 import SectionHero from '@/components/SectionHero';
 import StaffCard from '@/components/StaffCard';
-import { getFecTeam, getPageByName } from '@/lib/api.server';
+import { getPageByName } from '@/lib/sanity/page/getPageByName';
+import { getFecTeam } from '@/lib/sanity/person/getFecTeam';
 import { getPageMetadata } from '@/lib/seo';
 
 export const generateMetadata = () => getPageMetadata('Equipo');

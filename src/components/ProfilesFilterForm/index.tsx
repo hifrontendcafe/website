@@ -1,5 +1,8 @@
 import { FilterProfileAction } from '@/components/Profiles/filterReducer';
-import { ProfileFilters, Role, Seniority, Technology } from '@/lib/types';
+import { ProfileFilters } from '@/lib/sanity/profile/filterProfiles';
+import { Role } from '@/lib/sanity/roles/getAllRoles';
+import { Seniority } from '@/lib/sanity/seniority/getAllSeniorities';
+import { Technology } from '@/lib/sanity/technology/getAllTechnologies';
 import { useRouter, useSearchParams } from 'next/navigation';
 import React, { Dispatch } from 'react';
 import Select from 'react-select';

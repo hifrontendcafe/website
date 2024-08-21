@@ -1,7 +1,10 @@
 import client, { postClient, previewClient } from './sanity';
-import { CMYKParticipant, Event, Person, Profile, SanityEvent } from './types';
+import { SanityEvent } from './types';
 
 import { personQuery, personQueryByDiscordID } from './queries';
+import { Event } from './sanity/event/getAllEvents';
+import { CMYKParticipant, Person } from './sanity/person/getFecTeam';
+import { Profile } from './sanity/profile/getProfile';
 
 const eventFields = `
   title,

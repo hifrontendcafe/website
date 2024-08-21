@@ -1,8 +1,8 @@
-import type { NextApiRequest, NextApiResponse } from 'next';
-import { postClient } from '@/lib/sanity';
 import { getPerson } from '@/lib/api';
 import { profileQuery } from '@/lib/queries';
-import { Profile } from '@/lib/types';
+import { postClient } from '@/lib/sanity';
+import { Profile } from '@/lib/sanity/profile/getProfile';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
 function isValidHttpUrl(string: string) {
   let url: URL;

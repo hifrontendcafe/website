@@ -1,7 +1,7 @@
-import { notFound } from 'next/navigation';
-import { getProfile } from '@/lib/api.server';
-import type { AppPage } from '@/lib/types';
+import { getProfile } from '@/lib/sanity/profile/getProfile';
 import { getMetadata } from '@/lib/seo';
+import type { AppPage } from '@/lib/types';
+import { notFound } from 'next/navigation';
 
 export const generateStaticParams = () => [];
 
@@ -12,7 +12,7 @@ export const generateMetadata = async ({
 }: {
   params: { id: string };
 }) => {
-  const profile = await getProfile({ id: params.id });
+  const profile = await getProfile(params.id);
 
   return await getMetadata({
     title: `Perfil: ${profile?.person?.firstName}`,
@@ -21,19 +21,19 @@ export const generateMetadata = async ({
 };
 
 const ProfilePage: AppPage<{ id: string }> = async ({ params }) => {
-  const profile = await getProfile({ id: params.id });
+  const profile = await getProfile(params.id);
 
   if (!profile?.person?.discord) return notFound();
 
   return (
-    <div className="flex items-center justify-center py-10 mx-auto">
-      <div className="flex justify-between w-3/5 px-10 py-4 border-4 rounded-lg border-greenFec">
+    <div className="mx-auto flex items-center justify-center py-10">
+      <div className="flex w-3/5 justify-between rounded-lg border-4 border-greenFec px-10 py-4">
         <img
           src={profile.person.photo}
           alt={profile.person.firstName}
-          className="object-cover object-top w-40 h-40 rounded-full shadow-lg"
+          className="h-40 w-40 rounded-full object-cover object-top shadow-lg"
         />
-        <div className="flex flex-col ml-8 text-greenFec">
+        <div className="ml-8 flex flex-col text-greenFec">
           <span>
             <b>Usuario: </b>
             {profile.person.firstName} ({profile.person.discord})

@@ -73,25 +73,6 @@ export const eventsQuery = groq`
   }
 `;
 
-export const eventsQueryByType = groq`
-  *[_type == "event" && category->name == $categoryFilter && dateTime(now()) < dateTime(date)] | order(date asc) {
-    title,
-    'slug': slug.current,
-    'category': {
-      'name': category->name,
-    },
-    'cover': {
-      'alt': cover.alt,
-      'src': cover.asset->url
-    },
-    date,
-    endDate,
-    tags,
-    recording,
-    description
-  }
-`;
-
 export const futureEventsDiscordIdQuery = groq`
   *[_type == "event" && dateTime(now()) <= dateTime(date) && discordId != null] {
     discordId,
@@ -154,7 +135,7 @@ export const mentorsQuery = groq`
     github,
     twitter,
     linkedin,
-    topics
+    topics[]->
   }
 `;
 
@@ -177,7 +158,7 @@ export const docQuery = groq`
 `;
 
 export const cmykQuery = groq`
-  *[_type == "cmyk"] {
+  *[_type == "cmyk"] | order(cmykVersion desc) {
     _id,
     name,
     description,
@@ -189,10 +170,6 @@ export const cmykQuery = groq`
     demo,
     cmykVersion
   }
-`;
-
-export const cmykVersionsOrderedFromLatestQuery = groq`
-  *[_type == "cmyk"] | order(cmykVersion desc) .cmykVersion
 `;
 
 export const personQueryByDiscordID = groq`
@@ -303,10 +280,6 @@ export const personQuery = groq`
     twitter,
     username
  }
-`;
-
-export const pagesPathsQuery = groq`
-  *[_type == "page" && defined(path)].path.current
 `;
 
 export const pageByPathQuery = groq`

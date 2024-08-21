@@ -2,7 +2,10 @@
 
 import ProfileList from '@/components/ProfileList';
 import FilterForm from '@/components/ProfilesFilterForm';
-import { Profile, Role, Seniority, Technology } from '@/lib/types';
+import { Profile } from '@/lib/sanity/profile/getProfile';
+import { Role } from '@/lib/sanity/roles/getAllRoles';
+import { Seniority } from '@/lib/sanity/seniority/getAllSeniorities';
+import { Technology } from '@/lib/sanity/technology/getAllTechnologies';
 import React, {
   SetStateAction,
   Suspense,

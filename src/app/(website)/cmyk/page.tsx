@@ -1,7 +1,7 @@
 import CMYKEdition from '@/components/CMYKEditions';
 import CMYKEditionsSkeleton from '@/components/CMYKEditions/CMYKEditionsSkeleton';
 import { cmykVersions } from '@/components/CMYKEditions/cmykVersions';
-import { getAllCMYKVersionsOrderedFromLatest } from '@/lib/api.server';
+import { getAllCMYKProjects } from '@/lib/sanity/cmyk/getAllCMYKProjects';
 import { getPageMetadata } from '@/lib/seo';
 import type { AppPage } from '@/lib/types';
 import { notFound } from 'next/navigation';
@@ -12,9 +12,13 @@ export const generateMetadata = () => {
 };
 
 const CMYKPage: AppPage = async () => {
-  const versions = await getAllCMYKVersionsOrderedFromLatest({
-    next: { revalidate: 3600 },
+  const projects = await getAllCMYKProjects({
+    next: {
+      revalidate: 3600,
+    },
   });
+
+  const versions = projects.map((project) => project.cmykVersion);
 
   const current = cmykVersions.find(
     (cmykVersion) => cmykVersion.version === versions[0],
