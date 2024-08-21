@@ -181,17 +181,6 @@ export const personQueryByDiscordID = groq`
   }
 `;
 
-export const staffQuery = groq`
-  *[_type == "person" && fecTeam] | order(_id desc){
-    _id,
-    username,
-    firstName,
-    lastName,
-    linkedin,
-    photo,
-  }
-`;
-
 export const featuredCardsQuery = groq`
   *[_type == 'featuredCards'] {
     _id,

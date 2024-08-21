@@ -1,7 +1,4 @@
-import { staffQuery } from '@/lib/queries';
 import { SanityImageSource } from '@sanity/asset-utils';
-import { FilteredResponseQueryOptions } from 'next-sanity';
-import client from '..';
 
 export interface CMYKParticipant {
   _id?: string;
@@ -46,8 +43,4 @@ export interface Person {
   fecTeam?: boolean;
   timezone?: string;
   cmykParticipant?: CMYKParticipant[];
-}
-
-export async function getFecTeam(options?: FilteredResponseQueryOptions) {
-  return client.fetch<Person[]>(staffQuery, {}, options);
 }

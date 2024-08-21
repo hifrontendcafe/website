@@ -3,7 +3,7 @@ import { SanityEvent } from './types';
 
 import { personQuery, personQueryByDiscordID } from './queries';
 import { Event } from './sanity/event/getAllEvents';
-import { CMYKParticipant, Person } from './sanity/person/getFecTeam';
+import { CMYKParticipant, Person } from './sanity/person/types';
 import { Profile } from './sanity/profile/getProfile';
 
 const eventFields = `
