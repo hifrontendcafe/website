@@ -1,10 +1,9 @@
 import client, { postClient, previewClient } from './sanity';
 import { SanityEvent } from './types';
 
-import { personQuery, personQueryByDiscordID } from './queries';
+import { personQueryByDiscordID } from './queries';
 import { Event } from './sanity/event/getAllEvents';
 import { CMYKParticipant, Person } from './sanity/person/types';
-import { Profile } from './sanity/profile/getProfile';
 
 const eventFields = `
   title,
@@ -84,11 +83,4 @@ export async function getPersonByDiscordID(
 ): Promise<Person> {
   const result = await getClient(preview).fetch(personQueryByDiscordID, { id });
   return result.length > 0 && result[0];
-}
-
-export async function getPerson(
-  id: string,
-  preview = false,
-): Promise<Profile['person']> {
-  return await getClient(preview).fetch(personQuery, { id });
 }
