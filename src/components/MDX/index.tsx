@@ -31,7 +31,7 @@ export const Link: React.FC<LinkProps> = ({ value, children }) => {
   if (!isInternal) {
     return (
       <a
-        className="color my-0 font-medium text-informational transition duration-100 ease-in hover:text-darkBlue hover:underline"
+        className="color my-0 font-medium text-informational transition duration-100 ease-in hover:text-dark-blue hover:underline"
         href={value?.href}
         rel="noreferrer nooponer"
         target="_blank"
@@ -44,7 +44,7 @@ export const Link: React.FC<LinkProps> = ({ value, children }) => {
   return (
     <NextLink
       href={value?.href ?? ''}
-      className="color my-0 font-medium text-informational transition duration-100 ease-in hover:text-darkBlue hover:underline"
+      className="color my-0 font-medium text-informational transition duration-100 ease-in hover:text-dark-blue hover:underline"
     >
       {children}
     </NextLink>

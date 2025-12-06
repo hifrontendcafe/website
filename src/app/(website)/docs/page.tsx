@@ -20,7 +20,7 @@ export default async function DocsPage() {
 
   return (
     <section className="mt-20 pb-40">
-      <div className="divide-y divide-zinc-500 rounded-lg border-2 border-zinc-500 bg-zinc-800 shadow">
+      <div className="divide-y divide-zinc-500 rounded-lg border-2 border-zinc-500 bg-zinc-800 shadow-sm">
         <h2 className="p-5 text-xl font-bold">Documentos Útiles</h2>
         <ul className="space-y-3 p-5 text-lg text-tertiary">
           {docs?.map(({ title, slug }) => (

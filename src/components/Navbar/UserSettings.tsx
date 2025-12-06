@@ -45,7 +45,7 @@ const UserSettings: React.FC<UserSettingsProps> = ({ navIsOpen }) => {
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 0.95 }}
-              className="whitespace-nowrap rounded-2xl bg-gradient-to-r from-greenFec to-slate-500 text-xs font-semibold shadow-xl transition hover:!scale-100 hover:from-greenFec/90 hover:to-slate-500/90 active:!scale-95"
+              className="whitespace-nowrap rounded-2xl bg-linear-to-r from-green-fec to-slate-500 text-xs font-semibold shadow-xl transition hover:scale-100! hover:from-green-fec/90 hover:to-slate-500/90 active:scale-95!"
             >
               <Link
                 href={`/mentorias/perfil/${session.user.id}`}

@@ -72,7 +72,7 @@ const Hero: React.FC<HeroProps> = ({
                     type: 'spring',
                     velocity: 2,
                   }}
-                  className="inline-block text-greenFec"
+                  className="inline-block text-green-fec"
                 >
                   {title}
                 </motion.span>

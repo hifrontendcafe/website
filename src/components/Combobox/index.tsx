@@ -10,14 +10,14 @@ function Combobox<
   return (
     <Select
       unstyled
-      className="relative mt-6 rounded-lg border-b-2 border-white/20 bg-gradient-to-b from-transparent to-black/20 transition-colors focus-within:border-greenFec focus-within:bg-black/20 hover:bg-black/10"
+      className="relative mt-6 rounded-lg border-b-2 border-white/20 bg-linear-to-b from-transparent to-black/20 transition-colors focus-within:border-green-fec focus-within:bg-black/20 hover:bg-black/10"
       // TODO: Refactor
       classNames={{
         control: () => `px-2`,
         valueContainer: () => `px-2 gap-y-1 gap-x-3 py-1`,
         multiValue: ({ isFocused }) =>
           `-ml-2 gap-0.5 items-center transition-colors bg-zinc-700 text-sm py-0.5 pl-2 pr-0.5 hover:bg-zinc-800 rounded-full ${
-            isFocused && 'ring ring-inset ring-greenFec bg-zinc-800'
+            isFocused && 'ring-3 ring-inset ring-green-fec bg-zinc-800'
           }`,
         multiValueRemove: () => 'p-1 hover:bg-red-900 rounded-full',
         indicatorsContainer: () => `gap-1 place-self-end`,

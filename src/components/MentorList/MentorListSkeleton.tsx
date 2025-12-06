@@ -11,7 +11,7 @@ function MentorListSkeleton() {
         >
           <select
             disabled
-            className="w-full appearance-none rounded border border-zinc-400 bg-zinc-900 px-4 py-2 pr-8  leading-tight hover:border-zinc-500 focus:outline-none focus:ring"
+            className="w-full appearance-none rounded-sm border border-zinc-400 bg-zinc-900 px-4 py-2 pr-8  leading-tight hover:border-zinc-500 focus:outline-hidden focus:ring-3"
           ></select>
           <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
             <svg

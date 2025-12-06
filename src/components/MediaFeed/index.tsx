@@ -126,7 +126,7 @@ const TwitterCard: React.FC<TwitterCardProps> = ({
         <FontAwesomeIcon
           icon={faTwitter}
           width="18px"
-          className="fill-current text-lightBlue"
+          className="fill-current text-light-blue"
         />
       </a>
     </div>

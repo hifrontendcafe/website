@@ -9,13 +9,8 @@ import { Suspense } from 'react';
 
 export const generateMetadata = () => getPageMetadata('Mentorías');
 
-export default async function MentorshipsPage() {
-  const [topics, mentors] = await Promise.all([
-    getMentoringTopics({ next: { revalidate: 180 } }),
-    getAllMentors({ next: { revalidate: 60 } }),
-  ]);
-
-  const events = await getAllDiscordEvents();
+async function getRandomSortedMentors() {
+  const mentors = await getAllMentors({next: {revalidate: 60}});
 
   const availableMentors = mentors.filter(
     (mentor) => mentor.status === 'ACTIVE',
@@ -25,16 +20,30 @@ export default async function MentorshipsPage() {
     (mentor) => mentor.status !== 'ACTIVE',
   );
 
-  // randomize mentors order
   shuffle(availableMentors);
   shuffle(notAvailableMentors);
+
+  return {
+    availableMentors,
+    notAvailableMentors,
+  };
+}
+
+export default async function MentorshipsPage() {
+  const [topics, mentors] = await Promise.all([
+    getMentoringTopics({ next: { revalidate: 180 } }),
+    getRandomSortedMentors(),
+  ]);
+
+  const events = await getAllDiscordEvents();
+
 
   return (
     <>
       <Suspense fallback={<MentorListSkeleton />}>
         <MentorList
           topics={topics}
-          mentors={[...availableMentors, ...notAvailableMentors]}
+          mentors={[...mentors.availableMentors, ...mentors.notAvailableMentors]}
           events={events}
         />
       </Suspense>

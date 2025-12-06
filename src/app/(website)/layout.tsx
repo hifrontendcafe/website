@@ -39,7 +39,7 @@ export default async function RootLayout({
       <head />
       <body className="min-h-screen w-full bg-zinc-900 font-sans text-primary">
         <Providers>
-          <div className="absolute left-1/2 -z-10 h-3/5 w-7/12 -translate-x-1/2 -translate-y-1/3 rounded-[50%] bg-gradient-to-b from-ellipseGreen via-ellipseGreen to-transparent opacity-70 blur-4xl" />
+          <div className="absolute left-1/2 -z-10 h-3/5 w-7/12 -translate-x-1/2 -translate-y-1/3 rounded-[50%] bg-linear-to-b from-ellipse-green via-ellipse-green to-transparent opacity-70 blur-4xl" />
           <PreviewBanner draftMode={isEnabled} />
           <Header
             logo={settings.logo}

@@ -52,7 +52,7 @@ const SimpleModal: React.FC<ModalProps> = ({
               </h3>
               <button
                 aria-label="Cerrar modal"
-                className="h-10 w-10 rounded-full bg-zinc-800 outline-none hover:bg-zinc-700 focus:ring"
+                className="h-10 w-10 rounded-full bg-zinc-800 outline-hidden hover:bg-zinc-700 focus:ring-3"
                 onClick={close}
               >
                 <FontAwesomeIcon aria-hidden icon={faClose} />

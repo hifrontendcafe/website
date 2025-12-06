@@ -35,7 +35,7 @@ async function CMYKEdition({ edition }: { edition: CMYKEditionType }) {
       <ul className="mx-auto mb-10 mt-6 flex w-full gap-2 md:w-8/12 ">
         {validCmykEditions.map((cmyk) => (
           <li
-            className={`flex-1 from-zinc-300/25 via-transparent text-center focus-within:bg-gradient-to-t hover:bg-gradient-to-t ${
+            className={`flex-1 from-zinc-300/25 via-transparent text-center focus-within:bg-linear-to-t hover:bg-linear-to-t ${
               cmyk.edition === edition
                 ? 'border-b-4 border-zinc-100 font-semibold'
                 : 'border-b text-tertiary'

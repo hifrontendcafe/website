@@ -37,7 +37,7 @@ export default function MentorList({
   const speciality = searchParams?.get('especialidad') ?? '';
 
   const filteredByTopic: Mentor[] = mentors.filter((mentor) =>
-    mentor.topics.some((topic) => topic._ref === speciality),
+    mentor.topics.some((topic) => topic._id === speciality),
   );
 
   const filteredMentors = speciality ? filteredByTopic : mentors;
@@ -45,7 +45,7 @@ export default function MentorList({
   const mentorHasEvents = (mentor: Mentor) => {
     return events?.find(
       (event) =>
-        event.creator_id === mentor._id &&
+        event.creator_id === mentor.id &&
         mentorshipChannels.includes(
           event.channel_id as (typeof mentorshipChannels)[number],
         ),
@@ -63,7 +63,7 @@ export default function MentorList({
       <ul className="grid gap-12 lg:grid-cols-2">
         {filteredMentors?.map((mentor) => (
           <MentorCard
-            key={mentor._id}
+            key={mentor.id }
             mentor={mentor}
             topics={topics}
             openModal={() => setIsModalOpen(true)}
@@ -104,7 +104,7 @@ export default function MentorList({
               target="_blank"
               href="https://discord.com/channels/594363964499165194/897161654377271346"
               rel="noreferrer"
-              className="underline hover:text-greenFec"
+              className="underline hover:text-green-fec"
             >
               contáctanos.
             </a>
@@ -117,7 +117,7 @@ export default function MentorList({
               target="_blank"
               href="https://discord.com/channels/594363964499165194/897161654377271346"
               rel="noreferrer"
-              className="underline hover:text-greenFec"
+              className="underline hover:text-green-fec"
             >
               contáctanos.
             </a>
@@ -153,7 +153,7 @@ function SpecialitySelector({
       <select
         onChange={(event) => queryTopic(event.target.value)}
         value={speciality}
-        className="w-full appearance-none rounded border border-zinc-400 bg-zinc-900 px-4 py-2 pr-8  leading-tight hover:border-zinc-500 focus:outline-none focus:ring"
+        className="w-full appearance-none rounded-sm border border-zinc-400 bg-zinc-900 px-4 py-2 pr-8  leading-tight hover:border-zinc-500 focus:outline-hidden focus:ring-3"
       >
         <option value="">Buscar...</option>
         {topics?.map((topic) => (

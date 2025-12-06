@@ -6,7 +6,7 @@ import { Topic } from '../topics/getMentoringTopics';
 type MentorStatus = 'ACTIVE' | 'NOT_AVAILABLE' | 'INACTIVE' | 'OUT';
 
 export interface Mentor {
-  _id: string;
+  id: string;
   name: string;
   description: string;
   photo: {
@@ -22,8 +22,8 @@ export interface Mentor {
   // FIXME: Topics are not allways like this
   topics: [
     {
-      _key: string;
-      _ref: string;
+      _id: string;
+      title: string;
     },
   ];
 }

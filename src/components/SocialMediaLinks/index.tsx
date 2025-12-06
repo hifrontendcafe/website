@@ -63,7 +63,7 @@ function SocialMediaLinks({
             target="_blank"
             rel="noopener noreferrer"
             className={clsx(
-              'flex items-center justify-center rounded-full p-1.5 outline-none ring-greenFec transition-colors ease-out hover:bg-white/20 focus-visible:ring-2',
+              'flex items-center justify-center rounded-full p-1.5 outline-hidden ring-green-fec transition-colors ease-out hover:bg-white/20 focus-visible:ring-2',
               linkStyles[background],
             )}
           >

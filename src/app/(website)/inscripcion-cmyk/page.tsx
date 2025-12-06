@@ -67,7 +67,7 @@ export default async function CMYKInscriptionPage() {
         </div>
         <div className="md:mb-0 md:w-1/2 md:max-w-lg md:pl-10 lg:w-full lg:max-w-xl">
           <Image
-            className="rounded object-cover object-center"
+            className="rounded-sm object-cover object-center"
             alt="hero"
             src="/img/cmyk-girl.min.svg"
             width={1026.96}

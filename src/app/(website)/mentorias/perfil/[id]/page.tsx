@@ -57,7 +57,7 @@ async function Page(props: { params: Promise<{ id: string }> }) {
           className="mx-auto mt-10 w-full max-w-prose xl:mt-0"
         >
           <fieldset className="mb-12 space-y-6">
-            <legend className="text-lg font-semibold text-greenFec ">
+            <legend className="text-lg font-semibold text-green-fec ">
               Información personal
             </legend>
             <div className="flex justify-between gap-x-4">
@@ -99,7 +99,7 @@ async function Page(props: { params: Promise<{ id: string }> }) {
           </fieldset>
 
           <fieldset className="mb-12 space-y-6">
-            <legend className="text-lg font-semibold text-greenFec ">
+            <legend className="text-lg font-semibold text-green-fec ">
               Redes sociales
             </legend>
             <div className="flex flex-col gap-x-10 gap-y-6 md:flex-row">

@@ -115,7 +115,7 @@ const EventPreview: React.FC<EventPreviewProps> = ({ event, past = false }) => {
           </div>
         )}
         <div className="py-2 text-secondary">
-          <div className="!text-base">
+          <div className="text-base!">
             <RichTextBody value={event.description as any} />
           </div>
         </div>

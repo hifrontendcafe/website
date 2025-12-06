@@ -31,7 +31,7 @@ const CardHeader: React.FC<Props> = ({ children }) => (
 const CardImage: React.FC<ImageProps> = ({ className, src, ...props }) => (
   <div className="relative mb-2 h-40 w-full">
     <Image
-      className={`h-40 w-full rounded-sm object-cover ${className}`}
+      className={`h-40 w-full rounded-xs object-cover ${className}`}
       placeholder="blur"
       blurDataURL={
         /* Would rather use FEC's logo form Sanity */ '/logotype-fec.svg'
@@ -66,7 +66,7 @@ const CardParagraph: React.FC<Props & ParagraphProps> = ({
 );
 
 const CardActions: React.FC<Props> = ({ children }) => (
-  <div className="mt-5 flex w-full flex-grow items-end">
+  <div className="mt-5 flex w-full grow items-end">
     <div className="flex w-full justify-between gap-4">{children}</div>
   </div>
 );

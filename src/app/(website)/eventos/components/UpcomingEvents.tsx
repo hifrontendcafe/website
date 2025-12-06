@@ -23,7 +23,7 @@ function UpcomingEvents({ events }: Props) {
       <div className="grid items-center gap-x-6 gap-y-2 lg:grid-cols-2">
         <div className="flex min-w-0 items-center justify-between gap-4">
           <Image
-            className="rounded"
+            className="rounded-sm"
             src={`https://cdn.discordapp.com/guild-events/${nextEvent.id}/${nextEvent.image}.png?size=512`}
             width={512}
             height={204}
@@ -59,7 +59,7 @@ function UpcomingEvents({ events }: Props) {
         <ul className="grid gap-10 md:grid-cols-2 xl:grid-cols-3">
           {sortedEvents.slice(1, 4).map((event) => (
             <li
-              className="flex min-w-0 gap-3 md:[&:nth-child(3)]:hidden xl:[&:nth-child(3)]:flex"
+              className="flex min-w-0 gap-3 md:nth-3:hidden xl:nth-3:flex"
               key={event.id}
             >
               <DateWidget dateString={event.scheduled_start_time} />
@@ -69,7 +69,7 @@ function UpcomingEvents({ events }: Props) {
                   {event.description}
                 </p>
                 <Image
-                  className="mt-auto rounded"
+                  className="mt-auto rounded-sm"
                   src={`https://cdn.discordapp.com/guild-events/${event.id}/${event.image}.png?size=512`}
                   width={512}
                   height={204}

@@ -10,7 +10,7 @@ export const generateMetadata = () =>
 export default function MentorshipsFeedbackPage() {
   return (
     <div className="pb-24 mt-16 bg-indigo-100 sm:pt-10 md:mt-2">
-      <div className="min-h-screen overflow-hidden bg-white rounded-lg shadow">
+      <div className="min-h-screen overflow-hidden bg-white rounded-lg shadow-sm">
         <div className="px-12 py-5 text-zinc-700">
           <iframe
             className="min-h-screen"

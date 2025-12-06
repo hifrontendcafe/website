@@ -73,7 +73,7 @@ export default function MentorCard({
 
         <div className="flex flex-col items-center sm:max-w-min">
           {event && (
-            <div className="text-sm text-greenFec">
+            <div className="text-sm text-green-fec">
               <p className="line-clamp-1">{event.name}</p>
               <DateAndTime
                 className="sm:whitespace-nowrap"
@@ -103,13 +103,13 @@ export default function MentorCard({
         </h3>
         <SocialMediaLinks className="place-content-end" socialMedia={mentor} />
       </div>
-      <p className="flex-grow leading-relaxed text-tertiary md:min-h-64">
+      <p className="grow leading-relaxed text-tertiary md:min-h-64">
         {mentor.description ? mentor.description : '---'}
       </p>
       <ul className="flex flex-wrap gap-2">
         {mentor.topics &&
           mentor.topics?.map((topic) => (
-            <TopicBadge key={topic._key} topic={findTopicsName(topic._ref)} />
+            <TopicBadge key={topic._id} topic={findTopicsName(topic._id)} />
           ))}
       </ul>
 

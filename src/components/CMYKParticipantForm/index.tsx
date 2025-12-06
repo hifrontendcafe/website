@@ -121,7 +121,7 @@ const CMYKParticipantForm: React.FC<
       </ul>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="flex w-full grid-cols-2 flex-col gap-5 rounded border-2 border-zinc-600 bg-zinc-900 p-4 text-tertiary sm:px-8 sm:pt-6 sm:pb-8 md:grid"
+        className="flex w-full grid-cols-2 flex-col gap-5 rounded-sm border-2 border-zinc-600 bg-zinc-900 p-4 text-tertiary sm:px-8 sm:pt-6 sm:pb-8 md:grid"
       >
         <input
           type="text"
@@ -137,7 +137,7 @@ const CMYKParticipantForm: React.FC<
           </label>
           <div className="relative">
             <input
-              className="input focus:outline-none focus:ring"
+              className="input focus:outline-hidden focus:ring-3"
               type="text"
               placeholder="Ingresa tu usuario de Discord"
               autoComplete="off"
@@ -153,7 +153,7 @@ const CMYKParticipantForm: React.FC<
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold">Email*</label>
           <input
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
             type="email"
             placeholder="Ingresa tu email"
             autoComplete="off"
@@ -168,7 +168,7 @@ const CMYKParticipantForm: React.FC<
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold">Nombre*</label>
           <input
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
             type="text"
             placeholder="Ingresa tu nombre"
             autoComplete="off"
@@ -182,7 +182,7 @@ const CMYKParticipantForm: React.FC<
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold">Apellido*</label>
           <input
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
             type="text"
             placeholder="Ingresa tu apellido"
             autoComplete="off"
@@ -198,7 +198,7 @@ const CMYKParticipantForm: React.FC<
           <select
             id="timezone"
             {...register('timezone', { required: true })}
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
           >
             <option value="">Por favor elige una opción</option>
             {timezones.map((tz) => (
@@ -217,7 +217,7 @@ const CMYKParticipantForm: React.FC<
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold">Github*</label>
           <input
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
             type="url"
             placeholder="https://www.github.com/usuario"
             autoComplete="off"
@@ -231,7 +231,7 @@ const CMYKParticipantForm: React.FC<
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold">Twitter</label>
           <input
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
             type="url"
             placeholder="https://www.twitter.com/usuario"
             autoComplete="off"
@@ -242,7 +242,7 @@ const CMYKParticipantForm: React.FC<
         <div className="mb-4">
           <label className="mb-2 block text-sm font-bold">LinkedIn*</label>
           <input
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
             type="url"
             placeholder="https://www.linkedin.com/in/usuario"
             autoComplete="off"
@@ -259,7 +259,7 @@ const CMYKParticipantForm: React.FC<
           <select
             id="experience"
             {...register('experience', { required: true })}
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
           >
             <option value="">Por favor elige una opción</option>
             <option value="yes">Sí</option>
@@ -277,7 +277,7 @@ const CMYKParticipantForm: React.FC<
           <select
             id="workExperience"
             {...register('workExperience', { required: true })}
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
           >
             <option value="">Por favor elige una opción</option>
             {type === 'lider' ? (
@@ -306,7 +306,7 @@ const CMYKParticipantForm: React.FC<
           <select
             id="stackWanted"
             {...register('stackWanted', { required: true })}
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
           >
             <option value="">Por favor elige una opción</option>
             <option value="front">Frontend (React)</option>
@@ -325,7 +325,7 @@ const CMYKParticipantForm: React.FC<
           <select
             id="timeAvailability"
             {...register('timeAvailability', { required: true })}
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
           >
             <option value="">Por favor elige una opción</option>
             <option value=">2<4hours">Entre 2 y 4 horas semanales</option>
@@ -344,7 +344,7 @@ const CMYKParticipantForm: React.FC<
           <select
             id="projects"
             {...register('projects', { required: true })}
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
           >
             <option value="">Por favor elige una opción</option>
             <option value="flashcards">App Flashcards</option>
@@ -364,7 +364,7 @@ const CMYKParticipantForm: React.FC<
           </label>
           <textarea
             rows={1}
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
             placeholder="Si tienes conocimientos, cuéntanos"
             {...register('previousKnowledge', { required: true })}
           ></textarea>
@@ -381,7 +381,7 @@ const CMYKParticipantForm: React.FC<
           </label>
           <textarea
             rows={4}
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
             placeholder="Conocerte nos permitirá saber ubicarte en los proyectos"
             {...register('aboutParticipant', { required: true })}
           ></textarea>
@@ -396,7 +396,7 @@ const CMYKParticipantForm: React.FC<
           </label>
           <textarea
             rows={4}
-            className="input focus:outline-none focus:ring"
+            className="input focus:outline-hidden focus:ring-3"
             {...register('otherQuestions', { required: false })}
           ></textarea>
         </div>

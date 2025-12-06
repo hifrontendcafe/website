@@ -55,14 +55,14 @@ function PhotoUpload({ photo, name, _id }: Props) {
   return (
     <fieldset className="group relative" disabled={isPending}>
       <Image
-        className={`h-64 w-64 rounded-full object-cover shadow-lg duration-1000 group-disabled:animate-pulse group-disabled:opacity-25 group-disabled:blur-sm`}
+        className={`h-64 w-64 rounded-full object-cover shadow-lg duration-1000 group-disabled:animate-pulse group-disabled:opacity-25 group-disabled:blur-xs`}
         src={currentPhoto}
         width={768}
         height={768}
         alt={`Foto de ${name}`}
       />
       <label className="cursor-pointer after:absolute after:inset-0 after:overflow-hidden after:rounded-full after:transition-colors focus-within:after:bg-black/10 group-hover:after:bg-black/10 group-disabled:cursor-wait">
-        <span className="absolute inset-x-0 -bottom-5 mx-auto max-w-fit rounded bg-zinc-700 px-2 py-1 opacity-75 ring-greenFec transition-opacity group-focus-within:opacity-100 group-focus-within:ring-2 group-hover:opacity-100">
+        <span className="absolute inset-x-0 -bottom-5 mx-auto max-w-fit rounded-sm bg-zinc-700 px-2 py-1 opacity-75 ring-green-fec transition-opacity group-focus-within:opacity-100 group-focus-within:ring-2 group-hover:opacity-100">
           <FontAwesomeIcon icon={faEdit} className="h-4 w-4" /> Actualizar foto
           de perfil
         </span>
