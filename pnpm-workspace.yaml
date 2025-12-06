@@ -1,7 +1,9 @@
 onlyBuiltDependencies:
   - '@vercel/speed-insights'
   - bufferutil
+  - core-js
   - core-js-pure
   - esbuild
   - sharp
+  - unrs-resolver
   - utf-8-validate

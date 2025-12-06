@@ -163,7 +163,7 @@ export type AppPage<
 > = (props: {
   params: T;
   searchParams?: { [key: string]: string | string[] | undefined };
-}) => JSX.Element | Promise<JSX.Element>;
+}) => React.ReactNode | Promise<React.ReactNode>;
 
 /**
  * Discord

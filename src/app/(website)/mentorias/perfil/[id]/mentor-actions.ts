@@ -80,7 +80,7 @@ export async function mentorFormAction(id: string, formData: FormData) {
 
   try {
     await postClient
-      .patch(mentor._id, {
+      .patch(mentor.id, {
         unset: oldMentorData,
         set: {
           ...newMentorData,

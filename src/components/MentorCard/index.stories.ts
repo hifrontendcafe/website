@@ -6,13 +6,13 @@ const meta = {
   component: MentorCard,
   args: {
     mentor: {
-      _id: '123',
+      id: '123',
       description:
         'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error vitae repellat dolores iste, maxime neque delectus, debitis ipsa omnis architecto a earum eaque, reprehenderit sequi atque eius voluptate expedita laboriosam!',
       github: '/#',
       name: 'Name',
       status: 'NOT_AVAILABLE',
-      topics: [{ _key: 'topic key', _ref: 'topic ref' }],
+      topics: [{ _id: 'topic id', title: 'topic title' }],
       web: '/#',
       linkedin: '/#',
       calendly: '',

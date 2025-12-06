@@ -25,9 +25,9 @@ const resizeFile = (newFile: File) =>
     );
   });
 
-type Props = Pick<Mentor, 'photo' | 'name' | '_id'>;
+type Props = Pick<Mentor, 'photo' | 'name' | 'id'>;
 
-function PhotoUpload({ photo, name, _id }: Props) {
+function PhotoUpload({ photo, name, id }: Props) {
   const [photoRef, setPhotoRef] = useState<Mentor['photo'] | undefined>(photo);
   const [isPending, startTransition] = useTransition();
   const currentPhoto = imgUrlFrom(photoRef, { size: 768 }) || '/img/user.svg';
@@ -43,7 +43,7 @@ function PhotoUpload({ photo, name, _id }: Props) {
         const formData = new FormData();
         formData.set('photo', image);
 
-        const document = await photoUploadAction(_id, formData, photoRef);
+        const document = await photoUploadAction(id, formData, photoRef);
 
         setPhotoRef(document?.photo);
       } catch (error) {

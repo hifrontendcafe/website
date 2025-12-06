@@ -1,3 +1,4 @@
+// @ts-expect-error Fix this
 import blockTools from '@sanity/block-tools';
 import { Schema } from '@sanity/schema';
 import jsdom from 'jsdom';
