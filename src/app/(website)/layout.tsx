@@ -32,7 +32,7 @@ export default async function RootLayout({
     },
   });
 
-  const { isEnabled } = draftMode();
+  const { isEnabled } = await draftMode();
 
   return (
     <html lang="es" className={clsx(fontVariables, 'scroll-smooth')}>
@@ -40,7 +40,7 @@ export default async function RootLayout({
       <body className="min-h-screen w-full bg-zinc-900 font-sans text-primary">
         <Providers>
           <div className="absolute left-1/2 -z-10 h-3/5 w-7/12 -translate-x-1/2 -translate-y-1/3 rounded-[50%] bg-gradient-to-b from-ellipseGreen via-ellipseGreen to-transparent opacity-70 blur-4xl" />
-          <PreviewBanner />
+          <PreviewBanner draftMode={isEnabled} />
           <Header
             logo={settings.logo}
             navItems={settings.navItems}

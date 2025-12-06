@@ -17,7 +17,13 @@ export const metadata = {
   title: 'Perfil de mentorías',
 };
 
-async function Page({ params: { id } }: { params: { id: string } }) {
+async function Page(props: { params: Promise<{ id: string }> }) {
+  const params = await props.params;
+
+  const {
+    id
+  } = params;
+
   const session = await getServerSession(authOptions);
   const isMentor = session?.user.roles.includes('Mentor');
   if (!session || !isMentor || session.user.id !== id) {

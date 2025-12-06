@@ -24,7 +24,8 @@ function isValidEdition(
   return cmykEditions.has(edition as (typeof cmykVersions)[number]['edition']);
 }
 
-const CMYKPage: AppPage<{ edition: string }> = async ({ params }) => {
+const CMYKPage: AppPage<{ edition: string }> = async props => {
+  const params = await props.params;
   const edition = params.edition;
 
   if (!isValidEdition(edition)) {

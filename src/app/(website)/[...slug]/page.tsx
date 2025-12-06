@@ -11,7 +11,8 @@ export const generateStaticParams = () => {
 // FIXME: https://github.com/vercel/next.js/issues/49489
 export const dynamicParams = true;
 
-const CustomPage: AppPage<{ slug: string[] }> = async ({ params }) => {
+const CustomPage: AppPage<{ slug: string[] }> = async props => {
+  const params = await props.params;
   const [base, ...rest] = params.slug;
 
   const path = [`/${base}`].concat(rest).join('/');

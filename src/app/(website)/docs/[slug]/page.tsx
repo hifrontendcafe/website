@@ -5,11 +5,12 @@ import { getMetadata } from '@/lib/seo';
 import { AppPage } from '@/lib/types';
 import { notFound } from 'next/navigation';
 
-export const generateMetadata = async ({
-  params,
-}: {
-  params: { slug: string };
-}) => {
+export const generateMetadata = async (
+  props: {
+    params: Promise<{ slug: string }>;
+  }
+) => {
+  const params = await props.params;
   const doc = await getDocBySlug({ slug: params.slug });
 
   return getMetadata({ title: doc?.title });
@@ -23,7 +24,8 @@ export const generateStaticParams = async () => {
   }));
 };
 
-const DocPage: AppPage<{ slug: string }> = async ({ params }) => {
+const DocPage: AppPage<{ slug: string }> = async props => {
+  const params = await props.params;
   const doc = await getDocBySlug(
     { slug: params.slug },
     {

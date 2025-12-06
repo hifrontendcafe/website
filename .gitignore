@@ -48,3 +48,4 @@ package-lock.json
 
 # tsbuildinfo
 *.tsbuildinfo
+.env*.local
