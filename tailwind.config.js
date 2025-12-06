@@ -1,5 +1,5 @@
-const defaultTheme = require('tailwindcss/defaultTheme');
-const tailwindColors = require('tailwindcss/colors');
+import defaultTheme from 'tailwindcss/defaultTheme';
+import tailwindColors from 'tailwindcss/colors';
 
 const { '2xl': _, ...screens } = defaultTheme.screens;
 
