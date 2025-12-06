@@ -1,6 +1,8 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 const tailwindColors = require('tailwindcss/colors');
 
+const { '2xl': _, ...screens } = defaultTheme.screens;
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
@@ -13,10 +15,7 @@ module.exports = {
     letterSpacing: {
       tight: '-0.125em',
     },
-    screens: Object.fromEntries(
-      Object.entries(defaultTheme.screens).filter(([key]) => key !== '2xl'),
-    ),
-
+    screens,
     container: {
       padding: {
         DEFAULT: '1rem',
